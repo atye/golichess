@@ -35,6 +35,7 @@ jobs:
           cp lichess-api/doc/specs/lichess-api.yaml lichess-openapi.yaml
           cp -r lichess-api/doc/specs/schemas ./schemas
           cp -r lichess-api/doc/specs/tags ./tags
+          cp -r lichess-api/doc/specs/examples ./examples
           
       - name: Extract version from spec
         id: version

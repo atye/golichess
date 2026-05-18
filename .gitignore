@@ -32,5 +32,6 @@ Thumbs.db
 lichess-openapi.yaml
 schemas/
 tags/
+examples/
 lichess-api/
 version.txt
