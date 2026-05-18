@@ -1,0 +1,106 @@
+value:
+  {
+    "chess960":
+      {
+        "user": { "name": "realNomenNescio", "id": "realnomennescio" },
+        "rating": 2366,
+        "gameId": "doTaX3pm",
+        "color": "black",
+      },
+    "best":
+      {
+        "user": { "name": "DrawMerchant", "title": "IM", "id": "drawmerchant" },
+        "rating": 2787,
+        "gameId": "2i3nCKuq",
+        "color": "black",
+      },
+    "antichess":
+      {
+        "user": { "name": "Penguinept", "flair": "activity.puzzle-piece", "id": "penguinept" },
+        "rating": 2197,
+        "gameId": "Mm5RSBXg",
+        "color": "white",
+      },
+    "computer":
+      {
+        "user": { "name": "AIDARED", "flair": "food-drink.red-apple", "id": "aidared" },
+        "rating": 2506,
+        "gameId": "Y1D9abkF",
+        "color": "white",
+      },
+    "bullet":
+      {
+        "user": { "name": "DrawMerchant", "title": "IM", "id": "drawmerchant" },
+        "rating": 2787,
+        "gameId": "2i3nCKuq",
+        "color": "black",
+      },
+    "horde":
+      {
+        "user": { "name": "Andr88", "flair": "symbols.triangular-flag", "id": "andr88" },
+        "rating": 2133,
+        "gameId": "zv6BfeT6",
+        "color": "black",
+      },
+    "atomic":
+      {
+        "user":
+          { "name": "cyberpunks", "flair": "smileys.cold-face", "patron": true, "patronColor": 1, "id": "cyberpunks" },
+        "rating": 1932,
+        "gameId": "EBddIJbc",
+        "color": "white",
+      },
+    "bot":
+      {
+        "user": { "name": "PetersBot", "title": "BOT", "id": "petersbot" },
+        "rating": 2921,
+        "gameId": "0xBV4AeD",
+        "color": "black",
+      },
+    "racingKings":
+      {
+        "user": { "name": "AahaanTheChamp", "flair": "food-drink.mango", "id": "aahaanthechamp" },
+        "rating": 2135,
+        "gameId": "HEmN5MUd",
+        "color": "white",
+      },
+    "ultraBullet":
+      {
+        "user": { "name": "Lumbrerosky", "id": "lumbrerosky" },
+        "rating": 1942,
+        "gameId": "v2WgmhmU",
+        "color": "black",
+      },
+    "blitz":
+      {
+        "user": { "name": "Bugzilla", "title": "IM", "id": "bugzilla" },
+        "rating": 2629,
+        "gameId": "Si5fCcRw",
+        "color": "white",
+      },
+    "kingOfTheHill":
+      {
+        "user": { "name": "sorrymyfault", "id": "sorrymyfault" },
+        "rating": 2357,
+        "gameId": "ugZHqrgZ",
+        "color": "white",
+      },
+    "crazyhouse":
+      {
+        "user": { "name": "Mini_verse", "flair": "smileys.skull", "id": "mini_verse" },
+        "rating": 2295,
+        "gameId": "f2RI9DMl",
+        "color": "black",
+      },
+    "threeCheck":
+      { "user": { "name": "blit2", "id": "blit2" }, "rating": 1978, "gameId": "ltR9SqXm", "color": "black" },
+    "classical":
+      { "user": { "name": "Matador85", "id": "matador85" }, "rating": 2356, "gameId": "JBrftNJe", "color": "white" },
+    "rapid":
+      {
+        "user": { "name": "fito2", "title": "FM", "id": "fito2" },
+        "rating": 2479,
+        "gameId": "EUO98ic9",
+        "color": "white",
+      },
+  }

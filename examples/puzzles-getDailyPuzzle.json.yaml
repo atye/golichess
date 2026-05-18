@@ -1,0 +1,27 @@
+value:
+  {
+    "game":
+      {
+        "id": "MmhaEJoJ",
+        "perf": { "key": "classical", "name": "Classical" },
+        "rated": true,
+        "players":
+          [
+            { "name": "MuhCiri", "id": "muhciri", "color": "white", "rating": 1915 },
+            { "name": "saadatinia", "id": "saadatinia", "color": "black", "rating": 1798 },
+          ],
+        "pgn": "e4 e5 Nf3 Nc6 Bc4 h6 c3 f5 d3 fxe4",
+        "clock": "15+15",
+      },
+    "puzzle":
+      {
+        "id": "u3GaW",
+        "rating": 1938,
+        "plays": 127146,
+        "solution": ["f3e5", "g8f6", "e5f7", "d8e7", "f7h8"],
+        "themes": ["opening", "long", "fork", "advantage"],
+        "fen": "r1bqkbnr/pppp2p1/2n4p/4p3/2B1p3/2PP1N2/PP3PPP/RNBQK2R w KQkq - 0 1",
+        "lastMove": "f5e4",
+        "initialPly": 9,
+      },
+  }

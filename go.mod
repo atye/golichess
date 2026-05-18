@@ -1,7 +1,9 @@
-module golichess
+module github.com/atye/golichess
 
-go 1.21
+go 1.23
 
 require (
-	github.com/antihax/optional v1.0.0
+	github.com/stretchr/testify v1.10.0
+	golang.org/x/oauth2 v0.27.0
+	gopkg.in/validator.v2 v2.0.1
 )

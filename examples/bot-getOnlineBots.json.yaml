@@ -1,0 +1,29 @@
+value:
+  {
+    "id": "variantsbot",
+    "username": "VariantsBot",
+    "perfs":
+      {
+        "bullet": { "games": 2, "rating": 2212, "rd": 500, "prog": 0, "prov": true },
+        "blitz": { "games": 0, "rating": 1500, "rd": 500, "prog": 0, "prov": true },
+        "rapid": { "games": 0, "rating": 1500, "rd": 500, "prog": 0, "prov": true },
+        "classical": { "games": 0, "rating": 1500, "rd": 500, "prog": 0, "prov": true },
+        "correspondence": { "games": 0, "rating": 1500, "rd": 500, "prog": 0, "prov": true },
+        "chess960": { "games": 65, "rating": 2180, "rd": 229, "prog": -11, "prov": true },
+        "kingOfTheHill": { "games": 579, "rating": 2579, "rd": 176, "prog": -1, "prov": true },
+        "threeCheck": { "games": 2110, "rating": 2759, "rd": 171, "prog": -5, "prov": true },
+        "antichess": { "games": 6982, "rating": 3021, "rd": 169, "prog": 0, "prov": true },
+        "atomic": { "games": 3666, "rating": 2714, "rd": 167, "prog": -19, "prov": true },
+        "horde": { "games": 1019, "rating": 3019, "rd": 170, "prog": 2, "prov": true },
+        "racingKings": { "games": 3173, "rating": 2703, "rd": 164, "prog": -8, "prov": true },
+        "crazyhouse": { "games": 1058, "rating": 2754, "rd": 177, "prog": 1, "prov": true },
+      },
+    "title": "BOT",
+    "createdAt": 1597330896288,
+    "profile":
+      {
+        "bio": "Fairy-Stockfish for variants, on an AMD Threadripper.  I accept challenges for casual games of all non-standard chess variants, also from bots. Accepted time controls: minimum 1 + 0, maximum 15 + 10. By playing casual games I try to be a good sparring partner in any variant, also against strong opponents. Tool to create opening books for any Lichess chess variant: github.com/lichapibot/cbuild.",
+      },
+    "seenAt": 1778812219623,
+    "playTime": { "total": 18093325, "tv": 3862, "human": 20182743 },
+  }

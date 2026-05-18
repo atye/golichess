@@ -1,0 +1,68 @@
+value:
+  {
+    "puzzles":
+      [
+        {
+          "game":
+            {
+              "id": "vgDNN1oc",
+              "perf": { "key": "rapid", "name": "Rapid" },
+              "rated": true,
+              "players":
+                [
+                  { "name": "Hui", "patron": true, "patronColor": 1, "id": "hui", "color": "white", "rating": 1890 },
+                  {
+                    "name": "Guang",
+                    "flair": "people.rightwards-hand-medium-skin-tone",
+                    "id": "guang",
+                    "color": "black",
+                    "rating": 1873,
+                  },
+                ],
+              "pgn": "e4 e5 Nf3 d6 d4 Bg4 dxe5 Bxf3 gxf3 Be7 exd6 Bxd6 f4 Nc6 Nc3 Nge7 a3 O-O Rg1 Ng6 Nd5 Nce7 Qg4 Nxd5 exd5 Qe7+ Be2 Qe4 f5 Qxg4 Rxg4 Ne5 Re4 Rae8 Bd2 Nd7 Rxe8 Rxe8 Be3 b6 O-O-O Bxh2 Bb5 Re7 Bg5 f6 Be3 Ne5 Rh1 Ng4 Be2 h5",
+              "clock": "10+0",
+            },
+          "puzzle":
+            {
+              "id": "2wzBW",
+              "rating": 1374,
+              "plays": 12470,
+              "solution": ["e2g4", "h5g4", "h1h2"],
+              "themes": ["endgame", "advantage", "short", "capturingDefender"],
+              "initialPly": 51,
+            },
+        },
+        {
+          "game":
+            {
+              "id": "YwJ3U1fZ",
+              "perf": { "key": "rapid", "name": "Rapid" },
+              "rated": true,
+              "players":
+                [
+                  {
+                    "name": "Jiang",
+                    "flair": "people.woman-cook-medium-light-skin-tone",
+                    "id": "jiang",
+                    "color": "white",
+                    "rating": 2084,
+                  },
+                  { "name": "Svetlana", "id": "svetlana", "color": "black", "rating": 2043 },
+                ],
+              "pgn": "d4 Nf6 c4 e6 Nf3 d5 g3 dxc4 Ne5 Bb4+ Nc3 b5 Bg2 Nd5 O-O f6 e4 Nxc3 bxc3 Bxc3",
+              "clock": "10+0",
+            },
+          "puzzle":
+            {
+              "id": "4seCY",
+              "rating": 1377,
+              "plays": 22179,
+              "solution": ["d1h5", "g7g6", "e5g6", "h7g6", "h5h8"],
+              "themes": ["middlegame", "long", "advantage"],
+              "initialPly": 19,
+            },
+        },
+      ],
+    "glicko": { "rating": 1756.46, "deviation": 54.13 },
+    "rounds": [{ "id": "6ewuj", "win": true, "ratingDiff": 0 }],
+  }

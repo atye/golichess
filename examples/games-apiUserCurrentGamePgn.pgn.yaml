@@ -1,0 +1,22 @@
+value: |
+  [Event "Coach LM Lance5500 simul"]
+  [Site "https://lichess.org/wVI5NKlo"]
+  [Date "2026.05.14"]
+  [Round "-"]
+  [White "thomas7777777"]
+  [Black "Lance5500"]
+  [Result "0-1"]
+  [GameId "wVI5NKlo"]
+  [UTCDate "2026.05.14"]
+  [UTCTime "17:47:08"]
+  [WhiteElo "1036"]
+  [BlackElo "2569"]
+  [BlackTitle "LM"]
+  [Variant "Standard"]
+  [TimeControl "300+0"]
+  [ECO "?"]
+  [Opening "?"]
+  [Termination "Time forfeit"]
+  [Annotator "lichess.org"]
+
+   0-1

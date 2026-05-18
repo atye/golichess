@@ -1,0 +1,25 @@
+value:
+  {
+    "game":
+      {
+        "id": "mAe3fKx5",
+        "perf": { "key": "blitz", "name": "Blitz" },
+        "rated": true,
+        "players":
+          [
+            { "name": "Lenshrr", "id": "lenshrr", "color": "white", "rating": 1948 },
+            { "name": "Wmendes", "id": "wmendes", "color": "black", "rating": 1938 },
+          ],
+        "pgn": "e4 c5 c3 Nc6 d4 cxd4 cxd4 e6 Nc3 Nf6 e5 Nd5 Nxd5 exd5 Nf3 d6 Be2 dxe5 dxe5 Be7 O-O O-O Bf4 Be6 Qb3 Rb8 Rad1 Qa5 Nd4 Nxd4 Rxd4 Rfc8 Qg3 Rc2 Bh6 Bf8 Bg4 Rxb2 Bxe6 fxe6 Rg4 g6 Bc1 Rxa2 h4 Rc8 h5 Rc3 f3 Qc5+ Kh2 Rxc1 hxg6 h6 g7 Be7 Qf4 Rxf1",
+        "clock": "5+0",
+      },
+    "puzzle":
+      {
+        "id": "SLR3a",
+        "rating": 1894,
+        "plays": 13601,
+        "solution": ["f4f7", "g8f7", "g7g8q"],
+        "themes": ["advancedPawn", "short", "attraction", "promotion", "endgame", "mateIn2"],
+        "initialPly": 57,
+      },
+  }
