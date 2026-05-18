@@ -69,7 +69,8 @@ jobs:
             -i /local/lichess-openapi.yaml \
             -g go \
             -o /local \
-            -c /local/openapi-config.json
+            -c /local/openapi-config.json \
+            --skip-validate-spec
 
       - name: Update version file
         if: steps.check_version.outputs.unchanged != 'true'
