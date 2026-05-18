@@ -1,5 +1,8 @@
 name: Update Go Client from Lichess API
 
+permissions:
+  contents: write
+
 on:
   schedule:
     # Run daily at 2 AM UTC
@@ -23,6 +26,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Checkout lichess-org/api repository
         uses: actions/checkout@v4

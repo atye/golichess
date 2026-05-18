@@ -11,6 +11,6 @@
   "structPrefix": true,
   "modelPackage": "models",
   "apiPackage": "api",
-  "gitUserId": "yourusername",
+  "gitUserId": "atye",
   "gitRepoId": "golichess"
 }
