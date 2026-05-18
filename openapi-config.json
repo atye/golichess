@@ -1,0 +1,16 @@
+{
+  "packageName": "lichess",
+  "packageVersion": "1.0.0",
+  "goPackage": "golichess",
+  "hideGenerationTimestamp": true,
+  "generateInterfaces": true,
+  "withGoMod": true,
+  "withXml": false,
+  "isGoSubmodule": false,
+  "enumClassPrefix": true,
+  "structPrefix": true,
+  "modelPackage": "models",
+  "apiPackage": "api",
+  "gitUserId": "yourusername",
+  "gitRepoId": "golichess"
+}
