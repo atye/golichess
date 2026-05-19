@@ -75,7 +75,7 @@ jobs:
           git clone https://github.com/oapi-codegen/oapi-codegen.git /tmp/oapi-codegen
           cd /tmp/oapi-codegen
           git checkout feat/kin-openapi-3.1
-          go install ./v2/cmd/oapi-codegen
+          go install ./cmd/oapi-codegen
           echo "$HOME/go/bin" >> $GITHUB_PATH
 
       - name: Clean client directory
