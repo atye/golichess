@@ -36,7 +36,6 @@ jobs:
           
       - name: Copy Lichess OpenAPI spec
         run: |
-          cp lichess-api/doc/specs/lichess-api.yaml lichess-openapi.yaml
           cp -r lichess-api/doc/specs/* ./
           
       - name: Extract version from spec
@@ -70,9 +69,9 @@ jobs:
           docker run --rm \
             -v "${PWD}:/local" \
             openapitools/openapi-generator-cli generate \
-            -i /local/lichess-openapi.yaml \
+            -i /local/lichess-api.yaml \
             -g go \
-            -o /local \
+            -o /local/client \
             -c /local/openapi-config.json \
             --skip-validate-spec
 
@@ -86,6 +85,6 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add -A
+          git add client
           git diff --staged --quiet || git commit -m "Update Go client to Lichess API version ${{ steps.version.outputs.version }}"
           git push
