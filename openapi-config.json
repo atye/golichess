@@ -1,10 +1,10 @@
 {
-  "packageName": "lichess",
+  "packageName": "client",
   "packageVersion": "1.0.0",
   "goPackage": "golichess",
   "hideGenerationTimestamp": true,
   "generateInterfaces": true,
-  "withGoMod": true,
+  "withGoMod": false,
   "withXml": false,
   "isGoSubmodule": false,
   "enumClassPrefix": true,
