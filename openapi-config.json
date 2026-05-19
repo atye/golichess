@@ -10,7 +10,5 @@
   "isGoSubmodule": false,
   "enumClassPrefix": true,
   "enumUnknownDefaultCase": true,
-  "structPrefix": true,
-  "apiTests": false,
-  "modelTests": false
+  "structPrefix": true
 }

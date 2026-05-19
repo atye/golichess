@@ -81,7 +81,8 @@ jobs:
             -o /local/client \
             -c /local/openapi-config.json \
             --skip-validate-spec \
-            --global-property=README=false
+            --global-property=apiTests=false \
+            --global-property=modelTests=false
 
       - name: Update version file
         if: steps.check_version.outputs.unchanged != 'true'
