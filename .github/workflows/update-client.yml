@@ -63,6 +63,11 @@ jobs:
             echo "No previous version found, proceeding with update"
           fi
 
+      - name: Clean client directory
+        if: steps.check_version.outputs.unchanged != 'true'
+        run: |
+          rm -rf client
+
       - name: Generate Go client
         if: steps.check_version.outputs.unchanged != 'true'
         run: |
@@ -73,7 +78,8 @@ jobs:
             -g go \
             -o /local/client \
             -c /local/openapi-config.json \
-            --skip-validate-spec
+            --skip-validate-spec \
+            --global-property=README=false
 
       - name: Update version file
         if: steps.check_version.outputs.unchanged != 'true'
