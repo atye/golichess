@@ -1,10 +1,5 @@
 package: client
 generate:
-  models: true
-  types: true
   client: true
-  server-urls: true
+  models: true
 output: client/client.gen.go
-output-options:
-  skip-prune: true
-  #response-type-suffix: Resp
