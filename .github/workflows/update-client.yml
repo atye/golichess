@@ -63,26 +63,20 @@ jobs:
             echo "No previous version found, proceeding with update"
           fi
 
+      - name: Install oapi-codegen
+        if: steps.check_version.outputs.unchanged != 'true'
+        run: |
+          go install github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen@latest
+
       - name: Clean client directory
         if: steps.check_version.outputs.unchanged != 'true'
         run: |
-          if [ -d client ]; then
-            find client -mindepth 1 -not -name '.openapi-generator-ignore' -delete
-          fi
+          rm -f client/client.gen.go
 
       - name: Generate Go client
         if: steps.check_version.outputs.unchanged != 'true'
         run: |
-          docker run --rm \
-            -v "${PWD}:/local" \
-            openapitools/openapi-generator-cli generate \
-            -i /local/lichess-api.yaml \
-            -g go \
-            -o /local/client \
-            -c /local/openapi-config.json \
-            --skip-validate-spec \
-            --global-property=apiTests=false \
-            --global-property=modelTests=false
+          oapi-codegen -config oapi-config.yaml lichess-api.yaml > client/client.gen.go
 
       - name: Run go mod tidy
         if: steps.check_version.outputs.unchanged != 'true'
@@ -99,6 +93,6 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add client go.mod go.sum
+          git add client/client.gen.go go.mod go.sum
           git diff --staged --quiet || git commit -m "Update Go client to Lichess API version ${{ steps.version.outputs.version }}"
           git push
