@@ -41,7 +41,7 @@ jobs:
       - name: Extract version from spec
         id: version
         run: |
-          VERSION=$(grep -m 1 "version:" lichess-openapi.yaml | awk '{print $2}')
+          VERSION=$(grep -m 1 "version:" lichess-api.yaml | awk '{print $2}')
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "Lichess API version: $VERSION"
 
