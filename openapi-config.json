@@ -11,5 +11,6 @@
   "enumClassPrefix": true,
   "enumUnknownDefaultCase": true,
   "structPrefix": true,
-  "withSeparateModelsAndApi": true
+  "apiTests": false,
+  "modelTests": false
 }
