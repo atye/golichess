@@ -1,7 +1,6 @@
 {
   "packageName": "client",
   "packageVersion": "1.0.0",
-  "goPackage": "golichess",
   "hideGenerationTimestamp": true,
   "generateInterfaces": true,
   "withGoMod": false,
@@ -9,9 +8,5 @@
   "isGoSubmodule": false,
   "enumClassPrefix": true,
   "structPrefix": true,
-  "modelPackage": "models",
-  "apiPackage": "api",
-  "gitUserId": "atye",
-  "gitRepoId": "golichess",
   "withSeparateModelsAndApi": true
 }
