@@ -12,5 +12,6 @@
   "modelPackage": "models",
   "apiPackage": "api",
   "gitUserId": "atye",
-  "gitRepoId": "golichess"
+  "gitRepoId": "golichess",
+  "withSeparateModelsAndApi": true
 }
