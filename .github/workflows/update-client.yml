@@ -84,6 +84,11 @@ jobs:
             --global-property=apiTests=false \
             --global-property=modelTests=false
 
+      - name: Run go mod tidy
+        if: steps.check_version.outputs.unchanged != 'true'
+        run: |
+          go mod tidy
+
       - name: Update version file
         if: steps.check_version.outputs.unchanged != 'true'
         run: |
