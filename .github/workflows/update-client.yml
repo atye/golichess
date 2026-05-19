@@ -67,6 +67,7 @@ jobs:
         if: steps.check_version.outputs.unchanged != 'true'
         run: |
           go install github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen@latest
+          echo "$HOME/go/bin" >> $GITHUB_PATH
 
       - name: Clean client directory
         if: steps.check_version.outputs.unchanged != 'true'
