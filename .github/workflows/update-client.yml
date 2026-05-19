@@ -72,7 +72,7 @@ jobs:
       - name: Install oapi-codegen
         if: steps.check_version.outputs.unchanged != 'true'
         run: |
-          go install github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen@latest
+          go install github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen@feat/kin-openapi-3.1
           echo "$HOME/go/bin" >> $GITHUB_PATH
 
       - name: Clean client directory
