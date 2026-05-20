@@ -7,7 +7,7 @@
     "generateUnmarshalJSON": true,
     "withGoMod": true,
     "withXml": false,
-    "isGoSubmodule": false,
+    "isGoSubmodule": true,
     "enumClassPrefix": true,
     "enumUnknownDefaultCase": true,
     "structPrefix": true
