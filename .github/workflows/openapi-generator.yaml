@@ -76,7 +76,7 @@ jobs:
           docker run --rm \
             -v "${PWD}:/local" \
             -u $(id -u):$(id -g) \
-            openapitools/openapi-generator-cli generate \
+            openapitools/openapi-generator-cli:latest-release generate \
             -i /local/lichess-api.yaml \
             -g go \
             -o /local/openapi-generator \
