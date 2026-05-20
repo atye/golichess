@@ -109,18 +109,7 @@ jobs:
               const issueTitle = `Spec change: ${commitMessage} (${commitHash.substring(0, 7)})`;
               
               if (!existingIssueTitles.has(issueTitle)) {
-                const issueBody = `Lichess API specs have changed in commit: ${commitHash}
-
-Commit message: ${commitMessage}
-
-View commit: https://github.com/lichess-org/api/commit/${commitHash}
-
-Please review the changes and regenerate the clients if needed.
-
-- Run the openapi-generator workflow
-- Run the oapi-codegen workflow
-- Update the bundled spec if necessary
-`;
+                const issueBody = `Lichess API specs have changed in commit: ${commitHash}\n\nCommit message: ${commitMessage}\n\nView commit: https://github.com/lichess-org/api/commit/${commitHash}\n\nPlease review the changes and regenerate the clients if needed.\n\n- Run the openapi-generator workflow\n- Run the oapi-codegen workflow\n- Update the bundled spec if necessary`;
                 
                 await github.rest.issues.create({
                   owner: context.repo.owner,
