@@ -100,7 +100,7 @@ For more information, please visit [https://lichess.org/api](https://lichess.org
 Import the package in a go file in your project and run `go mod tidy`:
 
 ```go
-import openapigenerator "github.com/GIT_USER_ID/GIT_REPO_ID"
+import openapigenerator "github.com/GIT_USER_ID/GIT_REPO_ID/openapigenerator"
 ```
 
 To use a proxy, set the environment variable `HTTP_PROXY`:
