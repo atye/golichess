@@ -24,3 +24,4 @@
 
 .travis.yml
 .gitignore
+git_push.sh

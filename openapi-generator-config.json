@@ -1,5 +1,5 @@
 {
-    "packageName": "openapi-generator",
+    "packageName": "openapigenerator",
     "packageVersion": "1.0.0",
     "hideGenerationTimestamp": true,
     "generateInterfaces": true,

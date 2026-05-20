@@ -1,4 +1,4 @@
-package: oapi-codegen
+package: oapicodegen
 output: oapi-codegen/client.gen.go
 generate:
   client: true
