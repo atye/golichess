@@ -1,5 +1,8 @@
 {
     "packageName": "openapigenerator",
+    "gitHost": "github.com",
+    "gitUserId": "atye",
+    "gitRepoId": "golichess",
     "packageVersion": "1.0.0",
     "hideGenerationTimestamp": true,
     "generateInterfaces": true,
