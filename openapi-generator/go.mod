@@ -1,4 +1,4 @@
-module github.com/GIT_USER_ID/GIT_REPO_ID/openapigenerator
+module github.com/atye/golichess/openapigenerator
 
 go 1.23.0
 
