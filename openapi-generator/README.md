@@ -1,4 +1,4 @@
-# Go API client for openapi-generator
+# Go API client for openapigenerator
 
 # Introduction
 Welcome to the reference for the Lichess API! Lichess is free/libre,
@@ -100,7 +100,7 @@ For more information, please visit [https://lichess.org/api](https://lichess.org
 Import the package in a go file in your project and run `go mod tidy`:
 
 ```go
-import openapi-generator "github.com/GIT_USER_ID/GIT_REPO_ID"
+import openapigenerator "github.com/GIT_USER_ID/GIT_REPO_ID"
 ```
 
 To use a proxy, set the environment variable `HTTP_PROXY`:
@@ -115,18 +115,18 @@ Default configuration comes with `Servers` field that contains server objects as
 
 ### Select Server Configuration
 
-For using other server than the one defined on index 0 set context value `openapi-generator.ContextServerIndex` of type `int`.
+For using other server than the one defined on index 0 set context value `openapigenerator.ContextServerIndex` of type `int`.
 
 ```go
-ctx := context.WithValue(context.Background(), openapi-generator.ContextServerIndex, 1)
+ctx := context.WithValue(context.Background(), openapigenerator.ContextServerIndex, 1)
 ```
 
 ### Templated Server URL
 
-Templated server URL is formatted using default variables from configuration or from context value `openapi-generator.ContextServerVariables` of type `map[string]string`.
+Templated server URL is formatted using default variables from configuration or from context value `openapigenerator.ContextServerVariables` of type `map[string]string`.
 
 ```go
-ctx := context.WithValue(context.Background(), openapi-generator.ContextServerVariables, map[string]string{
+ctx := context.WithValue(context.Background(), openapigenerator.ContextServerVariables, map[string]string{
 	"basePath": "v2",
 })
 ```
@@ -137,13 +137,13 @@ Note, enum values are always validated and all unused variables are silently ign
 
 Each operation can use different server URL defined using `OperationServers` map in the `Configuration`.
 An operation is uniquely identified by `"{classname}Service.{nickname}"` string.
-Similar rules for overriding default operation server index and variables applies by using `openapi-generator.ContextOperationServerIndices` and `openapi-generator.ContextOperationServerVariables` context maps.
+Similar rules for overriding default operation server index and variables applies by using `openapigenerator.ContextOperationServerIndices` and `openapigenerator.ContextOperationServerVariables` context maps.
 
 ```go
-ctx := context.WithValue(context.Background(), openapi-generator.ContextOperationServerIndices, map[string]int{
+ctx := context.WithValue(context.Background(), openapigenerator.ContextOperationServerIndices, map[string]int{
 	"{classname}Service.{nickname}": 2,
 })
-ctx = context.WithValue(context.Background(), openapi-generator.ContextOperationServerVariables, map[string]map[string]string{
+ctx = context.WithValue(context.Background(), openapigenerator.ContextOperationServerVariables, map[string]map[string]string{
 	"{classname}Service.{nickname}": {
 		"port": "8443",
 	},
@@ -750,7 +750,7 @@ Authentication schemes defined for the API:
 Example
 
 ```go
-auth := context.WithValue(context.Background(), openapi-generator.ContextAccessToken, "ACCESSTOKENSTRING")
+auth := context.WithValue(context.Background(), openapigenerator.ContextAccessToken, "ACCESSTOKENSTRING")
 r, err := client.Service.Operation(auth, args)
 ```
 
@@ -762,7 +762,7 @@ import "golang.org/x/oauth2"
 /* Perform OAuth2 round trip request and obtain a token */
 
 tokenSource := oauth2cfg.TokenSource(createContext(httpClient), &token)
-auth := context.WithValue(oauth2.NoContext, openapi-generator.ContextOAuth2, tokenSource)
+auth := context.WithValue(oauth2.NoContext, openapigenerator.ContextOAuth2, tokenSource)
 r, err := client.Service.Operation(auth, args)
 ```
 
