@@ -1,0 +1,104 @@
+name: Update openapi-generator client from Lichess API
+
+permissions:
+  contents: write
+
+on:
+  schedule:
+    # Run daily at 2 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: 'Force update even if spec version unchanged'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - true
+          - false
+
+jobs:
+  update-client:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Checkout lichess-org/api repository
+        uses: actions/checkout@v4
+        with:
+          repository: lichess-org/api
+          path: lichess-api
+          
+      - name: Copy Lichess OpenAPI spec
+        run: |
+          cp -r lichess-api/doc/specs/* ./
+          
+      - name: Extract version from spec
+        id: version
+        run: |
+          VERSION=$(grep -m 1 "version:" lichess-api.yaml | awk '{print $2}')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Lichess API version: $VERSION"
+
+      - name: Check if version changed
+        id: check_version
+        run: |
+          if [ -f version.txt ]; then
+            OLD_VERSION=$(cat version.txt)
+            echo "Old version: $OLD_VERSION"
+            if [ "$OLD_VERSION" = "${{ steps.version.outputs.version }}" ] && [ "${{ github.event.inputs.force }}" != "true" ]; then
+              echo "unchanged=true" >> $GITHUB_OUTPUT
+              echo "Version unchanged, skipping update"
+            else
+              echo "unchanged=false" >> $GITHUB_OUTPUT
+              echo "Version changed, proceeding with update"
+            fi
+          else
+            echo "unchanged=false" >> $GITHUB_OUTPUT
+            echo "No previous version found, proceeding with update"
+          fi
+
+      - name: Clean openapi-generator directory
+        if: steps.check_version.outputs.unchanged != 'true'
+        run: |
+          if [ -d openapi-generator ]; then
+            find openapi-generator -mindepth 1 -not -name '.openapi-generator-ignore' -delete
+          fi
+
+      - name: Generate Go client
+        if: steps.check_version.outputs.unchanged != 'true'
+        run: |
+          docker run --rm \
+            -v "${PWD}:/local" \
+            openapitools/openapi-generator-cli generate \
+            -i /local/lichess-api.yaml \
+            -g go \
+            -o /local/openapi-generator \
+            -c /local/openapi-generator-config.json \
+            --skip-validate-spec \
+            --global-property=apiTests=false \
+            --global-property=modelTests=false
+
+      - name: Run go mod tidy
+        if: steps.check_version.outputs.unchanged != 'true'
+        run: |
+          cd openapi-generator && go mod tidy
+
+      - name: Update version file
+        if: steps.check_version.outputs.unchanged != 'true'
+        run: |
+          echo "${{ steps.version.outputs.version }}" > version.txt
+
+      - name: Commit and push changes
+        if: steps.check_version.outputs.unchanged != 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add openapi-generator
+          git diff --staged --quiet || git commit -m "Update openapi-generator client to Lichess API version ${{ steps.version.outputs.version }}"
+          git push

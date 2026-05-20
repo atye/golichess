@@ -1,0 +1,14 @@
+{
+    "packageName": "openapi-generator",
+    "packageVersion": "1.0.0",
+    "hideGenerationTimestamp": true,
+    "generateInterfaces": true,
+    "generateMarshalJSON": true,
+    "generateUnmarshalJSON": true,
+    "withGoMod": true,
+    "withXml": false,
+    "isGoSubmodule": false,
+    "enumClassPrefix": true,
+    "enumUnknownDefaultCase": true,
+    "structPrefix": true
+}
