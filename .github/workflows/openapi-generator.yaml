@@ -1,4 +1,4 @@
-name: Update openapi-generator client from Lichess API
+name: Update openapi-generator client
 
 permissions:
   contents: write

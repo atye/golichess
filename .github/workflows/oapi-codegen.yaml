@@ -1,4 +1,4 @@
-name: Update oapi-codegen client from Lichess API
+name: Update oapi-codegen client
 
 permissions:
   contents: write
