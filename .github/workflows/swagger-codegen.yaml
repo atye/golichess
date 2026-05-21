@@ -47,7 +47,7 @@ jobs:
         if: steps.check_version.outputs.unchanged != 'true'
         run: |
           if [ -d swagger-codegen ]; then
-            find swagger-codegen -mindepth 1 -delete
+            find swagger-codegen -mindepth 1 -not -name '.swagger-codegen-ignore' -delete
           fi
 
       - name: Generate Go client
