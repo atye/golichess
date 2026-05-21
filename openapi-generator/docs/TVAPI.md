@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## TvChannelFeed
 
-> TvChannelFeed200Response TvChannelFeed(ctx, channel).Execute()
+> TvFeed TvChannelFeed(ctx, channel).Execute()
 
 Stream current TV game of a TV channel
 
@@ -41,7 +41,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TVAPI.TvChannelFeed``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `TvChannelFeed`: TvChannelFeed200Response
+	// response from `TvChannelFeed`: TvFeed
 	fmt.Fprintf(os.Stdout, "Response from `TVAPI.TvChannelFeed`: %v\n", resp)
 }
 ```
@@ -65,7 +65,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TvChannelFeed200Response**](TvChannelFeed200Response.md)
+[**TvFeed**](TvFeed.md)
 
 ### Authorization
 
@@ -228,7 +228,7 @@ No authorization required
 
 ## TvFeed
 
-> TvFeed200Response TvFeed(ctx).Execute()
+> TvFeed TvFeed(ctx).Execute()
 
 Stream current TV game
 
@@ -255,7 +255,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TVAPI.TvFeed``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `TvFeed`: TvFeed200Response
+	// response from `TvFeed`: TvFeed
 	fmt.Fprintf(os.Stdout, "Response from `TVAPI.TvFeed`: %v\n", resp)
 }
 ```
@@ -271,7 +271,7 @@ Other parameters are passed through a pointer to a apiTvFeedRequest struct via t
 
 ### Return type
 
-[**TvFeed200Response**](TvFeed200Response.md)
+[**TvFeed**](TvFeed.md)
 
 ### Authorization
 

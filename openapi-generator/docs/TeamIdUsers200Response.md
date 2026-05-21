@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **JoinedTeamAt** | Pointer to **int64** |  | [optional] 
 **Id** | **string** |  | 
 **Name** | **string** |  | 
-**Title** | Pointer to **NullableString** | only appears if the user is a titled player or a bot user | [optional] 
+**Title** | Pointer to [**Title**](Title.md) |  | [optional] 
 **PatronColor** | Pointer to **int32** | Players can choose a color for their Patron wings. See [here for the color mappings](https://github.com/lichess-org/lila/blob/master/ui/lib/css/abstract/_patron-colors.scss).  The presence of this field indicates the player is an active Patron.  | [optional] 
 
 ## Methods
@@ -96,20 +96,20 @@ SetName sets Name field to given value.
 
 ### GetTitle
 
-`func (o *TeamIdUsers200Response) GetTitle() string`
+`func (o *TeamIdUsers200Response) GetTitle() Title`
 
 GetTitle returns the Title field if non-nil, zero value otherwise.
 
 ### GetTitleOk
 
-`func (o *TeamIdUsers200Response) GetTitleOk() (*string, bool)`
+`func (o *TeamIdUsers200Response) GetTitleOk() (*Title, bool)`
 
 GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTitle
 
-`func (o *TeamIdUsers200Response) SetTitle(v string)`
+`func (o *TeamIdUsers200Response) SetTitle(v Title)`
 
 SetTitle sets Title field to given value.
 
@@ -119,16 +119,6 @@ SetTitle sets Title field to given value.
 
 HasTitle returns a boolean if a field has been set.
 
-### SetTitleNil
-
-`func (o *TeamIdUsers200Response) SetTitleNil(b bool)`
-
- SetTitleNil sets the value for Title to be an explicit nil
-
-### UnsetTitle
-`func (o *TeamIdUsers200Response) UnsetTitle()`
-
-UnsetTitle ensures that no value is present for Title, not even an explicit nil
 ### GetPatronColor
 
 `func (o *TeamIdUsers200Response) GetPatronColor() int32`

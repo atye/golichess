@@ -19,45 +19,45 @@ import (
 
 // ApiStreamEvent200Response - struct for ApiStreamEvent200Response
 type ApiStreamEvent200Response struct {
-	ApiStreamEvent200ResponseOneOf *ApiStreamEvent200ResponseOneOf
-	ApiStreamEvent200ResponseOneOf1 *ApiStreamEvent200ResponseOneOf1
-	ApiStreamEvent200ResponseOneOf2 *ApiStreamEvent200ResponseOneOf2
-	ApiStreamEvent200ResponseOneOf3 *ApiStreamEvent200ResponseOneOf3
-	ApiStreamEvent200ResponseOneOf4 *ApiStreamEvent200ResponseOneOf4
+	ChallengeCanceledEvent *ChallengeCanceledEvent
+	ChallengeDeclinedEvent *ChallengeDeclinedEvent
+	ChallengeEvent *ChallengeEvent
+	GameFinishEvent *GameFinishEvent
+	GameStartEvent *GameStartEvent
 }
 
-// ApiStreamEvent200ResponseOneOfAsApiStreamEvent200Response is a convenience function that returns ApiStreamEvent200ResponseOneOf wrapped in ApiStreamEvent200Response
-func ApiStreamEvent200ResponseOneOfAsApiStreamEvent200Response(v *ApiStreamEvent200ResponseOneOf) ApiStreamEvent200Response {
+// ChallengeCanceledEventAsApiStreamEvent200Response is a convenience function that returns ChallengeCanceledEvent wrapped in ApiStreamEvent200Response
+func ChallengeCanceledEventAsApiStreamEvent200Response(v *ChallengeCanceledEvent) ApiStreamEvent200Response {
 	return ApiStreamEvent200Response{
-		ApiStreamEvent200ResponseOneOf: v,
+		ChallengeCanceledEvent: v,
 	}
 }
 
-// ApiStreamEvent200ResponseOneOf1AsApiStreamEvent200Response is a convenience function that returns ApiStreamEvent200ResponseOneOf1 wrapped in ApiStreamEvent200Response
-func ApiStreamEvent200ResponseOneOf1AsApiStreamEvent200Response(v *ApiStreamEvent200ResponseOneOf1) ApiStreamEvent200Response {
+// ChallengeDeclinedEventAsApiStreamEvent200Response is a convenience function that returns ChallengeDeclinedEvent wrapped in ApiStreamEvent200Response
+func ChallengeDeclinedEventAsApiStreamEvent200Response(v *ChallengeDeclinedEvent) ApiStreamEvent200Response {
 	return ApiStreamEvent200Response{
-		ApiStreamEvent200ResponseOneOf1: v,
+		ChallengeDeclinedEvent: v,
 	}
 }
 
-// ApiStreamEvent200ResponseOneOf2AsApiStreamEvent200Response is a convenience function that returns ApiStreamEvent200ResponseOneOf2 wrapped in ApiStreamEvent200Response
-func ApiStreamEvent200ResponseOneOf2AsApiStreamEvent200Response(v *ApiStreamEvent200ResponseOneOf2) ApiStreamEvent200Response {
+// ChallengeEventAsApiStreamEvent200Response is a convenience function that returns ChallengeEvent wrapped in ApiStreamEvent200Response
+func ChallengeEventAsApiStreamEvent200Response(v *ChallengeEvent) ApiStreamEvent200Response {
 	return ApiStreamEvent200Response{
-		ApiStreamEvent200ResponseOneOf2: v,
+		ChallengeEvent: v,
 	}
 }
 
-// ApiStreamEvent200ResponseOneOf3AsApiStreamEvent200Response is a convenience function that returns ApiStreamEvent200ResponseOneOf3 wrapped in ApiStreamEvent200Response
-func ApiStreamEvent200ResponseOneOf3AsApiStreamEvent200Response(v *ApiStreamEvent200ResponseOneOf3) ApiStreamEvent200Response {
+// GameFinishEventAsApiStreamEvent200Response is a convenience function that returns GameFinishEvent wrapped in ApiStreamEvent200Response
+func GameFinishEventAsApiStreamEvent200Response(v *GameFinishEvent) ApiStreamEvent200Response {
 	return ApiStreamEvent200Response{
-		ApiStreamEvent200ResponseOneOf3: v,
+		GameFinishEvent: v,
 	}
 }
 
-// ApiStreamEvent200ResponseOneOf4AsApiStreamEvent200Response is a convenience function that returns ApiStreamEvent200ResponseOneOf4 wrapped in ApiStreamEvent200Response
-func ApiStreamEvent200ResponseOneOf4AsApiStreamEvent200Response(v *ApiStreamEvent200ResponseOneOf4) ApiStreamEvent200Response {
+// GameStartEventAsApiStreamEvent200Response is a convenience function that returns GameStartEvent wrapped in ApiStreamEvent200Response
+func GameStartEventAsApiStreamEvent200Response(v *GameStartEvent) ApiStreamEvent200Response {
 	return ApiStreamEvent200Response{
-		ApiStreamEvent200ResponseOneOf4: v,
+		GameStartEvent: v,
 	}
 }
 
@@ -66,98 +66,98 @@ func ApiStreamEvent200ResponseOneOf4AsApiStreamEvent200Response(v *ApiStreamEven
 func (dst *ApiStreamEvent200Response) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into ApiStreamEvent200ResponseOneOf
-	err = newStrictDecoder(data).Decode(&dst.ApiStreamEvent200ResponseOneOf)
+	// try to unmarshal data into ChallengeCanceledEvent
+	err = newStrictDecoder(data).Decode(&dst.ChallengeCanceledEvent)
 	if err == nil {
-		jsonApiStreamEvent200ResponseOneOf, _ := json.Marshal(dst.ApiStreamEvent200ResponseOneOf)
-		if string(jsonApiStreamEvent200ResponseOneOf) == "{}" { // empty struct
-			dst.ApiStreamEvent200ResponseOneOf = nil
+		jsonChallengeCanceledEvent, _ := json.Marshal(dst.ChallengeCanceledEvent)
+		if string(jsonChallengeCanceledEvent) == "{}" { // empty struct
+			dst.ChallengeCanceledEvent = nil
 		} else {
-			if err = validator.Validate(dst.ApiStreamEvent200ResponseOneOf); err != nil {
-				dst.ApiStreamEvent200ResponseOneOf = nil
+			if err = validator.Validate(dst.ChallengeCanceledEvent); err != nil {
+				dst.ChallengeCanceledEvent = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.ApiStreamEvent200ResponseOneOf = nil
+		dst.ChallengeCanceledEvent = nil
 	}
 
-	// try to unmarshal data into ApiStreamEvent200ResponseOneOf1
-	err = newStrictDecoder(data).Decode(&dst.ApiStreamEvent200ResponseOneOf1)
+	// try to unmarshal data into ChallengeDeclinedEvent
+	err = newStrictDecoder(data).Decode(&dst.ChallengeDeclinedEvent)
 	if err == nil {
-		jsonApiStreamEvent200ResponseOneOf1, _ := json.Marshal(dst.ApiStreamEvent200ResponseOneOf1)
-		if string(jsonApiStreamEvent200ResponseOneOf1) == "{}" { // empty struct
-			dst.ApiStreamEvent200ResponseOneOf1 = nil
+		jsonChallengeDeclinedEvent, _ := json.Marshal(dst.ChallengeDeclinedEvent)
+		if string(jsonChallengeDeclinedEvent) == "{}" { // empty struct
+			dst.ChallengeDeclinedEvent = nil
 		} else {
-			if err = validator.Validate(dst.ApiStreamEvent200ResponseOneOf1); err != nil {
-				dst.ApiStreamEvent200ResponseOneOf1 = nil
+			if err = validator.Validate(dst.ChallengeDeclinedEvent); err != nil {
+				dst.ChallengeDeclinedEvent = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.ApiStreamEvent200ResponseOneOf1 = nil
+		dst.ChallengeDeclinedEvent = nil
 	}
 
-	// try to unmarshal data into ApiStreamEvent200ResponseOneOf2
-	err = newStrictDecoder(data).Decode(&dst.ApiStreamEvent200ResponseOneOf2)
+	// try to unmarshal data into ChallengeEvent
+	err = newStrictDecoder(data).Decode(&dst.ChallengeEvent)
 	if err == nil {
-		jsonApiStreamEvent200ResponseOneOf2, _ := json.Marshal(dst.ApiStreamEvent200ResponseOneOf2)
-		if string(jsonApiStreamEvent200ResponseOneOf2) == "{}" { // empty struct
-			dst.ApiStreamEvent200ResponseOneOf2 = nil
+		jsonChallengeEvent, _ := json.Marshal(dst.ChallengeEvent)
+		if string(jsonChallengeEvent) == "{}" { // empty struct
+			dst.ChallengeEvent = nil
 		} else {
-			if err = validator.Validate(dst.ApiStreamEvent200ResponseOneOf2); err != nil {
-				dst.ApiStreamEvent200ResponseOneOf2 = nil
+			if err = validator.Validate(dst.ChallengeEvent); err != nil {
+				dst.ChallengeEvent = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.ApiStreamEvent200ResponseOneOf2 = nil
+		dst.ChallengeEvent = nil
 	}
 
-	// try to unmarshal data into ApiStreamEvent200ResponseOneOf3
-	err = newStrictDecoder(data).Decode(&dst.ApiStreamEvent200ResponseOneOf3)
+	// try to unmarshal data into GameFinishEvent
+	err = newStrictDecoder(data).Decode(&dst.GameFinishEvent)
 	if err == nil {
-		jsonApiStreamEvent200ResponseOneOf3, _ := json.Marshal(dst.ApiStreamEvent200ResponseOneOf3)
-		if string(jsonApiStreamEvent200ResponseOneOf3) == "{}" { // empty struct
-			dst.ApiStreamEvent200ResponseOneOf3 = nil
+		jsonGameFinishEvent, _ := json.Marshal(dst.GameFinishEvent)
+		if string(jsonGameFinishEvent) == "{}" { // empty struct
+			dst.GameFinishEvent = nil
 		} else {
-			if err = validator.Validate(dst.ApiStreamEvent200ResponseOneOf3); err != nil {
-				dst.ApiStreamEvent200ResponseOneOf3 = nil
+			if err = validator.Validate(dst.GameFinishEvent); err != nil {
+				dst.GameFinishEvent = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.ApiStreamEvent200ResponseOneOf3 = nil
+		dst.GameFinishEvent = nil
 	}
 
-	// try to unmarshal data into ApiStreamEvent200ResponseOneOf4
-	err = newStrictDecoder(data).Decode(&dst.ApiStreamEvent200ResponseOneOf4)
+	// try to unmarshal data into GameStartEvent
+	err = newStrictDecoder(data).Decode(&dst.GameStartEvent)
 	if err == nil {
-		jsonApiStreamEvent200ResponseOneOf4, _ := json.Marshal(dst.ApiStreamEvent200ResponseOneOf4)
-		if string(jsonApiStreamEvent200ResponseOneOf4) == "{}" { // empty struct
-			dst.ApiStreamEvent200ResponseOneOf4 = nil
+		jsonGameStartEvent, _ := json.Marshal(dst.GameStartEvent)
+		if string(jsonGameStartEvent) == "{}" { // empty struct
+			dst.GameStartEvent = nil
 		} else {
-			if err = validator.Validate(dst.ApiStreamEvent200ResponseOneOf4); err != nil {
-				dst.ApiStreamEvent200ResponseOneOf4 = nil
+			if err = validator.Validate(dst.GameStartEvent); err != nil {
+				dst.GameStartEvent = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.ApiStreamEvent200ResponseOneOf4 = nil
+		dst.GameStartEvent = nil
 	}
 
 	if match > 1 { // more than 1 match
 		// reset to nil
-		dst.ApiStreamEvent200ResponseOneOf = nil
-		dst.ApiStreamEvent200ResponseOneOf1 = nil
-		dst.ApiStreamEvent200ResponseOneOf2 = nil
-		dst.ApiStreamEvent200ResponseOneOf3 = nil
-		dst.ApiStreamEvent200ResponseOneOf4 = nil
+		dst.ChallengeCanceledEvent = nil
+		dst.ChallengeDeclinedEvent = nil
+		dst.ChallengeEvent = nil
+		dst.GameFinishEvent = nil
+		dst.GameStartEvent = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(ApiStreamEvent200Response)")
 	} else if match == 1 {
@@ -169,24 +169,24 @@ func (dst *ApiStreamEvent200Response) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src ApiStreamEvent200Response) MarshalJSON() ([]byte, error) {
-	if src.ApiStreamEvent200ResponseOneOf != nil {
-		return json.Marshal(&src.ApiStreamEvent200ResponseOneOf)
+	if src.ChallengeCanceledEvent != nil {
+		return json.Marshal(&src.ChallengeCanceledEvent)
 	}
 
-	if src.ApiStreamEvent200ResponseOneOf1 != nil {
-		return json.Marshal(&src.ApiStreamEvent200ResponseOneOf1)
+	if src.ChallengeDeclinedEvent != nil {
+		return json.Marshal(&src.ChallengeDeclinedEvent)
 	}
 
-	if src.ApiStreamEvent200ResponseOneOf2 != nil {
-		return json.Marshal(&src.ApiStreamEvent200ResponseOneOf2)
+	if src.ChallengeEvent != nil {
+		return json.Marshal(&src.ChallengeEvent)
 	}
 
-	if src.ApiStreamEvent200ResponseOneOf3 != nil {
-		return json.Marshal(&src.ApiStreamEvent200ResponseOneOf3)
+	if src.GameFinishEvent != nil {
+		return json.Marshal(&src.GameFinishEvent)
 	}
 
-	if src.ApiStreamEvent200ResponseOneOf4 != nil {
-		return json.Marshal(&src.ApiStreamEvent200ResponseOneOf4)
+	if src.GameStartEvent != nil {
+		return json.Marshal(&src.GameStartEvent)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -197,24 +197,24 @@ func (obj *ApiStreamEvent200Response) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
-	if obj.ApiStreamEvent200ResponseOneOf != nil {
-		return obj.ApiStreamEvent200ResponseOneOf
+	if obj.ChallengeCanceledEvent != nil {
+		return obj.ChallengeCanceledEvent
 	}
 
-	if obj.ApiStreamEvent200ResponseOneOf1 != nil {
-		return obj.ApiStreamEvent200ResponseOneOf1
+	if obj.ChallengeDeclinedEvent != nil {
+		return obj.ChallengeDeclinedEvent
 	}
 
-	if obj.ApiStreamEvent200ResponseOneOf2 != nil {
-		return obj.ApiStreamEvent200ResponseOneOf2
+	if obj.ChallengeEvent != nil {
+		return obj.ChallengeEvent
 	}
 
-	if obj.ApiStreamEvent200ResponseOneOf3 != nil {
-		return obj.ApiStreamEvent200ResponseOneOf3
+	if obj.GameFinishEvent != nil {
+		return obj.GameFinishEvent
 	}
 
-	if obj.ApiStreamEvent200ResponseOneOf4 != nil {
-		return obj.ApiStreamEvent200ResponseOneOf4
+	if obj.GameStartEvent != nil {
+		return obj.GameStartEvent
 	}
 
 	// all schemas are nil
@@ -223,24 +223,24 @@ func (obj *ApiStreamEvent200Response) GetActualInstance() (interface{}) {
 
 // Get the actual instance value
 func (obj ApiStreamEvent200Response) GetActualInstanceValue() (interface{}) {
-	if obj.ApiStreamEvent200ResponseOneOf != nil {
-		return *obj.ApiStreamEvent200ResponseOneOf
+	if obj.ChallengeCanceledEvent != nil {
+		return *obj.ChallengeCanceledEvent
 	}
 
-	if obj.ApiStreamEvent200ResponseOneOf1 != nil {
-		return *obj.ApiStreamEvent200ResponseOneOf1
+	if obj.ChallengeDeclinedEvent != nil {
+		return *obj.ChallengeDeclinedEvent
 	}
 
-	if obj.ApiStreamEvent200ResponseOneOf2 != nil {
-		return *obj.ApiStreamEvent200ResponseOneOf2
+	if obj.ChallengeEvent != nil {
+		return *obj.ChallengeEvent
 	}
 
-	if obj.ApiStreamEvent200ResponseOneOf3 != nil {
-		return *obj.ApiStreamEvent200ResponseOneOf3
+	if obj.GameFinishEvent != nil {
+		return *obj.GameFinishEvent
 	}
 
-	if obj.ApiStreamEvent200ResponseOneOf4 != nil {
-		return *obj.ApiStreamEvent200ResponseOneOf4
+	if obj.GameStartEvent != nil {
+		return *obj.GameStartEvent
 	}
 
 	// all schemas are nil

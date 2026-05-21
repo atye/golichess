@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ClientSecret** | **string** |  | 
-**Work** | [**ApiExternalEngineAnalyseRequestWork**](ApiExternalEngineAnalyseRequestWork.md) |  | 
+**Work** | [**ExternalEngineWork**](ExternalEngineWork.md) |  | 
 
 ## Methods
 
 ### NewApiExternalEngineAnalyseRequest
 
-`func NewApiExternalEngineAnalyseRequest(clientSecret string, work ApiExternalEngineAnalyseRequestWork, ) *ApiExternalEngineAnalyseRequest`
+`func NewApiExternalEngineAnalyseRequest(clientSecret string, work ExternalEngineWork, ) *ApiExternalEngineAnalyseRequest`
 
 NewApiExternalEngineAnalyseRequest instantiates a new ApiExternalEngineAnalyseRequest object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetClientSecret sets ClientSecret field to given value.
 
 ### GetWork
 
-`func (o *ApiExternalEngineAnalyseRequest) GetWork() ApiExternalEngineAnalyseRequestWork`
+`func (o *ApiExternalEngineAnalyseRequest) GetWork() ExternalEngineWork`
 
 GetWork returns the Work field if non-nil, zero value otherwise.
 
 ### GetWorkOk
 
-`func (o *ApiExternalEngineAnalyseRequest) GetWorkOk() (*ApiExternalEngineAnalyseRequestWork, bool)`
+`func (o *ApiExternalEngineAnalyseRequest) GetWorkOk() (*ExternalEngineWork, bool)`
 
 GetWorkOk returns a tuple with the Work field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetWork
 
-`func (o *ApiExternalEngineAnalyseRequest) SetWork(v ApiExternalEngineAnalyseRequestWork)`
+`func (o *ApiExternalEngineAnalyseRequest) SetWork(v ExternalEngineWork)`
 
 SetWork sets Work field to given value.
 

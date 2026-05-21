@@ -36,8 +36,8 @@ type TournamentsSwissAPI interface {
 	ApiSwissJoin(ctx context.Context, id string) TournamentsSwissAPIApiSwissJoinRequest
 
 	// ApiSwissJoinExecute executes the request
-	//  @return AccountKidPost200Response
-	ApiSwissJoinExecute(r TournamentsSwissAPIApiSwissJoinRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	ApiSwissJoinExecute(r TournamentsSwissAPIApiSwissJoinRequest) (*Ok, *http.Response, error)
 
 	/*
 	ApiSwissNew Create a new Swiss tournament
@@ -57,8 +57,8 @@ Additional restrictions:
 	ApiSwissNew(ctx context.Context, teamId string) TournamentsSwissAPIApiSwissNewRequest
 
 	// ApiSwissNewExecute executes the request
-	//  @return ApiSwissNew200Response
-	ApiSwissNewExecute(r TournamentsSwissAPIApiSwissNewRequest) (*ApiSwissNew200Response, *http.Response, error)
+	//  @return SwissTournament
+	ApiSwissNewExecute(r TournamentsSwissAPIApiSwissNewRequest) (*SwissTournament, *http.Response, error)
 
 	/*
 	ApiSwissScheduleNextRound Manually schedule the next round
@@ -90,8 +90,8 @@ All further rounds will need to be manually scheduled, unless the `roundInterval
 	ApiSwissTerminate(ctx context.Context, id string) TournamentsSwissAPIApiSwissTerminateRequest
 
 	// ApiSwissTerminateExecute executes the request
-	//  @return AccountKidPost200Response
-	ApiSwissTerminateExecute(r TournamentsSwissAPIApiSwissTerminateRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	ApiSwissTerminateExecute(r TournamentsSwissAPIApiSwissTerminateRequest) (*Ok, *http.Response, error)
 
 	/*
 	ApiSwissUpdate Update a Swiss tournament
@@ -110,8 +110,8 @@ Additional restrictions:
 	ApiSwissUpdate(ctx context.Context, id string) TournamentsSwissAPIApiSwissUpdateRequest
 
 	// ApiSwissUpdateExecute executes the request
-	//  @return ApiSwissNew200Response
-	ApiSwissUpdateExecute(r TournamentsSwissAPIApiSwissUpdateRequest) (*ApiSwissNew200Response, *http.Response, error)
+	//  @return SwissTournament
+	ApiSwissUpdateExecute(r TournamentsSwissAPIApiSwissUpdateRequest) (*SwissTournament, *http.Response, error)
 
 	/*
 	ApiSwissWithdraw Pause or leave a swiss tournament
@@ -127,8 +127,8 @@ It's possible to join again later. Points are preserved.
 	ApiSwissWithdraw(ctx context.Context, id string) TournamentsSwissAPIApiSwissWithdrawRequest
 
 	// ApiSwissWithdrawExecute executes the request
-	//  @return AccountKidPost200Response
-	ApiSwissWithdrawExecute(r TournamentsSwissAPIApiSwissWithdrawRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	ApiSwissWithdrawExecute(r TournamentsSwissAPIApiSwissWithdrawRequest) (*Ok, *http.Response, error)
 
 	/*
 	ApiTeamSwiss Get team swiss tournaments
@@ -145,8 +145,8 @@ Tournaments are streamed as [ndjson](#description/streaming-with-nd-json).
 	ApiTeamSwiss(ctx context.Context, teamId string) TournamentsSwissAPIApiTeamSwissRequest
 
 	// ApiTeamSwissExecute executes the request
-	//  @return ApiSwissNew200Response
-	ApiTeamSwissExecute(r TournamentsSwissAPIApiTeamSwissRequest) (*ApiSwissNew200Response, *http.Response, error)
+	//  @return SwissTournament
+	ApiTeamSwissExecute(r TournamentsSwissAPIApiTeamSwissRequest) (*SwissTournament, *http.Response, error)
 
 	/*
 	GamesBySwiss Export games of a Swiss tournament
@@ -201,8 +201,8 @@ Use on finished tournaments for guaranteed consistency.
 	Swiss(ctx context.Context, id string) TournamentsSwissAPISwissRequest
 
 	// SwissExecute executes the request
-	//  @return ApiSwissNew200Response
-	SwissExecute(r TournamentsSwissAPISwissRequest) (*ApiSwissNew200Response, *http.Response, error)
+	//  @return SwissTournament
+	SwissExecute(r TournamentsSwissAPISwissRequest) (*SwissTournament, *http.Response, error)
 
 	/*
 	SwissTrf Export TRF of a Swiss tournament
@@ -239,7 +239,7 @@ func (r TournamentsSwissAPIApiSwissJoinRequest) Password(password string) Tourna
 	return r
 }
 
-func (r TournamentsSwissAPIApiSwissJoinRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r TournamentsSwissAPIApiSwissJoinRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.ApiSwissJoinExecute(r)
 }
 
@@ -262,13 +262,13 @@ func (a *TournamentsSwissAPIService) ApiSwissJoin(ctx context.Context, id string
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *TournamentsSwissAPIService) ApiSwissJoinExecute(r TournamentsSwissAPIApiSwissJoinRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *TournamentsSwissAPIService) ApiSwissJoinExecute(r TournamentsSwissAPIApiSwissJoinRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TournamentsSwissAPIService.ApiSwissJoin")
@@ -326,7 +326,7 @@ func (a *TournamentsSwissAPIService) ApiSwissJoinExecute(r TournamentsSwissAPIAp
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -360,7 +360,7 @@ type TournamentsSwissAPIApiSwissNewRequest struct {
 	name *string
 	startsAt *int64
 	roundInterval *int32
-	variant *string
+	variant *VariantKey
 	position *string
 	description *string
 	rated *bool
@@ -411,7 +411,7 @@ func (r TournamentsSwissAPIApiSwissNewRequest) RoundInterval(roundInterval int32
 	return r
 }
 
-func (r TournamentsSwissAPIApiSwissNewRequest) Variant(variant string) TournamentsSwissAPIApiSwissNewRequest {
+func (r TournamentsSwissAPIApiSwissNewRequest) Variant(variant VariantKey) TournamentsSwissAPIApiSwissNewRequest {
 	r.variant = &variant
 	return r
 }
@@ -488,7 +488,7 @@ func (r TournamentsSwissAPIApiSwissNewRequest) ConditionsAllowList(conditionsAll
 	return r
 }
 
-func (r TournamentsSwissAPIApiSwissNewRequest) Execute() (*ApiSwissNew200Response, *http.Response, error) {
+func (r TournamentsSwissAPIApiSwissNewRequest) Execute() (*SwissTournament, *http.Response, error) {
 	return r.ApiService.ApiSwissNewExecute(r)
 }
 
@@ -516,13 +516,13 @@ func (a *TournamentsSwissAPIService) ApiSwissNew(ctx context.Context, teamId str
 }
 
 // Execute executes the request
-//  @return ApiSwissNew200Response
-func (a *TournamentsSwissAPIService) ApiSwissNewExecute(r TournamentsSwissAPIApiSwissNewRequest) (*ApiSwissNew200Response, *http.Response, error) {
+//  @return SwissTournament
+func (a *TournamentsSwissAPIService) ApiSwissNewExecute(r TournamentsSwissAPIApiSwissNewRequest) (*SwissTournament, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiSwissNew200Response
+		localVarReturnValue  *SwissTournament
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TournamentsSwissAPIService.ApiSwissNew")
@@ -649,7 +649,7 @@ func (a *TournamentsSwissAPIService) ApiSwissNewExecute(r TournamentsSwissAPIApi
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -773,7 +773,7 @@ func (a *TournamentsSwissAPIService) ApiSwissScheduleNextRoundExecute(r Tourname
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -784,7 +784,7 @@ func (a *TournamentsSwissAPIService) ApiSwissScheduleNextRoundExecute(r Tourname
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiSwissUpdate401Response
+			var v SwissUnauthorisedEdit
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -805,7 +805,7 @@ type TournamentsSwissAPIApiSwissTerminateRequest struct {
 	id string
 }
 
-func (r TournamentsSwissAPIApiSwissTerminateRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r TournamentsSwissAPIApiSwissTerminateRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.ApiSwissTerminateExecute(r)
 }
 
@@ -828,13 +828,13 @@ func (a *TournamentsSwissAPIService) ApiSwissTerminate(ctx context.Context, id s
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *TournamentsSwissAPIService) ApiSwissTerminateExecute(r TournamentsSwissAPIApiSwissTerminateRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *TournamentsSwissAPIService) ApiSwissTerminateExecute(r TournamentsSwissAPIApiSwissTerminateRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TournamentsSwissAPIService.ApiSwissTerminate")
@@ -889,7 +889,7 @@ func (a *TournamentsSwissAPIService) ApiSwissTerminateExecute(r TournamentsSwiss
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -923,7 +923,7 @@ type TournamentsSwissAPIApiSwissUpdateRequest struct {
 	name *string
 	startsAt *int64
 	roundInterval *int32
-	variant *string
+	variant *VariantKey
 	position *string
 	description *string
 	rated *bool
@@ -974,7 +974,7 @@ func (r TournamentsSwissAPIApiSwissUpdateRequest) RoundInterval(roundInterval in
 	return r
 }
 
-func (r TournamentsSwissAPIApiSwissUpdateRequest) Variant(variant string) TournamentsSwissAPIApiSwissUpdateRequest {
+func (r TournamentsSwissAPIApiSwissUpdateRequest) Variant(variant VariantKey) TournamentsSwissAPIApiSwissUpdateRequest {
 	r.variant = &variant
 	return r
 }
@@ -1051,7 +1051,7 @@ func (r TournamentsSwissAPIApiSwissUpdateRequest) ConditionsAllowList(conditions
 	return r
 }
 
-func (r TournamentsSwissAPIApiSwissUpdateRequest) Execute() (*ApiSwissNew200Response, *http.Response, error) {
+func (r TournamentsSwissAPIApiSwissUpdateRequest) Execute() (*SwissTournament, *http.Response, error) {
 	return r.ApiService.ApiSwissUpdateExecute(r)
 }
 
@@ -1078,13 +1078,13 @@ func (a *TournamentsSwissAPIService) ApiSwissUpdate(ctx context.Context, id stri
 }
 
 // Execute executes the request
-//  @return ApiSwissNew200Response
-func (a *TournamentsSwissAPIService) ApiSwissUpdateExecute(r TournamentsSwissAPIApiSwissUpdateRequest) (*ApiSwissNew200Response, *http.Response, error) {
+//  @return SwissTournament
+func (a *TournamentsSwissAPIService) ApiSwissUpdateExecute(r TournamentsSwissAPIApiSwissUpdateRequest) (*SwissTournament, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiSwissNew200Response
+		localVarReturnValue  *SwissTournament
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TournamentsSwissAPIService.ApiSwissUpdate")
@@ -1211,7 +1211,7 @@ func (a *TournamentsSwissAPIService) ApiSwissUpdateExecute(r TournamentsSwissAPI
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1222,7 +1222,7 @@ func (a *TournamentsSwissAPIService) ApiSwissUpdateExecute(r TournamentsSwissAPI
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiSwissUpdate401Response
+			var v SwissUnauthorisedEdit
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1252,7 +1252,7 @@ type TournamentsSwissAPIApiSwissWithdrawRequest struct {
 	id string
 }
 
-func (r TournamentsSwissAPIApiSwissWithdrawRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r TournamentsSwissAPIApiSwissWithdrawRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.ApiSwissWithdrawExecute(r)
 }
 
@@ -1276,13 +1276,13 @@ func (a *TournamentsSwissAPIService) ApiSwissWithdraw(ctx context.Context, id st
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *TournamentsSwissAPIService) ApiSwissWithdrawExecute(r TournamentsSwissAPIApiSwissWithdrawRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *TournamentsSwissAPIService) ApiSwissWithdrawExecute(r TournamentsSwissAPIApiSwissWithdrawRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TournamentsSwissAPIService.ApiSwissWithdraw")
@@ -1356,7 +1356,7 @@ type TournamentsSwissAPIApiTeamSwissRequest struct {
 	ApiService TournamentsSwissAPI
 	teamId string
 	max *int32
-	status *string
+	status *SwissStatus
 	createdBy *string
 	name *string
 }
@@ -1368,7 +1368,7 @@ func (r TournamentsSwissAPIApiTeamSwissRequest) Max(max int32) TournamentsSwissA
 }
 
 // [Filter] Only swiss tournaments in this current state. 
-func (r TournamentsSwissAPIApiTeamSwissRequest) Status(status string) TournamentsSwissAPIApiTeamSwissRequest {
+func (r TournamentsSwissAPIApiTeamSwissRequest) Status(status SwissStatus) TournamentsSwissAPIApiTeamSwissRequest {
 	r.status = &status
 	return r
 }
@@ -1385,7 +1385,7 @@ func (r TournamentsSwissAPIApiTeamSwissRequest) Name(name string) TournamentsSwi
 	return r
 }
 
-func (r TournamentsSwissAPIApiTeamSwissRequest) Execute() (*ApiSwissNew200Response, *http.Response, error) {
+func (r TournamentsSwissAPIApiTeamSwissRequest) Execute() (*SwissTournament, *http.Response, error) {
 	return r.ApiService.ApiTeamSwissExecute(r)
 }
 
@@ -1410,13 +1410,13 @@ func (a *TournamentsSwissAPIService) ApiTeamSwiss(ctx context.Context, teamId st
 }
 
 // Execute executes the request
-//  @return ApiSwissNew200Response
-func (a *TournamentsSwissAPIService) ApiTeamSwissExecute(r TournamentsSwissAPIApiTeamSwissRequest) (*ApiSwissNew200Response, *http.Response, error) {
+//  @return SwissTournament
+func (a *TournamentsSwissAPIService) ApiTeamSwissExecute(r TournamentsSwissAPIApiTeamSwissRequest) (*SwissTournament, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiSwissNew200Response
+		localVarReturnValue  *SwissTournament
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TournamentsSwissAPIService.ApiTeamSwiss")
@@ -1865,7 +1865,7 @@ type TournamentsSwissAPISwissRequest struct {
 	id string
 }
 
-func (r TournamentsSwissAPISwissRequest) Execute() (*ApiSwissNew200Response, *http.Response, error) {
+func (r TournamentsSwissAPISwissRequest) Execute() (*SwissTournament, *http.Response, error) {
 	return r.ApiService.SwissExecute(r)
 }
 
@@ -1888,13 +1888,13 @@ func (a *TournamentsSwissAPIService) Swiss(ctx context.Context, id string) Tourn
 }
 
 // Execute executes the request
-//  @return ApiSwissNew200Response
-func (a *TournamentsSwissAPIService) SwissExecute(r TournamentsSwissAPISwissRequest) (*ApiSwissNew200Response, *http.Response, error) {
+//  @return SwissTournament
+func (a *TournamentsSwissAPIService) SwissExecute(r TournamentsSwissAPISwissRequest) (*SwissTournament, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiSwissNew200Response
+		localVarReturnValue  *SwissTournament
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TournamentsSwissAPIService.Swiss")

@@ -21,9 +21,9 @@ var _ MappedNullable = &ChallengeList200Response{}
 // ChallengeList200Response struct for ChallengeList200Response
 type ChallengeList200Response struct {
 	// Incoming challenges i.e. targeted at you
-	In []ChallengeList200ResponseInInner `json:"in,omitempty"`
+	In []ChallengeJson `json:"in,omitempty"`
 	// Outgoing challenges i.e. created by you
-	Out []ChallengeList200ResponseInInner `json:"out,omitempty"`
+	Out []ChallengeJson `json:"out,omitempty"`
 }
 
 // NewChallengeList200Response instantiates a new ChallengeList200Response object
@@ -44,9 +44,9 @@ func NewChallengeList200ResponseWithDefaults() *ChallengeList200Response {
 }
 
 // GetIn returns the In field value if set, zero value otherwise.
-func (o *ChallengeList200Response) GetIn() []ChallengeList200ResponseInInner {
+func (o *ChallengeList200Response) GetIn() []ChallengeJson {
 	if o == nil || IsNil(o.In) {
-		var ret []ChallengeList200ResponseInInner
+		var ret []ChallengeJson
 		return ret
 	}
 	return o.In
@@ -54,7 +54,7 @@ func (o *ChallengeList200Response) GetIn() []ChallengeList200ResponseInInner {
 
 // GetInOk returns a tuple with the In field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChallengeList200Response) GetInOk() ([]ChallengeList200ResponseInInner, bool) {
+func (o *ChallengeList200Response) GetInOk() ([]ChallengeJson, bool) {
 	if o == nil || IsNil(o.In) {
 		return nil, false
 	}
@@ -70,15 +70,15 @@ func (o *ChallengeList200Response) HasIn() bool {
 	return false
 }
 
-// SetIn gets a reference to the given []ChallengeList200ResponseInInner and assigns it to the In field.
-func (o *ChallengeList200Response) SetIn(v []ChallengeList200ResponseInInner) {
+// SetIn gets a reference to the given []ChallengeJson and assigns it to the In field.
+func (o *ChallengeList200Response) SetIn(v []ChallengeJson) {
 	o.In = v
 }
 
 // GetOut returns the Out field value if set, zero value otherwise.
-func (o *ChallengeList200Response) GetOut() []ChallengeList200ResponseInInner {
+func (o *ChallengeList200Response) GetOut() []ChallengeJson {
 	if o == nil || IsNil(o.Out) {
-		var ret []ChallengeList200ResponseInInner
+		var ret []ChallengeJson
 		return ret
 	}
 	return o.Out
@@ -86,7 +86,7 @@ func (o *ChallengeList200Response) GetOut() []ChallengeList200ResponseInInner {
 
 // GetOutOk returns a tuple with the Out field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChallengeList200Response) GetOutOk() ([]ChallengeList200ResponseInInner, bool) {
+func (o *ChallengeList200Response) GetOutOk() ([]ChallengeJson, bool) {
 	if o == nil || IsNil(o.Out) {
 		return nil, false
 	}
@@ -102,8 +102,8 @@ func (o *ChallengeList200Response) HasOut() bool {
 	return false
 }
 
-// SetOut gets a reference to the given []ChallengeList200ResponseInInner and assigns it to the Out field.
-func (o *ChallengeList200Response) SetOut(v []ChallengeList200ResponseInInner) {
+// SetOut gets a reference to the given []ChallengeJson and assigns it to the Out field.
+func (o *ChallengeList200Response) SetOut(v []ChallengeJson) {
 	o.Out = v
 }
 

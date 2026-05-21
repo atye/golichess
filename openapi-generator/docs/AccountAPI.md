@@ -198,7 +198,7 @@ Other parameters are passed through a pointer to a apiAccountKidRequest struct v
 
 ## AccountKidPost
 
-> AccountKidPost200Response AccountKidPost(ctx).V(v).Execute()
+> Ok AccountKidPost(ctx).V(v).Execute()
 
 Set my kid mode status
 
@@ -226,7 +226,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `AccountAPI.AccountKidPost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AccountKidPost`: AccountKidPost200Response
+	// response from `AccountKidPost`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `AccountAPI.AccountKidPost`: %v\n", resp)
 }
 ```
@@ -246,7 +246,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -264,7 +264,7 @@ Name | Type | Description  | Notes
 
 ## AccountMe
 
-> AccountMe200Response AccountMe(ctx).Execute()
+> UserExtended AccountMe(ctx).Execute()
 
 Get my profile
 
@@ -291,7 +291,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `AccountAPI.AccountMe``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AccountMe`: AccountMe200Response
+	// response from `AccountMe`: UserExtended
 	fmt.Fprintf(os.Stdout, "Response from `AccountAPI.AccountMe`: %v\n", resp)
 }
 ```
@@ -307,7 +307,7 @@ Other parameters are passed through a pointer to a apiAccountMeRequest struct vi
 
 ### Return type
 
-[**AccountMe200Response**](AccountMe200Response.md)
+[**UserExtended**](UserExtended.md)
 
 ### Authorization
 
@@ -325,7 +325,7 @@ Other parameters are passed through a pointer to a apiAccountMeRequest struct vi
 
 ## Timeline
 
-> Timeline200Response Timeline(ctx).Since(since).Nb(nb).Execute()
+> Timeline Timeline(ctx).Since(since).Nb(nb).Execute()
 
 Get my timeline
 
@@ -354,7 +354,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `AccountAPI.Timeline``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `Timeline`: Timeline200Response
+	// response from `Timeline`: Timeline
 	fmt.Fprintf(os.Stdout, "Response from `AccountAPI.Timeline`: %v\n", resp)
 }
 ```
@@ -375,7 +375,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Timeline200Response**](Timeline200Response.md)
+[**Timeline**](Timeline.md)
 
 ### Authorization
 

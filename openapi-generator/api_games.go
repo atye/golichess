@@ -54,8 +54,8 @@ We recommend streaming the response, for it can be very long.
 	ApiExportBookmarks(ctx context.Context) GamesAPIApiExportBookmarksRequest
 
 	// ApiExportBookmarksExecute executes the request
-	//  @return ApiUserCurrentGame200Response
-	ApiExportBookmarksExecute(r GamesAPIApiExportBookmarksRequest) (*ApiUserCurrentGame200Response, *http.Response, error)
+	//  @return GamePgn200Response
+	ApiExportBookmarksExecute(r GamesAPIApiExportBookmarksRequest) (*GamePgn200Response, *http.Response, error)
 
 	/*
 	ApiGamesUser Export games of a user
@@ -77,8 +77,8 @@ The game stream is throttled, depending on who is making the request:
 	ApiGamesUser(ctx context.Context, username string) GamesAPIApiGamesUserRequest
 
 	// ApiGamesUserExecute executes the request
-	//  @return ApiUserCurrentGame200Response
-	ApiGamesUserExecute(r GamesAPIApiGamesUserRequest) (*ApiUserCurrentGame200Response, *http.Response, error)
+	//  @return GamePgn200Response
+	ApiGamesUserExecute(r GamesAPIApiGamesUserRequest) (*GamePgn200Response, *http.Response, error)
 
 	/*
 	ApiImportedGamesUser Export your imported games
@@ -109,8 +109,8 @@ Ongoing games are delayed by 3 moves, as to prevent cheat bots from using this A
 	ApiUserCurrentGame(ctx context.Context, username string) GamesAPIApiUserCurrentGameRequest
 
 	// ApiUserCurrentGameExecute executes the request
-	//  @return ApiUserCurrentGame200Response
-	ApiUserCurrentGameExecute(r GamesAPIApiUserCurrentGameRequest) (*ApiUserCurrentGame200Response, *http.Response, error)
+	//  @return GamePgn200Response
+	ApiUserCurrentGameExecute(r GamesAPIApiUserCurrentGameRequest) (*GamePgn200Response, *http.Response, error)
 
 	/*
 	GameChatGet Fetch the spectator game chat
@@ -127,8 +127,8 @@ Games also have a private players chat, which only the 2 players can see.
 	GameChatGet(ctx context.Context, gameId string) GamesAPIGameChatGetRequest
 
 	// GameChatGetExecute executes the request
-	//  @return []GameChatGet200ResponseInner
-	GameChatGetExecute(r GamesAPIGameChatGetRequest) ([]GameChatGet200ResponseInner, *http.Response, error)
+	//  @return []SpectatorGameChatInner
+	GameChatGetExecute(r GamesAPIGameChatGetRequest) ([]SpectatorGameChatInner, *http.Response, error)
 
 	/*
 	GameImport Import one game
@@ -183,8 +183,8 @@ While the stream is open, it is possible to [add new game IDs to watch](#tag/gam
 	GamesByIds(ctx context.Context, streamId string) GamesAPIGamesByIdsRequest
 
 	// GamesByIdsExecute executes the request
-	//  @return []GamesByIds200ResponseInner
-	GamesByIdsExecute(r GamesAPIGamesByIdsRequest) ([]GamesByIds200ResponseInner, *http.Response, error)
+	//  @return []GameStreamGame
+	GamesByIdsExecute(r GamesAPIGamesByIdsRequest) ([]GameStreamGame, *http.Response, error)
 
 	/*
 	GamesByIdsAdd Add game IDs to stream
@@ -200,8 +200,8 @@ The stream will immediately outputs the games that already exists, then emit an 
 	GamesByIdsAdd(ctx context.Context, streamId string) GamesAPIGamesByIdsAddRequest
 
 	// GamesByIdsAddExecute executes the request
-	//  @return AccountKidPost200Response
-	GamesByIdsAddExecute(r GamesAPIGamesByIdsAddRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	GamesByIdsAddExecute(r GamesAPIGamesByIdsAddRequest) (*Ok, *http.Response, error)
 
 	/*
 	GamesByUsers Stream games of users
@@ -221,8 +221,8 @@ The method is `POST` so a longer list of IDs can be sent in the request body.
 	GamesByUsers(ctx context.Context) GamesAPIGamesByUsersRequest
 
 	// GamesByUsersExecute executes the request
-	//  @return []GamesByUsers200ResponseInner
-	GamesByUsersExecute(r GamesAPIGamesByUsersRequest) ([]GamesByUsers200ResponseInner, *http.Response, error)
+	//  @return []GameStreamGame
+	GamesByUsersExecute(r GamesAPIGamesByUsersRequest) ([]GameStreamGame, *http.Response, error)
 
 	/*
 	GamesExportIds Export games by IDs
@@ -240,8 +240,8 @@ Ongoing games are delayed by 3 moves, as to prevent cheat bots from using this A
 	GamesExportIds(ctx context.Context) GamesAPIGamesExportIdsRequest
 
 	// GamesExportIdsExecute executes the request
-	//  @return ApiUserCurrentGame200Response
-	GamesExportIdsExecute(r GamesAPIGamesExportIdsRequest) (*ApiUserCurrentGame200Response, *http.Response, error)
+	//  @return GamePgn200Response
+	GamesExportIdsExecute(r GamesAPIGamesExportIdsRequest) (*GamePgn200Response, *http.Response, error)
 
 	/*
 	StreamGame Stream moves of a game
@@ -261,8 +261,8 @@ No more than 8 game streams can be opened at the same time from the same IP addr
 	StreamGame(ctx context.Context, id string) GamesAPIStreamGameRequest
 
 	// StreamGameExecute executes the request
-	//  @return []StreamGame200ResponseInner
-	StreamGameExecute(r GamesAPIStreamGameRequest) ([]StreamGame200ResponseInner, *http.Response, error)
+	//  @return []MoveStreamEntry
+	StreamGameExecute(r GamesAPIStreamGameRequest) ([]MoveStreamEntry, *http.Response, error)
 }
 
 // GamesAPIService GamesAPI service
@@ -494,7 +494,7 @@ func (r GamesAPIApiExportBookmarksRequest) Sort(sort string) GamesAPIApiExportBo
 	return r
 }
 
-func (r GamesAPIApiExportBookmarksRequest) Execute() (*ApiUserCurrentGame200Response, *http.Response, error) {
+func (r GamesAPIApiExportBookmarksRequest) Execute() (*GamePgn200Response, *http.Response, error) {
 	return r.ApiService.ApiExportBookmarksExecute(r)
 }
 
@@ -517,13 +517,13 @@ func (a *GamesAPIService) ApiExportBookmarks(ctx context.Context) GamesAPIApiExp
 }
 
 // Execute executes the request
-//  @return ApiUserCurrentGame200Response
-func (a *GamesAPIService) ApiExportBookmarksExecute(r GamesAPIApiExportBookmarksRequest) (*ApiUserCurrentGame200Response, *http.Response, error) {
+//  @return GamePgn200Response
+func (a *GamesAPIService) ApiExportBookmarksExecute(r GamesAPIApiExportBookmarksRequest) (*GamePgn200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiUserCurrentGame200Response
+		localVarReturnValue  *GamePgn200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GamesAPIService.ApiExportBookmarks")
@@ -690,7 +690,7 @@ type GamesAPIApiGamesUserRequest struct {
 	max *int32
 	vs *string
 	rated *bool
-	perfType *string
+	perfType *PerfType
 	color *string
 	analysed *bool
 	moves *bool
@@ -746,7 +746,7 @@ func (r GamesAPIApiGamesUserRequest) Rated(rated bool) GamesAPIApiGamesUserReque
 }
 
 // [Filter] Only games in these speeds or variants. Multiple perf types can be specified, separated by a comma. Example: blitz,rapid,classical 
-func (r GamesAPIApiGamesUserRequest) PerfType(perfType string) GamesAPIApiGamesUserRequest {
+func (r GamesAPIApiGamesUserRequest) PerfType(perfType PerfType) GamesAPIApiGamesUserRequest {
 	r.perfType = &perfType
 	return r
 }
@@ -847,7 +847,7 @@ func (r GamesAPIApiGamesUserRequest) Sort(sort string) GamesAPIApiGamesUserReque
 	return r
 }
 
-func (r GamesAPIApiGamesUserRequest) Execute() (*ApiUserCurrentGame200Response, *http.Response, error) {
+func (r GamesAPIApiGamesUserRequest) Execute() (*GamePgn200Response, *http.Response, error) {
 	return r.ApiService.ApiGamesUserExecute(r)
 }
 
@@ -877,13 +877,13 @@ func (a *GamesAPIService) ApiGamesUser(ctx context.Context, username string) Gam
 }
 
 // Execute executes the request
-//  @return ApiUserCurrentGame200Response
-func (a *GamesAPIService) ApiGamesUserExecute(r GamesAPIApiGamesUserRequest) (*ApiUserCurrentGame200Response, *http.Response, error) {
+//  @return GamePgn200Response
+func (a *GamesAPIService) ApiGamesUserExecute(r GamesAPIApiGamesUserRequest) (*GamePgn200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiUserCurrentGame200Response
+		localVarReturnValue  *GamePgn200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GamesAPIService.ApiGamesUser")
@@ -1252,7 +1252,7 @@ func (r GamesAPIApiUserCurrentGameRequest) Literate(literate bool) GamesAPIApiUs
 	return r
 }
 
-func (r GamesAPIApiUserCurrentGameRequest) Execute() (*ApiUserCurrentGame200Response, *http.Response, error) {
+func (r GamesAPIApiUserCurrentGameRequest) Execute() (*GamePgn200Response, *http.Response, error) {
 	return r.ApiService.ApiUserCurrentGameExecute(r)
 }
 
@@ -1277,13 +1277,13 @@ func (a *GamesAPIService) ApiUserCurrentGame(ctx context.Context, username strin
 }
 
 // Execute executes the request
-//  @return ApiUserCurrentGame200Response
-func (a *GamesAPIService) ApiUserCurrentGameExecute(r GamesAPIApiUserCurrentGameRequest) (*ApiUserCurrentGame200Response, *http.Response, error) {
+//  @return GamePgn200Response
+func (a *GamesAPIService) ApiUserCurrentGameExecute(r GamesAPIApiUserCurrentGameRequest) (*GamePgn200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiUserCurrentGame200Response
+		localVarReturnValue  *GamePgn200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GamesAPIService.ApiUserCurrentGame")
@@ -1424,7 +1424,7 @@ type GamesAPIGameChatGetRequest struct {
 	gameId string
 }
 
-func (r GamesAPIGameChatGetRequest) Execute() ([]GameChatGet200ResponseInner, *http.Response, error) {
+func (r GamesAPIGameChatGetRequest) Execute() ([]SpectatorGameChatInner, *http.Response, error) {
 	return r.ApiService.GameChatGetExecute(r)
 }
 
@@ -1449,13 +1449,13 @@ func (a *GamesAPIService) GameChatGet(ctx context.Context, gameId string) GamesA
 }
 
 // Execute executes the request
-//  @return []GameChatGet200ResponseInner
-func (a *GamesAPIService) GameChatGetExecute(r GamesAPIGameChatGetRequest) ([]GameChatGet200ResponseInner, *http.Response, error) {
+//  @return []SpectatorGameChatInner
+func (a *GamesAPIService) GameChatGetExecute(r GamesAPIGameChatGetRequest) ([]SpectatorGameChatInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []GameChatGet200ResponseInner
+		localVarReturnValue  []SpectatorGameChatInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GamesAPIService.GameChatGet")
@@ -1912,7 +1912,7 @@ func (r GamesAPIGamesByIdsRequest) Body(body string) GamesAPIGamesByIdsRequest {
 	return r
 }
 
-func (r GamesAPIGamesByIdsRequest) Execute() ([]GamesByIds200ResponseInner, *http.Response, error) {
+func (r GamesAPIGamesByIdsRequest) Execute() ([]GameStreamGame, *http.Response, error) {
 	return r.ApiService.GamesByIdsExecute(r)
 }
 
@@ -1939,13 +1939,13 @@ func (a *GamesAPIService) GamesByIds(ctx context.Context, streamId string) Games
 }
 
 // Execute executes the request
-//  @return []GamesByIds200ResponseInner
-func (a *GamesAPIService) GamesByIdsExecute(r GamesAPIGamesByIdsRequest) ([]GamesByIds200ResponseInner, *http.Response, error) {
+//  @return []GameStreamGame
+func (a *GamesAPIService) GamesByIdsExecute(r GamesAPIGamesByIdsRequest) ([]GameStreamGame, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []GamesByIds200ResponseInner
+		localVarReturnValue  []GameStreamGame
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GamesAPIService.GamesByIds")
@@ -2032,7 +2032,7 @@ func (r GamesAPIGamesByIdsAddRequest) Body(body string) GamesAPIGamesByIdsAddReq
 	return r
 }
 
-func (r GamesAPIGamesByIdsAddRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r GamesAPIGamesByIdsAddRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.GamesByIdsAddExecute(r)
 }
 
@@ -2056,13 +2056,13 @@ func (a *GamesAPIService) GamesByIdsAdd(ctx context.Context, streamId string) Ga
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *GamesAPIService) GamesByIdsAddExecute(r GamesAPIGamesByIdsAddRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *GamesAPIService) GamesByIdsAddExecute(r GamesAPIGamesByIdsAddRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GamesAPIService.GamesByIdsAdd")
@@ -2155,7 +2155,7 @@ func (r GamesAPIGamesByUsersRequest) WithCurrentGames(withCurrentGames bool) Gam
 	return r
 }
 
-func (r GamesAPIGamesByUsersRequest) Execute() ([]GamesByUsers200ResponseInner, *http.Response, error) {
+func (r GamesAPIGamesByUsersRequest) Execute() ([]GameStreamGame, *http.Response, error) {
 	return r.ApiService.GamesByUsersExecute(r)
 }
 
@@ -2182,13 +2182,13 @@ func (a *GamesAPIService) GamesByUsers(ctx context.Context) GamesAPIGamesByUsers
 }
 
 // Execute executes the request
-//  @return []GamesByUsers200ResponseInner
-func (a *GamesAPIService) GamesByUsersExecute(r GamesAPIGamesByUsersRequest) ([]GamesByUsers200ResponseInner, *http.Response, error) {
+//  @return []GameStreamGame
+func (a *GamesAPIService) GamesByUsersExecute(r GamesAPIGamesByUsersRequest) ([]GameStreamGame, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []GamesByUsers200ResponseInner
+		localVarReturnValue  []GameStreamGame
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GamesAPIService.GamesByUsers")
@@ -2350,7 +2350,7 @@ func (r GamesAPIGamesExportIdsRequest) Literate(literate bool) GamesAPIGamesExpo
 	return r
 }
 
-func (r GamesAPIGamesExportIdsRequest) Execute() (*ApiUserCurrentGame200Response, *http.Response, error) {
+func (r GamesAPIGamesExportIdsRequest) Execute() (*GamePgn200Response, *http.Response, error) {
 	return r.ApiService.GamesExportIdsExecute(r)
 }
 
@@ -2375,13 +2375,13 @@ func (a *GamesAPIService) GamesExportIds(ctx context.Context) GamesAPIGamesExpor
 }
 
 // Execute executes the request
-//  @return ApiUserCurrentGame200Response
-func (a *GamesAPIService) GamesExportIdsExecute(r GamesAPIGamesExportIdsRequest) (*ApiUserCurrentGame200Response, *http.Response, error) {
+//  @return GamePgn200Response
+func (a *GamesAPIService) GamesExportIdsExecute(r GamesAPIGamesExportIdsRequest) (*GamePgn200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiUserCurrentGame200Response
+		localVarReturnValue  *GamePgn200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GamesAPIService.GamesExportIds")
@@ -2526,7 +2526,7 @@ type GamesAPIStreamGameRequest struct {
 	id string
 }
 
-func (r GamesAPIStreamGameRequest) Execute() ([]StreamGame200ResponseInner, *http.Response, error) {
+func (r GamesAPIStreamGameRequest) Execute() ([]MoveStreamEntry, *http.Response, error) {
 	return r.ApiService.StreamGameExecute(r)
 }
 
@@ -2554,13 +2554,13 @@ func (a *GamesAPIService) StreamGame(ctx context.Context, id string) GamesAPIStr
 }
 
 // Execute executes the request
-//  @return []StreamGame200ResponseInner
-func (a *GamesAPIService) StreamGameExecute(r GamesAPIStreamGameRequest) ([]StreamGame200ResponseInner, *http.Response, error) {
+//  @return []MoveStreamEntry
+func (a *GamesAPIService) StreamGameExecute(r GamesAPIStreamGameRequest) ([]MoveStreamEntry, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []StreamGame200ResponseInner
+		localVarReturnValue  []MoveStreamEntry
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GamesAPIService.StreamGame")

@@ -27,14 +27,13 @@ type ResultsByTournament200Response struct {
 	Rating int32 `json:"rating"`
 	Username string `json:"username"`
 	Performance int32 `json:"performance"`
-	// only appears if the user is a titled player or a bot user
-	Title NullableString `json:"title,omitempty"`
+	Title *Title `json:"title,omitempty"`
 	Team *string `json:"team,omitempty"`
 	// See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
 	Flair *string `json:"flair,omitempty"`
 	// Players can choose a color for their Patron wings. See [here for the color mappings](https://github.com/lichess-org/lila/blob/master/ui/lib/css/abstract/_patron-colors.scss).  The presence of this field indicates the player is an active Patron. 
 	PatronColor *int32 `json:"patronColor,omitempty"`
-	Sheet *ApiTournamentPost200ResponseStandingPlayersInnerSheet `json:"sheet,omitempty"`
+	Sheet *ArenaSheet `json:"sheet,omitempty"`
 }
 
 type _ResultsByTournament200Response ResultsByTournament200Response
@@ -181,46 +180,36 @@ func (o *ResultsByTournament200Response) SetPerformance(v int32) {
 	o.Performance = v
 }
 
-// GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ResultsByTournament200Response) GetTitle() string {
-	if o == nil || IsNil(o.Title.Get()) {
-		var ret string
+// GetTitle returns the Title field value if set, zero value otherwise.
+func (o *ResultsByTournament200Response) GetTitle() Title {
+	if o == nil || IsNil(o.Title) {
+		var ret Title
 		return ret
 	}
-	return *o.Title.Get()
+	return *o.Title
 }
 
 // GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ResultsByTournament200Response) GetTitleOk() (*string, bool) {
-	if o == nil {
+func (o *ResultsByTournament200Response) GetTitleOk() (*Title, bool) {
+	if o == nil || IsNil(o.Title) {
 		return nil, false
 	}
-	return o.Title.Get(), o.Title.IsSet()
+	return o.Title, true
 }
 
 // HasTitle returns a boolean if a field has been set.
 func (o *ResultsByTournament200Response) HasTitle() bool {
-	if o != nil && o.Title.IsSet() {
+	if o != nil && !IsNil(o.Title) {
 		return true
 	}
 
 	return false
 }
 
-// SetTitle gets a reference to the given NullableString and assigns it to the Title field.
-func (o *ResultsByTournament200Response) SetTitle(v string) {
-	o.Title.Set(&v)
-}
-// SetTitleNil sets the value for Title to be an explicit nil
-func (o *ResultsByTournament200Response) SetTitleNil() {
-	o.Title.Set(nil)
-}
-
-// UnsetTitle ensures that no value is present for Title, not even an explicit nil
-func (o *ResultsByTournament200Response) UnsetTitle() {
-	o.Title.Unset()
+// SetTitle gets a reference to the given Title and assigns it to the Title field.
+func (o *ResultsByTournament200Response) SetTitle(v Title) {
+	o.Title = &v
 }
 
 // GetTeam returns the Team field value if set, zero value otherwise.
@@ -320,9 +309,9 @@ func (o *ResultsByTournament200Response) SetPatronColor(v int32) {
 }
 
 // GetSheet returns the Sheet field value if set, zero value otherwise.
-func (o *ResultsByTournament200Response) GetSheet() ApiTournamentPost200ResponseStandingPlayersInnerSheet {
+func (o *ResultsByTournament200Response) GetSheet() ArenaSheet {
 	if o == nil || IsNil(o.Sheet) {
-		var ret ApiTournamentPost200ResponseStandingPlayersInnerSheet
+		var ret ArenaSheet
 		return ret
 	}
 	return *o.Sheet
@@ -330,7 +319,7 @@ func (o *ResultsByTournament200Response) GetSheet() ApiTournamentPost200Response
 
 // GetSheetOk returns a tuple with the Sheet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ResultsByTournament200Response) GetSheetOk() (*ApiTournamentPost200ResponseStandingPlayersInnerSheet, bool) {
+func (o *ResultsByTournament200Response) GetSheetOk() (*ArenaSheet, bool) {
 	if o == nil || IsNil(o.Sheet) {
 		return nil, false
 	}
@@ -346,8 +335,8 @@ func (o *ResultsByTournament200Response) HasSheet() bool {
 	return false
 }
 
-// SetSheet gets a reference to the given ApiTournamentPost200ResponseStandingPlayersInnerSheet and assigns it to the Sheet field.
-func (o *ResultsByTournament200Response) SetSheet(v ApiTournamentPost200ResponseStandingPlayersInnerSheet) {
+// SetSheet gets a reference to the given ArenaSheet and assigns it to the Sheet field.
+func (o *ResultsByTournament200Response) SetSheet(v ArenaSheet) {
 	o.Sheet = &v
 }
 
@@ -366,8 +355,8 @@ func (o ResultsByTournament200Response) ToMap() (map[string]interface{}, error) 
 	toSerialize["rating"] = o.Rating
 	toSerialize["username"] = o.Username
 	toSerialize["performance"] = o.Performance
-	if o.Title.IsSet() {
-		toSerialize["title"] = o.Title.Get()
+	if !IsNil(o.Title) {
+		toSerialize["title"] = o.Title
 	}
 	if !IsNil(o.Team) {
 		toSerialize["team"] = o.Team

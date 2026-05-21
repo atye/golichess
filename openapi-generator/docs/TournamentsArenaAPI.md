@@ -23,7 +23,7 @@ Method | HTTP request | Description
 
 ## ApiTeamArena
 
-> ApiTournament200ResponseCreatedInner ApiTeamArena(ctx, teamId).Max(max).Status(status).CreatedBy(createdBy).Name(name).Execute()
+> ArenaTournament ApiTeamArena(ctx, teamId).Max(max).Status(status).CreatedBy(createdBy).Name(name).Execute()
 
 Get team Arena tournaments
 
@@ -44,7 +44,7 @@ import (
 func main() {
 	teamId := "teamId_example" // string | ID of the team
 	max := int32(56) // int32 | How many tournaments to download. (optional) (default to 100)
-	status := "status_example" // string | [Filter] Only arena tournaments in this current state.  (optional)
+	status := openapiclient.ArenaStatusName("created") // ArenaStatusName | [Filter] Only arena tournaments in this current state.  (optional)
 	createdBy := "createdBy_example" // string | [Filter] Only arena tournaments created by a given user.  (optional)
 	name := "name_example" // string | [Filter] Only arena tournaments with a given name.  (optional)
 
@@ -55,7 +55,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TournamentsArenaAPI.ApiTeamArena``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiTeamArena`: ApiTournament200ResponseCreatedInner
+	// response from `ApiTeamArena`: ArenaTournament
 	fmt.Fprintf(os.Stdout, "Response from `TournamentsArenaAPI.ApiTeamArena`: %v\n", resp)
 }
 ```
@@ -77,13 +77,13 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **max** | **int32** | How many tournaments to download. | [default to 100]
- **status** | **string** | [Filter] Only arena tournaments in this current state.  | 
+ **status** | [**ArenaStatusName**](ArenaStatusName.md) | [Filter] Only arena tournaments in this current state.  | 
  **createdBy** | **string** | [Filter] Only arena tournaments created by a given user.  | 
  **name** | **string** | [Filter] Only arena tournaments with a given name.  | 
 
 ### Return type
 
-[**ApiTournament200ResponseCreatedInner**](ApiTournament200ResponseCreatedInner.md)
+[**ArenaTournament**](ArenaTournament.md)
 
 ### Authorization
 
@@ -101,7 +101,7 @@ No authorization required
 
 ## ApiTournament
 
-> ApiTournament200Response ApiTournament(ctx).Execute()
+> ArenaTournaments ApiTournament(ctx).Execute()
 
 Get current tournaments
 
@@ -128,7 +128,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TournamentsArenaAPI.ApiTournament``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiTournament`: ApiTournament200Response
+	// response from `ApiTournament`: ArenaTournaments
 	fmt.Fprintf(os.Stdout, "Response from `TournamentsArenaAPI.ApiTournament`: %v\n", resp)
 }
 ```
@@ -144,7 +144,7 @@ Other parameters are passed through a pointer to a apiApiTournamentRequest struc
 
 ### Return type
 
-[**ApiTournament200Response**](ApiTournament200Response.md)
+[**ArenaTournaments**](ArenaTournaments.md)
 
 ### Authorization
 
@@ -162,7 +162,7 @@ No authorization required
 
 ## ApiTournamentJoin
 
-> AccountKidPost200Response ApiTournamentJoin(ctx, id).Password(password).Team(team).PairMeAsap(pairMeAsap).Execute()
+> Ok ApiTournamentJoin(ctx, id).Password(password).Team(team).PairMeAsap(pairMeAsap).Execute()
 
 Join an Arena tournament
 
@@ -193,7 +193,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TournamentsArenaAPI.ApiTournamentJoin``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiTournamentJoin`: AccountKidPost200Response
+	// response from `ApiTournamentJoin`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `TournamentsArenaAPI.ApiTournamentJoin`: %v\n", resp)
 }
 ```
@@ -220,7 +220,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -238,7 +238,7 @@ Name | Type | Description  | Notes
 
 ## ApiTournamentPost
 
-> ApiTournamentPost200Response ApiTournamentPost(ctx).ClockTime(clockTime).ClockIncrement(clockIncrement).Minutes(minutes).Name(name).WaitMinutes(waitMinutes).StartDate(startDate).Variant(variant).Rated(rated).Position(position).Berserkable(berserkable).Streakable(streakable).HasChat(hasChat).Description(description).Password(password).TeamBattleByTeam(teamBattleByTeam).ConditionsTeamMemberTeamId(conditionsTeamMemberTeamId).ConditionsMinRatingRating(conditionsMinRatingRating).ConditionsMaxRatingRating(conditionsMaxRatingRating).ConditionsNbRatedGameNb(conditionsNbRatedGameNb).ConditionsAllowList(conditionsAllowList).ConditionsBots(conditionsBots).ConditionsAccountAge(conditionsAccountAge).Execute()
+> ArenaTournamentFull ApiTournamentPost(ctx).ClockTime(clockTime).ClockIncrement(clockIncrement).Minutes(minutes).Name(name).WaitMinutes(waitMinutes).StartDate(startDate).Variant(variant).Rated(rated).Position(position).Berserkable(berserkable).Streakable(streakable).HasChat(hasChat).Description(description).Password(password).TeamBattleByTeam(teamBattleByTeam).ConditionsTeamMemberTeamId(conditionsTeamMemberTeamId).ConditionsMinRatingRating(conditionsMinRatingRating).ConditionsMaxRatingRating(conditionsMaxRatingRating).ConditionsNbRatedGameNb(conditionsNbRatedGameNb).ConditionsAllowList(conditionsAllowList).ConditionsBots(conditionsBots).ConditionsAccountAge(conditionsAccountAge).Execute()
 
 Create a new Arena tournament
 
@@ -263,7 +263,7 @@ func main() {
 	name := "name_example" // string | The tournament name. Leave empty to get a random Grandmaster name (optional)
 	waitMinutes := int32(56) // int32 | How long to wait before starting the tournament, from now, in minutes (optional) (default to 5)
 	startDate := int64(789) // int64 | Timestamp (in milliseconds) to start the tournament at a given date and time. Overrides the `waitMinutes` setting (optional)
-	variant := "variant_example" // string |  (optional) (default to "standard")
+	variant := openapiclient.VariantKey("standard") // VariantKey |  (optional) (default to "standard")
 	rated := true // bool | Games are rated and impact players ratings (optional) (default to true)
 	position := "position_example" // string | Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated. (optional) (default to "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
 	berserkable := true // bool | Whether the players can use berserk. Only allowed if clockIncrement <= clockTime * 2 (optional) (default to true)
@@ -287,7 +287,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TournamentsArenaAPI.ApiTournamentPost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiTournamentPost`: ApiTournamentPost200Response
+	// response from `ApiTournamentPost`: ArenaTournamentFull
 	fmt.Fprintf(os.Stdout, "Response from `TournamentsArenaAPI.ApiTournamentPost`: %v\n", resp)
 }
 ```
@@ -309,7 +309,7 @@ Name | Type | Description  | Notes
  **name** | **string** | The tournament name. Leave empty to get a random Grandmaster name | 
  **waitMinutes** | **int32** | How long to wait before starting the tournament, from now, in minutes | [default to 5]
  **startDate** | **int64** | Timestamp (in milliseconds) to start the tournament at a given date and time. Overrides the &#x60;waitMinutes&#x60; setting | 
- **variant** | **string** |  | [default to &quot;standard&quot;]
+ **variant** | [**VariantKey**](VariantKey.md) |  | [default to &quot;standard&quot;]
  **rated** | **bool** | Games are rated and impact players ratings | [default to true]
  **position** | **string** | Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated. | [default to &quot;rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1&quot;]
  **berserkable** | **bool** | Whether the players can use berserk. Only allowed if clockIncrement &lt;&#x3D; clockTime * 2 | [default to true]
@@ -328,7 +328,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiTournamentPost200Response**](ApiTournamentPost200Response.md)
+[**ArenaTournamentFull**](ArenaTournamentFull.md)
 
 ### Authorization
 
@@ -346,7 +346,7 @@ Name | Type | Description  | Notes
 
 ## ApiTournamentTeamBattlePost
 
-> Tournament200Response ApiTournamentTeamBattlePost(ctx, id).Teams(teams).NbLeaders(nbLeaders).Execute()
+> ArenaTournamentFull ApiTournamentTeamBattlePost(ctx, id).Teams(teams).NbLeaders(nbLeaders).Execute()
 
 Update a team battle
 
@@ -376,7 +376,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TournamentsArenaAPI.ApiTournamentTeamBattlePost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiTournamentTeamBattlePost`: Tournament200Response
+	// response from `ApiTournamentTeamBattlePost`: ArenaTournamentFull
 	fmt.Fprintf(os.Stdout, "Response from `TournamentsArenaAPI.ApiTournamentTeamBattlePost`: %v\n", resp)
 }
 ```
@@ -402,7 +402,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Tournament200Response**](Tournament200Response.md)
+[**ArenaTournamentFull**](ArenaTournamentFull.md)
 
 ### Authorization
 
@@ -420,7 +420,7 @@ Name | Type | Description  | Notes
 
 ## ApiTournamentTerminate
 
-> AccountKidPost200Response ApiTournamentTerminate(ctx, id).Execute()
+> Ok ApiTournamentTerminate(ctx, id).Execute()
 
 Terminate an Arena tournament
 
@@ -448,7 +448,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TournamentsArenaAPI.ApiTournamentTerminate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiTournamentTerminate`: AccountKidPost200Response
+	// response from `ApiTournamentTerminate`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `TournamentsArenaAPI.ApiTournamentTerminate`: %v\n", resp)
 }
 ```
@@ -472,7 +472,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -490,7 +490,7 @@ Name | Type | Description  | Notes
 
 ## ApiTournamentUpdate
 
-> Tournament200Response ApiTournamentUpdate(ctx, id).ClockTime(clockTime).ClockIncrement(clockIncrement).Minutes(minutes).Name(name).WaitMinutes(waitMinutes).StartDate(startDate).Variant(variant).Rated(rated).Position(position).Berserkable(berserkable).Streakable(streakable).HasChat(hasChat).Description(description).Password(password).ConditionsMinRatingRating(conditionsMinRatingRating).ConditionsMaxRatingRating(conditionsMaxRatingRating).ConditionsNbRatedGameNb(conditionsNbRatedGameNb).ConditionsAllowList(conditionsAllowList).ConditionsBots(conditionsBots).ConditionsAccountAge(conditionsAccountAge).Execute()
+> ArenaTournamentFull ApiTournamentUpdate(ctx, id).ClockTime(clockTime).ClockIncrement(clockIncrement).Minutes(minutes).Name(name).WaitMinutes(waitMinutes).StartDate(startDate).Variant(variant).Rated(rated).Position(position).Berserkable(berserkable).Streakable(streakable).HasChat(hasChat).Description(description).Password(password).ConditionsMinRatingRating(conditionsMinRatingRating).ConditionsMaxRatingRating(conditionsMaxRatingRating).ConditionsNbRatedGameNb(conditionsNbRatedGameNb).ConditionsAllowList(conditionsAllowList).ConditionsBots(conditionsBots).ConditionsAccountAge(conditionsAccountAge).Execute()
 
 Update an Arena tournament
 
@@ -516,7 +516,7 @@ func main() {
 	name := "name_example" // string | The tournament name. Leave empty to get a random Grandmaster name (optional)
 	waitMinutes := int32(56) // int32 | How long to wait before starting the tournament, from now, in minutes (optional) (default to 5)
 	startDate := int64(789) // int64 | Timestamp (in milliseconds) to start the tournament at a given date and time. Overrides the `waitMinutes` setting (optional)
-	variant := "variant_example" // string |  (optional) (default to "standard")
+	variant := openapiclient.VariantKey("standard") // VariantKey |  (optional) (default to "standard")
 	rated := true // bool | Games are rated and impact players ratings (optional) (default to true)
 	position := "position_example" // string | Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated. (optional) (default to "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
 	berserkable := true // bool | Whether the players can use berserk. Only allowed if clockIncrement <= clockTime * 2 (optional) (default to true)
@@ -538,7 +538,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TournamentsArenaAPI.ApiTournamentUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiTournamentUpdate`: Tournament200Response
+	// response from `ApiTournamentUpdate`: ArenaTournamentFull
 	fmt.Fprintf(os.Stdout, "Response from `TournamentsArenaAPI.ApiTournamentUpdate`: %v\n", resp)
 }
 ```
@@ -565,7 +565,7 @@ Name | Type | Description  | Notes
  **name** | **string** | The tournament name. Leave empty to get a random Grandmaster name | 
  **waitMinutes** | **int32** | How long to wait before starting the tournament, from now, in minutes | [default to 5]
  **startDate** | **int64** | Timestamp (in milliseconds) to start the tournament at a given date and time. Overrides the &#x60;waitMinutes&#x60; setting | 
- **variant** | **string** |  | [default to &quot;standard&quot;]
+ **variant** | [**VariantKey**](VariantKey.md) |  | [default to &quot;standard&quot;]
  **rated** | **bool** | Games are rated and impact players ratings | [default to true]
  **position** | **string** | Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated. | [default to &quot;rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1&quot;]
  **berserkable** | **bool** | Whether the players can use berserk. Only allowed if clockIncrement &lt;&#x3D; clockTime * 2 | [default to true]
@@ -582,7 +582,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Tournament200Response**](Tournament200Response.md)
+[**ArenaTournamentFull**](ArenaTournamentFull.md)
 
 ### Authorization
 
@@ -600,7 +600,7 @@ Name | Type | Description  | Notes
 
 ## ApiTournamentWithdraw
 
-> AccountKidPost200Response ApiTournamentWithdraw(ctx, id).Execute()
+> Ok ApiTournamentWithdraw(ctx, id).Execute()
 
 Pause or leave an Arena tournament
 
@@ -628,7 +628,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TournamentsArenaAPI.ApiTournamentWithdraw``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiTournamentWithdraw`: AccountKidPost200Response
+	// response from `ApiTournamentWithdraw`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `TournamentsArenaAPI.ApiTournamentWithdraw`: %v\n", resp)
 }
 ```
@@ -652,7 +652,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -670,7 +670,7 @@ Name | Type | Description  | Notes
 
 ## ApiUserNameTournamentCreated
 
-> ApiTournament200ResponseCreatedInner ApiUserNameTournamentCreated(ctx, username).Nb(nb).Status(status).Execute()
+> ArenaTournament ApiUserNameTournamentCreated(ctx, username).Nb(nb).Status(status).Execute()
 
 Get tournaments created by a user
 
@@ -700,7 +700,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TournamentsArenaAPI.ApiUserNameTournamentCreated``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiUserNameTournamentCreated`: ApiTournament200ResponseCreatedInner
+	// response from `ApiUserNameTournamentCreated`: ArenaTournament
 	fmt.Fprintf(os.Stdout, "Response from `TournamentsArenaAPI.ApiUserNameTournamentCreated`: %v\n", resp)
 }
 ```
@@ -726,7 +726,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiTournament200ResponseCreatedInner**](ApiTournament200ResponseCreatedInner.md)
+[**ArenaTournament**](ArenaTournament.md)
 
 ### Authorization
 
@@ -744,7 +744,7 @@ Name | Type | Description  | Notes
 
 ## ApiUserNameTournamentPlayed
 
-> ApiUserNameTournamentPlayed200Response ApiUserNameTournamentPlayed(ctx, username).Nb(nb).Performance(performance).Execute()
+> ArenaTournamentPlayed ApiUserNameTournamentPlayed(ctx, username).Nb(nb).Performance(performance).Execute()
 
 Get tournaments played by a user
 
@@ -774,7 +774,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TournamentsArenaAPI.ApiUserNameTournamentPlayed``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiUserNameTournamentPlayed`: ApiUserNameTournamentPlayed200Response
+	// response from `ApiUserNameTournamentPlayed`: ArenaTournamentPlayed
 	fmt.Fprintf(os.Stdout, "Response from `TournamentsArenaAPI.ApiUserNameTournamentPlayed`: %v\n", resp)
 }
 ```
@@ -800,7 +800,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiUserNameTournamentPlayed200Response**](ApiUserNameTournamentPlayed200Response.md)
+[**ArenaTournamentPlayed**](ArenaTournamentPlayed.md)
 
 ### Authorization
 
@@ -1052,7 +1052,7 @@ No authorization required
 
 ## Tournament
 
-> Tournament200Response Tournament(ctx, id).Page(page).Execute()
+> ArenaTournamentFull Tournament(ctx, id).Page(page).Execute()
 
 Get info about an Arena tournament
 
@@ -1081,7 +1081,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TournamentsArenaAPI.Tournament``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `Tournament`: Tournament200Response
+	// response from `Tournament`: ArenaTournamentFull
 	fmt.Fprintf(os.Stdout, "Response from `TournamentsArenaAPI.Tournament`: %v\n", resp)
 }
 ```
@@ -1106,7 +1106,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Tournament200Response**](Tournament200Response.md)
+[**ArenaTournamentFull**](ArenaTournamentFull.md)
 
 ### Authorization
 

@@ -38,8 +38,8 @@ Tournaments are streamed as [ndjson](#description/streaming-with-nd-json).
 	ApiTeamArena(ctx context.Context, teamId string) TournamentsArenaAPIApiTeamArenaRequest
 
 	// ApiTeamArenaExecute executes the request
-	//  @return ApiTournament200ResponseCreatedInner
-	ApiTeamArenaExecute(r TournamentsArenaAPIApiTeamArenaRequest) (*ApiTournament200ResponseCreatedInner, *http.Response, error)
+	//  @return ArenaTournament
+	ApiTeamArenaExecute(r TournamentsArenaAPIApiTeamArenaRequest) (*ArenaTournament, *http.Response, error)
 
 	/*
 	ApiTournament Get current tournaments
@@ -54,8 +54,8 @@ This API is used to display the [Lichess tournament schedule](https://lichess.or
 	ApiTournament(ctx context.Context) TournamentsArenaAPIApiTournamentRequest
 
 	// ApiTournamentExecute executes the request
-	//  @return ApiTournament200Response
-	ApiTournamentExecute(r TournamentsArenaAPIApiTournamentRequest) (*ApiTournament200Response, *http.Response, error)
+	//  @return ArenaTournaments
+	ApiTournamentExecute(r TournamentsArenaAPIApiTournamentRequest) (*ArenaTournaments, *http.Response, error)
 
 	/*
 	ApiTournamentJoin Join an Arena tournament
@@ -71,8 +71,8 @@ Also unpauses if you had previously [paused](#tag/arena-tournaments/POST/api/tou
 	ApiTournamentJoin(ctx context.Context, id string) TournamentsArenaAPIApiTournamentJoinRequest
 
 	// ApiTournamentJoinExecute executes the request
-	//  @return AccountKidPost200Response
-	ApiTournamentJoinExecute(r TournamentsArenaAPIApiTournamentJoinRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	ApiTournamentJoinExecute(r TournamentsArenaAPIApiTournamentJoinRequest) (*Ok, *http.Response, error)
 
 	/*
 	ApiTournamentPost Create a new Arena tournament
@@ -93,8 +93,8 @@ Additional restrictions:
 	ApiTournamentPost(ctx context.Context) TournamentsArenaAPIApiTournamentPostRequest
 
 	// ApiTournamentPostExecute executes the request
-	//  @return ApiTournamentPost200Response
-	ApiTournamentPostExecute(r TournamentsArenaAPIApiTournamentPostRequest) (*ApiTournamentPost200Response, *http.Response, error)
+	//  @return ArenaTournamentFull
+	ApiTournamentPostExecute(r TournamentsArenaAPIApiTournamentPostRequest) (*ArenaTournamentFull, *http.Response, error)
 
 	/*
 	ApiTournamentTeamBattlePost Update a team battle
@@ -110,8 +110,8 @@ To update the other attributes of a team battle, use the [tournament update endp
 	ApiTournamentTeamBattlePost(ctx context.Context, id string) TournamentsArenaAPIApiTournamentTeamBattlePostRequest
 
 	// ApiTournamentTeamBattlePostExecute executes the request
-	//  @return Tournament200Response
-	ApiTournamentTeamBattlePostExecute(r TournamentsArenaAPIApiTournamentTeamBattlePostRequest) (*Tournament200Response, *http.Response, error)
+	//  @return ArenaTournamentFull
+	ApiTournamentTeamBattlePostExecute(r TournamentsArenaAPIApiTournamentTeamBattlePostRequest) (*ArenaTournamentFull, *http.Response, error)
 
 	/*
 	ApiTournamentTerminate Terminate an Arena tournament
@@ -126,8 +126,8 @@ To update the other attributes of a team battle, use the [tournament update endp
 	ApiTournamentTerminate(ctx context.Context, id string) TournamentsArenaAPIApiTournamentTerminateRequest
 
 	// ApiTournamentTerminateExecute executes the request
-	//  @return AccountKidPost200Response
-	ApiTournamentTerminateExecute(r TournamentsArenaAPIApiTournamentTerminateRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	ApiTournamentTerminateExecute(r TournamentsArenaAPIApiTournamentTerminateRequest) (*Ok, *http.Response, error)
 
 	/*
 	ApiTournamentUpdate Update an Arena tournament
@@ -148,8 +148,8 @@ Additional restrictions:
 	ApiTournamentUpdate(ctx context.Context, id string) TournamentsArenaAPIApiTournamentUpdateRequest
 
 	// ApiTournamentUpdateExecute executes the request
-	//  @return Tournament200Response
-	ApiTournamentUpdateExecute(r TournamentsArenaAPIApiTournamentUpdateRequest) (*Tournament200Response, *http.Response, error)
+	//  @return ArenaTournamentFull
+	ApiTournamentUpdateExecute(r TournamentsArenaAPIApiTournamentUpdateRequest) (*ArenaTournamentFull, *http.Response, error)
 
 	/*
 	ApiTournamentWithdraw Pause or leave an Arena tournament
@@ -165,8 +165,8 @@ It's possible to join again later. Points and streaks are preserved.
 	ApiTournamentWithdraw(ctx context.Context, id string) TournamentsArenaAPIApiTournamentWithdrawRequest
 
 	// ApiTournamentWithdrawExecute executes the request
-	//  @return AccountKidPost200Response
-	ApiTournamentWithdrawExecute(r TournamentsArenaAPIApiTournamentWithdrawRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	ApiTournamentWithdrawExecute(r TournamentsArenaAPIApiTournamentWithdrawRequest) (*Ok, *http.Response, error)
 
 	/*
 	ApiUserNameTournamentCreated Get tournaments created by a user
@@ -187,8 +187,8 @@ The stream is throttled, depending on who is making the request:
 	ApiUserNameTournamentCreated(ctx context.Context, username string) TournamentsArenaAPIApiUserNameTournamentCreatedRequest
 
 	// ApiUserNameTournamentCreatedExecute executes the request
-	//  @return ApiTournament200ResponseCreatedInner
-	ApiUserNameTournamentCreatedExecute(r TournamentsArenaAPIApiUserNameTournamentCreatedRequest) (*ApiTournament200ResponseCreatedInner, *http.Response, error)
+	//  @return ArenaTournament
+	ApiUserNameTournamentCreatedExecute(r TournamentsArenaAPIApiUserNameTournamentCreatedRequest) (*ArenaTournament, *http.Response, error)
 
 	/*
 	ApiUserNameTournamentPlayed Get tournaments played by a user
@@ -209,8 +209,8 @@ The stream is throttled, depending on who is making the request:
 	ApiUserNameTournamentPlayed(ctx context.Context, username string) TournamentsArenaAPIApiUserNameTournamentPlayedRequest
 
 	// ApiUserNameTournamentPlayedExecute executes the request
-	//  @return ApiUserNameTournamentPlayed200Response
-	ApiUserNameTournamentPlayedExecute(r TournamentsArenaAPIApiUserNameTournamentPlayedRequest) (*ApiUserNameTournamentPlayed200Response, *http.Response, error)
+	//  @return ArenaTournamentPlayed
+	ApiUserNameTournamentPlayedExecute(r TournamentsArenaAPIApiUserNameTournamentPlayedRequest) (*ArenaTournamentPlayed, *http.Response, error)
 
 	/*
 	GamesByTournament Export games of an Arena tournament
@@ -281,8 +281,8 @@ Use on finished tournaments for guaranteed consistency.
 	Tournament(ctx context.Context, id string) TournamentsArenaAPITournamentRequest
 
 	// TournamentExecute executes the request
-	//  @return Tournament200Response
-	TournamentExecute(r TournamentsArenaAPITournamentRequest) (*Tournament200Response, *http.Response, error)
+	//  @return ArenaTournamentFull
+	TournamentExecute(r TournamentsArenaAPITournamentRequest) (*ArenaTournamentFull, *http.Response, error)
 }
 
 // TournamentsArenaAPIService TournamentsArenaAPI service
@@ -293,7 +293,7 @@ type TournamentsArenaAPIApiTeamArenaRequest struct {
 	ApiService TournamentsArenaAPI
 	teamId string
 	max *int32
-	status *string
+	status *ArenaStatusName
 	createdBy *string
 	name *string
 }
@@ -305,7 +305,7 @@ func (r TournamentsArenaAPIApiTeamArenaRequest) Max(max int32) TournamentsArenaA
 }
 
 // [Filter] Only arena tournaments in this current state. 
-func (r TournamentsArenaAPIApiTeamArenaRequest) Status(status string) TournamentsArenaAPIApiTeamArenaRequest {
+func (r TournamentsArenaAPIApiTeamArenaRequest) Status(status ArenaStatusName) TournamentsArenaAPIApiTeamArenaRequest {
 	r.status = &status
 	return r
 }
@@ -322,7 +322,7 @@ func (r TournamentsArenaAPIApiTeamArenaRequest) Name(name string) TournamentsAre
 	return r
 }
 
-func (r TournamentsArenaAPIApiTeamArenaRequest) Execute() (*ApiTournament200ResponseCreatedInner, *http.Response, error) {
+func (r TournamentsArenaAPIApiTeamArenaRequest) Execute() (*ArenaTournament, *http.Response, error) {
 	return r.ApiService.ApiTeamArenaExecute(r)
 }
 
@@ -347,13 +347,13 @@ func (a *TournamentsArenaAPIService) ApiTeamArena(ctx context.Context, teamId st
 }
 
 // Execute executes the request
-//  @return ApiTournament200ResponseCreatedInner
-func (a *TournamentsArenaAPIService) ApiTeamArenaExecute(r TournamentsArenaAPIApiTeamArenaRequest) (*ApiTournament200ResponseCreatedInner, *http.Response, error) {
+//  @return ArenaTournament
+func (a *TournamentsArenaAPIService) ApiTeamArenaExecute(r TournamentsArenaAPIApiTeamArenaRequest) (*ArenaTournament, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiTournament200ResponseCreatedInner
+		localVarReturnValue  *ArenaTournament
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TournamentsArenaAPIService.ApiTeamArena")
@@ -443,7 +443,7 @@ type TournamentsArenaAPIApiTournamentRequest struct {
 	ApiService TournamentsArenaAPI
 }
 
-func (r TournamentsArenaAPIApiTournamentRequest) Execute() (*ApiTournament200Response, *http.Response, error) {
+func (r TournamentsArenaAPIApiTournamentRequest) Execute() (*ArenaTournaments, *http.Response, error) {
 	return r.ApiService.ApiTournamentExecute(r)
 }
 
@@ -465,13 +465,13 @@ func (a *TournamentsArenaAPIService) ApiTournament(ctx context.Context) Tourname
 }
 
 // Execute executes the request
-//  @return ApiTournament200Response
-func (a *TournamentsArenaAPIService) ApiTournamentExecute(r TournamentsArenaAPIApiTournamentRequest) (*ApiTournament200Response, *http.Response, error) {
+//  @return ArenaTournaments
+func (a *TournamentsArenaAPIService) ApiTournamentExecute(r TournamentsArenaAPIApiTournamentRequest) (*ArenaTournaments, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiTournament200Response
+		localVarReturnValue  *ArenaTournaments
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TournamentsArenaAPIService.ApiTournament")
@@ -566,7 +566,7 @@ func (r TournamentsArenaAPIApiTournamentJoinRequest) PairMeAsap(pairMeAsap bool)
 	return r
 }
 
-func (r TournamentsArenaAPIApiTournamentJoinRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r TournamentsArenaAPIApiTournamentJoinRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.ApiTournamentJoinExecute(r)
 }
 
@@ -590,13 +590,13 @@ func (a *TournamentsArenaAPIService) ApiTournamentJoin(ctx context.Context, id s
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *TournamentsArenaAPIService) ApiTournamentJoinExecute(r TournamentsArenaAPIApiTournamentJoinRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *TournamentsArenaAPIService) ApiTournamentJoinExecute(r TournamentsArenaAPIApiTournamentJoinRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TournamentsArenaAPIService.ApiTournamentJoin")
@@ -660,7 +660,7 @@ func (a *TournamentsArenaAPIService) ApiTournamentJoinExecute(r TournamentsArena
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -693,7 +693,7 @@ type TournamentsArenaAPIApiTournamentPostRequest struct {
 	name *string
 	waitMinutes *int32
 	startDate *int64
-	variant *string
+	variant *VariantKey
 	rated *bool
 	position *string
 	berserkable *bool
@@ -747,7 +747,7 @@ func (r TournamentsArenaAPIApiTournamentPostRequest) StartDate(startDate int64) 
 	return r
 }
 
-func (r TournamentsArenaAPIApiTournamentPostRequest) Variant(variant string) TournamentsArenaAPIApiTournamentPostRequest {
+func (r TournamentsArenaAPIApiTournamentPostRequest) Variant(variant VariantKey) TournamentsArenaAPIApiTournamentPostRequest {
 	r.variant = &variant
 	return r
 }
@@ -842,7 +842,7 @@ func (r TournamentsArenaAPIApiTournamentPostRequest) ConditionsAccountAge(condit
 	return r
 }
 
-func (r TournamentsArenaAPIApiTournamentPostRequest) Execute() (*ApiTournamentPost200Response, *http.Response, error) {
+func (r TournamentsArenaAPIApiTournamentPostRequest) Execute() (*ArenaTournamentFull, *http.Response, error) {
 	return r.ApiService.ApiTournamentPostExecute(r)
 }
 
@@ -870,13 +870,13 @@ func (a *TournamentsArenaAPIService) ApiTournamentPost(ctx context.Context) Tour
 }
 
 // Execute executes the request
-//  @return ApiTournamentPost200Response
-func (a *TournamentsArenaAPIService) ApiTournamentPostExecute(r TournamentsArenaAPIApiTournamentPostRequest) (*ApiTournamentPost200Response, *http.Response, error) {
+//  @return ArenaTournamentFull
+func (a *TournamentsArenaAPIService) ApiTournamentPostExecute(r TournamentsArenaAPIApiTournamentPostRequest) (*ArenaTournamentFull, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiTournamentPost200Response
+		localVarReturnValue  *ArenaTournamentFull
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TournamentsArenaAPIService.ApiTournamentPost")
@@ -999,7 +999,7 @@ func (a *TournamentsArenaAPIService) ApiTournamentPostExecute(r TournamentsArena
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1043,7 +1043,7 @@ func (r TournamentsArenaAPIApiTournamentTeamBattlePostRequest) NbLeaders(nbLeade
 	return r
 }
 
-func (r TournamentsArenaAPIApiTournamentTeamBattlePostRequest) Execute() (*Tournament200Response, *http.Response, error) {
+func (r TournamentsArenaAPIApiTournamentTeamBattlePostRequest) Execute() (*ArenaTournamentFull, *http.Response, error) {
 	return r.ApiService.ApiTournamentTeamBattlePostExecute(r)
 }
 
@@ -1067,13 +1067,13 @@ func (a *TournamentsArenaAPIService) ApiTournamentTeamBattlePost(ctx context.Con
 }
 
 // Execute executes the request
-//  @return Tournament200Response
-func (a *TournamentsArenaAPIService) ApiTournamentTeamBattlePostExecute(r TournamentsArenaAPIApiTournamentTeamBattlePostRequest) (*Tournament200Response, *http.Response, error) {
+//  @return ArenaTournamentFull
+func (a *TournamentsArenaAPIService) ApiTournamentTeamBattlePostExecute(r TournamentsArenaAPIApiTournamentTeamBattlePostRequest) (*ArenaTournamentFull, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Tournament200Response
+		localVarReturnValue  *ArenaTournamentFull
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TournamentsArenaAPIService.ApiTournamentTeamBattlePost")
@@ -1142,7 +1142,7 @@ func (a *TournamentsArenaAPIService) ApiTournamentTeamBattlePostExecute(r Tourna
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1172,7 +1172,7 @@ type TournamentsArenaAPIApiTournamentTerminateRequest struct {
 	id string
 }
 
-func (r TournamentsArenaAPIApiTournamentTerminateRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r TournamentsArenaAPIApiTournamentTerminateRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.ApiTournamentTerminateExecute(r)
 }
 
@@ -1195,13 +1195,13 @@ func (a *TournamentsArenaAPIService) ApiTournamentTerminate(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *TournamentsArenaAPIService) ApiTournamentTerminateExecute(r TournamentsArenaAPIApiTournamentTerminateRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *TournamentsArenaAPIService) ApiTournamentTerminateExecute(r TournamentsArenaAPIApiTournamentTerminateRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TournamentsArenaAPIService.ApiTournamentTerminate")
@@ -1256,7 +1256,7 @@ func (a *TournamentsArenaAPIService) ApiTournamentTerminateExecute(r Tournaments
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1290,7 +1290,7 @@ type TournamentsArenaAPIApiTournamentUpdateRequest struct {
 	name *string
 	waitMinutes *int32
 	startDate *int64
-	variant *string
+	variant *VariantKey
 	rated *bool
 	position *string
 	berserkable *bool
@@ -1342,7 +1342,7 @@ func (r TournamentsArenaAPIApiTournamentUpdateRequest) StartDate(startDate int64
 	return r
 }
 
-func (r TournamentsArenaAPIApiTournamentUpdateRequest) Variant(variant string) TournamentsArenaAPIApiTournamentUpdateRequest {
+func (r TournamentsArenaAPIApiTournamentUpdateRequest) Variant(variant VariantKey) TournamentsArenaAPIApiTournamentUpdateRequest {
 	r.variant = &variant
 	return r
 }
@@ -1425,7 +1425,7 @@ func (r TournamentsArenaAPIApiTournamentUpdateRequest) ConditionsAccountAge(cond
 	return r
 }
 
-func (r TournamentsArenaAPIApiTournamentUpdateRequest) Execute() (*Tournament200Response, *http.Response, error) {
+func (r TournamentsArenaAPIApiTournamentUpdateRequest) Execute() (*ArenaTournamentFull, *http.Response, error) {
 	return r.ApiService.ApiTournamentUpdateExecute(r)
 }
 
@@ -1454,13 +1454,13 @@ func (a *TournamentsArenaAPIService) ApiTournamentUpdate(ctx context.Context, id
 }
 
 // Execute executes the request
-//  @return Tournament200Response
-func (a *TournamentsArenaAPIService) ApiTournamentUpdateExecute(r TournamentsArenaAPIApiTournamentUpdateRequest) (*Tournament200Response, *http.Response, error) {
+//  @return ArenaTournamentFull
+func (a *TournamentsArenaAPIService) ApiTournamentUpdateExecute(r TournamentsArenaAPIApiTournamentUpdateRequest) (*ArenaTournamentFull, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Tournament200Response
+		localVarReturnValue  *ArenaTournamentFull
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TournamentsArenaAPIService.ApiTournamentUpdate")
@@ -1578,7 +1578,7 @@ func (a *TournamentsArenaAPIService) ApiTournamentUpdateExecute(r TournamentsAre
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1608,7 +1608,7 @@ type TournamentsArenaAPIApiTournamentWithdrawRequest struct {
 	id string
 }
 
-func (r TournamentsArenaAPIApiTournamentWithdrawRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r TournamentsArenaAPIApiTournamentWithdrawRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.ApiTournamentWithdrawExecute(r)
 }
 
@@ -1632,13 +1632,13 @@ func (a *TournamentsArenaAPIService) ApiTournamentWithdraw(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *TournamentsArenaAPIService) ApiTournamentWithdrawExecute(r TournamentsArenaAPIApiTournamentWithdrawRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *TournamentsArenaAPIService) ApiTournamentWithdrawExecute(r TournamentsArenaAPIApiTournamentWithdrawRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TournamentsArenaAPIService.ApiTournamentWithdraw")
@@ -1693,7 +1693,7 @@ func (a *TournamentsArenaAPIService) ApiTournamentWithdrawExecute(r TournamentsA
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1737,7 +1737,7 @@ func (r TournamentsArenaAPIApiUserNameTournamentCreatedRequest) Status(status in
 	return r
 }
 
-func (r TournamentsArenaAPIApiUserNameTournamentCreatedRequest) Execute() (*ApiTournament200ResponseCreatedInner, *http.Response, error) {
+func (r TournamentsArenaAPIApiUserNameTournamentCreatedRequest) Execute() (*ArenaTournament, *http.Response, error) {
 	return r.ApiService.ApiUserNameTournamentCreatedExecute(r)
 }
 
@@ -1766,13 +1766,13 @@ func (a *TournamentsArenaAPIService) ApiUserNameTournamentCreated(ctx context.Co
 }
 
 // Execute executes the request
-//  @return ApiTournament200ResponseCreatedInner
-func (a *TournamentsArenaAPIService) ApiUserNameTournamentCreatedExecute(r TournamentsArenaAPIApiUserNameTournamentCreatedRequest) (*ApiTournament200ResponseCreatedInner, *http.Response, error) {
+//  @return ArenaTournament
+func (a *TournamentsArenaAPIService) ApiUserNameTournamentCreatedExecute(r TournamentsArenaAPIApiUserNameTournamentCreatedRequest) (*ArenaTournament, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiTournament200ResponseCreatedInner
+		localVarReturnValue  *ArenaTournament
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TournamentsArenaAPIService.ApiUserNameTournamentCreated")
@@ -1867,7 +1867,7 @@ func (r TournamentsArenaAPIApiUserNameTournamentPlayedRequest) Performance(perfo
 	return r
 }
 
-func (r TournamentsArenaAPIApiUserNameTournamentPlayedRequest) Execute() (*ApiUserNameTournamentPlayed200Response, *http.Response, error) {
+func (r TournamentsArenaAPIApiUserNameTournamentPlayedRequest) Execute() (*ArenaTournamentPlayed, *http.Response, error) {
 	return r.ApiService.ApiUserNameTournamentPlayedExecute(r)
 }
 
@@ -1896,13 +1896,13 @@ func (a *TournamentsArenaAPIService) ApiUserNameTournamentPlayed(ctx context.Con
 }
 
 // Execute executes the request
-//  @return ApiUserNameTournamentPlayed200Response
-func (a *TournamentsArenaAPIService) ApiUserNameTournamentPlayedExecute(r TournamentsArenaAPIApiUserNameTournamentPlayedRequest) (*ApiUserNameTournamentPlayed200Response, *http.Response, error) {
+//  @return ArenaTournamentPlayed
+func (a *TournamentsArenaAPIService) ApiUserNameTournamentPlayedExecute(r TournamentsArenaAPIApiUserNameTournamentPlayedRequest) (*ArenaTournamentPlayed, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiUserNameTournamentPlayed200Response
+		localVarReturnValue  *ArenaTournamentPlayed
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TournamentsArenaAPIService.ApiUserNameTournamentPlayed")
@@ -2466,7 +2466,7 @@ func (r TournamentsArenaAPITournamentRequest) Page(page int32) TournamentsArenaA
 	return r
 }
 
-func (r TournamentsArenaAPITournamentRequest) Execute() (*Tournament200Response, *http.Response, error) {
+func (r TournamentsArenaAPITournamentRequest) Execute() (*ArenaTournamentFull, *http.Response, error) {
 	return r.ApiService.TournamentExecute(r)
 }
 
@@ -2489,13 +2489,13 @@ func (a *TournamentsArenaAPIService) Tournament(ctx context.Context, id string) 
 }
 
 // Execute executes the request
-//  @return Tournament200Response
-func (a *TournamentsArenaAPIService) TournamentExecute(r TournamentsArenaAPITournamentRequest) (*Tournament200Response, *http.Response, error) {
+//  @return ArenaTournamentFull
+func (a *TournamentsArenaAPIService) TournamentExecute(r TournamentsArenaAPITournamentRequest) (*ArenaTournamentFull, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Tournament200Response
+		localVarReturnValue  *ArenaTournamentFull
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TournamentsArenaAPIService.Tournament")

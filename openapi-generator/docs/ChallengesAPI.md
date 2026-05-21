@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 
 ## ChallengeAccept
 
-> AccountKidPost200Response ChallengeAccept(ctx, challengeId).Color(color).Execute()
+> Ok ChallengeAccept(ctx, challengeId).Color(color).Execute()
 
 Accept a challenge
 
@@ -117,7 +117,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ChallengesAPI.ChallengeAccept``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ChallengeAccept`: AccountKidPost200Response
+	// response from `ChallengeAccept`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `ChallengesAPI.ChallengeAccept`: %v\n", resp)
 }
 ```
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -183,8 +183,8 @@ func main() {
 	clockLimit := int32(56) // int32 | Clock initial time in seconds. If empty, a correspondence game is created. (optional)
 	clockIncrement := int32(56) // int32 | Clock increment in seconds. If empty, a correspondence game is created. (optional)
 	days := int32(56) // int32 | Days per move, for correspondence games. Clock settings must be omitted. (optional)
-	color := "color_example" // string | Which color you get to play (optional) (default to "random")
-	variant := "variant_example" // string |  (optional) (default to "standard")
+	color := openapiclient.ChallengeColor("white") // ChallengeColor | Which color you get to play (optional) (default to "random")
+	variant := openapiclient.VariantKey("standard") // VariantKey |  (optional) (default to "standard")
 	fen := "fen_example" // string | Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated. (optional) (default to "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
 
 	configuration := openapiclient.NewConfiguration()
@@ -214,8 +214,8 @@ Name | Type | Description  | Notes
  **clockLimit** | **int32** | Clock initial time in seconds. If empty, a correspondence game is created. | 
  **clockIncrement** | **int32** | Clock increment in seconds. If empty, a correspondence game is created. | 
  **days** | **int32** | Days per move, for correspondence games. Clock settings must be omitted. | 
- **color** | **string** | Which color you get to play | [default to &quot;random&quot;]
- **variant** | **string** |  | [default to &quot;standard&quot;]
+ **color** | [**ChallengeColor**](ChallengeColor.md) | Which color you get to play | [default to &quot;random&quot;]
+ **variant** | [**VariantKey**](VariantKey.md) |  | [default to &quot;standard&quot;]
  **fen** | **string** | Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated. | [default to &quot;rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1&quot;]
 
 ### Return type
@@ -238,7 +238,7 @@ Name | Type | Description  | Notes
 
 ## ChallengeCancel
 
-> AccountKidPost200Response ChallengeCancel(ctx, challengeId).OpponentToken(opponentToken).Execute()
+> Ok ChallengeCancel(ctx, challengeId).OpponentToken(opponentToken).Execute()
 
 Cancel a challenge
 
@@ -267,7 +267,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ChallengesAPI.ChallengeCancel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ChallengeCancel`: AccountKidPost200Response
+	// response from `ChallengeCancel`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `ChallengesAPI.ChallengeCancel`: %v\n", resp)
 }
 ```
@@ -292,7 +292,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -310,7 +310,7 @@ Name | Type | Description  | Notes
 
 ## ChallengeCreate
 
-> ChallengeList200ResponseInInner ChallengeCreate(ctx, username).Days(days).ClockLimit(clockLimit).ClockIncrement(clockIncrement).Rated(rated).Color(color).Variant(variant).Fen(fen).KeepAliveStream(keepAliveStream).Rules(rules).Execute()
+> ChallengeJson ChallengeCreate(ctx, username).Days(days).ClockLimit(clockLimit).ClockIncrement(clockIncrement).Rated(rated).Color(color).Variant(variant).Fen(fen).KeepAliveStream(keepAliveStream).Rules(rules).Execute()
 
 Create a challenge
 
@@ -334,8 +334,8 @@ func main() {
 	clockLimit := int32(56) // int32 | Clock initial time in seconds. If empty, a correspondence game is created. Valid values are 0, 15, 30, 45, 60, 90, and any multiple of 60 up to 10800 (3 hours). (optional)
 	clockIncrement := int32(56) // int32 | Clock increment in seconds. If empty, a correspondence game is created. (optional)
 	rated := true // bool | Game is rated and impacts players ratings (optional) (default to false)
-	color := "color_example" // string | Which color you get to play (optional) (default to "random")
-	variant := "variant_example" // string |  (optional) (default to "standard")
+	color := openapiclient.ChallengeColor("white") // ChallengeColor | Which color you get to play (optional) (default to "random")
+	variant := openapiclient.VariantKey("standard") // VariantKey |  (optional) (default to "standard")
 	fen := "fen_example" // string | Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated. (optional) (default to "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
 	keepAliveStream := true // bool | If set, the response is streamed as [ndjson](#description/streaming-with-nd-json). The challenge is kept alive until the connection is closed by the client. When the challenge is accepted, declined or canceled, a message of the form `{\\\"done\\\":\\\"accepted\\\"}` is sent, then the connection is closed by the server. If not set, the response is not streamed, and the challenge expires after 20s if not accepted.  (optional)
 	rules := "rules_example" // string | Extra game rules separated by commas. Example: `noAbort,noRematch`  (optional)
@@ -347,7 +347,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ChallengesAPI.ChallengeCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ChallengeCreate`: ChallengeList200ResponseInInner
+	// response from `ChallengeCreate`: ChallengeJson
 	fmt.Fprintf(os.Stdout, "Response from `ChallengesAPI.ChallengeCreate`: %v\n", resp)
 }
 ```
@@ -372,15 +372,15 @@ Name | Type | Description  | Notes
  **clockLimit** | **int32** | Clock initial time in seconds. If empty, a correspondence game is created. Valid values are 0, 15, 30, 45, 60, 90, and any multiple of 60 up to 10800 (3 hours). | 
  **clockIncrement** | **int32** | Clock increment in seconds. If empty, a correspondence game is created. | 
  **rated** | **bool** | Game is rated and impacts players ratings | [default to false]
- **color** | **string** | Which color you get to play | [default to &quot;random&quot;]
- **variant** | **string** |  | [default to &quot;standard&quot;]
+ **color** | [**ChallengeColor**](ChallengeColor.md) | Which color you get to play | [default to &quot;random&quot;]
+ **variant** | [**VariantKey**](VariantKey.md) |  | [default to &quot;standard&quot;]
  **fen** | **string** | Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated. | [default to &quot;rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1&quot;]
  **keepAliveStream** | **bool** | If set, the response is streamed as [ndjson](#description/streaming-with-nd-json). The challenge is kept alive until the connection is closed by the client. When the challenge is accepted, declined or canceled, a message of the form &#x60;{\\\&quot;done\\\&quot;:\\\&quot;accepted\\\&quot;}&#x60; is sent, then the connection is closed by the server. If not set, the response is not streamed, and the challenge expires after 20s if not accepted.  | 
  **rules** | **string** | Extra game rules separated by commas. Example: &#x60;noAbort,noRematch&#x60;  | 
 
 ### Return type
 
-[**ChallengeList200ResponseInInner**](ChallengeList200ResponseInInner.md)
+[**ChallengeJson**](ChallengeJson.md)
 
 ### Authorization
 
@@ -398,7 +398,7 @@ Name | Type | Description  | Notes
 
 ## ChallengeDecline
 
-> AccountKidPost200Response ChallengeDecline(ctx, challengeId).Reason(reason).Execute()
+> Ok ChallengeDecline(ctx, challengeId).Reason(reason).Execute()
 
 Decline a challenge
 
@@ -427,7 +427,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ChallengesAPI.ChallengeDecline``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ChallengeDecline`: AccountKidPost200Response
+	// response from `ChallengeDecline`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `ChallengesAPI.ChallengeDecline`: %v\n", resp)
 }
 ```
@@ -452,7 +452,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -531,7 +531,7 @@ Other parameters are passed through a pointer to a apiChallengeListRequest struc
 
 ## ChallengeOpen
 
-> ChallengeOpen200Response ChallengeOpen(ctx).Rated(rated).ClockLimit(clockLimit).ClockIncrement(clockIncrement).Days(days).Variant(variant).Fen(fen).Name(name).Rules(rules).Users(users).ExpiresAt(expiresAt).Execute()
+> ChallengeOpenJson ChallengeOpen(ctx).Rated(rated).ClockLimit(clockLimit).ClockIncrement(clockIncrement).Days(days).Variant(variant).Fen(fen).Name(name).Rules(rules).Users(users).ExpiresAt(expiresAt).Execute()
 
 Open-ended challenge
 
@@ -554,7 +554,7 @@ func main() {
 	clockLimit := int32(56) // int32 | Clock initial time in seconds. If empty, a correspondence game is created. (optional)
 	clockIncrement := int32(56) // int32 | Clock increment in seconds. If empty, a correspondence game is created. (optional)
 	days := int32(56) // int32 | Days per turn. For correspondence challenges. (optional)
-	variant := "variant_example" // string |  (optional) (default to "standard")
+	variant := openapiclient.VariantKey("standard") // VariantKey |  (optional) (default to "standard")
 	fen := "fen_example" // string | Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated. (optional) (default to "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
 	name := "name_example" // string | Optional name for the challenge, that players will see on the challenge page. (optional)
 	rules := "rules_example" // string | Extra game rules separated by commas. Example: `noRematch,noGiveTime` The `noAbort` rule is available for Lichess admins only  (optional)
@@ -568,7 +568,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ChallengesAPI.ChallengeOpen``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ChallengeOpen`: ChallengeOpen200Response
+	// response from `ChallengeOpen`: ChallengeOpenJson
 	fmt.Fprintf(os.Stdout, "Response from `ChallengesAPI.ChallengeOpen`: %v\n", resp)
 }
 ```
@@ -588,7 +588,7 @@ Name | Type | Description  | Notes
  **clockLimit** | **int32** | Clock initial time in seconds. If empty, a correspondence game is created. | 
  **clockIncrement** | **int32** | Clock increment in seconds. If empty, a correspondence game is created. | 
  **days** | **int32** | Days per turn. For correspondence challenges. | 
- **variant** | **string** |  | [default to &quot;standard&quot;]
+ **variant** | [**VariantKey**](VariantKey.md) |  | [default to &quot;standard&quot;]
  **fen** | **string** | Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated. | [default to &quot;rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1&quot;]
  **name** | **string** | Optional name for the challenge, that players will see on the challenge page. | 
  **rules** | **string** | Extra game rules separated by commas. Example: &#x60;noRematch,noGiveTime&#x60; The &#x60;noAbort&#x60; rule is available for Lichess admins only  | 
@@ -597,7 +597,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ChallengeOpen200Response**](ChallengeOpen200Response.md)
+[**ChallengeOpenJson**](ChallengeOpenJson.md)
 
 ### Authorization
 
@@ -615,7 +615,7 @@ No authorization required
 
 ## ChallengeShow
 
-> ChallengeList200ResponseInInner ChallengeShow(ctx, challengeId).Execute()
+> ChallengeJson ChallengeShow(ctx, challengeId).Execute()
 
 Show one challenge
 
@@ -643,7 +643,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ChallengesAPI.ChallengeShow``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ChallengeShow`: ChallengeList200ResponseInInner
+	// response from `ChallengeShow`: ChallengeJson
 	fmt.Fprintf(os.Stdout, "Response from `ChallengesAPI.ChallengeShow`: %v\n", resp)
 }
 ```
@@ -667,7 +667,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ChallengeList200ResponseInInner**](ChallengeList200ResponseInInner.md)
+[**ChallengeJson**](ChallengeJson.md)
 
 ### Authorization
 
@@ -685,7 +685,7 @@ Name | Type | Description  | Notes
 
 ## ChallengeStartClocks
 
-> AccountKidPost200Response ChallengeStartClocks(ctx, gameId).Token1(token1).Token2(token2).Execute()
+> Ok ChallengeStartClocks(ctx, gameId).Token1(token1).Token2(token2).Execute()
 
 Start clocks of a game
 
@@ -715,7 +715,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ChallengesAPI.ChallengeStartClocks``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ChallengeStartClocks`: AccountKidPost200Response
+	// response from `ChallengeStartClocks`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `ChallengesAPI.ChallengeStartClocks`: %v\n", resp)
 }
 ```
@@ -741,7 +741,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -759,7 +759,7 @@ Name | Type | Description  | Notes
 
 ## RoundAddTime
 
-> AccountKidPost200Response RoundAddTime(ctx, gameId, seconds).Execute()
+> Ok RoundAddTime(ctx, gameId, seconds).Execute()
 
 Add time to the opponent clock
 
@@ -788,7 +788,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ChallengesAPI.RoundAddTime``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RoundAddTime`: AccountKidPost200Response
+	// response from `RoundAddTime`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `ChallengesAPI.RoundAddTime`: %v\n", resp)
 }
 ```
@@ -814,7 +814,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 

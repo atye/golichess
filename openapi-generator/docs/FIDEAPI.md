@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## FidePlayerGet
 
-> FidePlayerGet200Response FidePlayerGet(ctx, playerId).Execute()
+> FIDEPlayer FidePlayerGet(ctx, playerId).Execute()
 
 Get a FIDE player
 
@@ -40,7 +40,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `FIDEAPI.FidePlayerGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `FidePlayerGet`: FidePlayerGet200Response
+	// response from `FidePlayerGet`: FIDEPlayer
 	fmt.Fprintf(os.Stdout, "Response from `FIDEAPI.FidePlayerGet`: %v\n", resp)
 }
 ```
@@ -64,7 +64,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FidePlayerGet200Response**](FidePlayerGet200Response.md)
+[**FIDEPlayer**](FIDEPlayer.md)
 
 ### Authorization
 
@@ -82,7 +82,7 @@ No authorization required
 
 ## FidePlayerRatings
 
-> FidePlayerRatings200Response FidePlayerRatings(ctx, playerId).Execute()
+> FIDEPlayerRatings FidePlayerRatings(ctx, playerId).Execute()
 
 Get ratings history of a FIDE player
 
@@ -110,7 +110,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `FIDEAPI.FidePlayerRatings``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `FidePlayerRatings`: FidePlayerRatings200Response
+	// response from `FidePlayerRatings`: FIDEPlayerRatings
 	fmt.Fprintf(os.Stdout, "Response from `FIDEAPI.FidePlayerRatings`: %v\n", resp)
 }
 ```
@@ -134,7 +134,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FidePlayerRatings200Response**](FidePlayerRatings200Response.md)
+[**FIDEPlayerRatings**](FIDEPlayerRatings.md)
 
 ### Authorization
 
@@ -152,7 +152,7 @@ No authorization required
 
 ## FidePlayerSearch
 
-> []FidePlayerSearch200ResponseInner FidePlayerSearch(ctx).Q(q).Execute()
+> []FIDEPlayer FidePlayerSearch(ctx).Q(q).Execute()
 
 Search FIDE players
 
@@ -180,7 +180,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `FIDEAPI.FidePlayerSearch``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `FidePlayerSearch`: []FidePlayerSearch200ResponseInner
+	// response from `FidePlayerSearch`: []FIDEPlayer
 	fmt.Fprintf(os.Stdout, "Response from `FIDEAPI.FidePlayerSearch`: %v\n", resp)
 }
 ```
@@ -200,7 +200,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]FidePlayerSearch200ResponseInner**](FidePlayerSearch200ResponseInner.md)
+[**[]FIDEPlayer**](FIDEPlayer.md)
 
 ### Authorization
 

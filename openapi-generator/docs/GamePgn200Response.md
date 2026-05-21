@@ -6,32 +6,32 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** |  | 
 **Rated** | **bool** |  | 
-**Variant** | **string** |  | [default to "standard"]
-**Speed** | **string** |  | 
+**Variant** | [**VariantKey**](VariantKey.md) |  | [default to VARIANTKEY_STANDARD]
+**Speed** | [**Speed**](Speed.md) |  | 
 **Perf** | **string** |  | 
 **CreatedAt** | **int64** |  | 
 **LastMoveAt** | **int64** |  | 
-**Status** | **string** |  | 
+**Status** | [**GameStatusName**](GameStatusName.md) |  | 
 **Source** | Pointer to **string** |  | [optional] 
-**Players** | [**GamePgn200ResponseOneOfPlayers**](GamePgn200ResponseOneOfPlayers.md) |  | 
+**Players** | [**GamePlayers**](GamePlayers.md) |  | 
 **InitialFen** | Pointer to **string** |  | [optional] 
-**Winner** | Pointer to **string** |  | [optional] 
-**Opening** | Pointer to [**GamePgn200ResponseOneOfOpening**](GamePgn200ResponseOneOfOpening.md) |  | [optional] 
+**Winner** | Pointer to [**GameColor**](GameColor.md) |  | [optional] 
+**Opening** | Pointer to [**GameOpening**](GameOpening.md) |  | [optional] 
 **Moves** | Pointer to **string** |  | [optional] 
 **Pgn** | Pointer to **string** |  | [optional] 
 **DaysPerTurn** | Pointer to **int32** |  | [optional] 
-**Analysis** | Pointer to [**[]GamePgn200ResponseOneOfAnalysisInner**](GamePgn200ResponseOneOfAnalysisInner.md) |  | [optional] 
+**Analysis** | Pointer to [**[]GameMoveAnalysis**](GameMoveAnalysis.md) |  | [optional] 
 **Tournament** | Pointer to **string** |  | [optional] 
 **Swiss** | Pointer to **string** |  | [optional] 
-**Clock** | Pointer to [**GamePgn200ResponseOneOfClock**](GamePgn200ResponseOneOfClock.md) |  | [optional] 
+**Clock** | Pointer to [**GameJsonClock**](GameJsonClock.md) |  | [optional] 
 **Clocks** | Pointer to **[]int32** |  | [optional] 
-**Division** | Pointer to [**GamePgn200ResponseOneOfDivision**](GamePgn200ResponseOneOfDivision.md) |  | [optional] 
+**Division** | Pointer to [**GameJsonDivision**](GameJsonDivision.md) |  | [optional] 
 
 ## Methods
 
 ### NewGamePgn200Response
 
-`func NewGamePgn200Response(id string, rated bool, variant string, speed string, perf string, createdAt int64, lastMoveAt int64, status string, players GamePgn200ResponseOneOfPlayers, ) *GamePgn200Response`
+`func NewGamePgn200Response(id string, rated bool, variant VariantKey, speed Speed, perf string, createdAt int64, lastMoveAt int64, status GameStatusName, players GamePlayers, ) *GamePgn200Response`
 
 NewGamePgn200Response instantiates a new GamePgn200Response object
 This constructor will assign default values to properties that have it defined,
@@ -88,40 +88,40 @@ SetRated sets Rated field to given value.
 
 ### GetVariant
 
-`func (o *GamePgn200Response) GetVariant() string`
+`func (o *GamePgn200Response) GetVariant() VariantKey`
 
 GetVariant returns the Variant field if non-nil, zero value otherwise.
 
 ### GetVariantOk
 
-`func (o *GamePgn200Response) GetVariantOk() (*string, bool)`
+`func (o *GamePgn200Response) GetVariantOk() (*VariantKey, bool)`
 
 GetVariantOk returns a tuple with the Variant field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVariant
 
-`func (o *GamePgn200Response) SetVariant(v string)`
+`func (o *GamePgn200Response) SetVariant(v VariantKey)`
 
 SetVariant sets Variant field to given value.
 
 
 ### GetSpeed
 
-`func (o *GamePgn200Response) GetSpeed() string`
+`func (o *GamePgn200Response) GetSpeed() Speed`
 
 GetSpeed returns the Speed field if non-nil, zero value otherwise.
 
 ### GetSpeedOk
 
-`func (o *GamePgn200Response) GetSpeedOk() (*string, bool)`
+`func (o *GamePgn200Response) GetSpeedOk() (*Speed, bool)`
 
 GetSpeedOk returns a tuple with the Speed field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSpeed
 
-`func (o *GamePgn200Response) SetSpeed(v string)`
+`func (o *GamePgn200Response) SetSpeed(v Speed)`
 
 SetSpeed sets Speed field to given value.
 
@@ -188,20 +188,20 @@ SetLastMoveAt sets LastMoveAt field to given value.
 
 ### GetStatus
 
-`func (o *GamePgn200Response) GetStatus() string`
+`func (o *GamePgn200Response) GetStatus() GameStatusName`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *GamePgn200Response) GetStatusOk() (*string, bool)`
+`func (o *GamePgn200Response) GetStatusOk() (*GameStatusName, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *GamePgn200Response) SetStatus(v string)`
+`func (o *GamePgn200Response) SetStatus(v GameStatusName)`
 
 SetStatus sets Status field to given value.
 
@@ -233,20 +233,20 @@ HasSource returns a boolean if a field has been set.
 
 ### GetPlayers
 
-`func (o *GamePgn200Response) GetPlayers() GamePgn200ResponseOneOfPlayers`
+`func (o *GamePgn200Response) GetPlayers() GamePlayers`
 
 GetPlayers returns the Players field if non-nil, zero value otherwise.
 
 ### GetPlayersOk
 
-`func (o *GamePgn200Response) GetPlayersOk() (*GamePgn200ResponseOneOfPlayers, bool)`
+`func (o *GamePgn200Response) GetPlayersOk() (*GamePlayers, bool)`
 
 GetPlayersOk returns a tuple with the Players field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPlayers
 
-`func (o *GamePgn200Response) SetPlayers(v GamePgn200ResponseOneOfPlayers)`
+`func (o *GamePgn200Response) SetPlayers(v GamePlayers)`
 
 SetPlayers sets Players field to given value.
 
@@ -278,20 +278,20 @@ HasInitialFen returns a boolean if a field has been set.
 
 ### GetWinner
 
-`func (o *GamePgn200Response) GetWinner() string`
+`func (o *GamePgn200Response) GetWinner() GameColor`
 
 GetWinner returns the Winner field if non-nil, zero value otherwise.
 
 ### GetWinnerOk
 
-`func (o *GamePgn200Response) GetWinnerOk() (*string, bool)`
+`func (o *GamePgn200Response) GetWinnerOk() (*GameColor, bool)`
 
 GetWinnerOk returns a tuple with the Winner field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetWinner
 
-`func (o *GamePgn200Response) SetWinner(v string)`
+`func (o *GamePgn200Response) SetWinner(v GameColor)`
 
 SetWinner sets Winner field to given value.
 
@@ -303,20 +303,20 @@ HasWinner returns a boolean if a field has been set.
 
 ### GetOpening
 
-`func (o *GamePgn200Response) GetOpening() GamePgn200ResponseOneOfOpening`
+`func (o *GamePgn200Response) GetOpening() GameOpening`
 
 GetOpening returns the Opening field if non-nil, zero value otherwise.
 
 ### GetOpeningOk
 
-`func (o *GamePgn200Response) GetOpeningOk() (*GamePgn200ResponseOneOfOpening, bool)`
+`func (o *GamePgn200Response) GetOpeningOk() (*GameOpening, bool)`
 
 GetOpeningOk returns a tuple with the Opening field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOpening
 
-`func (o *GamePgn200Response) SetOpening(v GamePgn200ResponseOneOfOpening)`
+`func (o *GamePgn200Response) SetOpening(v GameOpening)`
 
 SetOpening sets Opening field to given value.
 
@@ -403,20 +403,20 @@ HasDaysPerTurn returns a boolean if a field has been set.
 
 ### GetAnalysis
 
-`func (o *GamePgn200Response) GetAnalysis() []GamePgn200ResponseOneOfAnalysisInner`
+`func (o *GamePgn200Response) GetAnalysis() []GameMoveAnalysis`
 
 GetAnalysis returns the Analysis field if non-nil, zero value otherwise.
 
 ### GetAnalysisOk
 
-`func (o *GamePgn200Response) GetAnalysisOk() (*[]GamePgn200ResponseOneOfAnalysisInner, bool)`
+`func (o *GamePgn200Response) GetAnalysisOk() (*[]GameMoveAnalysis, bool)`
 
 GetAnalysisOk returns a tuple with the Analysis field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAnalysis
 
-`func (o *GamePgn200Response) SetAnalysis(v []GamePgn200ResponseOneOfAnalysisInner)`
+`func (o *GamePgn200Response) SetAnalysis(v []GameMoveAnalysis)`
 
 SetAnalysis sets Analysis field to given value.
 
@@ -478,20 +478,20 @@ HasSwiss returns a boolean if a field has been set.
 
 ### GetClock
 
-`func (o *GamePgn200Response) GetClock() GamePgn200ResponseOneOfClock`
+`func (o *GamePgn200Response) GetClock() GameJsonClock`
 
 GetClock returns the Clock field if non-nil, zero value otherwise.
 
 ### GetClockOk
 
-`func (o *GamePgn200Response) GetClockOk() (*GamePgn200ResponseOneOfClock, bool)`
+`func (o *GamePgn200Response) GetClockOk() (*GameJsonClock, bool)`
 
 GetClockOk returns a tuple with the Clock field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetClock
 
-`func (o *GamePgn200Response) SetClock(v GamePgn200ResponseOneOfClock)`
+`func (o *GamePgn200Response) SetClock(v GameJsonClock)`
 
 SetClock sets Clock field to given value.
 
@@ -528,20 +528,20 @@ HasClocks returns a boolean if a field has been set.
 
 ### GetDivision
 
-`func (o *GamePgn200Response) GetDivision() GamePgn200ResponseOneOfDivision`
+`func (o *GamePgn200Response) GetDivision() GameJsonDivision`
 
 GetDivision returns the Division field if non-nil, zero value otherwise.
 
 ### GetDivisionOk
 
-`func (o *GamePgn200Response) GetDivisionOk() (*GamePgn200ResponseOneOfDivision, bool)`
+`func (o *GamePgn200Response) GetDivisionOk() (*GameJsonDivision, bool)`
 
 GetDivisionOk returns a tuple with the Division field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDivision
 
-`func (o *GamePgn200Response) SetDivision(v GamePgn200ResponseOneOfDivision)`
+`func (o *GamePgn200Response) SetDivision(v GameJsonDivision)`
 
 SetDivision sets Division field to given value.
 

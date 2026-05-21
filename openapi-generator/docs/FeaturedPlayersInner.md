@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Color** | **NullableString** |  | 
-**User** | [**ApiUserPerf200ResponseStatWorstLossesResultsInnerOpId**](ApiUserPerf200ResponseStatWorstLossesResultsInnerOpId.md) |  | 
+**Color** | [**GameColor**](GameColor.md) |  | 
+**User** | [**LightUser**](LightUser.md) |  | 
 **Rating** | **int32** |  | 
 **Seconds** | **int32** | The player&#39;s remaining time in seconds | 
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewFeaturedPlayersInner
 
-`func NewFeaturedPlayersInner(color NullableString, user ApiUserPerf200ResponseStatWorstLossesResultsInnerOpId, rating int32, seconds int32, ) *FeaturedPlayersInner`
+`func NewFeaturedPlayersInner(color GameColor, user LightUser, rating int32, seconds int32, ) *FeaturedPlayersInner`
 
 NewFeaturedPlayersInner instantiates a new FeaturedPlayersInner object
 This constructor will assign default values to properties that have it defined,
@@ -30,50 +30,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetColor
 
-`func (o *FeaturedPlayersInner) GetColor() string`
+`func (o *FeaturedPlayersInner) GetColor() GameColor`
 
 GetColor returns the Color field if non-nil, zero value otherwise.
 
 ### GetColorOk
 
-`func (o *FeaturedPlayersInner) GetColorOk() (*string, bool)`
+`func (o *FeaturedPlayersInner) GetColorOk() (*GameColor, bool)`
 
 GetColorOk returns a tuple with the Color field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetColor
 
-`func (o *FeaturedPlayersInner) SetColor(v string)`
+`func (o *FeaturedPlayersInner) SetColor(v GameColor)`
 
 SetColor sets Color field to given value.
 
 
-### SetColorNil
-
-`func (o *FeaturedPlayersInner) SetColorNil(b bool)`
-
- SetColorNil sets the value for Color to be an explicit nil
-
-### UnsetColor
-`func (o *FeaturedPlayersInner) UnsetColor()`
-
-UnsetColor ensures that no value is present for Color, not even an explicit nil
 ### GetUser
 
-`func (o *FeaturedPlayersInner) GetUser() ApiUserPerf200ResponseStatWorstLossesResultsInnerOpId`
+`func (o *FeaturedPlayersInner) GetUser() LightUser`
 
 GetUser returns the User field if non-nil, zero value otherwise.
 
 ### GetUserOk
 
-`func (o *FeaturedPlayersInner) GetUserOk() (*ApiUserPerf200ResponseStatWorstLossesResultsInnerOpId, bool)`
+`func (o *FeaturedPlayersInner) GetUserOk() (*LightUser, bool)`
 
 GetUserOk returns a tuple with the User field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUser
 
-`func (o *FeaturedPlayersInner) SetUser(v ApiUserPerf200ResponseStatWorstLossesResultsInnerOpId)`
+`func (o *FeaturedPlayersInner) SetUser(v LightUser)`
 
 SetUser sets User field to given value.
 

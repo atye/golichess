@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CurrentPage** | **int32** |  | 
 **MaxPerPage** | **int32** |  | 
-**CurrentPageResults** | [**[]BroadcastsTop200ResponseActiveInner**](BroadcastsTop200ResponseActiveInner.md) |  | 
+**CurrentPageResults** | [**[]BroadcastWithLastRound**](BroadcastWithLastRound.md) |  | 
 **PreviousPage** | **NullableInt32** |  | 
 **NextPage** | **NullableInt32** |  | 
 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewBroadcastsSearch200Response
 
-`func NewBroadcastsSearch200Response(currentPage int32, maxPerPage int32, currentPageResults []BroadcastsTop200ResponseActiveInner, previousPage NullableInt32, nextPage NullableInt32, ) *BroadcastsSearch200Response`
+`func NewBroadcastsSearch200Response(currentPage int32, maxPerPage int32, currentPageResults []BroadcastWithLastRound, previousPage NullableInt32, nextPage NullableInt32, ) *BroadcastsSearch200Response`
 
 NewBroadcastsSearch200Response instantiates a new BroadcastsSearch200Response object
 This constructor will assign default values to properties that have it defined,
@@ -71,20 +71,20 @@ SetMaxPerPage sets MaxPerPage field to given value.
 
 ### GetCurrentPageResults
 
-`func (o *BroadcastsSearch200Response) GetCurrentPageResults() []BroadcastsTop200ResponseActiveInner`
+`func (o *BroadcastsSearch200Response) GetCurrentPageResults() []BroadcastWithLastRound`
 
 GetCurrentPageResults returns the CurrentPageResults field if non-nil, zero value otherwise.
 
 ### GetCurrentPageResultsOk
 
-`func (o *BroadcastsSearch200Response) GetCurrentPageResultsOk() (*[]BroadcastsTop200ResponseActiveInner, bool)`
+`func (o *BroadcastsSearch200Response) GetCurrentPageResultsOk() (*[]BroadcastWithLastRound, bool)`
 
 GetCurrentPageResultsOk returns a tuple with the CurrentPageResults field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCurrentPageResults
 
-`func (o *BroadcastsSearch200Response) SetCurrentPageResults(v []BroadcastsTop200ResponseActiveInner)`
+`func (o *BroadcastsSearch200Response) SetCurrentPageResults(v []BroadcastWithLastRound)`
 
 SetCurrentPageResults sets CurrentPageResults field to given value.
 

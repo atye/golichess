@@ -20,7 +20,7 @@ var _ MappedNullable = &ApiPlayerAutocomplete200ResponseOneOf{}
 
 // ApiPlayerAutocomplete200ResponseOneOf struct for ApiPlayerAutocomplete200ResponseOneOf
 type ApiPlayerAutocomplete200ResponseOneOf struct {
-	Result []ApiPlayerAutocomplete200ResponseOneOfResultInner `json:"result,omitempty"`
+	Result []LightUserOnline `json:"result,omitempty"`
 }
 
 // NewApiPlayerAutocomplete200ResponseOneOf instantiates a new ApiPlayerAutocomplete200ResponseOneOf object
@@ -41,9 +41,9 @@ func NewApiPlayerAutocomplete200ResponseOneOfWithDefaults() *ApiPlayerAutocomple
 }
 
 // GetResult returns the Result field value if set, zero value otherwise.
-func (o *ApiPlayerAutocomplete200ResponseOneOf) GetResult() []ApiPlayerAutocomplete200ResponseOneOfResultInner {
+func (o *ApiPlayerAutocomplete200ResponseOneOf) GetResult() []LightUserOnline {
 	if o == nil || IsNil(o.Result) {
-		var ret []ApiPlayerAutocomplete200ResponseOneOfResultInner
+		var ret []LightUserOnline
 		return ret
 	}
 	return o.Result
@@ -51,7 +51,7 @@ func (o *ApiPlayerAutocomplete200ResponseOneOf) GetResult() []ApiPlayerAutocompl
 
 // GetResultOk returns a tuple with the Result field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiPlayerAutocomplete200ResponseOneOf) GetResultOk() ([]ApiPlayerAutocomplete200ResponseOneOfResultInner, bool) {
+func (o *ApiPlayerAutocomplete200ResponseOneOf) GetResultOk() ([]LightUserOnline, bool) {
 	if o == nil || IsNil(o.Result) {
 		return nil, false
 	}
@@ -67,8 +67,8 @@ func (o *ApiPlayerAutocomplete200ResponseOneOf) HasResult() bool {
 	return false
 }
 
-// SetResult gets a reference to the given []ApiPlayerAutocomplete200ResponseOneOfResultInner and assigns it to the Result field.
-func (o *ApiPlayerAutocomplete200ResponseOneOf) SetResult(v []ApiPlayerAutocomplete200ResponseOneOfResultInner) {
+// SetResult gets a reference to the given []LightUserOnline and assigns it to the Result field.
+func (o *ApiPlayerAutocomplete200ResponseOneOf) SetResult(v []LightUserOnline) {
 	o.Result = v
 }
 

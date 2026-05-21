@@ -37,8 +37,8 @@ We recommend streaming the response, for it can be very long.
 	ApiPuzzleActivity(ctx context.Context) PuzzlesAPIApiPuzzleActivityRequest
 
 	// ApiPuzzleActivityExecute executes the request
-	//  @return ApiPuzzleActivity200Response
-	ApiPuzzleActivityExecute(r PuzzlesAPIApiPuzzleActivityRequest) (*ApiPuzzleActivity200Response, *http.Response, error)
+	//  @return PuzzleActivity
+	ApiPuzzleActivityExecute(r PuzzlesAPIApiPuzzleActivityRequest) (*PuzzleActivity, *http.Response, error)
 
 	/*
 	ApiPuzzleBatchSelect Get multiple puzzles at once
@@ -57,8 +57,8 @@ If authenticated, only returns puzzles that the user has never seen before.
 	ApiPuzzleBatchSelect(ctx context.Context, angle string) PuzzlesAPIApiPuzzleBatchSelectRequest
 
 	// ApiPuzzleBatchSelectExecute executes the request
-	//  @return ApiPuzzleBatchSelect200Response
-	ApiPuzzleBatchSelectExecute(r PuzzlesAPIApiPuzzleBatchSelectRequest) (*ApiPuzzleBatchSelect200Response, *http.Response, error)
+	//  @return PuzzleBatchSelect
+	ApiPuzzleBatchSelectExecute(r PuzzlesAPIApiPuzzleBatchSelectRequest) (*PuzzleBatchSelect, *http.Response, error)
 
 	/*
 	ApiPuzzleBatchSolve Solve multiple puzzles at once
@@ -73,8 +73,8 @@ If authenticated, only returns puzzles that the user has never seen before.
 	ApiPuzzleBatchSolve(ctx context.Context, angle string) PuzzlesAPIApiPuzzleBatchSolveRequest
 
 	// ApiPuzzleBatchSolveExecute executes the request
-	//  @return ApiPuzzleBatchSolve200Response
-	ApiPuzzleBatchSolveExecute(r PuzzlesAPIApiPuzzleBatchSolveRequest) (*ApiPuzzleBatchSolve200Response, *http.Response, error)
+	//  @return PuzzleBatchSolveResponse
+	ApiPuzzleBatchSolveExecute(r PuzzlesAPIApiPuzzleBatchSolveRequest) (*PuzzleBatchSolveResponse, *http.Response, error)
 
 	/*
 	ApiPuzzleDaily Get the daily puzzle
@@ -88,8 +88,8 @@ If authenticated, only returns puzzles that the user has never seen before.
 	ApiPuzzleDaily(ctx context.Context) PuzzlesAPIApiPuzzleDailyRequest
 
 	// ApiPuzzleDailyExecute executes the request
-	//  @return ApiPuzzleDaily200Response
-	ApiPuzzleDailyExecute(r PuzzlesAPIApiPuzzleDailyRequest) (*ApiPuzzleDaily200Response, *http.Response, error)
+	//  @return PuzzleAndGame
+	ApiPuzzleDailyExecute(r PuzzlesAPIApiPuzzleDailyRequest) (*PuzzleAndGame, *http.Response, error)
 
 	/*
 	ApiPuzzleDashboard Get your puzzle dashboard
@@ -106,8 +106,8 @@ Allows re-creating the [improvement/strengths](https://lichess.org/training/dash
 	ApiPuzzleDashboard(ctx context.Context, days int32) PuzzlesAPIApiPuzzleDashboardRequest
 
 	// ApiPuzzleDashboardExecute executes the request
-	//  @return ApiPuzzleDashboard200Response
-	ApiPuzzleDashboardExecute(r PuzzlesAPIApiPuzzleDashboardRequest) (*ApiPuzzleDashboard200Response, *http.Response, error)
+	//  @return PuzzleDashboard
+	ApiPuzzleDashboardExecute(r PuzzlesAPIApiPuzzleDashboardRequest) (*PuzzleDashboard, *http.Response, error)
 
 	/*
 	ApiPuzzleId Get a puzzle by its ID
@@ -121,8 +121,8 @@ Allows re-creating the [improvement/strengths](https://lichess.org/training/dash
 	ApiPuzzleId(ctx context.Context, id string) PuzzlesAPIApiPuzzleIdRequest
 
 	// ApiPuzzleIdExecute executes the request
-	//  @return ApiPuzzleId200Response
-	ApiPuzzleIdExecute(r PuzzlesAPIApiPuzzleIdRequest) (*ApiPuzzleId200Response, *http.Response, error)
+	//  @return PuzzleAndGame
+	ApiPuzzleIdExecute(r PuzzlesAPIApiPuzzleIdRequest) (*PuzzleAndGame, *http.Response, error)
 
 	/*
 	ApiPuzzleNext Get a new puzzle
@@ -140,8 +140,8 @@ If authenticated, only returns puzzles that the user has never seen before.
 	ApiPuzzleNext(ctx context.Context) PuzzlesAPIApiPuzzleNextRequest
 
 	// ApiPuzzleNextExecute executes the request
-	//  @return ApiPuzzleId200Response
-	ApiPuzzleNextExecute(r PuzzlesAPIApiPuzzleNextRequest) (*ApiPuzzleId200Response, *http.Response, error)
+	//  @return PuzzleAndGame
+	ApiPuzzleNextExecute(r PuzzlesAPIApiPuzzleNextRequest) (*PuzzleAndGame, *http.Response, error)
 
 	/*
 	ApiPuzzleReplay Get puzzles to replay
@@ -156,8 +156,8 @@ If authenticated, only returns puzzles that the user has never seen before.
 	ApiPuzzleReplay(ctx context.Context, days int32, theme string) PuzzlesAPIApiPuzzleReplayRequest
 
 	// ApiPuzzleReplayExecute executes the request
-	//  @return ApiPuzzleReplay200Response
-	ApiPuzzleReplayExecute(r PuzzlesAPIApiPuzzleReplayRequest) (*ApiPuzzleReplay200Response, *http.Response, error)
+	//  @return PuzzleReplay
+	ApiPuzzleReplayExecute(r PuzzlesAPIApiPuzzleReplayRequest) (*PuzzleReplay, *http.Response, error)
 
 	/*
 	ApiStormDashboard Get the storm dashboard of a player
@@ -174,8 +174,8 @@ Use `?days=0` if you only care about the highscores.
 	ApiStormDashboard(ctx context.Context, username string) PuzzlesAPIApiStormDashboardRequest
 
 	// ApiStormDashboardExecute executes the request
-	//  @return ApiStormDashboard200Response
-	ApiStormDashboardExecute(r PuzzlesAPIApiStormDashboardRequest) (*ApiStormDashboard200Response, *http.Response, error)
+	//  @return PuzzleStormDashboard
+	ApiStormDashboardExecute(r PuzzlesAPIApiStormDashboardRequest) (*PuzzleStormDashboard, *http.Response, error)
 
 	/*
 	RacerGet Get puzzle race results
@@ -195,8 +195,8 @@ for 30 minutes. After that delay, they are permanently deleted.
 	RacerGet(ctx context.Context, id string) PuzzlesAPIRacerGetRequest
 
 	// RacerGetExecute executes the request
-	//  @return RacerGet200Response
-	RacerGetExecute(r PuzzlesAPIRacerGetRequest) (*RacerGet200Response, *http.Response, error)
+	//  @return PuzzleRaceResults
+	RacerGetExecute(r PuzzlesAPIRacerGetRequest) (*PuzzleRaceResults, *http.Response, error)
 
 	/*
 	RacerPost Create and join a puzzle race
@@ -213,8 +213,8 @@ and manually start the race when enough players have joined.
 	RacerPost(ctx context.Context) PuzzlesAPIRacerPostRequest
 
 	// RacerPostExecute executes the request
-	//  @return RacerPost200Response
-	RacerPostExecute(r PuzzlesAPIRacerPostRequest) (*RacerPost200Response, *http.Response, error)
+	//  @return PuzzleRacer
+	RacerPostExecute(r PuzzlesAPIRacerPostRequest) (*PuzzleRacer, *http.Response, error)
 }
 
 // PuzzlesAPIService PuzzlesAPI service
@@ -246,7 +246,7 @@ func (r PuzzlesAPIApiPuzzleActivityRequest) Since(since int32) PuzzlesAPIApiPuzz
 	return r
 }
 
-func (r PuzzlesAPIApiPuzzleActivityRequest) Execute() (*ApiPuzzleActivity200Response, *http.Response, error) {
+func (r PuzzlesAPIApiPuzzleActivityRequest) Execute() (*PuzzleActivity, *http.Response, error) {
 	return r.ApiService.ApiPuzzleActivityExecute(r)
 }
 
@@ -269,13 +269,13 @@ func (a *PuzzlesAPIService) ApiPuzzleActivity(ctx context.Context) PuzzlesAPIApi
 }
 
 // Execute executes the request
-//  @return ApiPuzzleActivity200Response
-func (a *PuzzlesAPIService) ApiPuzzleActivityExecute(r PuzzlesAPIApiPuzzleActivityRequest) (*ApiPuzzleActivity200Response, *http.Response, error) {
+//  @return PuzzleActivity
+func (a *PuzzlesAPIService) ApiPuzzleActivityExecute(r PuzzlesAPIApiPuzzleActivityRequest) (*PuzzleActivity, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiPuzzleActivity200Response
+		localVarReturnValue  *PuzzleActivity
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzlesAPIService.ApiPuzzleActivity")
@@ -379,7 +379,7 @@ func (r PuzzlesAPIApiPuzzleBatchSelectRequest) Color(color string) PuzzlesAPIApi
 	return r
 }
 
-func (r PuzzlesAPIApiPuzzleBatchSelectRequest) Execute() (*ApiPuzzleBatchSelect200Response, *http.Response, error) {
+func (r PuzzlesAPIApiPuzzleBatchSelectRequest) Execute() (*PuzzleBatchSelect, *http.Response, error) {
 	return r.ApiService.ApiPuzzleBatchSelectExecute(r)
 }
 
@@ -406,13 +406,13 @@ func (a *PuzzlesAPIService) ApiPuzzleBatchSelect(ctx context.Context, angle stri
 }
 
 // Execute executes the request
-//  @return ApiPuzzleBatchSelect200Response
-func (a *PuzzlesAPIService) ApiPuzzleBatchSelectExecute(r PuzzlesAPIApiPuzzleBatchSelectRequest) (*ApiPuzzleBatchSelect200Response, *http.Response, error) {
+//  @return PuzzleBatchSelect
+func (a *PuzzlesAPIService) ApiPuzzleBatchSelectExecute(r PuzzlesAPIApiPuzzleBatchSelectRequest) (*PuzzleBatchSelect, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiPuzzleBatchSelect200Response
+		localVarReturnValue  *PuzzleBatchSelect
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzlesAPIService.ApiPuzzleBatchSelect")
@@ -498,13 +498,13 @@ type PuzzlesAPIApiPuzzleBatchSolveRequest struct {
 	ctx context.Context
 	ApiService PuzzlesAPI
 	angle string
-	apiPuzzleBatchSolveRequest *ApiPuzzleBatchSolveRequest
+	puzzleBatchSolveRequest *PuzzleBatchSolveRequest
 	nb *int32
 }
 
 // List of solved puzzles
-func (r PuzzlesAPIApiPuzzleBatchSolveRequest) ApiPuzzleBatchSolveRequest(apiPuzzleBatchSolveRequest ApiPuzzleBatchSolveRequest) PuzzlesAPIApiPuzzleBatchSolveRequest {
-	r.apiPuzzleBatchSolveRequest = &apiPuzzleBatchSolveRequest
+func (r PuzzlesAPIApiPuzzleBatchSolveRequest) PuzzleBatchSolveRequest(puzzleBatchSolveRequest PuzzleBatchSolveRequest) PuzzlesAPIApiPuzzleBatchSolveRequest {
+	r.puzzleBatchSolveRequest = &puzzleBatchSolveRequest
 	return r
 }
 
@@ -514,7 +514,7 @@ func (r PuzzlesAPIApiPuzzleBatchSolveRequest) Nb(nb int32) PuzzlesAPIApiPuzzleBa
 	return r
 }
 
-func (r PuzzlesAPIApiPuzzleBatchSolveRequest) Execute() (*ApiPuzzleBatchSolve200Response, *http.Response, error) {
+func (r PuzzlesAPIApiPuzzleBatchSolveRequest) Execute() (*PuzzleBatchSolveResponse, *http.Response, error) {
 	return r.ApiService.ApiPuzzleBatchSolveExecute(r)
 }
 
@@ -537,13 +537,13 @@ func (a *PuzzlesAPIService) ApiPuzzleBatchSolve(ctx context.Context, angle strin
 }
 
 // Execute executes the request
-//  @return ApiPuzzleBatchSolve200Response
-func (a *PuzzlesAPIService) ApiPuzzleBatchSolveExecute(r PuzzlesAPIApiPuzzleBatchSolveRequest) (*ApiPuzzleBatchSolve200Response, *http.Response, error) {
+//  @return PuzzleBatchSolveResponse
+func (a *PuzzlesAPIService) ApiPuzzleBatchSolveExecute(r PuzzlesAPIApiPuzzleBatchSolveRequest) (*PuzzleBatchSolveResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiPuzzleBatchSolve200Response
+		localVarReturnValue  *PuzzleBatchSolveResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzlesAPIService.ApiPuzzleBatchSolve")
@@ -557,8 +557,8 @@ func (a *PuzzlesAPIService) ApiPuzzleBatchSolveExecute(r PuzzlesAPIApiPuzzleBatc
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiPuzzleBatchSolveRequest == nil {
-		return localVarReturnValue, nil, reportError("apiPuzzleBatchSolveRequest is required and must be specified")
+	if r.puzzleBatchSolveRequest == nil {
+		return localVarReturnValue, nil, reportError("puzzleBatchSolveRequest is required and must be specified")
 	}
 
 	if r.nb != nil {
@@ -586,7 +586,7 @@ func (a *PuzzlesAPIService) ApiPuzzleBatchSolveExecute(r PuzzlesAPIApiPuzzleBatc
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.apiPuzzleBatchSolveRequest
+	localVarPostBody = r.puzzleBatchSolveRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -629,7 +629,7 @@ type PuzzlesAPIApiPuzzleDailyRequest struct {
 	ApiService PuzzlesAPI
 }
 
-func (r PuzzlesAPIApiPuzzleDailyRequest) Execute() (*ApiPuzzleDaily200Response, *http.Response, error) {
+func (r PuzzlesAPIApiPuzzleDailyRequest) Execute() (*PuzzleAndGame, *http.Response, error) {
 	return r.ApiService.ApiPuzzleDailyExecute(r)
 }
 
@@ -650,13 +650,13 @@ func (a *PuzzlesAPIService) ApiPuzzleDaily(ctx context.Context) PuzzlesAPIApiPuz
 }
 
 // Execute executes the request
-//  @return ApiPuzzleDaily200Response
-func (a *PuzzlesAPIService) ApiPuzzleDailyExecute(r PuzzlesAPIApiPuzzleDailyRequest) (*ApiPuzzleDaily200Response, *http.Response, error) {
+//  @return PuzzleAndGame
+func (a *PuzzlesAPIService) ApiPuzzleDailyExecute(r PuzzlesAPIApiPuzzleDailyRequest) (*PuzzleAndGame, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiPuzzleDaily200Response
+		localVarReturnValue  *PuzzleAndGame
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzlesAPIService.ApiPuzzleDaily")
@@ -730,7 +730,7 @@ type PuzzlesAPIApiPuzzleDashboardRequest struct {
 	days int32
 }
 
-func (r PuzzlesAPIApiPuzzleDashboardRequest) Execute() (*ApiPuzzleDashboard200Response, *http.Response, error) {
+func (r PuzzlesAPIApiPuzzleDashboardRequest) Execute() (*PuzzleDashboard, *http.Response, error) {
 	return r.ApiService.ApiPuzzleDashboardExecute(r)
 }
 
@@ -755,13 +755,13 @@ func (a *PuzzlesAPIService) ApiPuzzleDashboard(ctx context.Context, days int32) 
 }
 
 // Execute executes the request
-//  @return ApiPuzzleDashboard200Response
-func (a *PuzzlesAPIService) ApiPuzzleDashboardExecute(r PuzzlesAPIApiPuzzleDashboardRequest) (*ApiPuzzleDashboard200Response, *http.Response, error) {
+//  @return PuzzleDashboard
+func (a *PuzzlesAPIService) ApiPuzzleDashboardExecute(r PuzzlesAPIApiPuzzleDashboardRequest) (*PuzzleDashboard, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiPuzzleDashboard200Response
+		localVarReturnValue  *PuzzleDashboard
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzlesAPIService.ApiPuzzleDashboard")
@@ -839,7 +839,7 @@ type PuzzlesAPIApiPuzzleIdRequest struct {
 	id string
 }
 
-func (r PuzzlesAPIApiPuzzleIdRequest) Execute() (*ApiPuzzleId200Response, *http.Response, error) {
+func (r PuzzlesAPIApiPuzzleIdRequest) Execute() (*PuzzleAndGame, *http.Response, error) {
 	return r.ApiService.ApiPuzzleIdExecute(r)
 }
 
@@ -861,13 +861,13 @@ func (a *PuzzlesAPIService) ApiPuzzleId(ctx context.Context, id string) PuzzlesA
 }
 
 // Execute executes the request
-//  @return ApiPuzzleId200Response
-func (a *PuzzlesAPIService) ApiPuzzleIdExecute(r PuzzlesAPIApiPuzzleIdRequest) (*ApiPuzzleId200Response, *http.Response, error) {
+//  @return PuzzleAndGame
+func (a *PuzzlesAPIService) ApiPuzzleIdExecute(r PuzzlesAPIApiPuzzleIdRequest) (*PuzzleAndGame, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiPuzzleId200Response
+		localVarReturnValue  *PuzzleAndGame
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzlesAPIService.ApiPuzzleId")
@@ -962,7 +962,7 @@ func (r PuzzlesAPIApiPuzzleNextRequest) Color(color string) PuzzlesAPIApiPuzzleN
 	return r
 }
 
-func (r PuzzlesAPIApiPuzzleNextRequest) Execute() (*ApiPuzzleId200Response, *http.Response, error) {
+func (r PuzzlesAPIApiPuzzleNextRequest) Execute() (*PuzzleAndGame, *http.Response, error) {
 	return r.ApiService.ApiPuzzleNextExecute(r)
 }
 
@@ -987,13 +987,13 @@ func (a *PuzzlesAPIService) ApiPuzzleNext(ctx context.Context) PuzzlesAPIApiPuzz
 }
 
 // Execute executes the request
-//  @return ApiPuzzleId200Response
-func (a *PuzzlesAPIService) ApiPuzzleNextExecute(r PuzzlesAPIApiPuzzleNextRequest) (*ApiPuzzleId200Response, *http.Response, error) {
+//  @return PuzzleAndGame
+func (a *PuzzlesAPIService) ApiPuzzleNextExecute(r PuzzlesAPIApiPuzzleNextRequest) (*PuzzleAndGame, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiPuzzleId200Response
+		localVarReturnValue  *PuzzleAndGame
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzlesAPIService.ApiPuzzleNext")
@@ -1077,7 +1077,7 @@ type PuzzlesAPIApiPuzzleReplayRequest struct {
 	theme string
 }
 
-func (r PuzzlesAPIApiPuzzleReplayRequest) Execute() (*ApiPuzzleReplay200Response, *http.Response, error) {
+func (r PuzzlesAPIApiPuzzleReplayRequest) Execute() (*PuzzleReplay, *http.Response, error) {
 	return r.ApiService.ApiPuzzleReplayExecute(r)
 }
 
@@ -1101,13 +1101,13 @@ func (a *PuzzlesAPIService) ApiPuzzleReplay(ctx context.Context, days int32, the
 }
 
 // Execute executes the request
-//  @return ApiPuzzleReplay200Response
-func (a *PuzzlesAPIService) ApiPuzzleReplayExecute(r PuzzlesAPIApiPuzzleReplayRequest) (*ApiPuzzleReplay200Response, *http.Response, error) {
+//  @return PuzzleReplay
+func (a *PuzzlesAPIService) ApiPuzzleReplayExecute(r PuzzlesAPIApiPuzzleReplayRequest) (*PuzzleReplay, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiPuzzleReplay200Response
+		localVarReturnValue  *PuzzleReplay
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzlesAPIService.ApiPuzzleReplay")
@@ -1200,7 +1200,7 @@ func (r PuzzlesAPIApiStormDashboardRequest) Days(days int32) PuzzlesAPIApiStormD
 	return r
 }
 
-func (r PuzzlesAPIApiStormDashboardRequest) Execute() (*ApiStormDashboard200Response, *http.Response, error) {
+func (r PuzzlesAPIApiStormDashboardRequest) Execute() (*PuzzleStormDashboard, *http.Response, error) {
 	return r.ApiService.ApiStormDashboardExecute(r)
 }
 
@@ -1225,13 +1225,13 @@ func (a *PuzzlesAPIService) ApiStormDashboard(ctx context.Context, username stri
 }
 
 // Execute executes the request
-//  @return ApiStormDashboard200Response
-func (a *PuzzlesAPIService) ApiStormDashboardExecute(r PuzzlesAPIApiStormDashboardRequest) (*ApiStormDashboard200Response, *http.Response, error) {
+//  @return PuzzleStormDashboard
+func (a *PuzzlesAPIService) ApiStormDashboardExecute(r PuzzlesAPIApiStormDashboardRequest) (*PuzzleStormDashboard, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiStormDashboard200Response
+		localVarReturnValue  *PuzzleStormDashboard
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzlesAPIService.ApiStormDashboard")
@@ -1313,7 +1313,7 @@ type PuzzlesAPIRacerGetRequest struct {
 	id string
 }
 
-func (r PuzzlesAPIRacerGetRequest) Execute() (*RacerGet200Response, *http.Response, error) {
+func (r PuzzlesAPIRacerGetRequest) Execute() (*PuzzleRaceResults, *http.Response, error) {
 	return r.ApiService.RacerGetExecute(r)
 }
 
@@ -1341,13 +1341,13 @@ func (a *PuzzlesAPIService) RacerGet(ctx context.Context, id string) PuzzlesAPIR
 }
 
 // Execute executes the request
-//  @return RacerGet200Response
-func (a *PuzzlesAPIService) RacerGetExecute(r PuzzlesAPIRacerGetRequest) (*RacerGet200Response, *http.Response, error) {
+//  @return PuzzleRaceResults
+func (a *PuzzlesAPIService) RacerGetExecute(r PuzzlesAPIRacerGetRequest) (*PuzzleRaceResults, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *RacerGet200Response
+		localVarReturnValue  *PuzzleRaceResults
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzlesAPIService.RacerGet")
@@ -1402,7 +1402,7 @@ func (a *PuzzlesAPIService) RacerGetExecute(r PuzzlesAPIRacerGetRequest) (*Racer
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v RacerGet404Response
+			var v NotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1431,7 +1431,7 @@ type PuzzlesAPIRacerPostRequest struct {
 	ApiService PuzzlesAPI
 }
 
-func (r PuzzlesAPIRacerPostRequest) Execute() (*RacerPost200Response, *http.Response, error) {
+func (r PuzzlesAPIRacerPostRequest) Execute() (*PuzzleRacer, *http.Response, error) {
 	return r.ApiService.RacerPostExecute(r)
 }
 
@@ -1455,13 +1455,13 @@ func (a *PuzzlesAPIService) RacerPost(ctx context.Context) PuzzlesAPIRacerPostRe
 }
 
 // Execute executes the request
-//  @return RacerPost200Response
-func (a *PuzzlesAPIService) RacerPostExecute(r PuzzlesAPIRacerPostRequest) (*RacerPost200Response, *http.Response, error) {
+//  @return PuzzleRacer
+func (a *PuzzlesAPIService) RacerPostExecute(r PuzzlesAPIRacerPostRequest) (*PuzzleRacer, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *RacerPost200Response
+		localVarReturnValue  *PuzzleRacer
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzlesAPIService.RacerPost")

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Prefs** | Pointer to [**Account200ResponsePrefs**](Account200ResponsePrefs.md) |  | [optional] 
+**Prefs** | Pointer to [**UserPreferences**](UserPreferences.md) |  | [optional] 
 **Language** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetPrefs
 
-`func (o *Account200Response) GetPrefs() Account200ResponsePrefs`
+`func (o *Account200Response) GetPrefs() UserPreferences`
 
 GetPrefs returns the Prefs field if non-nil, zero value otherwise.
 
 ### GetPrefsOk
 
-`func (o *Account200Response) GetPrefsOk() (*Account200ResponsePrefs, bool)`
+`func (o *Account200Response) GetPrefsOk() (*UserPreferences, bool)`
 
 GetPrefsOk returns a tuple with the Prefs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPrefs
 
-`func (o *Account200Response) SetPrefs(v Account200ResponsePrefs)`
+`func (o *Account200Response) SetPrefs(v UserPreferences)`
 
 SetPrefs sets Prefs field to given value.
 

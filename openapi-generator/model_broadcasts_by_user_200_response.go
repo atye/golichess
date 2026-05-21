@@ -24,7 +24,7 @@ var _ MappedNullable = &BroadcastsByUser200Response{}
 type BroadcastsByUser200Response struct {
 	CurrentPage int32 `json:"currentPage"`
 	MaxPerPage int32 `json:"maxPerPage"`
-	CurrentPageResults []BroadcastsByUser200ResponseCurrentPageResultsInner `json:"currentPageResults"`
+	CurrentPageResults []BroadcastByUser `json:"currentPageResults"`
 	NbResults int32 `json:"nbResults"`
 	PreviousPage NullableInt32 `json:"previousPage"`
 	NextPage NullableInt32 `json:"nextPage"`
@@ -37,7 +37,7 @@ type _BroadcastsByUser200Response BroadcastsByUser200Response
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBroadcastsByUser200Response(currentPage int32, maxPerPage int32, currentPageResults []BroadcastsByUser200ResponseCurrentPageResultsInner, nbResults int32, previousPage NullableInt32, nextPage NullableInt32, nbPages int32) *BroadcastsByUser200Response {
+func NewBroadcastsByUser200Response(currentPage int32, maxPerPage int32, currentPageResults []BroadcastByUser, nbResults int32, previousPage NullableInt32, nextPage NullableInt32, nbPages int32) *BroadcastsByUser200Response {
 	this := BroadcastsByUser200Response{}
 	this.CurrentPage = currentPage
 	this.MaxPerPage = maxPerPage
@@ -106,9 +106,9 @@ func (o *BroadcastsByUser200Response) SetMaxPerPage(v int32) {
 }
 
 // GetCurrentPageResults returns the CurrentPageResults field value
-func (o *BroadcastsByUser200Response) GetCurrentPageResults() []BroadcastsByUser200ResponseCurrentPageResultsInner {
+func (o *BroadcastsByUser200Response) GetCurrentPageResults() []BroadcastByUser {
 	if o == nil {
-		var ret []BroadcastsByUser200ResponseCurrentPageResultsInner
+		var ret []BroadcastByUser
 		return ret
 	}
 
@@ -117,7 +117,7 @@ func (o *BroadcastsByUser200Response) GetCurrentPageResults() []BroadcastsByUser
 
 // GetCurrentPageResultsOk returns a tuple with the CurrentPageResults field value
 // and a boolean to check if the value has been set.
-func (o *BroadcastsByUser200Response) GetCurrentPageResultsOk() ([]BroadcastsByUser200ResponseCurrentPageResultsInner, bool) {
+func (o *BroadcastsByUser200Response) GetCurrentPageResultsOk() ([]BroadcastByUser, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -125,7 +125,7 @@ func (o *BroadcastsByUser200Response) GetCurrentPageResultsOk() ([]BroadcastsByU
 }
 
 // SetCurrentPageResults sets field value
-func (o *BroadcastsByUser200Response) SetCurrentPageResults(v []BroadcastsByUser200ResponseCurrentPageResultsInner) {
+func (o *BroadcastsByUser200Response) SetCurrentPageResults(v []BroadcastByUser) {
 	o.CurrentPageResults = v
 }
 

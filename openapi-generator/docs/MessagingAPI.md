@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## InboxUsername
 
-> AccountKidPost200Response InboxUsername(ctx, username).Text(text).Execute()
+> Ok InboxUsername(ctx, username).Text(text).Execute()
 
 Send a private message
 
@@ -39,7 +39,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MessagingAPI.InboxUsername``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `InboxUsername`: AccountKidPost200Response
+	// response from `InboxUsername`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `MessagingAPI.InboxUsername`: %v\n", resp)
 }
 ```
@@ -64,7 +64,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 

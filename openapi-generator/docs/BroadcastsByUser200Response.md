@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CurrentPage** | **int32** |  | 
 **MaxPerPage** | **int32** |  | 
-**CurrentPageResults** | [**[]BroadcastsByUser200ResponseCurrentPageResultsInner**](BroadcastsByUser200ResponseCurrentPageResultsInner.md) |  | 
+**CurrentPageResults** | [**[]BroadcastByUser**](BroadcastByUser.md) |  | 
 **NbResults** | **int32** |  | 
 **PreviousPage** | **NullableInt32** |  | 
 **NextPage** | **NullableInt32** |  | 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewBroadcastsByUser200Response
 
-`func NewBroadcastsByUser200Response(currentPage int32, maxPerPage int32, currentPageResults []BroadcastsByUser200ResponseCurrentPageResultsInner, nbResults int32, previousPage NullableInt32, nextPage NullableInt32, nbPages int32, ) *BroadcastsByUser200Response`
+`func NewBroadcastsByUser200Response(currentPage int32, maxPerPage int32, currentPageResults []BroadcastByUser, nbResults int32, previousPage NullableInt32, nextPage NullableInt32, nbPages int32, ) *BroadcastsByUser200Response`
 
 NewBroadcastsByUser200Response instantiates a new BroadcastsByUser200Response object
 This constructor will assign default values to properties that have it defined,
@@ -73,20 +73,20 @@ SetMaxPerPage sets MaxPerPage field to given value.
 
 ### GetCurrentPageResults
 
-`func (o *BroadcastsByUser200Response) GetCurrentPageResults() []BroadcastsByUser200ResponseCurrentPageResultsInner`
+`func (o *BroadcastsByUser200Response) GetCurrentPageResults() []BroadcastByUser`
 
 GetCurrentPageResults returns the CurrentPageResults field if non-nil, zero value otherwise.
 
 ### GetCurrentPageResultsOk
 
-`func (o *BroadcastsByUser200Response) GetCurrentPageResultsOk() (*[]BroadcastsByUser200ResponseCurrentPageResultsInner, bool)`
+`func (o *BroadcastsByUser200Response) GetCurrentPageResultsOk() (*[]BroadcastByUser, bool)`
 
 GetCurrentPageResultsOk returns a tuple with the CurrentPageResults field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCurrentPageResults
 
-`func (o *BroadcastsByUser200Response) SetCurrentPageResults(v []BroadcastsByUser200ResponseCurrentPageResultsInner)`
+`func (o *BroadcastsByUser200Response) SetCurrentPageResults(v []BroadcastByUser)`
 
 SetCurrentPageResults sets CurrentPageResults field to given value.
 

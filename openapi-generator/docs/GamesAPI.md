@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 
 ## ApiExportBookmarks
 
-> ApiUserCurrentGame200Response ApiExportBookmarks(ctx).Accept(accept).Since(since).Until(until).Max(max).Moves(moves).PgnInJson(pgnInJson).Tags(tags).Clocks(clocks).Evals(evals).Accuracy(accuracy).Opening(opening).Division(division).Literate(literate).LastFen(lastFen).Sort(sort).Execute()
+> GamePgn200Response ApiExportBookmarks(ctx).Accept(accept).Since(since).Until(until).Max(max).Moves(moves).PgnInJson(pgnInJson).Tags(tags).Clocks(clocks).Evals(evals).Accuracy(accuracy).Opening(opening).Division(division).Literate(literate).LastFen(lastFen).Sort(sort).Execute()
 
 Export your bookmarked games
 
@@ -130,7 +130,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `GamesAPI.ApiExportBookmarks``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiExportBookmarks`: ApiUserCurrentGame200Response
+	// response from `ApiExportBookmarks`: GamePgn200Response
 	fmt.Fprintf(os.Stdout, "Response from `GamesAPI.ApiExportBookmarks`: %v\n", resp)
 }
 ```
@@ -164,7 +164,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiUserCurrentGame200Response**](ApiUserCurrentGame200Response.md)
+[**GamePgn200Response**](GamePgn200Response.md)
 
 ### Authorization
 
@@ -182,7 +182,7 @@ Name | Type | Description  | Notes
 
 ## ApiGamesUser
 
-> ApiUserCurrentGame200Response ApiGamesUser(ctx, username).Accept(accept).Since(since).Until(until).Max(max).Vs(vs).Rated(rated).PerfType(perfType).Color(color).Analysed(analysed).Moves(moves).PgnInJson(pgnInJson).Tags(tags).Clocks(clocks).Evals(evals).Accuracy(accuracy).Opening(opening).Division(division).Ongoing(ongoing).Finished(finished).Literate(literate).LastFen(lastFen).WithBookmarked(withBookmarked).Sort(sort).Execute()
+> GamePgn200Response ApiGamesUser(ctx, username).Accept(accept).Since(since).Until(until).Max(max).Vs(vs).Rated(rated).PerfType(perfType).Color(color).Analysed(analysed).Moves(moves).PgnInJson(pgnInJson).Tags(tags).Clocks(clocks).Evals(evals).Accuracy(accuracy).Opening(opening).Division(division).Ongoing(ongoing).Finished(finished).Literate(literate).LastFen(lastFen).WithBookmarked(withBookmarked).Sort(sort).Execute()
 
 Export games of a user
 
@@ -208,7 +208,7 @@ func main() {
 	max := int32(56) // int32 | How many games to download. Leave empty to download all games. (optional)
 	vs := "vs_example" // string | [Filter] Only games played against this opponent (optional)
 	rated := true // bool | [Filter] Only rated (`true`) or casual (`false`) games (optional)
-	perfType := "perfType_example" // string | [Filter] Only games in these speeds or variants. Multiple perf types can be specified, separated by a comma. Example: blitz,rapid,classical  (optional)
+	perfType := openapiclient.PerfType("ultraBullet") // PerfType | [Filter] Only games in these speeds or variants. Multiple perf types can be specified, separated by a comma. Example: blitz,rapid,classical  (optional)
 	color := "color_example" // string | [Filter] Only games played as this color. (optional)
 	analysed := true // bool | [Filter] Only games with or without a computer analysis available (optional)
 	moves := true // bool | Include the PGN moves. (optional) (default to true)
@@ -233,7 +233,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `GamesAPI.ApiGamesUser``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiGamesUser`: ApiUserCurrentGame200Response
+	// response from `ApiGamesUser`: GamePgn200Response
 	fmt.Fprintf(os.Stdout, "Response from `GamesAPI.ApiGamesUser`: %v\n", resp)
 }
 ```
@@ -260,7 +260,7 @@ Name | Type | Description  | Notes
  **max** | **int32** | How many games to download. Leave empty to download all games. | 
  **vs** | **string** | [Filter] Only games played against this opponent | 
  **rated** | **bool** | [Filter] Only rated (&#x60;true&#x60;) or casual (&#x60;false&#x60;) games | 
- **perfType** | **string** | [Filter] Only games in these speeds or variants. Multiple perf types can be specified, separated by a comma. Example: blitz,rapid,classical  | 
+ **perfType** | [**PerfType**](PerfType.md) | [Filter] Only games in these speeds or variants. Multiple perf types can be specified, separated by a comma. Example: blitz,rapid,classical  | 
  **color** | **string** | [Filter] Only games played as this color. | 
  **analysed** | **bool** | [Filter] Only games with or without a computer analysis available | 
  **moves** | **bool** | Include the PGN moves. | [default to true]
@@ -280,7 +280,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiUserCurrentGame200Response**](ApiUserCurrentGame200Response.md)
+[**GamePgn200Response**](GamePgn200Response.md)
 
 ### Authorization
 
@@ -359,7 +359,7 @@ Other parameters are passed through a pointer to a apiApiImportedGamesUserReques
 
 ## ApiUserCurrentGame
 
-> ApiUserCurrentGame200Response ApiUserCurrentGame(ctx, username).Accept(accept).Moves(moves).PgnInJson(pgnInJson).Tags(tags).Clocks(clocks).Evals(evals).Accuracy(accuracy).Opening(opening).Division(division).Literate(literate).Execute()
+> GamePgn200Response ApiUserCurrentGame(ctx, username).Accept(accept).Moves(moves).PgnInJson(pgnInJson).Tags(tags).Clocks(clocks).Evals(evals).Accuracy(accuracy).Opening(opening).Division(division).Literate(literate).Execute()
 
 Export ongoing game of a user
 
@@ -397,7 +397,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `GamesAPI.ApiUserCurrentGame``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiUserCurrentGame`: ApiUserCurrentGame200Response
+	// response from `ApiUserCurrentGame`: GamePgn200Response
 	fmt.Fprintf(os.Stdout, "Response from `GamesAPI.ApiUserCurrentGame`: %v\n", resp)
 }
 ```
@@ -431,7 +431,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiUserCurrentGame200Response**](ApiUserCurrentGame200Response.md)
+[**GamePgn200Response**](GamePgn200Response.md)
 
 ### Authorization
 
@@ -449,7 +449,7 @@ No authorization required
 
 ## GameChatGet
 
-> []GameChatGet200ResponseInner GameChatGet(ctx, gameId).Execute()
+> []SpectatorGameChatInner GameChatGet(ctx, gameId).Execute()
 
 Fetch the spectator game chat
 
@@ -477,7 +477,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `GamesAPI.GameChatGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GameChatGet`: []GameChatGet200ResponseInner
+	// response from `GameChatGet`: []SpectatorGameChatInner
 	fmt.Fprintf(os.Stdout, "Response from `GamesAPI.GameChatGet`: %v\n", resp)
 }
 ```
@@ -501,7 +501,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]GameChatGet200ResponseInner**](GameChatGet200ResponseInner.md)
+[**[]SpectatorGameChatInner**](SpectatorGameChatInner.md)
 
 ### Authorization
 
@@ -677,7 +677,7 @@ No authorization required
 
 ## GamesByIds
 
-> []GamesByIds200ResponseInner GamesByIds(ctx, streamId).Body(body).Execute()
+> []GameStreamGame GamesByIds(ctx, streamId).Body(body).Execute()
 
 Stream games by IDs
 
@@ -706,7 +706,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `GamesAPI.GamesByIds``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GamesByIds`: []GamesByIds200ResponseInner
+	// response from `GamesByIds`: []GameStreamGame
 	fmt.Fprintf(os.Stdout, "Response from `GamesAPI.GamesByIds`: %v\n", resp)
 }
 ```
@@ -731,7 +731,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]GamesByIds200ResponseInner**](GamesByIds200ResponseInner.md)
+[**[]GameStreamGame**](GameStreamGame.md)
 
 ### Authorization
 
@@ -749,7 +749,7 @@ No authorization required
 
 ## GamesByIdsAdd
 
-> AccountKidPost200Response GamesByIdsAdd(ctx, streamId).Body(body).Execute()
+> Ok GamesByIdsAdd(ctx, streamId).Body(body).Execute()
 
 Add game IDs to stream
 
@@ -778,7 +778,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `GamesAPI.GamesByIdsAdd``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GamesByIdsAdd`: AccountKidPost200Response
+	// response from `GamesByIdsAdd`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `GamesAPI.GamesByIdsAdd`: %v\n", resp)
 }
 ```
@@ -803,7 +803,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -821,7 +821,7 @@ No authorization required
 
 ## GamesByUsers
 
-> []GamesByUsers200ResponseInner GamesByUsers(ctx).Body(body).WithCurrentGames(withCurrentGames).Execute()
+> []GameStreamGame GamesByUsers(ctx).Body(body).WithCurrentGames(withCurrentGames).Execute()
 
 Stream games of users
 
@@ -850,7 +850,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `GamesAPI.GamesByUsers``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GamesByUsers`: []GamesByUsers200ResponseInner
+	// response from `GamesByUsers`: []GameStreamGame
 	fmt.Fprintf(os.Stdout, "Response from `GamesAPI.GamesByUsers`: %v\n", resp)
 }
 ```
@@ -871,7 +871,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]GamesByUsers200ResponseInner**](GamesByUsers200ResponseInner.md)
+[**[]GameStreamGame**](GameStreamGame.md)
 
 ### Authorization
 
@@ -889,7 +889,7 @@ No authorization required
 
 ## GamesExportIds
 
-> ApiUserCurrentGame200Response GamesExportIds(ctx).Body(body).Accept(accept).Moves(moves).PgnInJson(pgnInJson).Tags(tags).Clocks(clocks).Evals(evals).Accuracy(accuracy).Opening(opening).Division(division).Literate(literate).Execute()
+> GamePgn200Response GamesExportIds(ctx).Body(body).Accept(accept).Moves(moves).PgnInJson(pgnInJson).Tags(tags).Clocks(clocks).Evals(evals).Accuracy(accuracy).Opening(opening).Division(division).Literate(literate).Execute()
 
 Export games by IDs
 
@@ -927,7 +927,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `GamesAPI.GamesExportIds``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GamesExportIds`: ApiUserCurrentGame200Response
+	// response from `GamesExportIds`: GamePgn200Response
 	fmt.Fprintf(os.Stdout, "Response from `GamesAPI.GamesExportIds`: %v\n", resp)
 }
 ```
@@ -957,7 +957,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiUserCurrentGame200Response**](ApiUserCurrentGame200Response.md)
+[**GamePgn200Response**](GamePgn200Response.md)
 
 ### Authorization
 
@@ -975,7 +975,7 @@ No authorization required
 
 ## StreamGame
 
-> []StreamGame200ResponseInner StreamGame(ctx, id).Execute()
+> []MoveStreamEntry StreamGame(ctx, id).Execute()
 
 Stream moves of a game
 
@@ -1003,7 +1003,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `GamesAPI.StreamGame``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `StreamGame`: []StreamGame200ResponseInner
+	// response from `StreamGame`: []MoveStreamEntry
 	fmt.Fprintf(os.Stdout, "Response from `GamesAPI.StreamGame`: %v\n", resp)
 }
 ```
@@ -1027,7 +1027,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]StreamGame200ResponseInner**](StreamGame200ResponseInner.md)
+[**[]MoveStreamEntry**](MoveStreamEntry.md)
 
 ### Authorization
 

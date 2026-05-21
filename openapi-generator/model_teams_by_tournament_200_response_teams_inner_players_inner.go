@@ -22,7 +22,7 @@ var _ MappedNullable = &TeamsByTournament200ResponseTeamsInnerPlayersInner{}
 
 // TeamsByTournament200ResponseTeamsInnerPlayersInner struct for TeamsByTournament200ResponseTeamsInnerPlayersInner
 type TeamsByTournament200ResponseTeamsInnerPlayersInner struct {
-	User ApiUserPerf200ResponseStatWorstLossesResultsInnerOpId `json:"user"`
+	User LightUser `json:"user"`
 	Score *int32 `json:"score,omitempty"`
 }
 
@@ -32,7 +32,7 @@ type _TeamsByTournament200ResponseTeamsInnerPlayersInner TeamsByTournament200Res
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTeamsByTournament200ResponseTeamsInnerPlayersInner(user ApiUserPerf200ResponseStatWorstLossesResultsInnerOpId) *TeamsByTournament200ResponseTeamsInnerPlayersInner {
+func NewTeamsByTournament200ResponseTeamsInnerPlayersInner(user LightUser) *TeamsByTournament200ResponseTeamsInnerPlayersInner {
 	this := TeamsByTournament200ResponseTeamsInnerPlayersInner{}
 	this.User = user
 	return &this
@@ -47,9 +47,9 @@ func NewTeamsByTournament200ResponseTeamsInnerPlayersInnerWithDefaults() *TeamsB
 }
 
 // GetUser returns the User field value
-func (o *TeamsByTournament200ResponseTeamsInnerPlayersInner) GetUser() ApiUserPerf200ResponseStatWorstLossesResultsInnerOpId {
+func (o *TeamsByTournament200ResponseTeamsInnerPlayersInner) GetUser() LightUser {
 	if o == nil {
-		var ret ApiUserPerf200ResponseStatWorstLossesResultsInnerOpId
+		var ret LightUser
 		return ret
 	}
 
@@ -58,7 +58,7 @@ func (o *TeamsByTournament200ResponseTeamsInnerPlayersInner) GetUser() ApiUserPe
 
 // GetUserOk returns a tuple with the User field value
 // and a boolean to check if the value has been set.
-func (o *TeamsByTournament200ResponseTeamsInnerPlayersInner) GetUserOk() (*ApiUserPerf200ResponseStatWorstLossesResultsInnerOpId, bool) {
+func (o *TeamsByTournament200ResponseTeamsInnerPlayersInner) GetUserOk() (*LightUser, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *TeamsByTournament200ResponseTeamsInnerPlayersInner) GetUserOk() (*ApiUs
 }
 
 // SetUser sets field value
-func (o *TeamsByTournament200ResponseTeamsInnerPlayersInner) SetUser(v ApiUserPerf200ResponseStatWorstLossesResultsInnerOpId) {
+func (o *TeamsByTournament200ResponseTeamsInnerPlayersInner) SetUser(v LightUser) {
 	o.User = v
 }
 

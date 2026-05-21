@@ -19,14 +19,14 @@ import (
 
 // GamePgn200Response - struct for GamePgn200Response
 type GamePgn200Response struct {
-	GamePgn200ResponseOneOf *GamePgn200ResponseOneOf
+	GameJson *GameJson
 	String *string
 }
 
-// GamePgn200ResponseOneOfAsGamePgn200Response is a convenience function that returns GamePgn200ResponseOneOf wrapped in GamePgn200Response
-func GamePgn200ResponseOneOfAsGamePgn200Response(v *GamePgn200ResponseOneOf) GamePgn200Response {
+// GameJsonAsGamePgn200Response is a convenience function that returns GameJson wrapped in GamePgn200Response
+func GameJsonAsGamePgn200Response(v *GameJson) GamePgn200Response {
 	return GamePgn200Response{
-		GamePgn200ResponseOneOf: v,
+		GameJson: v,
 	}
 }
 
@@ -42,21 +42,21 @@ func StringAsGamePgn200Response(v *string) GamePgn200Response {
 func (dst *GamePgn200Response) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into GamePgn200ResponseOneOf
-	err = newStrictDecoder(data).Decode(&dst.GamePgn200ResponseOneOf)
+	// try to unmarshal data into GameJson
+	err = newStrictDecoder(data).Decode(&dst.GameJson)
 	if err == nil {
-		jsonGamePgn200ResponseOneOf, _ := json.Marshal(dst.GamePgn200ResponseOneOf)
-		if string(jsonGamePgn200ResponseOneOf) == "{}" { // empty struct
-			dst.GamePgn200ResponseOneOf = nil
+		jsonGameJson, _ := json.Marshal(dst.GameJson)
+		if string(jsonGameJson) == "{}" { // empty struct
+			dst.GameJson = nil
 		} else {
-			if err = validator.Validate(dst.GamePgn200ResponseOneOf); err != nil {
-				dst.GamePgn200ResponseOneOf = nil
+			if err = validator.Validate(dst.GameJson); err != nil {
+				dst.GameJson = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.GamePgn200ResponseOneOf = nil
+		dst.GameJson = nil
 	}
 
 	// try to unmarshal data into String
@@ -78,7 +78,7 @@ func (dst *GamePgn200Response) UnmarshalJSON(data []byte) error {
 
 	if match > 1 { // more than 1 match
 		// reset to nil
-		dst.GamePgn200ResponseOneOf = nil
+		dst.GameJson = nil
 		dst.String = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(GamePgn200Response)")
@@ -91,8 +91,8 @@ func (dst *GamePgn200Response) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src GamePgn200Response) MarshalJSON() ([]byte, error) {
-	if src.GamePgn200ResponseOneOf != nil {
-		return json.Marshal(&src.GamePgn200ResponseOneOf)
+	if src.GameJson != nil {
+		return json.Marshal(&src.GameJson)
 	}
 
 	if src.String != nil {
@@ -107,8 +107,8 @@ func (obj *GamePgn200Response) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
-	if obj.GamePgn200ResponseOneOf != nil {
-		return obj.GamePgn200ResponseOneOf
+	if obj.GameJson != nil {
+		return obj.GameJson
 	}
 
 	if obj.String != nil {
@@ -121,8 +121,8 @@ func (obj *GamePgn200Response) GetActualInstance() (interface{}) {
 
 // Get the actual instance value
 func (obj GamePgn200Response) GetActualInstanceValue() (interface{}) {
-	if obj.GamePgn200ResponseOneOf != nil {
-		return *obj.GamePgn200ResponseOneOf
+	if obj.GameJson != nil {
+		return *obj.GameJson
 	}
 
 	if obj.String != nil {

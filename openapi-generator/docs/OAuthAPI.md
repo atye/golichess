@@ -243,7 +243,7 @@ import (
 )
 
 func main() {
-	body := "lip_jose,lip_badToken " // string | OAuth tokens separated by commas. Up to 1000.
+	body := "body_example" // string | OAuth tokens separated by commas. Up to 1000.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

@@ -5,15 +5,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **string** |  | 
-**Game** | [**ApiStreamEvent200ResponseOneOf1Game**](ApiStreamEvent200ResponseOneOf1Game.md) |  | 
-**Challenge** | [**ApiStreamEvent200ResponseOneOf4Challenge**](ApiStreamEvent200ResponseOneOf4Challenge.md) |  | 
-**Compat** | Pointer to [**ApiStreamEvent200ResponseOneOfGameCompat**](ApiStreamEvent200ResponseOneOfGameCompat.md) |  | [optional] 
+**Game** | [**GameEventInfo**](GameEventInfo.md) |  | 
+**Challenge** | [**ChallengeDeclinedJson**](ChallengeDeclinedJson.md) |  | 
+**Compat** | Pointer to [**GameCompat**](GameCompat.md) |  | [optional] 
 
 ## Methods
 
 ### NewApiStreamEvent200Response
 
-`func NewApiStreamEvent200Response(type_ string, game ApiStreamEvent200ResponseOneOf1Game, challenge ApiStreamEvent200ResponseOneOf4Challenge, ) *ApiStreamEvent200Response`
+`func NewApiStreamEvent200Response(type_ string, game GameEventInfo, challenge ChallengeDeclinedJson, ) *ApiStreamEvent200Response`
 
 NewApiStreamEvent200Response instantiates a new ApiStreamEvent200Response object
 This constructor will assign default values to properties that have it defined,
@@ -50,60 +50,60 @@ SetType sets Type field to given value.
 
 ### GetGame
 
-`func (o *ApiStreamEvent200Response) GetGame() ApiStreamEvent200ResponseOneOf1Game`
+`func (o *ApiStreamEvent200Response) GetGame() GameEventInfo`
 
 GetGame returns the Game field if non-nil, zero value otherwise.
 
 ### GetGameOk
 
-`func (o *ApiStreamEvent200Response) GetGameOk() (*ApiStreamEvent200ResponseOneOf1Game, bool)`
+`func (o *ApiStreamEvent200Response) GetGameOk() (*GameEventInfo, bool)`
 
 GetGameOk returns a tuple with the Game field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGame
 
-`func (o *ApiStreamEvent200Response) SetGame(v ApiStreamEvent200ResponseOneOf1Game)`
+`func (o *ApiStreamEvent200Response) SetGame(v GameEventInfo)`
 
 SetGame sets Game field to given value.
 
 
 ### GetChallenge
 
-`func (o *ApiStreamEvent200Response) GetChallenge() ApiStreamEvent200ResponseOneOf4Challenge`
+`func (o *ApiStreamEvent200Response) GetChallenge() ChallengeDeclinedJson`
 
 GetChallenge returns the Challenge field if non-nil, zero value otherwise.
 
 ### GetChallengeOk
 
-`func (o *ApiStreamEvent200Response) GetChallengeOk() (*ApiStreamEvent200ResponseOneOf4Challenge, bool)`
+`func (o *ApiStreamEvent200Response) GetChallengeOk() (*ChallengeDeclinedJson, bool)`
 
 GetChallengeOk returns a tuple with the Challenge field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetChallenge
 
-`func (o *ApiStreamEvent200Response) SetChallenge(v ApiStreamEvent200ResponseOneOf4Challenge)`
+`func (o *ApiStreamEvent200Response) SetChallenge(v ChallengeDeclinedJson)`
 
 SetChallenge sets Challenge field to given value.
 
 
 ### GetCompat
 
-`func (o *ApiStreamEvent200Response) GetCompat() ApiStreamEvent200ResponseOneOfGameCompat`
+`func (o *ApiStreamEvent200Response) GetCompat() GameCompat`
 
 GetCompat returns the Compat field if non-nil, zero value otherwise.
 
 ### GetCompatOk
 
-`func (o *ApiStreamEvent200Response) GetCompatOk() (*ApiStreamEvent200ResponseOneOfGameCompat, bool)`
+`func (o *ApiStreamEvent200Response) GetCompatOk() (*GameCompat, bool)`
 
 GetCompatOk returns a tuple with the Compat field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompat
 
-`func (o *ApiStreamEvent200Response) SetCompat(v ApiStreamEvent200ResponseOneOfGameCompat)`
+`func (o *ApiStreamEvent200Response) SetCompat(v GameCompat)`
 
 SetCompat sets Compat field to given value.
 

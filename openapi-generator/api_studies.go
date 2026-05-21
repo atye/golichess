@@ -78,8 +78,8 @@ Note that a study can contain at most 64 chapters.
 	ApiStudyImportPGN(ctx context.Context, studyId string) StudiesAPIApiStudyImportPGNRequest
 
 	// ApiStudyImportPGNExecute executes the request
-	//  @return ApiStudyImportPGN200Response
-	ApiStudyImportPGNExecute(r StudiesAPIApiStudyImportPGNRequest) (*ApiStudyImportPGN200Response, *http.Response, error)
+	//  @return StudyImportPgnChapters
+	ApiStudyImportPGNExecute(r StudiesAPIApiStudyImportPGNRequest) (*StudyImportPgnChapters, *http.Response, error)
 
 	/*
 	ApiStudyPost Create a new Study
@@ -201,8 +201,8 @@ Studies are streamed as [ndjson](#description/streaming-with-nd-json).
 	StudyListMetadata(ctx context.Context, username string) StudiesAPIStudyListMetadataRequest
 
 	// StudyListMetadataExecute executes the request
-	//  @return StudyListMetadata200Response
-	StudyListMetadataExecute(r StudiesAPIStudyListMetadataRequest) (*StudyListMetadata200Response, *http.Response, error)
+	//  @return StudyMetadata
+	StudyListMetadataExecute(r StudiesAPIStudyListMetadataRequest) (*StudyMetadata, *http.Response, error)
 }
 
 // StudiesAPIService StudiesAPI service
@@ -324,7 +324,7 @@ func (a *StudiesAPIService) ApiStudyChapterMovesExecute(r StudiesAPIApiStudyChap
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -460,7 +460,7 @@ func (a *StudiesAPIService) ApiStudyChapterTagsExecute(r StudiesAPIApiStudyChapt
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -482,7 +482,7 @@ type StudiesAPIApiStudyImportPGNRequest struct {
 	pgn *string
 	name *string
 	orientation *string
-	variant *string
+	variant *VariantKey
 	mode *string
 }
 
@@ -504,7 +504,7 @@ func (r StudiesAPIApiStudyImportPGNRequest) Orientation(orientation string) Stud
 	return r
 }
 
-func (r StudiesAPIApiStudyImportPGNRequest) Variant(variant string) StudiesAPIApiStudyImportPGNRequest {
+func (r StudiesAPIApiStudyImportPGNRequest) Variant(variant VariantKey) StudiesAPIApiStudyImportPGNRequest {
 	r.variant = &variant
 	return r
 }
@@ -515,7 +515,7 @@ func (r StudiesAPIApiStudyImportPGNRequest) Mode(mode string) StudiesAPIApiStudy
 	return r
 }
 
-func (r StudiesAPIApiStudyImportPGNRequest) Execute() (*ApiStudyImportPGN200Response, *http.Response, error) {
+func (r StudiesAPIApiStudyImportPGNRequest) Execute() (*StudyImportPgnChapters, *http.Response, error) {
 	return r.ApiService.ApiStudyImportPGNExecute(r)
 }
 
@@ -541,13 +541,13 @@ func (a *StudiesAPIService) ApiStudyImportPGN(ctx context.Context, studyId strin
 }
 
 // Execute executes the request
-//  @return ApiStudyImportPGN200Response
-func (a *StudiesAPIService) ApiStudyImportPGNExecute(r StudiesAPIApiStudyImportPGNRequest) (*ApiStudyImportPGN200Response, *http.Response, error) {
+//  @return StudyImportPgnChapters
+func (a *StudiesAPIService) ApiStudyImportPGNExecute(r StudiesAPIApiStudyImportPGNRequest) (*StudyImportPgnChapters, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiStudyImportPGN200Response
+		localVarReturnValue  *StudyImportPgnChapters
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StudiesAPIService.ApiStudyImportPGN")
@@ -618,7 +618,7 @@ func (a *StudiesAPIService) ApiStudyImportPGNExecute(r StudiesAPIApiStudyImportP
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -647,11 +647,11 @@ type StudiesAPIApiStudyPostRequest struct {
 	ApiService StudiesAPI
 	name *string
 	visibility *string
-	computer *string
-	explorer *string
-	cloneable *string
-	shareable *string
-	chat *string
+	computer *StudyUserSelection
+	explorer *StudyUserSelection
+	cloneable *StudyUserSelection
+	shareable *StudyUserSelection
+	chat *StudyUserSelection
 	sticky *string
 }
 
@@ -667,27 +667,27 @@ func (r StudiesAPIApiStudyPostRequest) Visibility(visibility string) StudiesAPIA
 	return r
 }
 
-func (r StudiesAPIApiStudyPostRequest) Computer(computer string) StudiesAPIApiStudyPostRequest {
+func (r StudiesAPIApiStudyPostRequest) Computer(computer StudyUserSelection) StudiesAPIApiStudyPostRequest {
 	r.computer = &computer
 	return r
 }
 
-func (r StudiesAPIApiStudyPostRequest) Explorer(explorer string) StudiesAPIApiStudyPostRequest {
+func (r StudiesAPIApiStudyPostRequest) Explorer(explorer StudyUserSelection) StudiesAPIApiStudyPostRequest {
 	r.explorer = &explorer
 	return r
 }
 
-func (r StudiesAPIApiStudyPostRequest) Cloneable(cloneable string) StudiesAPIApiStudyPostRequest {
+func (r StudiesAPIApiStudyPostRequest) Cloneable(cloneable StudyUserSelection) StudiesAPIApiStudyPostRequest {
 	r.cloneable = &cloneable
 	return r
 }
 
-func (r StudiesAPIApiStudyPostRequest) Shareable(shareable string) StudiesAPIApiStudyPostRequest {
+func (r StudiesAPIApiStudyPostRequest) Shareable(shareable StudyUserSelection) StudiesAPIApiStudyPostRequest {
 	r.shareable = &shareable
 	return r
 }
 
-func (r StudiesAPIApiStudyPostRequest) Chat(chat string) StudiesAPIApiStudyPostRequest {
+func (r StudiesAPIApiStudyPostRequest) Chat(chat StudyUserSelection) StudiesAPIApiStudyPostRequest {
 	r.chat = &chat
 	return r
 }
@@ -817,7 +817,7 @@ func (a *StudiesAPIService) ApiStudyPostExecute(r StudiesAPIApiStudyPostRequest)
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1565,7 +1565,7 @@ type StudiesAPIStudyListMetadataRequest struct {
 	username string
 }
 
-func (r StudiesAPIStudyListMetadataRequest) Execute() (*StudyListMetadata200Response, *http.Response, error) {
+func (r StudiesAPIStudyListMetadataRequest) Execute() (*StudyMetadata, *http.Response, error) {
 	return r.ApiService.StudyListMetadataExecute(r)
 }
 
@@ -1591,13 +1591,13 @@ func (a *StudiesAPIService) StudyListMetadata(ctx context.Context, username stri
 }
 
 // Execute executes the request
-//  @return StudyListMetadata200Response
-func (a *StudiesAPIService) StudyListMetadataExecute(r StudiesAPIStudyListMetadataRequest) (*StudyListMetadata200Response, *http.Response, error) {
+//  @return StudyMetadata
+func (a *StudiesAPIService) StudyListMetadataExecute(r StudiesAPIStudyListMetadataRequest) (*StudyMetadata, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *StudyListMetadata200Response
+		localVarReturnValue  *StudyMetadata
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StudiesAPIService.StudyListMetadata")

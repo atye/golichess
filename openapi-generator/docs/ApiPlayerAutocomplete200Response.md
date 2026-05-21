@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Result** | Pointer to [**[]ApiPlayerAutocomplete200ResponseOneOfResultInner**](ApiPlayerAutocomplete200ResponseOneOfResultInner.md) |  | [optional] 
+**Result** | Pointer to [**[]LightUserOnline**](LightUserOnline.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetResult
 
-`func (o *ApiPlayerAutocomplete200Response) GetResult() []ApiPlayerAutocomplete200ResponseOneOfResultInner`
+`func (o *ApiPlayerAutocomplete200Response) GetResult() []LightUserOnline`
 
 GetResult returns the Result field if non-nil, zero value otherwise.
 
 ### GetResultOk
 
-`func (o *ApiPlayerAutocomplete200Response) GetResultOk() (*[]ApiPlayerAutocomplete200ResponseOneOfResultInner, bool)`
+`func (o *ApiPlayerAutocomplete200Response) GetResultOk() (*[]LightUserOnline, bool)`
 
 GetResultOk returns a tuple with the Result field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetResult
 
-`func (o *ApiPlayerAutocomplete200Response) SetResult(v []ApiPlayerAutocomplete200ResponseOneOfResultInner)`
+`func (o *ApiPlayerAutocomplete200Response) SetResult(v []LightUserOnline)`
 
 SetResult sets Result field to given value.
 

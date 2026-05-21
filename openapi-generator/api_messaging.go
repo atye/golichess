@@ -36,8 +36,8 @@ type MessagingAPI interface {
 	InboxUsername(ctx context.Context, username string) MessagingAPIInboxUsernameRequest
 
 	// InboxUsernameExecute executes the request
-	//  @return AccountKidPost200Response
-	InboxUsernameExecute(r MessagingAPIInboxUsernameRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	InboxUsernameExecute(r MessagingAPIInboxUsernameRequest) (*Ok, *http.Response, error)
 }
 
 // MessagingAPIService MessagingAPI service
@@ -55,7 +55,7 @@ func (r MessagingAPIInboxUsernameRequest) Text(text string) MessagingAPIInboxUse
 	return r
 }
 
-func (r MessagingAPIInboxUsernameRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r MessagingAPIInboxUsernameRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.InboxUsernameExecute(r)
 }
 
@@ -78,13 +78,13 @@ func (a *MessagingAPIService) InboxUsername(ctx context.Context, username string
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *MessagingAPIService) InboxUsernameExecute(r MessagingAPIInboxUsernameRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *MessagingAPIService) InboxUsernameExecute(r MessagingAPIInboxUsernameRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MessagingAPIService.InboxUsername")
@@ -143,7 +143,7 @@ func (a *MessagingAPIService) InboxUsernameExecute(r MessagingAPIInboxUsernameRe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

@@ -254,7 +254,7 @@ func (a *OAuthAPIService) ApiTokenExecute(r OAuthAPIApiTokenRequest) (*ApiToken2
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiToken400Response
+			var v OAuthError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

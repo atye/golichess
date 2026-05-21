@@ -45,9 +45,9 @@ func main() {
 	increment := int32(56) // int32 | Clock increment in seconds. Required for real-time seeks.
 	days := int32(56) // int32 | Days per turn. Required for correspondence seeks.
 	rated := true // bool | Whether the game is rated and impacts players ratings. (optional) (default to false)
-	variant := "variant_example" // string |  (optional) (default to "standard")
+	variant := openapiclient.VariantKey("standard") // VariantKey |  (optional) (default to "standard")
 	ratingRange := "ratingRange_example" // string | The rating range of potential opponents. Better left empty. Example: 1500-1800  (optional)
-	color := "color_example" // string | Which color you get to play (optional) (default to "random")
+	color := openapiclient.ChallengeColor("white") // ChallengeColor | The color to play. Better left empty to automatically get 50% white. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -76,9 +76,9 @@ Name | Type | Description  | Notes
  **increment** | **int32** | Clock increment in seconds. Required for real-time seeks. | 
  **days** | **int32** | Days per turn. Required for correspondence seeks. | 
  **rated** | **bool** | Whether the game is rated and impacts players ratings. | [default to false]
- **variant** | **string** |  | [default to &quot;standard&quot;]
+ **variant** | [**VariantKey**](VariantKey.md) |  | [default to &quot;standard&quot;]
  **ratingRange** | **string** | The rating range of potential opponents. Better left empty. Example: 1500-1800  | 
- **color** | **string** | Which color you get to play | [default to &quot;random&quot;]
+ **color** | [**ChallengeColor**](ChallengeColor.md) | The color to play. Better left empty to automatically get 50% white. | 
 
 ### Return type
 
@@ -161,7 +161,7 @@ Other parameters are passed through a pointer to a apiApiStreamEventRequest stru
 
 ## BoardGameAbort
 
-> AccountKidPost200Response BoardGameAbort(ctx, gameId).Execute()
+> Ok BoardGameAbort(ctx, gameId).Execute()
 
 Abort a game
 
@@ -189,7 +189,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BoardAPI.BoardGameAbort``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BoardGameAbort`: AccountKidPost200Response
+	// response from `BoardGameAbort`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `BoardAPI.BoardGameAbort`: %v\n", resp)
 }
 ```
@@ -213,7 +213,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -231,7 +231,7 @@ Name | Type | Description  | Notes
 
 ## BoardGameBerserk
 
-> AccountKidPost200Response BoardGameBerserk(ctx, gameId).Execute()
+> Ok BoardGameBerserk(ctx, gameId).Execute()
 
 Berserk a tournament game
 
@@ -259,7 +259,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BoardAPI.BoardGameBerserk``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BoardGameBerserk`: AccountKidPost200Response
+	// response from `BoardGameBerserk`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `BoardAPI.BoardGameBerserk`: %v\n", resp)
 }
 ```
@@ -283,7 +283,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -301,7 +301,7 @@ Name | Type | Description  | Notes
 
 ## BoardGameChatGet
 
-> []GameChatGet200ResponseInner BoardGameChatGet(ctx, gameId).Execute()
+> []SpectatorGameChatInner BoardGameChatGet(ctx, gameId).Execute()
 
 Fetch the player chat
 
@@ -329,7 +329,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BoardAPI.BoardGameChatGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BoardGameChatGet`: []GameChatGet200ResponseInner
+	// response from `BoardGameChatGet`: []SpectatorGameChatInner
 	fmt.Fprintf(os.Stdout, "Response from `BoardAPI.BoardGameChatGet`: %v\n", resp)
 }
 ```
@@ -353,7 +353,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]GameChatGet200ResponseInner**](GameChatGet200ResponseInner.md)
+[**[]SpectatorGameChatInner**](SpectatorGameChatInner.md)
 
 ### Authorization
 
@@ -371,7 +371,7 @@ Name | Type | Description  | Notes
 
 ## BoardGameChatPost
 
-> AccountKidPost200Response BoardGameChatPost(ctx, gameId).Room(room).Text(text).Execute()
+> Ok BoardGameChatPost(ctx, gameId).Room(room).Text(text).Execute()
 
 Write in the chat
 
@@ -401,7 +401,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BoardAPI.BoardGameChatPost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BoardGameChatPost`: AccountKidPost200Response
+	// response from `BoardGameChatPost`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `BoardAPI.BoardGameChatPost`: %v\n", resp)
 }
 ```
@@ -427,7 +427,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -445,7 +445,7 @@ Name | Type | Description  | Notes
 
 ## BoardGameClaimDraw
 
-> AccountKidPost200Response BoardGameClaimDraw(ctx, gameId).Execute()
+> Ok BoardGameClaimDraw(ctx, gameId).Execute()
 
 Claim draw of a game
 
@@ -473,7 +473,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BoardAPI.BoardGameClaimDraw``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BoardGameClaimDraw`: AccountKidPost200Response
+	// response from `BoardGameClaimDraw`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `BoardAPI.BoardGameClaimDraw`: %v\n", resp)
 }
 ```
@@ -497,7 +497,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -515,7 +515,7 @@ Name | Type | Description  | Notes
 
 ## BoardGameClaimVictory
 
-> AccountKidPost200Response BoardGameClaimVictory(ctx, gameId).Execute()
+> Ok BoardGameClaimVictory(ctx, gameId).Execute()
 
 Claim victory of a game
 
@@ -543,7 +543,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BoardAPI.BoardGameClaimVictory``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BoardGameClaimVictory`: AccountKidPost200Response
+	// response from `BoardGameClaimVictory`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `BoardAPI.BoardGameClaimVictory`: %v\n", resp)
 }
 ```
@@ -567,7 +567,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -585,7 +585,7 @@ Name | Type | Description  | Notes
 
 ## BoardGameDraw
 
-> AccountKidPost200Response BoardGameDraw(ctx, gameId, accept).Execute()
+> Ok BoardGameDraw(ctx, gameId, accept).Execute()
 
 Handle draw offers
 
@@ -614,7 +614,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BoardAPI.BoardGameDraw``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BoardGameDraw`: AccountKidPost200Response
+	// response from `BoardGameDraw`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `BoardAPI.BoardGameDraw`: %v\n", resp)
 }
 ```
@@ -640,7 +640,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -658,7 +658,7 @@ Name | Type | Description  | Notes
 
 ## BoardGameMove
 
-> AccountKidPost200Response BoardGameMove(ctx, gameId, move).OfferingDraw(offeringDraw).Execute()
+> Ok BoardGameMove(ctx, gameId, move).OfferingDraw(offeringDraw).Execute()
 
 Make a Board move
 
@@ -688,7 +688,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BoardAPI.BoardGameMove``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BoardGameMove`: AccountKidPost200Response
+	// response from `BoardGameMove`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `BoardAPI.BoardGameMove`: %v\n", resp)
 }
 ```
@@ -715,7 +715,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -733,7 +733,7 @@ Name | Type | Description  | Notes
 
 ## BoardGameResign
 
-> AccountKidPost200Response BoardGameResign(ctx, gameId).Execute()
+> Ok BoardGameResign(ctx, gameId).Execute()
 
 Resign a game
 
@@ -761,7 +761,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BoardAPI.BoardGameResign``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BoardGameResign`: AccountKidPost200Response
+	// response from `BoardGameResign`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `BoardAPI.BoardGameResign`: %v\n", resp)
 }
 ```
@@ -785,7 +785,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -873,7 +873,7 @@ Name | Type | Description  | Notes
 
 ## BoardGameTakeback
 
-> AccountKidPost200Response BoardGameTakeback(ctx, gameId, accept).Execute()
+> Ok BoardGameTakeback(ctx, gameId, accept).Execute()
 
 Handle takeback offers
 
@@ -902,7 +902,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BoardAPI.BoardGameTakeback``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BoardGameTakeback`: AccountKidPost200Response
+	// response from `BoardGameTakeback`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `BoardAPI.BoardGameTakeback`: %v\n", resp)
 }
 ```
@@ -928,7 +928,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 

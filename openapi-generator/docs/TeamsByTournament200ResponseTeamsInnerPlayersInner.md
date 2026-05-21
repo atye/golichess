@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**User** | [**ApiUserPerf200ResponseStatWorstLossesResultsInnerOpId**](ApiUserPerf200ResponseStatWorstLossesResultsInnerOpId.md) |  | 
+**User** | [**LightUser**](LightUser.md) |  | 
 **Score** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
 ### NewTeamsByTournament200ResponseTeamsInnerPlayersInner
 
-`func NewTeamsByTournament200ResponseTeamsInnerPlayersInner(user ApiUserPerf200ResponseStatWorstLossesResultsInnerOpId, ) *TeamsByTournament200ResponseTeamsInnerPlayersInner`
+`func NewTeamsByTournament200ResponseTeamsInnerPlayersInner(user LightUser, ) *TeamsByTournament200ResponseTeamsInnerPlayersInner`
 
 NewTeamsByTournament200ResponseTeamsInnerPlayersInner instantiates a new TeamsByTournament200ResponseTeamsInnerPlayersInner object
 This constructor will assign default values to properties that have it defined,
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetUser
 
-`func (o *TeamsByTournament200ResponseTeamsInnerPlayersInner) GetUser() ApiUserPerf200ResponseStatWorstLossesResultsInnerOpId`
+`func (o *TeamsByTournament200ResponseTeamsInnerPlayersInner) GetUser() LightUser`
 
 GetUser returns the User field if non-nil, zero value otherwise.
 
 ### GetUserOk
 
-`func (o *TeamsByTournament200ResponseTeamsInnerPlayersInner) GetUserOk() (*ApiUserPerf200ResponseStatWorstLossesResultsInnerOpId, bool)`
+`func (o *TeamsByTournament200ResponseTeamsInnerPlayersInner) GetUserOk() (*LightUser, bool)`
 
 GetUserOk returns a tuple with the User field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUser
 
-`func (o *TeamsByTournament200ResponseTeamsInnerPlayersInner) SetUser(v ApiUserPerf200ResponseStatWorstLossesResultsInnerOpId)`
+`func (o *TeamsByTournament200ResponseTeamsInnerPlayersInner) SetUser(v LightUser)`
 
 SetUser sets User field to given value.
 

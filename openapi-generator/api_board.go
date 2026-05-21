@@ -98,8 +98,8 @@ Only one global event stream can be active at a time. When the stream opens, the
 	BoardGameAbort(ctx context.Context, gameId string) BoardAPIBoardGameAbortRequest
 
 	// BoardGameAbortExecute executes the request
-	//  @return AccountKidPost200Response
-	BoardGameAbortExecute(r BoardAPIBoardGameAbortRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	BoardGameAbortExecute(r BoardAPIBoardGameAbortRequest) (*Ok, *http.Response, error)
 
 	/*
 	BoardGameBerserk Berserk a tournament game
@@ -115,8 +115,8 @@ Only available in arena tournaments that allow berserk, and before each player h
 	BoardGameBerserk(ctx context.Context, gameId string) BoardAPIBoardGameBerserkRequest
 
 	// BoardGameBerserkExecute executes the request
-	//  @return AccountKidPost200Response
-	BoardGameBerserkExecute(r BoardAPIBoardGameBerserkRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	BoardGameBerserkExecute(r BoardAPIBoardGameBerserkRequest) (*Ok, *http.Response, error)
 
 	/*
 	BoardGameChatGet Fetch the player chat
@@ -133,8 +133,8 @@ Games can also have a public spectator chat.
 	BoardGameChatGet(ctx context.Context, gameId string) BoardAPIBoardGameChatGetRequest
 
 	// BoardGameChatGetExecute executes the request
-	//  @return []GameChatGet200ResponseInner
-	BoardGameChatGetExecute(r BoardAPIBoardGameChatGetRequest) ([]GameChatGet200ResponseInner, *http.Response, error)
+	//  @return []SpectatorGameChatInner
+	BoardGameChatGetExecute(r BoardAPIBoardGameChatGetRequest) ([]SpectatorGameChatInner, *http.Response, error)
 
 	/*
 	BoardGameChatPost Write in the chat
@@ -149,8 +149,8 @@ Games can also have a public spectator chat.
 	BoardGameChatPost(ctx context.Context, gameId string) BoardAPIBoardGameChatPostRequest
 
 	// BoardGameChatPostExecute executes the request
-	//  @return AccountKidPost200Response
-	BoardGameChatPostExecute(r BoardAPIBoardGameChatPostRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	BoardGameChatPostExecute(r BoardAPIBoardGameChatPostRequest) (*Ok, *http.Response, error)
 
 	/*
 	BoardGameClaimDraw Claim draw of a game
@@ -165,8 +165,8 @@ Games can also have a public spectator chat.
 	BoardGameClaimDraw(ctx context.Context, gameId string) BoardAPIBoardGameClaimDrawRequest
 
 	// BoardGameClaimDrawExecute executes the request
-	//  @return AccountKidPost200Response
-	BoardGameClaimDrawExecute(r BoardAPIBoardGameClaimDrawRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	BoardGameClaimDrawExecute(r BoardAPIBoardGameClaimDrawRequest) (*Ok, *http.Response, error)
 
 	/*
 	BoardGameClaimVictory Claim victory of a game
@@ -181,8 +181,8 @@ Games can also have a public spectator chat.
 	BoardGameClaimVictory(ctx context.Context, gameId string) BoardAPIBoardGameClaimVictoryRequest
 
 	// BoardGameClaimVictoryExecute executes the request
-	//  @return AccountKidPost200Response
-	BoardGameClaimVictoryExecute(r BoardAPIBoardGameClaimVictoryRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	BoardGameClaimVictoryExecute(r BoardAPIBoardGameClaimVictoryRequest) (*Ok, *http.Response, error)
 
 	/*
 	BoardGameDraw Handle draw offers
@@ -200,8 +200,8 @@ Games can also have a public spectator chat.
 	BoardGameDraw(ctx context.Context, gameId string, accept BoardGameDrawAcceptParameter) BoardAPIBoardGameDrawRequest
 
 	// BoardGameDrawExecute executes the request
-	//  @return AccountKidPost200Response
-	BoardGameDrawExecute(r BoardAPIBoardGameDrawRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	BoardGameDrawExecute(r BoardAPIBoardGameDrawRequest) (*Ok, *http.Response, error)
 
 	/*
 	BoardGameMove Make a Board move
@@ -218,8 +218,8 @@ The move can also contain a draw offer/agreement.
 	BoardGameMove(ctx context.Context, gameId string, move string) BoardAPIBoardGameMoveRequest
 
 	// BoardGameMoveExecute executes the request
-	//  @return AccountKidPost200Response
-	BoardGameMoveExecute(r BoardAPIBoardGameMoveRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	BoardGameMoveExecute(r BoardAPIBoardGameMoveRequest) (*Ok, *http.Response, error)
 
 	/*
 	BoardGameResign Resign a game
@@ -234,8 +234,8 @@ The move can also contain a draw offer/agreement.
 	BoardGameResign(ctx context.Context, gameId string) BoardAPIBoardGameResignRequest
 
 	// BoardGameResignExecute executes the request
-	//  @return AccountKidPost200Response
-	BoardGameResignExecute(r BoardAPIBoardGameResignRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	BoardGameResignExecute(r BoardAPIBoardGameResignRequest) (*Ok, *http.Response, error)
 
 	/*
 	BoardGameStream Stream Board game state
@@ -281,8 +281,8 @@ The server closes the stream when the game ends, or if the game has already ende
 	BoardGameTakeback(ctx context.Context, gameId string, accept BoardGameDrawAcceptParameter) BoardAPIBoardGameTakebackRequest
 
 	// BoardGameTakebackExecute executes the request
-	//  @return AccountKidPost200Response
-	BoardGameTakebackExecute(r BoardAPIBoardGameTakebackRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	BoardGameTakebackExecute(r BoardAPIBoardGameTakebackRequest) (*Ok, *http.Response, error)
 }
 
 // BoardAPIService BoardAPI service
@@ -295,9 +295,9 @@ type BoardAPIApiBoardSeekRequest struct {
 	increment *int32
 	days *int32
 	rated *bool
-	variant *string
+	variant *VariantKey
 	ratingRange *string
-	color *string
+	color *ChallengeColor
 }
 
 // Clock initial time in minutes. Required for real-time seeks.
@@ -324,7 +324,7 @@ func (r BoardAPIApiBoardSeekRequest) Rated(rated bool) BoardAPIApiBoardSeekReque
 	return r
 }
 
-func (r BoardAPIApiBoardSeekRequest) Variant(variant string) BoardAPIApiBoardSeekRequest {
+func (r BoardAPIApiBoardSeekRequest) Variant(variant VariantKey) BoardAPIApiBoardSeekRequest {
 	r.variant = &variant
 	return r
 }
@@ -335,8 +335,8 @@ func (r BoardAPIApiBoardSeekRequest) RatingRange(ratingRange string) BoardAPIApi
 	return r
 }
 
-// Which color you get to play
-func (r BoardAPIApiBoardSeekRequest) Color(color string) BoardAPIApiBoardSeekRequest {
+// The color to play. Better left empty to automatically get 50% white.
+func (r BoardAPIApiBoardSeekRequest) Color(color ChallengeColor) BoardAPIApiBoardSeekRequest {
 	r.color = &color
 	return r
 }
@@ -477,7 +477,7 @@ func (a *BoardAPIService) ApiBoardSeekExecute(r BoardAPIApiBoardSeekRequest) (*A
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -620,7 +620,7 @@ type BoardAPIBoardGameAbortRequest struct {
 	gameId string
 }
 
-func (r BoardAPIBoardGameAbortRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r BoardAPIBoardGameAbortRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.BoardGameAbortExecute(r)
 }
 
@@ -643,13 +643,13 @@ func (a *BoardAPIService) BoardGameAbort(ctx context.Context, gameId string) Boa
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *BoardAPIService) BoardGameAbortExecute(r BoardAPIBoardGameAbortRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *BoardAPIService) BoardGameAbortExecute(r BoardAPIBoardGameAbortRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BoardAPIService.BoardGameAbort")
@@ -704,7 +704,7 @@ func (a *BoardAPIService) BoardGameAbortExecute(r BoardAPIBoardGameAbortRequest)
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -734,7 +734,7 @@ type BoardAPIBoardGameBerserkRequest struct {
 	gameId string
 }
 
-func (r BoardAPIBoardGameBerserkRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r BoardAPIBoardGameBerserkRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.BoardGameBerserkExecute(r)
 }
 
@@ -758,13 +758,13 @@ func (a *BoardAPIService) BoardGameBerserk(ctx context.Context, gameId string) B
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *BoardAPIService) BoardGameBerserkExecute(r BoardAPIBoardGameBerserkRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *BoardAPIService) BoardGameBerserkExecute(r BoardAPIBoardGameBerserkRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BoardAPIService.BoardGameBerserk")
@@ -819,7 +819,7 @@ func (a *BoardAPIService) BoardGameBerserkExecute(r BoardAPIBoardGameBerserkRequ
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -849,7 +849,7 @@ type BoardAPIBoardGameChatGetRequest struct {
 	gameId string
 }
 
-func (r BoardAPIBoardGameChatGetRequest) Execute() ([]GameChatGet200ResponseInner, *http.Response, error) {
+func (r BoardAPIBoardGameChatGetRequest) Execute() ([]SpectatorGameChatInner, *http.Response, error) {
 	return r.ApiService.BoardGameChatGetExecute(r)
 }
 
@@ -874,13 +874,13 @@ func (a *BoardAPIService) BoardGameChatGet(ctx context.Context, gameId string) B
 }
 
 // Execute executes the request
-//  @return []GameChatGet200ResponseInner
-func (a *BoardAPIService) BoardGameChatGetExecute(r BoardAPIBoardGameChatGetRequest) ([]GameChatGet200ResponseInner, *http.Response, error) {
+//  @return []SpectatorGameChatInner
+func (a *BoardAPIService) BoardGameChatGetExecute(r BoardAPIBoardGameChatGetRequest) ([]SpectatorGameChatInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []GameChatGet200ResponseInner
+		localVarReturnValue  []SpectatorGameChatInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BoardAPIService.BoardGameChatGet")
@@ -967,7 +967,7 @@ func (r BoardAPIBoardGameChatPostRequest) Text(text string) BoardAPIBoardGameCha
 	return r
 }
 
-func (r BoardAPIBoardGameChatPostRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r BoardAPIBoardGameChatPostRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.BoardGameChatPostExecute(r)
 }
 
@@ -990,13 +990,13 @@ func (a *BoardAPIService) BoardGameChatPost(ctx context.Context, gameId string) 
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *BoardAPIService) BoardGameChatPostExecute(r BoardAPIBoardGameChatPostRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *BoardAPIService) BoardGameChatPostExecute(r BoardAPIBoardGameChatPostRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BoardAPIService.BoardGameChatPost")
@@ -1059,7 +1059,7 @@ func (a *BoardAPIService) BoardGameChatPostExecute(r BoardAPIBoardGameChatPostRe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1089,7 +1089,7 @@ type BoardAPIBoardGameClaimDrawRequest struct {
 	gameId string
 }
 
-func (r BoardAPIBoardGameClaimDrawRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r BoardAPIBoardGameClaimDrawRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.BoardGameClaimDrawExecute(r)
 }
 
@@ -1112,13 +1112,13 @@ func (a *BoardAPIService) BoardGameClaimDraw(ctx context.Context, gameId string)
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *BoardAPIService) BoardGameClaimDrawExecute(r BoardAPIBoardGameClaimDrawRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *BoardAPIService) BoardGameClaimDrawExecute(r BoardAPIBoardGameClaimDrawRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BoardAPIService.BoardGameClaimDraw")
@@ -1173,7 +1173,7 @@ func (a *BoardAPIService) BoardGameClaimDrawExecute(r BoardAPIBoardGameClaimDraw
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1203,7 +1203,7 @@ type BoardAPIBoardGameClaimVictoryRequest struct {
 	gameId string
 }
 
-func (r BoardAPIBoardGameClaimVictoryRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r BoardAPIBoardGameClaimVictoryRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.BoardGameClaimVictoryExecute(r)
 }
 
@@ -1226,13 +1226,13 @@ func (a *BoardAPIService) BoardGameClaimVictory(ctx context.Context, gameId stri
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *BoardAPIService) BoardGameClaimVictoryExecute(r BoardAPIBoardGameClaimVictoryRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *BoardAPIService) BoardGameClaimVictoryExecute(r BoardAPIBoardGameClaimVictoryRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BoardAPIService.BoardGameClaimVictory")
@@ -1287,7 +1287,7 @@ func (a *BoardAPIService) BoardGameClaimVictoryExecute(r BoardAPIBoardGameClaimV
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1318,7 +1318,7 @@ type BoardAPIBoardGameDrawRequest struct {
 	accept BoardGameDrawAcceptParameter
 }
 
-func (r BoardAPIBoardGameDrawRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r BoardAPIBoardGameDrawRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.BoardGameDrawExecute(r)
 }
 
@@ -1345,13 +1345,13 @@ func (a *BoardAPIService) BoardGameDraw(ctx context.Context, gameId string, acce
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *BoardAPIService) BoardGameDrawExecute(r BoardAPIBoardGameDrawRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *BoardAPIService) BoardGameDrawExecute(r BoardAPIBoardGameDrawRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BoardAPIService.BoardGameDraw")
@@ -1407,7 +1407,7 @@ func (a *BoardAPIService) BoardGameDrawExecute(r BoardAPIBoardGameDrawRequest) (
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1445,7 +1445,7 @@ func (r BoardAPIBoardGameMoveRequest) OfferingDraw(offeringDraw bool) BoardAPIBo
 	return r
 }
 
-func (r BoardAPIBoardGameMoveRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r BoardAPIBoardGameMoveRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.BoardGameMoveExecute(r)
 }
 
@@ -1471,13 +1471,13 @@ func (a *BoardAPIService) BoardGameMove(ctx context.Context, gameId string, move
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *BoardAPIService) BoardGameMoveExecute(r BoardAPIBoardGameMoveRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *BoardAPIService) BoardGameMoveExecute(r BoardAPIBoardGameMoveRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BoardAPIService.BoardGameMove")
@@ -1536,7 +1536,7 @@ func (a *BoardAPIService) BoardGameMoveExecute(r BoardAPIBoardGameMoveRequest) (
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1566,7 +1566,7 @@ type BoardAPIBoardGameResignRequest struct {
 	gameId string
 }
 
-func (r BoardAPIBoardGameResignRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r BoardAPIBoardGameResignRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.BoardGameResignExecute(r)
 }
 
@@ -1589,13 +1589,13 @@ func (a *BoardAPIService) BoardGameResign(ctx context.Context, gameId string) Bo
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *BoardAPIService) BoardGameResignExecute(r BoardAPIBoardGameResignRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *BoardAPIService) BoardGameResignExecute(r BoardAPIBoardGameResignRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BoardAPIService.BoardGameResign")
@@ -1650,7 +1650,7 @@ func (a *BoardAPIService) BoardGameResignExecute(r BoardAPIBoardGameResignReques
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1776,7 +1776,7 @@ func (a *BoardAPIService) BoardGameStreamExecute(r BoardAPIBoardGameStreamReques
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v RacerGet404Response
+			var v NotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1807,7 +1807,7 @@ type BoardAPIBoardGameTakebackRequest struct {
 	accept BoardGameDrawAcceptParameter
 }
 
-func (r BoardAPIBoardGameTakebackRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r BoardAPIBoardGameTakebackRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.BoardGameTakebackExecute(r)
 }
 
@@ -1834,13 +1834,13 @@ func (a *BoardAPIService) BoardGameTakeback(ctx context.Context, gameId string, 
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *BoardAPIService) BoardGameTakebackExecute(r BoardAPIBoardGameTakebackRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *BoardAPIService) BoardGameTakebackExecute(r BoardAPIBoardGameTakebackRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BoardAPIService.BoardGameTakeback")
@@ -1896,7 +1896,7 @@ func (a *BoardAPIService) BoardGameTakebackExecute(r BoardAPIBoardGameTakebackRe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## AntichessAtomic
 
-> TablebaseStandard200Response AntichessAtomic(ctx).Fen(fen).Execute()
+> TablebaseJson AntichessAtomic(ctx).Fen(fen).Execute()
 
 Tablebase lookup for Antichess
 
@@ -40,7 +40,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TablebaseAPI.AntichessAtomic``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AntichessAtomic`: TablebaseStandard200Response
+	// response from `AntichessAtomic`: TablebaseJson
 	fmt.Fprintf(os.Stdout, "Response from `TablebaseAPI.AntichessAtomic`: %v\n", resp)
 }
 ```
@@ -60,7 +60,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TablebaseStandard200Response**](TablebaseStandard200Response.md)
+[**TablebaseJson**](TablebaseJson.md)
 
 ### Authorization
 
@@ -78,7 +78,7 @@ No authorization required
 
 ## TablebaseAtomic
 
-> TablebaseStandard200Response TablebaseAtomic(ctx).Fen(fen).Execute()
+> TablebaseJson TablebaseAtomic(ctx).Fen(fen).Execute()
 
 Tablebase lookup for Atomic chess
 
@@ -106,7 +106,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TablebaseAPI.TablebaseAtomic``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `TablebaseAtomic`: TablebaseStandard200Response
+	// response from `TablebaseAtomic`: TablebaseJson
 	fmt.Fprintf(os.Stdout, "Response from `TablebaseAPI.TablebaseAtomic`: %v\n", resp)
 }
 ```
@@ -126,7 +126,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TablebaseStandard200Response**](TablebaseStandard200Response.md)
+[**TablebaseJson**](TablebaseJson.md)
 
 ### Authorization
 
@@ -144,7 +144,7 @@ No authorization required
 
 ## TablebaseStandard
 
-> TablebaseStandard200Response TablebaseStandard(ctx).Fen(fen).Dtc(dtc).Execute()
+> TablebaseJson TablebaseStandard(ctx).Fen(fen).Dtc(dtc).Execute()
 
 Tablebase lookup
 
@@ -173,7 +173,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TablebaseAPI.TablebaseStandard``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `TablebaseStandard`: TablebaseStandard200Response
+	// response from `TablebaseStandard`: TablebaseJson
 	fmt.Fprintf(os.Stdout, "Response from `TablebaseAPI.TablebaseStandard`: %v\n", resp)
 }
 ```
@@ -194,7 +194,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TablebaseStandard200Response**](TablebaseStandard200Response.md)
+[**TablebaseJson**](TablebaseJson.md)
 
 ### Authorization
 

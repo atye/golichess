@@ -24,7 +24,7 @@ var _ MappedNullable = &BroadcastsSearch200Response{}
 type BroadcastsSearch200Response struct {
 	CurrentPage int32 `json:"currentPage"`
 	MaxPerPage int32 `json:"maxPerPage"`
-	CurrentPageResults []BroadcastsTop200ResponseActiveInner `json:"currentPageResults"`
+	CurrentPageResults []BroadcastWithLastRound `json:"currentPageResults"`
 	PreviousPage NullableInt32 `json:"previousPage"`
 	NextPage NullableInt32 `json:"nextPage"`
 }
@@ -35,7 +35,7 @@ type _BroadcastsSearch200Response BroadcastsSearch200Response
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBroadcastsSearch200Response(currentPage int32, maxPerPage int32, currentPageResults []BroadcastsTop200ResponseActiveInner, previousPage NullableInt32, nextPage NullableInt32) *BroadcastsSearch200Response {
+func NewBroadcastsSearch200Response(currentPage int32, maxPerPage int32, currentPageResults []BroadcastWithLastRound, previousPage NullableInt32, nextPage NullableInt32) *BroadcastsSearch200Response {
 	this := BroadcastsSearch200Response{}
 	this.CurrentPage = currentPage
 	this.MaxPerPage = maxPerPage
@@ -102,9 +102,9 @@ func (o *BroadcastsSearch200Response) SetMaxPerPage(v int32) {
 }
 
 // GetCurrentPageResults returns the CurrentPageResults field value
-func (o *BroadcastsSearch200Response) GetCurrentPageResults() []BroadcastsTop200ResponseActiveInner {
+func (o *BroadcastsSearch200Response) GetCurrentPageResults() []BroadcastWithLastRound {
 	if o == nil {
-		var ret []BroadcastsTop200ResponseActiveInner
+		var ret []BroadcastWithLastRound
 		return ret
 	}
 
@@ -113,7 +113,7 @@ func (o *BroadcastsSearch200Response) GetCurrentPageResults() []BroadcastsTop200
 
 // GetCurrentPageResultsOk returns a tuple with the CurrentPageResults field value
 // and a boolean to check if the value has been set.
-func (o *BroadcastsSearch200Response) GetCurrentPageResultsOk() ([]BroadcastsTop200ResponseActiveInner, bool) {
+func (o *BroadcastsSearch200Response) GetCurrentPageResultsOk() ([]BroadcastWithLastRound, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -121,7 +121,7 @@ func (o *BroadcastsSearch200Response) GetCurrentPageResultsOk() ([]BroadcastsTop
 }
 
 // SetCurrentPageResults sets field value
-func (o *BroadcastsSearch200Response) SetCurrentPageResults(v []BroadcastsTop200ResponseActiveInner) {
+func (o *BroadcastsSearch200Response) SetCurrentPageResults(v []BroadcastWithLastRound) {
 	o.CurrentPageResults = v
 }
 

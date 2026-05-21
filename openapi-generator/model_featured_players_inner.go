@@ -22,8 +22,8 @@ var _ MappedNullable = &FeaturedPlayersInner{}
 
 // FeaturedPlayersInner struct for FeaturedPlayersInner
 type FeaturedPlayersInner struct {
-	Color NullableString `json:"color"`
-	User ApiUserPerf200ResponseStatWorstLossesResultsInnerOpId `json:"user"`
+	Color GameColor `json:"color"`
+	User LightUser `json:"user"`
 	Rating int32 `json:"rating"`
 	// The player's remaining time in seconds
 	Seconds int32 `json:"seconds"`
@@ -35,7 +35,7 @@ type _FeaturedPlayersInner FeaturedPlayersInner
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFeaturedPlayersInner(color NullableString, user ApiUserPerf200ResponseStatWorstLossesResultsInnerOpId, rating int32, seconds int32) *FeaturedPlayersInner {
+func NewFeaturedPlayersInner(color GameColor, user LightUser, rating int32, seconds int32) *FeaturedPlayersInner {
 	this := FeaturedPlayersInner{}
 	this.Color = color
 	this.User = user
@@ -53,35 +53,33 @@ func NewFeaturedPlayersInnerWithDefaults() *FeaturedPlayersInner {
 }
 
 // GetColor returns the Color field value
-// If the value is explicit nil, the zero value for string will be returned
-func (o *FeaturedPlayersInner) GetColor() string {
-	if o == nil || o.Color.Get() == nil {
-		var ret string
+func (o *FeaturedPlayersInner) GetColor() GameColor {
+	if o == nil {
+		var ret GameColor
 		return ret
 	}
 
-	return *o.Color.Get()
+	return o.Color
 }
 
 // GetColorOk returns a tuple with the Color field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeaturedPlayersInner) GetColorOk() (*string, bool) {
+func (o *FeaturedPlayersInner) GetColorOk() (*GameColor, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Color.Get(), o.Color.IsSet()
+	return &o.Color, true
 }
 
 // SetColor sets field value
-func (o *FeaturedPlayersInner) SetColor(v string) {
-	o.Color.Set(&v)
+func (o *FeaturedPlayersInner) SetColor(v GameColor) {
+	o.Color = v
 }
 
 // GetUser returns the User field value
-func (o *FeaturedPlayersInner) GetUser() ApiUserPerf200ResponseStatWorstLossesResultsInnerOpId {
+func (o *FeaturedPlayersInner) GetUser() LightUser {
 	if o == nil {
-		var ret ApiUserPerf200ResponseStatWorstLossesResultsInnerOpId
+		var ret LightUser
 		return ret
 	}
 
@@ -90,7 +88,7 @@ func (o *FeaturedPlayersInner) GetUser() ApiUserPerf200ResponseStatWorstLossesRe
 
 // GetUserOk returns a tuple with the User field value
 // and a boolean to check if the value has been set.
-func (o *FeaturedPlayersInner) GetUserOk() (*ApiUserPerf200ResponseStatWorstLossesResultsInnerOpId, bool) {
+func (o *FeaturedPlayersInner) GetUserOk() (*LightUser, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -98,7 +96,7 @@ func (o *FeaturedPlayersInner) GetUserOk() (*ApiUserPerf200ResponseStatWorstLoss
 }
 
 // SetUser sets field value
-func (o *FeaturedPlayersInner) SetUser(v ApiUserPerf200ResponseStatWorstLossesResultsInnerOpId) {
+func (o *FeaturedPlayersInner) SetUser(v LightUser) {
 	o.User = v
 }
 
@@ -160,7 +158,7 @@ func (o FeaturedPlayersInner) MarshalJSON() ([]byte, error) {
 
 func (o FeaturedPlayersInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["color"] = o.Color.Get()
+	toSerialize["color"] = o.Color
 	toSerialize["user"] = o.User
 	toSerialize["rating"] = o.Rating
 	toSerialize["seconds"] = o.Seconds

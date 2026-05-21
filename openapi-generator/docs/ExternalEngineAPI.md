@@ -103,7 +103,7 @@ import (
 
 func main() {
 	id := "eei_aTKImBJOnv6j" // string | The external engine id.
-	apiExternalEngineAnalyseRequest := *openapiclient.NewApiExternalEngineAnalyseRequest("ees_mdF2hK0hlKGSPeC6", openapiclient.apiExternalEngineAnalyse_request_work{ApiExternalEngineAnalyseRequestWorkOneOf: openapiclient.NewApiExternalEngineAnalyseRequestWorkOneOf(int32(123), "SessionId_example", int32(123), int32(123), int32(123), "chess", "InitialFen_example", []string{"Moves_example"})}) // ApiExternalEngineAnalyseRequest | Engine credentials and analysis request.
+	apiExternalEngineAnalyseRequest := *openapiclient.NewApiExternalEngineAnalyseRequest("ees_mdF2hK0hlKGSPeC6", openapiclient.ExternalEngineWork{ExternalEngineWorkOneOf: openapiclient.NewExternalEngineWorkOneOf("SessionId_example", int32(123), int32(123), int32(123), openapiclient.UciVariant("chess"), "InitialFen_example", []string{"Moves_example"}, int32(123))}) // ApiExternalEngineAnalyseRequest | Engine credentials and analysis request.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -155,7 +155,7 @@ No authorization required
 
 ## ApiExternalEngineCreate
 
-> ApiExternalEngineList200ResponseInner ApiExternalEngineCreate(ctx).ApiExternalEngineCreateRequest(apiExternalEngineCreateRequest).Execute()
+> ExternalEngine ApiExternalEngineCreate(ctx).ExternalEngineRegistration(externalEngineRegistration).Execute()
 
 Create external engine
 
@@ -174,16 +174,16 @@ import (
 )
 
 func main() {
-	apiExternalEngineCreateRequest := *openapiclient.NewApiExternalEngineCreateRequest("Stockfish 15", int32(8), int32(2048), "Dee3uwieZei9ahpaici9bee2yahsai0K") // ApiExternalEngineCreateRequest | A new external engine registration.
+	externalEngineRegistration := *openapiclient.NewExternalEngineRegistration("Stockfish 15", int32(8), int32(2048), "Dee3uwieZei9ahpaici9bee2yahsai0K") // ExternalEngineRegistration | A new external engine registration.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ExternalEngineAPI.ApiExternalEngineCreate(context.Background()).ApiExternalEngineCreateRequest(apiExternalEngineCreateRequest).Execute()
+	resp, r, err := apiClient.ExternalEngineAPI.ApiExternalEngineCreate(context.Background()).ExternalEngineRegistration(externalEngineRegistration).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ExternalEngineAPI.ApiExternalEngineCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiExternalEngineCreate`: ApiExternalEngineList200ResponseInner
+	// response from `ApiExternalEngineCreate`: ExternalEngine
 	fmt.Fprintf(os.Stdout, "Response from `ExternalEngineAPI.ApiExternalEngineCreate`: %v\n", resp)
 }
 ```
@@ -199,11 +199,11 @@ Other parameters are passed through a pointer to a apiApiExternalEngineCreateReq
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **apiExternalEngineCreateRequest** | [**ApiExternalEngineCreateRequest**](ApiExternalEngineCreateRequest.md) | A new external engine registration. | 
+ **externalEngineRegistration** | [**ExternalEngineRegistration**](ExternalEngineRegistration.md) | A new external engine registration. | 
 
 ### Return type
 
-[**ApiExternalEngineList200ResponseInner**](ApiExternalEngineList200ResponseInner.md)
+[**ExternalEngine**](ExternalEngine.md)
 
 ### Authorization
 
@@ -221,7 +221,7 @@ Name | Type | Description  | Notes
 
 ## ApiExternalEngineDelete
 
-> AccountKidPost200Response ApiExternalEngineDelete(ctx, id).Execute()
+> Ok ApiExternalEngineDelete(ctx, id).Execute()
 
 Delete external engine
 
@@ -249,7 +249,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ExternalEngineAPI.ApiExternalEngineDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiExternalEngineDelete`: AccountKidPost200Response
+	// response from `ApiExternalEngineDelete`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `ExternalEngineAPI.ApiExternalEngineDelete`: %v\n", resp)
 }
 ```
@@ -273,7 +273,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -291,7 +291,7 @@ Name | Type | Description  | Notes
 
 ## ApiExternalEngineGet
 
-> ApiExternalEngineList200ResponseInner ApiExternalEngineGet(ctx, id).Execute()
+> ExternalEngine ApiExternalEngineGet(ctx, id).Execute()
 
 Get external engine
 
@@ -319,7 +319,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ExternalEngineAPI.ApiExternalEngineGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiExternalEngineGet`: ApiExternalEngineList200ResponseInner
+	// response from `ApiExternalEngineGet`: ExternalEngine
 	fmt.Fprintf(os.Stdout, "Response from `ExternalEngineAPI.ApiExternalEngineGet`: %v\n", resp)
 }
 ```
@@ -343,7 +343,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiExternalEngineList200ResponseInner**](ApiExternalEngineList200ResponseInner.md)
+[**ExternalEngine**](ExternalEngine.md)
 
 ### Authorization
 
@@ -361,7 +361,7 @@ Name | Type | Description  | Notes
 
 ## ApiExternalEngineList
 
-> []ApiExternalEngineList200ResponseInner ApiExternalEngineList(ctx).Execute()
+> []ExternalEngine ApiExternalEngineList(ctx).Execute()
 
 List external engines
 
@@ -388,7 +388,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ExternalEngineAPI.ApiExternalEngineList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiExternalEngineList`: []ApiExternalEngineList200ResponseInner
+	// response from `ApiExternalEngineList`: []ExternalEngine
 	fmt.Fprintf(os.Stdout, "Response from `ExternalEngineAPI.ApiExternalEngineList`: %v\n", resp)
 }
 ```
@@ -404,7 +404,7 @@ Other parameters are passed through a pointer to a apiApiExternalEngineListReque
 
 ### Return type
 
-[**[]ApiExternalEngineList200ResponseInner**](ApiExternalEngineList200ResponseInner.md)
+[**[]ExternalEngine**](ExternalEngine.md)
 
 ### Authorization
 
@@ -422,7 +422,7 @@ Other parameters are passed through a pointer to a apiApiExternalEngineListReque
 
 ## ApiExternalEnginePut
 
-> ApiExternalEngineList200ResponseInner ApiExternalEnginePut(ctx, id).ApiExternalEngineCreateRequest(apiExternalEngineCreateRequest).Execute()
+> ExternalEngine ApiExternalEnginePut(ctx, id).ExternalEngineRegistration(externalEngineRegistration).Execute()
 
 Update external engine
 
@@ -442,16 +442,16 @@ import (
 
 func main() {
 	id := "eei_aTKImBJOnv6j" // string | The external engine id.
-	apiExternalEngineCreateRequest := *openapiclient.NewApiExternalEngineCreateRequest("Stockfish 15", int32(8), int32(2048), "Dee3uwieZei9ahpaici9bee2yahsai0K") // ApiExternalEngineCreateRequest | A modified engine registration.
+	externalEngineRegistration := *openapiclient.NewExternalEngineRegistration("Stockfish 15", int32(8), int32(2048), "Dee3uwieZei9ahpaici9bee2yahsai0K") // ExternalEngineRegistration | A modified engine registration.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ExternalEngineAPI.ApiExternalEnginePut(context.Background(), id).ApiExternalEngineCreateRequest(apiExternalEngineCreateRequest).Execute()
+	resp, r, err := apiClient.ExternalEngineAPI.ApiExternalEnginePut(context.Background(), id).ExternalEngineRegistration(externalEngineRegistration).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ExternalEngineAPI.ApiExternalEnginePut``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiExternalEnginePut`: ApiExternalEngineList200ResponseInner
+	// response from `ApiExternalEnginePut`: ExternalEngine
 	fmt.Fprintf(os.Stdout, "Response from `ExternalEngineAPI.ApiExternalEnginePut`: %v\n", resp)
 }
 ```
@@ -472,11 +472,11 @@ Other parameters are passed through a pointer to a apiApiExternalEnginePutReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **apiExternalEngineCreateRequest** | [**ApiExternalEngineCreateRequest**](ApiExternalEngineCreateRequest.md) | A modified engine registration. | 
+ **externalEngineRegistration** | [**ExternalEngineRegistration**](ExternalEngineRegistration.md) | A modified engine registration. | 
 
 ### Return type
 
-[**ApiExternalEngineList200ResponseInner**](ApiExternalEngineList200ResponseInner.md)
+[**ExternalEngine**](ExternalEngine.md)
 
 ### Authorization
 

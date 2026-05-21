@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** |  | 
-**Work** | [**ApiExternalEngineAnalyseRequestWork**](ApiExternalEngineAnalyseRequestWork.md) |  | 
-**Engine** | [**ApiExternalEngineList200ResponseInner**](ApiExternalEngineList200ResponseInner.md) |  | 
+**Work** | [**ExternalEngineWork**](ExternalEngineWork.md) |  | 
+**Engine** | [**ExternalEngine**](ExternalEngine.md) |  | 
 
 ## Methods
 
 ### NewApiExternalEngineAcquire200Response
 
-`func NewApiExternalEngineAcquire200Response(id string, work ApiExternalEngineAnalyseRequestWork, engine ApiExternalEngineList200ResponseInner, ) *ApiExternalEngineAcquire200Response`
+`func NewApiExternalEngineAcquire200Response(id string, work ExternalEngineWork, engine ExternalEngine, ) *ApiExternalEngineAcquire200Response`
 
 NewApiExternalEngineAcquire200Response instantiates a new ApiExternalEngineAcquire200Response object
 This constructor will assign default values to properties that have it defined,
@@ -49,40 +49,40 @@ SetId sets Id field to given value.
 
 ### GetWork
 
-`func (o *ApiExternalEngineAcquire200Response) GetWork() ApiExternalEngineAnalyseRequestWork`
+`func (o *ApiExternalEngineAcquire200Response) GetWork() ExternalEngineWork`
 
 GetWork returns the Work field if non-nil, zero value otherwise.
 
 ### GetWorkOk
 
-`func (o *ApiExternalEngineAcquire200Response) GetWorkOk() (*ApiExternalEngineAnalyseRequestWork, bool)`
+`func (o *ApiExternalEngineAcquire200Response) GetWorkOk() (*ExternalEngineWork, bool)`
 
 GetWorkOk returns a tuple with the Work field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetWork
 
-`func (o *ApiExternalEngineAcquire200Response) SetWork(v ApiExternalEngineAnalyseRequestWork)`
+`func (o *ApiExternalEngineAcquire200Response) SetWork(v ExternalEngineWork)`
 
 SetWork sets Work field to given value.
 
 
 ### GetEngine
 
-`func (o *ApiExternalEngineAcquire200Response) GetEngine() ApiExternalEngineList200ResponseInner`
+`func (o *ApiExternalEngineAcquire200Response) GetEngine() ExternalEngine`
 
 GetEngine returns the Engine field if non-nil, zero value otherwise.
 
 ### GetEngineOk
 
-`func (o *ApiExternalEngineAcquire200Response) GetEngineOk() (*ApiExternalEngineList200ResponseInner, bool)`
+`func (o *ApiExternalEngineAcquire200Response) GetEngineOk() (*ExternalEngine, bool)`
 
 GetEngineOk returns a tuple with the Engine field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEngine
 
-`func (o *ApiExternalEngineAcquire200Response) SetEngine(v ApiExternalEngineList200ResponseInner)`
+`func (o *ApiExternalEngineAcquire200Response) SetEngine(v ExternalEngine)`
 
 SetEngine sets Engine field to given value.
 

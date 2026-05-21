@@ -38,8 +38,8 @@ If the `matchup` flag is provided, and the users are currently playing, also get
 	ApiCrosstable(ctx context.Context, user1 string, user2 string) UsersAPIApiCrosstableRequest
 
 	// ApiCrosstableExecute executes the request
-	//  @return ApiCrosstable200Response
-	ApiCrosstableExecute(r UsersAPIApiCrosstableRequest) (*ApiCrosstable200Response, *http.Response, error)
+	//  @return Crosstable
+	ApiCrosstableExecute(r UsersAPIApiCrosstableRequest) (*Crosstable, *http.Response, error)
 
 	/*
 	ApiPlayerAutocomplete Autocomplete usernames
@@ -69,8 +69,8 @@ If the `matchup` flag is provided, and the users are currently playing, also get
 	ApiUser(ctx context.Context, username string) UsersAPIApiUserRequest
 
 	// ApiUserExecute executes the request
-	//  @return ApiUser200Response
-	ApiUserExecute(r UsersAPIApiUserRequest) (*ApiUser200Response, *http.Response, error)
+	//  @return UserExtended
+	ApiUserExecute(r UsersAPIApiUserRequest) (*UserExtended, *http.Response, error)
 
 	/*
 	ApiUserActivity Get user activity
@@ -85,8 +85,8 @@ If the `matchup` flag is provided, and the users are currently playing, also get
 	ApiUserActivity(ctx context.Context, username string) UsersAPIApiUserActivityRequest
 
 	// ApiUserActivityExecute executes the request
-	//  @return []ApiUserActivity200ResponseInner
-	ApiUserActivityExecute(r UsersAPIApiUserActivityRequest) ([]ApiUserActivity200ResponseInner, *http.Response, error)
+	//  @return []UserActivity
+	ApiUserActivityExecute(r UsersAPIApiUserActivityRequest) ([]UserActivity, *http.Response, error)
 
 	/*
 	ApiUserPerf Get performance statistics of a user
@@ -100,11 +100,11 @@ Similar to the [performance pages on the website](https://lichess.org/@/thibault
 	@param perf
 	@return UsersAPIApiUserPerfRequest
 	*/
-	ApiUserPerf(ctx context.Context, username string, perf string) UsersAPIApiUserPerfRequest
+	ApiUserPerf(ctx context.Context, username string, perf PerfType) UsersAPIApiUserPerfRequest
 
 	// ApiUserPerfExecute executes the request
-	//  @return ApiUserPerf200Response
-	ApiUserPerfExecute(r UsersAPIApiUserPerfRequest) (*ApiUserPerf200Response, *http.Response, error)
+	//  @return PerfStat
+	ApiUserPerfExecute(r UsersAPIApiUserPerfRequest) (*PerfStat, *http.Response, error)
 
 	/*
 	ApiUserRatingHistory Get rating history of a user
@@ -122,8 +122,8 @@ Format of an entry is `[year, month, day, rating]`.
 	ApiUserRatingHistory(ctx context.Context, username string) UsersAPIApiUserRatingHistoryRequest
 
 	// ApiUserRatingHistoryExecute executes the request
-	//  @return []ApiUserRatingHistory200ResponseInner
-	ApiUserRatingHistoryExecute(r UsersAPIApiUserRatingHistoryRequest) ([]ApiUserRatingHistory200ResponseInner, *http.Response, error)
+	//  @return []RatingHistoryEntry
+	ApiUserRatingHistoryExecute(r UsersAPIApiUserRatingHistoryRequest) ([]RatingHistoryEntry, *http.Response, error)
 
 	/*
 	ApiUsers Get users by ID
@@ -141,8 +141,8 @@ This endpoint is limited to 8,000 users every 10 minutes, and 120,000 every day.
 	ApiUsers(ctx context.Context) UsersAPIApiUsersRequest
 
 	// ApiUsersExecute executes the request
-	//  @return []ApiUsers200ResponseInner
-	ApiUsersExecute(r UsersAPIApiUsersRequest) ([]ApiUsers200ResponseInner, *http.Response, error)
+	//  @return []User
+	ApiUsersExecute(r UsersAPIApiUsersRequest) ([]User, *http.Response, error)
 
 	/*
 	ApiUsersStatus Get real-time users status
@@ -175,8 +175,8 @@ See <https://lichess.org/player>.
 	Player(ctx context.Context) UsersAPIPlayerRequest
 
 	// PlayerExecute executes the request
-	//  @return Player200Response
-	PlayerExecute(r UsersAPIPlayerRequest) (*Player200Response, *http.Response, error)
+	//  @return Top10s
+	PlayerExecute(r UsersAPIPlayerRequest) (*Top10s, *http.Response, error)
 
 	/*
 	PlayerTopNbPerfType Get one leaderboard
@@ -194,8 +194,8 @@ See <https://lichess.org/player/top/100/bullet>.
 	PlayerTopNbPerfType(ctx context.Context, nb int32, perfType string) UsersAPIPlayerTopNbPerfTypeRequest
 
 	// PlayerTopNbPerfTypeExecute executes the request
-	//  @return PlayerTopNbPerfType200Response
-	PlayerTopNbPerfTypeExecute(r UsersAPIPlayerTopNbPerfTypeRequest) (*PlayerTopNbPerfType200Response, *http.Response, error)
+	//  @return Leaderboard
+	PlayerTopNbPerfTypeExecute(r UsersAPIPlayerTopNbPerfTypeRequest) (*Leaderboard, *http.Response, error)
 
 	/*
 	ReadNote Get notes for a user
@@ -210,8 +210,8 @@ See <https://lichess.org/player/top/100/bullet>.
 	ReadNote(ctx context.Context, username string) UsersAPIReadNoteRequest
 
 	// ReadNoteExecute executes the request
-	//  @return []ReadNote200ResponseInner
-	ReadNoteExecute(r UsersAPIReadNoteRequest) ([]ReadNote200ResponseInner, *http.Response, error)
+	//  @return []UserNote
+	ReadNoteExecute(r UsersAPIReadNoteRequest) ([]UserNote, *http.Response, error)
 
 	/*
 	StreamerLive Get live streamers
@@ -243,8 +243,8 @@ So you can call it quite often (like once every 5 seconds).
 	WriteNote(ctx context.Context, username string) UsersAPIWriteNoteRequest
 
 	// WriteNoteExecute executes the request
-	//  @return AccountKidPost200Response
-	WriteNoteExecute(r UsersAPIWriteNoteRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	WriteNoteExecute(r UsersAPIWriteNoteRequest) (*Ok, *http.Response, error)
 }
 
 // UsersAPIService UsersAPI service
@@ -264,7 +264,7 @@ func (r UsersAPIApiCrosstableRequest) Matchup(matchup bool) UsersAPIApiCrosstabl
 	return r
 }
 
-func (r UsersAPIApiCrosstableRequest) Execute() (*ApiCrosstable200Response, *http.Response, error) {
+func (r UsersAPIApiCrosstableRequest) Execute() (*Crosstable, *http.Response, error) {
 	return r.ApiService.ApiCrosstableExecute(r)
 }
 
@@ -290,13 +290,13 @@ func (a *UsersAPIService) ApiCrosstable(ctx context.Context, user1 string, user2
 }
 
 // Execute executes the request
-//  @return ApiCrosstable200Response
-func (a *UsersAPIService) ApiCrosstableExecute(r UsersAPIApiCrosstableRequest) (*ApiCrosstable200Response, *http.Response, error) {
+//  @return Crosstable
+func (a *UsersAPIService) ApiCrosstableExecute(r UsersAPIApiCrosstableRequest) (*Crosstable, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiCrosstable200Response
+		localVarReturnValue  *Crosstable
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersAPIService.ApiCrosstable")
@@ -613,7 +613,7 @@ func (r UsersAPIApiUserRequest) FideId(fideId bool) UsersAPIApiUserRequest {
 	return r
 }
 
-func (r UsersAPIApiUserRequest) Execute() (*ApiUser200Response, *http.Response, error) {
+func (r UsersAPIApiUserRequest) Execute() (*UserExtended, *http.Response, error) {
 	return r.ApiService.ApiUserExecute(r)
 }
 
@@ -636,13 +636,13 @@ func (a *UsersAPIService) ApiUser(ctx context.Context, username string) UsersAPI
 }
 
 // Execute executes the request
-//  @return ApiUser200Response
-func (a *UsersAPIService) ApiUserExecute(r UsersAPIApiUserRequest) (*ApiUser200Response, *http.Response, error) {
+//  @return UserExtended
+func (a *UsersAPIService) ApiUserExecute(r UsersAPIApiUserRequest) (*UserExtended, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiUser200Response
+		localVarReturnValue  *UserExtended
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersAPIService.ApiUser")
@@ -745,7 +745,7 @@ type UsersAPIApiUserActivityRequest struct {
 	username string
 }
 
-func (r UsersAPIApiUserActivityRequest) Execute() ([]ApiUserActivity200ResponseInner, *http.Response, error) {
+func (r UsersAPIApiUserActivityRequest) Execute() ([]UserActivity, *http.Response, error) {
 	return r.ApiService.ApiUserActivityExecute(r)
 }
 
@@ -768,13 +768,13 @@ func (a *UsersAPIService) ApiUserActivity(ctx context.Context, username string) 
 }
 
 // Execute executes the request
-//  @return []ApiUserActivity200ResponseInner
-func (a *UsersAPIService) ApiUserActivityExecute(r UsersAPIApiUserActivityRequest) ([]ApiUserActivity200ResponseInner, *http.Response, error) {
+//  @return []UserActivity
+func (a *UsersAPIService) ApiUserActivityExecute(r UsersAPIApiUserActivityRequest) ([]UserActivity, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []ApiUserActivity200ResponseInner
+		localVarReturnValue  []UserActivity
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersAPIService.ApiUserActivity")
@@ -847,10 +847,10 @@ type UsersAPIApiUserPerfRequest struct {
 	ctx context.Context
 	ApiService UsersAPI
 	username string
-	perf string
+	perf PerfType
 }
 
-func (r UsersAPIApiUserPerfRequest) Execute() (*ApiUserPerf200Response, *http.Response, error) {
+func (r UsersAPIApiUserPerfRequest) Execute() (*PerfStat, *http.Response, error) {
 	return r.ApiService.ApiUserPerfExecute(r)
 }
 
@@ -866,7 +866,7 @@ Similar to the [performance pages on the website](https://lichess.org/@/thibault
  @param perf
  @return UsersAPIApiUserPerfRequest
 */
-func (a *UsersAPIService) ApiUserPerf(ctx context.Context, username string, perf string) UsersAPIApiUserPerfRequest {
+func (a *UsersAPIService) ApiUserPerf(ctx context.Context, username string, perf PerfType) UsersAPIApiUserPerfRequest {
 	return UsersAPIApiUserPerfRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -876,13 +876,13 @@ func (a *UsersAPIService) ApiUserPerf(ctx context.Context, username string, perf
 }
 
 // Execute executes the request
-//  @return ApiUserPerf200Response
-func (a *UsersAPIService) ApiUserPerfExecute(r UsersAPIApiUserPerfRequest) (*ApiUserPerf200Response, *http.Response, error) {
+//  @return PerfStat
+func (a *UsersAPIService) ApiUserPerfExecute(r UsersAPIApiUserPerfRequest) (*PerfStat, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiUserPerf200Response
+		localVarReturnValue  *PerfStat
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersAPIService.ApiUserPerf")
@@ -958,7 +958,7 @@ type UsersAPIApiUserRatingHistoryRequest struct {
 	username string
 }
 
-func (r UsersAPIApiUserRatingHistoryRequest) Execute() ([]ApiUserRatingHistory200ResponseInner, *http.Response, error) {
+func (r UsersAPIApiUserRatingHistoryRequest) Execute() ([]RatingHistoryEntry, *http.Response, error) {
 	return r.ApiService.ApiUserRatingHistoryExecute(r)
 }
 
@@ -984,13 +984,13 @@ func (a *UsersAPIService) ApiUserRatingHistory(ctx context.Context, username str
 }
 
 // Execute executes the request
-//  @return []ApiUserRatingHistory200ResponseInner
-func (a *UsersAPIService) ApiUserRatingHistoryExecute(r UsersAPIApiUserRatingHistoryRequest) ([]ApiUserRatingHistory200ResponseInner, *http.Response, error) {
+//  @return []RatingHistoryEntry
+func (a *UsersAPIService) ApiUserRatingHistoryExecute(r UsersAPIApiUserRatingHistoryRequest) ([]RatingHistoryEntry, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []ApiUserRatingHistory200ResponseInner
+		localVarReturnValue  []RatingHistoryEntry
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersAPIService.ApiUserRatingHistory")
@@ -1085,7 +1085,7 @@ func (r UsersAPIApiUsersRequest) Rank(rank bool) UsersAPIApiUsersRequest {
 	return r
 }
 
-func (r UsersAPIApiUsersRequest) Execute() ([]ApiUsers200ResponseInner, *http.Response, error) {
+func (r UsersAPIApiUsersRequest) Execute() ([]User, *http.Response, error) {
 	return r.ApiService.ApiUsersExecute(r)
 }
 
@@ -1110,13 +1110,13 @@ func (a *UsersAPIService) ApiUsers(ctx context.Context) UsersAPIApiUsersRequest 
 }
 
 // Execute executes the request
-//  @return []ApiUsers200ResponseInner
-func (a *UsersAPIService) ApiUsersExecute(r UsersAPIApiUsersRequest) ([]ApiUsers200ResponseInner, *http.Response, error) {
+//  @return []User
+func (a *UsersAPIService) ApiUsersExecute(r UsersAPIApiUsersRequest) ([]User, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []ApiUsers200ResponseInner
+		localVarReturnValue  []User
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersAPIService.ApiUsers")
@@ -1352,7 +1352,7 @@ type UsersAPIPlayerRequest struct {
 	ApiService UsersAPI
 }
 
-func (r UsersAPIPlayerRequest) Execute() (*Player200Response, *http.Response, error) {
+func (r UsersAPIPlayerRequest) Execute() (*Top10s, *http.Response, error) {
 	return r.ApiService.PlayerExecute(r)
 }
 
@@ -1374,13 +1374,13 @@ func (a *UsersAPIService) Player(ctx context.Context) UsersAPIPlayerRequest {
 }
 
 // Execute executes the request
-//  @return Player200Response
-func (a *UsersAPIService) PlayerExecute(r UsersAPIPlayerRequest) (*Player200Response, *http.Response, error) {
+//  @return Top10s
+func (a *UsersAPIService) PlayerExecute(r UsersAPIPlayerRequest) (*Top10s, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Player200Response
+		localVarReturnValue  *Top10s
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersAPIService.Player")
@@ -1455,7 +1455,7 @@ type UsersAPIPlayerTopNbPerfTypeRequest struct {
 	perfType string
 }
 
-func (r UsersAPIPlayerTopNbPerfTypeRequest) Execute() (*PlayerTopNbPerfType200Response, *http.Response, error) {
+func (r UsersAPIPlayerTopNbPerfTypeRequest) Execute() (*Leaderboard, *http.Response, error) {
 	return r.ApiService.PlayerTopNbPerfTypeExecute(r)
 }
 
@@ -1482,13 +1482,13 @@ func (a *UsersAPIService) PlayerTopNbPerfType(ctx context.Context, nb int32, per
 }
 
 // Execute executes the request
-//  @return PlayerTopNbPerfType200Response
-func (a *UsersAPIService) PlayerTopNbPerfTypeExecute(r UsersAPIPlayerTopNbPerfTypeRequest) (*PlayerTopNbPerfType200Response, *http.Response, error) {
+//  @return Leaderboard
+func (a *UsersAPIService) PlayerTopNbPerfTypeExecute(r UsersAPIPlayerTopNbPerfTypeRequest) (*Leaderboard, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PlayerTopNbPerfType200Response
+		localVarReturnValue  *Leaderboard
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersAPIService.PlayerTopNbPerfType")
@@ -1570,7 +1570,7 @@ type UsersAPIReadNoteRequest struct {
 	username string
 }
 
-func (r UsersAPIReadNoteRequest) Execute() ([]ReadNote200ResponseInner, *http.Response, error) {
+func (r UsersAPIReadNoteRequest) Execute() ([]UserNote, *http.Response, error) {
 	return r.ApiService.ReadNoteExecute(r)
 }
 
@@ -1593,13 +1593,13 @@ func (a *UsersAPIService) ReadNote(ctx context.Context, username string) UsersAP
 }
 
 // Execute executes the request
-//  @return []ReadNote200ResponseInner
-func (a *UsersAPIService) ReadNoteExecute(r UsersAPIReadNoteRequest) ([]ReadNote200ResponseInner, *http.Response, error) {
+//  @return []UserNote
+func (a *UsersAPIService) ReadNoteExecute(r UsersAPIReadNoteRequest) ([]UserNote, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []ReadNote200ResponseInner
+		localVarReturnValue  []UserNote
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersAPIService.ReadNote")
@@ -1783,7 +1783,7 @@ func (r UsersAPIWriteNoteRequest) Text(text string) UsersAPIWriteNoteRequest {
 	return r
 }
 
-func (r UsersAPIWriteNoteRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r UsersAPIWriteNoteRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.WriteNoteExecute(r)
 }
 
@@ -1806,13 +1806,13 @@ func (a *UsersAPIService) WriteNote(ctx context.Context, username string) UsersA
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *UsersAPIService) WriteNoteExecute(r UsersAPIWriteNoteRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *UsersAPIService) WriteNoteExecute(r UsersAPIWriteNoteRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersAPIService.WriteNote")

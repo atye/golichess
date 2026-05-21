@@ -55,8 +55,8 @@ A successful bulk creation returns a JSON bulk document. Its ID can be used for 
 	BulkPairingCreate(ctx context.Context) BulkPairingsAPIBulkPairingCreateRequest
 
 	// BulkPairingCreateExecute executes the request
-	//  @return BulkPairingList200ResponseInner
-	BulkPairingCreateExecute(r BulkPairingsAPIBulkPairingCreateRequest) (*BulkPairingList200ResponseInner, *http.Response, error)
+	//  @return BulkPairing
+	BulkPairingCreateExecute(r BulkPairingsAPIBulkPairingCreateRequest) (*BulkPairing, *http.Response, error)
 
 	/*
 	BulkPairingDelete Cancel a bulk pairing
@@ -73,8 +73,8 @@ Canceling a bulk pairing does not refund the rate limit cost of that bulk pairin
 	BulkPairingDelete(ctx context.Context, id string) BulkPairingsAPIBulkPairingDeleteRequest
 
 	// BulkPairingDeleteExecute executes the request
-	//  @return AccountKidPost200Response
-	BulkPairingDeleteExecute(r BulkPairingsAPIBulkPairingDeleteRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	BulkPairingDeleteExecute(r BulkPairingsAPIBulkPairingDeleteRequest) (*Ok, *http.Response, error)
 
 	/*
 	BulkPairingGet Show a bulk pairing
@@ -89,8 +89,8 @@ Canceling a bulk pairing does not refund the rate limit cost of that bulk pairin
 	BulkPairingGet(ctx context.Context, id string) BulkPairingsAPIBulkPairingGetRequest
 
 	// BulkPairingGetExecute executes the request
-	//  @return BulkPairingList200ResponseInner
-	BulkPairingGetExecute(r BulkPairingsAPIBulkPairingGetRequest) (*BulkPairingList200ResponseInner, *http.Response, error)
+	//  @return BulkPairing
+	BulkPairingGetExecute(r BulkPairingsAPIBulkPairingGetRequest) (*BulkPairing, *http.Response, error)
 
 	/*
 	BulkPairingIdGamesGet Export games of a bulk pairing
@@ -120,8 +120,8 @@ Canceling a bulk pairing does not refund the rate limit cost of that bulk pairin
 	BulkPairingList(ctx context.Context) BulkPairingsAPIBulkPairingListRequest
 
 	// BulkPairingListExecute executes the request
-	//  @return []BulkPairingList200ResponseInner
-	BulkPairingListExecute(r BulkPairingsAPIBulkPairingListRequest) ([]BulkPairingList200ResponseInner, *http.Response, error)
+	//  @return []BulkPairing
+	BulkPairingListExecute(r BulkPairingsAPIBulkPairingListRequest) ([]BulkPairing, *http.Response, error)
 
 	/*
 	BulkPairingStartClocks Manually start clocks
@@ -139,8 +139,8 @@ If the clocks have already started (`bulk.startClocksAt` is in the past), then t
 	BulkPairingStartClocks(ctx context.Context, id string) BulkPairingsAPIBulkPairingStartClocksRequest
 
 	// BulkPairingStartClocksExecute executes the request
-	//  @return AccountKidPost200Response
-	BulkPairingStartClocksExecute(r BulkPairingsAPIBulkPairingStartClocksRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	BulkPairingStartClocksExecute(r BulkPairingsAPIBulkPairingStartClocksRequest) (*Ok, *http.Response, error)
 }
 
 // BulkPairingsAPIService BulkPairingsAPI service
@@ -156,7 +156,7 @@ type BulkPairingsAPIBulkPairingCreateRequest struct {
 	pairAt *int64
 	startClocksAt *int64
 	rated *bool
-	variant *string
+	variant *VariantKey
 	fen *string
 	message *string
 	rules *string
@@ -204,7 +204,7 @@ func (r BulkPairingsAPIBulkPairingCreateRequest) Rated(rated bool) BulkPairingsA
 	return r
 }
 
-func (r BulkPairingsAPIBulkPairingCreateRequest) Variant(variant string) BulkPairingsAPIBulkPairingCreateRequest {
+func (r BulkPairingsAPIBulkPairingCreateRequest) Variant(variant VariantKey) BulkPairingsAPIBulkPairingCreateRequest {
 	r.variant = &variant
 	return r
 }
@@ -227,7 +227,7 @@ func (r BulkPairingsAPIBulkPairingCreateRequest) Rules(rules string) BulkPairing
 	return r
 }
 
-func (r BulkPairingsAPIBulkPairingCreateRequest) Execute() (*BulkPairingList200ResponseInner, *http.Response, error) {
+func (r BulkPairingsAPIBulkPairingCreateRequest) Execute() (*BulkPairing, *http.Response, error) {
 	return r.ApiService.BulkPairingCreateExecute(r)
 }
 
@@ -268,13 +268,13 @@ func (a *BulkPairingsAPIService) BulkPairingCreate(ctx context.Context) BulkPair
 }
 
 // Execute executes the request
-//  @return BulkPairingList200ResponseInner
-func (a *BulkPairingsAPIService) BulkPairingCreateExecute(r BulkPairingsAPIBulkPairingCreateRequest) (*BulkPairingList200ResponseInner, *http.Response, error) {
+//  @return BulkPairing
+func (a *BulkPairingsAPIService) BulkPairingCreateExecute(r BulkPairingsAPIBulkPairingCreateRequest) (*BulkPairing, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *BulkPairingList200ResponseInner
+		localVarReturnValue  *BulkPairing
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BulkPairingsAPIService.BulkPairingCreate")
@@ -361,7 +361,7 @@ func (a *BulkPairingsAPIService) BulkPairingCreateExecute(r BulkPairingsAPIBulkP
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -391,7 +391,7 @@ type BulkPairingsAPIBulkPairingDeleteRequest struct {
 	id string
 }
 
-func (r BulkPairingsAPIBulkPairingDeleteRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r BulkPairingsAPIBulkPairingDeleteRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.BulkPairingDeleteExecute(r)
 }
 
@@ -416,13 +416,13 @@ func (a *BulkPairingsAPIService) BulkPairingDelete(ctx context.Context, id strin
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *BulkPairingsAPIService) BulkPairingDeleteExecute(r BulkPairingsAPIBulkPairingDeleteRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *BulkPairingsAPIService) BulkPairingDeleteExecute(r BulkPairingsAPIBulkPairingDeleteRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BulkPairingsAPIService.BulkPairingDelete")
@@ -477,7 +477,7 @@ func (a *BulkPairingsAPIService) BulkPairingDeleteExecute(r BulkPairingsAPIBulkP
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v RacerGet404Response
+			var v NotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -507,7 +507,7 @@ type BulkPairingsAPIBulkPairingGetRequest struct {
 	id string
 }
 
-func (r BulkPairingsAPIBulkPairingGetRequest) Execute() (*BulkPairingList200ResponseInner, *http.Response, error) {
+func (r BulkPairingsAPIBulkPairingGetRequest) Execute() (*BulkPairing, *http.Response, error) {
 	return r.ApiService.BulkPairingGetExecute(r)
 }
 
@@ -530,13 +530,13 @@ func (a *BulkPairingsAPIService) BulkPairingGet(ctx context.Context, id string) 
 }
 
 // Execute executes the request
-//  @return BulkPairingList200ResponseInner
-func (a *BulkPairingsAPIService) BulkPairingGetExecute(r BulkPairingsAPIBulkPairingGetRequest) (*BulkPairingList200ResponseInner, *http.Response, error) {
+//  @return BulkPairing
+func (a *BulkPairingsAPIService) BulkPairingGetExecute(r BulkPairingsAPIBulkPairingGetRequest) (*BulkPairing, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *BulkPairingList200ResponseInner
+		localVarReturnValue  *BulkPairing
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BulkPairingsAPIService.BulkPairingGet")
@@ -591,7 +591,7 @@ func (a *BulkPairingsAPIService) BulkPairingGetExecute(r BulkPairingsAPIBulkPair
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v RacerGet404Response
+			var v NotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -860,7 +860,7 @@ type BulkPairingsAPIBulkPairingListRequest struct {
 	ApiService BulkPairingsAPI
 }
 
-func (r BulkPairingsAPIBulkPairingListRequest) Execute() ([]BulkPairingList200ResponseInner, *http.Response, error) {
+func (r BulkPairingsAPIBulkPairingListRequest) Execute() ([]BulkPairing, *http.Response, error) {
 	return r.ApiService.BulkPairingListExecute(r)
 }
 
@@ -881,13 +881,13 @@ func (a *BulkPairingsAPIService) BulkPairingList(ctx context.Context) BulkPairin
 }
 
 // Execute executes the request
-//  @return []BulkPairingList200ResponseInner
-func (a *BulkPairingsAPIService) BulkPairingListExecute(r BulkPairingsAPIBulkPairingListRequest) ([]BulkPairingList200ResponseInner, *http.Response, error) {
+//  @return []BulkPairing
+func (a *BulkPairingsAPIService) BulkPairingListExecute(r BulkPairingsAPIBulkPairingListRequest) ([]BulkPairing, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []BulkPairingList200ResponseInner
+		localVarReturnValue  []BulkPairing
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BulkPairingsAPIService.BulkPairingList")
@@ -961,7 +961,7 @@ type BulkPairingsAPIBulkPairingStartClocksRequest struct {
 	id string
 }
 
-func (r BulkPairingsAPIBulkPairingStartClocksRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r BulkPairingsAPIBulkPairingStartClocksRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.BulkPairingStartClocksExecute(r)
 }
 
@@ -987,13 +987,13 @@ func (a *BulkPairingsAPIService) BulkPairingStartClocks(ctx context.Context, id 
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *BulkPairingsAPIService) BulkPairingStartClocksExecute(r BulkPairingsAPIBulkPairingStartClocksRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *BulkPairingsAPIService) BulkPairingStartClocksExecute(r BulkPairingsAPIBulkPairingStartClocksRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BulkPairingsAPIService.BulkPairingStartClocks")
@@ -1048,7 +1048,7 @@ func (a *BulkPairingsAPIService) BulkPairingStartClocksExecute(r BulkPairingsAPI
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v RacerGet404Response
+			var v NotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

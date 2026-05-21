@@ -26,8 +26,7 @@ type StreamerLive200ResponseInner struct {
 	Name string `json:"name"`
 	// See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
 	Flair *string `json:"flair,omitempty"`
-	// only appears if the user is a titled player or a bot user
-	Title *string `json:"title,omitempty"`
+	Title *Title `json:"title,omitempty"`
 	// Use patronColor value instead to determine if player is a patron. 
 	// Deprecated
 	Patron *bool `json:"patron,omitempty"`
@@ -139,9 +138,9 @@ func (o *StreamerLive200ResponseInner) SetFlair(v string) {
 }
 
 // GetTitle returns the Title field value if set, zero value otherwise.
-func (o *StreamerLive200ResponseInner) GetTitle() string {
+func (o *StreamerLive200ResponseInner) GetTitle() Title {
 	if o == nil || IsNil(o.Title) {
-		var ret string
+		var ret Title
 		return ret
 	}
 	return *o.Title
@@ -149,7 +148,7 @@ func (o *StreamerLive200ResponseInner) GetTitle() string {
 
 // GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StreamerLive200ResponseInner) GetTitleOk() (*string, bool) {
+func (o *StreamerLive200ResponseInner) GetTitleOk() (*Title, bool) {
 	if o == nil || IsNil(o.Title) {
 		return nil, false
 	}
@@ -165,8 +164,8 @@ func (o *StreamerLive200ResponseInner) HasTitle() bool {
 	return false
 }
 
-// SetTitle gets a reference to the given string and assigns it to the Title field.
-func (o *StreamerLive200ResponseInner) SetTitle(v string) {
+// SetTitle gets a reference to the given Title and assigns it to the Title field.
+func (o *StreamerLive200ResponseInner) SetTitle(v Title) {
 	o.Title = &v
 }
 

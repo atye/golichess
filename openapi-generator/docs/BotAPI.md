@@ -22,7 +22,7 @@ Method | HTTP request | Description
 
 ## ApiBotOnline
 
-> ApiUsers200ResponseInner ApiBotOnline(ctx).Nb(nb).Execute()
+> User ApiBotOnline(ctx).Nb(nb).Execute()
 
 Get online bots
 
@@ -50,7 +50,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BotAPI.ApiBotOnline``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiBotOnline`: ApiUsers200ResponseInner
+	// response from `ApiBotOnline`: User
 	fmt.Fprintf(os.Stdout, "Response from `BotAPI.ApiBotOnline`: %v\n", resp)
 }
 ```
@@ -70,7 +70,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiUsers200ResponseInner**](ApiUsers200ResponseInner.md)
+[**User**](User.md)
 
 ### Authorization
 
@@ -149,7 +149,7 @@ Other parameters are passed through a pointer to a apiApiStreamEventRequest stru
 
 ## BotAccountUpgrade
 
-> AccountKidPost200Response BotAccountUpgrade(ctx).Execute()
+> Ok BotAccountUpgrade(ctx).Execute()
 
 Upgrade to Bot account
 
@@ -176,7 +176,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BotAPI.BotAccountUpgrade``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BotAccountUpgrade`: AccountKidPost200Response
+	// response from `BotAccountUpgrade`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `BotAPI.BotAccountUpgrade`: %v\n", resp)
 }
 ```
@@ -192,7 +192,7 @@ Other parameters are passed through a pointer to a apiBotAccountUpgradeRequest s
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -210,7 +210,7 @@ Other parameters are passed through a pointer to a apiBotAccountUpgradeRequest s
 
 ## BotGameAbort
 
-> AccountKidPost200Response BotGameAbort(ctx, gameId).Execute()
+> Ok BotGameAbort(ctx, gameId).Execute()
 
 Abort a game
 
@@ -238,7 +238,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BotAPI.BotGameAbort``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BotGameAbort`: AccountKidPost200Response
+	// response from `BotGameAbort`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `BotAPI.BotGameAbort`: %v\n", resp)
 }
 ```
@@ -262,7 +262,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -280,7 +280,7 @@ Name | Type | Description  | Notes
 
 ## BotGameChat
 
-> AccountKidPost200Response BotGameChat(ctx, gameId).Room(room).Text(text).Execute()
+> Ok BotGameChat(ctx, gameId).Room(room).Text(text).Execute()
 
 Write in the chat
 
@@ -310,7 +310,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BotAPI.BotGameChat``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BotGameChat`: AccountKidPost200Response
+	// response from `BotGameChat`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `BotAPI.BotGameChat`: %v\n", resp)
 }
 ```
@@ -336,7 +336,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -354,7 +354,7 @@ Name | Type | Description  | Notes
 
 ## BotGameChatGet
 
-> []GameChatGet200ResponseInner BotGameChatGet(ctx, gameId).Execute()
+> []SpectatorGameChatInner BotGameChatGet(ctx, gameId).Execute()
 
 Fetch the game chat
 
@@ -382,7 +382,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BotAPI.BotGameChatGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BotGameChatGet`: []GameChatGet200ResponseInner
+	// response from `BotGameChatGet`: []SpectatorGameChatInner
 	fmt.Fprintf(os.Stdout, "Response from `BotAPI.BotGameChatGet`: %v\n", resp)
 }
 ```
@@ -406,7 +406,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]GameChatGet200ResponseInner**](GameChatGet200ResponseInner.md)
+[**[]SpectatorGameChatInner**](SpectatorGameChatInner.md)
 
 ### Authorization
 
@@ -424,7 +424,7 @@ Name | Type | Description  | Notes
 
 ## BotGameClaimDraw
 
-> AccountKidPost200Response BotGameClaimDraw(ctx, gameId).Execute()
+> Ok BotGameClaimDraw(ctx, gameId).Execute()
 
 Claim draw of a game
 
@@ -452,7 +452,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BotAPI.BotGameClaimDraw``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BotGameClaimDraw`: AccountKidPost200Response
+	// response from `BotGameClaimDraw`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `BotAPI.BotGameClaimDraw`: %v\n", resp)
 }
 ```
@@ -476,7 +476,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -494,7 +494,7 @@ Name | Type | Description  | Notes
 
 ## BotGameClaimVictory
 
-> AccountKidPost200Response BotGameClaimVictory(ctx, gameId).Execute()
+> Ok BotGameClaimVictory(ctx, gameId).Execute()
 
 Claim victory of a game
 
@@ -522,7 +522,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BotAPI.BotGameClaimVictory``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BotGameClaimVictory`: AccountKidPost200Response
+	// response from `BotGameClaimVictory`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `BotAPI.BotGameClaimVictory`: %v\n", resp)
 }
 ```
@@ -546,7 +546,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -564,7 +564,7 @@ Name | Type | Description  | Notes
 
 ## BotGameDraw
 
-> AccountKidPost200Response BotGameDraw(ctx, gameId, accept).Execute()
+> Ok BotGameDraw(ctx, gameId, accept).Execute()
 
 Handle draw offers
 
@@ -593,7 +593,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BotAPI.BotGameDraw``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BotGameDraw`: AccountKidPost200Response
+	// response from `BotGameDraw`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `BotAPI.BotGameDraw`: %v\n", resp)
 }
 ```
@@ -619,7 +619,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -637,7 +637,7 @@ Name | Type | Description  | Notes
 
 ## BotGameMove
 
-> AccountKidPost200Response BotGameMove(ctx, gameId, move).OfferingDraw(offeringDraw).Execute()
+> Ok BotGameMove(ctx, gameId, move).OfferingDraw(offeringDraw).Execute()
 
 Make a Bot move
 
@@ -667,7 +667,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BotAPI.BotGameMove``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BotGameMove`: AccountKidPost200Response
+	// response from `BotGameMove`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `BotAPI.BotGameMove`: %v\n", resp)
 }
 ```
@@ -694,7 +694,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -712,7 +712,7 @@ Name | Type | Description  | Notes
 
 ## BotGameResign
 
-> AccountKidPost200Response BotGameResign(ctx, gameId).Execute()
+> Ok BotGameResign(ctx, gameId).Execute()
 
 Resign a game
 
@@ -740,7 +740,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BotAPI.BotGameResign``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BotGameResign`: AccountKidPost200Response
+	// response from `BotGameResign`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `BotAPI.BotGameResign`: %v\n", resp)
 }
 ```
@@ -764,7 +764,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -852,7 +852,7 @@ Name | Type | Description  | Notes
 
 ## BotGameTakeback
 
-> AccountKidPost200Response BotGameTakeback(ctx, gameId, accept).Execute()
+> Ok BotGameTakeback(ctx, gameId, accept).Execute()
 
 Handle takeback offers
 
@@ -881,7 +881,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BotAPI.BotGameTakeback``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BotGameTakeback`: AccountKidPost200Response
+	// response from `BotGameTakeback`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `BotAPI.BotGameTakeback`: %v\n", resp)
 }
 ```
@@ -907,7 +907,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 

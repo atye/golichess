@@ -5,16 +5,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** |  | [optional] 
-**Variant** | Pointer to [**ApiAccountPlaying200ResponseNowPlayingInnerVariant**](ApiAccountPlaying200ResponseNowPlayingInnerVariant.md) |  | [optional] 
-**Speed** | Pointer to **string** |  | [optional] 
-**Perf** | Pointer to **string** |  | [optional] 
+**Variant** | Pointer to [**Variant**](Variant.md) |  | [optional] 
+**Speed** | Pointer to [**Speed**](Speed.md) |  | [optional] 
+**Perf** | Pointer to [**PerfType**](PerfType.md) |  | [optional] 
 **Rated** | Pointer to **bool** |  | [optional] 
 **Fen** | Pointer to **string** |  | [optional] 
 **Turns** | Pointer to **int32** |  | [optional] 
-**Source** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to [**StreamGame200ResponseInnerOneOfStatus**](StreamGame200ResponseInnerOneOfStatus.md) |  | [optional] 
+**Source** | Pointer to [**GameSource**](GameSource.md) |  | [optional] 
+**Status** | Pointer to [**GameStatus**](GameStatus.md) |  | [optional] 
 **CreatedAt** | Pointer to **int64** |  | [optional] 
-**Player** | Pointer to **NullableString** |  | [optional] 
+**Player** | Pointer to [**GameColor**](GameColor.md) |  | [optional] 
 **FullId** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -63,20 +63,20 @@ HasId returns a boolean if a field has been set.
 
 ### GetVariant
 
-`func (o *ChallengeAi201Response) GetVariant() ApiAccountPlaying200ResponseNowPlayingInnerVariant`
+`func (o *ChallengeAi201Response) GetVariant() Variant`
 
 GetVariant returns the Variant field if non-nil, zero value otherwise.
 
 ### GetVariantOk
 
-`func (o *ChallengeAi201Response) GetVariantOk() (*ApiAccountPlaying200ResponseNowPlayingInnerVariant, bool)`
+`func (o *ChallengeAi201Response) GetVariantOk() (*Variant, bool)`
 
 GetVariantOk returns a tuple with the Variant field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVariant
 
-`func (o *ChallengeAi201Response) SetVariant(v ApiAccountPlaying200ResponseNowPlayingInnerVariant)`
+`func (o *ChallengeAi201Response) SetVariant(v Variant)`
 
 SetVariant sets Variant field to given value.
 
@@ -88,20 +88,20 @@ HasVariant returns a boolean if a field has been set.
 
 ### GetSpeed
 
-`func (o *ChallengeAi201Response) GetSpeed() string`
+`func (o *ChallengeAi201Response) GetSpeed() Speed`
 
 GetSpeed returns the Speed field if non-nil, zero value otherwise.
 
 ### GetSpeedOk
 
-`func (o *ChallengeAi201Response) GetSpeedOk() (*string, bool)`
+`func (o *ChallengeAi201Response) GetSpeedOk() (*Speed, bool)`
 
 GetSpeedOk returns a tuple with the Speed field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSpeed
 
-`func (o *ChallengeAi201Response) SetSpeed(v string)`
+`func (o *ChallengeAi201Response) SetSpeed(v Speed)`
 
 SetSpeed sets Speed field to given value.
 
@@ -113,20 +113,20 @@ HasSpeed returns a boolean if a field has been set.
 
 ### GetPerf
 
-`func (o *ChallengeAi201Response) GetPerf() string`
+`func (o *ChallengeAi201Response) GetPerf() PerfType`
 
 GetPerf returns the Perf field if non-nil, zero value otherwise.
 
 ### GetPerfOk
 
-`func (o *ChallengeAi201Response) GetPerfOk() (*string, bool)`
+`func (o *ChallengeAi201Response) GetPerfOk() (*PerfType, bool)`
 
 GetPerfOk returns a tuple with the Perf field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPerf
 
-`func (o *ChallengeAi201Response) SetPerf(v string)`
+`func (o *ChallengeAi201Response) SetPerf(v PerfType)`
 
 SetPerf sets Perf field to given value.
 
@@ -213,20 +213,20 @@ HasTurns returns a boolean if a field has been set.
 
 ### GetSource
 
-`func (o *ChallengeAi201Response) GetSource() string`
+`func (o *ChallengeAi201Response) GetSource() GameSource`
 
 GetSource returns the Source field if non-nil, zero value otherwise.
 
 ### GetSourceOk
 
-`func (o *ChallengeAi201Response) GetSourceOk() (*string, bool)`
+`func (o *ChallengeAi201Response) GetSourceOk() (*GameSource, bool)`
 
 GetSourceOk returns a tuple with the Source field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSource
 
-`func (o *ChallengeAi201Response) SetSource(v string)`
+`func (o *ChallengeAi201Response) SetSource(v GameSource)`
 
 SetSource sets Source field to given value.
 
@@ -238,20 +238,20 @@ HasSource returns a boolean if a field has been set.
 
 ### GetStatus
 
-`func (o *ChallengeAi201Response) GetStatus() StreamGame200ResponseInnerOneOfStatus`
+`func (o *ChallengeAi201Response) GetStatus() GameStatus`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *ChallengeAi201Response) GetStatusOk() (*StreamGame200ResponseInnerOneOfStatus, bool)`
+`func (o *ChallengeAi201Response) GetStatusOk() (*GameStatus, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *ChallengeAi201Response) SetStatus(v StreamGame200ResponseInnerOneOfStatus)`
+`func (o *ChallengeAi201Response) SetStatus(v GameStatus)`
 
 SetStatus sets Status field to given value.
 
@@ -288,20 +288,20 @@ HasCreatedAt returns a boolean if a field has been set.
 
 ### GetPlayer
 
-`func (o *ChallengeAi201Response) GetPlayer() string`
+`func (o *ChallengeAi201Response) GetPlayer() GameColor`
 
 GetPlayer returns the Player field if non-nil, zero value otherwise.
 
 ### GetPlayerOk
 
-`func (o *ChallengeAi201Response) GetPlayerOk() (*string, bool)`
+`func (o *ChallengeAi201Response) GetPlayerOk() (*GameColor, bool)`
 
 GetPlayerOk returns a tuple with the Player field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPlayer
 
-`func (o *ChallengeAi201Response) SetPlayer(v string)`
+`func (o *ChallengeAi201Response) SetPlayer(v GameColor)`
 
 SetPlayer sets Player field to given value.
 
@@ -311,16 +311,6 @@ SetPlayer sets Player field to given value.
 
 HasPlayer returns a boolean if a field has been set.
 
-### SetPlayerNil
-
-`func (o *ChallengeAi201Response) SetPlayerNil(b bool)`
-
- SetPlayerNil sets the value for Player to be an explicit nil
-
-### UnsetPlayer
-`func (o *ChallengeAi201Response) UnsetPlayer()`
-
-UnsetPlayer ensures that no value is present for Player, not even an explicit nil
 ### GetFullId
 
 `func (o *ChallengeAi201Response) GetFullId() string`

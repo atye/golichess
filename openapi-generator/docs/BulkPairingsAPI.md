@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## BulkPairingCreate
 
-> BulkPairingList200ResponseInner BulkPairingCreate(ctx).Players(players).ClockLimit(clockLimit).ClockIncrement(clockIncrement).Days(days).PairAt(pairAt).StartClocksAt(startClocksAt).Rated(rated).Variant(variant).Fen(fen).Message(message).Rules(rules).Execute()
+> BulkPairing BulkPairingCreate(ctx).Players(players).ClockLimit(clockLimit).ClockIncrement(clockIncrement).Days(days).PairAt(pairAt).StartClocksAt(startClocksAt).Rated(rated).Variant(variant).Fen(fen).Message(message).Rules(rules).Execute()
 
 Create a bulk pairing
 
@@ -41,7 +41,7 @@ func main() {
 	pairAt := int64(789) // int64 | Date at which the games will be created as a Unix timestamp in milliseconds. Up to 7 days in the future. Omit, or set to current date and time, to start the games immediately. Example: `1612289869919`  (optional)
 	startClocksAt := int64(789) // int64 | Date at which the clocks will be automatically started as a Unix timestamp in milliseconds. Up to 7 days in the future. Note that the clocks can start earlier than specified, if players start making moves in the game. If omitted, the clocks will not start automatically. Example: `1612289869919`  (optional)
 	rated := true // bool | Game is rated and impacts players ratings (optional) (default to false)
-	variant := "variant_example" // string |  (optional) (default to "standard")
+	variant := openapiclient.VariantKey("standard") // VariantKey |  (optional) (default to "standard")
 	fen := "fen_example" // string | Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated. (optional) (default to "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
 	message := "message_example" // string | Message that will be sent to each player, when the game is created.  It is sent from your user account. `{opponent}` and `{game}` are placeholders that will be replaced with the opponent and the game URLs. You can omit this field to send the default message, but if you set your own message, it must at least contain the `{game}` placeholder.  (optional) (default to "Your game with {opponent} is ready: {game}.")
 	rules := "rules_example" // string | Extra game rules separated by commas. Example: `noAbort,noRematch`  (optional)
@@ -53,7 +53,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BulkPairingsAPI.BulkPairingCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BulkPairingCreate`: BulkPairingList200ResponseInner
+	// response from `BulkPairingCreate`: BulkPairing
 	fmt.Fprintf(os.Stdout, "Response from `BulkPairingsAPI.BulkPairingCreate`: %v\n", resp)
 }
 ```
@@ -76,14 +76,14 @@ Name | Type | Description  | Notes
  **pairAt** | **int64** | Date at which the games will be created as a Unix timestamp in milliseconds. Up to 7 days in the future. Omit, or set to current date and time, to start the games immediately. Example: &#x60;1612289869919&#x60;  | 
  **startClocksAt** | **int64** | Date at which the clocks will be automatically started as a Unix timestamp in milliseconds. Up to 7 days in the future. Note that the clocks can start earlier than specified, if players start making moves in the game. If omitted, the clocks will not start automatically. Example: &#x60;1612289869919&#x60;  | 
  **rated** | **bool** | Game is rated and impacts players ratings | [default to false]
- **variant** | **string** |  | [default to &quot;standard&quot;]
+ **variant** | [**VariantKey**](VariantKey.md) |  | [default to &quot;standard&quot;]
  **fen** | **string** | Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated. | [default to &quot;rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1&quot;]
  **message** | **string** | Message that will be sent to each player, when the game is created.  It is sent from your user account. &#x60;{opponent}&#x60; and &#x60;{game}&#x60; are placeholders that will be replaced with the opponent and the game URLs. You can omit this field to send the default message, but if you set your own message, it must at least contain the &#x60;{game}&#x60; placeholder.  | [default to &quot;Your game with {opponent} is ready: {game}.&quot;]
  **rules** | **string** | Extra game rules separated by commas. Example: &#x60;noAbort,noRematch&#x60;  | 
 
 ### Return type
 
-[**BulkPairingList200ResponseInner**](BulkPairingList200ResponseInner.md)
+[**BulkPairing**](BulkPairing.md)
 
 ### Authorization
 
@@ -101,7 +101,7 @@ Name | Type | Description  | Notes
 
 ## BulkPairingDelete
 
-> AccountKidPost200Response BulkPairingDelete(ctx, id).Execute()
+> Ok BulkPairingDelete(ctx, id).Execute()
 
 Cancel a bulk pairing
 
@@ -129,7 +129,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BulkPairingsAPI.BulkPairingDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BulkPairingDelete`: AccountKidPost200Response
+	// response from `BulkPairingDelete`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `BulkPairingsAPI.BulkPairingDelete`: %v\n", resp)
 }
 ```
@@ -153,7 +153,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -171,7 +171,7 @@ Name | Type | Description  | Notes
 
 ## BulkPairingGet
 
-> BulkPairingList200ResponseInner BulkPairingGet(ctx, id).Execute()
+> BulkPairing BulkPairingGet(ctx, id).Execute()
 
 Show a bulk pairing
 
@@ -199,7 +199,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BulkPairingsAPI.BulkPairingGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BulkPairingGet`: BulkPairingList200ResponseInner
+	// response from `BulkPairingGet`: BulkPairing
 	fmt.Fprintf(os.Stdout, "Response from `BulkPairingsAPI.BulkPairingGet`: %v\n", resp)
 }
 ```
@@ -223,7 +223,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BulkPairingList200ResponseInner**](BulkPairingList200ResponseInner.md)
+[**BulkPairing**](BulkPairing.md)
 
 ### Authorization
 
@@ -331,7 +331,7 @@ Name | Type | Description  | Notes
 
 ## BulkPairingList
 
-> []BulkPairingList200ResponseInner BulkPairingList(ctx).Execute()
+> []BulkPairing BulkPairingList(ctx).Execute()
 
 View your bulk pairings
 
@@ -358,7 +358,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BulkPairingsAPI.BulkPairingList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BulkPairingList`: []BulkPairingList200ResponseInner
+	// response from `BulkPairingList`: []BulkPairing
 	fmt.Fprintf(os.Stdout, "Response from `BulkPairingsAPI.BulkPairingList`: %v\n", resp)
 }
 ```
@@ -374,7 +374,7 @@ Other parameters are passed through a pointer to a apiBulkPairingListRequest str
 
 ### Return type
 
-[**[]BulkPairingList200ResponseInner**](BulkPairingList200ResponseInner.md)
+[**[]BulkPairing**](BulkPairing.md)
 
 ### Authorization
 
@@ -392,7 +392,7 @@ Other parameters are passed through a pointer to a apiBulkPairingListRequest str
 
 ## BulkPairingStartClocks
 
-> AccountKidPost200Response BulkPairingStartClocks(ctx, id).Execute()
+> Ok BulkPairingStartClocks(ctx, id).Execute()
 
 Manually start clocks
 
@@ -420,7 +420,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BulkPairingsAPI.BulkPairingStartClocks``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BulkPairingStartClocks`: AccountKidPost200Response
+	// response from `BulkPairingStartClocks`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `BulkPairingsAPI.BulkPairingStartClocks`: %v\n", resp)
 }
 ```
@@ -444,7 +444,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 

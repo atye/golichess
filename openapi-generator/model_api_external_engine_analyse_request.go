@@ -23,7 +23,7 @@ var _ MappedNullable = &ApiExternalEngineAnalyseRequest{}
 // ApiExternalEngineAnalyseRequest struct for ApiExternalEngineAnalyseRequest
 type ApiExternalEngineAnalyseRequest struct {
 	ClientSecret string `json:"clientSecret"`
-	Work ApiExternalEngineAnalyseRequestWork `json:"work"`
+	Work ExternalEngineWork `json:"work"`
 }
 
 type _ApiExternalEngineAnalyseRequest ApiExternalEngineAnalyseRequest
@@ -32,7 +32,7 @@ type _ApiExternalEngineAnalyseRequest ApiExternalEngineAnalyseRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApiExternalEngineAnalyseRequest(clientSecret string, work ApiExternalEngineAnalyseRequestWork) *ApiExternalEngineAnalyseRequest {
+func NewApiExternalEngineAnalyseRequest(clientSecret string, work ExternalEngineWork) *ApiExternalEngineAnalyseRequest {
 	this := ApiExternalEngineAnalyseRequest{}
 	this.ClientSecret = clientSecret
 	this.Work = work
@@ -72,9 +72,9 @@ func (o *ApiExternalEngineAnalyseRequest) SetClientSecret(v string) {
 }
 
 // GetWork returns the Work field value
-func (o *ApiExternalEngineAnalyseRequest) GetWork() ApiExternalEngineAnalyseRequestWork {
+func (o *ApiExternalEngineAnalyseRequest) GetWork() ExternalEngineWork {
 	if o == nil {
-		var ret ApiExternalEngineAnalyseRequestWork
+		var ret ExternalEngineWork
 		return ret
 	}
 
@@ -83,7 +83,7 @@ func (o *ApiExternalEngineAnalyseRequest) GetWork() ApiExternalEngineAnalyseRequ
 
 // GetWorkOk returns a tuple with the Work field value
 // and a boolean to check if the value has been set.
-func (o *ApiExternalEngineAnalyseRequest) GetWorkOk() (*ApiExternalEngineAnalyseRequestWork, bool) {
+func (o *ApiExternalEngineAnalyseRequest) GetWorkOk() (*ExternalEngineWork, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -91,7 +91,7 @@ func (o *ApiExternalEngineAnalyseRequest) GetWorkOk() (*ApiExternalEngineAnalyse
 }
 
 // SetWork sets field value
-func (o *ApiExternalEngineAnalyseRequest) SetWork(v ApiExternalEngineAnalyseRequestWork) {
+func (o *ApiExternalEngineAnalyseRequest) SetWork(v ExternalEngineWork) {
 	o.Work = v
 }
 

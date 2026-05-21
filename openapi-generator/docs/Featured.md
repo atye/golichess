@@ -4,14 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**T** | **string** | The type of message. A summary of the game is sent as the first message and when the featured game changes. Subsequent messages are just the X-FEN, last move, and clocks.  | 
-**D** | [**Featured**](Featured.md) |  | 
+**Id** | **string** | The game ID | 
+**Orientation** | [**GameColor**](GameColor.md) |  | 
+**Players** | [**[]FeaturedPlayersInner**](FeaturedPlayersInner.md) |  | 
+**Fen** | **string** | The X-FEN of the current position | 
 
 ## Methods
 
 ### NewFeatured
 
-`func NewFeatured(t string, d Featured, ) *Featured`
+`func NewFeatured(id string, orientation GameColor, players []FeaturedPlayersInner, fen string, ) *Featured`
 
 NewFeatured instantiates a new Featured object
 This constructor will assign default values to properties that have it defined,
@@ -26,44 +28,84 @@ NewFeaturedWithDefaults instantiates a new Featured object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetT
+### GetId
 
-`func (o *Featured) GetT() string`
+`func (o *Featured) GetId() string`
 
-GetT returns the T field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-### GetTOk
+### GetIdOk
 
-`func (o *Featured) GetTOk() (*string, bool)`
+`func (o *Featured) GetIdOk() (*string, bool)`
 
-GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetT
+### SetId
 
-`func (o *Featured) SetT(v string)`
+`func (o *Featured) SetId(v string)`
 
-SetT sets T field to given value.
+SetId sets Id field to given value.
 
 
-### GetD
+### GetOrientation
 
-`func (o *Featured) GetD() Featured`
+`func (o *Featured) GetOrientation() GameColor`
 
-GetD returns the D field if non-nil, zero value otherwise.
+GetOrientation returns the Orientation field if non-nil, zero value otherwise.
 
-### GetDOk
+### GetOrientationOk
 
-`func (o *Featured) GetDOk() (*Featured, bool)`
+`func (o *Featured) GetOrientationOk() (*GameColor, bool)`
 
-GetDOk returns a tuple with the D field if it's non-nil, zero value otherwise
+GetOrientationOk returns a tuple with the Orientation field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetD
+### SetOrientation
 
-`func (o *Featured) SetD(v Featured)`
+`func (o *Featured) SetOrientation(v GameColor)`
 
-SetD sets D field to given value.
+SetOrientation sets Orientation field to given value.
+
+
+### GetPlayers
+
+`func (o *Featured) GetPlayers() []FeaturedPlayersInner`
+
+GetPlayers returns the Players field if non-nil, zero value otherwise.
+
+### GetPlayersOk
+
+`func (o *Featured) GetPlayersOk() (*[]FeaturedPlayersInner, bool)`
+
+GetPlayersOk returns a tuple with the Players field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPlayers
+
+`func (o *Featured) SetPlayers(v []FeaturedPlayersInner)`
+
+SetPlayers sets Players field to given value.
+
+
+### GetFen
+
+`func (o *Featured) GetFen() string`
+
+GetFen returns the Fen field if non-nil, zero value otherwise.
+
+### GetFenOk
+
+`func (o *Featured) GetFenOk() (*string, bool)`
+
+GetFenOk returns a tuple with the Fen field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFen
+
+`func (o *Featured) SetFen(v string)`
+
+SetFen sets Fen field to given value.
 
 
 

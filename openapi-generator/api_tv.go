@@ -37,8 +37,8 @@ Try it with `curl https://lichess.org/api/tv/rapid/feed`.
 	TvChannelFeed(ctx context.Context, channel string) TVAPITvChannelFeedRequest
 
 	// TvChannelFeedExecute executes the request
-	//  @return TvChannelFeed200Response
-	TvChannelFeedExecute(r TVAPITvChannelFeedRequest) (*TvChannelFeed200Response, *http.Response, error)
+	//  @return TvFeed
+	TvChannelFeedExecute(r TVAPITvChannelFeedRequest) (*TvFeed, *http.Response, error)
 
 	/*
 	TvChannelGames Get best ongoing games of a TV channel
@@ -87,8 +87,8 @@ Try it with `curl https://lichess.org/api/tv/feed`.
 	TvFeed(ctx context.Context) TVAPITvFeedRequest
 
 	// TvFeedExecute executes the request
-	//  @return TvFeed200Response
-	TvFeedExecute(r TVAPITvFeedRequest) (*TvFeed200Response, *http.Response, error)
+	//  @return TvFeed
+	TvFeedExecute(r TVAPITvFeedRequest) (*TvFeed, *http.Response, error)
 }
 
 // TVAPIService TVAPI service
@@ -100,7 +100,7 @@ type TVAPITvChannelFeedRequest struct {
 	channel string
 }
 
-func (r TVAPITvChannelFeedRequest) Execute() (*TvChannelFeed200Response, *http.Response, error) {
+func (r TVAPITvChannelFeedRequest) Execute() (*TvFeed, *http.Response, error) {
 	return r.ApiService.TvChannelFeedExecute(r)
 }
 
@@ -124,13 +124,13 @@ func (a *TVAPIService) TvChannelFeed(ctx context.Context, channel string) TVAPIT
 }
 
 // Execute executes the request
-//  @return TvChannelFeed200Response
-func (a *TVAPIService) TvChannelFeedExecute(r TVAPITvChannelFeedRequest) (*TvChannelFeed200Response, *http.Response, error) {
+//  @return TvFeed
+func (a *TVAPIService) TvChannelFeedExecute(r TVAPITvChannelFeedRequest) (*TvFeed, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *TvChannelFeed200Response
+		localVarReturnValue  *TvFeed
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TVAPIService.TvChannelFeed")
@@ -505,7 +505,7 @@ type TVAPITvFeedRequest struct {
 	ApiService TVAPI
 }
 
-func (r TVAPITvFeedRequest) Execute() (*TvFeed200Response, *http.Response, error) {
+func (r TVAPITvFeedRequest) Execute() (*TvFeed, *http.Response, error) {
 	return r.ApiService.TvFeedExecute(r)
 }
 
@@ -527,13 +527,13 @@ func (a *TVAPIService) TvFeed(ctx context.Context) TVAPITvFeedRequest {
 }
 
 // Execute executes the request
-//  @return TvFeed200Response
-func (a *TVAPIService) TvFeedExecute(r TVAPITvFeedRequest) (*TvFeed200Response, *http.Response, error) {
+//  @return TvFeed
+func (a *TVAPIService) TvFeedExecute(r TVAPITvFeedRequest) (*TvFeed, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *TvFeed200Response
+		localVarReturnValue  *TvFeed
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TVAPIService.TvFeed")

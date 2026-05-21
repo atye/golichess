@@ -25,13 +25,13 @@ type ApiAccountPlaying200ResponseNowPlayingInner struct {
 	FullId string `json:"fullId"`
 	GameId string `json:"gameId"`
 	Fen string `json:"fen"`
-	Color NullableString `json:"color"`
+	Color GameColor `json:"color"`
 	LastMove string `json:"lastMove"`
-	Source string `json:"source"`
-	Status *string `json:"status,omitempty"`
-	Variant ApiAccountPlaying200ResponseNowPlayingInnerVariant `json:"variant"`
-	Speed string `json:"speed"`
-	Perf string `json:"perf"`
+	Source GameSource `json:"source"`
+	Status *GameStatusName `json:"status,omitempty"`
+	Variant Variant `json:"variant"`
+	Speed Speed `json:"speed"`
+	Perf PerfType `json:"perf"`
 	Rated bool `json:"rated"`
 	HasMoved bool `json:"hasMoved"`
 	Opponent ApiAccountPlaying200ResponseNowPlayingInnerOpponent `json:"opponent"`
@@ -39,7 +39,7 @@ type ApiAccountPlaying200ResponseNowPlayingInner struct {
 	SecondsLeft int32 `json:"secondsLeft"`
 	TournamentId *string `json:"tournamentId,omitempty"`
 	SwissId *string `json:"swissId,omitempty"`
-	Winner NullableString `json:"winner,omitempty"`
+	Winner *GameColor `json:"winner,omitempty"`
 	RatingDiff *int32 `json:"ratingDiff,omitempty"`
 }
 
@@ -49,7 +49,7 @@ type _ApiAccountPlaying200ResponseNowPlayingInner ApiAccountPlaying200ResponseNo
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApiAccountPlaying200ResponseNowPlayingInner(fullId string, gameId string, fen string, color NullableString, lastMove string, source string, variant ApiAccountPlaying200ResponseNowPlayingInnerVariant, speed string, perf string, rated bool, hasMoved bool, opponent ApiAccountPlaying200ResponseNowPlayingInnerOpponent, isMyTurn bool, secondsLeft int32) *ApiAccountPlaying200ResponseNowPlayingInner {
+func NewApiAccountPlaying200ResponseNowPlayingInner(fullId string, gameId string, fen string, color GameColor, lastMove string, source GameSource, variant Variant, speed Speed, perf PerfType, rated bool, hasMoved bool, opponent ApiAccountPlaying200ResponseNowPlayingInnerOpponent, isMyTurn bool, secondsLeft int32) *ApiAccountPlaying200ResponseNowPlayingInner {
 	this := ApiAccountPlaying200ResponseNowPlayingInner{}
 	this.FullId = fullId
 	this.GameId = gameId
@@ -149,29 +149,27 @@ func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetFen(v string) {
 }
 
 // GetColor returns the Color field value
-// If the value is explicit nil, the zero value for string will be returned
-func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetColor() string {
-	if o == nil || o.Color.Get() == nil {
-		var ret string
+func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetColor() GameColor {
+	if o == nil {
+		var ret GameColor
 		return ret
 	}
 
-	return *o.Color.Get()
+	return o.Color
 }
 
 // GetColorOk returns a tuple with the Color field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetColorOk() (*string, bool) {
+func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetColorOk() (*GameColor, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Color.Get(), o.Color.IsSet()
+	return &o.Color, true
 }
 
 // SetColor sets field value
-func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetColor(v string) {
-	o.Color.Set(&v)
+func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetColor(v GameColor) {
+	o.Color = v
 }
 
 // GetLastMove returns the LastMove field value
@@ -199,9 +197,9 @@ func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetLastMove(v string) {
 }
 
 // GetSource returns the Source field value
-func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetSource() string {
+func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetSource() GameSource {
 	if o == nil {
-		var ret string
+		var ret GameSource
 		return ret
 	}
 
@@ -210,7 +208,7 @@ func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetSource() string {
 
 // GetSourceOk returns a tuple with the Source field value
 // and a boolean to check if the value has been set.
-func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetSourceOk() (*string, bool) {
+func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetSourceOk() (*GameSource, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -218,14 +216,14 @@ func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetSourceOk() (*string, bo
 }
 
 // SetSource sets field value
-func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetSource(v string) {
+func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetSource(v GameSource) {
 	o.Source = v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetStatus() string {
+func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetStatus() GameStatusName {
 	if o == nil || IsNil(o.Status) {
-		var ret string
+		var ret GameStatusName
 		return ret
 	}
 	return *o.Status
@@ -233,7 +231,7 @@ func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetStatusOk() (*string, bool) {
+func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetStatusOk() (*GameStatusName, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
@@ -249,15 +247,15 @@ func (o *ApiAccountPlaying200ResponseNowPlayingInner) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetStatus(v string) {
+// SetStatus gets a reference to the given GameStatusName and assigns it to the Status field.
+func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetStatus(v GameStatusName) {
 	o.Status = &v
 }
 
 // GetVariant returns the Variant field value
-func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetVariant() ApiAccountPlaying200ResponseNowPlayingInnerVariant {
+func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetVariant() Variant {
 	if o == nil {
-		var ret ApiAccountPlaying200ResponseNowPlayingInnerVariant
+		var ret Variant
 		return ret
 	}
 
@@ -266,7 +264,7 @@ func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetVariant() ApiAccountPla
 
 // GetVariantOk returns a tuple with the Variant field value
 // and a boolean to check if the value has been set.
-func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetVariantOk() (*ApiAccountPlaying200ResponseNowPlayingInnerVariant, bool) {
+func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetVariantOk() (*Variant, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -274,14 +272,14 @@ func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetVariantOk() (*ApiAccoun
 }
 
 // SetVariant sets field value
-func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetVariant(v ApiAccountPlaying200ResponseNowPlayingInnerVariant) {
+func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetVariant(v Variant) {
 	o.Variant = v
 }
 
 // GetSpeed returns the Speed field value
-func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetSpeed() string {
+func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetSpeed() Speed {
 	if o == nil {
-		var ret string
+		var ret Speed
 		return ret
 	}
 
@@ -290,7 +288,7 @@ func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetSpeed() string {
 
 // GetSpeedOk returns a tuple with the Speed field value
 // and a boolean to check if the value has been set.
-func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetSpeedOk() (*string, bool) {
+func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetSpeedOk() (*Speed, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -298,14 +296,14 @@ func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetSpeedOk() (*string, boo
 }
 
 // SetSpeed sets field value
-func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetSpeed(v string) {
+func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetSpeed(v Speed) {
 	o.Speed = v
 }
 
 // GetPerf returns the Perf field value
-func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetPerf() string {
+func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetPerf() PerfType {
 	if o == nil {
-		var ret string
+		var ret PerfType
 		return ret
 	}
 
@@ -314,7 +312,7 @@ func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetPerf() string {
 
 // GetPerfOk returns a tuple with the Perf field value
 // and a boolean to check if the value has been set.
-func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetPerfOk() (*string, bool) {
+func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetPerfOk() (*PerfType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -322,7 +320,7 @@ func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetPerfOk() (*string, bool
 }
 
 // SetPerf sets field value
-func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetPerf(v string) {
+func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetPerf(v PerfType) {
 	o.Perf = v
 }
 
@@ -510,46 +508,36 @@ func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetSwissId(v string) {
 	o.SwissId = &v
 }
 
-// GetWinner returns the Winner field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetWinner() string {
-	if o == nil || IsNil(o.Winner.Get()) {
-		var ret string
+// GetWinner returns the Winner field value if set, zero value otherwise.
+func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetWinner() GameColor {
+	if o == nil || IsNil(o.Winner) {
+		var ret GameColor
 		return ret
 	}
-	return *o.Winner.Get()
+	return *o.Winner
 }
 
 // GetWinnerOk returns a tuple with the Winner field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetWinnerOk() (*string, bool) {
-	if o == nil {
+func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetWinnerOk() (*GameColor, bool) {
+	if o == nil || IsNil(o.Winner) {
 		return nil, false
 	}
-	return o.Winner.Get(), o.Winner.IsSet()
+	return o.Winner, true
 }
 
 // HasWinner returns a boolean if a field has been set.
 func (o *ApiAccountPlaying200ResponseNowPlayingInner) HasWinner() bool {
-	if o != nil && o.Winner.IsSet() {
+	if o != nil && !IsNil(o.Winner) {
 		return true
 	}
 
 	return false
 }
 
-// SetWinner gets a reference to the given NullableString and assigns it to the Winner field.
-func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetWinner(v string) {
-	o.Winner.Set(&v)
-}
-// SetWinnerNil sets the value for Winner to be an explicit nil
-func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetWinnerNil() {
-	o.Winner.Set(nil)
-}
-
-// UnsetWinner ensures that no value is present for Winner, not even an explicit nil
-func (o *ApiAccountPlaying200ResponseNowPlayingInner) UnsetWinner() {
-	o.Winner.Unset()
+// SetWinner gets a reference to the given GameColor and assigns it to the Winner field.
+func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetWinner(v GameColor) {
+	o.Winner = &v
 }
 
 // GetRatingDiff returns the RatingDiff field value if set, zero value otherwise.
@@ -597,7 +585,7 @@ func (o ApiAccountPlaying200ResponseNowPlayingInner) ToMap() (map[string]interfa
 	toSerialize["fullId"] = o.FullId
 	toSerialize["gameId"] = o.GameId
 	toSerialize["fen"] = o.Fen
-	toSerialize["color"] = o.Color.Get()
+	toSerialize["color"] = o.Color
 	toSerialize["lastMove"] = o.LastMove
 	toSerialize["source"] = o.Source
 	if !IsNil(o.Status) {
@@ -617,8 +605,8 @@ func (o ApiAccountPlaying200ResponseNowPlayingInner) ToMap() (map[string]interfa
 	if !IsNil(o.SwissId) {
 		toSerialize["swissId"] = o.SwissId
 	}
-	if o.Winner.IsSet() {
-		toSerialize["winner"] = o.Winner.Get()
+	if !IsNil(o.Winner) {
+		toSerialize["winner"] = o.Winner
 	}
 	if !IsNil(o.RatingDiff) {
 		toSerialize["ratingDiff"] = o.RatingDiff

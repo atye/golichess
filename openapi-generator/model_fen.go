@@ -20,11 +20,16 @@ import (
 // checks if the Fen type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Fen{}
 
-// Fen struct for Fen
+// Fen The data of the message
 type Fen struct {
-	// The type of message. A summary of the game is sent as the first message and when the featured game changes. Subsequent messages are just the X-FEN, last move, and clocks. 
-	T string `json:"t"`
-	D Fen `json:"d"`
+	// The X-FEN of the current position
+	Fen string `json:"fen"`
+	// The last move in UCI format (King to rook for Chess960-compatible castling notation) 
+	Lm string `json:"lm"`
+	// White's clock in seconds
+	Wc int32 `json:"wc"`
+	// Black's clock in seconds
+	Bc int32 `json:"bc"`
 }
 
 type _Fen Fen
@@ -33,10 +38,12 @@ type _Fen Fen
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFen(t string, d Fen) *Fen {
+func NewFen(fen string, lm string, wc int32, bc int32) *Fen {
 	this := Fen{}
-	this.T = t
-	this.D = d
+	this.Fen = fen
+	this.Lm = lm
+	this.Wc = wc
+	this.Bc = bc
 	return &this
 }
 
@@ -48,52 +55,100 @@ func NewFenWithDefaults() *Fen {
 	return &this
 }
 
-// GetT returns the T field value
-func (o *Fen) GetT() string {
+// GetFen returns the Fen field value
+func (o *Fen) GetFen() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.T
+	return o.Fen
 }
 
-// GetTOk returns a tuple with the T field value
+// GetFenOk returns a tuple with the Fen field value
 // and a boolean to check if the value has been set.
-func (o *Fen) GetTOk() (*string, bool) {
+func (o *Fen) GetFenOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.T, true
+	return &o.Fen, true
 }
 
-// SetT sets field value
-func (o *Fen) SetT(v string) {
-	o.T = v
+// SetFen sets field value
+func (o *Fen) SetFen(v string) {
+	o.Fen = v
 }
 
-// GetD returns the D field value
-func (o *Fen) GetD() Fen {
+// GetLm returns the Lm field value
+func (o *Fen) GetLm() string {
 	if o == nil {
-		var ret Fen
+		var ret string
 		return ret
 	}
 
-	return o.D
+	return o.Lm
 }
 
-// GetDOk returns a tuple with the D field value
+// GetLmOk returns a tuple with the Lm field value
 // and a boolean to check if the value has been set.
-func (o *Fen) GetDOk() (*Fen, bool) {
+func (o *Fen) GetLmOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.D, true
+	return &o.Lm, true
 }
 
-// SetD sets field value
-func (o *Fen) SetD(v Fen) {
-	o.D = v
+// SetLm sets field value
+func (o *Fen) SetLm(v string) {
+	o.Lm = v
+}
+
+// GetWc returns the Wc field value
+func (o *Fen) GetWc() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.Wc
+}
+
+// GetWcOk returns a tuple with the Wc field value
+// and a boolean to check if the value has been set.
+func (o *Fen) GetWcOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Wc, true
+}
+
+// SetWc sets field value
+func (o *Fen) SetWc(v int32) {
+	o.Wc = v
+}
+
+// GetBc returns the Bc field value
+func (o *Fen) GetBc() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.Bc
+}
+
+// GetBcOk returns a tuple with the Bc field value
+// and a boolean to check if the value has been set.
+func (o *Fen) GetBcOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Bc, true
+}
+
+// SetBc sets field value
+func (o *Fen) SetBc(v int32) {
+	o.Bc = v
 }
 
 func (o Fen) MarshalJSON() ([]byte, error) {
@@ -106,8 +161,10 @@ func (o Fen) MarshalJSON() ([]byte, error) {
 
 func (o Fen) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["t"] = o.T
-	toSerialize["d"] = o.D
+	toSerialize["fen"] = o.Fen
+	toSerialize["lm"] = o.Lm
+	toSerialize["wc"] = o.Wc
+	toSerialize["bc"] = o.Bc
 	return toSerialize, nil
 }
 
@@ -116,8 +173,10 @@ func (o *Fen) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"t",
-		"d",
+		"fen",
+		"lm",
+		"wc",
+		"bc",
 	}
 
 	allProperties := make(map[string]interface{})

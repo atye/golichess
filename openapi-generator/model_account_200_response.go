@@ -20,7 +20,7 @@ var _ MappedNullable = &Account200Response{}
 
 // Account200Response struct for Account200Response
 type Account200Response struct {
-	Prefs *Account200ResponsePrefs `json:"prefs,omitempty"`
+	Prefs *UserPreferences `json:"prefs,omitempty"`
 	Language *string `json:"language,omitempty"`
 }
 
@@ -42,9 +42,9 @@ func NewAccount200ResponseWithDefaults() *Account200Response {
 }
 
 // GetPrefs returns the Prefs field value if set, zero value otherwise.
-func (o *Account200Response) GetPrefs() Account200ResponsePrefs {
+func (o *Account200Response) GetPrefs() UserPreferences {
 	if o == nil || IsNil(o.Prefs) {
-		var ret Account200ResponsePrefs
+		var ret UserPreferences
 		return ret
 	}
 	return *o.Prefs
@@ -52,7 +52,7 @@ func (o *Account200Response) GetPrefs() Account200ResponsePrefs {
 
 // GetPrefsOk returns a tuple with the Prefs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Account200Response) GetPrefsOk() (*Account200ResponsePrefs, bool) {
+func (o *Account200Response) GetPrefsOk() (*UserPreferences, bool) {
 	if o == nil || IsNil(o.Prefs) {
 		return nil, false
 	}
@@ -68,8 +68,8 @@ func (o *Account200Response) HasPrefs() bool {
 	return false
 }
 
-// SetPrefs gets a reference to the given Account200ResponsePrefs and assigns it to the Prefs field.
-func (o *Account200Response) SetPrefs(v Account200ResponsePrefs) {
+// SetPrefs gets a reference to the given UserPreferences and assigns it to the Prefs field.
+func (o *Account200Response) SetPrefs(v UserPreferences) {
 	o.Prefs = &v
 }
 

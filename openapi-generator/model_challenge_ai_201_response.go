@@ -21,16 +21,16 @@ var _ MappedNullable = &ChallengeAi201Response{}
 // ChallengeAi201Response struct for ChallengeAi201Response
 type ChallengeAi201Response struct {
 	Id *string `json:"id,omitempty"`
-	Variant *ApiAccountPlaying200ResponseNowPlayingInnerVariant `json:"variant,omitempty"`
-	Speed *string `json:"speed,omitempty"`
-	Perf *string `json:"perf,omitempty"`
+	Variant *Variant `json:"variant,omitempty"`
+	Speed *Speed `json:"speed,omitempty"`
+	Perf *PerfType `json:"perf,omitempty"`
 	Rated *bool `json:"rated,omitempty"`
 	Fen *string `json:"fen,omitempty"`
 	Turns *int32 `json:"turns,omitempty"`
-	Source *string `json:"source,omitempty"`
-	Status *StreamGame200ResponseInnerOneOfStatus `json:"status,omitempty"`
+	Source *GameSource `json:"source,omitempty"`
+	Status *GameStatus `json:"status,omitempty"`
 	CreatedAt *int64 `json:"createdAt,omitempty"`
-	Player NullableString `json:"player,omitempty"`
+	Player *GameColor `json:"player,omitempty"`
 	FullId *string `json:"fullId,omitempty"`
 }
 
@@ -84,9 +84,9 @@ func (o *ChallengeAi201Response) SetId(v string) {
 }
 
 // GetVariant returns the Variant field value if set, zero value otherwise.
-func (o *ChallengeAi201Response) GetVariant() ApiAccountPlaying200ResponseNowPlayingInnerVariant {
+func (o *ChallengeAi201Response) GetVariant() Variant {
 	if o == nil || IsNil(o.Variant) {
-		var ret ApiAccountPlaying200ResponseNowPlayingInnerVariant
+		var ret Variant
 		return ret
 	}
 	return *o.Variant
@@ -94,7 +94,7 @@ func (o *ChallengeAi201Response) GetVariant() ApiAccountPlaying200ResponseNowPla
 
 // GetVariantOk returns a tuple with the Variant field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChallengeAi201Response) GetVariantOk() (*ApiAccountPlaying200ResponseNowPlayingInnerVariant, bool) {
+func (o *ChallengeAi201Response) GetVariantOk() (*Variant, bool) {
 	if o == nil || IsNil(o.Variant) {
 		return nil, false
 	}
@@ -110,15 +110,15 @@ func (o *ChallengeAi201Response) HasVariant() bool {
 	return false
 }
 
-// SetVariant gets a reference to the given ApiAccountPlaying200ResponseNowPlayingInnerVariant and assigns it to the Variant field.
-func (o *ChallengeAi201Response) SetVariant(v ApiAccountPlaying200ResponseNowPlayingInnerVariant) {
+// SetVariant gets a reference to the given Variant and assigns it to the Variant field.
+func (o *ChallengeAi201Response) SetVariant(v Variant) {
 	o.Variant = &v
 }
 
 // GetSpeed returns the Speed field value if set, zero value otherwise.
-func (o *ChallengeAi201Response) GetSpeed() string {
+func (o *ChallengeAi201Response) GetSpeed() Speed {
 	if o == nil || IsNil(o.Speed) {
-		var ret string
+		var ret Speed
 		return ret
 	}
 	return *o.Speed
@@ -126,7 +126,7 @@ func (o *ChallengeAi201Response) GetSpeed() string {
 
 // GetSpeedOk returns a tuple with the Speed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChallengeAi201Response) GetSpeedOk() (*string, bool) {
+func (o *ChallengeAi201Response) GetSpeedOk() (*Speed, bool) {
 	if o == nil || IsNil(o.Speed) {
 		return nil, false
 	}
@@ -142,15 +142,15 @@ func (o *ChallengeAi201Response) HasSpeed() bool {
 	return false
 }
 
-// SetSpeed gets a reference to the given string and assigns it to the Speed field.
-func (o *ChallengeAi201Response) SetSpeed(v string) {
+// SetSpeed gets a reference to the given Speed and assigns it to the Speed field.
+func (o *ChallengeAi201Response) SetSpeed(v Speed) {
 	o.Speed = &v
 }
 
 // GetPerf returns the Perf field value if set, zero value otherwise.
-func (o *ChallengeAi201Response) GetPerf() string {
+func (o *ChallengeAi201Response) GetPerf() PerfType {
 	if o == nil || IsNil(o.Perf) {
-		var ret string
+		var ret PerfType
 		return ret
 	}
 	return *o.Perf
@@ -158,7 +158,7 @@ func (o *ChallengeAi201Response) GetPerf() string {
 
 // GetPerfOk returns a tuple with the Perf field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChallengeAi201Response) GetPerfOk() (*string, bool) {
+func (o *ChallengeAi201Response) GetPerfOk() (*PerfType, bool) {
 	if o == nil || IsNil(o.Perf) {
 		return nil, false
 	}
@@ -174,8 +174,8 @@ func (o *ChallengeAi201Response) HasPerf() bool {
 	return false
 }
 
-// SetPerf gets a reference to the given string and assigns it to the Perf field.
-func (o *ChallengeAi201Response) SetPerf(v string) {
+// SetPerf gets a reference to the given PerfType and assigns it to the Perf field.
+func (o *ChallengeAi201Response) SetPerf(v PerfType) {
 	o.Perf = &v
 }
 
@@ -276,9 +276,9 @@ func (o *ChallengeAi201Response) SetTurns(v int32) {
 }
 
 // GetSource returns the Source field value if set, zero value otherwise.
-func (o *ChallengeAi201Response) GetSource() string {
+func (o *ChallengeAi201Response) GetSource() GameSource {
 	if o == nil || IsNil(o.Source) {
-		var ret string
+		var ret GameSource
 		return ret
 	}
 	return *o.Source
@@ -286,7 +286,7 @@ func (o *ChallengeAi201Response) GetSource() string {
 
 // GetSourceOk returns a tuple with the Source field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChallengeAi201Response) GetSourceOk() (*string, bool) {
+func (o *ChallengeAi201Response) GetSourceOk() (*GameSource, bool) {
 	if o == nil || IsNil(o.Source) {
 		return nil, false
 	}
@@ -302,15 +302,15 @@ func (o *ChallengeAi201Response) HasSource() bool {
 	return false
 }
 
-// SetSource gets a reference to the given string and assigns it to the Source field.
-func (o *ChallengeAi201Response) SetSource(v string) {
+// SetSource gets a reference to the given GameSource and assigns it to the Source field.
+func (o *ChallengeAi201Response) SetSource(v GameSource) {
 	o.Source = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *ChallengeAi201Response) GetStatus() StreamGame200ResponseInnerOneOfStatus {
+func (o *ChallengeAi201Response) GetStatus() GameStatus {
 	if o == nil || IsNil(o.Status) {
-		var ret StreamGame200ResponseInnerOneOfStatus
+		var ret GameStatus
 		return ret
 	}
 	return *o.Status
@@ -318,7 +318,7 @@ func (o *ChallengeAi201Response) GetStatus() StreamGame200ResponseInnerOneOfStat
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChallengeAi201Response) GetStatusOk() (*StreamGame200ResponseInnerOneOfStatus, bool) {
+func (o *ChallengeAi201Response) GetStatusOk() (*GameStatus, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
@@ -334,8 +334,8 @@ func (o *ChallengeAi201Response) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given StreamGame200ResponseInnerOneOfStatus and assigns it to the Status field.
-func (o *ChallengeAi201Response) SetStatus(v StreamGame200ResponseInnerOneOfStatus) {
+// SetStatus gets a reference to the given GameStatus and assigns it to the Status field.
+func (o *ChallengeAi201Response) SetStatus(v GameStatus) {
 	o.Status = &v
 }
 
@@ -371,46 +371,36 @@ func (o *ChallengeAi201Response) SetCreatedAt(v int64) {
 	o.CreatedAt = &v
 }
 
-// GetPlayer returns the Player field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ChallengeAi201Response) GetPlayer() string {
-	if o == nil || IsNil(o.Player.Get()) {
-		var ret string
+// GetPlayer returns the Player field value if set, zero value otherwise.
+func (o *ChallengeAi201Response) GetPlayer() GameColor {
+	if o == nil || IsNil(o.Player) {
+		var ret GameColor
 		return ret
 	}
-	return *o.Player.Get()
+	return *o.Player
 }
 
 // GetPlayerOk returns a tuple with the Player field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ChallengeAi201Response) GetPlayerOk() (*string, bool) {
-	if o == nil {
+func (o *ChallengeAi201Response) GetPlayerOk() (*GameColor, bool) {
+	if o == nil || IsNil(o.Player) {
 		return nil, false
 	}
-	return o.Player.Get(), o.Player.IsSet()
+	return o.Player, true
 }
 
 // HasPlayer returns a boolean if a field has been set.
 func (o *ChallengeAi201Response) HasPlayer() bool {
-	if o != nil && o.Player.IsSet() {
+	if o != nil && !IsNil(o.Player) {
 		return true
 	}
 
 	return false
 }
 
-// SetPlayer gets a reference to the given NullableString and assigns it to the Player field.
-func (o *ChallengeAi201Response) SetPlayer(v string) {
-	o.Player.Set(&v)
-}
-// SetPlayerNil sets the value for Player to be an explicit nil
-func (o *ChallengeAi201Response) SetPlayerNil() {
-	o.Player.Set(nil)
-}
-
-// UnsetPlayer ensures that no value is present for Player, not even an explicit nil
-func (o *ChallengeAi201Response) UnsetPlayer() {
-	o.Player.Unset()
+// SetPlayer gets a reference to the given GameColor and assigns it to the Player field.
+func (o *ChallengeAi201Response) SetPlayer(v GameColor) {
+	o.Player = &v
 }
 
 // GetFullId returns the FullId field value if set, zero value otherwise.
@@ -485,8 +475,8 @@ func (o ChallengeAi201Response) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CreatedAt) {
 		toSerialize["createdAt"] = o.CreatedAt
 	}
-	if o.Player.IsSet() {
-		toSerialize["player"] = o.Player.Get()
+	if !IsNil(o.Player) {
+		toSerialize["player"] = o.Player
 	}
 	if !IsNil(o.FullId) {
 		toSerialize["fullId"] = o.FullId

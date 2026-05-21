@@ -36,8 +36,8 @@ type FIDEAPI interface {
 	FidePlayerGet(ctx context.Context, playerId int32) FIDEAPIFidePlayerGetRequest
 
 	// FidePlayerGetExecute executes the request
-	//  @return FidePlayerGet200Response
-	FidePlayerGetExecute(r FIDEAPIFidePlayerGetRequest) (*FidePlayerGet200Response, *http.Response, error)
+	//  @return FIDEPlayer
+	FidePlayerGetExecute(r FIDEAPIFidePlayerGetRequest) (*FIDEPlayer, *http.Response, error)
 
 	/*
 	FidePlayerRatings Get ratings history of a FIDE player
@@ -52,8 +52,8 @@ type FIDEAPI interface {
 	FidePlayerRatings(ctx context.Context, playerId int32) FIDEAPIFidePlayerRatingsRequest
 
 	// FidePlayerRatingsExecute executes the request
-	//  @return FidePlayerRatings200Response
-	FidePlayerRatingsExecute(r FIDEAPIFidePlayerRatingsRequest) (*FidePlayerRatings200Response, *http.Response, error)
+	//  @return FIDEPlayerRatings
+	FidePlayerRatingsExecute(r FIDEAPIFidePlayerRatingsRequest) (*FIDEPlayerRatings, *http.Response, error)
 
 	/*
 	FidePlayerSearch Search FIDE players
@@ -67,8 +67,8 @@ type FIDEAPI interface {
 	FidePlayerSearch(ctx context.Context) FIDEAPIFidePlayerSearchRequest
 
 	// FidePlayerSearchExecute executes the request
-	//  @return []FidePlayerSearch200ResponseInner
-	FidePlayerSearchExecute(r FIDEAPIFidePlayerSearchRequest) ([]FidePlayerSearch200ResponseInner, *http.Response, error)
+	//  @return []FIDEPlayer
+	FidePlayerSearchExecute(r FIDEAPIFidePlayerSearchRequest) ([]FIDEPlayer, *http.Response, error)
 }
 
 // FIDEAPIService FIDEAPI service
@@ -80,7 +80,7 @@ type FIDEAPIFidePlayerGetRequest struct {
 	playerId int32
 }
 
-func (r FIDEAPIFidePlayerGetRequest) Execute() (*FidePlayerGet200Response, *http.Response, error) {
+func (r FIDEAPIFidePlayerGetRequest) Execute() (*FIDEPlayer, *http.Response, error) {
 	return r.ApiService.FidePlayerGetExecute(r)
 }
 
@@ -103,13 +103,13 @@ func (a *FIDEAPIService) FidePlayerGet(ctx context.Context, playerId int32) FIDE
 }
 
 // Execute executes the request
-//  @return FidePlayerGet200Response
-func (a *FIDEAPIService) FidePlayerGetExecute(r FIDEAPIFidePlayerGetRequest) (*FidePlayerGet200Response, *http.Response, error) {
+//  @return FIDEPlayer
+func (a *FIDEAPIService) FidePlayerGetExecute(r FIDEAPIFidePlayerGetRequest) (*FIDEPlayer, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *FidePlayerGet200Response
+		localVarReturnValue  *FIDEPlayer
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FIDEAPIService.FidePlayerGet")
@@ -184,7 +184,7 @@ type FIDEAPIFidePlayerRatingsRequest struct {
 	playerId int32
 }
 
-func (r FIDEAPIFidePlayerRatingsRequest) Execute() (*FidePlayerRatings200Response, *http.Response, error) {
+func (r FIDEAPIFidePlayerRatingsRequest) Execute() (*FIDEPlayerRatings, *http.Response, error) {
 	return r.ApiService.FidePlayerRatingsExecute(r)
 }
 
@@ -207,13 +207,13 @@ func (a *FIDEAPIService) FidePlayerRatings(ctx context.Context, playerId int32) 
 }
 
 // Execute executes the request
-//  @return FidePlayerRatings200Response
-func (a *FIDEAPIService) FidePlayerRatingsExecute(r FIDEAPIFidePlayerRatingsRequest) (*FidePlayerRatings200Response, *http.Response, error) {
+//  @return FIDEPlayerRatings
+func (a *FIDEAPIService) FidePlayerRatingsExecute(r FIDEAPIFidePlayerRatingsRequest) (*FIDEPlayerRatings, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *FidePlayerRatings200Response
+		localVarReturnValue  *FIDEPlayerRatings
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FIDEAPIService.FidePlayerRatings")
@@ -294,7 +294,7 @@ func (r FIDEAPIFidePlayerSearchRequest) Q(q string) FIDEAPIFidePlayerSearchReque
 	return r
 }
 
-func (r FIDEAPIFidePlayerSearchRequest) Execute() ([]FidePlayerSearch200ResponseInner, *http.Response, error) {
+func (r FIDEAPIFidePlayerSearchRequest) Execute() ([]FIDEPlayer, *http.Response, error) {
 	return r.ApiService.FidePlayerSearchExecute(r)
 }
 
@@ -315,13 +315,13 @@ func (a *FIDEAPIService) FidePlayerSearch(ctx context.Context) FIDEAPIFidePlayer
 }
 
 // Execute executes the request
-//  @return []FidePlayerSearch200ResponseInner
-func (a *FIDEAPIService) FidePlayerSearchExecute(r FIDEAPIFidePlayerSearchRequest) ([]FidePlayerSearch200ResponseInner, *http.Response, error) {
+//  @return []FIDEPlayer
+func (a *FIDEAPIService) FidePlayerSearchExecute(r FIDEAPIFidePlayerSearchRequest) ([]FIDEPlayer, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []FidePlayerSearch200ResponseInner
+		localVarReturnValue  []FIDEPlayer
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FIDEAPIService.FidePlayerSearch")

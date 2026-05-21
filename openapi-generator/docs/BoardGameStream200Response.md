@@ -6,16 +6,16 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **string** |  | 
 **Id** | **string** |  | 
-**Variant** | [**ApiAccountPlaying200ResponseNowPlayingInnerVariant**](ApiAccountPlaying200ResponseNowPlayingInnerVariant.md) |  | 
-**Clock** | Pointer to [**BoardGameStream200ResponseOneOfClock**](BoardGameStream200ResponseOneOfClock.md) |  | [optional] 
-**Speed** | **string** |  | 
-**Perf** | [**BoardGameStream200ResponseOneOfPerf**](BoardGameStream200ResponseOneOfPerf.md) |  | 
+**Variant** | [**Variant**](Variant.md) |  | 
+**Clock** | Pointer to [**GameFullEventClock**](GameFullEventClock.md) |  | [optional] 
+**Speed** | [**Speed**](Speed.md) |  | 
+**Perf** | [**GameFullEventPerf**](GameFullEventPerf.md) |  | 
 **Rated** | **bool** |  | 
 **CreatedAt** | **int64** |  | 
-**White** | [**BoardGameStream200ResponseOneOfWhite**](BoardGameStream200ResponseOneOfWhite.md) |  | 
-**Black** | [**BoardGameStream200ResponseOneOfWhite**](BoardGameStream200ResponseOneOfWhite.md) |  | 
+**White** | [**GameEventPlayer**](GameEventPlayer.md) |  | 
+**Black** | [**GameEventPlayer**](GameEventPlayer.md) |  | 
 **InitialFen** | **string** |  | [default to "startpos"]
-**State** | [**BoardGameStream200ResponseOneOfState**](BoardGameStream200ResponseOneOfState.md) |  | 
+**State** | [**GameStateEvent**](GameStateEvent.md) |  | 
 **DaysPerTurn** | Pointer to **int32** | If the game is correspondence | [optional] 
 **TournamentId** | Pointer to **string** |  | [optional] 
 **Moves** | **string** | Current moves in UCI format (King to rook for Chess690-compatible castling notation)  | 
@@ -23,13 +23,13 @@ Name | Type | Description | Notes
 **Btime** | **int32** | Integer of milliseconds Black has left on the clock | 
 **Winc** | **int32** | Integer of White Fisher increment. | 
 **Binc** | **int32** | Integer of Black Fisher increment. | 
-**Status** | **string** |  | 
-**Winner** | Pointer to **string** | Color of the winner, if any | [optional] 
+**Status** | [**GameStatusName**](GameStatusName.md) |  | 
+**Winner** | Pointer to [**GameColor**](GameColor.md) | Color of the winner, if any | [optional] 
 **Wdraw** | Pointer to **bool** | true if white is offering draw, else omitted | [optional] 
 **Bdraw** | Pointer to **bool** | true if black is offering draw, else omitted | [optional] 
 **Wtakeback** | Pointer to **bool** | true if white is proposing takeback, else omitted | [optional] 
 **Btakeback** | Pointer to **bool** | true if black is proposing takeback, else omitted | [optional] 
-**Expiration** | Pointer to [**BoardGameStream200ResponseOneOfStateExpiration**](BoardGameStream200ResponseOneOfStateExpiration.md) |  | [optional] 
+**Expiration** | Pointer to [**GameStateEventExpiration**](GameStateEventExpiration.md) |  | [optional] 
 **Room** | **string** |  | 
 **Username** | **string** |  | 
 **Text** | **string** |  | 
@@ -40,7 +40,7 @@ Name | Type | Description | Notes
 
 ### NewBoardGameStream200Response
 
-`func NewBoardGameStream200Response(type_ string, id string, variant ApiAccountPlaying200ResponseNowPlayingInnerVariant, speed string, perf BoardGameStream200ResponseOneOfPerf, rated bool, createdAt int64, white BoardGameStream200ResponseOneOfWhite, black BoardGameStream200ResponseOneOfWhite, initialFen string, state BoardGameStream200ResponseOneOfState, moves string, wtime int32, btime int32, winc int32, binc int32, status string, room string, username string, text string, gone bool, ) *BoardGameStream200Response`
+`func NewBoardGameStream200Response(type_ string, id string, variant Variant, speed Speed, perf GameFullEventPerf, rated bool, createdAt int64, white GameEventPlayer, black GameEventPlayer, initialFen string, state GameStateEvent, moves string, wtime int32, btime int32, winc int32, binc int32, status GameStatusName, room string, username string, text string, gone bool, ) *BoardGameStream200Response`
 
 NewBoardGameStream200Response instantiates a new BoardGameStream200Response object
 This constructor will assign default values to properties that have it defined,
@@ -97,40 +97,40 @@ SetId sets Id field to given value.
 
 ### GetVariant
 
-`func (o *BoardGameStream200Response) GetVariant() ApiAccountPlaying200ResponseNowPlayingInnerVariant`
+`func (o *BoardGameStream200Response) GetVariant() Variant`
 
 GetVariant returns the Variant field if non-nil, zero value otherwise.
 
 ### GetVariantOk
 
-`func (o *BoardGameStream200Response) GetVariantOk() (*ApiAccountPlaying200ResponseNowPlayingInnerVariant, bool)`
+`func (o *BoardGameStream200Response) GetVariantOk() (*Variant, bool)`
 
 GetVariantOk returns a tuple with the Variant field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVariant
 
-`func (o *BoardGameStream200Response) SetVariant(v ApiAccountPlaying200ResponseNowPlayingInnerVariant)`
+`func (o *BoardGameStream200Response) SetVariant(v Variant)`
 
 SetVariant sets Variant field to given value.
 
 
 ### GetClock
 
-`func (o *BoardGameStream200Response) GetClock() BoardGameStream200ResponseOneOfClock`
+`func (o *BoardGameStream200Response) GetClock() GameFullEventClock`
 
 GetClock returns the Clock field if non-nil, zero value otherwise.
 
 ### GetClockOk
 
-`func (o *BoardGameStream200Response) GetClockOk() (*BoardGameStream200ResponseOneOfClock, bool)`
+`func (o *BoardGameStream200Response) GetClockOk() (*GameFullEventClock, bool)`
 
 GetClockOk returns a tuple with the Clock field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetClock
 
-`func (o *BoardGameStream200Response) SetClock(v BoardGameStream200ResponseOneOfClock)`
+`func (o *BoardGameStream200Response) SetClock(v GameFullEventClock)`
 
 SetClock sets Clock field to given value.
 
@@ -142,40 +142,40 @@ HasClock returns a boolean if a field has been set.
 
 ### GetSpeed
 
-`func (o *BoardGameStream200Response) GetSpeed() string`
+`func (o *BoardGameStream200Response) GetSpeed() Speed`
 
 GetSpeed returns the Speed field if non-nil, zero value otherwise.
 
 ### GetSpeedOk
 
-`func (o *BoardGameStream200Response) GetSpeedOk() (*string, bool)`
+`func (o *BoardGameStream200Response) GetSpeedOk() (*Speed, bool)`
 
 GetSpeedOk returns a tuple with the Speed field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSpeed
 
-`func (o *BoardGameStream200Response) SetSpeed(v string)`
+`func (o *BoardGameStream200Response) SetSpeed(v Speed)`
 
 SetSpeed sets Speed field to given value.
 
 
 ### GetPerf
 
-`func (o *BoardGameStream200Response) GetPerf() BoardGameStream200ResponseOneOfPerf`
+`func (o *BoardGameStream200Response) GetPerf() GameFullEventPerf`
 
 GetPerf returns the Perf field if non-nil, zero value otherwise.
 
 ### GetPerfOk
 
-`func (o *BoardGameStream200Response) GetPerfOk() (*BoardGameStream200ResponseOneOfPerf, bool)`
+`func (o *BoardGameStream200Response) GetPerfOk() (*GameFullEventPerf, bool)`
 
 GetPerfOk returns a tuple with the Perf field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPerf
 
-`func (o *BoardGameStream200Response) SetPerf(v BoardGameStream200ResponseOneOfPerf)`
+`func (o *BoardGameStream200Response) SetPerf(v GameFullEventPerf)`
 
 SetPerf sets Perf field to given value.
 
@@ -222,40 +222,40 @@ SetCreatedAt sets CreatedAt field to given value.
 
 ### GetWhite
 
-`func (o *BoardGameStream200Response) GetWhite() BoardGameStream200ResponseOneOfWhite`
+`func (o *BoardGameStream200Response) GetWhite() GameEventPlayer`
 
 GetWhite returns the White field if non-nil, zero value otherwise.
 
 ### GetWhiteOk
 
-`func (o *BoardGameStream200Response) GetWhiteOk() (*BoardGameStream200ResponseOneOfWhite, bool)`
+`func (o *BoardGameStream200Response) GetWhiteOk() (*GameEventPlayer, bool)`
 
 GetWhiteOk returns a tuple with the White field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetWhite
 
-`func (o *BoardGameStream200Response) SetWhite(v BoardGameStream200ResponseOneOfWhite)`
+`func (o *BoardGameStream200Response) SetWhite(v GameEventPlayer)`
 
 SetWhite sets White field to given value.
 
 
 ### GetBlack
 
-`func (o *BoardGameStream200Response) GetBlack() BoardGameStream200ResponseOneOfWhite`
+`func (o *BoardGameStream200Response) GetBlack() GameEventPlayer`
 
 GetBlack returns the Black field if non-nil, zero value otherwise.
 
 ### GetBlackOk
 
-`func (o *BoardGameStream200Response) GetBlackOk() (*BoardGameStream200ResponseOneOfWhite, bool)`
+`func (o *BoardGameStream200Response) GetBlackOk() (*GameEventPlayer, bool)`
 
 GetBlackOk returns a tuple with the Black field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBlack
 
-`func (o *BoardGameStream200Response) SetBlack(v BoardGameStream200ResponseOneOfWhite)`
+`func (o *BoardGameStream200Response) SetBlack(v GameEventPlayer)`
 
 SetBlack sets Black field to given value.
 
@@ -282,20 +282,20 @@ SetInitialFen sets InitialFen field to given value.
 
 ### GetState
 
-`func (o *BoardGameStream200Response) GetState() BoardGameStream200ResponseOneOfState`
+`func (o *BoardGameStream200Response) GetState() GameStateEvent`
 
 GetState returns the State field if non-nil, zero value otherwise.
 
 ### GetStateOk
 
-`func (o *BoardGameStream200Response) GetStateOk() (*BoardGameStream200ResponseOneOfState, bool)`
+`func (o *BoardGameStream200Response) GetStateOk() (*GameStateEvent, bool)`
 
 GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetState
 
-`func (o *BoardGameStream200Response) SetState(v BoardGameStream200ResponseOneOfState)`
+`func (o *BoardGameStream200Response) SetState(v GameStateEvent)`
 
 SetState sets State field to given value.
 
@@ -452,40 +452,40 @@ SetBinc sets Binc field to given value.
 
 ### GetStatus
 
-`func (o *BoardGameStream200Response) GetStatus() string`
+`func (o *BoardGameStream200Response) GetStatus() GameStatusName`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *BoardGameStream200Response) GetStatusOk() (*string, bool)`
+`func (o *BoardGameStream200Response) GetStatusOk() (*GameStatusName, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *BoardGameStream200Response) SetStatus(v string)`
+`func (o *BoardGameStream200Response) SetStatus(v GameStatusName)`
 
 SetStatus sets Status field to given value.
 
 
 ### GetWinner
 
-`func (o *BoardGameStream200Response) GetWinner() string`
+`func (o *BoardGameStream200Response) GetWinner() GameColor`
 
 GetWinner returns the Winner field if non-nil, zero value otherwise.
 
 ### GetWinnerOk
 
-`func (o *BoardGameStream200Response) GetWinnerOk() (*string, bool)`
+`func (o *BoardGameStream200Response) GetWinnerOk() (*GameColor, bool)`
 
 GetWinnerOk returns a tuple with the Winner field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetWinner
 
-`func (o *BoardGameStream200Response) SetWinner(v string)`
+`func (o *BoardGameStream200Response) SetWinner(v GameColor)`
 
 SetWinner sets Winner field to given value.
 
@@ -597,20 +597,20 @@ HasBtakeback returns a boolean if a field has been set.
 
 ### GetExpiration
 
-`func (o *BoardGameStream200Response) GetExpiration() BoardGameStream200ResponseOneOfStateExpiration`
+`func (o *BoardGameStream200Response) GetExpiration() GameStateEventExpiration`
 
 GetExpiration returns the Expiration field if non-nil, zero value otherwise.
 
 ### GetExpirationOk
 
-`func (o *BoardGameStream200Response) GetExpirationOk() (*BoardGameStream200ResponseOneOfStateExpiration, bool)`
+`func (o *BoardGameStream200Response) GetExpirationOk() (*GameStateEventExpiration, bool)`
 
 GetExpirationOk returns a tuple with the Expiration field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExpiration
 
-`func (o *BoardGameStream200Response) SetExpiration(v BoardGameStream200ResponseOneOfStateExpiration)`
+`func (o *BoardGameStream200Response) SetExpiration(v GameStateEventExpiration)`
 
 SetExpiration sets Expiration field to given value.
 

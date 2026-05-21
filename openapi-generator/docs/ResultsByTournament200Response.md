@@ -9,11 +9,11 @@ Name | Type | Description | Notes
 **Rating** | **int32** |  | 
 **Username** | **string** |  | 
 **Performance** | **int32** |  | 
-**Title** | Pointer to **NullableString** | only appears if the user is a titled player or a bot user | [optional] 
+**Title** | Pointer to [**Title**](Title.md) |  | [optional] 
 **Team** | Pointer to **string** |  | [optional] 
 **Flair** | Pointer to **string** | See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair) | [optional] 
 **PatronColor** | Pointer to **int32** | Players can choose a color for their Patron wings. See [here for the color mappings](https://github.com/lichess-org/lila/blob/master/ui/lib/css/abstract/_patron-colors.scss).  The presence of this field indicates the player is an active Patron.  | [optional] 
-**Sheet** | Pointer to [**ApiTournamentPost200ResponseStandingPlayersInnerSheet**](ApiTournamentPost200ResponseStandingPlayersInnerSheet.md) |  | [optional] 
+**Sheet** | Pointer to [**ArenaSheet**](ArenaSheet.md) |  | [optional] 
 
 ## Methods
 
@@ -136,20 +136,20 @@ SetPerformance sets Performance field to given value.
 
 ### GetTitle
 
-`func (o *ResultsByTournament200Response) GetTitle() string`
+`func (o *ResultsByTournament200Response) GetTitle() Title`
 
 GetTitle returns the Title field if non-nil, zero value otherwise.
 
 ### GetTitleOk
 
-`func (o *ResultsByTournament200Response) GetTitleOk() (*string, bool)`
+`func (o *ResultsByTournament200Response) GetTitleOk() (*Title, bool)`
 
 GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTitle
 
-`func (o *ResultsByTournament200Response) SetTitle(v string)`
+`func (o *ResultsByTournament200Response) SetTitle(v Title)`
 
 SetTitle sets Title field to given value.
 
@@ -159,16 +159,6 @@ SetTitle sets Title field to given value.
 
 HasTitle returns a boolean if a field has been set.
 
-### SetTitleNil
-
-`func (o *ResultsByTournament200Response) SetTitleNil(b bool)`
-
- SetTitleNil sets the value for Title to be an explicit nil
-
-### UnsetTitle
-`func (o *ResultsByTournament200Response) UnsetTitle()`
-
-UnsetTitle ensures that no value is present for Title, not even an explicit nil
 ### GetTeam
 
 `func (o *ResultsByTournament200Response) GetTeam() string`
@@ -246,20 +236,20 @@ HasPatronColor returns a boolean if a field has been set.
 
 ### GetSheet
 
-`func (o *ResultsByTournament200Response) GetSheet() ApiTournamentPost200ResponseStandingPlayersInnerSheet`
+`func (o *ResultsByTournament200Response) GetSheet() ArenaSheet`
 
 GetSheet returns the Sheet field if non-nil, zero value otherwise.
 
 ### GetSheetOk
 
-`func (o *ResultsByTournament200Response) GetSheetOk() (*ApiTournamentPost200ResponseStandingPlayersInnerSheet, bool)`
+`func (o *ResultsByTournament200Response) GetSheetOk() (*ArenaSheet, bool)`
 
 GetSheetOk returns a tuple with the Sheet field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSheet
 
-`func (o *ResultsByTournament200Response) SetSheet(v ApiTournamentPost200ResponseStandingPlayersInnerSheet)`
+`func (o *ResultsByTournament200Response) SetSheet(v ArenaSheet)`
 
 SetSheet sets Sheet field to given value.
 

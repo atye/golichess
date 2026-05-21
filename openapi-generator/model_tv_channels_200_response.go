@@ -22,22 +22,22 @@ var _ MappedNullable = &TvChannels200Response{}
 
 // TvChannels200Response struct for TvChannels200Response
 type TvChannels200Response struct {
-	Bot TvChannels200ResponseBot `json:"bot"`
-	Blitz TvChannels200ResponseBlitz `json:"blitz"`
-	RacingKings TvChannels200ResponseBlitz `json:"racingKings"`
-	UltraBullet TvChannels200ResponseBlitz `json:"ultraBullet"`
-	Bullet TvChannels200ResponseBlitz `json:"bullet"`
-	Classical TvChannels200ResponseBlitz `json:"classical"`
-	ThreeCheck TvChannels200ResponseBlitz `json:"threeCheck"`
-	Antichess TvChannels200ResponseBlitz `json:"antichess"`
-	Computer TvChannels200ResponseBlitz `json:"computer"`
-	Horde TvChannels200ResponseBlitz `json:"horde"`
-	Rapid TvChannels200ResponseBlitz `json:"rapid"`
-	Atomic TvChannels200ResponseBlitz `json:"atomic"`
-	Crazyhouse TvChannels200ResponseBlitz `json:"crazyhouse"`
-	Chess960 TvChannels200ResponseBlitz `json:"chess960"`
-	KingOfTheHill TvChannels200ResponseBlitz `json:"kingOfTheHill"`
-	Best TvChannels200ResponseBlitz `json:"best"`
+	Bot TvGame `json:"bot"`
+	Blitz TvGame `json:"blitz"`
+	RacingKings TvGame `json:"racingKings"`
+	UltraBullet TvGame `json:"ultraBullet"`
+	Bullet TvGame `json:"bullet"`
+	Classical TvGame `json:"classical"`
+	ThreeCheck TvGame `json:"threeCheck"`
+	Antichess TvGame `json:"antichess"`
+	Computer TvGame `json:"computer"`
+	Horde TvGame `json:"horde"`
+	Rapid TvGame `json:"rapid"`
+	Atomic TvGame `json:"atomic"`
+	Crazyhouse TvGame `json:"crazyhouse"`
+	Chess960 TvGame `json:"chess960"`
+	KingOfTheHill TvGame `json:"kingOfTheHill"`
+	Best TvGame `json:"best"`
 }
 
 type _TvChannels200Response TvChannels200Response
@@ -46,7 +46,7 @@ type _TvChannels200Response TvChannels200Response
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTvChannels200Response(bot TvChannels200ResponseBot, blitz TvChannels200ResponseBlitz, racingKings TvChannels200ResponseBlitz, ultraBullet TvChannels200ResponseBlitz, bullet TvChannels200ResponseBlitz, classical TvChannels200ResponseBlitz, threeCheck TvChannels200ResponseBlitz, antichess TvChannels200ResponseBlitz, computer TvChannels200ResponseBlitz, horde TvChannels200ResponseBlitz, rapid TvChannels200ResponseBlitz, atomic TvChannels200ResponseBlitz, crazyhouse TvChannels200ResponseBlitz, chess960 TvChannels200ResponseBlitz, kingOfTheHill TvChannels200ResponseBlitz, best TvChannels200ResponseBlitz) *TvChannels200Response {
+func NewTvChannels200Response(bot TvGame, blitz TvGame, racingKings TvGame, ultraBullet TvGame, bullet TvGame, classical TvGame, threeCheck TvGame, antichess TvGame, computer TvGame, horde TvGame, rapid TvGame, atomic TvGame, crazyhouse TvGame, chess960 TvGame, kingOfTheHill TvGame, best TvGame) *TvChannels200Response {
 	this := TvChannels200Response{}
 	this.Bot = bot
 	this.Blitz = blitz
@@ -76,9 +76,9 @@ func NewTvChannels200ResponseWithDefaults() *TvChannels200Response {
 }
 
 // GetBot returns the Bot field value
-func (o *TvChannels200Response) GetBot() TvChannels200ResponseBot {
+func (o *TvChannels200Response) GetBot() TvGame {
 	if o == nil {
-		var ret TvChannels200ResponseBot
+		var ret TvGame
 		return ret
 	}
 
@@ -87,7 +87,7 @@ func (o *TvChannels200Response) GetBot() TvChannels200ResponseBot {
 
 // GetBotOk returns a tuple with the Bot field value
 // and a boolean to check if the value has been set.
-func (o *TvChannels200Response) GetBotOk() (*TvChannels200ResponseBot, bool) {
+func (o *TvChannels200Response) GetBotOk() (*TvGame, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -95,14 +95,14 @@ func (o *TvChannels200Response) GetBotOk() (*TvChannels200ResponseBot, bool) {
 }
 
 // SetBot sets field value
-func (o *TvChannels200Response) SetBot(v TvChannels200ResponseBot) {
+func (o *TvChannels200Response) SetBot(v TvGame) {
 	o.Bot = v
 }
 
 // GetBlitz returns the Blitz field value
-func (o *TvChannels200Response) GetBlitz() TvChannels200ResponseBlitz {
+func (o *TvChannels200Response) GetBlitz() TvGame {
 	if o == nil {
-		var ret TvChannels200ResponseBlitz
+		var ret TvGame
 		return ret
 	}
 
@@ -111,7 +111,7 @@ func (o *TvChannels200Response) GetBlitz() TvChannels200ResponseBlitz {
 
 // GetBlitzOk returns a tuple with the Blitz field value
 // and a boolean to check if the value has been set.
-func (o *TvChannels200Response) GetBlitzOk() (*TvChannels200ResponseBlitz, bool) {
+func (o *TvChannels200Response) GetBlitzOk() (*TvGame, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -119,14 +119,14 @@ func (o *TvChannels200Response) GetBlitzOk() (*TvChannels200ResponseBlitz, bool)
 }
 
 // SetBlitz sets field value
-func (o *TvChannels200Response) SetBlitz(v TvChannels200ResponseBlitz) {
+func (o *TvChannels200Response) SetBlitz(v TvGame) {
 	o.Blitz = v
 }
 
 // GetRacingKings returns the RacingKings field value
-func (o *TvChannels200Response) GetRacingKings() TvChannels200ResponseBlitz {
+func (o *TvChannels200Response) GetRacingKings() TvGame {
 	if o == nil {
-		var ret TvChannels200ResponseBlitz
+		var ret TvGame
 		return ret
 	}
 
@@ -135,7 +135,7 @@ func (o *TvChannels200Response) GetRacingKings() TvChannels200ResponseBlitz {
 
 // GetRacingKingsOk returns a tuple with the RacingKings field value
 // and a boolean to check if the value has been set.
-func (o *TvChannels200Response) GetRacingKingsOk() (*TvChannels200ResponseBlitz, bool) {
+func (o *TvChannels200Response) GetRacingKingsOk() (*TvGame, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -143,14 +143,14 @@ func (o *TvChannels200Response) GetRacingKingsOk() (*TvChannels200ResponseBlitz,
 }
 
 // SetRacingKings sets field value
-func (o *TvChannels200Response) SetRacingKings(v TvChannels200ResponseBlitz) {
+func (o *TvChannels200Response) SetRacingKings(v TvGame) {
 	o.RacingKings = v
 }
 
 // GetUltraBullet returns the UltraBullet field value
-func (o *TvChannels200Response) GetUltraBullet() TvChannels200ResponseBlitz {
+func (o *TvChannels200Response) GetUltraBullet() TvGame {
 	if o == nil {
-		var ret TvChannels200ResponseBlitz
+		var ret TvGame
 		return ret
 	}
 
@@ -159,7 +159,7 @@ func (o *TvChannels200Response) GetUltraBullet() TvChannels200ResponseBlitz {
 
 // GetUltraBulletOk returns a tuple with the UltraBullet field value
 // and a boolean to check if the value has been set.
-func (o *TvChannels200Response) GetUltraBulletOk() (*TvChannels200ResponseBlitz, bool) {
+func (o *TvChannels200Response) GetUltraBulletOk() (*TvGame, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -167,14 +167,14 @@ func (o *TvChannels200Response) GetUltraBulletOk() (*TvChannels200ResponseBlitz,
 }
 
 // SetUltraBullet sets field value
-func (o *TvChannels200Response) SetUltraBullet(v TvChannels200ResponseBlitz) {
+func (o *TvChannels200Response) SetUltraBullet(v TvGame) {
 	o.UltraBullet = v
 }
 
 // GetBullet returns the Bullet field value
-func (o *TvChannels200Response) GetBullet() TvChannels200ResponseBlitz {
+func (o *TvChannels200Response) GetBullet() TvGame {
 	if o == nil {
-		var ret TvChannels200ResponseBlitz
+		var ret TvGame
 		return ret
 	}
 
@@ -183,7 +183,7 @@ func (o *TvChannels200Response) GetBullet() TvChannels200ResponseBlitz {
 
 // GetBulletOk returns a tuple with the Bullet field value
 // and a boolean to check if the value has been set.
-func (o *TvChannels200Response) GetBulletOk() (*TvChannels200ResponseBlitz, bool) {
+func (o *TvChannels200Response) GetBulletOk() (*TvGame, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -191,14 +191,14 @@ func (o *TvChannels200Response) GetBulletOk() (*TvChannels200ResponseBlitz, bool
 }
 
 // SetBullet sets field value
-func (o *TvChannels200Response) SetBullet(v TvChannels200ResponseBlitz) {
+func (o *TvChannels200Response) SetBullet(v TvGame) {
 	o.Bullet = v
 }
 
 // GetClassical returns the Classical field value
-func (o *TvChannels200Response) GetClassical() TvChannels200ResponseBlitz {
+func (o *TvChannels200Response) GetClassical() TvGame {
 	if o == nil {
-		var ret TvChannels200ResponseBlitz
+		var ret TvGame
 		return ret
 	}
 
@@ -207,7 +207,7 @@ func (o *TvChannels200Response) GetClassical() TvChannels200ResponseBlitz {
 
 // GetClassicalOk returns a tuple with the Classical field value
 // and a boolean to check if the value has been set.
-func (o *TvChannels200Response) GetClassicalOk() (*TvChannels200ResponseBlitz, bool) {
+func (o *TvChannels200Response) GetClassicalOk() (*TvGame, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -215,14 +215,14 @@ func (o *TvChannels200Response) GetClassicalOk() (*TvChannels200ResponseBlitz, b
 }
 
 // SetClassical sets field value
-func (o *TvChannels200Response) SetClassical(v TvChannels200ResponseBlitz) {
+func (o *TvChannels200Response) SetClassical(v TvGame) {
 	o.Classical = v
 }
 
 // GetThreeCheck returns the ThreeCheck field value
-func (o *TvChannels200Response) GetThreeCheck() TvChannels200ResponseBlitz {
+func (o *TvChannels200Response) GetThreeCheck() TvGame {
 	if o == nil {
-		var ret TvChannels200ResponseBlitz
+		var ret TvGame
 		return ret
 	}
 
@@ -231,7 +231,7 @@ func (o *TvChannels200Response) GetThreeCheck() TvChannels200ResponseBlitz {
 
 // GetThreeCheckOk returns a tuple with the ThreeCheck field value
 // and a boolean to check if the value has been set.
-func (o *TvChannels200Response) GetThreeCheckOk() (*TvChannels200ResponseBlitz, bool) {
+func (o *TvChannels200Response) GetThreeCheckOk() (*TvGame, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -239,14 +239,14 @@ func (o *TvChannels200Response) GetThreeCheckOk() (*TvChannels200ResponseBlitz, 
 }
 
 // SetThreeCheck sets field value
-func (o *TvChannels200Response) SetThreeCheck(v TvChannels200ResponseBlitz) {
+func (o *TvChannels200Response) SetThreeCheck(v TvGame) {
 	o.ThreeCheck = v
 }
 
 // GetAntichess returns the Antichess field value
-func (o *TvChannels200Response) GetAntichess() TvChannels200ResponseBlitz {
+func (o *TvChannels200Response) GetAntichess() TvGame {
 	if o == nil {
-		var ret TvChannels200ResponseBlitz
+		var ret TvGame
 		return ret
 	}
 
@@ -255,7 +255,7 @@ func (o *TvChannels200Response) GetAntichess() TvChannels200ResponseBlitz {
 
 // GetAntichessOk returns a tuple with the Antichess field value
 // and a boolean to check if the value has been set.
-func (o *TvChannels200Response) GetAntichessOk() (*TvChannels200ResponseBlitz, bool) {
+func (o *TvChannels200Response) GetAntichessOk() (*TvGame, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -263,14 +263,14 @@ func (o *TvChannels200Response) GetAntichessOk() (*TvChannels200ResponseBlitz, b
 }
 
 // SetAntichess sets field value
-func (o *TvChannels200Response) SetAntichess(v TvChannels200ResponseBlitz) {
+func (o *TvChannels200Response) SetAntichess(v TvGame) {
 	o.Antichess = v
 }
 
 // GetComputer returns the Computer field value
-func (o *TvChannels200Response) GetComputer() TvChannels200ResponseBlitz {
+func (o *TvChannels200Response) GetComputer() TvGame {
 	if o == nil {
-		var ret TvChannels200ResponseBlitz
+		var ret TvGame
 		return ret
 	}
 
@@ -279,7 +279,7 @@ func (o *TvChannels200Response) GetComputer() TvChannels200ResponseBlitz {
 
 // GetComputerOk returns a tuple with the Computer field value
 // and a boolean to check if the value has been set.
-func (o *TvChannels200Response) GetComputerOk() (*TvChannels200ResponseBlitz, bool) {
+func (o *TvChannels200Response) GetComputerOk() (*TvGame, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -287,14 +287,14 @@ func (o *TvChannels200Response) GetComputerOk() (*TvChannels200ResponseBlitz, bo
 }
 
 // SetComputer sets field value
-func (o *TvChannels200Response) SetComputer(v TvChannels200ResponseBlitz) {
+func (o *TvChannels200Response) SetComputer(v TvGame) {
 	o.Computer = v
 }
 
 // GetHorde returns the Horde field value
-func (o *TvChannels200Response) GetHorde() TvChannels200ResponseBlitz {
+func (o *TvChannels200Response) GetHorde() TvGame {
 	if o == nil {
-		var ret TvChannels200ResponseBlitz
+		var ret TvGame
 		return ret
 	}
 
@@ -303,7 +303,7 @@ func (o *TvChannels200Response) GetHorde() TvChannels200ResponseBlitz {
 
 // GetHordeOk returns a tuple with the Horde field value
 // and a boolean to check if the value has been set.
-func (o *TvChannels200Response) GetHordeOk() (*TvChannels200ResponseBlitz, bool) {
+func (o *TvChannels200Response) GetHordeOk() (*TvGame, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -311,14 +311,14 @@ func (o *TvChannels200Response) GetHordeOk() (*TvChannels200ResponseBlitz, bool)
 }
 
 // SetHorde sets field value
-func (o *TvChannels200Response) SetHorde(v TvChannels200ResponseBlitz) {
+func (o *TvChannels200Response) SetHorde(v TvGame) {
 	o.Horde = v
 }
 
 // GetRapid returns the Rapid field value
-func (o *TvChannels200Response) GetRapid() TvChannels200ResponseBlitz {
+func (o *TvChannels200Response) GetRapid() TvGame {
 	if o == nil {
-		var ret TvChannels200ResponseBlitz
+		var ret TvGame
 		return ret
 	}
 
@@ -327,7 +327,7 @@ func (o *TvChannels200Response) GetRapid() TvChannels200ResponseBlitz {
 
 // GetRapidOk returns a tuple with the Rapid field value
 // and a boolean to check if the value has been set.
-func (o *TvChannels200Response) GetRapidOk() (*TvChannels200ResponseBlitz, bool) {
+func (o *TvChannels200Response) GetRapidOk() (*TvGame, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -335,14 +335,14 @@ func (o *TvChannels200Response) GetRapidOk() (*TvChannels200ResponseBlitz, bool)
 }
 
 // SetRapid sets field value
-func (o *TvChannels200Response) SetRapid(v TvChannels200ResponseBlitz) {
+func (o *TvChannels200Response) SetRapid(v TvGame) {
 	o.Rapid = v
 }
 
 // GetAtomic returns the Atomic field value
-func (o *TvChannels200Response) GetAtomic() TvChannels200ResponseBlitz {
+func (o *TvChannels200Response) GetAtomic() TvGame {
 	if o == nil {
-		var ret TvChannels200ResponseBlitz
+		var ret TvGame
 		return ret
 	}
 
@@ -351,7 +351,7 @@ func (o *TvChannels200Response) GetAtomic() TvChannels200ResponseBlitz {
 
 // GetAtomicOk returns a tuple with the Atomic field value
 // and a boolean to check if the value has been set.
-func (o *TvChannels200Response) GetAtomicOk() (*TvChannels200ResponseBlitz, bool) {
+func (o *TvChannels200Response) GetAtomicOk() (*TvGame, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -359,14 +359,14 @@ func (o *TvChannels200Response) GetAtomicOk() (*TvChannels200ResponseBlitz, bool
 }
 
 // SetAtomic sets field value
-func (o *TvChannels200Response) SetAtomic(v TvChannels200ResponseBlitz) {
+func (o *TvChannels200Response) SetAtomic(v TvGame) {
 	o.Atomic = v
 }
 
 // GetCrazyhouse returns the Crazyhouse field value
-func (o *TvChannels200Response) GetCrazyhouse() TvChannels200ResponseBlitz {
+func (o *TvChannels200Response) GetCrazyhouse() TvGame {
 	if o == nil {
-		var ret TvChannels200ResponseBlitz
+		var ret TvGame
 		return ret
 	}
 
@@ -375,7 +375,7 @@ func (o *TvChannels200Response) GetCrazyhouse() TvChannels200ResponseBlitz {
 
 // GetCrazyhouseOk returns a tuple with the Crazyhouse field value
 // and a boolean to check if the value has been set.
-func (o *TvChannels200Response) GetCrazyhouseOk() (*TvChannels200ResponseBlitz, bool) {
+func (o *TvChannels200Response) GetCrazyhouseOk() (*TvGame, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -383,14 +383,14 @@ func (o *TvChannels200Response) GetCrazyhouseOk() (*TvChannels200ResponseBlitz, 
 }
 
 // SetCrazyhouse sets field value
-func (o *TvChannels200Response) SetCrazyhouse(v TvChannels200ResponseBlitz) {
+func (o *TvChannels200Response) SetCrazyhouse(v TvGame) {
 	o.Crazyhouse = v
 }
 
 // GetChess960 returns the Chess960 field value
-func (o *TvChannels200Response) GetChess960() TvChannels200ResponseBlitz {
+func (o *TvChannels200Response) GetChess960() TvGame {
 	if o == nil {
-		var ret TvChannels200ResponseBlitz
+		var ret TvGame
 		return ret
 	}
 
@@ -399,7 +399,7 @@ func (o *TvChannels200Response) GetChess960() TvChannels200ResponseBlitz {
 
 // GetChess960Ok returns a tuple with the Chess960 field value
 // and a boolean to check if the value has been set.
-func (o *TvChannels200Response) GetChess960Ok() (*TvChannels200ResponseBlitz, bool) {
+func (o *TvChannels200Response) GetChess960Ok() (*TvGame, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -407,14 +407,14 @@ func (o *TvChannels200Response) GetChess960Ok() (*TvChannels200ResponseBlitz, bo
 }
 
 // SetChess960 sets field value
-func (o *TvChannels200Response) SetChess960(v TvChannels200ResponseBlitz) {
+func (o *TvChannels200Response) SetChess960(v TvGame) {
 	o.Chess960 = v
 }
 
 // GetKingOfTheHill returns the KingOfTheHill field value
-func (o *TvChannels200Response) GetKingOfTheHill() TvChannels200ResponseBlitz {
+func (o *TvChannels200Response) GetKingOfTheHill() TvGame {
 	if o == nil {
-		var ret TvChannels200ResponseBlitz
+		var ret TvGame
 		return ret
 	}
 
@@ -423,7 +423,7 @@ func (o *TvChannels200Response) GetKingOfTheHill() TvChannels200ResponseBlitz {
 
 // GetKingOfTheHillOk returns a tuple with the KingOfTheHill field value
 // and a boolean to check if the value has been set.
-func (o *TvChannels200Response) GetKingOfTheHillOk() (*TvChannels200ResponseBlitz, bool) {
+func (o *TvChannels200Response) GetKingOfTheHillOk() (*TvGame, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -431,14 +431,14 @@ func (o *TvChannels200Response) GetKingOfTheHillOk() (*TvChannels200ResponseBlit
 }
 
 // SetKingOfTheHill sets field value
-func (o *TvChannels200Response) SetKingOfTheHill(v TvChannels200ResponseBlitz) {
+func (o *TvChannels200Response) SetKingOfTheHill(v TvGame) {
 	o.KingOfTheHill = v
 }
 
 // GetBest returns the Best field value
-func (o *TvChannels200Response) GetBest() TvChannels200ResponseBlitz {
+func (o *TvChannels200Response) GetBest() TvGame {
 	if o == nil {
-		var ret TvChannels200ResponseBlitz
+		var ret TvGame
 		return ret
 	}
 
@@ -447,7 +447,7 @@ func (o *TvChannels200Response) GetBest() TvChannels200ResponseBlitz {
 
 // GetBestOk returns a tuple with the Best field value
 // and a boolean to check if the value has been set.
-func (o *TvChannels200Response) GetBestOk() (*TvChannels200ResponseBlitz, bool) {
+func (o *TvChannels200Response) GetBestOk() (*TvGame, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -455,7 +455,7 @@ func (o *TvChannels200Response) GetBestOk() (*TvChannels200ResponseBlitz, bool) 
 }
 
 // SetBest sets field value
-func (o *TvChannels200Response) SetBest(v TvChannels200ResponseBlitz) {
+func (o *TvChannels200Response) SetBest(v TvGame) {
 	o.Best = v
 }
 

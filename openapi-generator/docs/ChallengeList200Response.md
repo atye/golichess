@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**In** | Pointer to [**[]ChallengeList200ResponseInInner**](ChallengeList200ResponseInInner.md) | Incoming challenges i.e. targeted at you | [optional] 
-**Out** | Pointer to [**[]ChallengeList200ResponseInInner**](ChallengeList200ResponseInInner.md) | Outgoing challenges i.e. created by you | [optional] 
+**In** | Pointer to [**[]ChallengeJson**](ChallengeJson.md) | Incoming challenges i.e. targeted at you | [optional] 
+**Out** | Pointer to [**[]ChallengeJson**](ChallengeJson.md) | Outgoing challenges i.e. created by you | [optional] 
 
 ## Methods
 
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetIn
 
-`func (o *ChallengeList200Response) GetIn() []ChallengeList200ResponseInInner`
+`func (o *ChallengeList200Response) GetIn() []ChallengeJson`
 
 GetIn returns the In field if non-nil, zero value otherwise.
 
 ### GetInOk
 
-`func (o *ChallengeList200Response) GetInOk() (*[]ChallengeList200ResponseInInner, bool)`
+`func (o *ChallengeList200Response) GetInOk() (*[]ChallengeJson, bool)`
 
 GetInOk returns a tuple with the In field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIn
 
-`func (o *ChallengeList200Response) SetIn(v []ChallengeList200ResponseInInner)`
+`func (o *ChallengeList200Response) SetIn(v []ChallengeJson)`
 
 SetIn sets In field to given value.
 
@@ -53,20 +53,20 @@ HasIn returns a boolean if a field has been set.
 
 ### GetOut
 
-`func (o *ChallengeList200Response) GetOut() []ChallengeList200ResponseInInner`
+`func (o *ChallengeList200Response) GetOut() []ChallengeJson`
 
 GetOut returns the Out field if non-nil, zero value otherwise.
 
 ### GetOutOk
 
-`func (o *ChallengeList200Response) GetOutOk() (*[]ChallengeList200ResponseInInner, bool)`
+`func (o *ChallengeList200Response) GetOutOk() (*[]ChallengeJson, bool)`
 
 GetOutOk returns a tuple with the Out field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOut
 
-`func (o *ChallengeList200Response) SetOut(v []ChallengeList200ResponseInInner)`
+`func (o *ChallengeList200Response) SetOut(v []ChallengeJson)`
 
 SetOut sets Out field to given value.
 

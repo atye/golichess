@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **TieBreak** | **int32** |  | 
 **Rating** | **int32** |  | 
 **Username** | **string** |  | 
-**Title** | Pointer to **NullableString** | only appears if the user is a titled player or a bot user | [optional] 
+**Title** | Pointer to [**Title**](Title.md) |  | [optional] 
 **Performance** | **int32** |  | 
 
 ## Methods
@@ -159,20 +159,20 @@ SetUsername sets Username field to given value.
 
 ### GetTitle
 
-`func (o *ResultsBySwiss200Response) GetTitle() string`
+`func (o *ResultsBySwiss200Response) GetTitle() Title`
 
 GetTitle returns the Title field if non-nil, zero value otherwise.
 
 ### GetTitleOk
 
-`func (o *ResultsBySwiss200Response) GetTitleOk() (*string, bool)`
+`func (o *ResultsBySwiss200Response) GetTitleOk() (*Title, bool)`
 
 GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTitle
 
-`func (o *ResultsBySwiss200Response) SetTitle(v string)`
+`func (o *ResultsBySwiss200Response) SetTitle(v Title)`
 
 SetTitle sets Title field to given value.
 
@@ -182,16 +182,6 @@ SetTitle sets Title field to given value.
 
 HasTitle returns a boolean if a field has been set.
 
-### SetTitleNil
-
-`func (o *ResultsBySwiss200Response) SetTitleNil(b bool)`
-
- SetTitleNil sets the value for Title to be an explicit nil
-
-### UnsetTitle
-`func (o *ResultsBySwiss200Response) UnsetTitle()`
-
-UnsetTitle ensures that no value is present for Title, not even an explicit nil
 ### GetPerformance
 
 `func (o *ResultsBySwiss200Response) GetPerformance() int32`

@@ -20,10 +20,10 @@ var _ MappedNullable = &ApiSimul200Response{}
 
 // ApiSimul200Response struct for ApiSimul200Response
 type ApiSimul200Response struct {
-	Pending []ApiSimul200ResponsePendingInner `json:"pending,omitempty"`
-	Created []ApiSimul200ResponsePendingInner `json:"created,omitempty"`
-	Started []ApiSimul200ResponsePendingInner `json:"started,omitempty"`
-	Finished []ApiSimul200ResponsePendingInner `json:"finished,omitempty"`
+	Pending []Simul `json:"pending,omitempty"`
+	Created []Simul `json:"created,omitempty"`
+	Started []Simul `json:"started,omitempty"`
+	Finished []Simul `json:"finished,omitempty"`
 }
 
 // NewApiSimul200Response instantiates a new ApiSimul200Response object
@@ -44,9 +44,9 @@ func NewApiSimul200ResponseWithDefaults() *ApiSimul200Response {
 }
 
 // GetPending returns the Pending field value if set, zero value otherwise.
-func (o *ApiSimul200Response) GetPending() []ApiSimul200ResponsePendingInner {
+func (o *ApiSimul200Response) GetPending() []Simul {
 	if o == nil || IsNil(o.Pending) {
-		var ret []ApiSimul200ResponsePendingInner
+		var ret []Simul
 		return ret
 	}
 	return o.Pending
@@ -54,7 +54,7 @@ func (o *ApiSimul200Response) GetPending() []ApiSimul200ResponsePendingInner {
 
 // GetPendingOk returns a tuple with the Pending field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiSimul200Response) GetPendingOk() ([]ApiSimul200ResponsePendingInner, bool) {
+func (o *ApiSimul200Response) GetPendingOk() ([]Simul, bool) {
 	if o == nil || IsNil(o.Pending) {
 		return nil, false
 	}
@@ -70,15 +70,15 @@ func (o *ApiSimul200Response) HasPending() bool {
 	return false
 }
 
-// SetPending gets a reference to the given []ApiSimul200ResponsePendingInner and assigns it to the Pending field.
-func (o *ApiSimul200Response) SetPending(v []ApiSimul200ResponsePendingInner) {
+// SetPending gets a reference to the given []Simul and assigns it to the Pending field.
+func (o *ApiSimul200Response) SetPending(v []Simul) {
 	o.Pending = v
 }
 
 // GetCreated returns the Created field value if set, zero value otherwise.
-func (o *ApiSimul200Response) GetCreated() []ApiSimul200ResponsePendingInner {
+func (o *ApiSimul200Response) GetCreated() []Simul {
 	if o == nil || IsNil(o.Created) {
-		var ret []ApiSimul200ResponsePendingInner
+		var ret []Simul
 		return ret
 	}
 	return o.Created
@@ -86,7 +86,7 @@ func (o *ApiSimul200Response) GetCreated() []ApiSimul200ResponsePendingInner {
 
 // GetCreatedOk returns a tuple with the Created field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiSimul200Response) GetCreatedOk() ([]ApiSimul200ResponsePendingInner, bool) {
+func (o *ApiSimul200Response) GetCreatedOk() ([]Simul, bool) {
 	if o == nil || IsNil(o.Created) {
 		return nil, false
 	}
@@ -102,15 +102,15 @@ func (o *ApiSimul200Response) HasCreated() bool {
 	return false
 }
 
-// SetCreated gets a reference to the given []ApiSimul200ResponsePendingInner and assigns it to the Created field.
-func (o *ApiSimul200Response) SetCreated(v []ApiSimul200ResponsePendingInner) {
+// SetCreated gets a reference to the given []Simul and assigns it to the Created field.
+func (o *ApiSimul200Response) SetCreated(v []Simul) {
 	o.Created = v
 }
 
 // GetStarted returns the Started field value if set, zero value otherwise.
-func (o *ApiSimul200Response) GetStarted() []ApiSimul200ResponsePendingInner {
+func (o *ApiSimul200Response) GetStarted() []Simul {
 	if o == nil || IsNil(o.Started) {
-		var ret []ApiSimul200ResponsePendingInner
+		var ret []Simul
 		return ret
 	}
 	return o.Started
@@ -118,7 +118,7 @@ func (o *ApiSimul200Response) GetStarted() []ApiSimul200ResponsePendingInner {
 
 // GetStartedOk returns a tuple with the Started field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiSimul200Response) GetStartedOk() ([]ApiSimul200ResponsePendingInner, bool) {
+func (o *ApiSimul200Response) GetStartedOk() ([]Simul, bool) {
 	if o == nil || IsNil(o.Started) {
 		return nil, false
 	}
@@ -134,15 +134,15 @@ func (o *ApiSimul200Response) HasStarted() bool {
 	return false
 }
 
-// SetStarted gets a reference to the given []ApiSimul200ResponsePendingInner and assigns it to the Started field.
-func (o *ApiSimul200Response) SetStarted(v []ApiSimul200ResponsePendingInner) {
+// SetStarted gets a reference to the given []Simul and assigns it to the Started field.
+func (o *ApiSimul200Response) SetStarted(v []Simul) {
 	o.Started = v
 }
 
 // GetFinished returns the Finished field value if set, zero value otherwise.
-func (o *ApiSimul200Response) GetFinished() []ApiSimul200ResponsePendingInner {
+func (o *ApiSimul200Response) GetFinished() []Simul {
 	if o == nil || IsNil(o.Finished) {
-		var ret []ApiSimul200ResponsePendingInner
+		var ret []Simul
 		return ret
 	}
 	return o.Finished
@@ -150,7 +150,7 @@ func (o *ApiSimul200Response) GetFinished() []ApiSimul200ResponsePendingInner {
 
 // GetFinishedOk returns a tuple with the Finished field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiSimul200Response) GetFinishedOk() ([]ApiSimul200ResponsePendingInner, bool) {
+func (o *ApiSimul200Response) GetFinishedOk() ([]Simul, bool) {
 	if o == nil || IsNil(o.Finished) {
 		return nil, false
 	}
@@ -166,8 +166,8 @@ func (o *ApiSimul200Response) HasFinished() bool {
 	return false
 }
 
-// SetFinished gets a reference to the given []ApiSimul200ResponsePendingInner and assigns it to the Finished field.
-func (o *ApiSimul200Response) SetFinished(v []ApiSimul200ResponsePendingInner) {
+// SetFinished gets a reference to the given []Simul and assigns it to the Finished field.
+func (o *ApiSimul200Response) SetFinished(v []Simul) {
 	o.Finished = v
 }
 

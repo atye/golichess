@@ -7,13 +7,13 @@ Name | Type | Description | Notes
 **FullId** | **string** |  | 
 **GameId** | **string** |  | 
 **Fen** | **string** |  | 
-**Color** | **NullableString** |  | 
+**Color** | [**GameColor**](GameColor.md) |  | 
 **LastMove** | **string** |  | 
-**Source** | **string** |  | 
-**Status** | Pointer to **string** |  | [optional] 
-**Variant** | [**ApiAccountPlaying200ResponseNowPlayingInnerVariant**](ApiAccountPlaying200ResponseNowPlayingInnerVariant.md) |  | 
-**Speed** | **string** |  | 
-**Perf** | **string** |  | 
+**Source** | [**GameSource**](GameSource.md) |  | 
+**Status** | Pointer to [**GameStatusName**](GameStatusName.md) |  | [optional] 
+**Variant** | [**Variant**](Variant.md) |  | 
+**Speed** | [**Speed**](Speed.md) |  | 
+**Perf** | [**PerfType**](PerfType.md) |  | 
 **Rated** | **bool** |  | 
 **HasMoved** | **bool** |  | 
 **Opponent** | [**ApiAccountPlaying200ResponseNowPlayingInnerOpponent**](ApiAccountPlaying200ResponseNowPlayingInnerOpponent.md) |  | 
@@ -21,14 +21,14 @@ Name | Type | Description | Notes
 **SecondsLeft** | **int32** |  | 
 **TournamentId** | Pointer to **string** |  | [optional] 
 **SwissId** | Pointer to **string** |  | [optional] 
-**Winner** | Pointer to **NullableString** |  | [optional] 
+**Winner** | Pointer to [**GameColor**](GameColor.md) |  | [optional] 
 **RatingDiff** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
 ### NewApiAccountPlaying200ResponseNowPlayingInner
 
-`func NewApiAccountPlaying200ResponseNowPlayingInner(fullId string, gameId string, fen string, color NullableString, lastMove string, source string, variant ApiAccountPlaying200ResponseNowPlayingInnerVariant, speed string, perf string, rated bool, hasMoved bool, opponent ApiAccountPlaying200ResponseNowPlayingInnerOpponent, isMyTurn bool, secondsLeft int32, ) *ApiAccountPlaying200ResponseNowPlayingInner`
+`func NewApiAccountPlaying200ResponseNowPlayingInner(fullId string, gameId string, fen string, color GameColor, lastMove string, source GameSource, variant Variant, speed Speed, perf PerfType, rated bool, hasMoved bool, opponent ApiAccountPlaying200ResponseNowPlayingInnerOpponent, isMyTurn bool, secondsLeft int32, ) *ApiAccountPlaying200ResponseNowPlayingInner`
 
 NewApiAccountPlaying200ResponseNowPlayingInner instantiates a new ApiAccountPlaying200ResponseNowPlayingInner object
 This constructor will assign default values to properties that have it defined,
@@ -105,34 +105,24 @@ SetFen sets Fen field to given value.
 
 ### GetColor
 
-`func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetColor() string`
+`func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetColor() GameColor`
 
 GetColor returns the Color field if non-nil, zero value otherwise.
 
 ### GetColorOk
 
-`func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetColorOk() (*string, bool)`
+`func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetColorOk() (*GameColor, bool)`
 
 GetColorOk returns a tuple with the Color field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetColor
 
-`func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetColor(v string)`
+`func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetColor(v GameColor)`
 
 SetColor sets Color field to given value.
 
 
-### SetColorNil
-
-`func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetColorNil(b bool)`
-
- SetColorNil sets the value for Color to be an explicit nil
-
-### UnsetColor
-`func (o *ApiAccountPlaying200ResponseNowPlayingInner) UnsetColor()`
-
-UnsetColor ensures that no value is present for Color, not even an explicit nil
 ### GetLastMove
 
 `func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetLastMove() string`
@@ -155,40 +145,40 @@ SetLastMove sets LastMove field to given value.
 
 ### GetSource
 
-`func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetSource() string`
+`func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetSource() GameSource`
 
 GetSource returns the Source field if non-nil, zero value otherwise.
 
 ### GetSourceOk
 
-`func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetSourceOk() (*string, bool)`
+`func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetSourceOk() (*GameSource, bool)`
 
 GetSourceOk returns a tuple with the Source field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSource
 
-`func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetSource(v string)`
+`func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetSource(v GameSource)`
 
 SetSource sets Source field to given value.
 
 
 ### GetStatus
 
-`func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetStatus() string`
+`func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetStatus() GameStatusName`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetStatusOk() (*string, bool)`
+`func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetStatusOk() (*GameStatusName, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetStatus(v string)`
+`func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetStatus(v GameStatusName)`
 
 SetStatus sets Status field to given value.
 
@@ -200,60 +190,60 @@ HasStatus returns a boolean if a field has been set.
 
 ### GetVariant
 
-`func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetVariant() ApiAccountPlaying200ResponseNowPlayingInnerVariant`
+`func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetVariant() Variant`
 
 GetVariant returns the Variant field if non-nil, zero value otherwise.
 
 ### GetVariantOk
 
-`func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetVariantOk() (*ApiAccountPlaying200ResponseNowPlayingInnerVariant, bool)`
+`func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetVariantOk() (*Variant, bool)`
 
 GetVariantOk returns a tuple with the Variant field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVariant
 
-`func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetVariant(v ApiAccountPlaying200ResponseNowPlayingInnerVariant)`
+`func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetVariant(v Variant)`
 
 SetVariant sets Variant field to given value.
 
 
 ### GetSpeed
 
-`func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetSpeed() string`
+`func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetSpeed() Speed`
 
 GetSpeed returns the Speed field if non-nil, zero value otherwise.
 
 ### GetSpeedOk
 
-`func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetSpeedOk() (*string, bool)`
+`func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetSpeedOk() (*Speed, bool)`
 
 GetSpeedOk returns a tuple with the Speed field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSpeed
 
-`func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetSpeed(v string)`
+`func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetSpeed(v Speed)`
 
 SetSpeed sets Speed field to given value.
 
 
 ### GetPerf
 
-`func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetPerf() string`
+`func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetPerf() PerfType`
 
 GetPerf returns the Perf field if non-nil, zero value otherwise.
 
 ### GetPerfOk
 
-`func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetPerfOk() (*string, bool)`
+`func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetPerfOk() (*PerfType, bool)`
 
 GetPerfOk returns a tuple with the Perf field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPerf
 
-`func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetPerf(v string)`
+`func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetPerf(v PerfType)`
 
 SetPerf sets Perf field to given value.
 
@@ -410,20 +400,20 @@ HasSwissId returns a boolean if a field has been set.
 
 ### GetWinner
 
-`func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetWinner() string`
+`func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetWinner() GameColor`
 
 GetWinner returns the Winner field if non-nil, zero value otherwise.
 
 ### GetWinnerOk
 
-`func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetWinnerOk() (*string, bool)`
+`func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetWinnerOk() (*GameColor, bool)`
 
 GetWinnerOk returns a tuple with the Winner field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetWinner
 
-`func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetWinner(v string)`
+`func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetWinner(v GameColor)`
 
 SetWinner sets Winner field to given value.
 
@@ -433,16 +423,6 @@ SetWinner sets Winner field to given value.
 
 HasWinner returns a boolean if a field has been set.
 
-### SetWinnerNil
-
-`func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetWinnerNil(b bool)`
-
- SetWinnerNil sets the value for Winner to be an explicit nil
-
-### UnsetWinner
-`func (o *ApiAccountPlaying200ResponseNowPlayingInner) UnsetWinner()`
-
-UnsetWinner ensures that no value is present for Winner, not even an explicit nil
 ### GetRatingDiff
 
 `func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetRatingDiff() int32`

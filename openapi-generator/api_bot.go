@@ -34,8 +34,8 @@ type BotAPI interface {
 	ApiBotOnline(ctx context.Context) BotAPIApiBotOnlineRequest
 
 	// ApiBotOnlineExecute executes the request
-	//  @return ApiUsers200ResponseInner
-	ApiBotOnlineExecute(r BotAPIApiBotOnlineRequest) (*ApiUsers200ResponseInner, *http.Response, error)
+	//  @return User
+	ApiBotOnlineExecute(r BotAPIApiBotOnlineRequest) (*User, *http.Response, error)
 
 	/*
 	ApiStreamEvent Stream incoming events
@@ -83,8 +83,8 @@ the `title` field should be set to `BOT`.
 	BotAccountUpgrade(ctx context.Context) BotAPIBotAccountUpgradeRequest
 
 	// BotAccountUpgradeExecute executes the request
-	//  @return AccountKidPost200Response
-	BotAccountUpgradeExecute(r BotAPIBotAccountUpgradeRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	BotAccountUpgradeExecute(r BotAPIBotAccountUpgradeRequest) (*Ok, *http.Response, error)
 
 	/*
 	BotGameAbort Abort a game
@@ -99,8 +99,8 @@ the `title` field should be set to `BOT`.
 	BotGameAbort(ctx context.Context, gameId string) BotAPIBotGameAbortRequest
 
 	// BotGameAbortExecute executes the request
-	//  @return AccountKidPost200Response
-	BotGameAbortExecute(r BotAPIBotGameAbortRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	BotGameAbortExecute(r BotAPIBotGameAbortRequest) (*Ok, *http.Response, error)
 
 	/*
 	BotGameChat Write in the chat
@@ -115,8 +115,8 @@ the `title` field should be set to `BOT`.
 	BotGameChat(ctx context.Context, gameId string) BotAPIBotGameChatRequest
 
 	// BotGameChatExecute executes the request
-	//  @return AccountKidPost200Response
-	BotGameChatExecute(r BotAPIBotGameChatRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	BotGameChatExecute(r BotAPIBotGameChatRequest) (*Ok, *http.Response, error)
 
 	/*
 	BotGameChatGet Fetch the game chat
@@ -131,8 +131,8 @@ the `title` field should be set to `BOT`.
 	BotGameChatGet(ctx context.Context, gameId string) BotAPIBotGameChatGetRequest
 
 	// BotGameChatGetExecute executes the request
-	//  @return []GameChatGet200ResponseInner
-	BotGameChatGetExecute(r BotAPIBotGameChatGetRequest) ([]GameChatGet200ResponseInner, *http.Response, error)
+	//  @return []SpectatorGameChatInner
+	BotGameChatGetExecute(r BotAPIBotGameChatGetRequest) ([]SpectatorGameChatInner, *http.Response, error)
 
 	/*
 	BotGameClaimDraw Claim draw of a game
@@ -147,8 +147,8 @@ the `title` field should be set to `BOT`.
 	BotGameClaimDraw(ctx context.Context, gameId string) BotAPIBotGameClaimDrawRequest
 
 	// BotGameClaimDrawExecute executes the request
-	//  @return AccountKidPost200Response
-	BotGameClaimDrawExecute(r BotAPIBotGameClaimDrawRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	BotGameClaimDrawExecute(r BotAPIBotGameClaimDrawRequest) (*Ok, *http.Response, error)
 
 	/*
 	BotGameClaimVictory Claim victory of a game
@@ -163,8 +163,8 @@ the `title` field should be set to `BOT`.
 	BotGameClaimVictory(ctx context.Context, gameId string) BotAPIBotGameClaimVictoryRequest
 
 	// BotGameClaimVictoryExecute executes the request
-	//  @return AccountKidPost200Response
-	BotGameClaimVictoryExecute(r BotAPIBotGameClaimVictoryRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	BotGameClaimVictoryExecute(r BotAPIBotGameClaimVictoryRequest) (*Ok, *http.Response, error)
 
 	/*
 	BotGameDraw Handle draw offers
@@ -182,8 +182,8 @@ the `title` field should be set to `BOT`.
 	BotGameDraw(ctx context.Context, gameId string, accept BoardGameDrawAcceptParameter) BotAPIBotGameDrawRequest
 
 	// BotGameDrawExecute executes the request
-	//  @return AccountKidPost200Response
-	BotGameDrawExecute(r BotAPIBotGameDrawRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	BotGameDrawExecute(r BotAPIBotGameDrawRequest) (*Ok, *http.Response, error)
 
 	/*
 	BotGameMove Make a Bot move
@@ -200,8 +200,8 @@ The move can also contain a draw offer/agreement.
 	BotGameMove(ctx context.Context, gameId string, move string) BotAPIBotGameMoveRequest
 
 	// BotGameMoveExecute executes the request
-	//  @return AccountKidPost200Response
-	BotGameMoveExecute(r BotAPIBotGameMoveRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	BotGameMoveExecute(r BotAPIBotGameMoveRequest) (*Ok, *http.Response, error)
 
 	/*
 	BotGameResign Resign a game
@@ -216,8 +216,8 @@ The move can also contain a draw offer/agreement.
 	BotGameResign(ctx context.Context, gameId string) BotAPIBotGameResignRequest
 
 	// BotGameResignExecute executes the request
-	//  @return AccountKidPost200Response
-	BotGameResignExecute(r BotAPIBotGameResignRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	BotGameResignExecute(r BotAPIBotGameResignRequest) (*Ok, *http.Response, error)
 
 	/*
 	BotGameStream Stream Bot game state
@@ -258,8 +258,8 @@ The first line is always of type `gameFull`.
 	BotGameTakeback(ctx context.Context, gameId string, accept BoardGameDrawAcceptParameter) BotAPIBotGameTakebackRequest
 
 	// BotGameTakebackExecute executes the request
-	//  @return AccountKidPost200Response
-	BotGameTakebackExecute(r BotAPIBotGameTakebackRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	BotGameTakebackExecute(r BotAPIBotGameTakebackRequest) (*Ok, *http.Response, error)
 }
 
 // BotAPIService BotAPI service
@@ -277,7 +277,7 @@ func (r BotAPIApiBotOnlineRequest) Nb(nb int32) BotAPIApiBotOnlineRequest {
 	return r
 }
 
-func (r BotAPIApiBotOnlineRequest) Execute() (*ApiUsers200ResponseInner, *http.Response, error) {
+func (r BotAPIApiBotOnlineRequest) Execute() (*User, *http.Response, error) {
 	return r.ApiService.ApiBotOnlineExecute(r)
 }
 
@@ -297,13 +297,13 @@ func (a *BotAPIService) ApiBotOnline(ctx context.Context) BotAPIApiBotOnlineRequ
 }
 
 // Execute executes the request
-//  @return ApiUsers200ResponseInner
-func (a *BotAPIService) ApiBotOnlineExecute(r BotAPIApiBotOnlineRequest) (*ApiUsers200ResponseInner, *http.Response, error) {
+//  @return User
+func (a *BotAPIService) ApiBotOnlineExecute(r BotAPIApiBotOnlineRequest) (*User, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiUsers200ResponseInner
+		localVarReturnValue  *User
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BotAPIService.ApiBotOnline")
@@ -496,7 +496,7 @@ type BotAPIBotAccountUpgradeRequest struct {
 	ApiService BotAPI
 }
 
-func (r BotAPIBotAccountUpgradeRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r BotAPIBotAccountUpgradeRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.BotAccountUpgradeExecute(r)
 }
 
@@ -523,13 +523,13 @@ func (a *BotAPIService) BotAccountUpgrade(ctx context.Context) BotAPIBotAccountU
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *BotAPIService) BotAccountUpgradeExecute(r BotAPIBotAccountUpgradeRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *BotAPIService) BotAccountUpgradeExecute(r BotAPIBotAccountUpgradeRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BotAPIService.BotAccountUpgrade")
@@ -583,7 +583,7 @@ func (a *BotAPIService) BotAccountUpgradeExecute(r BotAPIBotAccountUpgradeReques
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -613,7 +613,7 @@ type BotAPIBotGameAbortRequest struct {
 	gameId string
 }
 
-func (r BotAPIBotGameAbortRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r BotAPIBotGameAbortRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.BotGameAbortExecute(r)
 }
 
@@ -636,13 +636,13 @@ func (a *BotAPIService) BotGameAbort(ctx context.Context, gameId string) BotAPIB
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *BotAPIService) BotGameAbortExecute(r BotAPIBotGameAbortRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *BotAPIService) BotGameAbortExecute(r BotAPIBotGameAbortRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BotAPIService.BotGameAbort")
@@ -697,7 +697,7 @@ func (a *BotAPIService) BotGameAbortExecute(r BotAPIBotGameAbortRequest) (*Accou
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -739,7 +739,7 @@ func (r BotAPIBotGameChatRequest) Text(text string) BotAPIBotGameChatRequest {
 	return r
 }
 
-func (r BotAPIBotGameChatRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r BotAPIBotGameChatRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.BotGameChatExecute(r)
 }
 
@@ -762,13 +762,13 @@ func (a *BotAPIService) BotGameChat(ctx context.Context, gameId string) BotAPIBo
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *BotAPIService) BotGameChatExecute(r BotAPIBotGameChatRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *BotAPIService) BotGameChatExecute(r BotAPIBotGameChatRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BotAPIService.BotGameChat")
@@ -831,7 +831,7 @@ func (a *BotAPIService) BotGameChatExecute(r BotAPIBotGameChatRequest) (*Account
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -861,7 +861,7 @@ type BotAPIBotGameChatGetRequest struct {
 	gameId string
 }
 
-func (r BotAPIBotGameChatGetRequest) Execute() ([]GameChatGet200ResponseInner, *http.Response, error) {
+func (r BotAPIBotGameChatGetRequest) Execute() ([]SpectatorGameChatInner, *http.Response, error) {
 	return r.ApiService.BotGameChatGetExecute(r)
 }
 
@@ -884,13 +884,13 @@ func (a *BotAPIService) BotGameChatGet(ctx context.Context, gameId string) BotAP
 }
 
 // Execute executes the request
-//  @return []GameChatGet200ResponseInner
-func (a *BotAPIService) BotGameChatGetExecute(r BotAPIBotGameChatGetRequest) ([]GameChatGet200ResponseInner, *http.Response, error) {
+//  @return []SpectatorGameChatInner
+func (a *BotAPIService) BotGameChatGetExecute(r BotAPIBotGameChatGetRequest) ([]SpectatorGameChatInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []GameChatGet200ResponseInner
+		localVarReturnValue  []SpectatorGameChatInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BotAPIService.BotGameChatGet")
@@ -965,7 +965,7 @@ type BotAPIBotGameClaimDrawRequest struct {
 	gameId string
 }
 
-func (r BotAPIBotGameClaimDrawRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r BotAPIBotGameClaimDrawRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.BotGameClaimDrawExecute(r)
 }
 
@@ -988,13 +988,13 @@ func (a *BotAPIService) BotGameClaimDraw(ctx context.Context, gameId string) Bot
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *BotAPIService) BotGameClaimDrawExecute(r BotAPIBotGameClaimDrawRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *BotAPIService) BotGameClaimDrawExecute(r BotAPIBotGameClaimDrawRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BotAPIService.BotGameClaimDraw")
@@ -1049,7 +1049,7 @@ func (a *BotAPIService) BotGameClaimDrawExecute(r BotAPIBotGameClaimDrawRequest)
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1079,7 +1079,7 @@ type BotAPIBotGameClaimVictoryRequest struct {
 	gameId string
 }
 
-func (r BotAPIBotGameClaimVictoryRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r BotAPIBotGameClaimVictoryRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.BotGameClaimVictoryExecute(r)
 }
 
@@ -1102,13 +1102,13 @@ func (a *BotAPIService) BotGameClaimVictory(ctx context.Context, gameId string) 
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *BotAPIService) BotGameClaimVictoryExecute(r BotAPIBotGameClaimVictoryRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *BotAPIService) BotGameClaimVictoryExecute(r BotAPIBotGameClaimVictoryRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BotAPIService.BotGameClaimVictory")
@@ -1163,7 +1163,7 @@ func (a *BotAPIService) BotGameClaimVictoryExecute(r BotAPIBotGameClaimVictoryRe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1194,7 +1194,7 @@ type BotAPIBotGameDrawRequest struct {
 	accept BoardGameDrawAcceptParameter
 }
 
-func (r BotAPIBotGameDrawRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r BotAPIBotGameDrawRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.BotGameDrawExecute(r)
 }
 
@@ -1221,13 +1221,13 @@ func (a *BotAPIService) BotGameDraw(ctx context.Context, gameId string, accept B
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *BotAPIService) BotGameDrawExecute(r BotAPIBotGameDrawRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *BotAPIService) BotGameDrawExecute(r BotAPIBotGameDrawRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BotAPIService.BotGameDraw")
@@ -1283,7 +1283,7 @@ func (a *BotAPIService) BotGameDrawExecute(r BotAPIBotGameDrawRequest) (*Account
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1321,7 +1321,7 @@ func (r BotAPIBotGameMoveRequest) OfferingDraw(offeringDraw bool) BotAPIBotGameM
 	return r
 }
 
-func (r BotAPIBotGameMoveRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r BotAPIBotGameMoveRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.BotGameMoveExecute(r)
 }
 
@@ -1347,13 +1347,13 @@ func (a *BotAPIService) BotGameMove(ctx context.Context, gameId string, move str
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *BotAPIService) BotGameMoveExecute(r BotAPIBotGameMoveRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *BotAPIService) BotGameMoveExecute(r BotAPIBotGameMoveRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BotAPIService.BotGameMove")
@@ -1412,7 +1412,7 @@ func (a *BotAPIService) BotGameMoveExecute(r BotAPIBotGameMoveRequest) (*Account
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1442,7 +1442,7 @@ type BotAPIBotGameResignRequest struct {
 	gameId string
 }
 
-func (r BotAPIBotGameResignRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r BotAPIBotGameResignRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.BotGameResignExecute(r)
 }
 
@@ -1465,13 +1465,13 @@ func (a *BotAPIService) BotGameResign(ctx context.Context, gameId string) BotAPI
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *BotAPIService) BotGameResignExecute(r BotAPIBotGameResignRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *BotAPIService) BotGameResignExecute(r BotAPIBotGameResignRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BotAPIService.BotGameResign")
@@ -1526,7 +1526,7 @@ func (a *BotAPIService) BotGameResignExecute(r BotAPIBotGameResignRequest) (*Acc
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1647,7 +1647,7 @@ func (a *BotAPIService) BotGameStreamExecute(r BotAPIBotGameStreamRequest) (*Boa
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v RacerGet404Response
+			var v NotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1678,7 +1678,7 @@ type BotAPIBotGameTakebackRequest struct {
 	accept BoardGameDrawAcceptParameter
 }
 
-func (r BotAPIBotGameTakebackRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r BotAPIBotGameTakebackRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.BotGameTakebackExecute(r)
 }
 
@@ -1705,13 +1705,13 @@ func (a *BotAPIService) BotGameTakeback(ctx context.Context, gameId string, acce
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *BotAPIService) BotGameTakebackExecute(r BotAPIBotGameTakebackRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *BotAPIService) BotGameTakebackExecute(r BotAPIBotGameTakebackRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BotAPIService.BotGameTakeback")
@@ -1767,7 +1767,7 @@ func (a *BotAPIService) BotGameTakebackExecute(r BotAPIBotGameTakebackRequest) (
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

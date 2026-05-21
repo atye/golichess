@@ -34,8 +34,8 @@ type TablebaseAPI interface {
 	AntichessAtomic(ctx context.Context) TablebaseAPIAntichessAtomicRequest
 
 	// AntichessAtomicExecute executes the request
-	//  @return TablebaseStandard200Response
-	AntichessAtomicExecute(r TablebaseAPIAntichessAtomicRequest) (*TablebaseStandard200Response, *http.Response, error)
+	//  @return TablebaseJson
+	AntichessAtomicExecute(r TablebaseAPIAntichessAtomicRequest) (*TablebaseJson, *http.Response, error)
 
 	/*
 	TablebaseAtomic Tablebase lookup for Atomic chess
@@ -49,8 +49,8 @@ type TablebaseAPI interface {
 	TablebaseAtomic(ctx context.Context) TablebaseAPITablebaseAtomicRequest
 
 	// TablebaseAtomicExecute executes the request
-	//  @return TablebaseStandard200Response
-	TablebaseAtomicExecute(r TablebaseAPITablebaseAtomicRequest) (*TablebaseStandard200Response, *http.Response, error)
+	//  @return TablebaseJson
+	TablebaseAtomicExecute(r TablebaseAPITablebaseAtomicRequest) (*TablebaseJson, *http.Response, error)
 
 	/*
 	TablebaseStandard Tablebase lookup
@@ -66,8 +66,8 @@ Example: `curl http://tablebase.lichess.org/standard?fen=4k3/6KP/8/8/8/8/7p/8_w_
 	TablebaseStandard(ctx context.Context) TablebaseAPITablebaseStandardRequest
 
 	// TablebaseStandardExecute executes the request
-	//  @return TablebaseStandard200Response
-	TablebaseStandardExecute(r TablebaseAPITablebaseStandardRequest) (*TablebaseStandard200Response, *http.Response, error)
+	//  @return TablebaseJson
+	TablebaseStandardExecute(r TablebaseAPITablebaseStandardRequest) (*TablebaseJson, *http.Response, error)
 }
 
 // TablebaseAPIService TablebaseAPI service
@@ -85,7 +85,7 @@ func (r TablebaseAPIAntichessAtomicRequest) Fen(fen string) TablebaseAPIAntiches
 	return r
 }
 
-func (r TablebaseAPIAntichessAtomicRequest) Execute() (*TablebaseStandard200Response, *http.Response, error) {
+func (r TablebaseAPIAntichessAtomicRequest) Execute() (*TablebaseJson, *http.Response, error) {
 	return r.ApiService.AntichessAtomicExecute(r)
 }
 
@@ -106,13 +106,13 @@ func (a *TablebaseAPIService) AntichessAtomic(ctx context.Context) TablebaseAPIA
 }
 
 // Execute executes the request
-//  @return TablebaseStandard200Response
-func (a *TablebaseAPIService) AntichessAtomicExecute(r TablebaseAPIAntichessAtomicRequest) (*TablebaseStandard200Response, *http.Response, error) {
+//  @return TablebaseJson
+func (a *TablebaseAPIService) AntichessAtomicExecute(r TablebaseAPIAntichessAtomicRequest) (*TablebaseJson, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *TablebaseStandard200Response
+		localVarReturnValue  *TablebaseJson
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TablebaseAPIService.AntichessAtomic")
@@ -196,7 +196,7 @@ func (r TablebaseAPITablebaseAtomicRequest) Fen(fen string) TablebaseAPITablebas
 	return r
 }
 
-func (r TablebaseAPITablebaseAtomicRequest) Execute() (*TablebaseStandard200Response, *http.Response, error) {
+func (r TablebaseAPITablebaseAtomicRequest) Execute() (*TablebaseJson, *http.Response, error) {
 	return r.ApiService.TablebaseAtomicExecute(r)
 }
 
@@ -217,13 +217,13 @@ func (a *TablebaseAPIService) TablebaseAtomic(ctx context.Context) TablebaseAPIT
 }
 
 // Execute executes the request
-//  @return TablebaseStandard200Response
-func (a *TablebaseAPIService) TablebaseAtomicExecute(r TablebaseAPITablebaseAtomicRequest) (*TablebaseStandard200Response, *http.Response, error) {
+//  @return TablebaseJson
+func (a *TablebaseAPIService) TablebaseAtomicExecute(r TablebaseAPITablebaseAtomicRequest) (*TablebaseJson, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *TablebaseStandard200Response
+		localVarReturnValue  *TablebaseJson
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TablebaseAPIService.TablebaseAtomic")
@@ -314,7 +314,7 @@ func (r TablebaseAPITablebaseStandardRequest) Dtc(dtc string) TablebaseAPITableb
 	return r
 }
 
-func (r TablebaseAPITablebaseStandardRequest) Execute() (*TablebaseStandard200Response, *http.Response, error) {
+func (r TablebaseAPITablebaseStandardRequest) Execute() (*TablebaseJson, *http.Response, error) {
 	return r.ApiService.TablebaseStandardExecute(r)
 }
 
@@ -337,13 +337,13 @@ func (a *TablebaseAPIService) TablebaseStandard(ctx context.Context) TablebaseAP
 }
 
 // Execute executes the request
-//  @return TablebaseStandard200Response
-func (a *TablebaseAPIService) TablebaseStandardExecute(r TablebaseAPITablebaseStandardRequest) (*TablebaseStandard200Response, *http.Response, error) {
+//  @return TablebaseJson
+func (a *TablebaseAPIService) TablebaseStandardExecute(r TablebaseAPITablebaseStandardRequest) (*TablebaseJson, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *TablebaseStandard200Response
+		localVarReturnValue  *TablebaseJson
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TablebaseAPIService.TablebaseStandard")

@@ -38,8 +38,8 @@ Tournaments are streamed as [ndjson](#description/streaming-with-nd-json).
 	ApiTeamArena(ctx context.Context, teamId string) TeamsAPIApiTeamArenaRequest
 
 	// ApiTeamArenaExecute executes the request
-	//  @return ApiTournament200ResponseCreatedInner
-	ApiTeamArenaExecute(r TeamsAPIApiTeamArenaRequest) (*ApiTournament200ResponseCreatedInner, *http.Response, error)
+	//  @return ArenaTournament
+	ApiTeamArenaExecute(r TeamsAPIApiTeamArenaRequest) (*ArenaTournament, *http.Response, error)
 
 	/*
 	ApiTeamSwiss Get team swiss tournaments
@@ -56,8 +56,8 @@ Tournaments are streamed as [ndjson](#description/streaming-with-nd-json).
 	ApiTeamSwiss(ctx context.Context, teamId string) TeamsAPIApiTeamSwissRequest
 
 	// ApiTeamSwissExecute executes the request
-	//  @return ApiSwissNew200Response
-	ApiTeamSwissExecute(r TeamsAPIApiTeamSwissRequest) (*ApiSwissNew200Response, *http.Response, error)
+	//  @return SwissTournament
+	ApiTeamSwissExecute(r TeamsAPIApiTeamSwissRequest) (*SwissTournament, *http.Response, error)
 
 	/*
 	TeamAll Get popular teams
@@ -71,8 +71,8 @@ Tournaments are streamed as [ndjson](#description/streaming-with-nd-json).
 	TeamAll(ctx context.Context) TeamsAPITeamAllRequest
 
 	// TeamAllExecute executes the request
-	//  @return TeamAll200Response
-	TeamAllExecute(r TeamsAPITeamAllRequest) (*TeamAll200Response, *http.Response, error)
+	//  @return TeamPaginatorJson
+	TeamAllExecute(r TeamsAPITeamAllRequest) (*TeamPaginatorJson, *http.Response, error)
 
 	/*
 	TeamIdJoin Join a team
@@ -92,8 +92,8 @@ Similarly, if the team join policy requires a confirmation but the
 	TeamIdJoin(ctx context.Context, teamId string) TeamsAPITeamIdJoinRequest
 
 	// TeamIdJoinExecute executes the request
-	//  @return AccountKidPost200Response
-	TeamIdJoinExecute(r TeamsAPITeamIdJoinRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	TeamIdJoinExecute(r TeamsAPITeamIdJoinRequest) (*Ok, *http.Response, error)
 
 	/*
 	TeamIdKickUserId Kick a user from your team
@@ -110,8 +110,8 @@ Similarly, if the team join policy requires a confirmation but the
 	TeamIdKickUserId(ctx context.Context, teamId string, userId string) TeamsAPITeamIdKickUserIdRequest
 
 	// TeamIdKickUserIdExecute executes the request
-	//  @return AccountKidPost200Response
-	TeamIdKickUserIdExecute(r TeamsAPITeamIdKickUserIdRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	TeamIdKickUserIdExecute(r TeamsAPITeamIdKickUserIdRequest) (*Ok, *http.Response, error)
 
 	/*
 	TeamIdPmAll Message all members
@@ -127,8 +127,8 @@ You must be a team leader with the "Messages" permission.
 	TeamIdPmAll(ctx context.Context, teamId string) TeamsAPITeamIdPmAllRequest
 
 	// TeamIdPmAllExecute executes the request
-	//  @return AccountKidPost200Response
-	TeamIdPmAllExecute(r TeamsAPITeamIdPmAllRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	TeamIdPmAllExecute(r TeamsAPITeamIdPmAllRequest) (*Ok, *http.Response, error)
 
 	/*
 	TeamIdQuit Leave a team
@@ -144,8 +144,8 @@ You must be a team leader with the "Messages" permission.
 	TeamIdQuit(ctx context.Context, teamId string) TeamsAPITeamIdQuitRequest
 
 	// TeamIdQuitExecute executes the request
-	//  @return AccountKidPost200Response
-	TeamIdQuitExecute(r TeamsAPITeamIdQuitRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	TeamIdQuitExecute(r TeamsAPITeamIdQuitRequest) (*Ok, *http.Response, error)
 
 	/*
 	TeamIdUsers Get members of a team
@@ -179,8 +179,8 @@ Teams that hide their player list are only included if you also belong to the te
 	TeamOfUsername(ctx context.Context, username string) TeamsAPITeamOfUsernameRequest
 
 	// TeamOfUsernameExecute executes the request
-	//  @return []TeamShow200Response
-	TeamOfUsernameExecute(r TeamsAPITeamOfUsernameRequest) ([]TeamShow200Response, *http.Response, error)
+	//  @return []Team
+	TeamOfUsernameExecute(r TeamsAPITeamOfUsernameRequest) ([]Team, *http.Response, error)
 
 	/*
 	TeamRequestAccept Accept join request
@@ -195,8 +195,8 @@ Teams that hide their player list are only included if you also belong to the te
 	TeamRequestAccept(ctx context.Context, teamId string, userId string) TeamsAPITeamRequestAcceptRequest
 
 	// TeamRequestAcceptExecute executes the request
-	//  @return AccountKidPost200Response
-	TeamRequestAcceptExecute(r TeamsAPITeamRequestAcceptRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	TeamRequestAcceptExecute(r TeamsAPITeamRequestAcceptRequest) (*Ok, *http.Response, error)
 
 	/*
 	TeamRequestDecline Decline join request
@@ -211,8 +211,8 @@ Teams that hide their player list are only included if you also belong to the te
 	TeamRequestDecline(ctx context.Context, teamId string, userId string) TeamsAPITeamRequestDeclineRequest
 
 	// TeamRequestDeclineExecute executes the request
-	//  @return AccountKidPost200Response
-	TeamRequestDeclineExecute(r TeamsAPITeamRequestDeclineRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	TeamRequestDeclineExecute(r TeamsAPITeamRequestDeclineRequest) (*Ok, *http.Response, error)
 
 	/*
 	TeamRequests Get join requests
@@ -226,8 +226,8 @@ Teams that hide their player list are only included if you also belong to the te
 	TeamRequests(ctx context.Context, teamId string) TeamsAPITeamRequestsRequest
 
 	// TeamRequestsExecute executes the request
-	//  @return []TeamRequests200ResponseInner
-	TeamRequestsExecute(r TeamsAPITeamRequestsRequest) ([]TeamRequests200ResponseInner, *http.Response, error)
+	//  @return []TeamRequestWithUser
+	TeamRequestsExecute(r TeamsAPITeamRequestsRequest) ([]TeamRequestWithUser, *http.Response, error)
 
 	/*
 	TeamSearch Search teams
@@ -241,8 +241,8 @@ Teams that hide their player list are only included if you also belong to the te
 	TeamSearch(ctx context.Context) TeamsAPITeamSearchRequest
 
 	// TeamSearchExecute executes the request
-	//  @return TeamAll200Response
-	TeamSearchExecute(r TeamsAPITeamSearchRequest) (*TeamAll200Response, *http.Response, error)
+	//  @return TeamPaginatorJson
+	TeamSearchExecute(r TeamsAPITeamSearchRequest) (*TeamPaginatorJson, *http.Response, error)
 
 	/*
 	TeamShow Get a single team
@@ -256,8 +256,8 @@ Teams that hide their player list are only included if you also belong to the te
 	TeamShow(ctx context.Context, teamId string) TeamsAPITeamShowRequest
 
 	// TeamShowExecute executes the request
-	//  @return TeamShow200Response
-	TeamShowExecute(r TeamsAPITeamShowRequest) (*TeamShow200Response, *http.Response, error)
+	//  @return Team
+	TeamShowExecute(r TeamsAPITeamShowRequest) (*Team, *http.Response, error)
 }
 
 // TeamsAPIService TeamsAPI service
@@ -268,7 +268,7 @@ type TeamsAPIApiTeamArenaRequest struct {
 	ApiService TeamsAPI
 	teamId string
 	max *int32
-	status *string
+	status *ArenaStatusName
 	createdBy *string
 	name *string
 }
@@ -280,7 +280,7 @@ func (r TeamsAPIApiTeamArenaRequest) Max(max int32) TeamsAPIApiTeamArenaRequest 
 }
 
 // [Filter] Only arena tournaments in this current state. 
-func (r TeamsAPIApiTeamArenaRequest) Status(status string) TeamsAPIApiTeamArenaRequest {
+func (r TeamsAPIApiTeamArenaRequest) Status(status ArenaStatusName) TeamsAPIApiTeamArenaRequest {
 	r.status = &status
 	return r
 }
@@ -297,7 +297,7 @@ func (r TeamsAPIApiTeamArenaRequest) Name(name string) TeamsAPIApiTeamArenaReque
 	return r
 }
 
-func (r TeamsAPIApiTeamArenaRequest) Execute() (*ApiTournament200ResponseCreatedInner, *http.Response, error) {
+func (r TeamsAPIApiTeamArenaRequest) Execute() (*ArenaTournament, *http.Response, error) {
 	return r.ApiService.ApiTeamArenaExecute(r)
 }
 
@@ -322,13 +322,13 @@ func (a *TeamsAPIService) ApiTeamArena(ctx context.Context, teamId string) Teams
 }
 
 // Execute executes the request
-//  @return ApiTournament200ResponseCreatedInner
-func (a *TeamsAPIService) ApiTeamArenaExecute(r TeamsAPIApiTeamArenaRequest) (*ApiTournament200ResponseCreatedInner, *http.Response, error) {
+//  @return ArenaTournament
+func (a *TeamsAPIService) ApiTeamArenaExecute(r TeamsAPIApiTeamArenaRequest) (*ArenaTournament, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiTournament200ResponseCreatedInner
+		localVarReturnValue  *ArenaTournament
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsAPIService.ApiTeamArena")
@@ -418,7 +418,7 @@ type TeamsAPIApiTeamSwissRequest struct {
 	ApiService TeamsAPI
 	teamId string
 	max *int32
-	status *string
+	status *SwissStatus
 	createdBy *string
 	name *string
 }
@@ -430,7 +430,7 @@ func (r TeamsAPIApiTeamSwissRequest) Max(max int32) TeamsAPIApiTeamSwissRequest 
 }
 
 // [Filter] Only swiss tournaments in this current state. 
-func (r TeamsAPIApiTeamSwissRequest) Status(status string) TeamsAPIApiTeamSwissRequest {
+func (r TeamsAPIApiTeamSwissRequest) Status(status SwissStatus) TeamsAPIApiTeamSwissRequest {
 	r.status = &status
 	return r
 }
@@ -447,7 +447,7 @@ func (r TeamsAPIApiTeamSwissRequest) Name(name string) TeamsAPIApiTeamSwissReque
 	return r
 }
 
-func (r TeamsAPIApiTeamSwissRequest) Execute() (*ApiSwissNew200Response, *http.Response, error) {
+func (r TeamsAPIApiTeamSwissRequest) Execute() (*SwissTournament, *http.Response, error) {
 	return r.ApiService.ApiTeamSwissExecute(r)
 }
 
@@ -472,13 +472,13 @@ func (a *TeamsAPIService) ApiTeamSwiss(ctx context.Context, teamId string) Teams
 }
 
 // Execute executes the request
-//  @return ApiSwissNew200Response
-func (a *TeamsAPIService) ApiTeamSwissExecute(r TeamsAPIApiTeamSwissRequest) (*ApiSwissNew200Response, *http.Response, error) {
+//  @return SwissTournament
+func (a *TeamsAPIService) ApiTeamSwissExecute(r TeamsAPIApiTeamSwissRequest) (*SwissTournament, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiSwissNew200Response
+		localVarReturnValue  *SwissTournament
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsAPIService.ApiTeamSwiss")
@@ -574,7 +574,7 @@ func (r TeamsAPITeamAllRequest) Page(page int32) TeamsAPITeamAllRequest {
 	return r
 }
 
-func (r TeamsAPITeamAllRequest) Execute() (*TeamAll200Response, *http.Response, error) {
+func (r TeamsAPITeamAllRequest) Execute() (*TeamPaginatorJson, *http.Response, error) {
 	return r.ApiService.TeamAllExecute(r)
 }
 
@@ -595,13 +595,13 @@ func (a *TeamsAPIService) TeamAll(ctx context.Context) TeamsAPITeamAllRequest {
 }
 
 // Execute executes the request
-//  @return TeamAll200Response
-func (a *TeamsAPIService) TeamAllExecute(r TeamsAPITeamAllRequest) (*TeamAll200Response, *http.Response, error) {
+//  @return TeamPaginatorJson
+func (a *TeamsAPIService) TeamAllExecute(r TeamsAPITeamAllRequest) (*TeamPaginatorJson, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *TeamAll200Response
+		localVarReturnValue  *TeamPaginatorJson
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsAPIService.TeamAll")
@@ -696,7 +696,7 @@ func (r TeamsAPITeamIdJoinRequest) Password(password string) TeamsAPITeamIdJoinR
 	return r
 }
 
-func (r TeamsAPITeamIdJoinRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r TeamsAPITeamIdJoinRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.TeamIdJoinExecute(r)
 }
 
@@ -724,13 +724,13 @@ func (a *TeamsAPIService) TeamIdJoin(ctx context.Context, teamId string) TeamsAP
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *TeamsAPIService) TeamIdJoinExecute(r TeamsAPITeamIdJoinRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *TeamsAPIService) TeamIdJoinExecute(r TeamsAPITeamIdJoinRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsAPIService.TeamIdJoin")
@@ -812,7 +812,7 @@ type TeamsAPITeamIdKickUserIdRequest struct {
 	userId string
 }
 
-func (r TeamsAPITeamIdKickUserIdRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r TeamsAPITeamIdKickUserIdRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.TeamIdKickUserIdExecute(r)
 }
 
@@ -838,13 +838,13 @@ func (a *TeamsAPIService) TeamIdKickUserId(ctx context.Context, teamId string, u
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *TeamsAPIService) TeamIdKickUserIdExecute(r TeamsAPITeamIdKickUserIdRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *TeamsAPIService) TeamIdKickUserIdExecute(r TeamsAPITeamIdKickUserIdRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsAPIService.TeamIdKickUserId")
@@ -927,7 +927,7 @@ func (r TeamsAPITeamIdPmAllRequest) Message(message string) TeamsAPITeamIdPmAllR
 	return r
 }
 
-func (r TeamsAPITeamIdPmAllRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r TeamsAPITeamIdPmAllRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.TeamIdPmAllExecute(r)
 }
 
@@ -951,13 +951,13 @@ func (a *TeamsAPIService) TeamIdPmAll(ctx context.Context, teamId string) TeamsA
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *TeamsAPIService) TeamIdPmAllExecute(r TeamsAPITeamIdPmAllRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *TeamsAPIService) TeamIdPmAllExecute(r TeamsAPITeamIdPmAllRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsAPIService.TeamIdPmAll")
@@ -1015,7 +1015,7 @@ func (a *TeamsAPIService) TeamIdPmAllExecute(r TeamsAPITeamIdPmAllRequest) (*Acc
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1045,7 +1045,7 @@ type TeamsAPITeamIdQuitRequest struct {
 	teamId string
 }
 
-func (r TeamsAPITeamIdQuitRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r TeamsAPITeamIdQuitRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.TeamIdQuitExecute(r)
 }
 
@@ -1069,13 +1069,13 @@ func (a *TeamsAPIService) TeamIdQuit(ctx context.Context, teamId string) TeamsAP
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *TeamsAPIService) TeamIdQuitExecute(r TeamsAPITeamIdQuitRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *TeamsAPIService) TeamIdQuitExecute(r TeamsAPITeamIdQuitRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsAPIService.TeamIdQuit")
@@ -1270,7 +1270,7 @@ type TeamsAPITeamOfUsernameRequest struct {
 	username string
 }
 
-func (r TeamsAPITeamOfUsernameRequest) Execute() ([]TeamShow200Response, *http.Response, error) {
+func (r TeamsAPITeamOfUsernameRequest) Execute() ([]Team, *http.Response, error) {
 	return r.ApiService.TeamOfUsernameExecute(r)
 }
 
@@ -1294,13 +1294,13 @@ func (a *TeamsAPIService) TeamOfUsername(ctx context.Context, username string) T
 }
 
 // Execute executes the request
-//  @return []TeamShow200Response
-func (a *TeamsAPIService) TeamOfUsernameExecute(r TeamsAPITeamOfUsernameRequest) ([]TeamShow200Response, *http.Response, error) {
+//  @return []Team
+func (a *TeamsAPIService) TeamOfUsernameExecute(r TeamsAPITeamOfUsernameRequest) ([]Team, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []TeamShow200Response
+		localVarReturnValue  []Team
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsAPIService.TeamOfUsername")
@@ -1376,7 +1376,7 @@ type TeamsAPITeamRequestAcceptRequest struct {
 	userId string
 }
 
-func (r TeamsAPITeamRequestAcceptRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r TeamsAPITeamRequestAcceptRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.TeamRequestAcceptExecute(r)
 }
 
@@ -1400,13 +1400,13 @@ func (a *TeamsAPIService) TeamRequestAccept(ctx context.Context, teamId string, 
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *TeamsAPIService) TeamRequestAcceptExecute(r TeamsAPITeamRequestAcceptRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *TeamsAPIService) TeamRequestAcceptExecute(r TeamsAPITeamRequestAcceptRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsAPIService.TeamRequestAccept")
@@ -1483,7 +1483,7 @@ type TeamsAPITeamRequestDeclineRequest struct {
 	userId string
 }
 
-func (r TeamsAPITeamRequestDeclineRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r TeamsAPITeamRequestDeclineRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.TeamRequestDeclineExecute(r)
 }
 
@@ -1507,13 +1507,13 @@ func (a *TeamsAPIService) TeamRequestDecline(ctx context.Context, teamId string,
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *TeamsAPIService) TeamRequestDeclineExecute(r TeamsAPITeamRequestDeclineRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *TeamsAPIService) TeamRequestDeclineExecute(r TeamsAPITeamRequestDeclineRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsAPIService.TeamRequestDecline")
@@ -1596,7 +1596,7 @@ func (r TeamsAPITeamRequestsRequest) Declined(declined bool) TeamsAPITeamRequest
 	return r
 }
 
-func (r TeamsAPITeamRequestsRequest) Execute() ([]TeamRequests200ResponseInner, *http.Response, error) {
+func (r TeamsAPITeamRequestsRequest) Execute() ([]TeamRequestWithUser, *http.Response, error) {
 	return r.ApiService.TeamRequestsExecute(r)
 }
 
@@ -1618,13 +1618,13 @@ func (a *TeamsAPIService) TeamRequests(ctx context.Context, teamId string) Teams
 }
 
 // Execute executes the request
-//  @return []TeamRequests200ResponseInner
-func (a *TeamsAPIService) TeamRequestsExecute(r TeamsAPITeamRequestsRequest) ([]TeamRequests200ResponseInner, *http.Response, error) {
+//  @return []TeamRequestWithUser
+func (a *TeamsAPIService) TeamRequestsExecute(r TeamsAPITeamRequestsRequest) ([]TeamRequestWithUser, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []TeamRequests200ResponseInner
+		localVarReturnValue  []TeamRequestWithUser
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsAPIService.TeamRequests")
@@ -1717,7 +1717,7 @@ func (r TeamsAPITeamSearchRequest) Page(page int32) TeamsAPITeamSearchRequest {
 	return r
 }
 
-func (r TeamsAPITeamSearchRequest) Execute() (*TeamAll200Response, *http.Response, error) {
+func (r TeamsAPITeamSearchRequest) Execute() (*TeamPaginatorJson, *http.Response, error) {
 	return r.ApiService.TeamSearchExecute(r)
 }
 
@@ -1738,13 +1738,13 @@ func (a *TeamsAPIService) TeamSearch(ctx context.Context) TeamsAPITeamSearchRequ
 }
 
 // Execute executes the request
-//  @return TeamAll200Response
-func (a *TeamsAPIService) TeamSearchExecute(r TeamsAPITeamSearchRequest) (*TeamAll200Response, *http.Response, error) {
+//  @return TeamPaginatorJson
+func (a *TeamsAPIService) TeamSearchExecute(r TeamsAPITeamSearchRequest) (*TeamPaginatorJson, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *TeamAll200Response
+		localVarReturnValue  *TeamPaginatorJson
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsAPIService.TeamSearch")
@@ -1828,7 +1828,7 @@ type TeamsAPITeamShowRequest struct {
 	teamId string
 }
 
-func (r TeamsAPITeamShowRequest) Execute() (*TeamShow200Response, *http.Response, error) {
+func (r TeamsAPITeamShowRequest) Execute() (*Team, *http.Response, error) {
 	return r.ApiService.TeamShowExecute(r)
 }
 
@@ -1850,13 +1850,13 @@ func (a *TeamsAPIService) TeamShow(ctx context.Context, teamId string) TeamsAPIT
 }
 
 // Execute executes the request
-//  @return TeamShow200Response
-func (a *TeamsAPIService) TeamShowExecute(r TeamsAPITeamShowRequest) (*TeamShow200Response, *http.Response, error) {
+//  @return Team
+func (a *TeamsAPIService) TeamShowExecute(r TeamsAPITeamShowRequest) (*Team, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *TeamShow200Response
+		localVarReturnValue  *Team
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamsAPIService.TeamShow")

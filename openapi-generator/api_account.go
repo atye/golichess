@@ -83,8 +83,8 @@ type AccountAPI interface {
 	AccountKidPost(ctx context.Context) AccountAPIAccountKidPostRequest
 
 	// AccountKidPostExecute executes the request
-	//  @return AccountKidPost200Response
-	AccountKidPostExecute(r AccountAPIAccountKidPostRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	AccountKidPostExecute(r AccountAPIAccountKidPostRequest) (*Ok, *http.Response, error)
 
 	/*
 	AccountMe Get my profile
@@ -98,8 +98,8 @@ type AccountAPI interface {
 	AccountMe(ctx context.Context) AccountAPIAccountMeRequest
 
 	// AccountMeExecute executes the request
-	//  @return AccountMe200Response
-	AccountMeExecute(r AccountAPIAccountMeRequest) (*AccountMe200Response, *http.Response, error)
+	//  @return UserExtended
+	AccountMeExecute(r AccountAPIAccountMeRequest) (*UserExtended, *http.Response, error)
 
 	/*
 	Timeline Get my timeline
@@ -113,8 +113,8 @@ type AccountAPI interface {
 	Timeline(ctx context.Context) AccountAPITimelineRequest
 
 	// TimelineExecute executes the request
-	//  @return Timeline200Response
-	TimelineExecute(r AccountAPITimelineRequest) (*Timeline200Response, *http.Response, error)
+	//  @return Timeline
+	TimelineExecute(r AccountAPITimelineRequest) (*Timeline, *http.Response, error)
 }
 
 // AccountAPIService AccountAPI service
@@ -435,7 +435,7 @@ func (r AccountAPIAccountKidPostRequest) V(v bool) AccountAPIAccountKidPostReque
 	return r
 }
 
-func (r AccountAPIAccountKidPostRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r AccountAPIAccountKidPostRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.AccountKidPostExecute(r)
 }
 
@@ -457,13 +457,13 @@ func (a *AccountAPIService) AccountKidPost(ctx context.Context) AccountAPIAccoun
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *AccountAPIService) AccountKidPostExecute(r AccountAPIAccountKidPostRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *AccountAPIService) AccountKidPostExecute(r AccountAPIAccountKidPostRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccountAPIService.AccountKidPost")
@@ -540,7 +540,7 @@ type AccountAPIAccountMeRequest struct {
 	ApiService AccountAPI
 }
 
-func (r AccountAPIAccountMeRequest) Execute() (*AccountMe200Response, *http.Response, error) {
+func (r AccountAPIAccountMeRequest) Execute() (*UserExtended, *http.Response, error) {
 	return r.ApiService.AccountMeExecute(r)
 }
 
@@ -561,13 +561,13 @@ func (a *AccountAPIService) AccountMe(ctx context.Context) AccountAPIAccountMeRe
 }
 
 // Execute executes the request
-//  @return AccountMe200Response
-func (a *AccountAPIService) AccountMeExecute(r AccountAPIAccountMeRequest) (*AccountMe200Response, *http.Response, error) {
+//  @return UserExtended
+func (a *AccountAPIService) AccountMeExecute(r AccountAPIAccountMeRequest) (*UserExtended, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountMe200Response
+		localVarReturnValue  *UserExtended
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccountAPIService.AccountMe")
@@ -654,7 +654,7 @@ func (r AccountAPITimelineRequest) Nb(nb int32) AccountAPITimelineRequest {
 	return r
 }
 
-func (r AccountAPITimelineRequest) Execute() (*Timeline200Response, *http.Response, error) {
+func (r AccountAPITimelineRequest) Execute() (*Timeline, *http.Response, error) {
 	return r.ApiService.TimelineExecute(r)
 }
 
@@ -675,13 +675,13 @@ func (a *AccountAPIService) Timeline(ctx context.Context) AccountAPITimelineRequ
 }
 
 // Execute executes the request
-//  @return Timeline200Response
-func (a *AccountAPIService) TimelineExecute(r AccountAPITimelineRequest) (*Timeline200Response, *http.Response, error) {
+//  @return Timeline
+func (a *AccountAPIService) TimelineExecute(r AccountAPITimelineRequest) (*Timeline, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Timeline200Response
+		localVarReturnValue  *Timeline
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccountAPIService.Timeline")

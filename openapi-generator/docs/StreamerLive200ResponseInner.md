@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Id** | **string** |  | 
 **Name** | **string** |  | 
 **Flair** | Pointer to **string** | See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair) | [optional] 
-**Title** | Pointer to **string** | only appears if the user is a titled player or a bot user | [optional] 
+**Title** | Pointer to [**Title**](Title.md) |  | [optional] 
 **Patron** | Pointer to **bool** | Use patronColor value instead to determine if player is a patron.  | [optional] 
 **PatronColor** | Pointer to **int32** | Players can choose a color for their Patron wings. See [here for the color mappings](https://github.com/lichess-org/lila/blob/master/ui/lib/css/abstract/_patron-colors.scss).  The presence of this field indicates the player is an active Patron.  | [optional] 
 **Stream** | Pointer to [**StreamerLive200ResponseInnerAllOfStream**](StreamerLive200ResponseInnerAllOfStream.md) |  | [optional] 
@@ -99,20 +99,20 @@ HasFlair returns a boolean if a field has been set.
 
 ### GetTitle
 
-`func (o *StreamerLive200ResponseInner) GetTitle() string`
+`func (o *StreamerLive200ResponseInner) GetTitle() Title`
 
 GetTitle returns the Title field if non-nil, zero value otherwise.
 
 ### GetTitleOk
 
-`func (o *StreamerLive200ResponseInner) GetTitleOk() (*string, bool)`
+`func (o *StreamerLive200ResponseInner) GetTitleOk() (*Title, bool)`
 
 GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTitle
 
-`func (o *StreamerLive200ResponseInner) SetTitle(v string)`
+`func (o *StreamerLive200ResponseInner) SetTitle(v Title)`
 
 SetTitle sets Title field to given value.
 

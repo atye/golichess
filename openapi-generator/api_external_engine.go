@@ -78,8 +78,8 @@ After registering, the provider should start waiting for analyis requests.
 	ApiExternalEngineCreate(ctx context.Context) ExternalEngineAPIApiExternalEngineCreateRequest
 
 	// ApiExternalEngineCreateExecute executes the request
-	//  @return ApiExternalEngineList200ResponseInner
-	ApiExternalEngineCreateExecute(r ExternalEngineAPIApiExternalEngineCreateRequest) (*ApiExternalEngineList200ResponseInner, *http.Response, error)
+	//  @return ExternalEngine
+	ApiExternalEngineCreateExecute(r ExternalEngineAPIApiExternalEngineCreateRequest) (*ExternalEngine, *http.Response, error)
 
 	/*
 	ApiExternalEngineDelete Delete external engine
@@ -94,8 +94,8 @@ After registering, the provider should start waiting for analyis requests.
 	ApiExternalEngineDelete(ctx context.Context, id string) ExternalEngineAPIApiExternalEngineDeleteRequest
 
 	// ApiExternalEngineDeleteExecute executes the request
-	//  @return AccountKidPost200Response
-	ApiExternalEngineDeleteExecute(r ExternalEngineAPIApiExternalEngineDeleteRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	ApiExternalEngineDeleteExecute(r ExternalEngineAPIApiExternalEngineDeleteRequest) (*Ok, *http.Response, error)
 
 	/*
 	ApiExternalEngineGet Get external engine
@@ -110,8 +110,8 @@ After registering, the provider should start waiting for analyis requests.
 	ApiExternalEngineGet(ctx context.Context, id string) ExternalEngineAPIApiExternalEngineGetRequest
 
 	// ApiExternalEngineGetExecute executes the request
-	//  @return ApiExternalEngineList200ResponseInner
-	ApiExternalEngineGetExecute(r ExternalEngineAPIApiExternalEngineGetRequest) (*ApiExternalEngineList200ResponseInner, *http.Response, error)
+	//  @return ExternalEngine
+	ApiExternalEngineGetExecute(r ExternalEngineAPIApiExternalEngineGetRequest) (*ExternalEngine, *http.Response, error)
 
 	/*
 	ApiExternalEngineList List external engines
@@ -126,8 +126,8 @@ and the credentials required to use them.
 	ApiExternalEngineList(ctx context.Context) ExternalEngineAPIApiExternalEngineListRequest
 
 	// ApiExternalEngineListExecute executes the request
-	//  @return []ApiExternalEngineList200ResponseInner
-	ApiExternalEngineListExecute(r ExternalEngineAPIApiExternalEngineListRequest) ([]ApiExternalEngineList200ResponseInner, *http.Response, error)
+	//  @return []ExternalEngine
+	ApiExternalEngineListExecute(r ExternalEngineAPIApiExternalEngineListRequest) ([]ExternalEngine, *http.Response, error)
 
 	/*
 	ApiExternalEnginePut Update external engine
@@ -142,8 +142,8 @@ and the credentials required to use them.
 	ApiExternalEnginePut(ctx context.Context, id string) ExternalEngineAPIApiExternalEnginePutRequest
 
 	// ApiExternalEnginePutExecute executes the request
-	//  @return ApiExternalEngineList200ResponseInner
-	ApiExternalEnginePutExecute(r ExternalEngineAPIApiExternalEnginePutRequest) (*ApiExternalEngineList200ResponseInner, *http.Response, error)
+	//  @return ExternalEngine
+	ApiExternalEnginePutExecute(r ExternalEngineAPIApiExternalEnginePutRequest) (*ExternalEngine, *http.Response, error)
 
 	/*
 	ApiExternalEngineSubmit Answer analysis request
@@ -417,16 +417,16 @@ func (a *ExternalEngineAPIService) ApiExternalEngineAnalyseExecute(r ExternalEng
 type ExternalEngineAPIApiExternalEngineCreateRequest struct {
 	ctx context.Context
 	ApiService ExternalEngineAPI
-	apiExternalEngineCreateRequest *ApiExternalEngineCreateRequest
+	externalEngineRegistration *ExternalEngineRegistration
 }
 
 // A new external engine registration.
-func (r ExternalEngineAPIApiExternalEngineCreateRequest) ApiExternalEngineCreateRequest(apiExternalEngineCreateRequest ApiExternalEngineCreateRequest) ExternalEngineAPIApiExternalEngineCreateRequest {
-	r.apiExternalEngineCreateRequest = &apiExternalEngineCreateRequest
+func (r ExternalEngineAPIApiExternalEngineCreateRequest) ExternalEngineRegistration(externalEngineRegistration ExternalEngineRegistration) ExternalEngineAPIApiExternalEngineCreateRequest {
+	r.externalEngineRegistration = &externalEngineRegistration
 	return r
 }
 
-func (r ExternalEngineAPIApiExternalEngineCreateRequest) Execute() (*ApiExternalEngineList200ResponseInner, *http.Response, error) {
+func (r ExternalEngineAPIApiExternalEngineCreateRequest) Execute() (*ExternalEngine, *http.Response, error) {
 	return r.ApiService.ApiExternalEngineCreateExecute(r)
 }
 
@@ -449,13 +449,13 @@ func (a *ExternalEngineAPIService) ApiExternalEngineCreate(ctx context.Context) 
 }
 
 // Execute executes the request
-//  @return ApiExternalEngineList200ResponseInner
-func (a *ExternalEngineAPIService) ApiExternalEngineCreateExecute(r ExternalEngineAPIApiExternalEngineCreateRequest) (*ApiExternalEngineList200ResponseInner, *http.Response, error) {
+//  @return ExternalEngine
+func (a *ExternalEngineAPIService) ApiExternalEngineCreateExecute(r ExternalEngineAPIApiExternalEngineCreateRequest) (*ExternalEngine, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiExternalEngineList200ResponseInner
+		localVarReturnValue  *ExternalEngine
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExternalEngineAPIService.ApiExternalEngineCreate")
@@ -468,8 +468,8 @@ func (a *ExternalEngineAPIService) ApiExternalEngineCreateExecute(r ExternalEngi
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiExternalEngineCreateRequest == nil {
-		return localVarReturnValue, nil, reportError("apiExternalEngineCreateRequest is required and must be specified")
+	if r.externalEngineRegistration == nil {
+		return localVarReturnValue, nil, reportError("externalEngineRegistration is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -490,7 +490,7 @@ func (a *ExternalEngineAPIService) ApiExternalEngineCreateExecute(r ExternalEngi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.apiExternalEngineCreateRequest
+	localVarPostBody = r.externalEngineRegistration
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -534,7 +534,7 @@ type ExternalEngineAPIApiExternalEngineDeleteRequest struct {
 	id string
 }
 
-func (r ExternalEngineAPIApiExternalEngineDeleteRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r ExternalEngineAPIApiExternalEngineDeleteRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.ApiExternalEngineDeleteExecute(r)
 }
 
@@ -557,13 +557,13 @@ func (a *ExternalEngineAPIService) ApiExternalEngineDelete(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *ExternalEngineAPIService) ApiExternalEngineDeleteExecute(r ExternalEngineAPIApiExternalEngineDeleteRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *ExternalEngineAPIService) ApiExternalEngineDeleteExecute(r ExternalEngineAPIApiExternalEngineDeleteRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExternalEngineAPIService.ApiExternalEngineDelete")
@@ -638,7 +638,7 @@ type ExternalEngineAPIApiExternalEngineGetRequest struct {
 	id string
 }
 
-func (r ExternalEngineAPIApiExternalEngineGetRequest) Execute() (*ApiExternalEngineList200ResponseInner, *http.Response, error) {
+func (r ExternalEngineAPIApiExternalEngineGetRequest) Execute() (*ExternalEngine, *http.Response, error) {
 	return r.ApiService.ApiExternalEngineGetExecute(r)
 }
 
@@ -661,13 +661,13 @@ func (a *ExternalEngineAPIService) ApiExternalEngineGet(ctx context.Context, id 
 }
 
 // Execute executes the request
-//  @return ApiExternalEngineList200ResponseInner
-func (a *ExternalEngineAPIService) ApiExternalEngineGetExecute(r ExternalEngineAPIApiExternalEngineGetRequest) (*ApiExternalEngineList200ResponseInner, *http.Response, error) {
+//  @return ExternalEngine
+func (a *ExternalEngineAPIService) ApiExternalEngineGetExecute(r ExternalEngineAPIApiExternalEngineGetRequest) (*ExternalEngine, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiExternalEngineList200ResponseInner
+		localVarReturnValue  *ExternalEngine
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExternalEngineAPIService.ApiExternalEngineGet")
@@ -741,7 +741,7 @@ type ExternalEngineAPIApiExternalEngineListRequest struct {
 	ApiService ExternalEngineAPI
 }
 
-func (r ExternalEngineAPIApiExternalEngineListRequest) Execute() ([]ApiExternalEngineList200ResponseInner, *http.Response, error) {
+func (r ExternalEngineAPIApiExternalEngineListRequest) Execute() ([]ExternalEngine, *http.Response, error) {
 	return r.ApiService.ApiExternalEngineListExecute(r)
 }
 
@@ -763,13 +763,13 @@ func (a *ExternalEngineAPIService) ApiExternalEngineList(ctx context.Context) Ex
 }
 
 // Execute executes the request
-//  @return []ApiExternalEngineList200ResponseInner
-func (a *ExternalEngineAPIService) ApiExternalEngineListExecute(r ExternalEngineAPIApiExternalEngineListRequest) ([]ApiExternalEngineList200ResponseInner, *http.Response, error) {
+//  @return []ExternalEngine
+func (a *ExternalEngineAPIService) ApiExternalEngineListExecute(r ExternalEngineAPIApiExternalEngineListRequest) ([]ExternalEngine, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []ApiExternalEngineList200ResponseInner
+		localVarReturnValue  []ExternalEngine
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExternalEngineAPIService.ApiExternalEngineList")
@@ -841,16 +841,16 @@ type ExternalEngineAPIApiExternalEnginePutRequest struct {
 	ctx context.Context
 	ApiService ExternalEngineAPI
 	id string
-	apiExternalEngineCreateRequest *ApiExternalEngineCreateRequest
+	externalEngineRegistration *ExternalEngineRegistration
 }
 
 // A modified engine registration.
-func (r ExternalEngineAPIApiExternalEnginePutRequest) ApiExternalEngineCreateRequest(apiExternalEngineCreateRequest ApiExternalEngineCreateRequest) ExternalEngineAPIApiExternalEnginePutRequest {
-	r.apiExternalEngineCreateRequest = &apiExternalEngineCreateRequest
+func (r ExternalEngineAPIApiExternalEnginePutRequest) ExternalEngineRegistration(externalEngineRegistration ExternalEngineRegistration) ExternalEngineAPIApiExternalEnginePutRequest {
+	r.externalEngineRegistration = &externalEngineRegistration
 	return r
 }
 
-func (r ExternalEngineAPIApiExternalEnginePutRequest) Execute() (*ApiExternalEngineList200ResponseInner, *http.Response, error) {
+func (r ExternalEngineAPIApiExternalEnginePutRequest) Execute() (*ExternalEngine, *http.Response, error) {
 	return r.ApiService.ApiExternalEnginePutExecute(r)
 }
 
@@ -873,13 +873,13 @@ func (a *ExternalEngineAPIService) ApiExternalEnginePut(ctx context.Context, id 
 }
 
 // Execute executes the request
-//  @return ApiExternalEngineList200ResponseInner
-func (a *ExternalEngineAPIService) ApiExternalEnginePutExecute(r ExternalEngineAPIApiExternalEnginePutRequest) (*ApiExternalEngineList200ResponseInner, *http.Response, error) {
+//  @return ExternalEngine
+func (a *ExternalEngineAPIService) ApiExternalEnginePutExecute(r ExternalEngineAPIApiExternalEnginePutRequest) (*ExternalEngine, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiExternalEngineList200ResponseInner
+		localVarReturnValue  *ExternalEngine
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExternalEngineAPIService.ApiExternalEnginePut")
@@ -893,8 +893,8 @@ func (a *ExternalEngineAPIService) ApiExternalEnginePutExecute(r ExternalEngineA
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.apiExternalEngineCreateRequest == nil {
-		return localVarReturnValue, nil, reportError("apiExternalEngineCreateRequest is required and must be specified")
+	if r.externalEngineRegistration == nil {
+		return localVarReturnValue, nil, reportError("externalEngineRegistration is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -915,7 +915,7 @@ func (a *ExternalEngineAPIService) ApiExternalEnginePutExecute(r ExternalEngineA
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.apiExternalEngineCreateRequest
+	localVarPostBody = r.externalEngineRegistration
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

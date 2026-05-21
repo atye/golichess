@@ -54,8 +54,8 @@ You should receive a `gameStart` event on the [incoming events stream](#tag/boar
 	ChallengeAccept(ctx context.Context, challengeId string) ChallengesAPIChallengeAcceptRequest
 
 	// ChallengeAcceptExecute executes the request
-	//  @return AccountKidPost200Response
-	ChallengeAcceptExecute(r ChallengesAPIChallengeAcceptRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	ChallengeAcceptExecute(r ChallengesAPIChallengeAcceptRequest) (*Ok, *http.Response, error)
 
 	/*
 	ChallengeAi Challenge the AI
@@ -88,8 +88,8 @@ Works for user challenges and open challenges alike.
 	ChallengeCancel(ctx context.Context, challengeId string) ChallengesAPIChallengeCancelRequest
 
 	// ChallengeCancelExecute executes the request
-	//  @return AccountKidPost200Response
-	ChallengeCancelExecute(r ChallengesAPIChallengeCancelRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	ChallengeCancelExecute(r ChallengesAPIChallengeCancelRequest) (*Ok, *http.Response, error)
 
 	/*
 	ChallengeCreate Create a challenge
@@ -108,8 +108,8 @@ To prevent that, use the `keepAliveStream` flag described below.
 	ChallengeCreate(ctx context.Context, username string) ChallengesAPIChallengeCreateRequest
 
 	// ChallengeCreateExecute executes the request
-	//  @return ChallengeList200ResponseInInner
-	ChallengeCreateExecute(r ChallengesAPIChallengeCreateRequest) (*ChallengeList200ResponseInInner, *http.Response, error)
+	//  @return ChallengeJson
+	ChallengeCreateExecute(r ChallengesAPIChallengeCreateRequest) (*ChallengeJson, *http.Response, error)
 
 	/*
 	ChallengeDecline Decline a challenge
@@ -124,8 +124,8 @@ To prevent that, use the `keepAliveStream` flag described below.
 	ChallengeDecline(ctx context.Context, challengeId string) ChallengesAPIChallengeDeclineRequest
 
 	// ChallengeDeclineExecute executes the request
-	//  @return AccountKidPost200Response
-	ChallengeDeclineExecute(r ChallengesAPIChallengeDeclineRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	ChallengeDeclineExecute(r ChallengesAPIChallengeDeclineRequest) (*Ok, *http.Response, error)
 
 	/*
 	ChallengeList List your challenges
@@ -162,8 +162,8 @@ To directly pair 2 known players, use [this endpoint](#tag/bulk-pairings/GET/api
 	ChallengeOpen(ctx context.Context) ChallengesAPIChallengeOpenRequest
 
 	// ChallengeOpenExecute executes the request
-	//  @return ChallengeOpen200Response
-	ChallengeOpenExecute(r ChallengesAPIChallengeOpenRequest) (*ChallengeOpen200Response, *http.Response, error)
+	//  @return ChallengeOpenJson
+	ChallengeOpenExecute(r ChallengesAPIChallengeOpenRequest) (*ChallengeOpenJson, *http.Response, error)
 
 	/*
 	ChallengeShow Show one challenge
@@ -178,8 +178,8 @@ To directly pair 2 known players, use [this endpoint](#tag/bulk-pairings/GET/api
 	ChallengeShow(ctx context.Context, challengeId string) ChallengesAPIChallengeShowRequest
 
 	// ChallengeShowExecute executes the request
-	//  @return ChallengeList200ResponseInInner
-	ChallengeShowExecute(r ChallengesAPIChallengeShowRequest) (*ChallengeList200ResponseInInner, *http.Response, error)
+	//  @return ChallengeJson
+	ChallengeShowExecute(r ChallengesAPIChallengeShowRequest) (*ChallengeJson, *http.Response, error)
 
 	/*
 	ChallengeStartClocks Start clocks of a game
@@ -198,8 +198,8 @@ For AI games with only one player, omit the `token2` parameter.
 	ChallengeStartClocks(ctx context.Context, gameId string) ChallengesAPIChallengeStartClocksRequest
 
 	// ChallengeStartClocksExecute executes the request
-	//  @return AccountKidPost200Response
-	ChallengeStartClocksExecute(r ChallengesAPIChallengeStartClocksRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	ChallengeStartClocksExecute(r ChallengesAPIChallengeStartClocksRequest) (*Ok, *http.Response, error)
 
 	/*
 	RoundAddTime Add time to the opponent clock
@@ -215,8 +215,8 @@ For AI games with only one player, omit the `token2` parameter.
 	RoundAddTime(ctx context.Context, gameId string, seconds int32) ChallengesAPIRoundAddTimeRequest
 
 	// RoundAddTimeExecute executes the request
-	//  @return AccountKidPost200Response
-	RoundAddTimeExecute(r ChallengesAPIRoundAddTimeRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	RoundAddTimeExecute(r ChallengesAPIRoundAddTimeRequest) (*Ok, *http.Response, error)
 }
 
 // ChallengesAPIService ChallengesAPI service
@@ -332,7 +332,7 @@ func (a *ChallengesAPIService) AdminChallengeTokensExecute(r ChallengesAPIAdminC
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -369,7 +369,7 @@ func (r ChallengesAPIChallengeAcceptRequest) Color(color string) ChallengesAPICh
 	return r
 }
 
-func (r ChallengesAPIChallengeAcceptRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r ChallengesAPIChallengeAcceptRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.ChallengeAcceptExecute(r)
 }
 
@@ -393,13 +393,13 @@ func (a *ChallengesAPIService) ChallengeAccept(ctx context.Context, challengeId 
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *ChallengesAPIService) ChallengeAcceptExecute(r ChallengesAPIChallengeAcceptRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *ChallengesAPIService) ChallengeAcceptExecute(r ChallengesAPIChallengeAcceptRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChallengesAPIService.ChallengeAccept")
@@ -457,7 +457,7 @@ func (a *ChallengesAPIService) ChallengeAcceptExecute(r ChallengesAPIChallengeAc
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v RacerGet404Response
+			var v NotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -488,8 +488,8 @@ type ChallengesAPIChallengeAiRequest struct {
 	clockLimit *int32
 	clockIncrement *int32
 	days *int32
-	color *string
-	variant *string
+	color *ChallengeColor
+	variant *VariantKey
 	fen *string
 }
 
@@ -518,12 +518,12 @@ func (r ChallengesAPIChallengeAiRequest) Days(days int32) ChallengesAPIChallenge
 }
 
 // Which color you get to play
-func (r ChallengesAPIChallengeAiRequest) Color(color string) ChallengesAPIChallengeAiRequest {
+func (r ChallengesAPIChallengeAiRequest) Color(color ChallengeColor) ChallengesAPIChallengeAiRequest {
 	r.color = &color
 	return r
 }
 
-func (r ChallengesAPIChallengeAiRequest) Variant(variant string) ChallengesAPIChallengeAiRequest {
+func (r ChallengesAPIChallengeAiRequest) Variant(variant VariantKey) ChallengesAPIChallengeAiRequest {
 	r.variant = &variant
 	return r
 }
@@ -644,7 +644,7 @@ func (a *ChallengesAPIService) ChallengeAiExecute(r ChallengesAPIChallengeAiRequ
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -681,7 +681,7 @@ func (r ChallengesAPIChallengeCancelRequest) OpponentToken(opponentToken string)
 	return r
 }
 
-func (r ChallengesAPIChallengeCancelRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r ChallengesAPIChallengeCancelRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.ChallengeCancelExecute(r)
 }
 
@@ -706,13 +706,13 @@ func (a *ChallengesAPIService) ChallengeCancel(ctx context.Context, challengeId 
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *ChallengesAPIService) ChallengeCancelExecute(r ChallengesAPIChallengeCancelRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *ChallengesAPIService) ChallengeCancelExecute(r ChallengesAPIChallengeCancelRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChallengesAPIService.ChallengeCancel")
@@ -770,7 +770,7 @@ func (a *ChallengesAPIService) ChallengeCancelExecute(r ChallengesAPIChallengeCa
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v RacerGet404Response
+			var v NotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -802,8 +802,8 @@ type ChallengesAPIChallengeCreateRequest struct {
 	clockLimit *int32
 	clockIncrement *int32
 	rated *bool
-	color *string
-	variant *string
+	color *ChallengeColor
+	variant *VariantKey
 	fen *string
 	keepAliveStream *bool
 	rules *string
@@ -834,12 +834,12 @@ func (r ChallengesAPIChallengeCreateRequest) Rated(rated bool) ChallengesAPIChal
 }
 
 // Which color you get to play
-func (r ChallengesAPIChallengeCreateRequest) Color(color string) ChallengesAPIChallengeCreateRequest {
+func (r ChallengesAPIChallengeCreateRequest) Color(color ChallengeColor) ChallengesAPIChallengeCreateRequest {
 	r.color = &color
 	return r
 }
 
-func (r ChallengesAPIChallengeCreateRequest) Variant(variant string) ChallengesAPIChallengeCreateRequest {
+func (r ChallengesAPIChallengeCreateRequest) Variant(variant VariantKey) ChallengesAPIChallengeCreateRequest {
 	r.variant = &variant
 	return r
 }
@@ -862,7 +862,7 @@ func (r ChallengesAPIChallengeCreateRequest) Rules(rules string) ChallengesAPICh
 	return r
 }
 
-func (r ChallengesAPIChallengeCreateRequest) Execute() (*ChallengeList200ResponseInInner, *http.Response, error) {
+func (r ChallengesAPIChallengeCreateRequest) Execute() (*ChallengeJson, *http.Response, error) {
 	return r.ApiService.ChallengeCreateExecute(r)
 }
 
@@ -889,13 +889,13 @@ func (a *ChallengesAPIService) ChallengeCreate(ctx context.Context, username str
 }
 
 // Execute executes the request
-//  @return ChallengeList200ResponseInInner
-func (a *ChallengesAPIService) ChallengeCreateExecute(r ChallengesAPIChallengeCreateRequest) (*ChallengeList200ResponseInInner, *http.Response, error) {
+//  @return ChallengeJson
+func (a *ChallengesAPIService) ChallengeCreateExecute(r ChallengesAPIChallengeCreateRequest) (*ChallengeJson, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ChallengeList200ResponseInInner
+		localVarReturnValue  *ChallengeJson
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChallengesAPIService.ChallengeCreate")
@@ -978,7 +978,7 @@ func (a *ChallengesAPIService) ChallengeCreateExecute(r ChallengesAPIChallengeCr
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1015,7 +1015,7 @@ func (r ChallengesAPIChallengeDeclineRequest) Reason(reason string) ChallengesAP
 	return r
 }
 
-func (r ChallengesAPIChallengeDeclineRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r ChallengesAPIChallengeDeclineRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.ChallengeDeclineExecute(r)
 }
 
@@ -1038,13 +1038,13 @@ func (a *ChallengesAPIService) ChallengeDecline(ctx context.Context, challengeId
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *ChallengesAPIService) ChallengeDeclineExecute(r ChallengesAPIChallengeDeclineRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *ChallengesAPIService) ChallengeDeclineExecute(r ChallengesAPIChallengeDeclineRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChallengesAPIService.ChallengeDecline")
@@ -1102,7 +1102,7 @@ func (a *ChallengesAPIService) ChallengeDeclineExecute(r ChallengesAPIChallengeD
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v RacerGet404Response
+			var v NotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1233,7 +1233,7 @@ type ChallengesAPIChallengeOpenRequest struct {
 	clockLimit *int32
 	clockIncrement *int32
 	days *int32
-	variant *string
+	variant *VariantKey
 	fen *string
 	name *string
 	rules *string
@@ -1265,7 +1265,7 @@ func (r ChallengesAPIChallengeOpenRequest) Days(days int32) ChallengesAPIChallen
 	return r
 }
 
-func (r ChallengesAPIChallengeOpenRequest) Variant(variant string) ChallengesAPIChallengeOpenRequest {
+func (r ChallengesAPIChallengeOpenRequest) Variant(variant VariantKey) ChallengesAPIChallengeOpenRequest {
 	r.variant = &variant
 	return r
 }
@@ -1300,7 +1300,7 @@ func (r ChallengesAPIChallengeOpenRequest) ExpiresAt(expiresAt int64) Challenges
 	return r
 }
 
-func (r ChallengesAPIChallengeOpenRequest) Execute() (*ChallengeOpen200Response, *http.Response, error) {
+func (r ChallengesAPIChallengeOpenRequest) Execute() (*ChallengeOpenJson, *http.Response, error) {
 	return r.ApiService.ChallengeOpenExecute(r)
 }
 
@@ -1329,13 +1329,13 @@ func (a *ChallengesAPIService) ChallengeOpen(ctx context.Context) ChallengesAPIC
 }
 
 // Execute executes the request
-//  @return ChallengeOpen200Response
-func (a *ChallengesAPIService) ChallengeOpenExecute(r ChallengesAPIChallengeOpenRequest) (*ChallengeOpen200Response, *http.Response, error) {
+//  @return ChallengeOpenJson
+func (a *ChallengesAPIService) ChallengeOpenExecute(r ChallengesAPIChallengeOpenRequest) (*ChallengeOpenJson, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ChallengeOpen200Response
+		localVarReturnValue  *ChallengeOpenJson
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChallengesAPIService.ChallengeOpen")
@@ -1419,7 +1419,7 @@ func (a *ChallengesAPIService) ChallengeOpenExecute(r ChallengesAPIChallengeOpen
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1449,7 +1449,7 @@ type ChallengesAPIChallengeShowRequest struct {
 	challengeId string
 }
 
-func (r ChallengesAPIChallengeShowRequest) Execute() (*ChallengeList200ResponseInInner, *http.Response, error) {
+func (r ChallengesAPIChallengeShowRequest) Execute() (*ChallengeJson, *http.Response, error) {
 	return r.ApiService.ChallengeShowExecute(r)
 }
 
@@ -1472,13 +1472,13 @@ func (a *ChallengesAPIService) ChallengeShow(ctx context.Context, challengeId st
 }
 
 // Execute executes the request
-//  @return ChallengeList200ResponseInInner
-func (a *ChallengesAPIService) ChallengeShowExecute(r ChallengesAPIChallengeShowRequest) (*ChallengeList200ResponseInInner, *http.Response, error) {
+//  @return ChallengeJson
+func (a *ChallengesAPIService) ChallengeShowExecute(r ChallengesAPIChallengeShowRequest) (*ChallengeJson, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ChallengeList200ResponseInInner
+		localVarReturnValue  *ChallengeJson
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChallengesAPIService.ChallengeShow")
@@ -1567,7 +1567,7 @@ func (r ChallengesAPIChallengeStartClocksRequest) Token2(token2 string) Challeng
 	return r
 }
 
-func (r ChallengesAPIChallengeStartClocksRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r ChallengesAPIChallengeStartClocksRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.ChallengeStartClocksExecute(r)
 }
 
@@ -1594,13 +1594,13 @@ func (a *ChallengesAPIService) ChallengeStartClocks(ctx context.Context, gameId 
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *ChallengesAPIService) ChallengeStartClocksExecute(r ChallengesAPIChallengeStartClocksRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *ChallengesAPIService) ChallengeStartClocksExecute(r ChallengesAPIChallengeStartClocksRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChallengesAPIService.ChallengeStartClocks")
@@ -1683,7 +1683,7 @@ type ChallengesAPIRoundAddTimeRequest struct {
 	seconds int32
 }
 
-func (r ChallengesAPIRoundAddTimeRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r ChallengesAPIRoundAddTimeRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.RoundAddTimeExecute(r)
 }
 
@@ -1708,13 +1708,13 @@ func (a *ChallengesAPIService) RoundAddTime(ctx context.Context, gameId string, 
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *ChallengesAPIService) RoundAddTimeExecute(r ChallengesAPIRoundAddTimeRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *ChallengesAPIService) RoundAddTimeExecute(r ChallengesAPIRoundAddTimeRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChallengesAPIService.RoundAddTime")

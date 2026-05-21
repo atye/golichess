@@ -40,8 +40,8 @@ Example: `curl https://explorer.lichess.org/lichess?variant=standard&speeds=blit
 	OpeningExplorerLichess(ctx context.Context) OpeningExplorerAPIOpeningExplorerLichessRequest
 
 	// OpeningExplorerLichessExecute executes the request
-	//  @return OpeningExplorerLichess200Response
-	OpeningExplorerLichessExecute(r OpeningExplorerAPIOpeningExplorerLichessRequest) (*OpeningExplorerLichess200Response, *http.Response, error)
+	//  @return OpeningExplorerLichess
+	OpeningExplorerLichessExecute(r OpeningExplorerAPIOpeningExplorerLichessRequest) (*OpeningExplorerLichess, *http.Response, error)
 
 	/*
 	OpeningExplorerMaster Masters database
@@ -57,8 +57,8 @@ Example: `curl https://explorer.lichess.org/masters?play=d2d4,d7d5,c2c4,c7c6,c4d
 	OpeningExplorerMaster(ctx context.Context) OpeningExplorerAPIOpeningExplorerMasterRequest
 
 	// OpeningExplorerMasterExecute executes the request
-	//  @return OpeningExplorerMaster200Response
-	OpeningExplorerMasterExecute(r OpeningExplorerAPIOpeningExplorerMasterRequest) (*OpeningExplorerMaster200Response, *http.Response, error)
+	//  @return OpeningExplorerMasters
+	OpeningExplorerMasterExecute(r OpeningExplorerAPIOpeningExplorerMasterRequest) (*OpeningExplorerMasters, *http.Response, error)
 
 	/*
 	OpeningExplorerMasterGame OTB master game
@@ -102,8 +102,8 @@ Example: `curl https://explorer.lichess.org/player?player=revoof&color=white&pla
 	OpeningExplorerPlayer(ctx context.Context) OpeningExplorerAPIOpeningExplorerPlayerRequest
 
 	// OpeningExplorerPlayerExecute executes the request
-	//  @return OpeningExplorerPlayer200Response
-	OpeningExplorerPlayerExecute(r OpeningExplorerAPIOpeningExplorerPlayerRequest) (*OpeningExplorerPlayer200Response, *http.Response, error)
+	//  @return OpeningExplorerPlayer
+	OpeningExplorerPlayerExecute(r OpeningExplorerAPIOpeningExplorerPlayerRequest) (*OpeningExplorerPlayer, *http.Response, error)
 }
 
 // OpeningExplorerAPIService OpeningExplorerAPI service
@@ -112,10 +112,10 @@ type OpeningExplorerAPIService service
 type OpeningExplorerAPIOpeningExplorerLichessRequest struct {
 	ctx context.Context
 	ApiService OpeningExplorerAPI
-	variant *string
+	variant *VariantKey
 	fen *string
 	play *string
-	speeds *[]string
+	speeds *[]Speed
 	ratings *[]int32
 	since *string
 	until *string
@@ -126,7 +126,7 @@ type OpeningExplorerAPIOpeningExplorerLichessRequest struct {
 }
 
 // Variant
-func (r OpeningExplorerAPIOpeningExplorerLichessRequest) Variant(variant string) OpeningExplorerAPIOpeningExplorerLichessRequest {
+func (r OpeningExplorerAPIOpeningExplorerLichessRequest) Variant(variant VariantKey) OpeningExplorerAPIOpeningExplorerLichessRequest {
 	r.variant = &variant
 	return r
 }
@@ -144,7 +144,7 @@ func (r OpeningExplorerAPIOpeningExplorerLichessRequest) Play(play string) Openi
 }
 
 // Comma separated list of game speeds to filter by
-func (r OpeningExplorerAPIOpeningExplorerLichessRequest) Speeds(speeds []string) OpeningExplorerAPIOpeningExplorerLichessRequest {
+func (r OpeningExplorerAPIOpeningExplorerLichessRequest) Speeds(speeds []Speed) OpeningExplorerAPIOpeningExplorerLichessRequest {
 	r.speeds = &speeds
 	return r
 }
@@ -191,7 +191,7 @@ func (r OpeningExplorerAPIOpeningExplorerLichessRequest) History(history bool) O
 	return r
 }
 
-func (r OpeningExplorerAPIOpeningExplorerLichessRequest) Execute() (*OpeningExplorerLichess200Response, *http.Response, error) {
+func (r OpeningExplorerAPIOpeningExplorerLichessRequest) Execute() (*OpeningExplorerLichess, *http.Response, error) {
 	return r.ApiService.OpeningExplorerLichessExecute(r)
 }
 
@@ -216,13 +216,13 @@ func (a *OpeningExplorerAPIService) OpeningExplorerLichess(ctx context.Context) 
 }
 
 // Execute executes the request
-//  @return OpeningExplorerLichess200Response
-func (a *OpeningExplorerAPIService) OpeningExplorerLichessExecute(r OpeningExplorerAPIOpeningExplorerLichessRequest) (*OpeningExplorerLichess200Response, *http.Response, error) {
+//  @return OpeningExplorerLichess
+func (a *OpeningExplorerAPIService) OpeningExplorerLichessExecute(r OpeningExplorerAPIOpeningExplorerLichessRequest) (*OpeningExplorerLichess, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *OpeningExplorerLichess200Response
+		localVarReturnValue  *OpeningExplorerLichess
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpeningExplorerAPIService.OpeningExplorerLichess")
@@ -239,7 +239,7 @@ func (a *OpeningExplorerAPIService) OpeningExplorerLichessExecute(r OpeningExplo
 	if r.variant != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "variant", r.variant, "form", "")
 	} else {
-		var defaultValue string = "standard"
+		var defaultValue VariantKey = "standard"
 		parameterAddToHeaderOrQuery(localVarQueryParams, "variant", defaultValue, "form", "")
 		r.variant = &defaultValue
 	}
@@ -418,7 +418,7 @@ func (r OpeningExplorerAPIOpeningExplorerMasterRequest) TopGames(topGames int32)
 	return r
 }
 
-func (r OpeningExplorerAPIOpeningExplorerMasterRequest) Execute() (*OpeningExplorerMaster200Response, *http.Response, error) {
+func (r OpeningExplorerAPIOpeningExplorerMasterRequest) Execute() (*OpeningExplorerMasters, *http.Response, error) {
 	return r.ApiService.OpeningExplorerMasterExecute(r)
 }
 
@@ -441,13 +441,13 @@ func (a *OpeningExplorerAPIService) OpeningExplorerMaster(ctx context.Context) O
 }
 
 // Execute executes the request
-//  @return OpeningExplorerMaster200Response
-func (a *OpeningExplorerAPIService) OpeningExplorerMasterExecute(r OpeningExplorerAPIOpeningExplorerMasterRequest) (*OpeningExplorerMaster200Response, *http.Response, error) {
+//  @return OpeningExplorerMasters
+func (a *OpeningExplorerAPIService) OpeningExplorerMasterExecute(r OpeningExplorerAPIOpeningExplorerMasterRequest) (*OpeningExplorerMasters, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *OpeningExplorerMaster200Response
+		localVarReturnValue  *OpeningExplorerMasters
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpeningExplorerAPIService.OpeningExplorerMaster")
@@ -660,10 +660,10 @@ type OpeningExplorerAPIOpeningExplorerPlayerRequest struct {
 	ApiService OpeningExplorerAPI
 	player *string
 	color *string
-	variant *string
+	variant *VariantKey
 	fen *string
 	play *string
-	speeds *[]string
+	speeds *[]Speed
 	modes *[]string
 	since *string
 	until *string
@@ -684,7 +684,7 @@ func (r OpeningExplorerAPIOpeningExplorerPlayerRequest) Color(color string) Open
 }
 
 // Variant
-func (r OpeningExplorerAPIOpeningExplorerPlayerRequest) Variant(variant string) OpeningExplorerAPIOpeningExplorerPlayerRequest {
+func (r OpeningExplorerAPIOpeningExplorerPlayerRequest) Variant(variant VariantKey) OpeningExplorerAPIOpeningExplorerPlayerRequest {
 	r.variant = &variant
 	return r
 }
@@ -702,7 +702,7 @@ func (r OpeningExplorerAPIOpeningExplorerPlayerRequest) Play(play string) Openin
 }
 
 // Comma separated list of game speeds to look for
-func (r OpeningExplorerAPIOpeningExplorerPlayerRequest) Speeds(speeds []string) OpeningExplorerAPIOpeningExplorerPlayerRequest {
+func (r OpeningExplorerAPIOpeningExplorerPlayerRequest) Speeds(speeds []Speed) OpeningExplorerAPIOpeningExplorerPlayerRequest {
 	r.speeds = &speeds
 	return r
 }
@@ -737,7 +737,7 @@ func (r OpeningExplorerAPIOpeningExplorerPlayerRequest) RecentGames(recentGames 
 	return r
 }
 
-func (r OpeningExplorerAPIOpeningExplorerPlayerRequest) Execute() (*OpeningExplorerPlayer200Response, *http.Response, error) {
+func (r OpeningExplorerAPIOpeningExplorerPlayerRequest) Execute() (*OpeningExplorerPlayer, *http.Response, error) {
 	return r.ApiService.OpeningExplorerPlayerExecute(r)
 }
 
@@ -770,13 +770,13 @@ func (a *OpeningExplorerAPIService) OpeningExplorerPlayer(ctx context.Context) O
 }
 
 // Execute executes the request
-//  @return OpeningExplorerPlayer200Response
-func (a *OpeningExplorerAPIService) OpeningExplorerPlayerExecute(r OpeningExplorerAPIOpeningExplorerPlayerRequest) (*OpeningExplorerPlayer200Response, *http.Response, error) {
+//  @return OpeningExplorerPlayer
+func (a *OpeningExplorerAPIService) OpeningExplorerPlayerExecute(r OpeningExplorerAPIOpeningExplorerPlayerRequest) (*OpeningExplorerPlayer, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *OpeningExplorerPlayer200Response
+		localVarReturnValue  *OpeningExplorerPlayer
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpeningExplorerAPIService.OpeningExplorerPlayer")
@@ -801,7 +801,7 @@ func (a *OpeningExplorerAPIService) OpeningExplorerPlayerExecute(r OpeningExplor
 	if r.variant != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "variant", r.variant, "form", "")
 	} else {
-		var defaultValue string = "standard"
+		var defaultValue VariantKey = "standard"
 		parameterAddToHeaderOrQuery(localVarQueryParams, "variant", defaultValue, "form", "")
 		r.variant = &defaultValue
 	}

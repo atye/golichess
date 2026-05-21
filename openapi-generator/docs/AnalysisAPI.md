@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## ApiCloudEval
 
-> ApiCloudEval200Response ApiCloudEval(ctx).Fen(fen).MultiPv(multiPv).Variant(variant).Execute()
+> CloudEval ApiCloudEval(ctx).Fen(fen).MultiPv(multiPv).Variant(variant).Execute()
 
 Get cloud evaluation of a position.
 
@@ -31,7 +31,7 @@ import (
 func main() {
 	fen := "r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 3" // string | X-FEN of the position
 	multiPv := int32(56) // int32 | Number of variations (optional) (default to 1)
-	variant := "standard" // string | Variant (optional) (default to "standard")
+	variant := openapiclient.VariantKey("standard") // VariantKey | Variant (optional) (default to "standard")
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -40,7 +40,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `AnalysisAPI.ApiCloudEval``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiCloudEval`: ApiCloudEval200Response
+	// response from `ApiCloudEval`: CloudEval
 	fmt.Fprintf(os.Stdout, "Response from `AnalysisAPI.ApiCloudEval`: %v\n", resp)
 }
 ```
@@ -58,11 +58,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fen** | **string** | X-FEN of the position | 
  **multiPv** | **int32** | Number of variations | [default to 1]
- **variant** | **string** | Variant | [default to &quot;standard&quot;]
+ **variant** | [**VariantKey**](VariantKey.md) | Variant | [default to &quot;standard&quot;]
 
 ### Return type
 
-[**ApiCloudEval200Response**](ApiCloudEval200Response.md)
+[**CloudEval**](CloudEval.md)
 
 ### Authorization
 

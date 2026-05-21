@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Id** | **string** |  | 
 **Name** | **string** |  | 
 **Flair** | Pointer to **string** | See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair) | [optional] 
-**Title** | Pointer to **string** | only appears if the user is a titled player or a bot user | [optional] 
+**Title** | Pointer to [**Title**](Title.md) |  | [optional] 
 **Online** | Pointer to **bool** |  | [optional] 
 **Playing** | Pointer to **bool** |  | [optional] 
 **Streaming** | Pointer to **bool** |  | [optional] 
@@ -100,20 +100,20 @@ HasFlair returns a boolean if a field has been set.
 
 ### GetTitle
 
-`func (o *ApiUsersStatus200ResponseInner) GetTitle() string`
+`func (o *ApiUsersStatus200ResponseInner) GetTitle() Title`
 
 GetTitle returns the Title field if non-nil, zero value otherwise.
 
 ### GetTitleOk
 
-`func (o *ApiUsersStatus200ResponseInner) GetTitleOk() (*string, bool)`
+`func (o *ApiUsersStatus200ResponseInner) GetTitleOk() (*Title, bool)`
 
 GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTitle
 
-`func (o *ApiUsersStatus200ResponseInner) SetTitle(v string)`
+`func (o *ApiUsersStatus200ResponseInner) SetTitle(v Title)`
 
 SetTitle sets Title field to given value.
 

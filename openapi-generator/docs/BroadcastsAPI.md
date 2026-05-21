@@ -102,7 +102,7 @@ Name | Type | Description  | Notes
 
 ## BroadcastMyRoundsGet
 
-> BroadcastRoundCreate200Response BroadcastMyRoundsGet(ctx).Nb(nb).Execute()
+> BroadcastMyRound BroadcastMyRoundsGet(ctx).Nb(nb).Execute()
 
 Get your broadcast rounds
 
@@ -130,7 +130,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BroadcastsAPI.BroadcastMyRoundsGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BroadcastMyRoundsGet`: BroadcastRoundCreate200Response
+	// response from `BroadcastMyRoundsGet`: BroadcastMyRound
 	fmt.Fprintf(os.Stdout, "Response from `BroadcastsAPI.BroadcastMyRoundsGet`: %v\n", resp)
 }
 ```
@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BroadcastRoundCreate200Response**](BroadcastRoundCreate200Response.md)
+[**BroadcastMyRound**](BroadcastMyRound.md)
 
 ### Authorization
 
@@ -168,7 +168,7 @@ Name | Type | Description  | Notes
 
 ## BroadcastPlayerGet
 
-> BroadcastPlayerGet200Response BroadcastPlayerGet(ctx, broadcastTournamentId, playerId).Execute()
+> BroadcastPlayerEntryWithFideAndGames BroadcastPlayerGet(ctx, broadcastTournamentId, playerId).Execute()
 
 Get a player of a broadcast
 
@@ -197,7 +197,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BroadcastsAPI.BroadcastPlayerGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BroadcastPlayerGet`: BroadcastPlayerGet200Response
+	// response from `BroadcastPlayerGet`: BroadcastPlayerEntryWithFideAndGames
 	fmt.Fprintf(os.Stdout, "Response from `BroadcastsAPI.BroadcastPlayerGet`: %v\n", resp)
 }
 ```
@@ -223,7 +223,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BroadcastPlayerGet200Response**](BroadcastPlayerGet200Response.md)
+[**BroadcastPlayerEntryWithFideAndGames**](BroadcastPlayerEntryWithFideAndGames.md)
 
 ### Authorization
 
@@ -241,7 +241,7 @@ No authorization required
 
 ## BroadcastPlayersGet
 
-> []BroadcastPlayersGet200ResponseInner BroadcastPlayersGet(ctx, broadcastTournamentId).Execute()
+> []BroadcastPlayerEntry BroadcastPlayersGet(ctx, broadcastTournamentId).Execute()
 
 Get players of a broadcast
 
@@ -269,7 +269,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BroadcastsAPI.BroadcastPlayersGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BroadcastPlayersGet`: []BroadcastPlayersGet200ResponseInner
+	// response from `BroadcastPlayersGet`: []BroadcastPlayerEntry
 	fmt.Fprintf(os.Stdout, "Response from `BroadcastsAPI.BroadcastPlayersGet`: %v\n", resp)
 }
 ```
@@ -293,7 +293,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]BroadcastPlayersGet200ResponseInner**](BroadcastPlayersGet200ResponseInner.md)
+[**[]BroadcastPlayerEntry**](BroadcastPlayerEntry.md)
 
 ### Authorization
 
@@ -311,7 +311,7 @@ No authorization required
 
 ## BroadcastPush
 
-> BroadcastPush200Response BroadcastPush(ctx, broadcastRoundId).Body(body).Execute()
+> BroadcastPgnPush BroadcastPush(ctx, broadcastRoundId).Body(body).Execute()
 
 Push PGN to a broadcast round
 
@@ -340,7 +340,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BroadcastsAPI.BroadcastPush``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BroadcastPush`: BroadcastPush200Response
+	// response from `BroadcastPush`: BroadcastPgnPush
 	fmt.Fprintf(os.Stdout, "Response from `BroadcastsAPI.BroadcastPush`: %v\n", resp)
 }
 ```
@@ -365,7 +365,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BroadcastPush200Response**](BroadcastPush200Response.md)
+[**BroadcastPgnPush**](BroadcastPgnPush.md)
 
 ### Authorization
 
@@ -383,7 +383,7 @@ Name | Type | Description  | Notes
 
 ## BroadcastRoundCreate
 
-> BroadcastRoundCreate200Response BroadcastRoundCreate(ctx, broadcastTournamentId).Name(name).SyncUrl(syncUrl).SyncUrls(syncUrls).SyncIds(syncIds).SyncUsers(syncUsers).OnlyRound(onlyRound).Slices(slices).SyncSource(syncSource).StartsAt(startsAt).StartsAfterPrevious(startsAfterPrevious).Delay(delay).Status(status).Rated(rated).CustomScoringWhiteWin(customScoringWhiteWin).CustomScoringWhiteDraw(customScoringWhiteDraw).CustomScoringBlackWin(customScoringBlackWin).CustomScoringBlackDraw(customScoringBlackDraw).Period(period).Execute()
+> BroadcastRoundNew BroadcastRoundCreate(ctx, broadcastTournamentId).Name(name).SyncUrl(syncUrl).SyncUrls(syncUrls).SyncIds(syncIds).SyncUsers(syncUsers).OnlyRound(onlyRound).Slices(slices).SyncSource(syncSource).StartsAt(startsAt).StartsAfterPrevious(startsAfterPrevious).Delay(delay).Status(status).Rated(rated).CustomScoringWhiteWin(customScoringWhiteWin).CustomScoringWhiteDraw(customScoringWhiteDraw).CustomScoringBlackWin(customScoringBlackWin).CustomScoringBlackDraw(customScoringBlackDraw).Period(period).Execute()
 
 Create a broadcast round
 
@@ -429,7 +429,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BroadcastsAPI.BroadcastRoundCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BroadcastRoundCreate`: BroadcastRoundCreate200Response
+	// response from `BroadcastRoundCreate`: BroadcastRoundNew
 	fmt.Fprintf(os.Stdout, "Response from `BroadcastsAPI.BroadcastRoundCreate`: %v\n", resp)
 }
 ```
@@ -471,7 +471,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BroadcastRoundCreate200Response**](BroadcastRoundCreate200Response.md)
+[**BroadcastRoundNew**](BroadcastRoundNew.md)
 
 ### Authorization
 
@@ -489,7 +489,7 @@ Name | Type | Description  | Notes
 
 ## BroadcastRoundGet
 
-> BroadcastRoundGet200Response BroadcastRoundGet(ctx, broadcastTournamentSlug, broadcastRoundSlug, broadcastRoundId).Execute()
+> BroadcastRound BroadcastRoundGet(ctx, broadcastTournamentSlug, broadcastRoundSlug, broadcastRoundId).Execute()
 
 Get a broadcast round
 
@@ -519,7 +519,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BroadcastsAPI.BroadcastRoundGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BroadcastRoundGet`: BroadcastRoundGet200Response
+	// response from `BroadcastRoundGet`: BroadcastRound
 	fmt.Fprintf(os.Stdout, "Response from `BroadcastsAPI.BroadcastRoundGet`: %v\n", resp)
 }
 ```
@@ -547,7 +547,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BroadcastRoundGet200Response**](BroadcastRoundGet200Response.md)
+[**BroadcastRound**](BroadcastRound.md)
 
 ### Authorization
 
@@ -639,7 +639,7 @@ No authorization required
 
 ## BroadcastRoundReset
 
-> AccountKidPost200Response BroadcastRoundReset(ctx, broadcastRoundId).Execute()
+> Ok BroadcastRoundReset(ctx, broadcastRoundId).Execute()
 
 Reset a broadcast round
 
@@ -667,7 +667,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BroadcastsAPI.BroadcastRoundReset``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BroadcastRoundReset`: AccountKidPost200Response
+	// response from `BroadcastRoundReset`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `BroadcastsAPI.BroadcastRoundReset`: %v\n", resp)
 }
 ```
@@ -691,7 +691,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -709,7 +709,7 @@ Name | Type | Description  | Notes
 
 ## BroadcastRoundUpdate
 
-> BroadcastRoundUpdate200Response BroadcastRoundUpdate(ctx, broadcastRoundId).Name(name).SyncUrl(syncUrl).SyncUrls(syncUrls).SyncIds(syncIds).SyncUsers(syncUsers).Patch(patch).OnlyRound(onlyRound).Slices(slices).SyncSource(syncSource).StartsAt(startsAt).StartsAfterPrevious(startsAfterPrevious).Delay(delay).Status(status).Rated(rated).CustomScoringWhiteWin(customScoringWhiteWin).CustomScoringWhiteDraw(customScoringWhiteDraw).CustomScoringBlackWin(customScoringBlackWin).CustomScoringBlackDraw(customScoringBlackDraw).Period(period).Execute()
+> BroadcastRound BroadcastRoundUpdate(ctx, broadcastRoundId).Name(name).SyncUrl(syncUrl).SyncUrls(syncUrls).SyncIds(syncIds).SyncUsers(syncUsers).Patch(patch).OnlyRound(onlyRound).Slices(slices).SyncSource(syncSource).StartsAt(startsAt).StartsAfterPrevious(startsAfterPrevious).Delay(delay).Status(status).Rated(rated).CustomScoringWhiteWin(customScoringWhiteWin).CustomScoringWhiteDraw(customScoringWhiteDraw).CustomScoringBlackWin(customScoringBlackWin).CustomScoringBlackDraw(customScoringBlackDraw).Period(period).Execute()
 
 Update a broadcast round
 
@@ -756,7 +756,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BroadcastsAPI.BroadcastRoundUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BroadcastRoundUpdate`: BroadcastRoundUpdate200Response
+	// response from `BroadcastRoundUpdate`: BroadcastRound
 	fmt.Fprintf(os.Stdout, "Response from `BroadcastsAPI.BroadcastRoundUpdate`: %v\n", resp)
 }
 ```
@@ -799,7 +799,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BroadcastRoundUpdate200Response**](BroadcastRoundUpdate200Response.md)
+[**BroadcastRound**](BroadcastRound.md)
 
 ### Authorization
 
@@ -891,7 +891,7 @@ No authorization required
 
 ## BroadcastTeamLeaderboardGet
 
-> []BroadcastTeamLeaderboardGet200ResponseInner BroadcastTeamLeaderboardGet(ctx, broadcastTournamentId).Execute()
+> []BroadcastTeamLeaderboardEntry BroadcastTeamLeaderboardGet(ctx, broadcastTournamentId).Execute()
 
 Get the team leaderboard of a broadcast
 
@@ -919,7 +919,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BroadcastsAPI.BroadcastTeamLeaderboardGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BroadcastTeamLeaderboardGet`: []BroadcastTeamLeaderboardGet200ResponseInner
+	// response from `BroadcastTeamLeaderboardGet`: []BroadcastTeamLeaderboardEntry
 	fmt.Fprintf(os.Stdout, "Response from `BroadcastsAPI.BroadcastTeamLeaderboardGet`: %v\n", resp)
 }
 ```
@@ -943,7 +943,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]BroadcastTeamLeaderboardGet200ResponseInner**](BroadcastTeamLeaderboardGet200ResponseInner.md)
+[**[]BroadcastTeamLeaderboardEntry**](BroadcastTeamLeaderboardEntry.md)
 
 ### Authorization
 
@@ -961,7 +961,7 @@ No authorization required
 
 ## BroadcastTourCreate
 
-> BroadcastsOfficial200Response BroadcastTourCreate(ctx).Name(name).InfoFormat(infoFormat).InfoLocation(infoLocation).InfoTc(infoTc).InfoFideTC(infoFideTC).InfoTimeZone(infoTimeZone).InfoPlayers(infoPlayers).InfoWebsite(infoWebsite).InfoStandings(infoStandings).Markdown(markdown).ShowScores(showScores).ShowRatingDiffs(showRatingDiffs).TeamTable(teamTable).Visibility(visibility).Players(players).Teams(teams).Tier(tier).Tiebreaks(tiebreaks).Execute()
+> BroadcastWithRounds BroadcastTourCreate(ctx).Name(name).InfoFormat(infoFormat).InfoLocation(infoLocation).InfoTc(infoTc).InfoFideTC(infoFideTC).InfoTimeZone(infoTimeZone).InfoPlayers(infoPlayers).InfoWebsite(infoWebsite).InfoStandings(infoStandings).Markdown(markdown).ShowScores(showScores).ShowRatingDiffs(showRatingDiffs).TeamTable(teamTable).Visibility(visibility).Players(players).Teams(teams).Tier(tier).Tiebreaks(tiebreaks).Execute()
 
 Create a broadcast tournament
 
@@ -984,7 +984,7 @@ func main() {
 	infoFormat := "infoFormat_example" // string | Tournament format. Example: `\\\"8-player round-robin\\\" or \\\"5-round Swiss\\\"`  (optional)
 	infoLocation := "infoLocation_example" // string | Tournament Location  (optional)
 	infoTc := "infoTc_example" // string | Time control. Example: `\\\"Classical\\\" or \\\"Rapid\\\" or \\\"Rapid & Blitz\\\"`  (optional)
-	infoFideTC := "infoFideTC_example" // string | FIDE rating category  (optional)
+	infoFideTC := openapiclient.FideTimeControl("standard") // FideTimeControl |  (optional)
 	infoTimeZone := "infoTimeZone_example" // string | Timezone of the tournament. Example: `America/New_York`. See [list of possible timezone identifiers](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for more.  (optional)
 	infoPlayers := "infoPlayers_example" // string | Mention up to 4 of the best players participating.  (optional)
 	infoWebsite := "infoWebsite_example" // string | Official website. External website URL  (optional)
@@ -997,7 +997,7 @@ func main() {
 	players := "players_example" // string | Optional replace player names, ratings and titles.  One line per player, formatted as such:  ```txt player name / FIDE ID ```  Example:  ```txt Magnus Carlsen / 1503014 ```  Player names ignore case and punctuation, and match all possible combinations of 2 words: \\\"Jorge Rick Vito\\\" will match \\\"Jorge Rick\\\", \\\"jorge vito\\\", \\\"Rick, Vito\\\", etc.  If the player is NM or WNM, you can:  ```txt player name / FIDE ID / title ```  Alternatively, you may set tags manually, like so:  ```txt player name / rating / title / new name ```  All values are optional. Example: ```txt Magnus Carlsen / 2863 / GM YouGotLittUp / 1890 / / Louis Litt ```  (optional)
 	teams := "teams_example" // string | Optional: assign players to teams  One line per player, formatted as such: ```txt Team name; Fide Id or Player name ```  Example: ```txt Team Cats ; 3408230 Team Dogs ; Scooby Doo ```  By default the PGN tags WhiteTeam and BlackTeam are used.  (optional)
 	tier := int32(56) // int32 | Optional, for Lichess admins only, used to feature on /broadcast.  * `3` for Official: normal tier * `4` for Official: high tier * `5` for Official: best tier  (optional)
-	tiebreaks := []string{"Inner_example"} // []string |  (optional)
+	tiebreaks := []openapiclient.BroadcastTiebreakExtendedCode{openapiclient.BroadcastTiebreakExtendedCode("AOB")} // []BroadcastTiebreakExtendedCode |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1006,7 +1006,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BroadcastsAPI.BroadcastTourCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BroadcastTourCreate`: BroadcastsOfficial200Response
+	// response from `BroadcastTourCreate`: BroadcastWithRounds
 	fmt.Fprintf(os.Stdout, "Response from `BroadcastsAPI.BroadcastTourCreate`: %v\n", resp)
 }
 ```
@@ -1026,7 +1026,7 @@ Name | Type | Description  | Notes
  **infoFormat** | **string** | Tournament format. Example: &#x60;\\\&quot;8-player round-robin\\\&quot; or \\\&quot;5-round Swiss\\\&quot;&#x60;  | 
  **infoLocation** | **string** | Tournament Location  | 
  **infoTc** | **string** | Time control. Example: &#x60;\\\&quot;Classical\\\&quot; or \\\&quot;Rapid\\\&quot; or \\\&quot;Rapid &amp; Blitz\\\&quot;&#x60;  | 
- **infoFideTC** | **string** | FIDE rating category  | 
+ **infoFideTC** | [**FideTimeControl**](FideTimeControl.md) |  | 
  **infoTimeZone** | **string** | Timezone of the tournament. Example: &#x60;America/New_York&#x60;. See [list of possible timezone identifiers](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for more.  | 
  **infoPlayers** | **string** | Mention up to 4 of the best players participating.  | 
  **infoWebsite** | **string** | Official website. External website URL  | 
@@ -1039,11 +1039,11 @@ Name | Type | Description  | Notes
  **players** | **string** | Optional replace player names, ratings and titles.  One line per player, formatted as such:  &#x60;&#x60;&#x60;txt player name / FIDE ID &#x60;&#x60;&#x60;  Example:  &#x60;&#x60;&#x60;txt Magnus Carlsen / 1503014 &#x60;&#x60;&#x60;  Player names ignore case and punctuation, and match all possible combinations of 2 words: \\\&quot;Jorge Rick Vito\\\&quot; will match \\\&quot;Jorge Rick\\\&quot;, \\\&quot;jorge vito\\\&quot;, \\\&quot;Rick, Vito\\\&quot;, etc.  If the player is NM or WNM, you can:  &#x60;&#x60;&#x60;txt player name / FIDE ID / title &#x60;&#x60;&#x60;  Alternatively, you may set tags manually, like so:  &#x60;&#x60;&#x60;txt player name / rating / title / new name &#x60;&#x60;&#x60;  All values are optional. Example: &#x60;&#x60;&#x60;txt Magnus Carlsen / 2863 / GM YouGotLittUp / 1890 / / Louis Litt &#x60;&#x60;&#x60;  | 
  **teams** | **string** | Optional: assign players to teams  One line per player, formatted as such: &#x60;&#x60;&#x60;txt Team name; Fide Id or Player name &#x60;&#x60;&#x60;  Example: &#x60;&#x60;&#x60;txt Team Cats ; 3408230 Team Dogs ; Scooby Doo &#x60;&#x60;&#x60;  By default the PGN tags WhiteTeam and BlackTeam are used.  | 
  **tier** | **int32** | Optional, for Lichess admins only, used to feature on /broadcast.  * &#x60;3&#x60; for Official: normal tier * &#x60;4&#x60; for Official: high tier * &#x60;5&#x60; for Official: best tier  | 
- **tiebreaks** | **[]string** |  | 
+ **tiebreaks** | [**[]BroadcastTiebreakExtendedCode**](BroadcastTiebreakExtendedCode.md) |  | 
 
 ### Return type
 
-[**BroadcastsOfficial200Response**](BroadcastsOfficial200Response.md)
+[**BroadcastWithRounds**](BroadcastWithRounds.md)
 
 ### Authorization
 
@@ -1061,7 +1061,7 @@ Name | Type | Description  | Notes
 
 ## BroadcastTourGet
 
-> BroadcastTourGet200Response BroadcastTourGet(ctx, broadcastTournamentId).Execute()
+> BroadcastWithRoundsAndFullGroup BroadcastTourGet(ctx, broadcastTournamentId).Execute()
 
 Get a broadcast tournament
 
@@ -1089,7 +1089,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BroadcastsAPI.BroadcastTourGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BroadcastTourGet`: BroadcastTourGet200Response
+	// response from `BroadcastTourGet`: BroadcastWithRoundsAndFullGroup
 	fmt.Fprintf(os.Stdout, "Response from `BroadcastsAPI.BroadcastTourGet`: %v\n", resp)
 }
 ```
@@ -1113,7 +1113,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BroadcastTourGet200Response**](BroadcastTourGet200Response.md)
+[**BroadcastWithRoundsAndFullGroup**](BroadcastWithRoundsAndFullGroup.md)
 
 ### Authorization
 
@@ -1131,7 +1131,7 @@ Name | Type | Description  | Notes
 
 ## BroadcastTourUpdate
 
-> AccountKidPost200Response BroadcastTourUpdate(ctx, broadcastTournamentId).Name(name).InfoFormat(infoFormat).InfoLocation(infoLocation).InfoTc(infoTc).InfoFideTC(infoFideTC).InfoTimeZone(infoTimeZone).InfoPlayers(infoPlayers).InfoWebsite(infoWebsite).InfoStandings(infoStandings).Markdown(markdown).ShowScores(showScores).ShowRatingDiffs(showRatingDiffs).TeamTable(teamTable).Visibility(visibility).Players(players).Teams(teams).Tier(tier).Tiebreaks(tiebreaks).Execute()
+> Ok BroadcastTourUpdate(ctx, broadcastTournamentId).Name(name).InfoFormat(infoFormat).InfoLocation(infoLocation).InfoTc(infoTc).InfoFideTC(infoFideTC).InfoTimeZone(infoTimeZone).InfoPlayers(infoPlayers).InfoWebsite(infoWebsite).InfoStandings(infoStandings).Markdown(markdown).ShowScores(showScores).ShowRatingDiffs(showRatingDiffs).TeamTable(teamTable).Visibility(visibility).Players(players).Teams(teams).Tier(tier).Tiebreaks(tiebreaks).Execute()
 
 Update your broadcast tournament
 
@@ -1155,7 +1155,7 @@ func main() {
 	infoFormat := "infoFormat_example" // string | Tournament format. Example: `\\\"8-player round-robin\\\" or \\\"5-round Swiss\\\"`  (optional)
 	infoLocation := "infoLocation_example" // string | Tournament Location  (optional)
 	infoTc := "infoTc_example" // string | Time control. Example: `\\\"Classical\\\" or \\\"Rapid\\\" or \\\"Rapid & Blitz\\\"`  (optional)
-	infoFideTC := "infoFideTC_example" // string | FIDE rating category  (optional)
+	infoFideTC := openapiclient.FideTimeControl("standard") // FideTimeControl |  (optional)
 	infoTimeZone := "infoTimeZone_example" // string | Timezone of the tournament. Example: `America/New_York`. See [list of possible timezone identifiers](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for more.  (optional)
 	infoPlayers := "infoPlayers_example" // string | Mention up to 4 of the best players participating.  (optional)
 	infoWebsite := "infoWebsite_example" // string | Official website. External website URL  (optional)
@@ -1168,7 +1168,7 @@ func main() {
 	players := "players_example" // string | Optional replace player names, ratings and titles.  One line per player, formatted as such:  ```txt player name / FIDE ID ```  Example:  ```txt Magnus Carlsen / 1503014 ```  Player names ignore case and punctuation, and match all possible combinations of 2 words: \\\"Jorge Rick Vito\\\" will match \\\"Jorge Rick\\\", \\\"jorge vito\\\", \\\"Rick, Vito\\\", etc.  If the player is NM or WNM, you can:  ```txt player name / FIDE ID / title ```  Alternatively, you may set tags manually, like so:  ```txt player name / rating / title / new name ```  All values are optional. Example: ```txt Magnus Carlsen / 2863 / GM YouGotLittUp / 1890 / / Louis Litt ```  (optional)
 	teams := "teams_example" // string | Optional: assign players to teams  One line per player, formatted as such: ```txt Team name; Fide Id or Player name ```  Example: ```txt Team Cats ; 3408230 Team Dogs ; Scooby Doo ```  By default the PGN tags WhiteTeam and BlackTeam are used.  (optional)
 	tier := int32(56) // int32 | Optional, for Lichess admins only, used to feature on /broadcast.  * `3` for Official: normal tier * `4` for Official: high tier * `5` for Official: best tier  (optional)
-	tiebreaks := []string{"Inner_example"} // []string |  (optional)
+	tiebreaks := []openapiclient.BroadcastTiebreakExtendedCode{openapiclient.BroadcastTiebreakExtendedCode("AOB")} // []BroadcastTiebreakExtendedCode |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1177,7 +1177,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BroadcastsAPI.BroadcastTourUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BroadcastTourUpdate`: AccountKidPost200Response
+	// response from `BroadcastTourUpdate`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `BroadcastsAPI.BroadcastTourUpdate`: %v\n", resp)
 }
 ```
@@ -1202,7 +1202,7 @@ Name | Type | Description  | Notes
  **infoFormat** | **string** | Tournament format. Example: &#x60;\\\&quot;8-player round-robin\\\&quot; or \\\&quot;5-round Swiss\\\&quot;&#x60;  | 
  **infoLocation** | **string** | Tournament Location  | 
  **infoTc** | **string** | Time control. Example: &#x60;\\\&quot;Classical\\\&quot; or \\\&quot;Rapid\\\&quot; or \\\&quot;Rapid &amp; Blitz\\\&quot;&#x60;  | 
- **infoFideTC** | **string** | FIDE rating category  | 
+ **infoFideTC** | [**FideTimeControl**](FideTimeControl.md) |  | 
  **infoTimeZone** | **string** | Timezone of the tournament. Example: &#x60;America/New_York&#x60;. See [list of possible timezone identifiers](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for more.  | 
  **infoPlayers** | **string** | Mention up to 4 of the best players participating.  | 
  **infoWebsite** | **string** | Official website. External website URL  | 
@@ -1215,11 +1215,11 @@ Name | Type | Description  | Notes
  **players** | **string** | Optional replace player names, ratings and titles.  One line per player, formatted as such:  &#x60;&#x60;&#x60;txt player name / FIDE ID &#x60;&#x60;&#x60;  Example:  &#x60;&#x60;&#x60;txt Magnus Carlsen / 1503014 &#x60;&#x60;&#x60;  Player names ignore case and punctuation, and match all possible combinations of 2 words: \\\&quot;Jorge Rick Vito\\\&quot; will match \\\&quot;Jorge Rick\\\&quot;, \\\&quot;jorge vito\\\&quot;, \\\&quot;Rick, Vito\\\&quot;, etc.  If the player is NM or WNM, you can:  &#x60;&#x60;&#x60;txt player name / FIDE ID / title &#x60;&#x60;&#x60;  Alternatively, you may set tags manually, like so:  &#x60;&#x60;&#x60;txt player name / rating / title / new name &#x60;&#x60;&#x60;  All values are optional. Example: &#x60;&#x60;&#x60;txt Magnus Carlsen / 2863 / GM YouGotLittUp / 1890 / / Louis Litt &#x60;&#x60;&#x60;  | 
  **teams** | **string** | Optional: assign players to teams  One line per player, formatted as such: &#x60;&#x60;&#x60;txt Team name; Fide Id or Player name &#x60;&#x60;&#x60;  Example: &#x60;&#x60;&#x60;txt Team Cats ; 3408230 Team Dogs ; Scooby Doo &#x60;&#x60;&#x60;  By default the PGN tags WhiteTeam and BlackTeam are used.  | 
  **tier** | **int32** | Optional, for Lichess admins only, used to feature on /broadcast.  * &#x60;3&#x60; for Official: normal tier * &#x60;4&#x60; for Official: high tier * &#x60;5&#x60; for Official: best tier  | 
- **tiebreaks** | **[]string** |  | 
+ **tiebreaks** | [**[]BroadcastTiebreakExtendedCode**](BroadcastTiebreakExtendedCode.md) |  | 
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -1311,7 +1311,7 @@ Name | Type | Description  | Notes
 
 ## BroadcastsOfficial
 
-> BroadcastsOfficial200Response BroadcastsOfficial(ctx).Nb(nb).Html(html).Live(live).Execute()
+> BroadcastWithRounds BroadcastsOfficial(ctx).Nb(nb).Html(html).Live(live).Execute()
 
 Get official broadcasts
 
@@ -1341,7 +1341,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BroadcastsAPI.BroadcastsOfficial``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BroadcastsOfficial`: BroadcastsOfficial200Response
+	// response from `BroadcastsOfficial`: BroadcastWithRounds
 	fmt.Fprintf(os.Stdout, "Response from `BroadcastsAPI.BroadcastsOfficial`: %v\n", resp)
 }
 ```
@@ -1363,7 +1363,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BroadcastsOfficial200Response**](BroadcastsOfficial200Response.md)
+[**BroadcastWithRounds**](BroadcastWithRounds.md)
 
 ### Authorization
 
@@ -1449,7 +1449,7 @@ No authorization required
 
 ## BroadcastsTop
 
-> BroadcastsTop200Response BroadcastsTop(ctx).Page(page).Html(html).Execute()
+> BroadcastTop BroadcastsTop(ctx).Page(page).Html(html).Execute()
 
 Get paginated top broadcast previews
 
@@ -1478,7 +1478,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BroadcastsAPI.BroadcastsTop``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BroadcastsTop`: BroadcastsTop200Response
+	// response from `BroadcastsTop`: BroadcastTop
 	fmt.Fprintf(os.Stdout, "Response from `BroadcastsAPI.BroadcastsTop`: %v\n", resp)
 }
 ```
@@ -1499,7 +1499,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BroadcastsTop200Response**](BroadcastsTop200Response.md)
+[**BroadcastTop**](BroadcastTop.md)
 
 ### Authorization
 

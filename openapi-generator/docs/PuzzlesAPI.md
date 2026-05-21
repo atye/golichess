@@ -20,7 +20,7 @@ Method | HTTP request | Description
 
 ## ApiPuzzleActivity
 
-> ApiPuzzleActivity200Response ApiPuzzleActivity(ctx).Max(max).Before(before).Since(since).Execute()
+> PuzzleActivity ApiPuzzleActivity(ctx).Max(max).Before(before).Since(since).Execute()
 
 Get your puzzle activity
 
@@ -50,7 +50,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PuzzlesAPI.ApiPuzzleActivity``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiPuzzleActivity`: ApiPuzzleActivity200Response
+	// response from `ApiPuzzleActivity`: PuzzleActivity
 	fmt.Fprintf(os.Stdout, "Response from `PuzzlesAPI.ApiPuzzleActivity`: %v\n", resp)
 }
 ```
@@ -72,7 +72,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiPuzzleActivity200Response**](ApiPuzzleActivity200Response.md)
+[**PuzzleActivity**](PuzzleActivity.md)
 
 ### Authorization
 
@@ -90,7 +90,7 @@ Name | Type | Description  | Notes
 
 ## ApiPuzzleBatchSelect
 
-> ApiPuzzleBatchSelect200Response ApiPuzzleBatchSelect(ctx, angle).Difficulty(difficulty).Nb(nb).Color(color).Execute()
+> PuzzleBatchSelect ApiPuzzleBatchSelect(ctx, angle).Difficulty(difficulty).Nb(nb).Color(color).Execute()
 
 Get multiple puzzles at once
 
@@ -121,7 +121,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PuzzlesAPI.ApiPuzzleBatchSelect``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiPuzzleBatchSelect`: ApiPuzzleBatchSelect200Response
+	// response from `ApiPuzzleBatchSelect`: PuzzleBatchSelect
 	fmt.Fprintf(os.Stdout, "Response from `PuzzlesAPI.ApiPuzzleBatchSelect`: %v\n", resp)
 }
 ```
@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiPuzzleBatchSelect200Response**](ApiPuzzleBatchSelect200Response.md)
+[**PuzzleBatchSelect**](PuzzleBatchSelect.md)
 
 ### Authorization
 
@@ -166,7 +166,7 @@ Name | Type | Description  | Notes
 
 ## ApiPuzzleBatchSolve
 
-> ApiPuzzleBatchSolve200Response ApiPuzzleBatchSolve(ctx, angle).ApiPuzzleBatchSolveRequest(apiPuzzleBatchSolveRequest).Nb(nb).Execute()
+> PuzzleBatchSolveResponse ApiPuzzleBatchSolve(ctx, angle).PuzzleBatchSolveRequest(puzzleBatchSolveRequest).Nb(nb).Execute()
 
 Solve multiple puzzles at once
 
@@ -186,17 +186,17 @@ import (
 
 func main() {
 	angle := "mix" // string | The theme or opening of the solved puzzles.  Available themes are listed in [the lichess source code](https://github.com/ornicar/lila/blob/master/translation/source/puzzleTheme.xml) and [the lichess training themes hyperlinks](https://lichess.org/training/themes). 
-	apiPuzzleBatchSolveRequest := *openapiclient.NewApiPuzzleBatchSolveRequest() // ApiPuzzleBatchSolveRequest | List of solved puzzles
+	puzzleBatchSolveRequest := *openapiclient.NewPuzzleBatchSolveRequest() // PuzzleBatchSolveRequest | List of solved puzzles
 	nb := int32(1) // int32 | When > 0, the response includes a new puzzle batch with that many puzzles.  This is equivalent to calling [/api/puzzle/batch/{angle}](#tag/puzzles/GET/api/puzzle/batch/{angle}), and can sometimes save a request.  (optional) (default to 0)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PuzzlesAPI.ApiPuzzleBatchSolve(context.Background(), angle).ApiPuzzleBatchSolveRequest(apiPuzzleBatchSolveRequest).Nb(nb).Execute()
+	resp, r, err := apiClient.PuzzlesAPI.ApiPuzzleBatchSolve(context.Background(), angle).PuzzleBatchSolveRequest(puzzleBatchSolveRequest).Nb(nb).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PuzzlesAPI.ApiPuzzleBatchSolve``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiPuzzleBatchSolve`: ApiPuzzleBatchSolve200Response
+	// response from `ApiPuzzleBatchSolve`: PuzzleBatchSolveResponse
 	fmt.Fprintf(os.Stdout, "Response from `PuzzlesAPI.ApiPuzzleBatchSolve`: %v\n", resp)
 }
 ```
@@ -217,12 +217,12 @@ Other parameters are passed through a pointer to a apiApiPuzzleBatchSolveRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **apiPuzzleBatchSolveRequest** | [**ApiPuzzleBatchSolveRequest**](ApiPuzzleBatchSolveRequest.md) | List of solved puzzles | 
+ **puzzleBatchSolveRequest** | [**PuzzleBatchSolveRequest**](PuzzleBatchSolveRequest.md) | List of solved puzzles | 
  **nb** | **int32** | When &gt; 0, the response includes a new puzzle batch with that many puzzles.  This is equivalent to calling [/api/puzzle/batch/{angle}](#tag/puzzles/GET/api/puzzle/batch/{angle}), and can sometimes save a request.  | [default to 0]
 
 ### Return type
 
-[**ApiPuzzleBatchSolve200Response**](ApiPuzzleBatchSolve200Response.md)
+[**PuzzleBatchSolveResponse**](PuzzleBatchSolveResponse.md)
 
 ### Authorization
 
@@ -240,7 +240,7 @@ Name | Type | Description  | Notes
 
 ## ApiPuzzleDaily
 
-> ApiPuzzleDaily200Response ApiPuzzleDaily(ctx).Execute()
+> PuzzleAndGame ApiPuzzleDaily(ctx).Execute()
 
 Get the daily puzzle
 
@@ -267,7 +267,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PuzzlesAPI.ApiPuzzleDaily``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiPuzzleDaily`: ApiPuzzleDaily200Response
+	// response from `ApiPuzzleDaily`: PuzzleAndGame
 	fmt.Fprintf(os.Stdout, "Response from `PuzzlesAPI.ApiPuzzleDaily`: %v\n", resp)
 }
 ```
@@ -283,7 +283,7 @@ Other parameters are passed through a pointer to a apiApiPuzzleDailyRequest stru
 
 ### Return type
 
-[**ApiPuzzleDaily200Response**](ApiPuzzleDaily200Response.md)
+[**PuzzleAndGame**](PuzzleAndGame.md)
 
 ### Authorization
 
@@ -301,7 +301,7 @@ No authorization required
 
 ## ApiPuzzleDashboard
 
-> ApiPuzzleDashboard200Response ApiPuzzleDashboard(ctx, days).Execute()
+> PuzzleDashboard ApiPuzzleDashboard(ctx, days).Execute()
 
 Get your puzzle dashboard
 
@@ -329,7 +329,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PuzzlesAPI.ApiPuzzleDashboard``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiPuzzleDashboard`: ApiPuzzleDashboard200Response
+	// response from `ApiPuzzleDashboard`: PuzzleDashboard
 	fmt.Fprintf(os.Stdout, "Response from `PuzzlesAPI.ApiPuzzleDashboard`: %v\n", resp)
 }
 ```
@@ -353,7 +353,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiPuzzleDashboard200Response**](ApiPuzzleDashboard200Response.md)
+[**PuzzleDashboard**](PuzzleDashboard.md)
 
 ### Authorization
 
@@ -371,7 +371,7 @@ Name | Type | Description  | Notes
 
 ## ApiPuzzleId
 
-> ApiPuzzleId200Response ApiPuzzleId(ctx, id).Execute()
+> PuzzleAndGame ApiPuzzleId(ctx, id).Execute()
 
 Get a puzzle by its ID
 
@@ -399,7 +399,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PuzzlesAPI.ApiPuzzleId``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiPuzzleId`: ApiPuzzleId200Response
+	// response from `ApiPuzzleId`: PuzzleAndGame
 	fmt.Fprintf(os.Stdout, "Response from `PuzzlesAPI.ApiPuzzleId`: %v\n", resp)
 }
 ```
@@ -423,7 +423,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiPuzzleId200Response**](ApiPuzzleId200Response.md)
+[**PuzzleAndGame**](PuzzleAndGame.md)
 
 ### Authorization
 
@@ -441,7 +441,7 @@ No authorization required
 
 ## ApiPuzzleNext
 
-> ApiPuzzleId200Response ApiPuzzleNext(ctx).Angle(angle).Difficulty(difficulty).Color(color).Execute()
+> PuzzleAndGame ApiPuzzleNext(ctx).Angle(angle).Difficulty(difficulty).Color(color).Execute()
 
 Get a new puzzle
 
@@ -471,7 +471,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PuzzlesAPI.ApiPuzzleNext``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiPuzzleNext`: ApiPuzzleId200Response
+	// response from `ApiPuzzleNext`: PuzzleAndGame
 	fmt.Fprintf(os.Stdout, "Response from `PuzzlesAPI.ApiPuzzleNext`: %v\n", resp)
 }
 ```
@@ -493,7 +493,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiPuzzleId200Response**](ApiPuzzleId200Response.md)
+[**PuzzleAndGame**](PuzzleAndGame.md)
 
 ### Authorization
 
@@ -511,7 +511,7 @@ Name | Type | Description  | Notes
 
 ## ApiPuzzleReplay
 
-> ApiPuzzleReplay200Response ApiPuzzleReplay(ctx, days, theme).Execute()
+> PuzzleReplay ApiPuzzleReplay(ctx, days, theme).Execute()
 
 Get puzzles to replay
 
@@ -540,7 +540,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PuzzlesAPI.ApiPuzzleReplay``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiPuzzleReplay`: ApiPuzzleReplay200Response
+	// response from `ApiPuzzleReplay`: PuzzleReplay
 	fmt.Fprintf(os.Stdout, "Response from `PuzzlesAPI.ApiPuzzleReplay`: %v\n", resp)
 }
 ```
@@ -566,7 +566,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiPuzzleReplay200Response**](ApiPuzzleReplay200Response.md)
+[**PuzzleReplay**](PuzzleReplay.md)
 
 ### Authorization
 
@@ -584,7 +584,7 @@ Name | Type | Description  | Notes
 
 ## ApiStormDashboard
 
-> ApiStormDashboard200Response ApiStormDashboard(ctx, username).Days(days).Execute()
+> PuzzleStormDashboard ApiStormDashboard(ctx, username).Days(days).Execute()
 
 Get the storm dashboard of a player
 
@@ -613,7 +613,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PuzzlesAPI.ApiStormDashboard``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiStormDashboard`: ApiStormDashboard200Response
+	// response from `ApiStormDashboard`: PuzzleStormDashboard
 	fmt.Fprintf(os.Stdout, "Response from `PuzzlesAPI.ApiStormDashboard`: %v\n", resp)
 }
 ```
@@ -638,7 +638,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiStormDashboard200Response**](ApiStormDashboard200Response.md)
+[**PuzzleStormDashboard**](PuzzleStormDashboard.md)
 
 ### Authorization
 
@@ -656,7 +656,7 @@ No authorization required
 
 ## RacerGet
 
-> RacerGet200Response RacerGet(ctx, id).Execute()
+> PuzzleRaceResults RacerGet(ctx, id).Execute()
 
 Get puzzle race results
 
@@ -684,7 +684,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PuzzlesAPI.RacerGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RacerGet`: RacerGet200Response
+	// response from `RacerGet`: PuzzleRaceResults
 	fmt.Fprintf(os.Stdout, "Response from `PuzzlesAPI.RacerGet`: %v\n", resp)
 }
 ```
@@ -708,7 +708,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**RacerGet200Response**](RacerGet200Response.md)
+[**PuzzleRaceResults**](PuzzleRaceResults.md)
 
 ### Authorization
 
@@ -726,7 +726,7 @@ Name | Type | Description  | Notes
 
 ## RacerPost
 
-> RacerPost200Response RacerPost(ctx).Execute()
+> PuzzleRacer RacerPost(ctx).Execute()
 
 Create and join a puzzle race
 
@@ -753,7 +753,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PuzzlesAPI.RacerPost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RacerPost`: RacerPost200Response
+	// response from `RacerPost`: PuzzleRacer
 	fmt.Fprintf(os.Stdout, "Response from `PuzzlesAPI.RacerPost`: %v\n", resp)
 }
 ```
@@ -769,7 +769,7 @@ Other parameters are passed through a pointer to a apiRacerPostRequest struct vi
 
 ### Return type
 
-[**RacerPost200Response**](RacerPost200Response.md)
+[**PuzzleRacer**](PuzzleRacer.md)
 
 ### Authorization
 

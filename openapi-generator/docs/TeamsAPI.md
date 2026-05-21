@@ -23,7 +23,7 @@ Method | HTTP request | Description
 
 ## ApiTeamArena
 
-> ApiTournament200ResponseCreatedInner ApiTeamArena(ctx, teamId).Max(max).Status(status).CreatedBy(createdBy).Name(name).Execute()
+> ArenaTournament ApiTeamArena(ctx, teamId).Max(max).Status(status).CreatedBy(createdBy).Name(name).Execute()
 
 Get team Arena tournaments
 
@@ -44,7 +44,7 @@ import (
 func main() {
 	teamId := "teamId_example" // string | ID of the team
 	max := int32(56) // int32 | How many tournaments to download. (optional) (default to 100)
-	status := "status_example" // string | [Filter] Only arena tournaments in this current state.  (optional)
+	status := openapiclient.ArenaStatusName("created") // ArenaStatusName | [Filter] Only arena tournaments in this current state.  (optional)
 	createdBy := "createdBy_example" // string | [Filter] Only arena tournaments created by a given user.  (optional)
 	name := "name_example" // string | [Filter] Only arena tournaments with a given name.  (optional)
 
@@ -55,7 +55,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TeamsAPI.ApiTeamArena``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiTeamArena`: ApiTournament200ResponseCreatedInner
+	// response from `ApiTeamArena`: ArenaTournament
 	fmt.Fprintf(os.Stdout, "Response from `TeamsAPI.ApiTeamArena`: %v\n", resp)
 }
 ```
@@ -77,13 +77,13 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **max** | **int32** | How many tournaments to download. | [default to 100]
- **status** | **string** | [Filter] Only arena tournaments in this current state.  | 
+ **status** | [**ArenaStatusName**](ArenaStatusName.md) | [Filter] Only arena tournaments in this current state.  | 
  **createdBy** | **string** | [Filter] Only arena tournaments created by a given user.  | 
  **name** | **string** | [Filter] Only arena tournaments with a given name.  | 
 
 ### Return type
 
-[**ApiTournament200ResponseCreatedInner**](ApiTournament200ResponseCreatedInner.md)
+[**ArenaTournament**](ArenaTournament.md)
 
 ### Authorization
 
@@ -101,7 +101,7 @@ No authorization required
 
 ## ApiTeamSwiss
 
-> ApiSwissNew200Response ApiTeamSwiss(ctx, teamId).Max(max).Status(status).CreatedBy(createdBy).Name(name).Execute()
+> SwissTournament ApiTeamSwiss(ctx, teamId).Max(max).Status(status).CreatedBy(createdBy).Name(name).Execute()
 
 Get team swiss tournaments
 
@@ -122,7 +122,7 @@ import (
 func main() {
 	teamId := "coders" // string | 
 	max := int32(56) // int32 | How many tournaments to download. (optional) (default to 100)
-	status := "status_example" // string | [Filter] Only swiss tournaments in this current state.  (optional)
+	status := openapiclient.SwissStatus("created") // SwissStatus | [Filter] Only swiss tournaments in this current state.  (optional)
 	createdBy := "createdBy_example" // string | [Filter] Only swiss tournaments created by a given user.  (optional)
 	name := "name_example" // string | [Filter] Only swiss tournaments with a given name.  (optional)
 
@@ -133,7 +133,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TeamsAPI.ApiTeamSwiss``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiTeamSwiss`: ApiSwissNew200Response
+	// response from `ApiTeamSwiss`: SwissTournament
 	fmt.Fprintf(os.Stdout, "Response from `TeamsAPI.ApiTeamSwiss`: %v\n", resp)
 }
 ```
@@ -155,13 +155,13 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **max** | **int32** | How many tournaments to download. | [default to 100]
- **status** | **string** | [Filter] Only swiss tournaments in this current state.  | 
+ **status** | [**SwissStatus**](SwissStatus.md) | [Filter] Only swiss tournaments in this current state.  | 
  **createdBy** | **string** | [Filter] Only swiss tournaments created by a given user.  | 
  **name** | **string** | [Filter] Only swiss tournaments with a given name.  | 
 
 ### Return type
 
-[**ApiSwissNew200Response**](ApiSwissNew200Response.md)
+[**SwissTournament**](SwissTournament.md)
 
 ### Authorization
 
@@ -179,7 +179,7 @@ No authorization required
 
 ## TeamAll
 
-> TeamAll200Response TeamAll(ctx).Page(page).Execute()
+> TeamPaginatorJson TeamAll(ctx).Page(page).Execute()
 
 Get popular teams
 
@@ -207,7 +207,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TeamsAPI.TeamAll``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `TeamAll`: TeamAll200Response
+	// response from `TeamAll`: TeamPaginatorJson
 	fmt.Fprintf(os.Stdout, "Response from `TeamsAPI.TeamAll`: %v\n", resp)
 }
 ```
@@ -227,7 +227,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TeamAll200Response**](TeamAll200Response.md)
+[**TeamPaginatorJson**](TeamPaginatorJson.md)
 
 ### Authorization
 
@@ -245,7 +245,7 @@ No authorization required
 
 ## TeamIdJoin
 
-> AccountKidPost200Response TeamIdJoin(ctx, teamId).Message(message).Password(password).Execute()
+> Ok TeamIdJoin(ctx, teamId).Message(message).Password(password).Execute()
 
 Join a team
 
@@ -275,7 +275,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TeamsAPI.TeamIdJoin``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `TeamIdJoin`: AccountKidPost200Response
+	// response from `TeamIdJoin`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `TeamsAPI.TeamIdJoin`: %v\n", resp)
 }
 ```
@@ -301,7 +301,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -319,7 +319,7 @@ Name | Type | Description  | Notes
 
 ## TeamIdKickUserId
 
-> AccountKidPost200Response TeamIdKickUserId(ctx, teamId, userId).Execute()
+> Ok TeamIdKickUserId(ctx, teamId, userId).Execute()
 
 Kick a user from your team
 
@@ -348,7 +348,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TeamsAPI.TeamIdKickUserId``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `TeamIdKickUserId`: AccountKidPost200Response
+	// response from `TeamIdKickUserId`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `TeamsAPI.TeamIdKickUserId`: %v\n", resp)
 }
 ```
@@ -374,7 +374,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -392,7 +392,7 @@ Name | Type | Description  | Notes
 
 ## TeamIdPmAll
 
-> AccountKidPost200Response TeamIdPmAll(ctx, teamId).Message(message).Execute()
+> Ok TeamIdPmAll(ctx, teamId).Message(message).Execute()
 
 Message all members
 
@@ -421,7 +421,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TeamsAPI.TeamIdPmAll``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `TeamIdPmAll`: AccountKidPost200Response
+	// response from `TeamIdPmAll`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `TeamsAPI.TeamIdPmAll`: %v\n", resp)
 }
 ```
@@ -446,7 +446,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -464,7 +464,7 @@ Name | Type | Description  | Notes
 
 ## TeamIdQuit
 
-> AccountKidPost200Response TeamIdQuit(ctx, teamId).Execute()
+> Ok TeamIdQuit(ctx, teamId).Execute()
 
 Leave a team
 
@@ -492,7 +492,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TeamsAPI.TeamIdQuit``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `TeamIdQuit`: AccountKidPost200Response
+	// response from `TeamIdQuit`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `TeamsAPI.TeamIdQuit`: %v\n", resp)
 }
 ```
@@ -516,7 +516,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -606,7 +606,7 @@ Name | Type | Description  | Notes
 
 ## TeamOfUsername
 
-> []TeamShow200Response TeamOfUsername(ctx, username).Execute()
+> []Team TeamOfUsername(ctx, username).Execute()
 
 Teams of a player
 
@@ -634,7 +634,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TeamsAPI.TeamOfUsername``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `TeamOfUsername`: []TeamShow200Response
+	// response from `TeamOfUsername`: []Team
 	fmt.Fprintf(os.Stdout, "Response from `TeamsAPI.TeamOfUsername`: %v\n", resp)
 }
 ```
@@ -658,7 +658,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]TeamShow200Response**](TeamShow200Response.md)
+[**[]Team**](Team.md)
 
 ### Authorization
 
@@ -676,7 +676,7 @@ Name | Type | Description  | Notes
 
 ## TeamRequestAccept
 
-> AccountKidPost200Response TeamRequestAccept(ctx, teamId, userId).Execute()
+> Ok TeamRequestAccept(ctx, teamId, userId).Execute()
 
 Accept join request
 
@@ -705,7 +705,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TeamsAPI.TeamRequestAccept``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `TeamRequestAccept`: AccountKidPost200Response
+	// response from `TeamRequestAccept`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `TeamsAPI.TeamRequestAccept`: %v\n", resp)
 }
 ```
@@ -731,7 +731,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -749,7 +749,7 @@ Name | Type | Description  | Notes
 
 ## TeamRequestDecline
 
-> AccountKidPost200Response TeamRequestDecline(ctx, teamId, userId).Execute()
+> Ok TeamRequestDecline(ctx, teamId, userId).Execute()
 
 Decline join request
 
@@ -778,7 +778,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TeamsAPI.TeamRequestDecline``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `TeamRequestDecline`: AccountKidPost200Response
+	// response from `TeamRequestDecline`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `TeamsAPI.TeamRequestDecline`: %v\n", resp)
 }
 ```
@@ -804,7 +804,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -822,7 +822,7 @@ Name | Type | Description  | Notes
 
 ## TeamRequests
 
-> []TeamRequests200ResponseInner TeamRequests(ctx, teamId).Declined(declined).Execute()
+> []TeamRequestWithUser TeamRequests(ctx, teamId).Declined(declined).Execute()
 
 Get join requests
 
@@ -851,7 +851,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TeamsAPI.TeamRequests``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `TeamRequests`: []TeamRequests200ResponseInner
+	// response from `TeamRequests`: []TeamRequestWithUser
 	fmt.Fprintf(os.Stdout, "Response from `TeamsAPI.TeamRequests`: %v\n", resp)
 }
 ```
@@ -876,7 +876,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]TeamRequests200ResponseInner**](TeamRequests200ResponseInner.md)
+[**[]TeamRequestWithUser**](TeamRequestWithUser.md)
 
 ### Authorization
 
@@ -894,7 +894,7 @@ Name | Type | Description  | Notes
 
 ## TeamSearch
 
-> TeamAll200Response TeamSearch(ctx).Text(text).Page(page).Execute()
+> TeamPaginatorJson TeamSearch(ctx).Text(text).Page(page).Execute()
 
 Search teams
 
@@ -923,7 +923,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TeamsAPI.TeamSearch``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `TeamSearch`: TeamAll200Response
+	// response from `TeamSearch`: TeamPaginatorJson
 	fmt.Fprintf(os.Stdout, "Response from `TeamsAPI.TeamSearch`: %v\n", resp)
 }
 ```
@@ -944,7 +944,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TeamAll200Response**](TeamAll200Response.md)
+[**TeamPaginatorJson**](TeamPaginatorJson.md)
 
 ### Authorization
 
@@ -962,7 +962,7 @@ No authorization required
 
 ## TeamShow
 
-> TeamShow200Response TeamShow(ctx, teamId).Execute()
+> Team TeamShow(ctx, teamId).Execute()
 
 Get a single team
 
@@ -990,7 +990,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TeamsAPI.TeamShow``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `TeamShow`: TeamShow200Response
+	// response from `TeamShow`: Team
 	fmt.Fprintf(os.Stdout, "Response from `TeamsAPI.TeamShow`: %v\n", resp)
 }
 ```
@@ -1014,7 +1014,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TeamShow200Response**](TeamShow200Response.md)
+[**Team**](Team.md)
 
 ### Authorization
 

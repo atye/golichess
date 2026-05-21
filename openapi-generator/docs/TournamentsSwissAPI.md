@@ -20,7 +20,7 @@ Method | HTTP request | Description
 
 ## ApiSwissJoin
 
-> AccountKidPost200Response ApiSwissJoin(ctx, id).Password(password).Execute()
+> Ok ApiSwissJoin(ctx, id).Password(password).Execute()
 
 Join a Swiss tournament
 
@@ -49,7 +49,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TournamentsSwissAPI.ApiSwissJoin``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiSwissJoin`: AccountKidPost200Response
+	// response from `ApiSwissJoin`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `TournamentsSwissAPI.ApiSwissJoin`: %v\n", resp)
 }
 ```
@@ -74,7 +74,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -92,7 +92,7 @@ Name | Type | Description  | Notes
 
 ## ApiSwissNew
 
-> ApiSwissNew200Response ApiSwissNew(ctx, teamId).ClockLimit(clockLimit).ClockIncrement(clockIncrement).NbRounds(nbRounds).Name(name).StartsAt(startsAt).RoundInterval(roundInterval).Variant(variant).Position(position).Description(description).Rated(rated).Password(password).ForbiddenPairings(forbiddenPairings).ManualPairings(manualPairings).ChatFor(chatFor).ConditionsMinRatingRating(conditionsMinRatingRating).ConditionsMaxRatingRating(conditionsMaxRatingRating).ConditionsNbRatedGameNb(conditionsNbRatedGameNb).ConditionsPlayYourGames(conditionsPlayYourGames).ConditionsAllowList(conditionsAllowList).Execute()
+> SwissTournament ApiSwissNew(ctx, teamId).ClockLimit(clockLimit).ClockIncrement(clockIncrement).NbRounds(nbRounds).Name(name).StartsAt(startsAt).RoundInterval(roundInterval).Variant(variant).Position(position).Description(description).Rated(rated).Password(password).ForbiddenPairings(forbiddenPairings).ManualPairings(manualPairings).ChatFor(chatFor).ConditionsMinRatingRating(conditionsMinRatingRating).ConditionsMaxRatingRating(conditionsMaxRatingRating).ConditionsNbRatedGameNb(conditionsNbRatedGameNb).ConditionsPlayYourGames(conditionsPlayYourGames).ConditionsAllowList(conditionsAllowList).Execute()
 
 Create a new Swiss tournament
 
@@ -118,7 +118,7 @@ func main() {
 	name := "name_example" // string | The tournament name. Leave empty to get a random Grandmaster name (optional)
 	startsAt := int64(789) // int64 | Timestamp in milliseconds to start the tournament at a given date and time. By default, it starts 10 minutes after creation. (optional)
 	roundInterval := int32(56) // int32 | How long to wait between each round, in seconds. Set to 99999999 to manually schedule each round from the tournament UI. If empty or -1, a sensible value is picked automatically.  (optional)
-	variant := "variant_example" // string |  (optional) (default to "standard")
+	variant := openapiclient.VariantKey("standard") // VariantKey |  (optional) (default to "standard")
 	position := "position_example" // string | Custom initial position (in X-FEN). Variant must be standard and the game cannot be rated. (optional) (default to "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
 	description := "description_example" // string | Anything you want to tell players about the tournament (optional)
 	rated := true // bool | Games are rated and impact players ratings (optional) (default to true)
@@ -139,7 +139,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TournamentsSwissAPI.ApiSwissNew``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiSwissNew`: ApiSwissNew200Response
+	// response from `ApiSwissNew`: SwissTournament
 	fmt.Fprintf(os.Stdout, "Response from `TournamentsSwissAPI.ApiSwissNew`: %v\n", resp)
 }
 ```
@@ -166,7 +166,7 @@ Name | Type | Description  | Notes
  **name** | **string** | The tournament name. Leave empty to get a random Grandmaster name | 
  **startsAt** | **int64** | Timestamp in milliseconds to start the tournament at a given date and time. By default, it starts 10 minutes after creation. | 
  **roundInterval** | **int32** | How long to wait between each round, in seconds. Set to 99999999 to manually schedule each round from the tournament UI. If empty or -1, a sensible value is picked automatically.  | 
- **variant** | **string** |  | [default to &quot;standard&quot;]
+ **variant** | [**VariantKey**](VariantKey.md) |  | [default to &quot;standard&quot;]
  **position** | **string** | Custom initial position (in X-FEN). Variant must be standard and the game cannot be rated. | [default to &quot;rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1&quot;]
  **description** | **string** | Anything you want to tell players about the tournament | 
  **rated** | **bool** | Games are rated and impact players ratings | [default to true]
@@ -182,7 +182,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiSwissNew200Response**](ApiSwissNew200Response.md)
+[**SwissTournament**](SwissTournament.md)
 
 ### Authorization
 
@@ -270,7 +270,7 @@ Name | Type | Description  | Notes
 
 ## ApiSwissTerminate
 
-> AccountKidPost200Response ApiSwissTerminate(ctx, id).Execute()
+> Ok ApiSwissTerminate(ctx, id).Execute()
 
 Terminate a Swiss tournament
 
@@ -298,7 +298,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TournamentsSwissAPI.ApiSwissTerminate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiSwissTerminate`: AccountKidPost200Response
+	// response from `ApiSwissTerminate`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `TournamentsSwissAPI.ApiSwissTerminate`: %v\n", resp)
 }
 ```
@@ -322,7 +322,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -340,7 +340,7 @@ Name | Type | Description  | Notes
 
 ## ApiSwissUpdate
 
-> ApiSwissNew200Response ApiSwissUpdate(ctx, id).ClockLimit(clockLimit).ClockIncrement(clockIncrement).NbRounds(nbRounds).Name(name).StartsAt(startsAt).RoundInterval(roundInterval).Variant(variant).Position(position).Description(description).Rated(rated).Password(password).ForbiddenPairings(forbiddenPairings).ManualPairings(manualPairings).ChatFor(chatFor).ConditionsMinRatingRating(conditionsMinRatingRating).ConditionsMaxRatingRating(conditionsMaxRatingRating).ConditionsNbRatedGameNb(conditionsNbRatedGameNb).ConditionsPlayYourGames(conditionsPlayYourGames).ConditionsAllowList(conditionsAllowList).Execute()
+> SwissTournament ApiSwissUpdate(ctx, id).ClockLimit(clockLimit).ClockIncrement(clockIncrement).NbRounds(nbRounds).Name(name).StartsAt(startsAt).RoundInterval(roundInterval).Variant(variant).Position(position).Description(description).Rated(rated).Password(password).ForbiddenPairings(forbiddenPairings).ManualPairings(manualPairings).ChatFor(chatFor).ConditionsMinRatingRating(conditionsMinRatingRating).ConditionsMaxRatingRating(conditionsMaxRatingRating).ConditionsNbRatedGameNb(conditionsNbRatedGameNb).ConditionsPlayYourGames(conditionsPlayYourGames).ConditionsAllowList(conditionsAllowList).Execute()
 
 Update a Swiss tournament
 
@@ -366,7 +366,7 @@ func main() {
 	name := "name_example" // string | The tournament name. Leave empty to get a random Grandmaster name (optional)
 	startsAt := int64(789) // int64 | Timestamp in milliseconds to start the tournament at a given date and time. By default, it starts 10 minutes after creation. (optional)
 	roundInterval := int32(56) // int32 | How long to wait between each round, in seconds. Set to 99999999 to manually schedule each round from the tournament UI, or [with the API](#tag/tournaments-swiss/POST/api/swiss/{id}/schedule-next-round). If empty or -1, a sensible value is picked automatically.  (optional)
-	variant := "variant_example" // string |  (optional) (default to "standard")
+	variant := openapiclient.VariantKey("standard") // VariantKey |  (optional) (default to "standard")
 	position := "position_example" // string | Custom initial position (in X-FEN). Variant must be standard and the game cannot be rated. (optional) (default to "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
 	description := "description_example" // string | Anything you want to tell players about the tournament (optional)
 	rated := true // bool | Games are rated and impact players ratings (optional) (default to true)
@@ -387,7 +387,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TournamentsSwissAPI.ApiSwissUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiSwissUpdate`: ApiSwissNew200Response
+	// response from `ApiSwissUpdate`: SwissTournament
 	fmt.Fprintf(os.Stdout, "Response from `TournamentsSwissAPI.ApiSwissUpdate`: %v\n", resp)
 }
 ```
@@ -414,7 +414,7 @@ Name | Type | Description  | Notes
  **name** | **string** | The tournament name. Leave empty to get a random Grandmaster name | 
  **startsAt** | **int64** | Timestamp in milliseconds to start the tournament at a given date and time. By default, it starts 10 minutes after creation. | 
  **roundInterval** | **int32** | How long to wait between each round, in seconds. Set to 99999999 to manually schedule each round from the tournament UI, or [with the API](#tag/tournaments-swiss/POST/api/swiss/{id}/schedule-next-round). If empty or -1, a sensible value is picked automatically.  | 
- **variant** | **string** |  | [default to &quot;standard&quot;]
+ **variant** | [**VariantKey**](VariantKey.md) |  | [default to &quot;standard&quot;]
  **position** | **string** | Custom initial position (in X-FEN). Variant must be standard and the game cannot be rated. | [default to &quot;rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1&quot;]
  **description** | **string** | Anything you want to tell players about the tournament | 
  **rated** | **bool** | Games are rated and impact players ratings | [default to true]
@@ -430,7 +430,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiSwissNew200Response**](ApiSwissNew200Response.md)
+[**SwissTournament**](SwissTournament.md)
 
 ### Authorization
 
@@ -448,7 +448,7 @@ Name | Type | Description  | Notes
 
 ## ApiSwissWithdraw
 
-> AccountKidPost200Response ApiSwissWithdraw(ctx, id).Execute()
+> Ok ApiSwissWithdraw(ctx, id).Execute()
 
 Pause or leave a swiss tournament
 
@@ -476,7 +476,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TournamentsSwissAPI.ApiSwissWithdraw``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiSwissWithdraw`: AccountKidPost200Response
+	// response from `ApiSwissWithdraw`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `TournamentsSwissAPI.ApiSwissWithdraw`: %v\n", resp)
 }
 ```
@@ -500,7 +500,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -518,7 +518,7 @@ Name | Type | Description  | Notes
 
 ## ApiTeamSwiss
 
-> ApiSwissNew200Response ApiTeamSwiss(ctx, teamId).Max(max).Status(status).CreatedBy(createdBy).Name(name).Execute()
+> SwissTournament ApiTeamSwiss(ctx, teamId).Max(max).Status(status).CreatedBy(createdBy).Name(name).Execute()
 
 Get team swiss tournaments
 
@@ -539,7 +539,7 @@ import (
 func main() {
 	teamId := "coders" // string | 
 	max := int32(56) // int32 | How many tournaments to download. (optional) (default to 100)
-	status := "status_example" // string | [Filter] Only swiss tournaments in this current state.  (optional)
+	status := openapiclient.SwissStatus("created") // SwissStatus | [Filter] Only swiss tournaments in this current state.  (optional)
 	createdBy := "createdBy_example" // string | [Filter] Only swiss tournaments created by a given user.  (optional)
 	name := "name_example" // string | [Filter] Only swiss tournaments with a given name.  (optional)
 
@@ -550,7 +550,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TournamentsSwissAPI.ApiTeamSwiss``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiTeamSwiss`: ApiSwissNew200Response
+	// response from `ApiTeamSwiss`: SwissTournament
 	fmt.Fprintf(os.Stdout, "Response from `TournamentsSwissAPI.ApiTeamSwiss`: %v\n", resp)
 }
 ```
@@ -572,13 +572,13 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **max** | **int32** | How many tournaments to download. | [default to 100]
- **status** | **string** | [Filter] Only swiss tournaments in this current state.  | 
+ **status** | [**SwissStatus**](SwissStatus.md) | [Filter] Only swiss tournaments in this current state.  | 
  **createdBy** | **string** | [Filter] Only swiss tournaments created by a given user.  | 
  **name** | **string** | [Filter] Only swiss tournaments with a given name.  | 
 
 ### Return type
 
-[**ApiSwissNew200Response**](ApiSwissNew200Response.md)
+[**SwissTournament**](SwissTournament.md)
 
 ### Authorization
 
@@ -758,7 +758,7 @@ No authorization required
 
 ## Swiss
 
-> ApiSwissNew200Response Swiss(ctx, id).Execute()
+> SwissTournament Swiss(ctx, id).Execute()
 
 Get info about a Swiss tournament
 
@@ -786,7 +786,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TournamentsSwissAPI.Swiss``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `Swiss`: ApiSwissNew200Response
+	// response from `Swiss`: SwissTournament
 	fmt.Fprintf(os.Stdout, "Response from `TournamentsSwissAPI.Swiss`: %v\n", resp)
 }
 ```
@@ -810,7 +810,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiSwissNew200Response**](ApiSwissNew200Response.md)
+[**SwissTournament**](SwissTournament.md)
 
 ### Authorization
 

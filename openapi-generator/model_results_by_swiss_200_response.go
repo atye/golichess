@@ -28,8 +28,7 @@ type ResultsBySwiss200Response struct {
 	TieBreak int32 `json:"tieBreak"`
 	Rating int32 `json:"rating"`
 	Username string `json:"username"`
-	// only appears if the user is a titled player or a bot user
-	Title NullableString `json:"title,omitempty"`
+	Title *Title `json:"title,omitempty"`
 	Performance int32 `json:"performance"`
 }
 
@@ -210,46 +209,36 @@ func (o *ResultsBySwiss200Response) SetUsername(v string) {
 	o.Username = v
 }
 
-// GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ResultsBySwiss200Response) GetTitle() string {
-	if o == nil || IsNil(o.Title.Get()) {
-		var ret string
+// GetTitle returns the Title field value if set, zero value otherwise.
+func (o *ResultsBySwiss200Response) GetTitle() Title {
+	if o == nil || IsNil(o.Title) {
+		var ret Title
 		return ret
 	}
-	return *o.Title.Get()
+	return *o.Title
 }
 
 // GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ResultsBySwiss200Response) GetTitleOk() (*string, bool) {
-	if o == nil {
+func (o *ResultsBySwiss200Response) GetTitleOk() (*Title, bool) {
+	if o == nil || IsNil(o.Title) {
 		return nil, false
 	}
-	return o.Title.Get(), o.Title.IsSet()
+	return o.Title, true
 }
 
 // HasTitle returns a boolean if a field has been set.
 func (o *ResultsBySwiss200Response) HasTitle() bool {
-	if o != nil && o.Title.IsSet() {
+	if o != nil && !IsNil(o.Title) {
 		return true
 	}
 
 	return false
 }
 
-// SetTitle gets a reference to the given NullableString and assigns it to the Title field.
-func (o *ResultsBySwiss200Response) SetTitle(v string) {
-	o.Title.Set(&v)
-}
-// SetTitleNil sets the value for Title to be an explicit nil
-func (o *ResultsBySwiss200Response) SetTitleNil() {
-	o.Title.Set(nil)
-}
-
-// UnsetTitle ensures that no value is present for Title, not even an explicit nil
-func (o *ResultsBySwiss200Response) UnsetTitle() {
-	o.Title.Unset()
+// SetTitle gets a reference to the given Title and assigns it to the Title field.
+func (o *ResultsBySwiss200Response) SetTitle(v Title) {
+	o.Title = &v
 }
 
 // GetPerformance returns the Performance field value
@@ -294,8 +283,8 @@ func (o ResultsBySwiss200Response) ToMap() (map[string]interface{}, error) {
 	toSerialize["tieBreak"] = o.TieBreak
 	toSerialize["rating"] = o.Rating
 	toSerialize["username"] = o.Username
-	if o.Title.IsSet() {
-		toSerialize["title"] = o.Title.Get()
+	if !IsNil(o.Title) {
+		toSerialize["title"] = o.Title
 	}
 	toSerialize["performance"] = o.Performance
 	return toSerialize, nil

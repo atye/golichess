@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## ApiUserFollowing
 
-> AccountMe200Response ApiUserFollowing(ctx).Execute()
+> UserExtended ApiUserFollowing(ctx).Execute()
 
 Get users followed by the logged in user
 
@@ -41,7 +41,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `RelationsAPI.ApiUserFollowing``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiUserFollowing`: AccountMe200Response
+	// response from `ApiUserFollowing`: UserExtended
 	fmt.Fprintf(os.Stdout, "Response from `RelationsAPI.ApiUserFollowing`: %v\n", resp)
 }
 ```
@@ -57,7 +57,7 @@ Other parameters are passed through a pointer to a apiApiUserFollowingRequest st
 
 ### Return type
 
-[**AccountMe200Response**](AccountMe200Response.md)
+[**UserExtended**](UserExtended.md)
 
 ### Authorization
 
@@ -75,7 +75,7 @@ Other parameters are passed through a pointer to a apiApiUserFollowingRequest st
 
 ## BlockUser
 
-> AccountKidPost200Response BlockUser(ctx, username).Execute()
+> Ok BlockUser(ctx, username).Execute()
 
 Block a player
 
@@ -103,7 +103,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `RelationsAPI.BlockUser``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BlockUser`: AccountKidPost200Response
+	// response from `BlockUser`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `RelationsAPI.BlockUser`: %v\n", resp)
 }
 ```
@@ -127,7 +127,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -145,7 +145,7 @@ Name | Type | Description  | Notes
 
 ## FollowUser
 
-> AccountKidPost200Response FollowUser(ctx, username).Execute()
+> Ok FollowUser(ctx, username).Execute()
 
 Follow a player
 
@@ -173,7 +173,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `RelationsAPI.FollowUser``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `FollowUser`: AccountKidPost200Response
+	// response from `FollowUser`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `RelationsAPI.FollowUser`: %v\n", resp)
 }
 ```
@@ -197,7 +197,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -215,7 +215,7 @@ Name | Type | Description  | Notes
 
 ## UnblockUser
 
-> AccountKidPost200Response UnblockUser(ctx, username).Execute()
+> Ok UnblockUser(ctx, username).Execute()
 
 Unblock a player
 
@@ -243,7 +243,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `RelationsAPI.UnblockUser``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UnblockUser`: AccountKidPost200Response
+	// response from `UnblockUser`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `RelationsAPI.UnblockUser`: %v\n", resp)
 }
 ```
@@ -267,7 +267,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 
@@ -285,7 +285,7 @@ Name | Type | Description  | Notes
 
 ## UnfollowUser
 
-> AccountKidPost200Response UnfollowUser(ctx, username).Execute()
+> Ok UnfollowUser(ctx, username).Execute()
 
 Unfollow a player
 
@@ -313,7 +313,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `RelationsAPI.UnfollowUser``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UnfollowUser`: AccountKidPost200Response
+	// response from `UnfollowUser`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `RelationsAPI.UnfollowUser`: %v\n", resp)
 }
 ```
@@ -337,7 +337,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 

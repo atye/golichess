@@ -23,8 +23,8 @@ var _ MappedNullable = &ApiExternalEngineAcquire200Response{}
 // ApiExternalEngineAcquire200Response struct for ApiExternalEngineAcquire200Response
 type ApiExternalEngineAcquire200Response struct {
 	Id string `json:"id"`
-	Work ApiExternalEngineAnalyseRequestWork `json:"work"`
-	Engine ApiExternalEngineList200ResponseInner `json:"engine"`
+	Work ExternalEngineWork `json:"work"`
+	Engine ExternalEngine `json:"engine"`
 }
 
 type _ApiExternalEngineAcquire200Response ApiExternalEngineAcquire200Response
@@ -33,7 +33,7 @@ type _ApiExternalEngineAcquire200Response ApiExternalEngineAcquire200Response
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApiExternalEngineAcquire200Response(id string, work ApiExternalEngineAnalyseRequestWork, engine ApiExternalEngineList200ResponseInner) *ApiExternalEngineAcquire200Response {
+func NewApiExternalEngineAcquire200Response(id string, work ExternalEngineWork, engine ExternalEngine) *ApiExternalEngineAcquire200Response {
 	this := ApiExternalEngineAcquire200Response{}
 	this.Id = id
 	this.Work = work
@@ -74,9 +74,9 @@ func (o *ApiExternalEngineAcquire200Response) SetId(v string) {
 }
 
 // GetWork returns the Work field value
-func (o *ApiExternalEngineAcquire200Response) GetWork() ApiExternalEngineAnalyseRequestWork {
+func (o *ApiExternalEngineAcquire200Response) GetWork() ExternalEngineWork {
 	if o == nil {
-		var ret ApiExternalEngineAnalyseRequestWork
+		var ret ExternalEngineWork
 		return ret
 	}
 
@@ -85,7 +85,7 @@ func (o *ApiExternalEngineAcquire200Response) GetWork() ApiExternalEngineAnalyse
 
 // GetWorkOk returns a tuple with the Work field value
 // and a boolean to check if the value has been set.
-func (o *ApiExternalEngineAcquire200Response) GetWorkOk() (*ApiExternalEngineAnalyseRequestWork, bool) {
+func (o *ApiExternalEngineAcquire200Response) GetWorkOk() (*ExternalEngineWork, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -93,14 +93,14 @@ func (o *ApiExternalEngineAcquire200Response) GetWorkOk() (*ApiExternalEngineAna
 }
 
 // SetWork sets field value
-func (o *ApiExternalEngineAcquire200Response) SetWork(v ApiExternalEngineAnalyseRequestWork) {
+func (o *ApiExternalEngineAcquire200Response) SetWork(v ExternalEngineWork) {
 	o.Work = v
 }
 
 // GetEngine returns the Engine field value
-func (o *ApiExternalEngineAcquire200Response) GetEngine() ApiExternalEngineList200ResponseInner {
+func (o *ApiExternalEngineAcquire200Response) GetEngine() ExternalEngine {
 	if o == nil {
-		var ret ApiExternalEngineList200ResponseInner
+		var ret ExternalEngine
 		return ret
 	}
 
@@ -109,7 +109,7 @@ func (o *ApiExternalEngineAcquire200Response) GetEngine() ApiExternalEngineList2
 
 // GetEngineOk returns a tuple with the Engine field value
 // and a boolean to check if the value has been set.
-func (o *ApiExternalEngineAcquire200Response) GetEngineOk() (*ApiExternalEngineList200ResponseInner, bool) {
+func (o *ApiExternalEngineAcquire200Response) GetEngineOk() (*ExternalEngine, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -117,7 +117,7 @@ func (o *ApiExternalEngineAcquire200Response) GetEngineOk() (*ApiExternalEngineL
 }
 
 // SetEngine sets field value
-func (o *ApiExternalEngineAcquire200Response) SetEngine(v ApiExternalEngineList200ResponseInner) {
+func (o *ApiExternalEngineAcquire200Response) SetEngine(v ExternalEngine) {
 	o.Engine = v
 }
 

@@ -35,8 +35,8 @@ type RelationsAPI interface {
 	ApiUserFollowing(ctx context.Context) RelationsAPIApiUserFollowingRequest
 
 	// ApiUserFollowingExecute executes the request
-	//  @return AccountMe200Response
-	ApiUserFollowingExecute(r RelationsAPIApiUserFollowingRequest) (*AccountMe200Response, *http.Response, error)
+	//  @return UserExtended
+	ApiUserFollowingExecute(r RelationsAPIApiUserFollowingRequest) (*UserExtended, *http.Response, error)
 
 	/*
 	BlockUser Block a player
@@ -51,8 +51,8 @@ type RelationsAPI interface {
 	BlockUser(ctx context.Context, username string) RelationsAPIBlockUserRequest
 
 	// BlockUserExecute executes the request
-	//  @return AccountKidPost200Response
-	BlockUserExecute(r RelationsAPIBlockUserRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	BlockUserExecute(r RelationsAPIBlockUserRequest) (*Ok, *http.Response, error)
 
 	/*
 	FollowUser Follow a player
@@ -67,8 +67,8 @@ type RelationsAPI interface {
 	FollowUser(ctx context.Context, username string) RelationsAPIFollowUserRequest
 
 	// FollowUserExecute executes the request
-	//  @return AccountKidPost200Response
-	FollowUserExecute(r RelationsAPIFollowUserRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	FollowUserExecute(r RelationsAPIFollowUserRequest) (*Ok, *http.Response, error)
 
 	/*
 	UnblockUser Unblock a player
@@ -83,8 +83,8 @@ type RelationsAPI interface {
 	UnblockUser(ctx context.Context, username string) RelationsAPIUnblockUserRequest
 
 	// UnblockUserExecute executes the request
-	//  @return AccountKidPost200Response
-	UnblockUserExecute(r RelationsAPIUnblockUserRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	UnblockUserExecute(r RelationsAPIUnblockUserRequest) (*Ok, *http.Response, error)
 
 	/*
 	UnfollowUser Unfollow a player
@@ -99,8 +99,8 @@ type RelationsAPI interface {
 	UnfollowUser(ctx context.Context, username string) RelationsAPIUnfollowUserRequest
 
 	// UnfollowUserExecute executes the request
-	//  @return AccountKidPost200Response
-	UnfollowUserExecute(r RelationsAPIUnfollowUserRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	UnfollowUserExecute(r RelationsAPIUnfollowUserRequest) (*Ok, *http.Response, error)
 }
 
 // RelationsAPIService RelationsAPI service
@@ -111,7 +111,7 @@ type RelationsAPIApiUserFollowingRequest struct {
 	ApiService RelationsAPI
 }
 
-func (r RelationsAPIApiUserFollowingRequest) Execute() (*AccountMe200Response, *http.Response, error) {
+func (r RelationsAPIApiUserFollowingRequest) Execute() (*UserExtended, *http.Response, error) {
 	return r.ApiService.ApiUserFollowingExecute(r)
 }
 
@@ -132,13 +132,13 @@ func (a *RelationsAPIService) ApiUserFollowing(ctx context.Context) RelationsAPI
 }
 
 // Execute executes the request
-//  @return AccountMe200Response
-func (a *RelationsAPIService) ApiUserFollowingExecute(r RelationsAPIApiUserFollowingRequest) (*AccountMe200Response, *http.Response, error) {
+//  @return UserExtended
+func (a *RelationsAPIService) ApiUserFollowingExecute(r RelationsAPIApiUserFollowingRequest) (*UserExtended, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountMe200Response
+		localVarReturnValue  *UserExtended
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RelationsAPIService.ApiUserFollowing")
@@ -212,7 +212,7 @@ type RelationsAPIBlockUserRequest struct {
 	username string
 }
 
-func (r RelationsAPIBlockUserRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r RelationsAPIBlockUserRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.BlockUserExecute(r)
 }
 
@@ -235,13 +235,13 @@ func (a *RelationsAPIService) BlockUser(ctx context.Context, username string) Re
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *RelationsAPIService) BlockUserExecute(r RelationsAPIBlockUserRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *RelationsAPIService) BlockUserExecute(r RelationsAPIBlockUserRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RelationsAPIService.BlockUser")
@@ -316,7 +316,7 @@ type RelationsAPIFollowUserRequest struct {
 	username string
 }
 
-func (r RelationsAPIFollowUserRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r RelationsAPIFollowUserRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.FollowUserExecute(r)
 }
 
@@ -339,13 +339,13 @@ func (a *RelationsAPIService) FollowUser(ctx context.Context, username string) R
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *RelationsAPIService) FollowUserExecute(r RelationsAPIFollowUserRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *RelationsAPIService) FollowUserExecute(r RelationsAPIFollowUserRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RelationsAPIService.FollowUser")
@@ -420,7 +420,7 @@ type RelationsAPIUnblockUserRequest struct {
 	username string
 }
 
-func (r RelationsAPIUnblockUserRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r RelationsAPIUnblockUserRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.UnblockUserExecute(r)
 }
 
@@ -443,13 +443,13 @@ func (a *RelationsAPIService) UnblockUser(ctx context.Context, username string) 
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *RelationsAPIService) UnblockUserExecute(r RelationsAPIUnblockUserRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *RelationsAPIService) UnblockUserExecute(r RelationsAPIUnblockUserRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RelationsAPIService.UnblockUser")
@@ -524,7 +524,7 @@ type RelationsAPIUnfollowUserRequest struct {
 	username string
 }
 
-func (r RelationsAPIUnfollowUserRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r RelationsAPIUnfollowUserRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.UnfollowUserExecute(r)
 }
 
@@ -547,13 +547,13 @@ func (a *RelationsAPIService) UnfollowUser(ctx context.Context, username string)
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *RelationsAPIService) UnfollowUserExecute(r RelationsAPIUnfollowUserRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *RelationsAPIService) UnfollowUserExecute(r RelationsAPIUnfollowUserRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RelationsAPIService.UnfollowUser")

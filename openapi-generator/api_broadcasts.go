@@ -57,8 +57,8 @@ Rounds are ordered by rank, which is roughly chronological, most recent first, s
 	BroadcastMyRoundsGet(ctx context.Context) BroadcastsAPIBroadcastMyRoundsGetRequest
 
 	// BroadcastMyRoundsGetExecute executes the request
-	//  @return BroadcastRoundCreate200Response
-	BroadcastMyRoundsGetExecute(r BroadcastsAPIBroadcastMyRoundsGetRequest) (*BroadcastRoundCreate200Response, *http.Response, error)
+	//  @return BroadcastMyRound
+	BroadcastMyRoundsGetExecute(r BroadcastsAPIBroadcastMyRoundsGetRequest) (*BroadcastMyRound, *http.Response, error)
 
 	/*
 	BroadcastPlayerGet Get a player of a broadcast
@@ -74,8 +74,8 @@ Rounds are ordered by rank, which is roughly chronological, most recent first, s
 	BroadcastPlayerGet(ctx context.Context, broadcastTournamentId string, playerId string) BroadcastsAPIBroadcastPlayerGetRequest
 
 	// BroadcastPlayerGetExecute executes the request
-	//  @return BroadcastPlayerGet200Response
-	BroadcastPlayerGetExecute(r BroadcastsAPIBroadcastPlayerGetRequest) (*BroadcastPlayerGet200Response, *http.Response, error)
+	//  @return BroadcastPlayerEntryWithFideAndGames
+	BroadcastPlayerGetExecute(r BroadcastsAPIBroadcastPlayerGetRequest) (*BroadcastPlayerEntryWithFideAndGames, *http.Response, error)
 
 	/*
 	BroadcastPlayersGet Get players of a broadcast
@@ -90,8 +90,8 @@ Rounds are ordered by rank, which is roughly chronological, most recent first, s
 	BroadcastPlayersGet(ctx context.Context, broadcastTournamentId string) BroadcastsAPIBroadcastPlayersGetRequest
 
 	// BroadcastPlayersGetExecute executes the request
-	//  @return []BroadcastPlayersGet200ResponseInner
-	BroadcastPlayersGetExecute(r BroadcastsAPIBroadcastPlayersGetRequest) ([]BroadcastPlayersGet200ResponseInner, *http.Response, error)
+	//  @return []BroadcastPlayerEntry
+	BroadcastPlayersGetExecute(r BroadcastsAPIBroadcastPlayersGetRequest) ([]BroadcastPlayerEntry, *http.Response, error)
 
 	/*
 	BroadcastPush Push PGN to a broadcast round
@@ -107,8 +107,8 @@ Only for broadcasts without a source URL.
 	BroadcastPush(ctx context.Context, broadcastRoundId string) BroadcastsAPIBroadcastPushRequest
 
 	// BroadcastPushExecute executes the request
-	//  @return BroadcastPush200Response
-	BroadcastPushExecute(r BroadcastsAPIBroadcastPushRequest) (*BroadcastPush200Response, *http.Response, error)
+	//  @return BroadcastPgnPush
+	BroadcastPushExecute(r BroadcastsAPIBroadcastPushRequest) (*BroadcastPgnPush, *http.Response, error)
 
 	/*
 	BroadcastRoundCreate Create a broadcast round
@@ -126,8 +126,8 @@ Choose one between `syncUrl`, `syncUrls`, `syncIds` and `syncUsers`, if it is mi
 	BroadcastRoundCreate(ctx context.Context, broadcastTournamentId string) BroadcastsAPIBroadcastRoundCreateRequest
 
 	// BroadcastRoundCreateExecute executes the request
-	//  @return BroadcastRoundCreate200Response
-	BroadcastRoundCreateExecute(r BroadcastsAPIBroadcastRoundCreateRequest) (*BroadcastRoundCreate200Response, *http.Response, error)
+	//  @return BroadcastRoundNew
+	BroadcastRoundCreateExecute(r BroadcastsAPIBroadcastRoundCreateRequest) (*BroadcastRoundNew, *http.Response, error)
 
 	/*
 	BroadcastRoundGet Get a broadcast round
@@ -144,8 +144,8 @@ Choose one between `syncUrl`, `syncUrls`, `syncIds` and `syncUsers`, if it is mi
 	BroadcastRoundGet(ctx context.Context, broadcastTournamentSlug string, broadcastRoundSlug string, broadcastRoundId string) BroadcastsAPIBroadcastRoundGetRequest
 
 	// BroadcastRoundGetExecute executes the request
-	//  @return BroadcastRoundGet200Response
-	BroadcastRoundGetExecute(r BroadcastsAPIBroadcastRoundGetRequest) (*BroadcastRoundGet200Response, *http.Response, error)
+	//  @return BroadcastRound
+	BroadcastRoundGetExecute(r BroadcastsAPIBroadcastRoundGetRequest) (*BroadcastRound, *http.Response, error)
 
 	/*
 	BroadcastRoundPgn Export one round as PGN
@@ -180,8 +180,8 @@ a new PGN every time a game is updated, in real-time.
 	BroadcastRoundReset(ctx context.Context, broadcastRoundId string) BroadcastsAPIBroadcastRoundResetRequest
 
 	// BroadcastRoundResetExecute executes the request
-	//  @return AccountKidPost200Response
-	BroadcastRoundResetExecute(r BroadcastsAPIBroadcastRoundResetRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	BroadcastRoundResetExecute(r BroadcastsAPIBroadcastRoundResetRequest) (*Ok, *http.Response, error)
 
 	/*
 	BroadcastRoundUpdate Update a broadcast round
@@ -199,8 +199,8 @@ For instance, if you omit `startDate`, then any pre-existing start date will be 
 	BroadcastRoundUpdate(ctx context.Context, broadcastRoundId string) BroadcastsAPIBroadcastRoundUpdateRequest
 
 	// BroadcastRoundUpdateExecute executes the request
-	//  @return BroadcastRoundUpdate200Response
-	BroadcastRoundUpdateExecute(r BroadcastsAPIBroadcastRoundUpdateRequest) (*BroadcastRoundUpdate200Response, *http.Response, error)
+	//  @return BroadcastRound
+	BroadcastRoundUpdateExecute(r BroadcastsAPIBroadcastRoundUpdateRequest) (*BroadcastRound, *http.Response, error)
 
 	/*
 	BroadcastStreamRoundPgn Stream an ongoing broadcast round as PGN
@@ -235,8 +235,8 @@ and no pollings means no latency, and minimum impact on the server.
 	BroadcastTeamLeaderboardGet(ctx context.Context, broadcastTournamentId string) BroadcastsAPIBroadcastTeamLeaderboardGetRequest
 
 	// BroadcastTeamLeaderboardGetExecute executes the request
-	//  @return []BroadcastTeamLeaderboardGet200ResponseInner
-	BroadcastTeamLeaderboardGetExecute(r BroadcastsAPIBroadcastTeamLeaderboardGetRequest) ([]BroadcastTeamLeaderboardGet200ResponseInner, *http.Response, error)
+	//  @return []BroadcastTeamLeaderboardEntry
+	BroadcastTeamLeaderboardGetExecute(r BroadcastsAPIBroadcastTeamLeaderboardGetRequest) ([]BroadcastTeamLeaderboardEntry, *http.Response, error)
 
 	/*
 	BroadcastTourCreate Create a broadcast tournament
@@ -251,8 +251,8 @@ This endpoint accepts the same form data as the [web form](https://lichess.org/b
 	BroadcastTourCreate(ctx context.Context) BroadcastsAPIBroadcastTourCreateRequest
 
 	// BroadcastTourCreateExecute executes the request
-	//  @return BroadcastsOfficial200Response
-	BroadcastTourCreateExecute(r BroadcastsAPIBroadcastTourCreateRequest) (*BroadcastsOfficial200Response, *http.Response, error)
+	//  @return BroadcastWithRounds
+	BroadcastTourCreateExecute(r BroadcastsAPIBroadcastTourCreateRequest) (*BroadcastWithRounds, *http.Response, error)
 
 	/*
 	BroadcastTourGet Get a broadcast tournament
@@ -267,8 +267,8 @@ This endpoint accepts the same form data as the [web form](https://lichess.org/b
 	BroadcastTourGet(ctx context.Context, broadcastTournamentId string) BroadcastsAPIBroadcastTourGetRequest
 
 	// BroadcastTourGetExecute executes the request
-	//  @return BroadcastTourGet200Response
-	BroadcastTourGetExecute(r BroadcastsAPIBroadcastTourGetRequest) (*BroadcastTourGet200Response, *http.Response, error)
+	//  @return BroadcastWithRoundsAndFullGroup
+	BroadcastTourGetExecute(r BroadcastsAPIBroadcastTourGetRequest) (*BroadcastWithRoundsAndFullGroup, *http.Response, error)
 
 	/*
 	BroadcastTourUpdate Update your broadcast tournament
@@ -285,8 +285,8 @@ All fields must be populated with data. Missing fields will override the broadca
 	BroadcastTourUpdate(ctx context.Context, broadcastTournamentId string) BroadcastsAPIBroadcastTourUpdateRequest
 
 	// BroadcastTourUpdateExecute executes the request
-	//  @return AccountKidPost200Response
-	BroadcastTourUpdateExecute(r BroadcastsAPIBroadcastTourUpdateRequest) (*AccountKidPost200Response, *http.Response, error)
+	//  @return Ok
+	BroadcastTourUpdateExecute(r BroadcastsAPIBroadcastTourUpdateRequest) (*Ok, *http.Response, error)
 
 	/*
 	BroadcastsByUser Get broadcasts created by a user
@@ -321,8 +321,8 @@ Broadcasts are streamed as [ndjson](#description/streaming-with-nd-json).
 	BroadcastsOfficial(ctx context.Context) BroadcastsAPIBroadcastsOfficialRequest
 
 	// BroadcastsOfficialExecute executes the request
-	//  @return BroadcastsOfficial200Response
-	BroadcastsOfficialExecute(r BroadcastsAPIBroadcastsOfficialRequest) (*BroadcastsOfficial200Response, *http.Response, error)
+	//  @return BroadcastWithRounds
+	BroadcastsOfficialExecute(r BroadcastsAPIBroadcastsOfficialRequest) (*BroadcastWithRounds, *http.Response, error)
 
 	/*
 	BroadcastsSearch Search broadcasts
@@ -351,8 +351,8 @@ Broadcasts are streamed as [ndjson](#description/streaming-with-nd-json).
 	BroadcastsTop(ctx context.Context) BroadcastsAPIBroadcastsTopRequest
 
 	// BroadcastsTopExecute executes the request
-	//  @return BroadcastsTop200Response
-	BroadcastsTopExecute(r BroadcastsAPIBroadcastsTopRequest) (*BroadcastsTop200Response, *http.Response, error)
+	//  @return BroadcastTop
+	BroadcastsTopExecute(r BroadcastsAPIBroadcastsTopRequest) (*BroadcastTop, *http.Response, error)
 }
 
 // BroadcastsAPIService BroadcastsAPI service
@@ -511,7 +511,7 @@ func (r BroadcastsAPIBroadcastMyRoundsGetRequest) Nb(nb int32) BroadcastsAPIBroa
 	return r
 }
 
-func (r BroadcastsAPIBroadcastMyRoundsGetRequest) Execute() (*BroadcastRoundCreate200Response, *http.Response, error) {
+func (r BroadcastsAPIBroadcastMyRoundsGetRequest) Execute() (*BroadcastMyRound, *http.Response, error) {
 	return r.ApiService.BroadcastMyRoundsGetExecute(r)
 }
 
@@ -535,13 +535,13 @@ func (a *BroadcastsAPIService) BroadcastMyRoundsGet(ctx context.Context) Broadca
 }
 
 // Execute executes the request
-//  @return BroadcastRoundCreate200Response
-func (a *BroadcastsAPIService) BroadcastMyRoundsGetExecute(r BroadcastsAPIBroadcastMyRoundsGetRequest) (*BroadcastRoundCreate200Response, *http.Response, error) {
+//  @return BroadcastMyRound
+func (a *BroadcastsAPIService) BroadcastMyRoundsGetExecute(r BroadcastsAPIBroadcastMyRoundsGetRequest) (*BroadcastMyRound, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *BroadcastRoundCreate200Response
+		localVarReturnValue  *BroadcastMyRound
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BroadcastsAPIService.BroadcastMyRoundsGet")
@@ -619,7 +619,7 @@ type BroadcastsAPIBroadcastPlayerGetRequest struct {
 	playerId string
 }
 
-func (r BroadcastsAPIBroadcastPlayerGetRequest) Execute() (*BroadcastPlayerGet200Response, *http.Response, error) {
+func (r BroadcastsAPIBroadcastPlayerGetRequest) Execute() (*BroadcastPlayerEntryWithFideAndGames, *http.Response, error) {
 	return r.ApiService.BroadcastPlayerGetExecute(r)
 }
 
@@ -644,13 +644,13 @@ func (a *BroadcastsAPIService) BroadcastPlayerGet(ctx context.Context, broadcast
 }
 
 // Execute executes the request
-//  @return BroadcastPlayerGet200Response
-func (a *BroadcastsAPIService) BroadcastPlayerGetExecute(r BroadcastsAPIBroadcastPlayerGetRequest) (*BroadcastPlayerGet200Response, *http.Response, error) {
+//  @return BroadcastPlayerEntryWithFideAndGames
+func (a *BroadcastsAPIService) BroadcastPlayerGetExecute(r BroadcastsAPIBroadcastPlayerGetRequest) (*BroadcastPlayerEntryWithFideAndGames, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *BroadcastPlayerGet200Response
+		localVarReturnValue  *BroadcastPlayerEntryWithFideAndGames
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BroadcastsAPIService.BroadcastPlayerGet")
@@ -712,7 +712,7 @@ func (a *BroadcastsAPIService) BroadcastPlayerGetExecute(r BroadcastsAPIBroadcas
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v RacerGet404Response
+			var v NotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -742,7 +742,7 @@ type BroadcastsAPIBroadcastPlayersGetRequest struct {
 	broadcastTournamentId string
 }
 
-func (r BroadcastsAPIBroadcastPlayersGetRequest) Execute() ([]BroadcastPlayersGet200ResponseInner, *http.Response, error) {
+func (r BroadcastsAPIBroadcastPlayersGetRequest) Execute() ([]BroadcastPlayerEntry, *http.Response, error) {
 	return r.ApiService.BroadcastPlayersGetExecute(r)
 }
 
@@ -765,13 +765,13 @@ func (a *BroadcastsAPIService) BroadcastPlayersGet(ctx context.Context, broadcas
 }
 
 // Execute executes the request
-//  @return []BroadcastPlayersGet200ResponseInner
-func (a *BroadcastsAPIService) BroadcastPlayersGetExecute(r BroadcastsAPIBroadcastPlayersGetRequest) ([]BroadcastPlayersGet200ResponseInner, *http.Response, error) {
+//  @return []BroadcastPlayerEntry
+func (a *BroadcastsAPIService) BroadcastPlayersGetExecute(r BroadcastsAPIBroadcastPlayersGetRequest) ([]BroadcastPlayerEntry, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []BroadcastPlayersGet200ResponseInner
+		localVarReturnValue  []BroadcastPlayerEntry
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BroadcastsAPIService.BroadcastPlayersGet")
@@ -859,7 +859,7 @@ func (r BroadcastsAPIBroadcastPushRequest) Body(body string) BroadcastsAPIBroadc
 	return r
 }
 
-func (r BroadcastsAPIBroadcastPushRequest) Execute() (*BroadcastPush200Response, *http.Response, error) {
+func (r BroadcastsAPIBroadcastPushRequest) Execute() (*BroadcastPgnPush, *http.Response, error) {
 	return r.ApiService.BroadcastPushExecute(r)
 }
 
@@ -883,13 +883,13 @@ func (a *BroadcastsAPIService) BroadcastPush(ctx context.Context, broadcastRound
 }
 
 // Execute executes the request
-//  @return BroadcastPush200Response
-func (a *BroadcastsAPIService) BroadcastPushExecute(r BroadcastsAPIBroadcastPushRequest) (*BroadcastPush200Response, *http.Response, error) {
+//  @return BroadcastPgnPush
+func (a *BroadcastsAPIService) BroadcastPushExecute(r BroadcastsAPIBroadcastPushRequest) (*BroadcastPgnPush, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *BroadcastPush200Response
+		localVarReturnValue  *BroadcastPgnPush
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BroadcastsAPIService.BroadcastPush")
@@ -1107,7 +1107,7 @@ func (r BroadcastsAPIBroadcastRoundCreateRequest) Period(period int32) Broadcast
 	return r
 }
 
-func (r BroadcastsAPIBroadcastRoundCreateRequest) Execute() (*BroadcastRoundCreate200Response, *http.Response, error) {
+func (r BroadcastsAPIBroadcastRoundCreateRequest) Execute() (*BroadcastRoundNew, *http.Response, error) {
 	return r.ApiService.BroadcastRoundCreateExecute(r)
 }
 
@@ -1133,13 +1133,13 @@ func (a *BroadcastsAPIService) BroadcastRoundCreate(ctx context.Context, broadca
 }
 
 // Execute executes the request
-//  @return BroadcastRoundCreate200Response
-func (a *BroadcastsAPIService) BroadcastRoundCreateExecute(r BroadcastsAPIBroadcastRoundCreateRequest) (*BroadcastRoundCreate200Response, *http.Response, error) {
+//  @return BroadcastRoundNew
+func (a *BroadcastsAPIService) BroadcastRoundCreateExecute(r BroadcastsAPIBroadcastRoundCreateRequest) (*BroadcastRoundNew, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *BroadcastRoundCreate200Response
+		localVarReturnValue  *BroadcastRoundNew
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BroadcastsAPIService.BroadcastRoundCreate")
@@ -1265,7 +1265,7 @@ func (a *BroadcastsAPIService) BroadcastRoundCreateExecute(r BroadcastsAPIBroadc
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1297,7 +1297,7 @@ type BroadcastsAPIBroadcastRoundGetRequest struct {
 	broadcastRoundId string
 }
 
-func (r BroadcastsAPIBroadcastRoundGetRequest) Execute() (*BroadcastRoundGet200Response, *http.Response, error) {
+func (r BroadcastsAPIBroadcastRoundGetRequest) Execute() (*BroadcastRound, *http.Response, error) {
 	return r.ApiService.BroadcastRoundGetExecute(r)
 }
 
@@ -1324,13 +1324,13 @@ func (a *BroadcastsAPIService) BroadcastRoundGet(ctx context.Context, broadcastT
 }
 
 // Execute executes the request
-//  @return BroadcastRoundGet200Response
-func (a *BroadcastsAPIService) BroadcastRoundGetExecute(r BroadcastsAPIBroadcastRoundGetRequest) (*BroadcastRoundGet200Response, *http.Response, error) {
+//  @return BroadcastRound
+func (a *BroadcastsAPIService) BroadcastRoundGetExecute(r BroadcastsAPIBroadcastRoundGetRequest) (*BroadcastRound, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *BroadcastRoundGet200Response
+		localVarReturnValue  *BroadcastRound
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BroadcastsAPIService.BroadcastRoundGet")
@@ -1555,7 +1555,7 @@ type BroadcastsAPIBroadcastRoundResetRequest struct {
 	broadcastRoundId string
 }
 
-func (r BroadcastsAPIBroadcastRoundResetRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r BroadcastsAPIBroadcastRoundResetRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.BroadcastRoundResetExecute(r)
 }
 
@@ -1578,13 +1578,13 @@ func (a *BroadcastsAPIService) BroadcastRoundReset(ctx context.Context, broadcas
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *BroadcastsAPIService) BroadcastRoundResetExecute(r BroadcastsAPIBroadcastRoundResetRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *BroadcastsAPIService) BroadcastRoundResetExecute(r BroadcastsAPIBroadcastRoundResetRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BroadcastsAPIService.BroadcastRoundReset")
@@ -1794,7 +1794,7 @@ func (r BroadcastsAPIBroadcastRoundUpdateRequest) Period(period int32) Broadcast
 	return r
 }
 
-func (r BroadcastsAPIBroadcastRoundUpdateRequest) Execute() (*BroadcastRoundUpdate200Response, *http.Response, error) {
+func (r BroadcastsAPIBroadcastRoundUpdateRequest) Execute() (*BroadcastRound, *http.Response, error) {
 	return r.ApiService.BroadcastRoundUpdateExecute(r)
 }
 
@@ -1820,13 +1820,13 @@ func (a *BroadcastsAPIService) BroadcastRoundUpdate(ctx context.Context, broadca
 }
 
 // Execute executes the request
-//  @return BroadcastRoundUpdate200Response
-func (a *BroadcastsAPIService) BroadcastRoundUpdateExecute(r BroadcastsAPIBroadcastRoundUpdateRequest) (*BroadcastRoundUpdate200Response, *http.Response, error) {
+//  @return BroadcastRound
+func (a *BroadcastsAPIService) BroadcastRoundUpdateExecute(r BroadcastsAPIBroadcastRoundUpdateRequest) (*BroadcastRound, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *BroadcastRoundUpdate200Response
+		localVarReturnValue  *BroadcastRound
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BroadcastsAPIService.BroadcastRoundUpdate")
@@ -1955,7 +1955,7 @@ func (a *BroadcastsAPIService) BroadcastRoundUpdateExecute(r BroadcastsAPIBroadc
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2127,7 +2127,7 @@ type BroadcastsAPIBroadcastTeamLeaderboardGetRequest struct {
 	broadcastTournamentId string
 }
 
-func (r BroadcastsAPIBroadcastTeamLeaderboardGetRequest) Execute() ([]BroadcastTeamLeaderboardGet200ResponseInner, *http.Response, error) {
+func (r BroadcastsAPIBroadcastTeamLeaderboardGetRequest) Execute() ([]BroadcastTeamLeaderboardEntry, *http.Response, error) {
 	return r.ApiService.BroadcastTeamLeaderboardGetExecute(r)
 }
 
@@ -2150,13 +2150,13 @@ func (a *BroadcastsAPIService) BroadcastTeamLeaderboardGet(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return []BroadcastTeamLeaderboardGet200ResponseInner
-func (a *BroadcastsAPIService) BroadcastTeamLeaderboardGetExecute(r BroadcastsAPIBroadcastTeamLeaderboardGetRequest) ([]BroadcastTeamLeaderboardGet200ResponseInner, *http.Response, error) {
+//  @return []BroadcastTeamLeaderboardEntry
+func (a *BroadcastsAPIService) BroadcastTeamLeaderboardGetExecute(r BroadcastsAPIBroadcastTeamLeaderboardGetRequest) ([]BroadcastTeamLeaderboardEntry, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []BroadcastTeamLeaderboardGet200ResponseInner
+		localVarReturnValue  []BroadcastTeamLeaderboardEntry
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BroadcastsAPIService.BroadcastTeamLeaderboardGet")
@@ -2238,7 +2238,7 @@ type BroadcastsAPIBroadcastTourCreateRequest struct {
 	infoFormat *string
 	infoLocation *string
 	infoTc *string
-	infoFideTC *string
+	infoFideTC *FideTimeControl
 	infoTimeZone *string
 	infoPlayers *string
 	infoWebsite *string
@@ -2251,7 +2251,7 @@ type BroadcastsAPIBroadcastTourCreateRequest struct {
 	players *string
 	teams *string
 	tier *int32
-	tiebreaks *[]string
+	tiebreaks *[]BroadcastTiebreakExtendedCode
 }
 
 // Name of the broadcast tournament.  Example: &#x60;Sinquefield Cup&#x60; 
@@ -2278,8 +2278,7 @@ func (r BroadcastsAPIBroadcastTourCreateRequest) InfoTc(infoTc string) Broadcast
 	return r
 }
 
-// FIDE rating category 
-func (r BroadcastsAPIBroadcastTourCreateRequest) InfoFideTC(infoFideTC string) BroadcastsAPIBroadcastTourCreateRequest {
+func (r BroadcastsAPIBroadcastTourCreateRequest) InfoFideTC(infoFideTC FideTimeControl) BroadcastsAPIBroadcastTourCreateRequest {
 	r.infoFideTC = &infoFideTC
 	return r
 }
@@ -2356,12 +2355,12 @@ func (r BroadcastsAPIBroadcastTourCreateRequest) Tier(tier int32) BroadcastsAPIB
 	return r
 }
 
-func (r BroadcastsAPIBroadcastTourCreateRequest) Tiebreaks(tiebreaks []string) BroadcastsAPIBroadcastTourCreateRequest {
+func (r BroadcastsAPIBroadcastTourCreateRequest) Tiebreaks(tiebreaks []BroadcastTiebreakExtendedCode) BroadcastsAPIBroadcastTourCreateRequest {
 	r.tiebreaks = &tiebreaks
 	return r
 }
 
-func (r BroadcastsAPIBroadcastTourCreateRequest) Execute() (*BroadcastsOfficial200Response, *http.Response, error) {
+func (r BroadcastsAPIBroadcastTourCreateRequest) Execute() (*BroadcastWithRounds, *http.Response, error) {
 	return r.ApiService.BroadcastTourCreateExecute(r)
 }
 
@@ -2383,13 +2382,13 @@ func (a *BroadcastsAPIService) BroadcastTourCreate(ctx context.Context) Broadcas
 }
 
 // Execute executes the request
-//  @return BroadcastsOfficial200Response
-func (a *BroadcastsAPIService) BroadcastTourCreateExecute(r BroadcastsAPIBroadcastTourCreateRequest) (*BroadcastsOfficial200Response, *http.Response, error) {
+//  @return BroadcastWithRounds
+func (a *BroadcastsAPIService) BroadcastTourCreateExecute(r BroadcastsAPIBroadcastTourCreateRequest) (*BroadcastWithRounds, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *BroadcastsOfficial200Response
+		localVarReturnValue  *BroadcastWithRounds
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BroadcastsAPIService.BroadcastTourCreate")
@@ -2504,7 +2503,7 @@ func (a *BroadcastsAPIService) BroadcastTourCreateExecute(r BroadcastsAPIBroadca
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2534,7 +2533,7 @@ type BroadcastsAPIBroadcastTourGetRequest struct {
 	broadcastTournamentId string
 }
 
-func (r BroadcastsAPIBroadcastTourGetRequest) Execute() (*BroadcastTourGet200Response, *http.Response, error) {
+func (r BroadcastsAPIBroadcastTourGetRequest) Execute() (*BroadcastWithRoundsAndFullGroup, *http.Response, error) {
 	return r.ApiService.BroadcastTourGetExecute(r)
 }
 
@@ -2557,13 +2556,13 @@ func (a *BroadcastsAPIService) BroadcastTourGet(ctx context.Context, broadcastTo
 }
 
 // Execute executes the request
-//  @return BroadcastTourGet200Response
-func (a *BroadcastsAPIService) BroadcastTourGetExecute(r BroadcastsAPIBroadcastTourGetRequest) (*BroadcastTourGet200Response, *http.Response, error) {
+//  @return BroadcastWithRoundsAndFullGroup
+func (a *BroadcastsAPIService) BroadcastTourGetExecute(r BroadcastsAPIBroadcastTourGetRequest) (*BroadcastWithRoundsAndFullGroup, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *BroadcastTourGet200Response
+		localVarReturnValue  *BroadcastWithRoundsAndFullGroup
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BroadcastsAPIService.BroadcastTourGet")
@@ -2646,7 +2645,7 @@ type BroadcastsAPIBroadcastTourUpdateRequest struct {
 	infoFormat *string
 	infoLocation *string
 	infoTc *string
-	infoFideTC *string
+	infoFideTC *FideTimeControl
 	infoTimeZone *string
 	infoPlayers *string
 	infoWebsite *string
@@ -2659,7 +2658,7 @@ type BroadcastsAPIBroadcastTourUpdateRequest struct {
 	players *string
 	teams *string
 	tier *int32
-	tiebreaks *[]string
+	tiebreaks *[]BroadcastTiebreakExtendedCode
 }
 
 // Name of the broadcast tournament.  Example: &#x60;Sinquefield Cup&#x60; 
@@ -2686,8 +2685,7 @@ func (r BroadcastsAPIBroadcastTourUpdateRequest) InfoTc(infoTc string) Broadcast
 	return r
 }
 
-// FIDE rating category 
-func (r BroadcastsAPIBroadcastTourUpdateRequest) InfoFideTC(infoFideTC string) BroadcastsAPIBroadcastTourUpdateRequest {
+func (r BroadcastsAPIBroadcastTourUpdateRequest) InfoFideTC(infoFideTC FideTimeControl) BroadcastsAPIBroadcastTourUpdateRequest {
 	r.infoFideTC = &infoFideTC
 	return r
 }
@@ -2764,12 +2762,12 @@ func (r BroadcastsAPIBroadcastTourUpdateRequest) Tier(tier int32) BroadcastsAPIB
 	return r
 }
 
-func (r BroadcastsAPIBroadcastTourUpdateRequest) Tiebreaks(tiebreaks []string) BroadcastsAPIBroadcastTourUpdateRequest {
+func (r BroadcastsAPIBroadcastTourUpdateRequest) Tiebreaks(tiebreaks []BroadcastTiebreakExtendedCode) BroadcastsAPIBroadcastTourUpdateRequest {
 	r.tiebreaks = &tiebreaks
 	return r
 }
 
-func (r BroadcastsAPIBroadcastTourUpdateRequest) Execute() (*AccountKidPost200Response, *http.Response, error) {
+func (r BroadcastsAPIBroadcastTourUpdateRequest) Execute() (*Ok, *http.Response, error) {
 	return r.ApiService.BroadcastTourUpdateExecute(r)
 }
 
@@ -2794,13 +2792,13 @@ func (a *BroadcastsAPIService) BroadcastTourUpdate(ctx context.Context, broadcas
 }
 
 // Execute executes the request
-//  @return AccountKidPost200Response
-func (a *BroadcastsAPIService) BroadcastTourUpdateExecute(r BroadcastsAPIBroadcastTourUpdateRequest) (*AccountKidPost200Response, *http.Response, error) {
+//  @return Ok
+func (a *BroadcastsAPIService) BroadcastTourUpdateExecute(r BroadcastsAPIBroadcastTourUpdateRequest) (*Ok, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AccountKidPost200Response
+		localVarReturnValue  *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BroadcastsAPIService.BroadcastTourUpdate")
@@ -2922,7 +2920,7 @@ func (a *BroadcastsAPIService) BroadcastTourUpdateExecute(r BroadcastsAPIBroadca
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiTournamentPost400Response
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3102,7 +3100,7 @@ func (r BroadcastsAPIBroadcastsOfficialRequest) Live(live bool) BroadcastsAPIBro
 	return r
 }
 
-func (r BroadcastsAPIBroadcastsOfficialRequest) Execute() (*BroadcastsOfficial200Response, *http.Response, error) {
+func (r BroadcastsAPIBroadcastsOfficialRequest) Execute() (*BroadcastWithRounds, *http.Response, error) {
 	return r.ApiService.BroadcastsOfficialExecute(r)
 }
 
@@ -3125,13 +3123,13 @@ func (a *BroadcastsAPIService) BroadcastsOfficial(ctx context.Context) Broadcast
 }
 
 // Execute executes the request
-//  @return BroadcastsOfficial200Response
-func (a *BroadcastsAPIService) BroadcastsOfficialExecute(r BroadcastsAPIBroadcastsOfficialRequest) (*BroadcastsOfficial200Response, *http.Response, error) {
+//  @return BroadcastWithRounds
+func (a *BroadcastsAPIService) BroadcastsOfficialExecute(r BroadcastsAPIBroadcastsOfficialRequest) (*BroadcastWithRounds, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *BroadcastsOfficial200Response
+		localVarReturnValue  *BroadcastWithRounds
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BroadcastsAPIService.BroadcastsOfficial")
@@ -3355,7 +3353,7 @@ func (r BroadcastsAPIBroadcastsTopRequest) Html(html bool) BroadcastsAPIBroadcas
 	return r
 }
 
-func (r BroadcastsAPIBroadcastsTopRequest) Execute() (*BroadcastsTop200Response, *http.Response, error) {
+func (r BroadcastsAPIBroadcastsTopRequest) Execute() (*BroadcastTop, *http.Response, error) {
 	return r.ApiService.BroadcastsTopExecute(r)
 }
 
@@ -3376,13 +3374,13 @@ func (a *BroadcastsAPIService) BroadcastsTop(ctx context.Context) BroadcastsAPIB
 }
 
 // Execute executes the request
-//  @return BroadcastsTop200Response
-func (a *BroadcastsAPIService) BroadcastsTopExecute(r BroadcastsAPIBroadcastsTopRequest) (*BroadcastsTop200Response, *http.Response, error) {
+//  @return BroadcastTop
+func (a *BroadcastsAPIService) BroadcastsTopExecute(r BroadcastsAPIBroadcastsTopRequest) (*BroadcastTop, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *BroadcastsTop200Response
+		localVarReturnValue  *BroadcastTop
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BroadcastsAPIService.BroadcastsTop")

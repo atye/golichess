@@ -165,7 +165,7 @@ Name | Type | Description  | Notes
 
 ## ApiStudyImportPGN
 
-> ApiStudyImportPGN200Response ApiStudyImportPGN(ctx, studyId).Pgn(pgn).Name(name).Orientation(orientation).Variant(variant).Mode(mode).Execute()
+> StudyImportPgnChapters ApiStudyImportPGN(ctx, studyId).Pgn(pgn).Name(name).Orientation(orientation).Variant(variant).Mode(mode).Execute()
 
 Import PGN into a study
 
@@ -188,7 +188,7 @@ func main() {
 	pgn := "pgn_example" // string | PGN to import. Can contain multiple games separated by 2 or more newlines. 
 	name := "name_example" // string | Name of the new chapter. If not specified, or if multiple chapters are created, the names will be inferred from the PGN tags.  (optional)
 	orientation := "orientation_example" // string | Default board orientation. (optional) (default to "white")
-	variant := "variant_example" // string |  (optional) (default to "standard")
+	variant := openapiclient.VariantKey("standard") // VariantKey |  (optional) (default to "standard")
 	mode := "mode_example" // string | Analysis mode. If not specified, Normal analysis. * practice - Practise with Computer * conceal - Hide next moves * gamebook - Interactive lesson  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -198,7 +198,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `StudiesAPI.ApiStudyImportPGN``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiStudyImportPGN`: ApiStudyImportPGN200Response
+	// response from `ApiStudyImportPGN`: StudyImportPgnChapters
 	fmt.Fprintf(os.Stdout, "Response from `StudiesAPI.ApiStudyImportPGN`: %v\n", resp)
 }
 ```
@@ -222,12 +222,12 @@ Name | Type | Description  | Notes
  **pgn** | **string** | PGN to import. Can contain multiple games separated by 2 or more newlines.  | 
  **name** | **string** | Name of the new chapter. If not specified, or if multiple chapters are created, the names will be inferred from the PGN tags.  | 
  **orientation** | **string** | Default board orientation. | [default to &quot;white&quot;]
- **variant** | **string** |  | [default to &quot;standard&quot;]
+ **variant** | [**VariantKey**](VariantKey.md) |  | [default to &quot;standard&quot;]
  **mode** | **string** | Analysis mode. If not specified, Normal analysis. * practice - Practise with Computer * conceal - Hide next moves * gamebook - Interactive lesson  | 
 
 ### Return type
 
-[**ApiStudyImportPGN200Response**](ApiStudyImportPGN200Response.md)
+[**StudyImportPgnChapters**](StudyImportPgnChapters.md)
 
 ### Authorization
 
@@ -266,11 +266,11 @@ import (
 func main() {
 	name := "name_example" // string | The study name.
 	visibility := "visibility_example" // string | Who can view the study. * `public`: Default. Anyone can view the study, it appears on public listings * `unlisted`: Only people with the link can view the study, it doesn't appear on public listings * `private`: Only the study members can view the study  (default to "unlisted")
-	computer := "computer_example" // string | 
-	explorer := "explorer_example" // string | 
-	cloneable := "cloneable_example" // string | 
-	shareable := "shareable_example" // string | 
-	chat := "chat_example" // string | 
+	computer := openapiclient.StudyUserSelection("nobody") // StudyUserSelection | 
+	explorer := openapiclient.StudyUserSelection("nobody") // StudyUserSelection | 
+	cloneable := openapiclient.StudyUserSelection("nobody") // StudyUserSelection | 
+	shareable := openapiclient.StudyUserSelection("nobody") // StudyUserSelection | 
+	chat := openapiclient.StudyUserSelection("nobody") // StudyUserSelection | 
 	sticky := "sticky_example" // string | Keep everyone on the same chapter and position (optional) (default to "true")
 
 	configuration := openapiclient.NewConfiguration()
@@ -298,11 +298,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **string** | The study name. | 
  **visibility** | **string** | Who can view the study. * &#x60;public&#x60;: Default. Anyone can view the study, it appears on public listings * &#x60;unlisted&#x60;: Only people with the link can view the study, it doesn&#39;t appear on public listings * &#x60;private&#x60;: Only the study members can view the study  | [default to &quot;unlisted&quot;]
- **computer** | **string** |  | 
- **explorer** | **string** |  | 
- **cloneable** | **string** |  | 
- **shareable** | **string** |  | 
- **chat** | **string** |  | 
+ **computer** | [**StudyUserSelection**](StudyUserSelection.md) |  | 
+ **explorer** | [**StudyUserSelection**](StudyUserSelection.md) |  | 
+ **cloneable** | [**StudyUserSelection**](StudyUserSelection.md) |  | 
+ **shareable** | [**StudyUserSelection**](StudyUserSelection.md) |  | 
+ **chat** | [**StudyUserSelection**](StudyUserSelection.md) |  | 
  **sticky** | **string** | Keep everyone on the same chapter and position | [default to &quot;true&quot;]
 
 ### Return type
@@ -701,7 +701,7 @@ Name | Type | Description  | Notes
 
 ## StudyListMetadata
 
-> StudyListMetadata200Response StudyListMetadata(ctx, username).Execute()
+> StudyMetadata StudyListMetadata(ctx, username).Execute()
 
 List studies of a user
 
@@ -729,7 +729,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `StudiesAPI.StudyListMetadata``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `StudyListMetadata`: StudyListMetadata200Response
+	// response from `StudyListMetadata`: StudyMetadata
 	fmt.Fprintf(os.Stdout, "Response from `StudiesAPI.StudyListMetadata`: %v\n", resp)
 }
 ```
@@ -753,7 +753,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StudyListMetadata200Response**](StudyListMetadata200Response.md)
+[**StudyMetadata**](StudyMetadata.md)
 
 ### Authorization
 

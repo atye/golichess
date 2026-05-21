@@ -38,8 +38,8 @@ If you want to download a lot of positions, [get the full list](https://database
 	ApiCloudEval(ctx context.Context) AnalysisAPIApiCloudEvalRequest
 
 	// ApiCloudEvalExecute executes the request
-	//  @return ApiCloudEval200Response
-	ApiCloudEvalExecute(r AnalysisAPIApiCloudEvalRequest) (*ApiCloudEval200Response, *http.Response, error)
+	//  @return CloudEval
+	ApiCloudEvalExecute(r AnalysisAPIApiCloudEvalRequest) (*CloudEval, *http.Response, error)
 }
 
 // AnalysisAPIService AnalysisAPI service
@@ -50,7 +50,7 @@ type AnalysisAPIApiCloudEvalRequest struct {
 	ApiService AnalysisAPI
 	fen *string
 	multiPv *int32
-	variant *string
+	variant *VariantKey
 }
 
 // X-FEN of the position
@@ -66,12 +66,12 @@ func (r AnalysisAPIApiCloudEvalRequest) MultiPv(multiPv int32) AnalysisAPIApiClo
 }
 
 // Variant
-func (r AnalysisAPIApiCloudEvalRequest) Variant(variant string) AnalysisAPIApiCloudEvalRequest {
+func (r AnalysisAPIApiCloudEvalRequest) Variant(variant VariantKey) AnalysisAPIApiCloudEvalRequest {
 	r.variant = &variant
 	return r
 }
 
-func (r AnalysisAPIApiCloudEvalRequest) Execute() (*ApiCloudEval200Response, *http.Response, error) {
+func (r AnalysisAPIApiCloudEvalRequest) Execute() (*CloudEval, *http.Response, error) {
 	return r.ApiService.ApiCloudEvalExecute(r)
 }
 
@@ -96,13 +96,13 @@ func (a *AnalysisAPIService) ApiCloudEval(ctx context.Context) AnalysisAPIApiClo
 }
 
 // Execute executes the request
-//  @return ApiCloudEval200Response
-func (a *AnalysisAPIService) ApiCloudEvalExecute(r AnalysisAPIApiCloudEvalRequest) (*ApiCloudEval200Response, *http.Response, error) {
+//  @return CloudEval
+func (a *AnalysisAPIService) ApiCloudEvalExecute(r AnalysisAPIApiCloudEvalRequest) (*CloudEval, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiCloudEval200Response
+		localVarReturnValue  *CloudEval
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AnalysisAPIService.ApiCloudEval")
@@ -130,7 +130,7 @@ func (a *AnalysisAPIService) ApiCloudEvalExecute(r AnalysisAPIApiCloudEvalReques
 	if r.variant != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "variant", r.variant, "form", "")
 	} else {
-		var defaultValue string = "standard"
+		var defaultValue VariantKey = "standard"
 		parameterAddToHeaderOrQuery(localVarQueryParams, "variant", defaultValue, "form", "")
 		r.variant = &defaultValue
 	}

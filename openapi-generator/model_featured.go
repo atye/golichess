@@ -20,11 +20,14 @@ import (
 // checks if the Featured type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Featured{}
 
-// Featured struct for Featured
+// Featured The data of the message
 type Featured struct {
-	// The type of message. A summary of the game is sent as the first message and when the featured game changes. Subsequent messages are just the X-FEN, last move, and clocks. 
-	T string `json:"t"`
-	D Featured `json:"d"`
+	// The game ID
+	Id string `json:"id"`
+	Orientation GameColor `json:"orientation"`
+	Players []FeaturedPlayersInner `json:"players"`
+	// The X-FEN of the current position
+	Fen string `json:"fen"`
 }
 
 type _Featured Featured
@@ -33,10 +36,12 @@ type _Featured Featured
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFeatured(t string, d Featured) *Featured {
+func NewFeatured(id string, orientation GameColor, players []FeaturedPlayersInner, fen string) *Featured {
 	this := Featured{}
-	this.T = t
-	this.D = d
+	this.Id = id
+	this.Orientation = orientation
+	this.Players = players
+	this.Fen = fen
 	return &this
 }
 
@@ -48,52 +53,100 @@ func NewFeaturedWithDefaults() *Featured {
 	return &this
 }
 
-// GetT returns the T field value
-func (o *Featured) GetT() string {
+// GetId returns the Id field value
+func (o *Featured) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.T
+	return o.Id
 }
 
-// GetTOk returns a tuple with the T field value
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Featured) GetTOk() (*string, bool) {
+func (o *Featured) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.T, true
+	return &o.Id, true
 }
 
-// SetT sets field value
-func (o *Featured) SetT(v string) {
-	o.T = v
+// SetId sets field value
+func (o *Featured) SetId(v string) {
+	o.Id = v
 }
 
-// GetD returns the D field value
-func (o *Featured) GetD() Featured {
+// GetOrientation returns the Orientation field value
+func (o *Featured) GetOrientation() GameColor {
 	if o == nil {
-		var ret Featured
+		var ret GameColor
 		return ret
 	}
 
-	return o.D
+	return o.Orientation
 }
 
-// GetDOk returns a tuple with the D field value
+// GetOrientationOk returns a tuple with the Orientation field value
 // and a boolean to check if the value has been set.
-func (o *Featured) GetDOk() (*Featured, bool) {
+func (o *Featured) GetOrientationOk() (*GameColor, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.D, true
+	return &o.Orientation, true
 }
 
-// SetD sets field value
-func (o *Featured) SetD(v Featured) {
-	o.D = v
+// SetOrientation sets field value
+func (o *Featured) SetOrientation(v GameColor) {
+	o.Orientation = v
+}
+
+// GetPlayers returns the Players field value
+func (o *Featured) GetPlayers() []FeaturedPlayersInner {
+	if o == nil {
+		var ret []FeaturedPlayersInner
+		return ret
+	}
+
+	return o.Players
+}
+
+// GetPlayersOk returns a tuple with the Players field value
+// and a boolean to check if the value has been set.
+func (o *Featured) GetPlayersOk() ([]FeaturedPlayersInner, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Players, true
+}
+
+// SetPlayers sets field value
+func (o *Featured) SetPlayers(v []FeaturedPlayersInner) {
+	o.Players = v
+}
+
+// GetFen returns the Fen field value
+func (o *Featured) GetFen() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Fen
+}
+
+// GetFenOk returns a tuple with the Fen field value
+// and a boolean to check if the value has been set.
+func (o *Featured) GetFenOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Fen, true
+}
+
+// SetFen sets field value
+func (o *Featured) SetFen(v string) {
+	o.Fen = v
 }
 
 func (o Featured) MarshalJSON() ([]byte, error) {
@@ -106,8 +159,10 @@ func (o Featured) MarshalJSON() ([]byte, error) {
 
 func (o Featured) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["t"] = o.T
-	toSerialize["d"] = o.D
+	toSerialize["id"] = o.Id
+	toSerialize["orientation"] = o.Orientation
+	toSerialize["players"] = o.Players
+	toSerialize["fen"] = o.Fen
 	return toSerialize, nil
 }
 
@@ -116,8 +171,10 @@ func (o *Featured) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"t",
-		"d",
+		"id",
+		"orientation",
+		"players",
+		"fen",
 	}
 
 	allProperties := make(map[string]interface{})

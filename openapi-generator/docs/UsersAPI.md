@@ -22,7 +22,7 @@ Method | HTTP request | Description
 
 ## ApiCrosstable
 
-> ApiCrosstable200Response ApiCrosstable(ctx, user1, user2).Matchup(matchup).Execute()
+> Crosstable ApiCrosstable(ctx, user1, user2).Matchup(matchup).Execute()
 
 Get crosstable
 
@@ -52,7 +52,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.ApiCrosstable``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiCrosstable`: ApiCrosstable200Response
+	// response from `ApiCrosstable`: Crosstable
 	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.ApiCrosstable`: %v\n", resp)
 }
 ```
@@ -79,7 +79,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiCrosstable200Response**](ApiCrosstable200Response.md)
+[**Crosstable**](Crosstable.md)
 
 ### Authorization
 
@@ -179,7 +179,7 @@ Name | Type | Description  | Notes
 
 ## ApiUser
 
-> ApiUser200Response ApiUser(ctx, username).Trophies(trophies).Profile(profile).Rank(rank).FideId(fideId).Execute()
+> UserExtended ApiUser(ctx, username).Trophies(trophies).Profile(profile).Rank(rank).FideId(fideId).Execute()
 
 Get user public data
 
@@ -211,7 +211,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.ApiUser``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiUser`: ApiUser200Response
+	// response from `ApiUser`: UserExtended
 	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.ApiUser`: %v\n", resp)
 }
 ```
@@ -239,7 +239,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiUser200Response**](ApiUser200Response.md)
+[**UserExtended**](UserExtended.md)
 
 ### Authorization
 
@@ -257,7 +257,7 @@ Name | Type | Description  | Notes
 
 ## ApiUserActivity
 
-> []ApiUserActivity200ResponseInner ApiUserActivity(ctx, username).Execute()
+> []UserActivity ApiUserActivity(ctx, username).Execute()
 
 Get user activity
 
@@ -285,7 +285,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.ApiUserActivity``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiUserActivity`: []ApiUserActivity200ResponseInner
+	// response from `ApiUserActivity`: []UserActivity
 	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.ApiUserActivity`: %v\n", resp)
 }
 ```
@@ -309,7 +309,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]ApiUserActivity200ResponseInner**](ApiUserActivity200ResponseInner.md)
+[**[]UserActivity**](UserActivity.md)
 
 ### Authorization
 
@@ -327,7 +327,7 @@ No authorization required
 
 ## ApiUserPerf
 
-> ApiUserPerf200Response ApiUserPerf(ctx, username, perf).Execute()
+> PerfStat ApiUserPerf(ctx, username, perf).Execute()
 
 Get performance statistics of a user
 
@@ -347,7 +347,7 @@ import (
 
 func main() {
 	username := "username_example" // string | 
-	perf := "perf_example" // string | 
+	perf := openapiclient.PerfType("ultraBullet") // PerfType | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -356,7 +356,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.ApiUserPerf``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiUserPerf`: ApiUserPerf200Response
+	// response from `ApiUserPerf`: PerfStat
 	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.ApiUserPerf`: %v\n", resp)
 }
 ```
@@ -368,7 +368,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **username** | **string** |  | 
-**perf** | **string** |  | 
+**perf** | [**PerfType**](.md) |  | 
 
 ### Other Parameters
 
@@ -382,7 +382,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiUserPerf200Response**](ApiUserPerf200Response.md)
+[**PerfStat**](PerfStat.md)
 
 ### Authorization
 
@@ -400,7 +400,7 @@ No authorization required
 
 ## ApiUserRatingHistory
 
-> []ApiUserRatingHistory200ResponseInner ApiUserRatingHistory(ctx, username).Execute()
+> []RatingHistoryEntry ApiUserRatingHistory(ctx, username).Execute()
 
 Get rating history of a user
 
@@ -428,7 +428,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.ApiUserRatingHistory``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiUserRatingHistory`: []ApiUserRatingHistory200ResponseInner
+	// response from `ApiUserRatingHistory`: []RatingHistoryEntry
 	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.ApiUserRatingHistory`: %v\n", resp)
 }
 ```
@@ -452,7 +452,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]ApiUserRatingHistory200ResponseInner**](ApiUserRatingHistory200ResponseInner.md)
+[**[]RatingHistoryEntry**](RatingHistoryEntry.md)
 
 ### Authorization
 
@@ -470,7 +470,7 @@ No authorization required
 
 ## ApiUsers
 
-> []ApiUsers200ResponseInner ApiUsers(ctx).Body(body).Profile(profile).Rank(rank).Execute()
+> []User ApiUsers(ctx).Body(body).Profile(profile).Rank(rank).Execute()
 
 Get users by ID
 
@@ -500,7 +500,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.ApiUsers``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApiUsers`: []ApiUsers200ResponseInner
+	// response from `ApiUsers`: []User
 	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.ApiUsers`: %v\n", resp)
 }
 ```
@@ -522,7 +522,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]ApiUsers200ResponseInner**](ApiUsers200ResponseInner.md)
+[**[]User**](User.md)
 
 ### Authorization
 
@@ -612,7 +612,7 @@ No authorization required
 
 ## Player
 
-> Player200Response Player(ctx).Execute()
+> Top10s Player(ctx).Execute()
 
 Get all top 10
 
@@ -639,7 +639,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.Player``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `Player`: Player200Response
+	// response from `Player`: Top10s
 	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.Player`: %v\n", resp)
 }
 ```
@@ -655,7 +655,7 @@ Other parameters are passed through a pointer to a apiPlayerRequest struct via t
 
 ### Return type
 
-[**Player200Response**](Player200Response.md)
+[**Top10s**](Top10s.md)
 
 ### Authorization
 
@@ -673,7 +673,7 @@ No authorization required
 
 ## PlayerTopNbPerfType
 
-> PlayerTopNbPerfType200Response PlayerTopNbPerfType(ctx, nb, perfType).Execute()
+> Leaderboard PlayerTopNbPerfType(ctx, nb, perfType).Execute()
 
 Get one leaderboard
 
@@ -702,7 +702,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.PlayerTopNbPerfType``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PlayerTopNbPerfType`: PlayerTopNbPerfType200Response
+	// response from `PlayerTopNbPerfType`: Leaderboard
 	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.PlayerTopNbPerfType`: %v\n", resp)
 }
 ```
@@ -728,7 +728,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PlayerTopNbPerfType200Response**](PlayerTopNbPerfType200Response.md)
+[**Leaderboard**](Leaderboard.md)
 
 ### Authorization
 
@@ -746,7 +746,7 @@ No authorization required
 
 ## ReadNote
 
-> []ReadNote200ResponseInner ReadNote(ctx, username).Execute()
+> []UserNote ReadNote(ctx, username).Execute()
 
 Get notes for a user
 
@@ -774,7 +774,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.ReadNote``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ReadNote`: []ReadNote200ResponseInner
+	// response from `ReadNote`: []UserNote
 	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.ReadNote`: %v\n", resp)
 }
 ```
@@ -798,7 +798,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]ReadNote200ResponseInner**](ReadNote200ResponseInner.md)
+[**[]UserNote**](UserNote.md)
 
 ### Authorization
 
@@ -877,7 +877,7 @@ No authorization required
 
 ## WriteNote
 
-> AccountKidPost200Response WriteNote(ctx, username).Text(text).Execute()
+> Ok WriteNote(ctx, username).Text(text).Execute()
 
 Add a note for a user
 
@@ -906,7 +906,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.WriteNote``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `WriteNote`: AccountKidPost200Response
+	// response from `WriteNote`: Ok
 	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.WriteNote`: %v\n", resp)
 }
 ```
@@ -931,7 +931,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountKidPost200Response**](AccountKidPost200Response.md)
+[**Ok**](Ok.md)
 
 ### Authorization
 

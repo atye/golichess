@@ -19,37 +19,37 @@ import (
 
 // BoardGameStream200Response - struct for BoardGameStream200Response
 type BoardGameStream200Response struct {
-	BoardGameStream200ResponseOneOf *BoardGameStream200ResponseOneOf
-	BoardGameStream200ResponseOneOf1 *BoardGameStream200ResponseOneOf1
-	BoardGameStream200ResponseOneOf2 *BoardGameStream200ResponseOneOf2
-	BoardGameStream200ResponseOneOfState *BoardGameStream200ResponseOneOfState
+	ChatLineEvent *ChatLineEvent
+	GameFullEvent *GameFullEvent
+	GameStateEvent *GameStateEvent
+	OpponentGoneEvent *OpponentGoneEvent
 }
 
-// BoardGameStream200ResponseOneOfAsBoardGameStream200Response is a convenience function that returns BoardGameStream200ResponseOneOf wrapped in BoardGameStream200Response
-func BoardGameStream200ResponseOneOfAsBoardGameStream200Response(v *BoardGameStream200ResponseOneOf) BoardGameStream200Response {
+// ChatLineEventAsBoardGameStream200Response is a convenience function that returns ChatLineEvent wrapped in BoardGameStream200Response
+func ChatLineEventAsBoardGameStream200Response(v *ChatLineEvent) BoardGameStream200Response {
 	return BoardGameStream200Response{
-		BoardGameStream200ResponseOneOf: v,
+		ChatLineEvent: v,
 	}
 }
 
-// BoardGameStream200ResponseOneOf1AsBoardGameStream200Response is a convenience function that returns BoardGameStream200ResponseOneOf1 wrapped in BoardGameStream200Response
-func BoardGameStream200ResponseOneOf1AsBoardGameStream200Response(v *BoardGameStream200ResponseOneOf1) BoardGameStream200Response {
+// GameFullEventAsBoardGameStream200Response is a convenience function that returns GameFullEvent wrapped in BoardGameStream200Response
+func GameFullEventAsBoardGameStream200Response(v *GameFullEvent) BoardGameStream200Response {
 	return BoardGameStream200Response{
-		BoardGameStream200ResponseOneOf1: v,
+		GameFullEvent: v,
 	}
 }
 
-// BoardGameStream200ResponseOneOf2AsBoardGameStream200Response is a convenience function that returns BoardGameStream200ResponseOneOf2 wrapped in BoardGameStream200Response
-func BoardGameStream200ResponseOneOf2AsBoardGameStream200Response(v *BoardGameStream200ResponseOneOf2) BoardGameStream200Response {
+// GameStateEventAsBoardGameStream200Response is a convenience function that returns GameStateEvent wrapped in BoardGameStream200Response
+func GameStateEventAsBoardGameStream200Response(v *GameStateEvent) BoardGameStream200Response {
 	return BoardGameStream200Response{
-		BoardGameStream200ResponseOneOf2: v,
+		GameStateEvent: v,
 	}
 }
 
-// BoardGameStream200ResponseOneOfStateAsBoardGameStream200Response is a convenience function that returns BoardGameStream200ResponseOneOfState wrapped in BoardGameStream200Response
-func BoardGameStream200ResponseOneOfStateAsBoardGameStream200Response(v *BoardGameStream200ResponseOneOfState) BoardGameStream200Response {
+// OpponentGoneEventAsBoardGameStream200Response is a convenience function that returns OpponentGoneEvent wrapped in BoardGameStream200Response
+func OpponentGoneEventAsBoardGameStream200Response(v *OpponentGoneEvent) BoardGameStream200Response {
 	return BoardGameStream200Response{
-		BoardGameStream200ResponseOneOfState: v,
+		OpponentGoneEvent: v,
 	}
 }
 
@@ -58,80 +58,80 @@ func BoardGameStream200ResponseOneOfStateAsBoardGameStream200Response(v *BoardGa
 func (dst *BoardGameStream200Response) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into BoardGameStream200ResponseOneOf
-	err = newStrictDecoder(data).Decode(&dst.BoardGameStream200ResponseOneOf)
+	// try to unmarshal data into ChatLineEvent
+	err = newStrictDecoder(data).Decode(&dst.ChatLineEvent)
 	if err == nil {
-		jsonBoardGameStream200ResponseOneOf, _ := json.Marshal(dst.BoardGameStream200ResponseOneOf)
-		if string(jsonBoardGameStream200ResponseOneOf) == "{}" { // empty struct
-			dst.BoardGameStream200ResponseOneOf = nil
+		jsonChatLineEvent, _ := json.Marshal(dst.ChatLineEvent)
+		if string(jsonChatLineEvent) == "{}" { // empty struct
+			dst.ChatLineEvent = nil
 		} else {
-			if err = validator.Validate(dst.BoardGameStream200ResponseOneOf); err != nil {
-				dst.BoardGameStream200ResponseOneOf = nil
+			if err = validator.Validate(dst.ChatLineEvent); err != nil {
+				dst.ChatLineEvent = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.BoardGameStream200ResponseOneOf = nil
+		dst.ChatLineEvent = nil
 	}
 
-	// try to unmarshal data into BoardGameStream200ResponseOneOf1
-	err = newStrictDecoder(data).Decode(&dst.BoardGameStream200ResponseOneOf1)
+	// try to unmarshal data into GameFullEvent
+	err = newStrictDecoder(data).Decode(&dst.GameFullEvent)
 	if err == nil {
-		jsonBoardGameStream200ResponseOneOf1, _ := json.Marshal(dst.BoardGameStream200ResponseOneOf1)
-		if string(jsonBoardGameStream200ResponseOneOf1) == "{}" { // empty struct
-			dst.BoardGameStream200ResponseOneOf1 = nil
+		jsonGameFullEvent, _ := json.Marshal(dst.GameFullEvent)
+		if string(jsonGameFullEvent) == "{}" { // empty struct
+			dst.GameFullEvent = nil
 		} else {
-			if err = validator.Validate(dst.BoardGameStream200ResponseOneOf1); err != nil {
-				dst.BoardGameStream200ResponseOneOf1 = nil
+			if err = validator.Validate(dst.GameFullEvent); err != nil {
+				dst.GameFullEvent = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.BoardGameStream200ResponseOneOf1 = nil
+		dst.GameFullEvent = nil
 	}
 
-	// try to unmarshal data into BoardGameStream200ResponseOneOf2
-	err = newStrictDecoder(data).Decode(&dst.BoardGameStream200ResponseOneOf2)
+	// try to unmarshal data into GameStateEvent
+	err = newStrictDecoder(data).Decode(&dst.GameStateEvent)
 	if err == nil {
-		jsonBoardGameStream200ResponseOneOf2, _ := json.Marshal(dst.BoardGameStream200ResponseOneOf2)
-		if string(jsonBoardGameStream200ResponseOneOf2) == "{}" { // empty struct
-			dst.BoardGameStream200ResponseOneOf2 = nil
+		jsonGameStateEvent, _ := json.Marshal(dst.GameStateEvent)
+		if string(jsonGameStateEvent) == "{}" { // empty struct
+			dst.GameStateEvent = nil
 		} else {
-			if err = validator.Validate(dst.BoardGameStream200ResponseOneOf2); err != nil {
-				dst.BoardGameStream200ResponseOneOf2 = nil
+			if err = validator.Validate(dst.GameStateEvent); err != nil {
+				dst.GameStateEvent = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.BoardGameStream200ResponseOneOf2 = nil
+		dst.GameStateEvent = nil
 	}
 
-	// try to unmarshal data into BoardGameStream200ResponseOneOfState
-	err = newStrictDecoder(data).Decode(&dst.BoardGameStream200ResponseOneOfState)
+	// try to unmarshal data into OpponentGoneEvent
+	err = newStrictDecoder(data).Decode(&dst.OpponentGoneEvent)
 	if err == nil {
-		jsonBoardGameStream200ResponseOneOfState, _ := json.Marshal(dst.BoardGameStream200ResponseOneOfState)
-		if string(jsonBoardGameStream200ResponseOneOfState) == "{}" { // empty struct
-			dst.BoardGameStream200ResponseOneOfState = nil
+		jsonOpponentGoneEvent, _ := json.Marshal(dst.OpponentGoneEvent)
+		if string(jsonOpponentGoneEvent) == "{}" { // empty struct
+			dst.OpponentGoneEvent = nil
 		} else {
-			if err = validator.Validate(dst.BoardGameStream200ResponseOneOfState); err != nil {
-				dst.BoardGameStream200ResponseOneOfState = nil
+			if err = validator.Validate(dst.OpponentGoneEvent); err != nil {
+				dst.OpponentGoneEvent = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.BoardGameStream200ResponseOneOfState = nil
+		dst.OpponentGoneEvent = nil
 	}
 
 	if match > 1 { // more than 1 match
 		// reset to nil
-		dst.BoardGameStream200ResponseOneOf = nil
-		dst.BoardGameStream200ResponseOneOf1 = nil
-		dst.BoardGameStream200ResponseOneOf2 = nil
-		dst.BoardGameStream200ResponseOneOfState = nil
+		dst.ChatLineEvent = nil
+		dst.GameFullEvent = nil
+		dst.GameStateEvent = nil
+		dst.OpponentGoneEvent = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(BoardGameStream200Response)")
 	} else if match == 1 {
@@ -143,20 +143,20 @@ func (dst *BoardGameStream200Response) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src BoardGameStream200Response) MarshalJSON() ([]byte, error) {
-	if src.BoardGameStream200ResponseOneOf != nil {
-		return json.Marshal(&src.BoardGameStream200ResponseOneOf)
+	if src.ChatLineEvent != nil {
+		return json.Marshal(&src.ChatLineEvent)
 	}
 
-	if src.BoardGameStream200ResponseOneOf1 != nil {
-		return json.Marshal(&src.BoardGameStream200ResponseOneOf1)
+	if src.GameFullEvent != nil {
+		return json.Marshal(&src.GameFullEvent)
 	}
 
-	if src.BoardGameStream200ResponseOneOf2 != nil {
-		return json.Marshal(&src.BoardGameStream200ResponseOneOf2)
+	if src.GameStateEvent != nil {
+		return json.Marshal(&src.GameStateEvent)
 	}
 
-	if src.BoardGameStream200ResponseOneOfState != nil {
-		return json.Marshal(&src.BoardGameStream200ResponseOneOfState)
+	if src.OpponentGoneEvent != nil {
+		return json.Marshal(&src.OpponentGoneEvent)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -167,20 +167,20 @@ func (obj *BoardGameStream200Response) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
-	if obj.BoardGameStream200ResponseOneOf != nil {
-		return obj.BoardGameStream200ResponseOneOf
+	if obj.ChatLineEvent != nil {
+		return obj.ChatLineEvent
 	}
 
-	if obj.BoardGameStream200ResponseOneOf1 != nil {
-		return obj.BoardGameStream200ResponseOneOf1
+	if obj.GameFullEvent != nil {
+		return obj.GameFullEvent
 	}
 
-	if obj.BoardGameStream200ResponseOneOf2 != nil {
-		return obj.BoardGameStream200ResponseOneOf2
+	if obj.GameStateEvent != nil {
+		return obj.GameStateEvent
 	}
 
-	if obj.BoardGameStream200ResponseOneOfState != nil {
-		return obj.BoardGameStream200ResponseOneOfState
+	if obj.OpponentGoneEvent != nil {
+		return obj.OpponentGoneEvent
 	}
 
 	// all schemas are nil
@@ -189,20 +189,20 @@ func (obj *BoardGameStream200Response) GetActualInstance() (interface{}) {
 
 // Get the actual instance value
 func (obj BoardGameStream200Response) GetActualInstanceValue() (interface{}) {
-	if obj.BoardGameStream200ResponseOneOf != nil {
-		return *obj.BoardGameStream200ResponseOneOf
+	if obj.ChatLineEvent != nil {
+		return *obj.ChatLineEvent
 	}
 
-	if obj.BoardGameStream200ResponseOneOf1 != nil {
-		return *obj.BoardGameStream200ResponseOneOf1
+	if obj.GameFullEvent != nil {
+		return *obj.GameFullEvent
 	}
 
-	if obj.BoardGameStream200ResponseOneOf2 != nil {
-		return *obj.BoardGameStream200ResponseOneOf2
+	if obj.GameStateEvent != nil {
+		return *obj.GameStateEvent
 	}
 
-	if obj.BoardGameStream200ResponseOneOfState != nil {
-		return *obj.BoardGameStream200ResponseOneOfState
+	if obj.OpponentGoneEvent != nil {
+		return *obj.OpponentGoneEvent
 	}
 
 	// all schemas are nil

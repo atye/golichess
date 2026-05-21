@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Pending** | Pointer to [**[]ApiSimul200ResponsePendingInner**](ApiSimul200ResponsePendingInner.md) |  | [optional] 
-**Created** | Pointer to [**[]ApiSimul200ResponsePendingInner**](ApiSimul200ResponsePendingInner.md) |  | [optional] 
-**Started** | Pointer to [**[]ApiSimul200ResponsePendingInner**](ApiSimul200ResponsePendingInner.md) |  | [optional] 
-**Finished** | Pointer to [**[]ApiSimul200ResponsePendingInner**](ApiSimul200ResponsePendingInner.md) |  | [optional] 
+**Pending** | Pointer to [**[]Simul**](Simul.md) |  | [optional] 
+**Created** | Pointer to [**[]Simul**](Simul.md) |  | [optional] 
+**Started** | Pointer to [**[]Simul**](Simul.md) |  | [optional] 
+**Finished** | Pointer to [**[]Simul**](Simul.md) |  | [optional] 
 
 ## Methods
 
@@ -30,20 +30,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetPending
 
-`func (o *ApiSimul200Response) GetPending() []ApiSimul200ResponsePendingInner`
+`func (o *ApiSimul200Response) GetPending() []Simul`
 
 GetPending returns the Pending field if non-nil, zero value otherwise.
 
 ### GetPendingOk
 
-`func (o *ApiSimul200Response) GetPendingOk() (*[]ApiSimul200ResponsePendingInner, bool)`
+`func (o *ApiSimul200Response) GetPendingOk() (*[]Simul, bool)`
 
 GetPendingOk returns a tuple with the Pending field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPending
 
-`func (o *ApiSimul200Response) SetPending(v []ApiSimul200ResponsePendingInner)`
+`func (o *ApiSimul200Response) SetPending(v []Simul)`
 
 SetPending sets Pending field to given value.
 
@@ -55,20 +55,20 @@ HasPending returns a boolean if a field has been set.
 
 ### GetCreated
 
-`func (o *ApiSimul200Response) GetCreated() []ApiSimul200ResponsePendingInner`
+`func (o *ApiSimul200Response) GetCreated() []Simul`
 
 GetCreated returns the Created field if non-nil, zero value otherwise.
 
 ### GetCreatedOk
 
-`func (o *ApiSimul200Response) GetCreatedOk() (*[]ApiSimul200ResponsePendingInner, bool)`
+`func (o *ApiSimul200Response) GetCreatedOk() (*[]Simul, bool)`
 
 GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreated
 
-`func (o *ApiSimul200Response) SetCreated(v []ApiSimul200ResponsePendingInner)`
+`func (o *ApiSimul200Response) SetCreated(v []Simul)`
 
 SetCreated sets Created field to given value.
 
@@ -80,20 +80,20 @@ HasCreated returns a boolean if a field has been set.
 
 ### GetStarted
 
-`func (o *ApiSimul200Response) GetStarted() []ApiSimul200ResponsePendingInner`
+`func (o *ApiSimul200Response) GetStarted() []Simul`
 
 GetStarted returns the Started field if non-nil, zero value otherwise.
 
 ### GetStartedOk
 
-`func (o *ApiSimul200Response) GetStartedOk() (*[]ApiSimul200ResponsePendingInner, bool)`
+`func (o *ApiSimul200Response) GetStartedOk() (*[]Simul, bool)`
 
 GetStartedOk returns a tuple with the Started field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStarted
 
-`func (o *ApiSimul200Response) SetStarted(v []ApiSimul200ResponsePendingInner)`
+`func (o *ApiSimul200Response) SetStarted(v []Simul)`
 
 SetStarted sets Started field to given value.
 
@@ -105,20 +105,20 @@ HasStarted returns a boolean if a field has been set.
 
 ### GetFinished
 
-`func (o *ApiSimul200Response) GetFinished() []ApiSimul200ResponsePendingInner`
+`func (o *ApiSimul200Response) GetFinished() []Simul`
 
 GetFinished returns the Finished field if non-nil, zero value otherwise.
 
 ### GetFinishedOk
 
-`func (o *ApiSimul200Response) GetFinishedOk() (*[]ApiSimul200ResponsePendingInner, bool)`
+`func (o *ApiSimul200Response) GetFinishedOk() (*[]Simul, bool)`
 
 GetFinishedOk returns a tuple with the Finished field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFinished
 
-`func (o *ApiSimul200Response) SetFinished(v []ApiSimul200ResponsePendingInner)`
+`func (o *ApiSimul200Response) SetFinished(v []Simul)`
 
 SetFinished sets Finished field to given value.
 
