@@ -31,8 +31,6 @@ jobs:
       - name: Bundle spec and check version
         id: bundle
         uses: ./.github/actions/bundle-spec
-        with:
-          bundle: 'true'
 
       - name: Check if version changed with force override
         id: check_version

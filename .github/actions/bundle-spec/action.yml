@@ -14,10 +14,6 @@ inputs:
     description: 'Directory containing the specs in the cloned repo'
     required: false
     default: 'doc/specs'
-  bundle:
-    description: 'Whether to bundle the spec (true/false)'
-    required: false
-    default: 'true'
 
 outputs:
   version:
@@ -44,7 +40,6 @@ runs:
         cp -r /tmp/lichess-api/${{ inputs.specs-dir }}/* ./
 
     - name: Bundle OpenAPI spec
-      if: inputs.bundle == 'true'
       shell: bash
       run: |
         npm install -g @redocly/cli
