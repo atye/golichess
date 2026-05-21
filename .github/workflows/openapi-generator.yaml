@@ -28,39 +28,19 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
-      - name: Checkout lichess-org/api repository
-        uses: actions/checkout@v4
-        with:
-          repository: lichess-org/api
-          path: lichess-api
-          
-      - name: Copy Lichess OpenAPI spec
-        run: |
-          cp -r lichess-api/doc/specs/* ./
-          
-      - name: Extract version from spec
-        id: version
-        run: |
-          VERSION=$(grep -m 1 "version:" lichess-api.yaml | awk '{print $2}')
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
-          echo "Lichess API version: $VERSION"
+      - name: Bundle spec and check version
+        id: bundle
+        uses: ./.github/actions/bundle-spec
 
-      - name: Check if version changed
+      - name: Check if version changed with force override
         id: check_version
         run: |
-          if [ -f version.txt ]; then
-            OLD_VERSION=$(cat version.txt)
-            echo "Old version: $OLD_VERSION"
-            if [ "$OLD_VERSION" = "${{ steps.version.outputs.version }}" ] && [ "${{ github.event.inputs.force }}" != "true" ]; then
-              echo "unchanged=true" >> $GITHUB_OUTPUT
-              echo "Version unchanged, skipping update"
-            else
-              echo "unchanged=false" >> $GITHUB_OUTPUT
-              echo "Version changed, proceeding with update"
-            fi
+          if [ "${{ steps.bundle.outputs.unchanged }}" = "true" ] && [ "${{ github.event.inputs.force }}" != "true" ]; then
+            echo "unchanged=true" >> $GITHUB_OUTPUT
+            echo "Version unchanged, skipping update"
           else
             echo "unchanged=false" >> $GITHUB_OUTPUT
-            echo "No previous version found, proceeding with update"
+            echo "Version changed or force override, proceeding with update"
           fi
 
       - name: Clean openapi-generator directory
@@ -77,7 +57,7 @@ jobs:
             -v "${PWD}:/local" \
             -u $(id -u):$(id -g) \
             openapitools/openapi-generator-cli:latest-release generate \
-            -i /local/lichess-api.yaml \
+            -i /local/lichess-api-bundled.yaml \
             -g go \
             -o /local/openapi-generator \
             -c /local/openapi-generator-config.json \
@@ -93,7 +73,7 @@ jobs:
       - name: Update version file
         if: steps.check_version.outputs.unchanged != 'true'
         run: |
-          echo "${{ steps.version.outputs.version }}" > version.txt
+          echo "${{ steps.bundle.outputs.version }}" > version.txt
 
       - name: Commit and push changes
         if: steps.check_version.outputs.unchanged != 'true'
@@ -101,5 +81,5 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add openapi-generator
-          git diff --staged --quiet || git commit -m "Update openapi-generator client to Lichess API version ${{ steps.version.outputs.version }}"
+          git diff --staged --quiet || git commit -m "Update openapi-generator client to Lichess API version ${{ steps.bundle.outputs.version }}"
           git push

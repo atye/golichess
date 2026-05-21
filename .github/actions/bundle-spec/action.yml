@@ -1,0 +1,82 @@
+name: 'Bundle Lichess API Spec'
+description: 'Clone lichess-org/api, copy specs, bundle them, and check version'
+
+inputs:
+  spec-path:
+    description: 'Path to the main spec file in the cloned repo'
+    required: false
+    default: 'lichess-api.yaml'
+  output-path:
+    description: 'Path for the bundled output file'
+    required: false
+    default: 'lichess-api-bundled.yaml'
+  specs-dir:
+    description: 'Directory containing the specs in the cloned repo'
+    required: false
+    default: 'doc/specs'
+  bundle:
+    description: 'Whether to bundle the spec (true/false)'
+    required: false
+    default: 'true'
+
+outputs:
+  version:
+    description: 'The Lichess API version extracted from the spec'
+    value: ${{ steps.version.outputs.version }}
+  changed:
+    description: 'Whether the version has changed (true/false)'
+    value: ${{ steps.check_version.outputs.changed }}
+  unchanged:
+    description: 'Whether the version is unchanged (true/false)'
+    value: ${{ steps.check_version.outputs.unchanged }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout lichess-org/api repository
+      shell: bash
+      run: |
+        git clone https://github.com/lichess-org/api.git /tmp/lichess-api
+
+    - name: Copy Lichess OpenAPI spec
+      shell: bash
+      run: |
+        cp -r /tmp/lichess-api/${{ inputs.specs-dir }}/* ./
+
+    - name: Bundle OpenAPI spec
+      if: inputs.bundle == 'true'
+      shell: bash
+      run: |
+        npm install -g @redocly/cli
+        redocly bundle ${{ inputs.spec-path }} --output ${{ inputs.output-path }}
+
+    - name: Extract version from spec
+      id: version
+      shell: bash
+      run: |
+        VERSION=$(grep -m 1 "version:" ${{ inputs.spec-path }} | awk '{print $2}')
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        echo "Lichess API version: $VERSION"
+
+    - name: Check if version changed
+      id: check_version
+      shell: bash
+      run: |
+        if [ -f version.txt ]; then
+          OLD_VERSION=$(cat version.txt)
+          echo "Old version: $OLD_VERSION"
+          echo "New version: ${{ steps.version.outputs.version }}"
+          if [ "$OLD_VERSION" = "${{ steps.version.outputs.version }}" ]; then
+            echo "Version unchanged"
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "unchanged=true" >> $GITHUB_OUTPUT
+          else
+            echo "Version changed"
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "unchanged=false" >> $GITHUB_OUTPUT
+          fi
+        else
+          echo "No version.txt found, treating as changed"
+          echo "changed=true" >> $GITHUB_OUTPUT
+          echo "unchanged=false" >> $GITHUB_OUTPUT
+        fi
