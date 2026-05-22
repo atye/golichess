@@ -46,9 +46,9 @@ jobs:
       - name: Install oapi-codegen
         if: steps.check_version.outputs.unchanged != 'true'
         run: |
-          git clone https://github.com/oapi-codegen/oapi-codegen.git /tmp/oapi-codegen
+          git clone https://github.com/atye/oapi-codegen.git /tmp/oapi-codegen
           cd /tmp/oapi-codegen
-          git checkout feat/kin-openapi-3.1
+          git checkout feat/kin-openapi-3.1-nulltype
           go install ./cmd/oapi-codegen
           echo "$HOME/go/bin" >> $GITHUB_PATH
 
