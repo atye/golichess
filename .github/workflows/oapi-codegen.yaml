@@ -55,7 +55,7 @@ jobs:
       - name: Clean oapi-codegen directory
         if: steps.check_version.outputs.unchanged != 'true'
         run: |
-          rm -rf oapi-codegen
+          rm -rf oapi-codegen/*
           cd oapi-codegen && go mod init github.com/atye/golichess/oapi-codegen
 
       - name: Generate Go client
