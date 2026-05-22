@@ -30,7 +30,7 @@ jobs:
 
       - name: Bundle spec and check version
         id: bundle
-        uses: ./.github/actions/bundle-spec
+        uses: ./.github/actions/bundle-spec.yaml
 
       - name: Check if version changed with force override
         id: check_version
@@ -55,17 +55,18 @@ jobs:
       - name: Clean oapi-codegen directory
         if: steps.check_version.outputs.unchanged != 'true'
         run: |
-          rm -f oapi-codegen/client.gen.go
+          rm -rf oapi-codegen
+          cd oapi-codegen && go mod init github.com/atye/golichess/oapi-codegen
 
       - name: Generate Go client
         if: steps.check_version.outputs.unchanged != 'true'
         run: |
           oapi-codegen -config oapi-codegen-config.yaml lichess-api-bundled.yaml > oapi-codegen/client.gen.go
 
-      #- name: Run go mod tidy
-        #if: steps.check_version.outputs.unchanged != 'true'
-        #run: |
-          #cd oapi-codegen && go mod tidy
+      - name: Run go mod tidy
+        if: steps.check_version.outputs.unchanged != 'true'
+        run: |
+          cd oapi-codegen && go mod tidy
 
       - name: Update version file
         if: steps.check_version.outputs.unchanged != 'true'
