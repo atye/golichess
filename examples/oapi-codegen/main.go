@@ -12,8 +12,7 @@ import (
 func main() {
 	// Personal Access Token authentication
 	// Generate a token at: https://lichess.org/account/oauth/token
-	// accessToken := "your-personal-access-token" // Replace with your token
-	accessToken := "lip_IjEHjCvO7sv6X19VMvfp2"
+	accessToken := "your-personal-access-token" // Replace with your token
 
 	// Create client with Bearer token authentication
 	client, err := oapicodegen.NewClientWithResponses("https://lichess.org",
@@ -34,5 +33,5 @@ func main() {
 		log.Fatalf("getting account: %s", string(resp.Body))
 	}
 
-	fmt.Println(*resp.JSON200)
+	fmt.Println(resp.JSON200.Username)
 }
