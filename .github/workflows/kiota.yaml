@@ -1,0 +1,80 @@
+name: Update Kiota client
+
+permissions:
+  contents: write
+
+on:
+  schedule:
+    # Run daily at 5 AM UTC (offset from other generators)
+    - cron: '0 5 * * *'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: 'Force update even if spec version unchanged'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - true
+          - false
+
+jobs:
+  update-client:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Bundle spec and check version
+        id: bundle
+        uses: ./.github/actions/bundle-spec
+
+      - name: Check if version changed with force override
+        id: check_version
+        run: |
+          if [ "${{ steps.bundle.outputs.unchanged }}" = "true" ] && [ "${{ github.event.inputs.force }}" != "true" ]; then
+            echo "unchanged=true" >> $GITHUB_OUTPUT
+            echo "Version unchanged, skipping update"
+          else
+            echo "unchanged=false" >> $GITHUB_OUTPUT
+            echo "Version changed or force override, proceeding with update"
+          fi
+
+      - name: Setup Kiota
+        if: steps.check_version.outputs.unchanged != 'true'
+        uses: microsoft/setup-kiota@v0.5.0
+        with:
+          version: latest
+
+      - name: Clean Kiota directory
+        if: steps.check_version.outputs.unchanged != 'true'
+        run: |
+          rm -rf kiota/*
+          cd kiota && go mod init github.com/atye/golichess/kiota
+
+      - name: Generate Go client
+        if: steps.check_version.outputs.unchanged != 'true'
+        run: |
+          kiota generate -l go -c LichessClient -n github.com/atye/golichess/kiota/client -d lichess-api-bundled.yaml -o ./kiota
+
+      - name: Run go mod tidy
+        if: steps.check_version.outputs.unchanged != 'true'
+        run: |
+          cd kiota && go mod tidy
+
+      - name: Update version file
+        if: steps.check_version.outputs.unchanged != 'true'
+        run: |
+          echo "${{ steps.bundle.outputs.version }}" > version.txt
+
+      - name: Commit and push changes
+        if: steps.check_version.outputs.unchanged != 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add kiota
+          git diff --staged --quiet || git commit -m "Update Kiota client to Lichess API version ${{ steps.bundle.outputs.version }}"
+          git push
