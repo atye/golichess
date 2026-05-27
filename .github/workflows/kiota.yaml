@@ -54,11 +54,12 @@ jobs:
         run: |
           rm -rf kiota/*
           cd kiota && go mod init github.com/atye/golichess/kiota
+          go get github.com/microsoft/kiota-bundle-go
 
       - name: Generate Go client
         if: steps.check_version.outputs.unchanged != 'true'
         run: |
-          kiota generate -l go -c LichessClient -n github.com/atye/golichess/kiota/client -d lichess-api-bundled.yaml -o ./kiota
+          kiota generate -l go -c LichessClient -n github.com/atye/golichess/kiota -d lichess-api-bundled.yaml -o ./kiota
 
       - name: Run go mod tidy
         if: steps.check_version.outputs.unchanged != 'true'
