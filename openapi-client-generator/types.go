@@ -1008,6 +1008,31 @@ const (
 	FideTimeControlBlitz    FideTimeControl = "blitz"
 )
 
+// BroadcastTourInfo - Additional display information about the tournament
+type BroadcastTourInfo struct {
+	// Tournament format.
+	// Example: `"8-player round-robin" or "5-round Swiss"`
+	Format *string `json:"format,omitempty"`
+	// Time control.
+	// Example: `"Classical" or "Rapid" or "Rapid & Blitz"`
+	Tc *string `json:"tc,omitempty"`
+	// FIDE rating category
+	FideTc *FideTimeControl `json:"fideTC,omitempty"`
+	// Timezone of the tournament. Example: `America/New_York`.
+	// See [list of possible timezone identifiers](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for more.
+	TimeZone *string `json:"timeZone,omitempty"`
+	// Tournament location
+	Location *string `json:"location,omitempty"`
+	// Mentioning up to 4 of the best players participating.
+	Players *string `json:"players,omitempty"`
+	// Official website. External website URL
+	Website *string `json:"website,omitempty"`
+	// Official standings website. External website URL, e.g. chess-results.com, info64.org
+	Standings *string `json:"standings,omitempty"`
+	// External URL to the official tournament regulations.
+	Regulations *string `json:"regulations,omitempty"`
+}
+
 type BroadcastTour struct {
 	ID        string `json:"id"`
 	Name      string `json:"name"`
@@ -1016,7 +1041,7 @@ type BroadcastTour struct {
 	// Start and end dates of the tournament, as Unix timestamps in milliseconds
 	Dates []int64 `json:"dates,omitempty"`
 	// Additional display information about the tournament
-	Info any `json:"info,omitempty"`
+	Info *BroadcastTourInfo `json:"info,omitempty"`
 	// Used to designate featured tournaments on Lichess
 	Tier  *int64  `json:"tier,omitempty"`
 	Image *string `json:"image,omitempty"`
@@ -1135,25 +1160,8 @@ type BroadcastForm struct {
 	//
 	// Example: `Sinquefield Cup`
 	Name string `json:"name"`
-	// Tournament format.
-	// Example: `"8-player round-robin" or "5-round Swiss"`
-	InfoFormat *string `json:"info.format,omitempty"`
-	// Tournament Location
-	InfoLocation *string `json:"info.location,omitempty"`
-	// Time control.
-	// Example: `"Classical" or "Rapid" or "Rapid & Blitz"`
-	InfoTc *string `json:"info.tc,omitempty"`
-	// FIDE rating category
-	InfoFideTc *FideTimeControl `json:"info.fideTC,omitempty"`
-	// Timezone of the tournament. Example: `America/New_York`.
-	// See [list of possible timezone identifiers](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for more.
-	InfoTimeZone *string `json:"info.timeZone,omitempty"`
-	// Mention up to 4 of the best players participating.
-	InfoPlayers *string `json:"info.players,omitempty"`
-	// Official website. External website URL
-	InfoWebsite *string `json:"info.website,omitempty"`
-	// Official Standings. External website URL, e.g. chess-results.com, info64.org
-	InfoStandings *string `json:"info.standings,omitempty"`
+	// Additional display information about the tournament
+	Info *BroadcastTourInfo `json:"info,omitempty"`
 	// Optional long description of the broadcast. Markdown is supported.
 	Markdown *string `json:"markdown,omitempty"`
 	// Show players scores based on game results
@@ -1222,7 +1230,9 @@ type BroadcastForm struct {
 	// * `4` for Official: high tier
 	// * `5` for Official: best tier
 	Tier      *int64                          `json:"tier,omitempty"`
-	Tiebreaks []BroadcastTiebreakExtendedCode `json:"tiebreaks[],omitempty"`
+	Tiebreaks []BroadcastTiebreakExtendedCode `json:"tiebreaks,omitempty"`
+	// Group this broadcast along with others
+	Grouping any `json:"grouping,omitempty"`
 }
 
 type BroadcastGroupTour struct {
