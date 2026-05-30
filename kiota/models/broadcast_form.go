@@ -10,22 +10,10 @@ import (
 type BroadcastForm struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // FIDE rating category
-    infoFideTC *FideTimeControl
-    // Tournament format.Example: `"8-player round-robin" or "5-round Swiss"`
-    infoFormat *string
-    // Tournament Location
-    infoLocation *string
-    // Mention up to 4 of the best players participating.
-    infoPlayers *string
-    // Official Standings. External website URL, e.g. chess-results.com, info64.org
-    infoStandings *string
-    // Time control.Example: `"Classical" or "Rapid" or "Rapid & Blitz"`
-    infoTc *string
-    // Timezone of the tournament. Example: `America/New_York`.See [list of possible timezone identifiers](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for more.
-    infoTimeZone *string
-    // Official website. External website URL
-    infoWebsite *string
+    // Group this broadcast along with others
+    grouping BroadcastForm_groupingable
+    // Additional display information about the tournament
+    info BroadcastTourInfoable
     // Optional long description of the broadcast. Markdown is supported.
     markdown *string
     // Name of the broadcast tournament.Example: `Sinquefield Cup`
@@ -70,83 +58,23 @@ func (m *BroadcastForm) GetAdditionalData()(map[string]any) {
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *BroadcastForm) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["info.fideTC"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseFideTimeControl)
+    res["grouping"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateBroadcastForm_groupingFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetInfoFideTC(val.(*FideTimeControl))
+            m.SetGrouping(val.(BroadcastForm_groupingable))
         }
         return nil
     }
-    res["info.format"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
+    res["info"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateBroadcastTourInfoFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetInfoFormat(val)
-        }
-        return nil
-    }
-    res["info.location"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetInfoLocation(val)
-        }
-        return nil
-    }
-    res["info.players"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetInfoPlayers(val)
-        }
-        return nil
-    }
-    res["info.standings"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetInfoStandings(val)
-        }
-        return nil
-    }
-    res["info.tc"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetInfoTc(val)
-        }
-        return nil
-    }
-    res["info.timeZone"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetInfoTimeZone(val)
-        }
-        return nil
-    }
-    res["info.website"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetInfoWebsite(val)
+            m.SetInfo(val.(BroadcastTourInfoable))
         }
         return nil
     }
@@ -220,7 +148,7 @@ func (m *BroadcastForm) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
         }
         return nil
     }
-    res["tiebreaks[]"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+    res["tiebreaks"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetCollectionOfEnumValues(ParseBroadcastTiebreakExtendedCode)
         if err != nil {
             return err
@@ -258,45 +186,15 @@ func (m *BroadcastForm) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
     }
     return res
 }
-// GetInfoFideTC gets the info.fideTC property value. FIDE rating category
-// returns a *FideTimeControl when successful
-func (m *BroadcastForm) GetInfoFideTC()(*FideTimeControl) {
-    return m.infoFideTC
+// GetGrouping gets the grouping property value. Group this broadcast along with others
+// returns a BroadcastForm_groupingable when successful
+func (m *BroadcastForm) GetGrouping()(BroadcastForm_groupingable) {
+    return m.grouping
 }
-// GetInfoFormat gets the info.format property value. Tournament format.Example: `"8-player round-robin" or "5-round Swiss"`
-// returns a *string when successful
-func (m *BroadcastForm) GetInfoFormat()(*string) {
-    return m.infoFormat
-}
-// GetInfoLocation gets the info.location property value. Tournament Location
-// returns a *string when successful
-func (m *BroadcastForm) GetInfoLocation()(*string) {
-    return m.infoLocation
-}
-// GetInfoPlayers gets the info.players property value. Mention up to 4 of the best players participating.
-// returns a *string when successful
-func (m *BroadcastForm) GetInfoPlayers()(*string) {
-    return m.infoPlayers
-}
-// GetInfoStandings gets the info.standings property value. Official Standings. External website URL, e.g. chess-results.com, info64.org
-// returns a *string when successful
-func (m *BroadcastForm) GetInfoStandings()(*string) {
-    return m.infoStandings
-}
-// GetInfoTc gets the info.tc property value. Time control.Example: `"Classical" or "Rapid" or "Rapid & Blitz"`
-// returns a *string when successful
-func (m *BroadcastForm) GetInfoTc()(*string) {
-    return m.infoTc
-}
-// GetInfoTimeZone gets the info.timeZone property value. Timezone of the tournament. Example: `America/New_York`.See [list of possible timezone identifiers](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for more.
-// returns a *string when successful
-func (m *BroadcastForm) GetInfoTimeZone()(*string) {
-    return m.infoTimeZone
-}
-// GetInfoWebsite gets the info.website property value. Official website. External website URL
-// returns a *string when successful
-func (m *BroadcastForm) GetInfoWebsite()(*string) {
-    return m.infoWebsite
+// GetInfo gets the info property value. Additional display information about the tournament
+// returns a BroadcastTourInfoable when successful
+func (m *BroadcastForm) GetInfo()(BroadcastTourInfoable) {
+    return m.info
 }
 // GetMarkdown gets the markdown property value. Optional long description of the broadcast. Markdown is supported.
 // returns a *string when successful
@@ -333,7 +231,7 @@ func (m *BroadcastForm) GetTeams()(*string) {
 func (m *BroadcastForm) GetTeamTable()(*bool) {
     return m.teamTable
 }
-// GetTiebreaks gets the tiebreaks[] property value. The tiebreaks property
+// GetTiebreaks gets the tiebreaks property value. The tiebreaks property
 // returns a []BroadcastTiebreakExtendedCode when successful
 func (m *BroadcastForm) GetTiebreaks()([]BroadcastTiebreakExtendedCode) {
     return m.tiebreaks
@@ -350,51 +248,14 @@ func (m *BroadcastForm) GetVisibility()(*BroadcastForm_visibility) {
 }
 // Serialize serializes information the current object
 func (m *BroadcastForm) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetInfoFideTC() != nil {
-        cast := (*m.GetInfoFideTC()).String()
-        err := writer.WriteStringValue("info.fideTC", &cast)
+    {
+        err := writer.WriteObjectValue("grouping", m.GetGrouping())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteStringValue("info.format", m.GetInfoFormat())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("info.location", m.GetInfoLocation())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("info.players", m.GetInfoPlayers())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("info.standings", m.GetInfoStandings())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("info.tc", m.GetInfoTc())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("info.timeZone", m.GetInfoTimeZone())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("info.website", m.GetInfoWebsite())
+        err := writer.WriteObjectValue("info", m.GetInfo())
         if err != nil {
             return err
         }
@@ -442,7 +303,7 @@ func (m *BroadcastForm) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
         }
     }
     if m.GetTiebreaks() != nil {
-        err := writer.WriteCollectionOfStringValues("tiebreaks[]", SerializeBroadcastTiebreakExtendedCode(m.GetTiebreaks()))
+        err := writer.WriteCollectionOfStringValues("tiebreaks", SerializeBroadcastTiebreakExtendedCode(m.GetTiebreaks()))
         if err != nil {
             return err
         }
@@ -472,37 +333,13 @@ func (m *BroadcastForm) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
 func (m *BroadcastForm) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetInfoFideTC sets the info.fideTC property value. FIDE rating category
-func (m *BroadcastForm) SetInfoFideTC(value *FideTimeControl)() {
-    m.infoFideTC = value
+// SetGrouping sets the grouping property value. Group this broadcast along with others
+func (m *BroadcastForm) SetGrouping(value BroadcastForm_groupingable)() {
+    m.grouping = value
 }
-// SetInfoFormat sets the info.format property value. Tournament format.Example: `"8-player round-robin" or "5-round Swiss"`
-func (m *BroadcastForm) SetInfoFormat(value *string)() {
-    m.infoFormat = value
-}
-// SetInfoLocation sets the info.location property value. Tournament Location
-func (m *BroadcastForm) SetInfoLocation(value *string)() {
-    m.infoLocation = value
-}
-// SetInfoPlayers sets the info.players property value. Mention up to 4 of the best players participating.
-func (m *BroadcastForm) SetInfoPlayers(value *string)() {
-    m.infoPlayers = value
-}
-// SetInfoStandings sets the info.standings property value. Official Standings. External website URL, e.g. chess-results.com, info64.org
-func (m *BroadcastForm) SetInfoStandings(value *string)() {
-    m.infoStandings = value
-}
-// SetInfoTc sets the info.tc property value. Time control.Example: `"Classical" or "Rapid" or "Rapid & Blitz"`
-func (m *BroadcastForm) SetInfoTc(value *string)() {
-    m.infoTc = value
-}
-// SetInfoTimeZone sets the info.timeZone property value. Timezone of the tournament. Example: `America/New_York`.See [list of possible timezone identifiers](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for more.
-func (m *BroadcastForm) SetInfoTimeZone(value *string)() {
-    m.infoTimeZone = value
-}
-// SetInfoWebsite sets the info.website property value. Official website. External website URL
-func (m *BroadcastForm) SetInfoWebsite(value *string)() {
-    m.infoWebsite = value
+// SetInfo sets the info property value. Additional display information about the tournament
+func (m *BroadcastForm) SetInfo(value BroadcastTourInfoable)() {
+    m.info = value
 }
 // SetMarkdown sets the markdown property value. Optional long description of the broadcast. Markdown is supported.
 func (m *BroadcastForm) SetMarkdown(value *string)() {
@@ -532,7 +369,7 @@ func (m *BroadcastForm) SetTeams(value *string)() {
 func (m *BroadcastForm) SetTeamTable(value *bool)() {
     m.teamTable = value
 }
-// SetTiebreaks sets the tiebreaks[] property value. The tiebreaks property
+// SetTiebreaks sets the tiebreaks property value. The tiebreaks property
 func (m *BroadcastForm) SetTiebreaks(value []BroadcastTiebreakExtendedCode)() {
     m.tiebreaks = value
 }
@@ -547,14 +384,8 @@ func (m *BroadcastForm) SetVisibility(value *BroadcastForm_visibility)() {
 type BroadcastFormable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetInfoFideTC()(*FideTimeControl)
-    GetInfoFormat()(*string)
-    GetInfoLocation()(*string)
-    GetInfoPlayers()(*string)
-    GetInfoStandings()(*string)
-    GetInfoTc()(*string)
-    GetInfoTimeZone()(*string)
-    GetInfoWebsite()(*string)
+    GetGrouping()(BroadcastForm_groupingable)
+    GetInfo()(BroadcastTourInfoable)
     GetMarkdown()(*string)
     GetName()(*string)
     GetPlayers()(*string)
@@ -565,14 +396,8 @@ type BroadcastFormable interface {
     GetTiebreaks()([]BroadcastTiebreakExtendedCode)
     GetTier()(*int32)
     GetVisibility()(*BroadcastForm_visibility)
-    SetInfoFideTC(value *FideTimeControl)()
-    SetInfoFormat(value *string)()
-    SetInfoLocation(value *string)()
-    SetInfoPlayers(value *string)()
-    SetInfoStandings(value *string)()
-    SetInfoTc(value *string)()
-    SetInfoTimeZone(value *string)()
-    SetInfoWebsite(value *string)()
+    SetGrouping(value BroadcastForm_groupingable)()
+    SetInfo(value BroadcastTourInfoable)()
     SetMarkdown(value *string)()
     SetName(value *string)()
     SetPlayers(value *string)()

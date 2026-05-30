@@ -10,6 +10,8 @@ Warning: KiotaBuilder OpenAPI warning: #/ - The schema /game/export/{gameId} is 
 Warning: KiotaBuilder OpenAPI warning: #/ - The schema /api/games/export/_ids is a polymorphic type but does not define a discriminator. This will result in serialization errors.
 Warning: KiotaBuilder OpenAPI warning: #/ - The schema /api/games/export/bookmarks is a polymorphic type but does not define a discriminator. This will result in serialization errors.
 Warning: KiotaBuilder OpenAPI warning: #/paths/~1api~1import/post/responses/200/content/application~1json/schema/properties/url - The format uri is not supported by Kiota and the string type will be used.
+Warning: KiotaBuilder OpenAPI warning: #/paths/~1broadcast~1new/post - The operation #/paths/~1broadcast~1new/post has a request body with a complex properties and the url form encoded content type. This is not supported by Kiota and serialization of complex properties will fail.
+Warning: KiotaBuilder OpenAPI warning: #/paths/~1broadcast~1{broadcastTournamentId}~1edit/post - The operation #/paths/~1broadcast~1{broadcastTournamentId}~1edit/post has a request body with a complex properties and the url form encoded content type. This is not supported by Kiota and serialization of complex properties will fail.
 Warning: KiotaBuilder OpenAPI warning: #/paths/~1broadcast~1{broadcastTournamentId}~1new/post - The operation #/paths/~1broadcast~1{broadcastTournamentId}~1new/post has a request body which is not an object type. This is not supported by Kiota and serialization will fail.
 Warning: KiotaBuilder OpenAPI warning: #/paths/~1broadcast~1round~1{broadcastRoundId}~1edit/post - The operation #/paths/~1broadcast~1round~1{broadcastRoundId}~1edit/post has a request body which is not an object type. This is not supported by Kiota and serialization will fail.
 Warning: KiotaBuilder OpenAPI warning: #/paths/~1api~1streamer~1live/get/responses/200/content/application~1json/schema/items/allOf/1/properties/streamer/properties/twitch - The format uri is not supported by Kiota and the string type will be used.
@@ -28,13 +30,12 @@ Warning: KiotaBuilder OpenAPI warning: #/components/schemas/UserPreferences/prop
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/ArenaPosition/oneOf/0/properties/url - The format uri is not supported by Kiota and the string type will be used.
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/ArenaTournamentFull/properties/startsAt - The format int64 is not supported by Kiota for the type String and the string type will be used.
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/ArenaTournamentFull/properties/greatPlayer/properties/url - The format uri is not supported by Kiota and the string type will be used.
-Warning: KiotaBuilder OpenAPI warning: #/components/schemas/BroadcastTour/properties/info/properties/website - The format uri is not supported by Kiota and the string type will be used.
-Warning: KiotaBuilder OpenAPI warning: #/components/schemas/BroadcastTour/properties/info/properties/standings - The format uri is not supported by Kiota and the string type will be used.
+Warning: KiotaBuilder OpenAPI warning: #/components/schemas/BroadcastTourInfo/properties/website - The format uri is not supported by Kiota and the string type will be used.
+Warning: KiotaBuilder OpenAPI warning: #/components/schemas/BroadcastTourInfo/properties/standings - The format uri is not supported by Kiota and the string type will be used.
+Warning: KiotaBuilder OpenAPI warning: #/components/schemas/BroadcastTourInfo/properties/regulations - The format uri is not supported by Kiota and the string type will be used.
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/BroadcastTour/properties/image - The format uri is not supported by Kiota and the string type will be used.
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/BroadcastTour/properties/url - The format uri is not supported by Kiota and the string type will be used.
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/BroadcastRoundInfo/properties/url - The format uri is not supported by Kiota and the string type will be used.
-Warning: KiotaBuilder OpenAPI warning: #/components/schemas/BroadcastForm/properties/info.website - The format uri is not supported by Kiota and the string type will be used.
-Warning: KiotaBuilder OpenAPI warning: #/components/schemas/BroadcastForm/properties/info.standings - The format uri is not supported by Kiota and the string type will be used.
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/BroadcastRoundForm/allOf/0/oneOf/1/properties/syncUrl - The format uri is not supported by Kiota and the string type will be used.
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/ChallengeJson/properties/url - The format uri is not supported by Kiota and the string type will be used.
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/ChallengeOpenJson/properties/url - The format uri is not supported by Kiota and the string type will be used.

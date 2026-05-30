@@ -23,7 +23,7 @@ type BroadcastTour struct {
     // The image property
     image *string
     // Additional display information about the tournament
-    info BroadcastTour_infoable
+    info BroadcastTourInfoable
     // The name property
     name *string
     // The showTeamScores property
@@ -145,12 +145,12 @@ func (m *BroadcastTour) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
         return nil
     }
     res["info"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateBroadcastTour_infoFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreateBroadcastTourInfoFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetInfo(val.(BroadcastTour_infoable))
+            m.SetInfo(val.(BroadcastTourInfoable))
         }
         return nil
     }
@@ -227,8 +227,8 @@ func (m *BroadcastTour) GetImage()(*string) {
     return m.image
 }
 // GetInfo gets the info property value. Additional display information about the tournament
-// returns a BroadcastTour_infoable when successful
-func (m *BroadcastTour) GetInfo()(BroadcastTour_infoable) {
+// returns a BroadcastTourInfoable when successful
+func (m *BroadcastTour) GetInfo()(BroadcastTourInfoable) {
     return m.info
 }
 // GetName gets the name property value. The name property
@@ -378,7 +378,7 @@ func (m *BroadcastTour) SetImage(value *string)() {
     m.image = value
 }
 // SetInfo sets the info property value. Additional display information about the tournament
-func (m *BroadcastTour) SetInfo(value BroadcastTour_infoable)() {
+func (m *BroadcastTour) SetInfo(value BroadcastTourInfoable)() {
     m.info = value
 }
 // SetName sets the name property value. The name property
@@ -414,7 +414,7 @@ type BroadcastTourable interface {
     GetDescription()(*string)
     GetId()(*string)
     GetImage()(*string)
-    GetInfo()(BroadcastTour_infoable)
+    GetInfo()(BroadcastTourInfoable)
     GetName()(*string)
     GetShowTeamScores()(*bool)
     GetSlug()(*string)
@@ -427,7 +427,7 @@ type BroadcastTourable interface {
     SetDescription(value *string)()
     SetId(value *string)()
     SetImage(value *string)()
-    SetInfo(value BroadcastTour_infoable)()
+    SetInfo(value BroadcastTourInfoable)()
     SetName(value *string)()
     SetShowTeamScores(value *bool)()
     SetSlug(value *string)()
