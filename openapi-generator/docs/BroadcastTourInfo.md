@@ -4,14 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Website** | Pointer to **string** | Official website. External website URL | [optional] 
-**Players** | Pointer to **string** | Featured players | [optional] 
-**Location** | Pointer to **string** | Tournament location | [optional] 
-**Tc** | Pointer to **string** | Time control | [optional] 
-**FideTC** | Pointer to [**FideTimeControl**](FideTimeControl.md) | FIDE rating category | [optional] 
+**Format** | Pointer to **string** | Tournament format. Example: &#x60;\&quot;8-player round-robin\&quot; or \&quot;5-round Swiss\&quot;&#x60;  | [optional] 
+**Tc** | Pointer to **string** | Time control. Example: &#x60;\&quot;Classical\&quot; or \&quot;Rapid\&quot; or \&quot;Rapid &amp; Blitz\&quot;&#x60;  | [optional] 
+**FideTC** | Pointer to [**FideTimeControl**](FideTimeControl.md) |  | [optional] 
 **TimeZone** | Pointer to **string** | Timezone of the tournament. Example: &#x60;America/New_York&#x60;. See [list of possible timezone identifiers](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for more.  | [optional] 
-**Standings** | Pointer to **string** | Official standings website. External website URL | [optional] 
-**Format** | Pointer to **string** | Tournament format | [optional] 
+**Location** | Pointer to **string** | Tournament location | [optional] 
+**Players** | Pointer to **string** | Mentioning up to 4 of the best players participating.  | [optional] 
+**Website** | Pointer to **string** | Official website. External website URL | [optional] 
+**Standings** | Pointer to **string** | Official standings website. External website URL, e.g. chess-results.com, info64.org  | [optional] 
+**Regulations** | Pointer to **string** | External URL to the official tournament regulations.  | [optional] 
 
 ## Methods
 
@@ -32,80 +33,30 @@ NewBroadcastTourInfoWithDefaults instantiates a new BroadcastTourInfo object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetWebsite
+### GetFormat
 
-`func (o *BroadcastTourInfo) GetWebsite() string`
+`func (o *BroadcastTourInfo) GetFormat() string`
 
-GetWebsite returns the Website field if non-nil, zero value otherwise.
+GetFormat returns the Format field if non-nil, zero value otherwise.
 
-### GetWebsiteOk
+### GetFormatOk
 
-`func (o *BroadcastTourInfo) GetWebsiteOk() (*string, bool)`
+`func (o *BroadcastTourInfo) GetFormatOk() (*string, bool)`
 
-GetWebsiteOk returns a tuple with the Website field if it's non-nil, zero value otherwise
+GetFormatOk returns a tuple with the Format field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetWebsite
+### SetFormat
 
-`func (o *BroadcastTourInfo) SetWebsite(v string)`
+`func (o *BroadcastTourInfo) SetFormat(v string)`
 
-SetWebsite sets Website field to given value.
+SetFormat sets Format field to given value.
 
-### HasWebsite
+### HasFormat
 
-`func (o *BroadcastTourInfo) HasWebsite() bool`
+`func (o *BroadcastTourInfo) HasFormat() bool`
 
-HasWebsite returns a boolean if a field has been set.
-
-### GetPlayers
-
-`func (o *BroadcastTourInfo) GetPlayers() string`
-
-GetPlayers returns the Players field if non-nil, zero value otherwise.
-
-### GetPlayersOk
-
-`func (o *BroadcastTourInfo) GetPlayersOk() (*string, bool)`
-
-GetPlayersOk returns a tuple with the Players field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPlayers
-
-`func (o *BroadcastTourInfo) SetPlayers(v string)`
-
-SetPlayers sets Players field to given value.
-
-### HasPlayers
-
-`func (o *BroadcastTourInfo) HasPlayers() bool`
-
-HasPlayers returns a boolean if a field has been set.
-
-### GetLocation
-
-`func (o *BroadcastTourInfo) GetLocation() string`
-
-GetLocation returns the Location field if non-nil, zero value otherwise.
-
-### GetLocationOk
-
-`func (o *BroadcastTourInfo) GetLocationOk() (*string, bool)`
-
-GetLocationOk returns a tuple with the Location field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLocation
-
-`func (o *BroadcastTourInfo) SetLocation(v string)`
-
-SetLocation sets Location field to given value.
-
-### HasLocation
-
-`func (o *BroadcastTourInfo) HasLocation() bool`
-
-HasLocation returns a boolean if a field has been set.
+HasFormat returns a boolean if a field has been set.
 
 ### GetTc
 
@@ -182,6 +133,81 @@ SetTimeZone sets TimeZone field to given value.
 
 HasTimeZone returns a boolean if a field has been set.
 
+### GetLocation
+
+`func (o *BroadcastTourInfo) GetLocation() string`
+
+GetLocation returns the Location field if non-nil, zero value otherwise.
+
+### GetLocationOk
+
+`func (o *BroadcastTourInfo) GetLocationOk() (*string, bool)`
+
+GetLocationOk returns a tuple with the Location field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLocation
+
+`func (o *BroadcastTourInfo) SetLocation(v string)`
+
+SetLocation sets Location field to given value.
+
+### HasLocation
+
+`func (o *BroadcastTourInfo) HasLocation() bool`
+
+HasLocation returns a boolean if a field has been set.
+
+### GetPlayers
+
+`func (o *BroadcastTourInfo) GetPlayers() string`
+
+GetPlayers returns the Players field if non-nil, zero value otherwise.
+
+### GetPlayersOk
+
+`func (o *BroadcastTourInfo) GetPlayersOk() (*string, bool)`
+
+GetPlayersOk returns a tuple with the Players field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPlayers
+
+`func (o *BroadcastTourInfo) SetPlayers(v string)`
+
+SetPlayers sets Players field to given value.
+
+### HasPlayers
+
+`func (o *BroadcastTourInfo) HasPlayers() bool`
+
+HasPlayers returns a boolean if a field has been set.
+
+### GetWebsite
+
+`func (o *BroadcastTourInfo) GetWebsite() string`
+
+GetWebsite returns the Website field if non-nil, zero value otherwise.
+
+### GetWebsiteOk
+
+`func (o *BroadcastTourInfo) GetWebsiteOk() (*string, bool)`
+
+GetWebsiteOk returns a tuple with the Website field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWebsite
+
+`func (o *BroadcastTourInfo) SetWebsite(v string)`
+
+SetWebsite sets Website field to given value.
+
+### HasWebsite
+
+`func (o *BroadcastTourInfo) HasWebsite() bool`
+
+HasWebsite returns a boolean if a field has been set.
+
 ### GetStandings
 
 `func (o *BroadcastTourInfo) GetStandings() string`
@@ -207,30 +233,30 @@ SetStandings sets Standings field to given value.
 
 HasStandings returns a boolean if a field has been set.
 
-### GetFormat
+### GetRegulations
 
-`func (o *BroadcastTourInfo) GetFormat() string`
+`func (o *BroadcastTourInfo) GetRegulations() string`
 
-GetFormat returns the Format field if non-nil, zero value otherwise.
+GetRegulations returns the Regulations field if non-nil, zero value otherwise.
 
-### GetFormatOk
+### GetRegulationsOk
 
-`func (o *BroadcastTourInfo) GetFormatOk() (*string, bool)`
+`func (o *BroadcastTourInfo) GetRegulationsOk() (*string, bool)`
 
-GetFormatOk returns a tuple with the Format field if it's non-nil, zero value otherwise
+GetRegulationsOk returns a tuple with the Regulations field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetFormat
+### SetRegulations
 
-`func (o *BroadcastTourInfo) SetFormat(v string)`
+`func (o *BroadcastTourInfo) SetRegulations(v string)`
 
-SetFormat sets Format field to given value.
+SetRegulations sets Regulations field to given value.
 
-### HasFormat
+### HasRegulations
 
-`func (o *BroadcastTourInfo) HasFormat() bool`
+`func (o *BroadcastTourInfo) HasRegulations() bool`
 
-HasFormat returns a boolean if a field has been set.
+HasRegulations returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

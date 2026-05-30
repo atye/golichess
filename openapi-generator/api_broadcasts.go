@@ -3,7 +3,7 @@ Lichess.org API reference
 
 # Introduction Welcome to the reference for the Lichess API! Lichess is free/libre, open-source chess server powered by volunteers and donations. - Get help in the [Lichess Discord channel](https://discord.gg/lichess) - API demo app with OAuth2 login and gameplay: [source](https://github.com/lichess-org/api-demo) / [demo](https://lichess-org.github.io/api-demo/) - API UI app with OAuth2 login and endpoint forms: [source](https://github.com/lichess-org/api-ui) / [website](https://lichess.org/api/ui) - [Contribute to this documentation on Github](https://github.com/lichess-org/api) - Check out [Lichess widgets to embed in your website](https://lichess.org/developers) - [Download all Lichess rated games](https://database.lichess.org/) - [Download all Lichess puzzles with themes, ratings and votes](https://database.lichess.org/#puzzles) - [Download all evaluated positions](https://database.lichess.org/#evals)  ## Endpoint All requests go to `https://lichess.org` (unless otherwise specified).  ## Clients - [Python general API](https://github.com/lichess-org/berserk) - [MicroPython general API](https://github.com/mkomon/uberserk) - [Python general API - async](https://pypi.org/project/async-lichess-sdk) - [Python Lichess Bot](https://github.com/lichess-bot-devs/lichess-bot) - [Python Board API for Certabo](https://github.com/haklein/certabo-lichess) - [Java general API](https://github.com/tors42/chariot) - [JavaScript & TypeScript general API](https://github.com/devjiwonchoi/equine) - [LichessNET - C# API Wrapper](https://github.com/Rabergsel/LichessNET) - [.NET general API](https://github.com/Dblike/LichessSharp)  ## Rate limiting All requests are rate limited using various strategies, to ensure the API remains responsive for everyone. Only make one request at a time. If you receive an HTTP response with a [429 status](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#429), you have exceded one of the rate limits. In most cases, waiting one minute before retrying will be sufficient, but some limits may require longer. Reduce your request frequency before retrying.  ## Streaming with ND-JSON Some API endpoints stream their responses as [Newline Delimited JSON a.k.a. **nd-json**](https://github.com/ndjson/ndjson-spec), with one JSON object per line.  Here's a [JavaScript utility function](https://gist.github.com/ornicar/a097406810939cf7be1df8ea30e94f3e) to help reading NDJSON streamed responses.  ## Authentication ### Which authentication method is right for me? [Read about the Lichess API authentication methods and code examples](https://github.com/lichess-org/api/blob/master/example/README.md)  ### Personal Access Token Personal API access tokens allow you to quickly interact with Lichess API without going through an OAuth flow. - [Generate a personal access token](https://lichess.org/account/oauth/token) - `curl https://lichess.org/api/account -H \"Authorization: Bearer {token}\"` - [NodeJS example](https://github.com/lichess-org/api/tree/master/example/oauth-personal-token)  ### Token Security - Keep your tokens secret. Do not share them in public repositories or public forums. - Your tokens can be used to make your account perform arbitrary actions (within the limits of the tokens' scope). You remain responsible for all activities on your account. - Do not hardcode tokens in your application's code. Use environment variables or a secure storage and ensure they are not shipped/exposed to users. Be especially careful that they are not included in frontend bundles or apps that are shipped to users. - If you suspect a token has been compromised, revoke it immediately.  To see your active tokens or revoke them, see [your Personal API access tokens](https://lichess.org/account/oauth/token).  ### Authorization Code Flow with PKCE The authorization code flow with PKCE allows your users to **login with Lichess**. Lichess supports unregistered and public clients (no client authentication, choose any unique client id). The only accepted code challenge method is `S256`. Access tokens are long-lived (expect one year), unless they are revoked. Refresh tokens are not supported.  See the [documentation for the OAuth endpoints](#tag/OAuth) or the [PKCE RFC](https://datatracker.ietf.org/doc/html/rfc7636#section-4) for a precise protocol description.  - [Demo app](https://lichess-org.github.io/api-demo/) - [Minimal client-side example](https://github.com/lichess-org/api/tree/master/example/oauth-app) - [Flask/Python example](https://github.com/lakinwecker/lichess-oauth-flask) - [Java example](https://github.com/tors42/lichess-oauth-pkce-app) - [NodeJS Passport strategy to login with Lichess OAuth2](https://www.npmjs.com/package/passport-lichess)  #### Real life examples - [PyChess](https://github.com/gbtami/pychess-variants) ([source code](https://github.com/gbtami/pychess-variants)) - [Lichess4545](https://www.lichess4545.com/) ([source code](https://github.com/cyanfish/heltour)) - [English Chess Federation](https://ecf.octoknight.com/) - [Rotherham Online Chess](https://rotherhamonlinechess.azurewebsites.net/tournaments)  ### Token format Access tokens and authorization codes match `^[A-Za-z0-9_]+$`. The length of tokens can be increased without notice. Make sure your application can handle at least 512 characters. By convention tokens have a recognizable prefix, but do not rely on this. 
 
-API version: 2.0.144
+API version: 2.0.145
 Contact: contact@lichess.org
 */
 
@@ -2235,14 +2235,7 @@ type BroadcastsAPIBroadcastTourCreateRequest struct {
 	ctx context.Context
 	ApiService BroadcastsAPI
 	name *string
-	infoFormat *string
-	infoLocation *string
-	infoTc *string
-	infoFideTC *FideTimeControl
-	infoTimeZone *string
-	infoPlayers *string
-	infoWebsite *string
-	infoStandings *string
+	info *BroadcastTourInfo
 	markdown *string
 	showScores *bool
 	showRatingDiffs *bool
@@ -2252,6 +2245,7 @@ type BroadcastsAPIBroadcastTourCreateRequest struct {
 	teams *string
 	tier *int32
 	tiebreaks *[]BroadcastTiebreakExtendedCode
+	grouping *BroadcastFormGrouping
 }
 
 // Name of the broadcast tournament.  Example: &#x60;Sinquefield Cup&#x60; 
@@ -2260,50 +2254,8 @@ func (r BroadcastsAPIBroadcastTourCreateRequest) Name(name string) BroadcastsAPI
 	return r
 }
 
-// Tournament format. Example: &#x60;\\\&quot;8-player round-robin\\\&quot; or \\\&quot;5-round Swiss\\\&quot;&#x60; 
-func (r BroadcastsAPIBroadcastTourCreateRequest) InfoFormat(infoFormat string) BroadcastsAPIBroadcastTourCreateRequest {
-	r.infoFormat = &infoFormat
-	return r
-}
-
-// Tournament Location 
-func (r BroadcastsAPIBroadcastTourCreateRequest) InfoLocation(infoLocation string) BroadcastsAPIBroadcastTourCreateRequest {
-	r.infoLocation = &infoLocation
-	return r
-}
-
-// Time control. Example: &#x60;\\\&quot;Classical\\\&quot; or \\\&quot;Rapid\\\&quot; or \\\&quot;Rapid &amp; Blitz\\\&quot;&#x60; 
-func (r BroadcastsAPIBroadcastTourCreateRequest) InfoTc(infoTc string) BroadcastsAPIBroadcastTourCreateRequest {
-	r.infoTc = &infoTc
-	return r
-}
-
-func (r BroadcastsAPIBroadcastTourCreateRequest) InfoFideTC(infoFideTC FideTimeControl) BroadcastsAPIBroadcastTourCreateRequest {
-	r.infoFideTC = &infoFideTC
-	return r
-}
-
-// Timezone of the tournament. Example: &#x60;America/New_York&#x60;. See [list of possible timezone identifiers](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for more. 
-func (r BroadcastsAPIBroadcastTourCreateRequest) InfoTimeZone(infoTimeZone string) BroadcastsAPIBroadcastTourCreateRequest {
-	r.infoTimeZone = &infoTimeZone
-	return r
-}
-
-// Mention up to 4 of the best players participating. 
-func (r BroadcastsAPIBroadcastTourCreateRequest) InfoPlayers(infoPlayers string) BroadcastsAPIBroadcastTourCreateRequest {
-	r.infoPlayers = &infoPlayers
-	return r
-}
-
-// Official website. External website URL 
-func (r BroadcastsAPIBroadcastTourCreateRequest) InfoWebsite(infoWebsite string) BroadcastsAPIBroadcastTourCreateRequest {
-	r.infoWebsite = &infoWebsite
-	return r
-}
-
-// Official Standings. External website URL, e.g. chess-results.com, info64.org 
-func (r BroadcastsAPIBroadcastTourCreateRequest) InfoStandings(infoStandings string) BroadcastsAPIBroadcastTourCreateRequest {
-	r.infoStandings = &infoStandings
+func (r BroadcastsAPIBroadcastTourCreateRequest) Info(info BroadcastTourInfo) BroadcastsAPIBroadcastTourCreateRequest {
+	r.info = &info
 	return r
 }
 
@@ -2357,6 +2309,11 @@ func (r BroadcastsAPIBroadcastTourCreateRequest) Tier(tier int32) BroadcastsAPIB
 
 func (r BroadcastsAPIBroadcastTourCreateRequest) Tiebreaks(tiebreaks []BroadcastTiebreakExtendedCode) BroadcastsAPIBroadcastTourCreateRequest {
 	r.tiebreaks = &tiebreaks
+	return r
+}
+
+func (r BroadcastsAPIBroadcastTourCreateRequest) Grouping(grouping BroadcastFormGrouping) BroadcastsAPIBroadcastTourCreateRequest {
+	r.grouping = &grouping
 	return r
 }
 
@@ -2429,29 +2386,12 @@ func (a *BroadcastsAPIService) BroadcastTourCreateExecute(r BroadcastsAPIBroadca
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	parameterAddToHeaderOrQuery(localVarFormParams, "name", r.name, "", "")
-	if r.infoFormat != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "info.format", r.infoFormat, "", "")
-	}
-	if r.infoLocation != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "info.location", r.infoLocation, "", "")
-	}
-	if r.infoTc != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "info.tc", r.infoTc, "", "")
-	}
-	if r.infoFideTC != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "info.fideTC", r.infoFideTC, "", "")
-	}
-	if r.infoTimeZone != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "info.timeZone", r.infoTimeZone, "", "")
-	}
-	if r.infoPlayers != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "info.players", r.infoPlayers, "", "")
-	}
-	if r.infoWebsite != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "info.website", r.infoWebsite, "", "")
-	}
-	if r.infoStandings != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "info.standings", r.infoStandings, "", "")
+	if r.info != nil {
+		paramJson, err := parameterToJson(*r.info)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+		localVarFormParams.Add("info", paramJson)
 	}
 	if r.markdown != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "markdown", r.markdown, "", "")
@@ -2478,7 +2418,14 @@ func (a *BroadcastsAPIService) BroadcastTourCreateExecute(r BroadcastsAPIBroadca
 		parameterAddToHeaderOrQuery(localVarFormParams, "tier", r.tier, "", "")
 	}
 	if r.tiebreaks != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "tiebreaks[]", r.tiebreaks, "", "csv")
+		parameterAddToHeaderOrQuery(localVarFormParams, "tiebreaks", r.tiebreaks, "", "csv")
+	}
+	if r.grouping != nil {
+		paramJson, err := parameterToJson(*r.grouping)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+		localVarFormParams.Add("grouping", paramJson)
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -2642,14 +2589,7 @@ type BroadcastsAPIBroadcastTourUpdateRequest struct {
 	ApiService BroadcastsAPI
 	broadcastTournamentId string
 	name *string
-	infoFormat *string
-	infoLocation *string
-	infoTc *string
-	infoFideTC *FideTimeControl
-	infoTimeZone *string
-	infoPlayers *string
-	infoWebsite *string
-	infoStandings *string
+	info *BroadcastTourInfo
 	markdown *string
 	showScores *bool
 	showRatingDiffs *bool
@@ -2659,6 +2599,7 @@ type BroadcastsAPIBroadcastTourUpdateRequest struct {
 	teams *string
 	tier *int32
 	tiebreaks *[]BroadcastTiebreakExtendedCode
+	grouping *BroadcastFormGrouping
 }
 
 // Name of the broadcast tournament.  Example: &#x60;Sinquefield Cup&#x60; 
@@ -2667,50 +2608,8 @@ func (r BroadcastsAPIBroadcastTourUpdateRequest) Name(name string) BroadcastsAPI
 	return r
 }
 
-// Tournament format. Example: &#x60;\\\&quot;8-player round-robin\\\&quot; or \\\&quot;5-round Swiss\\\&quot;&#x60; 
-func (r BroadcastsAPIBroadcastTourUpdateRequest) InfoFormat(infoFormat string) BroadcastsAPIBroadcastTourUpdateRequest {
-	r.infoFormat = &infoFormat
-	return r
-}
-
-// Tournament Location 
-func (r BroadcastsAPIBroadcastTourUpdateRequest) InfoLocation(infoLocation string) BroadcastsAPIBroadcastTourUpdateRequest {
-	r.infoLocation = &infoLocation
-	return r
-}
-
-// Time control. Example: &#x60;\\\&quot;Classical\\\&quot; or \\\&quot;Rapid\\\&quot; or \\\&quot;Rapid &amp; Blitz\\\&quot;&#x60; 
-func (r BroadcastsAPIBroadcastTourUpdateRequest) InfoTc(infoTc string) BroadcastsAPIBroadcastTourUpdateRequest {
-	r.infoTc = &infoTc
-	return r
-}
-
-func (r BroadcastsAPIBroadcastTourUpdateRequest) InfoFideTC(infoFideTC FideTimeControl) BroadcastsAPIBroadcastTourUpdateRequest {
-	r.infoFideTC = &infoFideTC
-	return r
-}
-
-// Timezone of the tournament. Example: &#x60;America/New_York&#x60;. See [list of possible timezone identifiers](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for more. 
-func (r BroadcastsAPIBroadcastTourUpdateRequest) InfoTimeZone(infoTimeZone string) BroadcastsAPIBroadcastTourUpdateRequest {
-	r.infoTimeZone = &infoTimeZone
-	return r
-}
-
-// Mention up to 4 of the best players participating. 
-func (r BroadcastsAPIBroadcastTourUpdateRequest) InfoPlayers(infoPlayers string) BroadcastsAPIBroadcastTourUpdateRequest {
-	r.infoPlayers = &infoPlayers
-	return r
-}
-
-// Official website. External website URL 
-func (r BroadcastsAPIBroadcastTourUpdateRequest) InfoWebsite(infoWebsite string) BroadcastsAPIBroadcastTourUpdateRequest {
-	r.infoWebsite = &infoWebsite
-	return r
-}
-
-// Official Standings. External website URL, e.g. chess-results.com, info64.org 
-func (r BroadcastsAPIBroadcastTourUpdateRequest) InfoStandings(infoStandings string) BroadcastsAPIBroadcastTourUpdateRequest {
-	r.infoStandings = &infoStandings
+func (r BroadcastsAPIBroadcastTourUpdateRequest) Info(info BroadcastTourInfo) BroadcastsAPIBroadcastTourUpdateRequest {
+	r.info = &info
 	return r
 }
 
@@ -2764,6 +2663,11 @@ func (r BroadcastsAPIBroadcastTourUpdateRequest) Tier(tier int32) BroadcastsAPIB
 
 func (r BroadcastsAPIBroadcastTourUpdateRequest) Tiebreaks(tiebreaks []BroadcastTiebreakExtendedCode) BroadcastsAPIBroadcastTourUpdateRequest {
 	r.tiebreaks = &tiebreaks
+	return r
+}
+
+func (r BroadcastsAPIBroadcastTourUpdateRequest) Grouping(grouping BroadcastFormGrouping) BroadcastsAPIBroadcastTourUpdateRequest {
+	r.grouping = &grouping
 	return r
 }
 
@@ -2846,29 +2750,12 @@ func (a *BroadcastsAPIService) BroadcastTourUpdateExecute(r BroadcastsAPIBroadca
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	parameterAddToHeaderOrQuery(localVarFormParams, "name", r.name, "", "")
-	if r.infoFormat != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "info.format", r.infoFormat, "", "")
-	}
-	if r.infoLocation != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "info.location", r.infoLocation, "", "")
-	}
-	if r.infoTc != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "info.tc", r.infoTc, "", "")
-	}
-	if r.infoFideTC != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "info.fideTC", r.infoFideTC, "", "")
-	}
-	if r.infoTimeZone != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "info.timeZone", r.infoTimeZone, "", "")
-	}
-	if r.infoPlayers != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "info.players", r.infoPlayers, "", "")
-	}
-	if r.infoWebsite != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "info.website", r.infoWebsite, "", "")
-	}
-	if r.infoStandings != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "info.standings", r.infoStandings, "", "")
+	if r.info != nil {
+		paramJson, err := parameterToJson(*r.info)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+		localVarFormParams.Add("info", paramJson)
 	}
 	if r.markdown != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "markdown", r.markdown, "", "")
@@ -2895,7 +2782,14 @@ func (a *BroadcastsAPIService) BroadcastTourUpdateExecute(r BroadcastsAPIBroadca
 		parameterAddToHeaderOrQuery(localVarFormParams, "tier", r.tier, "", "")
 	}
 	if r.tiebreaks != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "tiebreaks[]", r.tiebreaks, "", "csv")
+		parameterAddToHeaderOrQuery(localVarFormParams, "tiebreaks", r.tiebreaks, "", "csv")
+	}
+	if r.grouping != nil {
+		paramJson, err := parameterToJson(*r.grouping)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+		localVarFormParams.Add("grouping", paramJson)
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {

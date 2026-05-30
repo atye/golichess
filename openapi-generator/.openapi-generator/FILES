@@ -85,6 +85,8 @@ docs/BotAPI.md
 docs/BroadcastByUser.md
 docs/BroadcastCustomPointsPerColor.md
 docs/BroadcastCustomScoring.md
+docs/BroadcastFormGrouping.md
+docs/BroadcastFormGroupingInfo.md
 docs/BroadcastGameEntry.md
 docs/BroadcastGroup.md
 docs/BroadcastGroupTour.md
@@ -458,6 +460,8 @@ model_board_game_stream_200_response.go
 model_broadcast_by_user.go
 model_broadcast_custom_points_per_color.go
 model_broadcast_custom_scoring.go
+model_broadcast_form_grouping.go
+model_broadcast_form_grouping_info.go
 model_broadcast_game_entry.go
 model_broadcast_group.go
 model_broadcast_group_tour.go

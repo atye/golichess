@@ -93,7 +93,7 @@ info:
     name: AGPL-3.0-or-later
     url: https://www.gnu.org/licenses/agpl-3.0.txt
   title: Lichess.org API reference
-  version: 2.0.144
+  version: 2.0.145
   x-logo:
     url: https://lichess1.org/assets/logo/lichess-pad12.svg
 servers:
@@ -33926,6 +33926,60 @@ components:
       - rapid
       - blitz
       type: string
+    BroadcastTourInfo:
+      description: Additional display information about the tournament
+      example:
+        website: https://openapi-generator.tech
+        players: players
+        fideTC: standard
+        regulations: https://openapi-generator.tech
+        format: format
+        timeZone: timeZone
+        location: location
+        standings: https://openapi-generator.tech
+        tc: tc
+      properties:
+        format:
+          description: |
+            Tournament format.
+            Example: `"8-player round-robin" or "5-round Swiss"`
+          maxLength: 80
+          type: string
+        tc:
+          description: |
+            Time control.
+            Example: `"Classical" or "Rapid" or "Rapid & Blitz"`
+          type: string
+        fideTC:
+          $ref: "#/components/schemas/FideTimeControl"
+        timeZone:
+          description: |
+            Timezone of the tournament. Example: `America/New_York`.
+            See [list of possible timezone identifiers](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for more.
+          type: string
+        location:
+          description: Tournament location
+          maxLength: 80
+          type: string
+        players:
+          description: |
+            Mentioning up to 4 of the best players participating.
+          maxLength: 120
+          type: string
+        website:
+          description: Official website. External website URL
+          format: uri
+          type: string
+        standings:
+          description: |
+            Official standings website. External website URL, e.g. chess-results.com, info64.org
+          format: uri
+          type: string
+        regulations:
+          description: |
+            External URL to the official tournament regulations.
+          format: uri
+          type: string
     BroadcastTour:
       example:
         communityOwner:
@@ -33951,7 +34005,8 @@ components:
         info:
           website: https://openapi-generator.tech
           players: players
-          fideTC: ""
+          fideTC: standard
+          regulations: https://openapi-generator.tech
           format: format
           timeZone: timeZone
           location: location
@@ -33980,7 +34035,7 @@ components:
           minItems: 1
           type: array
         info:
-          $ref: "#/components/schemas/BroadcastTour_info"
+          $ref: "#/components/schemas/BroadcastTourInfo"
         tier:
           description: Used to designate featured tournaments on Lichess
           type: integer
@@ -34142,7 +34197,8 @@ components:
           info:
             website: https://openapi-generator.tech
             players: players
-            fideTC: ""
+            fideTC: standard
+            regulations: https://openapi-generator.tech
             format: format
             timeZone: timeZone
             location: location
@@ -34253,7 +34309,8 @@ components:
           info:
             website: https://openapi-generator.tech
             players: players
-            fideTC: ""
+            fideTC: standard
+            regulations: https://openapi-generator.tech
             format: format
             timeZone: timeZone
             location: location
@@ -34319,7 +34376,8 @@ components:
               info:
                 website: https://openapi-generator.tech
                 players: players
-                fideTC: ""
+                fideTC: standard
+                regulations: https://openapi-generator.tech
                 format: format
                 timeZone: timeZone
                 location: location
@@ -34370,7 +34428,8 @@ components:
               info:
                 website: https://openapi-generator.tech
                 players: players
-                fideTC: ""
+                fideTC: standard
+                regulations: https://openapi-generator.tech
                 format: format
                 timeZone: timeZone
                 location: location
@@ -34422,7 +34481,8 @@ components:
             info:
               website: https://openapi-generator.tech
               players: players
-              fideTC: ""
+              fideTC: standard
+              regulations: https://openapi-generator.tech
               format: format
               timeZone: timeZone
               location: location
@@ -34473,7 +34533,8 @@ components:
             info:
               website: https://openapi-generator.tech
               players: players
-              fideTC: ""
+              fideTC: standard
+              regulations: https://openapi-generator.tech
               format: format
               timeZone: timeZone
               location: location
@@ -34521,7 +34582,8 @@ components:
           info:
             website: https://openapi-generator.tech
             players: players
-            fideTC: ""
+            fideTC: standard
+            regulations: https://openapi-generator.tech
             format: format
             timeZone: timeZone
             location: location
@@ -34581,45 +34643,8 @@ components:
           maxLength: 80
           minLength: 3
           type: string
-        info.format:
-          description: |
-            Tournament format.
-            Example: `"8-player round-robin" or "5-round Swiss"`
-          maxLength: 80
-          type: string
-        info.location:
-          description: |
-            Tournament Location
-          maxLength: 80
-          type: string
-        info.tc:
-          description: |
-            Time control.
-            Example: `"Classical" or "Rapid" or "Rapid & Blitz"`
-          maxLength: 80
-          type: string
-        info.fideTC:
-          $ref: "#/components/schemas/FideTimeControl"
-        info.timeZone:
-          description: |
-            Timezone of the tournament. Example: `America/New_York`.
-            See [list of possible timezone identifiers](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for more.
-          type: string
-        info.players:
-          description: |
-            Mention up to 4 of the best players participating.
-          maxLength: 120
-          type: string
-        info.website:
-          description: |
-            Official website. External website URL
-          format: uri
-          type: string
-        info.standings:
-          description: |
-            Official Standings. External website URL, e.g. chess-results.com, info64.org
-          format: uri
-          type: string
+        info:
+          $ref: "#/components/schemas/BroadcastTourInfo"
         markdown:
           description: |
             Optional long description of the broadcast. Markdown is supported.
@@ -34717,11 +34742,13 @@ components:
           - 4
           - 5
           type: integer
-        tiebreaks[]:
+        tiebreaks:
           items:
             $ref: "#/components/schemas/BroadcastTiebreakExtendedCode"
           maxItems: 5
           type: array
+        grouping:
+          $ref: "#/components/schemas/BroadcastForm_grouping"
       required:
       - name
     BroadcastGroupTour:
@@ -34806,7 +34833,8 @@ components:
           info:
             website: https://openapi-generator.tech
             players: players
-            fideTC: ""
+            fideTC: standard
+            regulations: https://openapi-generator.tech
             format: format
             timeZone: timeZone
             location: location
@@ -35541,7 +35569,8 @@ components:
           info:
             website: https://openapi-generator.tech
             players: players
-            fideTC: ""
+            fideTC: standard
+            regulations: https://openapi-generator.tech
             format: format
             timeZone: timeZone
             location: location
@@ -35710,7 +35739,8 @@ components:
           info:
             website: https://openapi-generator.tech
             players: players
-            fideTC: ""
+            fideTC: standard
+            regulations: https://openapi-generator.tech
             format: format
             timeZone: timeZone
             location: location
@@ -35830,7 +35860,8 @@ components:
           info:
             website: https://openapi-generator.tech
             players: players
-            fideTC: ""
+            fideTC: standard
+            regulations: https://openapi-generator.tech
             format: format
             timeZone: timeZone
             location: location
@@ -39370,7 +39401,8 @@ components:
             info:
               website: https://openapi-generator.tech
               players: players
-              fideTC: ""
+              fideTC: standard
+              regulations: https://openapi-generator.tech
               format: format
               timeZone: timeZone
               location: location
@@ -39400,7 +39432,8 @@ components:
             info:
               website: https://openapi-generator.tech
               players: players
-              fideTC: ""
+              fideTC: standard
+              regulations: https://openapi-generator.tech
               format: format
               timeZone: timeZone
               location: location
@@ -39492,7 +39525,8 @@ components:
             info:
               website: https://openapi-generator.tech
               players: players
-              fideTC: ""
+              fideTC: standard
+              regulations: https://openapi-generator.tech
               format: format
               timeZone: timeZone
               location: location
@@ -39543,7 +39577,8 @@ components:
             info:
               website: https://openapi-generator.tech
               players: players
-              fideTC: ""
+              fideTC: standard
+              regulations: https://openapi-generator.tech
               format: format
               timeZone: timeZone
               location: location
@@ -42957,47 +42992,6 @@ components:
         status:
           description: The chapter status
           type: string
-    BroadcastTour_info:
-      description: Additional display information about the tournament
-      example:
-        website: https://openapi-generator.tech
-        players: players
-        fideTC: ""
-        format: format
-        timeZone: timeZone
-        location: location
-        standings: https://openapi-generator.tech
-        tc: tc
-      properties:
-        website:
-          description: Official website. External website URL
-          format: uri
-          type: string
-        players:
-          description: Featured players
-          type: string
-        location:
-          description: Tournament location
-          type: string
-        tc:
-          description: Time control
-          type: string
-        fideTC:
-          allOf:
-          - $ref: "#/components/schemas/FideTimeControl"
-          description: FIDE rating category
-        timeZone:
-          description: |
-            Timezone of the tournament. Example: `America/New_York`.
-            See [list of possible timezone identifiers](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for more.
-          type: string
-        standings:
-          description: Official standings website. External website URL
-          format: uri
-          type: string
-        format:
-          description: Tournament format
-          type: string
     BroadcastPhotos_value:
       example:
         small: small
@@ -43067,7 +43061,8 @@ components:
             info:
               website: https://openapi-generator.tech
               players: players
-              fideTC: ""
+              fideTC: standard
+              regulations: https://openapi-generator.tech
               format: format
               timeZone: timeZone
               location: location
@@ -43118,7 +43113,8 @@ components:
             info:
               website: https://openapi-generator.tech
               players: players
-              fideTC: ""
+              fideTC: standard
+              regulations: https://openapi-generator.tech
               format: format
               timeZone: timeZone
               location: location
@@ -43144,6 +43140,33 @@ components:
           example: 5
           nullable: true
           type: integer
+    BroadcastForm_grouping_info:
+      properties:
+        name:
+          description: Name of the group
+          example: Chess Olympiad | Open
+          type: string
+        tours:
+          description: |
+            A comma separated list of tournament IDs to group together.
+          example: "wYigbpXq,M5YHvpOX,q6ezoCXP"
+          type: string
+    BroadcastForm_grouping:
+      description: |
+        Group this broadcast along with others
+      properties:
+        info:
+          $ref: "#/components/schemas/BroadcastForm_grouping_info"
+        scoreGroups:
+          items:
+            description: |
+              A comma separated list of tournament IDs to group together for scoring purposes
+              Cannot overlap with other score groups.
+              Can only use groups mentioned in `info.tours`.
+            example: "wYigbpXq,M5YHvpOX"
+            type: string
+          maxItems: 10
+          type: array
     BroadcastPlayerEntryWithFideAndGames_allOf_fide:
       example:
         year: 0

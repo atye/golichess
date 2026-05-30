@@ -961,7 +961,7 @@ No authorization required
 
 ## BroadcastTourCreate
 
-> BroadcastWithRounds BroadcastTourCreate(ctx).Name(name).InfoFormat(infoFormat).InfoLocation(infoLocation).InfoTc(infoTc).InfoFideTC(infoFideTC).InfoTimeZone(infoTimeZone).InfoPlayers(infoPlayers).InfoWebsite(infoWebsite).InfoStandings(infoStandings).Markdown(markdown).ShowScores(showScores).ShowRatingDiffs(showRatingDiffs).TeamTable(teamTable).Visibility(visibility).Players(players).Teams(teams).Tier(tier).Tiebreaks(tiebreaks).Execute()
+> BroadcastWithRounds BroadcastTourCreate(ctx).Name(name).Info(info).Markdown(markdown).ShowScores(showScores).ShowRatingDiffs(showRatingDiffs).TeamTable(teamTable).Visibility(visibility).Players(players).Teams(teams).Tier(tier).Tiebreaks(tiebreaks).Grouping(grouping).Execute()
 
 Create a broadcast tournament
 
@@ -981,14 +981,7 @@ import (
 
 func main() {
 	name := "name_example" // string | Name of the broadcast tournament.  Example: `Sinquefield Cup` 
-	infoFormat := "infoFormat_example" // string | Tournament format. Example: `\\\"8-player round-robin\\\" or \\\"5-round Swiss\\\"`  (optional)
-	infoLocation := "infoLocation_example" // string | Tournament Location  (optional)
-	infoTc := "infoTc_example" // string | Time control. Example: `\\\"Classical\\\" or \\\"Rapid\\\" or \\\"Rapid & Blitz\\\"`  (optional)
-	infoFideTC := openapiclient.FideTimeControl("standard") // FideTimeControl |  (optional)
-	infoTimeZone := "infoTimeZone_example" // string | Timezone of the tournament. Example: `America/New_York`. See [list of possible timezone identifiers](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for more.  (optional)
-	infoPlayers := "infoPlayers_example" // string | Mention up to 4 of the best players participating.  (optional)
-	infoWebsite := "infoWebsite_example" // string | Official website. External website URL  (optional)
-	infoStandings := "infoStandings_example" // string | Official Standings. External website URL, e.g. chess-results.com, info64.org  (optional)
+	info := *openapiclient.NewBroadcastTourInfo() // BroadcastTourInfo |  (optional)
 	markdown := "markdown_example" // string | Optional long description of the broadcast. Markdown is supported.  (optional)
 	showScores := true // bool | Show players scores based on game results  (optional) (default to false)
 	showRatingDiffs := true // bool | Show player's rating diffs  (optional) (default to false)
@@ -998,10 +991,11 @@ func main() {
 	teams := "teams_example" // string | Optional: assign players to teams  One line per player, formatted as such: ```txt Team name; Fide Id or Player name ```  Example: ```txt Team Cats ; 3408230 Team Dogs ; Scooby Doo ```  By default the PGN tags WhiteTeam and BlackTeam are used.  (optional)
 	tier := int32(56) // int32 | Optional, for Lichess admins only, used to feature on /broadcast.  * `3` for Official: normal tier * `4` for Official: high tier * `5` for Official: best tier  (optional)
 	tiebreaks := []openapiclient.BroadcastTiebreakExtendedCode{openapiclient.BroadcastTiebreakExtendedCode("AOB")} // []BroadcastTiebreakExtendedCode |  (optional)
+	grouping := *openapiclient.NewBroadcastFormGrouping() // BroadcastFormGrouping |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.BroadcastsAPI.BroadcastTourCreate(context.Background()).Name(name).InfoFormat(infoFormat).InfoLocation(infoLocation).InfoTc(infoTc).InfoFideTC(infoFideTC).InfoTimeZone(infoTimeZone).InfoPlayers(infoPlayers).InfoWebsite(infoWebsite).InfoStandings(infoStandings).Markdown(markdown).ShowScores(showScores).ShowRatingDiffs(showRatingDiffs).TeamTable(teamTable).Visibility(visibility).Players(players).Teams(teams).Tier(tier).Tiebreaks(tiebreaks).Execute()
+	resp, r, err := apiClient.BroadcastsAPI.BroadcastTourCreate(context.Background()).Name(name).Info(info).Markdown(markdown).ShowScores(showScores).ShowRatingDiffs(showRatingDiffs).TeamTable(teamTable).Visibility(visibility).Players(players).Teams(teams).Tier(tier).Tiebreaks(tiebreaks).Grouping(grouping).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `BroadcastsAPI.BroadcastTourCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1023,14 +1017,7 @@ Other parameters are passed through a pointer to a apiBroadcastTourCreateRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **string** | Name of the broadcast tournament.  Example: &#x60;Sinquefield Cup&#x60;  | 
- **infoFormat** | **string** | Tournament format. Example: &#x60;\\\&quot;8-player round-robin\\\&quot; or \\\&quot;5-round Swiss\\\&quot;&#x60;  | 
- **infoLocation** | **string** | Tournament Location  | 
- **infoTc** | **string** | Time control. Example: &#x60;\\\&quot;Classical\\\&quot; or \\\&quot;Rapid\\\&quot; or \\\&quot;Rapid &amp; Blitz\\\&quot;&#x60;  | 
- **infoFideTC** | [**FideTimeControl**](FideTimeControl.md) |  | 
- **infoTimeZone** | **string** | Timezone of the tournament. Example: &#x60;America/New_York&#x60;. See [list of possible timezone identifiers](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for more.  | 
- **infoPlayers** | **string** | Mention up to 4 of the best players participating.  | 
- **infoWebsite** | **string** | Official website. External website URL  | 
- **infoStandings** | **string** | Official Standings. External website URL, e.g. chess-results.com, info64.org  | 
+ **info** | [**BroadcastTourInfo**](BroadcastTourInfo.md) |  | 
  **markdown** | **string** | Optional long description of the broadcast. Markdown is supported.  | 
  **showScores** | **bool** | Show players scores based on game results  | [default to false]
  **showRatingDiffs** | **bool** | Show player&#39;s rating diffs  | [default to false]
@@ -1040,6 +1027,7 @@ Name | Type | Description  | Notes
  **teams** | **string** | Optional: assign players to teams  One line per player, formatted as such: &#x60;&#x60;&#x60;txt Team name; Fide Id or Player name &#x60;&#x60;&#x60;  Example: &#x60;&#x60;&#x60;txt Team Cats ; 3408230 Team Dogs ; Scooby Doo &#x60;&#x60;&#x60;  By default the PGN tags WhiteTeam and BlackTeam are used.  | 
  **tier** | **int32** | Optional, for Lichess admins only, used to feature on /broadcast.  * &#x60;3&#x60; for Official: normal tier * &#x60;4&#x60; for Official: high tier * &#x60;5&#x60; for Official: best tier  | 
  **tiebreaks** | [**[]BroadcastTiebreakExtendedCode**](BroadcastTiebreakExtendedCode.md) |  | 
+ **grouping** | [**BroadcastFormGrouping**](BroadcastFormGrouping.md) |  | 
 
 ### Return type
 
@@ -1131,7 +1119,7 @@ Name | Type | Description  | Notes
 
 ## BroadcastTourUpdate
 
-> Ok BroadcastTourUpdate(ctx, broadcastTournamentId).Name(name).InfoFormat(infoFormat).InfoLocation(infoLocation).InfoTc(infoTc).InfoFideTC(infoFideTC).InfoTimeZone(infoTimeZone).InfoPlayers(infoPlayers).InfoWebsite(infoWebsite).InfoStandings(infoStandings).Markdown(markdown).ShowScores(showScores).ShowRatingDiffs(showRatingDiffs).TeamTable(teamTable).Visibility(visibility).Players(players).Teams(teams).Tier(tier).Tiebreaks(tiebreaks).Execute()
+> Ok BroadcastTourUpdate(ctx, broadcastTournamentId).Name(name).Info(info).Markdown(markdown).ShowScores(showScores).ShowRatingDiffs(showRatingDiffs).TeamTable(teamTable).Visibility(visibility).Players(players).Teams(teams).Tier(tier).Tiebreaks(tiebreaks).Grouping(grouping).Execute()
 
 Update your broadcast tournament
 
@@ -1152,14 +1140,7 @@ import (
 func main() {
 	broadcastTournamentId := "broadcastTournamentId_example" // string | The broadcast ID
 	name := "name_example" // string | Name of the broadcast tournament.  Example: `Sinquefield Cup` 
-	infoFormat := "infoFormat_example" // string | Tournament format. Example: `\\\"8-player round-robin\\\" or \\\"5-round Swiss\\\"`  (optional)
-	infoLocation := "infoLocation_example" // string | Tournament Location  (optional)
-	infoTc := "infoTc_example" // string | Time control. Example: `\\\"Classical\\\" or \\\"Rapid\\\" or \\\"Rapid & Blitz\\\"`  (optional)
-	infoFideTC := openapiclient.FideTimeControl("standard") // FideTimeControl |  (optional)
-	infoTimeZone := "infoTimeZone_example" // string | Timezone of the tournament. Example: `America/New_York`. See [list of possible timezone identifiers](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for more.  (optional)
-	infoPlayers := "infoPlayers_example" // string | Mention up to 4 of the best players participating.  (optional)
-	infoWebsite := "infoWebsite_example" // string | Official website. External website URL  (optional)
-	infoStandings := "infoStandings_example" // string | Official Standings. External website URL, e.g. chess-results.com, info64.org  (optional)
+	info := *openapiclient.NewBroadcastTourInfo() // BroadcastTourInfo |  (optional)
 	markdown := "markdown_example" // string | Optional long description of the broadcast. Markdown is supported.  (optional)
 	showScores := true // bool | Show players scores based on game results  (optional) (default to false)
 	showRatingDiffs := true // bool | Show player's rating diffs  (optional) (default to false)
@@ -1169,10 +1150,11 @@ func main() {
 	teams := "teams_example" // string | Optional: assign players to teams  One line per player, formatted as such: ```txt Team name; Fide Id or Player name ```  Example: ```txt Team Cats ; 3408230 Team Dogs ; Scooby Doo ```  By default the PGN tags WhiteTeam and BlackTeam are used.  (optional)
 	tier := int32(56) // int32 | Optional, for Lichess admins only, used to feature on /broadcast.  * `3` for Official: normal tier * `4` for Official: high tier * `5` for Official: best tier  (optional)
 	tiebreaks := []openapiclient.BroadcastTiebreakExtendedCode{openapiclient.BroadcastTiebreakExtendedCode("AOB")} // []BroadcastTiebreakExtendedCode |  (optional)
+	grouping := *openapiclient.NewBroadcastFormGrouping() // BroadcastFormGrouping |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.BroadcastsAPI.BroadcastTourUpdate(context.Background(), broadcastTournamentId).Name(name).InfoFormat(infoFormat).InfoLocation(infoLocation).InfoTc(infoTc).InfoFideTC(infoFideTC).InfoTimeZone(infoTimeZone).InfoPlayers(infoPlayers).InfoWebsite(infoWebsite).InfoStandings(infoStandings).Markdown(markdown).ShowScores(showScores).ShowRatingDiffs(showRatingDiffs).TeamTable(teamTable).Visibility(visibility).Players(players).Teams(teams).Tier(tier).Tiebreaks(tiebreaks).Execute()
+	resp, r, err := apiClient.BroadcastsAPI.BroadcastTourUpdate(context.Background(), broadcastTournamentId).Name(name).Info(info).Markdown(markdown).ShowScores(showScores).ShowRatingDiffs(showRatingDiffs).TeamTable(teamTable).Visibility(visibility).Players(players).Teams(teams).Tier(tier).Tiebreaks(tiebreaks).Grouping(grouping).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `BroadcastsAPI.BroadcastTourUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1199,14 +1181,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **name** | **string** | Name of the broadcast tournament.  Example: &#x60;Sinquefield Cup&#x60;  | 
- **infoFormat** | **string** | Tournament format. Example: &#x60;\\\&quot;8-player round-robin\\\&quot; or \\\&quot;5-round Swiss\\\&quot;&#x60;  | 
- **infoLocation** | **string** | Tournament Location  | 
- **infoTc** | **string** | Time control. Example: &#x60;\\\&quot;Classical\\\&quot; or \\\&quot;Rapid\\\&quot; or \\\&quot;Rapid &amp; Blitz\\\&quot;&#x60;  | 
- **infoFideTC** | [**FideTimeControl**](FideTimeControl.md) |  | 
- **infoTimeZone** | **string** | Timezone of the tournament. Example: &#x60;America/New_York&#x60;. See [list of possible timezone identifiers](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for more.  | 
- **infoPlayers** | **string** | Mention up to 4 of the best players participating.  | 
- **infoWebsite** | **string** | Official website. External website URL  | 
- **infoStandings** | **string** | Official Standings. External website URL, e.g. chess-results.com, info64.org  | 
+ **info** | [**BroadcastTourInfo**](BroadcastTourInfo.md) |  | 
  **markdown** | **string** | Optional long description of the broadcast. Markdown is supported.  | 
  **showScores** | **bool** | Show players scores based on game results  | [default to false]
  **showRatingDiffs** | **bool** | Show player&#39;s rating diffs  | [default to false]
@@ -1216,6 +1191,7 @@ Name | Type | Description  | Notes
  **teams** | **string** | Optional: assign players to teams  One line per player, formatted as such: &#x60;&#x60;&#x60;txt Team name; Fide Id or Player name &#x60;&#x60;&#x60;  Example: &#x60;&#x60;&#x60;txt Team Cats ; 3408230 Team Dogs ; Scooby Doo &#x60;&#x60;&#x60;  By default the PGN tags WhiteTeam and BlackTeam are used.  | 
  **tier** | **int32** | Optional, for Lichess admins only, used to feature on /broadcast.  * &#x60;3&#x60; for Official: normal tier * &#x60;4&#x60; for Official: high tier * &#x60;5&#x60; for Official: best tier  | 
  **tiebreaks** | [**[]BroadcastTiebreakExtendedCode**](BroadcastTiebreakExtendedCode.md) |  | 
+ **grouping** | [**BroadcastFormGrouping**](BroadcastFormGrouping.md) |  | 
 
 ### Return type
 
