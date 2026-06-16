@@ -55,8 +55,14 @@ func NewSwissNewItemWithTeamPostRequestBody()(*SwissNewItemWithTeamPostRequestBo
     m := &SwissNewItemWithTeamPostRequestBody{
     }
     m.SetAdditionalData(make(map[string]any))
+    chatForValue := int32(20)
+    m.SetChatFor(&chatForValue)
+    conditionsPlayYourGamesValue := false
+    m.SetConditionsPlayYourGames(&conditionsPlayYourGamesValue)
     positionValue := "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
     m.SetPosition(&positionValue)
+    ratedValue := true
+    m.SetRated(&ratedValue)
     variantValue := STANDARD_VARIANTKEY
     m.SetVariant(&variantValue)
     return m

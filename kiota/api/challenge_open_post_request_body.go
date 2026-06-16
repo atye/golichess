@@ -37,6 +37,8 @@ func NewChallengeOpenPostRequestBody()(*ChallengeOpenPostRequestBody) {
     m.SetAdditionalData(make(map[string]any))
     fenValue := "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
     m.SetFen(&fenValue)
+    ratedValue := false
+    m.SetRated(&ratedValue)
     variantValue := STANDARD_VARIANTKEY
     m.SetVariant(&variantValue)
     return m

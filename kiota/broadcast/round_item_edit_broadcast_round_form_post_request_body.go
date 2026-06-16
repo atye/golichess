@@ -5,19 +5,14 @@ package broadcast
 
 import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+    i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
 )
 
 type RoundItemEditBroadcastRoundFormPostRequestBody struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // The customScoringBlackDraw property
-    customScoringBlackDraw *float64
-    // The customScoringBlackWin property
-    customScoringBlackWin *float64
-    // The customScoringWhiteDraw property
-    customScoringWhiteDraw *float64
-    // The customScoringWhiteWin property
-    customScoringWhiteWin *float64
+    // Scoring overrides for wins or draws.
+    customScoring i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomScoringable
     // Delay in seconds for movements to appear on the broadcast. Leave it empty if you don't need it.Example: `900` (15 min)
     delay *int32
     // (Only for Admins) Waiting time for each poll.
@@ -28,12 +23,18 @@ type RoundItemEditBroadcastRoundFormPostRequestBody struct {
     startsAfterPrevious *bool
     // Timestamp in milliseconds of broadcast round start. Leave empty to manually start the broadcast round.Example: `1356998400070`
     startsAt *int64
+    // Scoring overrides for a team match win or draw.
+    teamCustomScoring i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomPointsPerColorable
 }
 // NewRoundItemEditBroadcastRoundFormPostRequestBody instantiates a new RoundItemEditBroadcastRoundFormPostRequestBody and sets the default values.
 func NewRoundItemEditBroadcastRoundFormPostRequestBody()(*RoundItemEditBroadcastRoundFormPostRequestBody) {
     m := &RoundItemEditBroadcastRoundFormPostRequestBody{
     }
     m.SetAdditionalData(make(map[string]any))
+    ratedValue := true
+    m.SetRated(&ratedValue)
+    startsAfterPreviousValue := false
+    m.SetStartsAfterPrevious(&startsAfterPreviousValue)
     return m
 }
 // CreateRoundItemEditBroadcastRoundFormPostRequestBodyFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -46,25 +47,10 @@ func CreateRoundItemEditBroadcastRoundFormPostRequestBodyFromDiscriminatorValue(
 func (m *RoundItemEditBroadcastRoundFormPostRequestBody) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
-// GetCustomScoringBlackDraw gets the customScoring.black.draw property value. The customScoringBlackDraw property
-// returns a *float64 when successful
-func (m *RoundItemEditBroadcastRoundFormPostRequestBody) GetCustomScoringBlackDraw()(*float64) {
-    return m.customScoringBlackDraw
-}
-// GetCustomScoringBlackWin gets the customScoring.black.win property value. The customScoringBlackWin property
-// returns a *float64 when successful
-func (m *RoundItemEditBroadcastRoundFormPostRequestBody) GetCustomScoringBlackWin()(*float64) {
-    return m.customScoringBlackWin
-}
-// GetCustomScoringWhiteDraw gets the customScoring.white.draw property value. The customScoringWhiteDraw property
-// returns a *float64 when successful
-func (m *RoundItemEditBroadcastRoundFormPostRequestBody) GetCustomScoringWhiteDraw()(*float64) {
-    return m.customScoringWhiteDraw
-}
-// GetCustomScoringWhiteWin gets the customScoring.white.win property value. The customScoringWhiteWin property
-// returns a *float64 when successful
-func (m *RoundItemEditBroadcastRoundFormPostRequestBody) GetCustomScoringWhiteWin()(*float64) {
-    return m.customScoringWhiteWin
+// GetCustomScoring gets the customScoring property value. Scoring overrides for wins or draws.
+// returns a BroadcastCustomScoringable when successful
+func (m *RoundItemEditBroadcastRoundFormPostRequestBody) GetCustomScoring()(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomScoringable) {
+    return m.customScoring
 }
 // GetDelay gets the delay property value. Delay in seconds for movements to appear on the broadcast. Leave it empty if you don't need it.Example: `900` (15 min)
 // returns a *int32 when successful
@@ -75,43 +61,13 @@ func (m *RoundItemEditBroadcastRoundFormPostRequestBody) GetDelay()(*int32) {
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *RoundItemEditBroadcastRoundFormPostRequestBody) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["customScoring.black.draw"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
+    res["customScoring"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateBroadcastCustomScoringFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetCustomScoringBlackDraw(val)
-        }
-        return nil
-    }
-    res["customScoring.black.win"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCustomScoringBlackWin(val)
-        }
-        return nil
-    }
-    res["customScoring.white.draw"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCustomScoringWhiteDraw(val)
-        }
-        return nil
-    }
-    res["customScoring.white.win"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCustomScoringWhiteWin(val)
+            m.SetCustomScoring(val.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomScoringable))
         }
         return nil
     }
@@ -165,6 +121,16 @@ func (m *RoundItemEditBroadcastRoundFormPostRequestBody) GetFieldDeserializers()
         }
         return nil
     }
+    res["teamCustomScoring"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateBroadcastCustomPointsPerColorFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetTeamCustomScoring(val.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomPointsPerColorable))
+        }
+        return nil
+    }
     return res
 }
 // GetPeriod gets the period property value. (Only for Admins) Waiting time for each poll.
@@ -187,28 +153,15 @@ func (m *RoundItemEditBroadcastRoundFormPostRequestBody) GetStartsAfterPrevious(
 func (m *RoundItemEditBroadcastRoundFormPostRequestBody) GetStartsAt()(*int64) {
     return m.startsAt
 }
+// GetTeamCustomScoring gets the teamCustomScoring property value. Scoring overrides for a team match win or draw.
+// returns a BroadcastCustomPointsPerColorable when successful
+func (m *RoundItemEditBroadcastRoundFormPostRequestBody) GetTeamCustomScoring()(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomPointsPerColorable) {
+    return m.teamCustomScoring
+}
 // Serialize serializes information the current object
 func (m *RoundItemEditBroadcastRoundFormPostRequestBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
-        err := writer.WriteFloat64Value("customScoring.black.draw", m.GetCustomScoringBlackDraw())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteFloat64Value("customScoring.black.win", m.GetCustomScoringBlackWin())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteFloat64Value("customScoring.white.draw", m.GetCustomScoringWhiteDraw())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteFloat64Value("customScoring.white.win", m.GetCustomScoringWhiteWin())
+        err := writer.WriteObjectValue("customScoring", m.GetCustomScoring())
         if err != nil {
             return err
         }
@@ -244,6 +197,12 @@ func (m *RoundItemEditBroadcastRoundFormPostRequestBody) Serialize(writer i878a8
         }
     }
     {
+        err := writer.WriteObjectValue("teamCustomScoring", m.GetTeamCustomScoring())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteAdditionalData(m.GetAdditionalData())
         if err != nil {
             return err
@@ -255,21 +214,9 @@ func (m *RoundItemEditBroadcastRoundFormPostRequestBody) Serialize(writer i878a8
 func (m *RoundItemEditBroadcastRoundFormPostRequestBody) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetCustomScoringBlackDraw sets the customScoring.black.draw property value. The customScoringBlackDraw property
-func (m *RoundItemEditBroadcastRoundFormPostRequestBody) SetCustomScoringBlackDraw(value *float64)() {
-    m.customScoringBlackDraw = value
-}
-// SetCustomScoringBlackWin sets the customScoring.black.win property value. The customScoringBlackWin property
-func (m *RoundItemEditBroadcastRoundFormPostRequestBody) SetCustomScoringBlackWin(value *float64)() {
-    m.customScoringBlackWin = value
-}
-// SetCustomScoringWhiteDraw sets the customScoring.white.draw property value. The customScoringWhiteDraw property
-func (m *RoundItemEditBroadcastRoundFormPostRequestBody) SetCustomScoringWhiteDraw(value *float64)() {
-    m.customScoringWhiteDraw = value
-}
-// SetCustomScoringWhiteWin sets the customScoring.white.win property value. The customScoringWhiteWin property
-func (m *RoundItemEditBroadcastRoundFormPostRequestBody) SetCustomScoringWhiteWin(value *float64)() {
-    m.customScoringWhiteWin = value
+// SetCustomScoring sets the customScoring property value. Scoring overrides for wins or draws.
+func (m *RoundItemEditBroadcastRoundFormPostRequestBody) SetCustomScoring(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomScoringable)() {
+    m.customScoring = value
 }
 // SetDelay sets the delay property value. Delay in seconds for movements to appear on the broadcast. Leave it empty if you don't need it.Example: `900` (15 min)
 func (m *RoundItemEditBroadcastRoundFormPostRequestBody) SetDelay(value *int32)() {
@@ -291,25 +238,25 @@ func (m *RoundItemEditBroadcastRoundFormPostRequestBody) SetStartsAfterPrevious(
 func (m *RoundItemEditBroadcastRoundFormPostRequestBody) SetStartsAt(value *int64)() {
     m.startsAt = value
 }
+// SetTeamCustomScoring sets the teamCustomScoring property value. Scoring overrides for a team match win or draw.
+func (m *RoundItemEditBroadcastRoundFormPostRequestBody) SetTeamCustomScoring(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomPointsPerColorable)() {
+    m.teamCustomScoring = value
+}
 type RoundItemEditBroadcastRoundFormPostRequestBodyable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetCustomScoringBlackDraw()(*float64)
-    GetCustomScoringBlackWin()(*float64)
-    GetCustomScoringWhiteDraw()(*float64)
-    GetCustomScoringWhiteWin()(*float64)
+    GetCustomScoring()(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomScoringable)
     GetDelay()(*int32)
     GetPeriod()(*int32)
     GetRated()(*bool)
     GetStartsAfterPrevious()(*bool)
     GetStartsAt()(*int64)
-    SetCustomScoringBlackDraw(value *float64)()
-    SetCustomScoringBlackWin(value *float64)()
-    SetCustomScoringWhiteDraw(value *float64)()
-    SetCustomScoringWhiteWin(value *float64)()
+    GetTeamCustomScoring()(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomPointsPerColorable)
+    SetCustomScoring(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomScoringable)()
     SetDelay(value *int32)()
     SetPeriod(value *int32)()
     SetRated(value *bool)()
     SetStartsAfterPrevious(value *bool)()
     SetStartsAt(value *int64)()
+    SetTeamCustomScoring(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomPointsPerColorable)()
 }

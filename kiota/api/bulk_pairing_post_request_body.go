@@ -41,6 +41,8 @@ func NewBulkPairingPostRequestBody()(*BulkPairingPostRequestBody) {
     m.SetFen(&fenValue)
     messageValue := "Your game with {opponent} is ready: {game}."
     m.SetMessage(&messageValue)
+    ratedValue := false
+    m.SetRated(&ratedValue)
     variantValue := STANDARD_VARIANTKEY
     m.SetVariant(&variantValue)
     return m

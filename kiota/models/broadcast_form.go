@@ -40,6 +40,12 @@ func NewBroadcastForm()(*BroadcastForm) {
     m := &BroadcastForm{
     }
     m.SetAdditionalData(make(map[string]any))
+    showRatingDiffsValue := false
+    m.SetShowRatingDiffs(&showRatingDiffsValue)
+    showScoresValue := false
+    m.SetShowScores(&showScoresValue)
+    teamTableValue := false
+    m.SetTeamTable(&teamTableValue)
     visibilityValue := PUBLIC_BROADCASTFORM_VISIBILITY
     m.SetVisibility(&visibilityValue)
     return m
