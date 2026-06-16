@@ -5163,10 +5163,8 @@ type BroadcastRound struct {
 
 // BroadcastRoundForm defines model for BroadcastRoundForm.
 type BroadcastRoundForm struct {
-	CustomScoringBlackDraw *BroadcastCustomPoints `json:"customScoring.black.draw,omitempty"`
-	CustomScoringBlackWin  *BroadcastCustomPoints `json:"customScoring.black.win,omitempty"`
-	CustomScoringWhiteDraw *BroadcastCustomPoints `json:"customScoring.white.draw,omitempty"`
-	CustomScoringWhiteWin  *BroadcastCustomPoints `json:"customScoring.white.win,omitempty"`
+	// CustomScoring Scoring overrides for wins or draws.
+	CustomScoring *BroadcastCustomScoring `json:"customScoring,omitempty"`
 
 	// Delay Delay in seconds for movements to appear on the broadcast. Leave it empty if you don't need it.
 	// Example: `900` (15 min)
@@ -5190,7 +5188,10 @@ type BroadcastRoundForm struct {
 
 	// SyncSource Where the games come from.
 	SyncSource *BroadcastRoundFormSyncSource `json:"syncSource,omitempty"`
-	union      json.RawMessage
+
+	// TeamCustomScoring Scoring overrides for a team match win or draw.
+	TeamCustomScoring *BroadcastCustomPointsPerColor `json:"teamCustomScoring,omitempty"`
+	union             json.RawMessage
 }
 
 // BroadcastRoundFormStatus Lichess can usually detect the round status, but you can also set it manually if needed.
@@ -10556,31 +10557,10 @@ func (t BroadcastRoundForm) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if t.CustomScoringBlackDraw != nil {
-		object["customScoring.black.draw"], err = json.Marshal(t.CustomScoringBlackDraw)
+	if t.CustomScoring != nil {
+		object["customScoring"], err = json.Marshal(t.CustomScoring)
 		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'customScoring.black.draw': %w", err)
-		}
-	}
-
-	if t.CustomScoringBlackWin != nil {
-		object["customScoring.black.win"], err = json.Marshal(t.CustomScoringBlackWin)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'customScoring.black.win': %w", err)
-		}
-	}
-
-	if t.CustomScoringWhiteDraw != nil {
-		object["customScoring.white.draw"], err = json.Marshal(t.CustomScoringWhiteDraw)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'customScoring.white.draw': %w", err)
-		}
-	}
-
-	if t.CustomScoringWhiteWin != nil {
-		object["customScoring.white.win"], err = json.Marshal(t.CustomScoringWhiteWin)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'customScoring.white.win': %w", err)
+			return nil, fmt.Errorf("error marshaling 'customScoring': %w", err)
 		}
 	}
 
@@ -10632,6 +10612,13 @@ func (t BroadcastRoundForm) MarshalJSON() ([]byte, error) {
 			return nil, fmt.Errorf("error marshaling 'syncSource': %w", err)
 		}
 	}
+
+	if t.TeamCustomScoring != nil {
+		object["teamCustomScoring"], err = json.Marshal(t.TeamCustomScoring)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'teamCustomScoring': %w", err)
+		}
+	}
 	b, err = json.Marshal(object)
 	return b, err
 }
@@ -10647,31 +10634,10 @@ func (t *BroadcastRoundForm) UnmarshalJSON(b []byte) error {
 		return err
 	}
 
-	if raw, found := object["customScoring.black.draw"]; found {
-		err = json.Unmarshal(raw, &t.CustomScoringBlackDraw)
+	if raw, found := object["customScoring"]; found {
+		err = json.Unmarshal(raw, &t.CustomScoring)
 		if err != nil {
-			return fmt.Errorf("error reading 'customScoring.black.draw': %w", err)
-		}
-	}
-
-	if raw, found := object["customScoring.black.win"]; found {
-		err = json.Unmarshal(raw, &t.CustomScoringBlackWin)
-		if err != nil {
-			return fmt.Errorf("error reading 'customScoring.black.win': %w", err)
-		}
-	}
-
-	if raw, found := object["customScoring.white.draw"]; found {
-		err = json.Unmarshal(raw, &t.CustomScoringWhiteDraw)
-		if err != nil {
-			return fmt.Errorf("error reading 'customScoring.white.draw': %w", err)
-		}
-	}
-
-	if raw, found := object["customScoring.white.win"]; found {
-		err = json.Unmarshal(raw, &t.CustomScoringWhiteWin)
-		if err != nil {
-			return fmt.Errorf("error reading 'customScoring.white.win': %w", err)
+			return fmt.Errorf("error reading 'customScoring': %w", err)
 		}
 	}
 
@@ -10721,6 +10687,13 @@ func (t *BroadcastRoundForm) UnmarshalJSON(b []byte) error {
 		err = json.Unmarshal(raw, &t.SyncSource)
 		if err != nil {
 			return fmt.Errorf("error reading 'syncSource': %w", err)
+		}
+	}
+
+	if raw, found := object["teamCustomScoring"]; found {
+		err = json.Unmarshal(raw, &t.TeamCustomScoring)
+		if err != nil {
+			return fmt.Errorf("error reading 'teamCustomScoring': %w", err)
 		}
 	}
 
