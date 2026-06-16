@@ -545,8 +545,8 @@ type TimelineEntryStreamStart struct {
 }
 
 type Timeline struct {
-	Entries []any          `json:"entries"`
-	Users   map[string]any `json:"users"`
+	Entries []TimelineEntriesItem `json:"entries"`
+	Users   map[string]any        `json:"users"`
 }
 
 type GamePgn = string
@@ -1357,11 +1357,10 @@ type BroadcastRoundForm struct {
 	// Lichess can usually detect the round status, but you can also set it manually if needed.
 	Status *string `json:"status,omitempty"`
 	// Whether the round is used when calculating players' rating changes.
-	Rated                  *bool                  `json:"rated,omitempty"`
-	CustomScoringWhiteWin  *BroadcastCustomPoints `json:"customScoring.white.win,omitempty"`
-	CustomScoringWhiteDraw *BroadcastCustomPoints `json:"customScoring.white.draw,omitempty"`
-	CustomScoringBlackWin  *BroadcastCustomPoints `json:"customScoring.black.win,omitempty"`
-	CustomScoringBlackDraw *BroadcastCustomPoints `json:"customScoring.black.draw,omitempty"`
+	Rated *bool `json:"rated,omitempty"`
+	// Scoring overrides for wins or draws.
+	CustomScoring     *BroadcastCustomScoring        `json:"customScoring,omitempty"`
+	TeamCustomScoring *BroadcastCustomPointsPerColor `json:"teamCustomScoring,omitempty"`
 	// (Only for Admins) Waiting time for each poll.
 	Period *int64 `json:"period,omitempty"`
 }
@@ -1659,21 +1658,21 @@ const (
 )
 
 type ChallengeJSON struct {
-	ID          string          `json:"id"`
-	URL         string          `json:"url"`
-	Status      ChallengeStatus `json:"status"`
-	Challenger  ChallengeUser   `json:"challenger"`
-	DestUser    any             `json:"destUser"`
-	Variant     Variant         `json:"variant"`
-	Rated       bool            `json:"rated"`
-	Speed       Speed           `json:"speed"`
-	TimeControl TimeControl     `json:"timeControl"`
-	Color       ChallengeColor  `json:"color"`
-	FinalColor  *GameColor      `json:"finalColor,omitempty"`
-	Perf        any             `json:"perf"`
-	Direction   *string         `json:"direction,omitempty"`
-	InitialFen  *string         `json:"initialFen,omitempty"`
-	RematchOf   *string         `json:"rematchOf,omitempty"`
+	ID          string                `json:"id"`
+	URL         string                `json:"url"`
+	Status      ChallengeStatus       `json:"status"`
+	Challenger  ChallengeUser         `json:"challenger"`
+	DestUser    ChallengeJSONDestUser `json:"destUser"`
+	Variant     Variant               `json:"variant"`
+	Rated       bool                  `json:"rated"`
+	Speed       Speed                 `json:"speed"`
+	TimeControl TimeControl           `json:"timeControl"`
+	Color       ChallengeColor        `json:"color"`
+	FinalColor  *GameColor            `json:"finalColor,omitempty"`
+	Perf        any                   `json:"perf"`
+	Direction   *string               `json:"direction,omitempty"`
+	InitialFen  *string               `json:"initialFen,omitempty"`
+	RematchOf   *string               `json:"rematchOf,omitempty"`
 }
 
 type ChallengeEvent struct {
@@ -1701,12 +1700,12 @@ type ChallengeDeclinedEvent struct {
 }
 
 type GameEventPlayer struct {
-	AiLevel     *int64 `json:"aiLevel,omitempty"`
-	ID          string `json:"id"`
-	Name        string `json:"name"`
-	Title       any    `json:"title,omitempty"`
-	Rating      *int64 `json:"rating,omitempty"`
-	Provisional *bool  `json:"provisional,omitempty"`
+	AiLevel     *int64                `json:"aiLevel,omitempty"`
+	ID          string                `json:"id"`
+	Name        string                `json:"name"`
+	Title       *GameEventPlayerTitle `json:"title,omitempty"`
+	Rating      *int64                `json:"rating,omitempty"`
+	Provisional *bool                 `json:"provisional,omitempty"`
 }
 
 type GameStateEvent struct {
@@ -1927,57 +1926,57 @@ type OpeningExplorerGamePlayer struct {
 }
 
 type OpeningExplorerMastersGame struct {
-	ID     string                    `json:"id"`
-	Winner any                       `json:"winner"`
-	White  OpeningExplorerGamePlayer `json:"white"`
-	Black  OpeningExplorerGamePlayer `json:"black"`
-	Year   int64                     `json:"year"`
-	Month  *string                   `json:"month,omitempty"`
+	ID     string                           `json:"id"`
+	Winner OpeningExplorerMastersGameWinner `json:"winner"`
+	White  OpeningExplorerGamePlayer        `json:"white"`
+	Black  OpeningExplorerGamePlayer        `json:"black"`
+	Year   int64                            `json:"year"`
+	Month  *string                          `json:"month,omitempty"`
 }
 
 type OpeningExplorerMasters struct {
-	Opening  any   `json:"opening"`
-	White    int64 `json:"white"`
-	Draws    int64 `json:"draws"`
-	Black    int64 `json:"black"`
-	Moves    []any `json:"moves"`
-	TopGames []any `json:"topGames"`
+	Opening  OpeningExplorerMastersOpening `json:"opening"`
+	White    int64                         `json:"white"`
+	Draws    int64                         `json:"draws"`
+	Black    int64                         `json:"black"`
+	Moves    []any                         `json:"moves"`
+	TopGames []any                         `json:"topGames"`
 }
 
 type OpeningExplorerLichessGame struct {
-	ID     string                    `json:"id"`
-	Winner any                       `json:"winner"`
-	Speed  *Speed                    `json:"speed,omitempty"`
-	White  OpeningExplorerGamePlayer `json:"white"`
-	Black  OpeningExplorerGamePlayer `json:"black"`
-	Year   float64                   `json:"year"`
-	Month  *string                   `json:"month"`
+	ID     string                           `json:"id"`
+	Winner OpeningExplorerMastersGameWinner `json:"winner"`
+	Speed  *Speed                           `json:"speed,omitempty"`
+	White  OpeningExplorerGamePlayer        `json:"white"`
+	Black  OpeningExplorerGamePlayer        `json:"black"`
+	Year   float64                          `json:"year"`
+	Month  *string                          `json:"month"`
 }
 
 type OpeningExplorerLichess struct {
-	Opening     any   `json:"opening"`
-	White       int64 `json:"white"`
-	Draws       int64 `json:"draws"`
-	Black       int64 `json:"black"`
-	Moves       []any `json:"moves"`
-	TopGames    []any `json:"topGames"`
-	RecentGames []any `json:"recentGames,omitempty"`
-	History     []any `json:"history,omitempty"`
+	Opening     OpeningExplorerMastersOpening `json:"opening"`
+	White       int64                         `json:"white"`
+	Draws       int64                         `json:"draws"`
+	Black       int64                         `json:"black"`
+	Moves       []any                         `json:"moves"`
+	TopGames    []any                         `json:"topGames"`
+	RecentGames []any                         `json:"recentGames,omitempty"`
+	History     []any                         `json:"history,omitempty"`
 }
 
 type OpeningExplorerPlayerGame struct {
-	ID     string                    `json:"id"`
-	Winner any                       `json:"winner"`
-	Speed  Speed                     `json:"speed"`
-	Mode   string                    `json:"mode"`
-	White  OpeningExplorerGamePlayer `json:"white"`
-	Black  OpeningExplorerGamePlayer `json:"black"`
-	Year   int64                     `json:"year"`
-	Month  string                    `json:"month"`
+	ID     string                           `json:"id"`
+	Winner OpeningExplorerMastersGameWinner `json:"winner"`
+	Speed  Speed                            `json:"speed"`
+	Mode   string                           `json:"mode"`
+	White  OpeningExplorerGamePlayer        `json:"white"`
+	Black  OpeningExplorerGamePlayer        `json:"black"`
+	Year   int64                            `json:"year"`
+	Month  string                           `json:"month"`
 }
 
 type OpeningExplorerPlayer struct {
-	Opening any `json:"opening"`
+	Opening OpeningExplorerMastersOpening `json:"opening"`
 	// Waiting for other players to be indexed first
 	QueuePosition int64 `json:"queuePosition"`
 	White         int64 `json:"white"`
@@ -2048,4 +2047,230 @@ type TablebaseJSON struct {
 	InsufficientMaterial *bool `json:"insufficient_material,omitempty"`
 	// Information about legal moves, best first
 	Moves []TablebaseMove `json:"moves"`
+}
+
+// TimelineEntriesItem represents a union type (oneOf/anyOf).
+// Variants: TimelineEntryFollow, TimelineEntryTeamJoin, TimelineEntryTeamCreate, TimelineEntryForumPost, TimelineEntryBlogPost, TimelineEntryUblogPost, TimelineEntryTourJoin, TimelineEntryGameEnd, TimelineEntrySimul, TimelineEntryStudyLike, TimelineEntryPlanStart, TimelineEntryPlanRenew, TimelineEntryUblogPostLike, TimelineEntryStreamStart
+type TimelineEntriesItem struct {
+	Value any
+}
+
+// MarshalJSON implements json.Marshaler for TimelineEntriesItem.
+func (u TimelineEntriesItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(u.Value)
+}
+
+// UnmarshalJSON implements json.Unmarshaler for TimelineEntriesItem.
+func (u *TimelineEntriesItem) UnmarshalJSON(data []byte) error {
+	var disc struct {
+		Type_ string `json:"type"`
+	}
+	if err := json.Unmarshal(data, &disc); err != nil {
+		return fmt.Errorf("unmarshaling TimelineEntriesItem discriminator: %w", err)
+	}
+	switch disc.Type_ {
+	case "blog-post":
+		var v TimelineEntryBlogPost
+		if err := json.Unmarshal(data, &v); err != nil {
+			return err
+		}
+		u.Value = v
+		return nil
+	case "follow":
+		var v TimelineEntryFollow
+		if err := json.Unmarshal(data, &v); err != nil {
+			return err
+		}
+		u.Value = v
+		return nil
+	case "forum-post":
+		var v TimelineEntryForumPost
+		if err := json.Unmarshal(data, &v); err != nil {
+			return err
+		}
+		u.Value = v
+		return nil
+	case "game-end":
+		var v TimelineEntryGameEnd
+		if err := json.Unmarshal(data, &v); err != nil {
+			return err
+		}
+		u.Value = v
+		return nil
+	case "plan-renew":
+		var v TimelineEntryPlanRenew
+		if err := json.Unmarshal(data, &v); err != nil {
+			return err
+		}
+		u.Value = v
+		return nil
+	case "plan-start":
+		var v TimelineEntryPlanStart
+		if err := json.Unmarshal(data, &v); err != nil {
+			return err
+		}
+		u.Value = v
+		return nil
+	case "simul-create":
+		var v TimelineEntrySimul
+		if err := json.Unmarshal(data, &v); err != nil {
+			return err
+		}
+		u.Value = v
+		return nil
+	case "simul-join":
+		var v TimelineEntrySimul
+		if err := json.Unmarshal(data, &v); err != nil {
+			return err
+		}
+		u.Value = v
+		return nil
+	case "stream-start":
+		var v TimelineEntryStreamStart
+		if err := json.Unmarshal(data, &v); err != nil {
+			return err
+		}
+		u.Value = v
+		return nil
+	case "study-like":
+		var v TimelineEntryStudyLike
+		if err := json.Unmarshal(data, &v); err != nil {
+			return err
+		}
+		u.Value = v
+		return nil
+	case "team-create":
+		var v TimelineEntryTeamCreate
+		if err := json.Unmarshal(data, &v); err != nil {
+			return err
+		}
+		u.Value = v
+		return nil
+	case "team-join":
+		var v TimelineEntryTeamJoin
+		if err := json.Unmarshal(data, &v); err != nil {
+			return err
+		}
+		u.Value = v
+		return nil
+	case "tour-join":
+		var v TimelineEntryTourJoin
+		if err := json.Unmarshal(data, &v); err != nil {
+			return err
+		}
+		u.Value = v
+		return nil
+	case "ublog-post":
+		var v TimelineEntryUblogPost
+		if err := json.Unmarshal(data, &v); err != nil {
+			return err
+		}
+		u.Value = v
+		return nil
+	case "ublog-post-like":
+		var v TimelineEntryUblogPostLike
+		if err := json.Unmarshal(data, &v); err != nil {
+			return err
+		}
+		u.Value = v
+		return nil
+	default:
+		return fmt.Errorf("unknown type value: %q", disc.Type_)
+	}
+}
+
+// ChallengeJSONDestUser represents a union type (oneOf/anyOf).
+// Variants: ChallengeUser, any
+type ChallengeJSONDestUser struct {
+	Value any
+}
+
+// MarshalJSON implements json.Marshaler for ChallengeJSONDestUser.
+func (u ChallengeJSONDestUser) MarshalJSON() ([]byte, error) {
+	return json.Marshal(u.Value)
+}
+
+// UnmarshalJSON implements json.Unmarshaler for ChallengeJSONDestUser.
+func (u *ChallengeJSONDestUser) UnmarshalJSON(data []byte) error {
+	var errors []error
+	var valChallengeUser ChallengeUser
+	if err := json.Unmarshal(data, &valChallengeUser); err == nil {
+		u.Value = valChallengeUser
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	return fmt.Errorf("data did not match any variant of ChallengeJSONDestUser: %v", errors)
+}
+
+// GameEventPlayerTitle represents a union type (oneOf/anyOf).
+// Variants: Title, any
+type GameEventPlayerTitle struct {
+	Value any
+}
+
+// MarshalJSON implements json.Marshaler for GameEventPlayerTitle.
+func (u GameEventPlayerTitle) MarshalJSON() ([]byte, error) {
+	return json.Marshal(u.Value)
+}
+
+// UnmarshalJSON implements json.Unmarshaler for GameEventPlayerTitle.
+func (u *GameEventPlayerTitle) UnmarshalJSON(data []byte) error {
+	var errors []error
+	var valTitle Title
+	if err := json.Unmarshal(data, &valTitle); err == nil {
+		u.Value = valTitle
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	return fmt.Errorf("data did not match any variant of GameEventPlayerTitle: %v", errors)
+}
+
+// OpeningExplorerMastersGameWinner represents a union type (oneOf/anyOf).
+// Variants: GameColor, any
+type OpeningExplorerMastersGameWinner struct {
+	Value any
+}
+
+// MarshalJSON implements json.Marshaler for OpeningExplorerMastersGameWinner.
+func (u OpeningExplorerMastersGameWinner) MarshalJSON() ([]byte, error) {
+	return json.Marshal(u.Value)
+}
+
+// UnmarshalJSON implements json.Unmarshaler for OpeningExplorerMastersGameWinner.
+func (u *OpeningExplorerMastersGameWinner) UnmarshalJSON(data []byte) error {
+	var errors []error
+	var valGameColor GameColor
+	if err := json.Unmarshal(data, &valGameColor); err == nil {
+		u.Value = valGameColor
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	return fmt.Errorf("data did not match any variant of OpeningExplorerMastersGameWinner: %v", errors)
+}
+
+// OpeningExplorerMastersOpening represents a union type (oneOf/anyOf).
+// Variants: OpeningExplorerOpening, any
+type OpeningExplorerMastersOpening struct {
+	Value any
+}
+
+// MarshalJSON implements json.Marshaler for OpeningExplorerMastersOpening.
+func (u OpeningExplorerMastersOpening) MarshalJSON() ([]byte, error) {
+	return json.Marshal(u.Value)
+}
+
+// UnmarshalJSON implements json.Unmarshaler for OpeningExplorerMastersOpening.
+func (u *OpeningExplorerMastersOpening) UnmarshalJSON(data []byte) error {
+	var errors []error
+	var valOpeningExplorerOpening OpeningExplorerOpening
+	if err := json.Unmarshal(data, &valOpeningExplorerOpening); err == nil {
+		u.Value = valOpeningExplorerOpening
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	return fmt.Errorf("data did not match any variant of OpeningExplorerMastersOpening: %v", errors)
 }

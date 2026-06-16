@@ -3894,10 +3894,10 @@ func (c *Client) RoundAddTime(ctx context.Context, gameID string, seconds int64)
 // **This endpoint can only be used by Lichess administrators. It will not work if you do not have the appropriate permissions.** Tournament organizers should instead use [OAuth](#tag/OAuth) to obtain `challenge:write` tokens from users in order to perform bulk pairing.*
 // Create and obtain `challenge:write` tokens for multiple users.
 // If a similar token already exists for a user, it is reused. This endpoint is idempotent.
-func (c *Client) AdminChallengeTokens(ctx context.Context, body any) (*map[string]any, error) {
+func (c *Client) AdminChallengeTokens(ctx context.Context, body any) (*map[string]string, error) {
 	path := "/api/token/admin-challenge"
 
-	var result map[string]any
+	var result map[string]string
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
 		return nil, parseErrorError(err)
 	}
