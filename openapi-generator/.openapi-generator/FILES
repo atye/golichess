@@ -35,7 +35,6 @@ docs/ApiAccountPlaying200Response.md
 docs/ApiAccountPlaying200ResponseNowPlayingInner.md
 docs/ApiAccountPlaying200ResponseNowPlayingInnerOpponent.md
 docs/ApiBoardSeek200Response.md
-docs/ApiCloudEval404Response.md
 docs/ApiExternalEngineAcquire200Response.md
 docs/ApiExternalEngineAcquireRequest.md
 docs/ApiExternalEngineAnalyse200Response.md
@@ -100,7 +99,6 @@ docs/BroadcastPlayerEntryWithFideAndGamesAllOfFide.md
 docs/BroadcastPlayerTiebreak.md
 docs/BroadcastPlayerWithFed.md
 docs/BroadcastPointStr.md
-docs/BroadcastPush400Response.md
 docs/BroadcastRound.md
 docs/BroadcastRoundGame.md
 docs/BroadcastRoundGamePlayersInner.md
@@ -291,7 +289,6 @@ docs/SimulsAPI.md
 docs/SpectatorGameChatInner.md
 docs/Speed.md
 docs/StatByFideTC.md
-docs/StreamGame429Response.md
 docs/StreamerLive200ResponseInner.md
 docs/StreamerLive200ResponseInnerAllOfStream.md
 docs/StreamerLive200ResponseInnerAllOfStreamer.md
@@ -396,7 +393,6 @@ docs/UserNote.md
 docs/UserPreferences.md
 docs/UserStreamer.md
 docs/UserStreamerTwitch.md
-docs/UserStreamerYoutube.md
 docs/UsersAPI.md
 docs/Variant.md
 docs/VariantKey.md
@@ -412,7 +408,6 @@ model_api_account_playing_200_response.go
 model_api_account_playing_200_response_now_playing_inner.go
 model_api_account_playing_200_response_now_playing_inner_opponent.go
 model_api_board_seek_200_response.go
-model_api_cloud_eval_404_response.go
 model_api_external_engine_acquire_200_response.go
 model_api_external_engine_acquire_request.go
 model_api_external_engine_analyse_200_response.go
@@ -475,7 +470,6 @@ model_broadcast_player_entry_with_fide_and_games_all_of_fide.go
 model_broadcast_player_tiebreak.go
 model_broadcast_player_with_fed.go
 model_broadcast_point_str.go
-model_broadcast_push_400_response.go
 model_broadcast_round.go
 model_broadcast_round_game.go
 model_broadcast_round_game_players_inner.go
@@ -654,7 +648,6 @@ model_simul_variants_inner.go
 model_spectator_game_chat_inner.go
 model_speed.go
 model_stat_by_fide_tc.go
-model_stream_game_429_response.go
 model_streamer_live_200_response_inner.go
 model_streamer_live_200_response_inner_all_of_stream.go
 model_streamer_live_200_response_inner_all_of_streamer.go
@@ -753,7 +746,6 @@ model_user_note.go
 model_user_preferences.go
 model_user_streamer.go
 model_user_streamer_twitch.go
-model_user_streamer_youtube.go
 model_variant.go
 model_variant_key.go
 model_verdict.go

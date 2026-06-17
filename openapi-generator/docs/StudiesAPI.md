@@ -40,7 +40,7 @@ import (
 func main() {
 	studyId := "studyId_example" // string | The study ID
 	chapterId := "chapterId_example" // string | The chapter ID
-	pgn := "pgn_example" // string | PGN text containing the moves that will replace the chapter's existing moves. Any provided tags are ignored. 
+	pgn := "pgn_example" // string | PGN text containing the tags. Only the tags are used. Moves are just ignored. 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -70,7 +70,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **pgn** | **string** | PGN text containing the moves that will replace the chapter&#39;s existing moves. Any provided tags are ignored.  | 
+ **pgn** | **string** | PGN text containing the tags. Only the tags are used. Moves are just ignored.  | 
 
 ### Return type
 

@@ -383,7 +383,7 @@ Name | Type | Description  | Notes
 
 ## BroadcastRoundCreate
 
-> BroadcastRoundNew BroadcastRoundCreate(ctx, broadcastTournamentId).Name(name).SyncUrl(syncUrl).SyncUrls(syncUrls).SyncIds(syncIds).SyncUsers(syncUsers).OnlyRound(onlyRound).Slices(slices).SyncSource(syncSource).StartsAt(startsAt).StartsAfterPrevious(startsAfterPrevious).Delay(delay).Status(status).Rated(rated).CustomScoringWhiteWin(customScoringWhiteWin).CustomScoringWhiteDraw(customScoringWhiteDraw).CustomScoringBlackWin(customScoringBlackWin).CustomScoringBlackDraw(customScoringBlackDraw).Period(period).Execute()
+> BroadcastRoundNew BroadcastRoundCreate(ctx, broadcastTournamentId).Name(name).SyncUrl(syncUrl).SyncUrls(syncUrls).SyncIds(syncIds).SyncUsers(syncUsers).OnlyRound(onlyRound).Slices(slices).SyncSource(syncSource).StartsAt(startsAt).StartsAfterPrevious(startsAfterPrevious).Delay(delay).Status(status).Rated(rated).CustomScoring(customScoring).TeamCustomScoring(teamCustomScoring).Period(period).Execute()
 
 Create a broadcast round
 
@@ -416,15 +416,13 @@ func main() {
 	delay := int32(56) // int32 | Delay in seconds for movements to appear on the broadcast. Leave it empty if you don't need it. Example: `900` (15 min)  (optional)
 	status := "status_example" // string | Lichess can usually detect the round status, but you can also set it manually if needed.  (optional) (default to "new")
 	rated := true // bool | Whether the round is used when calculating players' rating changes. (optional) (default to true)
-	customScoringWhiteWin := float32(8.14) // float32 |  (optional)
-	customScoringWhiteDraw := float32(8.14) // float32 |  (optional)
-	customScoringBlackWin := float32(8.14) // float32 |  (optional)
-	customScoringBlackDraw := float32(8.14) // float32 |  (optional)
+	customScoring := *openapiclient.NewBroadcastCustomScoring(*openapiclient.NewBroadcastCustomPointsPerColor(float32(123), float32(123)), *openapiclient.NewBroadcastCustomPointsPerColor(float32(123), float32(123))) // BroadcastCustomScoring |  (optional)
+	teamCustomScoring := *openapiclient.NewBroadcastCustomPointsPerColor(float32(123), float32(123)) // BroadcastCustomPointsPerColor | Scoring overrides for a team match win or draw.  (optional)
 	period := int32(56) // int32 | (Only for Admins) Waiting time for each poll.  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.BroadcastsAPI.BroadcastRoundCreate(context.Background(), broadcastTournamentId).Name(name).SyncUrl(syncUrl).SyncUrls(syncUrls).SyncIds(syncIds).SyncUsers(syncUsers).OnlyRound(onlyRound).Slices(slices).SyncSource(syncSource).StartsAt(startsAt).StartsAfterPrevious(startsAfterPrevious).Delay(delay).Status(status).Rated(rated).CustomScoringWhiteWin(customScoringWhiteWin).CustomScoringWhiteDraw(customScoringWhiteDraw).CustomScoringBlackWin(customScoringBlackWin).CustomScoringBlackDraw(customScoringBlackDraw).Period(period).Execute()
+	resp, r, err := apiClient.BroadcastsAPI.BroadcastRoundCreate(context.Background(), broadcastTournamentId).Name(name).SyncUrl(syncUrl).SyncUrls(syncUrls).SyncIds(syncIds).SyncUsers(syncUsers).OnlyRound(onlyRound).Slices(slices).SyncSource(syncSource).StartsAt(startsAt).StartsAfterPrevious(startsAfterPrevious).Delay(delay).Status(status).Rated(rated).CustomScoring(customScoring).TeamCustomScoring(teamCustomScoring).Period(period).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `BroadcastsAPI.BroadcastRoundCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -463,10 +461,8 @@ Name | Type | Description  | Notes
  **delay** | **int32** | Delay in seconds for movements to appear on the broadcast. Leave it empty if you don&#39;t need it. Example: &#x60;900&#x60; (15 min)  | 
  **status** | **string** | Lichess can usually detect the round status, but you can also set it manually if needed.  | [default to &quot;new&quot;]
  **rated** | **bool** | Whether the round is used when calculating players&#39; rating changes. | [default to true]
- **customScoringWhiteWin** | **float32** |  | 
- **customScoringWhiteDraw** | **float32** |  | 
- **customScoringBlackWin** | **float32** |  | 
- **customScoringBlackDraw** | **float32** |  | 
+ **customScoring** | [**BroadcastCustomScoring**](BroadcastCustomScoring.md) |  | 
+ **teamCustomScoring** | [**BroadcastCustomPointsPerColor**](BroadcastCustomPointsPerColor.md) | Scoring overrides for a team match win or draw.  | 
  **period** | **int32** | (Only for Admins) Waiting time for each poll.  | 
 
 ### Return type
@@ -709,7 +705,7 @@ Name | Type | Description  | Notes
 
 ## BroadcastRoundUpdate
 
-> BroadcastRound BroadcastRoundUpdate(ctx, broadcastRoundId).Name(name).SyncUrl(syncUrl).SyncUrls(syncUrls).SyncIds(syncIds).SyncUsers(syncUsers).Patch(patch).OnlyRound(onlyRound).Slices(slices).SyncSource(syncSource).StartsAt(startsAt).StartsAfterPrevious(startsAfterPrevious).Delay(delay).Status(status).Rated(rated).CustomScoringWhiteWin(customScoringWhiteWin).CustomScoringWhiteDraw(customScoringWhiteDraw).CustomScoringBlackWin(customScoringBlackWin).CustomScoringBlackDraw(customScoringBlackDraw).Period(period).Execute()
+> BroadcastRound BroadcastRoundUpdate(ctx, broadcastRoundId).Name(name).SyncUrl(syncUrl).SyncUrls(syncUrls).SyncIds(syncIds).SyncUsers(syncUsers).Patch(patch).OnlyRound(onlyRound).Slices(slices).SyncSource(syncSource).StartsAt(startsAt).StartsAfterPrevious(startsAfterPrevious).Delay(delay).Status(status).Rated(rated).CustomScoring(customScoring).TeamCustomScoring(teamCustomScoring).Period(period).Execute()
 
 Update a broadcast round
 
@@ -743,15 +739,13 @@ func main() {
 	delay := int32(56) // int32 | Delay in seconds for movements to appear on the broadcast. Leave it empty if you don't need it. Example: `900` (15 min)  (optional)
 	status := "status_example" // string | Lichess can usually detect the round status, but you can also set it manually if needed.  (optional) (default to "new")
 	rated := true // bool | Whether the round is used when calculating players' rating changes. (optional) (default to true)
-	customScoringWhiteWin := float32(8.14) // float32 |  (optional)
-	customScoringWhiteDraw := float32(8.14) // float32 |  (optional)
-	customScoringBlackWin := float32(8.14) // float32 |  (optional)
-	customScoringBlackDraw := float32(8.14) // float32 |  (optional)
+	customScoring := *openapiclient.NewBroadcastCustomScoring(*openapiclient.NewBroadcastCustomPointsPerColor(float32(123), float32(123)), *openapiclient.NewBroadcastCustomPointsPerColor(float32(123), float32(123))) // BroadcastCustomScoring |  (optional)
+	teamCustomScoring := *openapiclient.NewBroadcastCustomPointsPerColor(float32(123), float32(123)) // BroadcastCustomPointsPerColor | Scoring overrides for a team match win or draw.  (optional)
 	period := int32(56) // int32 | (Only for Admins) Waiting time for each poll.  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.BroadcastsAPI.BroadcastRoundUpdate(context.Background(), broadcastRoundId).Name(name).SyncUrl(syncUrl).SyncUrls(syncUrls).SyncIds(syncIds).SyncUsers(syncUsers).Patch(patch).OnlyRound(onlyRound).Slices(slices).SyncSource(syncSource).StartsAt(startsAt).StartsAfterPrevious(startsAfterPrevious).Delay(delay).Status(status).Rated(rated).CustomScoringWhiteWin(customScoringWhiteWin).CustomScoringWhiteDraw(customScoringWhiteDraw).CustomScoringBlackWin(customScoringBlackWin).CustomScoringBlackDraw(customScoringBlackDraw).Period(period).Execute()
+	resp, r, err := apiClient.BroadcastsAPI.BroadcastRoundUpdate(context.Background(), broadcastRoundId).Name(name).SyncUrl(syncUrl).SyncUrls(syncUrls).SyncIds(syncIds).SyncUsers(syncUsers).Patch(patch).OnlyRound(onlyRound).Slices(slices).SyncSource(syncSource).StartsAt(startsAt).StartsAfterPrevious(startsAfterPrevious).Delay(delay).Status(status).Rated(rated).CustomScoring(customScoring).TeamCustomScoring(teamCustomScoring).Period(period).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `BroadcastsAPI.BroadcastRoundUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -791,10 +785,8 @@ Name | Type | Description  | Notes
  **delay** | **int32** | Delay in seconds for movements to appear on the broadcast. Leave it empty if you don&#39;t need it. Example: &#x60;900&#x60; (15 min)  | 
  **status** | **string** | Lichess can usually detect the round status, but you can also set it manually if needed.  | [default to &quot;new&quot;]
  **rated** | **bool** | Whether the round is used when calculating players&#39; rating changes. | [default to true]
- **customScoringWhiteWin** | **float32** |  | 
- **customScoringWhiteDraw** | **float32** |  | 
- **customScoringBlackWin** | **float32** |  | 
- **customScoringBlackDraw** | **float32** |  | 
+ **customScoring** | [**BroadcastCustomScoring**](BroadcastCustomScoring.md) |  | 
+ **teamCustomScoring** | [**BroadcastCustomPointsPerColor**](BroadcastCustomPointsPerColor.md) | Scoring overrides for a team match win or draw.  | 
  **period** | **int32** | (Only for Admins) Waiting time for each poll.  | 
 
 ### Return type

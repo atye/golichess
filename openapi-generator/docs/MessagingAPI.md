@@ -30,7 +30,7 @@ import (
 
 func main() {
 	username := "someplayer" // string | 
-	text := "text_example" // string | 
+	text := "text_example" // string | The contents of the note
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -60,7 +60,7 @@ Other parameters are passed through a pointer to a apiInboxUsernameRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **text** | **string** |  | 
+ **text** | **string** | The contents of the note | 
 
 ### Return type
 

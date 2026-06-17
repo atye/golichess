@@ -330,7 +330,7 @@ import (
 
 func main() {
 	username := "LeelaChess" // string | 
-	days := int32(56) // int32 | Days per move, for correspondence games. Clock settings must be omitted.
+	days := int32(56) // int32 | Days per turn. Required for correspondence seeks.
 	clockLimit := int32(56) // int32 | Clock initial time in seconds. If empty, a correspondence game is created. Valid values are 0, 15, 30, 45, 60, 90, and any multiple of 60 up to 10800 (3 hours). (optional)
 	clockIncrement := int32(56) // int32 | Clock increment in seconds. If empty, a correspondence game is created. (optional)
 	rated := true // bool | Game is rated and impacts players ratings (optional) (default to false)
@@ -368,7 +368,7 @@ Other parameters are passed through a pointer to a apiChallengeCreateRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **days** | **int32** | Days per move, for correspondence games. Clock settings must be omitted. | 
+ **days** | **int32** | Days per turn. Required for correspondence seeks. | 
  **clockLimit** | **int32** | Clock initial time in seconds. If empty, a correspondence game is created. Valid values are 0, 15, 30, 45, 60, 90, and any multiple of 60 up to 10800 (3 hours). | 
  **clockIncrement** | **int32** | Clock increment in seconds. If empty, a correspondence game is created. | 
  **rated** | **bool** | Game is rated and impacts players ratings | [default to false]
