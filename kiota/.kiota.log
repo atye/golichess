@@ -1,14 +1,13 @@
 Warning: KiotaBuilder OpenAPI warning: #/ - Multiple servers entries were found in the OpenAPI description. Only the first one will be used. The root URL can be set manually with the request adapter.
 Warning: KiotaBuilder OpenAPI warning: #/ - The schema MoveStreamEntry is a polymorphic type but does not define a discriminator. This will result in serialization errors.
+Warning: KiotaBuilder OpenAPI warning: #/ - The schema ArenaPosition is a polymorphic type but does not define a discriminator. This will result in serialization errors.
 Warning: KiotaBuilder OpenAPI warning: #/ - The schema GameEventOpponent is a polymorphic type but does not define a discriminator. This will result in serialization errors.
 Warning: KiotaBuilder OpenAPI warning: #/ - The schema TimeControl is a polymorphic type but does not define a discriminator. This will result in serialization errors.
 Warning: KiotaBuilder OpenAPI warning: #/ - The schema TvFeed is a polymorphic type but does not define a discriminator. This will result in serialization errors.
-Warning: KiotaBuilder OpenAPI warning: #/ - The schema ArenaPosition is a polymorphic type but does not define a discriminator. This will result in serialization errors.
 Warning: KiotaBuilder OpenAPI warning: #/ - The schema /api/player/autocomplete is a polymorphic type but does not define a discriminator. This will result in serialization errors.
-Warning: KiotaBuilder OpenAPI warning: #/ - The schema /api/user/{username}/current-game is a polymorphic type but does not define a discriminator. This will result in serialization errors.
+Warning: KiotaBuilder OpenAPI warning: #/ - The schema /game/export/{gameId} is a polymorphic type but does not define a discriminator. This will result in serialization errors.
 Warning: KiotaBuilder OpenAPI warning: #/ - The schema /api/games/export/_ids is a polymorphic type but does not define a discriminator. This will result in serialization errors.
 Warning: KiotaBuilder OpenAPI warning: #/ - The schema /api/games/export/bookmarks is a polymorphic type but does not define a discriminator. This will result in serialization errors.
-Warning: KiotaBuilder OpenAPI warning: #/ - The schema /game/export/{gameId} is a polymorphic type but does not define a discriminator. This will result in serialization errors.
 Warning: KiotaBuilder OpenAPI warning: #/paths/~1api~1import/post/responses/200/content/application~1json/schema/properties/url - The format uri is not supported by Kiota and the string type will be used.
 Warning: KiotaBuilder OpenAPI warning: #/paths/~1broadcast~1new/post - The operation #/paths/~1broadcast~1new/post has a request body with a complex properties and the url form encoded content type. This is not supported by Kiota and serialization of complex properties will fail.
 Warning: KiotaBuilder OpenAPI warning: #/paths/~1broadcast~1{broadcastTournamentId}~1edit/post - The operation #/paths/~1broadcast~1{broadcastTournamentId}~1edit/post has a request body with a complex properties and the url form encoded content type. This is not supported by Kiota and serialization of complex properties will fail.
