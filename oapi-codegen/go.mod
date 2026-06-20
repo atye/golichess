@@ -2,7 +2,7 @@ module github.com/atye/golichess/oapi-codegen
 
 go 1.24.13
 
-require github.com/oapi-codegen/runtime v1.4.1
+require github.com/oapi-codegen/runtime v1.4.2
 
 require (
 	github.com/apapsch/go-jsonmerge/v2 v2.0.0 // indirect
