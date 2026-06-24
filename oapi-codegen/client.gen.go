@@ -28200,6 +28200,10 @@ type ApiAccountPlayingResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *struct {
+		// NbMyTurn Number of games where it is my turn to play
+		NbMyTurn int `json:"nbMyTurn"`
+
+		// NowPlaying Games I'm currently playing
 		NowPlaying []struct {
 			Color    GameColor `json:"color"`
 			Fen      string    `json:"fen"`
@@ -35962,6 +35966,10 @@ func ParseApiAccountPlayingResponse(rsp *http.Response) (*ApiAccountPlayingRespo
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest struct {
+			// NbMyTurn Number of games where it is my turn to play
+			NbMyTurn int `json:"nbMyTurn"`
+
+			// NowPlaying Games I'm currently playing
 			NowPlaying []struct {
 				Color    GameColor `json:"color"`
 				Fen      string    `json:"fen"`
