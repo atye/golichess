@@ -29,18 +29,19 @@ type APIUsersStatusParams struct {
 // This API is very fast and cheap on lichess side.
 // So you can call it quite often (like once every 5 seconds).
 // Use it to track players and know when they're connected on lichess and playing games.
-func (c *Client) APIUsersStatus(ctx context.Context, opts ...APIUsersStatusParams) (*[]any, error) {
+func (c *Client) APIUsersStatus(ctx context.Context, ids string, opts ...APIUsersStatusParams) (*[]any, error) {
 	path := "/api/users/status"
 
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "ids", ids)
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "withSignal", params.WithSignal)
 		addQueryParam(queryValues, "withGameIds", params.WithGameIds)
 		addQueryParam(queryValues, "withGameMetas", params.WithGameMetas)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result []any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -99,16 +100,16 @@ func (c *Client) APIUser(ctx context.Context, username string, opts ...APIUserPa
 	path := "/api/user/{username}"
 	path = pathReplace(path, "username", username)
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "trophies", params.Trophies)
 		addQueryParam(queryValues, "profile", params.Profile)
 		addQueryParam(queryValues, "rank", params.Rank)
 		addQueryParam(queryValues, "fideId", params.FideID)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result UserExtended
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -213,15 +214,15 @@ type APIPuzzleNextParams struct {
 func (c *Client) APIPuzzleNext(ctx context.Context, opts ...APIPuzzleNextParams) (*PuzzleAndGame, error) {
 	path := "/api/puzzle/next"
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "angle", params.Angle)
 		addQueryParam(queryValues, "difficulty", params.Difficulty)
 		addQueryParam(queryValues, "color", params.Color)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result PuzzleAndGame
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -252,15 +253,15 @@ func (c *Client) APIPuzzleBatchSelect(ctx context.Context, angle string, opts ..
 	path := "/api/puzzle/batch/{angle}"
 	path = pathReplace(path, "angle", angle)
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "difficulty", params.Difficulty)
 		addQueryParam(queryValues, "nb", params.Nb)
 		addQueryParam(queryValues, "color", params.Color)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result PuzzleBatchSelect
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -285,13 +286,13 @@ func (c *Client) APIPuzzleBatchSolve(ctx context.Context, angle string, body Puz
 	path := "/api/puzzle/batch/{angle}"
 	path = pathReplace(path, "angle", angle)
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "nb", params.Nb)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result PuzzleBatchSolveResponse
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
@@ -318,15 +319,15 @@ type APIPuzzleActivityParams struct {
 func (c *Client) APIPuzzleActivity(ctx context.Context, opts ...APIPuzzleActivityParams) (*PuzzleActivity, error) {
 	path := "/api/puzzle/activity"
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "max", params.Max)
 		addQueryParam(queryValues, "before", params.Before)
 		addQueryParam(queryValues, "since", params.Since)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result PuzzleActivity
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
@@ -381,13 +382,13 @@ func (c *Client) APIStormDashboard(ctx context.Context, username string, opts ..
 	path := "/api/storm/dashboard/{username}"
 	path = pathReplace(path, "username", username)
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "days", params.Days)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result PuzzleStormDashboard
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -449,14 +450,14 @@ type APIUsersParams struct {
 func (c *Client) APIUsers(ctx context.Context, body string, opts ...APIUsersParams) (*[]User, error) {
 	path := "/api/users"
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "profile", params.Profile)
 		addQueryParam(queryValues, "rank", params.Rank)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result []User
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
@@ -524,9 +525,14 @@ func (c *Client) AccountKid(ctx context.Context) (*any, error) {
 //
 // Set the kid mode status of the logged in user.
 // - <https://lichess.org/account/kid>
-func (c *Client) AccountKidPost(ctx context.Context) (*Ok, error) {
+func (c *Client) AccountKidPost(ctx context.Context, v bool) (*Ok, error) {
 	path := "/api/account/kid"
 
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "v", v)
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
+	}
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -548,14 +554,14 @@ type TimelineParams struct {
 func (c *Client) Timeline(ctx context.Context, opts ...TimelineParams) (*Timeline, error) {
 	path := "/api/timeline"
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "since", params.Since)
 		addQueryParam(queryValues, "nb", params.Nb)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result Timeline
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -608,10 +614,10 @@ func (c *Client) GamePgn(ctx context.Context, gameID string, opts ...GamePgnPara
 	path := "/game/export/{gameId}"
 	path = pathReplace(path, "gameId", gameID)
 
+	queryValues := url.Values{}
 	var headers http.Header
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "moves", params.Moves)
 		addQueryParam(queryValues, "pgnInJson", params.PgnInJSON)
 		addQueryParam(queryValues, "tags", params.Tags)
@@ -622,13 +628,13 @@ func (c *Client) GamePgn(ctx context.Context, gameID string, opts ...GamePgnPara
 		addQueryParam(queryValues, "division", params.Division)
 		addQueryParam(queryValues, "literate", params.Literate)
 		addQueryParam(queryValues, "withBookmarked", params.WithBookmarked)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
 		headers = make(http.Header)
 		if params.Accept != nil {
 			headers.Set("Accept", fmt.Sprintf("%v", *params.Accept))
 		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json", headers); err != nil {
@@ -695,10 +701,10 @@ func (c *Client) APIUserCurrentGame(ctx context.Context, username string, opts .
 	path := "/api/user/{username}/current-game"
 	path = pathReplace(path, "username", username)
 
+	queryValues := url.Values{}
 	var headers http.Header
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "moves", params.Moves)
 		addQueryParam(queryValues, "pgnInJson", params.PgnInJSON)
 		addQueryParam(queryValues, "tags", params.Tags)
@@ -708,13 +714,13 @@ func (c *Client) APIUserCurrentGame(ctx context.Context, username string, opts .
 		addQueryParam(queryValues, "opening", params.Opening)
 		addQueryParam(queryValues, "division", params.Division)
 		addQueryParam(queryValues, "literate", params.Literate)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
 		headers = make(http.Header)
 		if params.Accept != nil {
 			headers.Set("Accept", fmt.Sprintf("%v", *params.Accept))
 		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json", headers); err != nil {
@@ -800,10 +806,10 @@ func (c *Client) APIGamesUser(ctx context.Context, username string, opts ...APIG
 	path := "/api/games/user/{username}"
 	path = pathReplace(path, "username", username)
 
+	queryValues := url.Values{}
 	var headers http.Header
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "since", params.Since)
 		addQueryParam(queryValues, "until", params.Until)
 		addQueryParam(queryValues, "max", params.Max)
@@ -826,13 +832,13 @@ func (c *Client) APIGamesUser(ctx context.Context, username string, opts ...APIG
 		addQueryParam(queryValues, "lastFen", params.LastFen)
 		addQueryParam(queryValues, "withBookmarked", params.WithBookmarked)
 		addQueryParam(queryValues, "sort", params.Sort)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
 		headers = make(http.Header)
 		if params.Accept != nil {
 			headers.Set("Accept", fmt.Sprintf("%v", *params.Accept))
 		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson", headers); err != nil {
@@ -884,10 +890,10 @@ type GamesExportIdsParams struct {
 func (c *Client) GamesExportIds(ctx context.Context, body string, opts ...GamesExportIdsParams) (*any, error) {
 	path := "/api/games/export/_ids"
 
+	queryValues := url.Values{}
 	var headers http.Header
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "moves", params.Moves)
 		addQueryParam(queryValues, "pgnInJson", params.PgnInJSON)
 		addQueryParam(queryValues, "tags", params.Tags)
@@ -897,13 +903,13 @@ func (c *Client) GamesExportIds(ctx context.Context, body string, opts ...GamesE
 		addQueryParam(queryValues, "opening", params.Opening)
 		addQueryParam(queryValues, "division", params.Division)
 		addQueryParam(queryValues, "literate", params.Literate)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
 		headers = make(http.Header)
 		if params.Accept != nil {
 			headers.Set("Accept", fmt.Sprintf("%v", *params.Accept))
 		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result any
 	if err := c.do(ctx, "POST", path, body, &result, "application/json", headers); err != nil {
@@ -930,13 +936,13 @@ type GamesByUsersParams struct {
 func (c *Client) GamesByUsers(ctx context.Context, body string, opts ...GamesByUsersParams) (*GameStream, error) {
 	path := "/api/stream/games-by-users"
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "withCurrentGames", params.WithCurrentGames)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result GameStream
 	if err := c.do(ctx, "POST", path, body, &result, "application/x-ndjson"); err != nil {
@@ -992,13 +998,13 @@ type APIAccountPlayingParams struct {
 func (c *Client) APIAccountPlaying(ctx context.Context, opts ...APIAccountPlayingParams) (*any, error) {
 	path := "/api/account/playing"
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "nb", params.Nb)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -1108,10 +1114,10 @@ type APIExportBookmarksParams struct {
 func (c *Client) APIExportBookmarks(ctx context.Context, opts ...APIExportBookmarksParams) (*any, error) {
 	path := "/api/games/export/bookmarks"
 
+	queryValues := url.Values{}
 	var headers http.Header
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "since", params.Since)
 		addQueryParam(queryValues, "until", params.Until)
 		addQueryParam(queryValues, "max", params.Max)
@@ -1126,13 +1132,13 @@ func (c *Client) APIExportBookmarks(ctx context.Context, opts ...APIExportBookma
 		addQueryParam(queryValues, "literate", params.Literate)
 		addQueryParam(queryValues, "lastFen", params.LastFen)
 		addQueryParam(queryValues, "sort", params.Sort)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
 		headers = make(http.Header)
 		if params.Accept != nil {
 			headers.Set("Accept", fmt.Sprintf("%v", *params.Accept))
 		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json", headers); err != nil {
@@ -1216,23 +1222,23 @@ func (c *Client) TvChannelGames(ctx context.Context, channel string, opts ...TvC
 	path := "/api/tv/{channel}"
 	path = pathReplace(path, "channel", channel)
 
+	queryValues := url.Values{}
 	var headers http.Header
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "nb", params.Nb)
 		addQueryParam(queryValues, "moves", params.Moves)
 		addQueryParam(queryValues, "pgnInJson", params.PgnInJSON)
 		addQueryParam(queryValues, "tags", params.Tags)
 		addQueryParam(queryValues, "clocks", params.Clocks)
 		addQueryParam(queryValues, "opening", params.Opening)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
 		headers = make(http.Header)
 		if params.Accept != nil {
 			headers.Set("Accept", fmt.Sprintf("%v", *params.Accept))
 		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result GameJSON
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson", headers); err != nil {
@@ -1288,13 +1294,13 @@ func (c *Client) Tournament(ctx context.Context, id string, opts ...TournamentPa
 	path := "/api/tournament/{id}"
 	path = pathReplace(path, "id", id)
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "page", params.Page)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result ArenaTournamentFull
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -1425,10 +1431,10 @@ func (c *Client) GamesByTournament(ctx context.Context, id string, opts ...Games
 	path := "/api/tournament/{id}/games"
 	path = pathReplace(path, "id", id)
 
+	queryValues := url.Values{}
 	var headers http.Header
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "player", params.Player)
 		addQueryParam(queryValues, "moves", params.Moves)
 		addQueryParam(queryValues, "pgnInJson", params.PgnInJSON)
@@ -1438,13 +1444,13 @@ func (c *Client) GamesByTournament(ctx context.Context, id string, opts ...Games
 		addQueryParam(queryValues, "accuracy", params.Accuracy)
 		addQueryParam(queryValues, "opening", params.Opening)
 		addQueryParam(queryValues, "division", params.Division)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
 		headers = make(http.Header)
 		if params.Accept != nil {
 			headers.Set("Accept", fmt.Sprintf("%v", *params.Accept))
 		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result GameJSON
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson", headers); err != nil {
@@ -1473,14 +1479,14 @@ func (c *Client) ResultsByTournament(ctx context.Context, id string, opts ...Res
 	path := "/api/tournament/{id}/results"
 	path = pathReplace(path, "id", id)
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "nb", params.Nb)
 		addQueryParam(queryValues, "sheet", params.Sheet)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
@@ -1526,14 +1532,14 @@ func (c *Client) APIUserNameTournamentCreated(ctx context.Context, username stri
 	path := "/api/user/{username}/tournament/created"
 	path = pathReplace(path, "username", username)
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "nb", params.Nb)
 		addQueryParam(queryValues, "status", params.Status)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result ArenaTournament
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
@@ -1563,14 +1569,14 @@ func (c *Client) APIUserNameTournamentPlayed(ctx context.Context, username strin
 	path := "/api/user/{username}/tournament/played"
 	path = pathReplace(path, "username", username)
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "nb", params.Nb)
 		addQueryParam(queryValues, "performance", params.Performance)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result ArenaTournamentPlayed
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
@@ -1747,10 +1753,10 @@ func (c *Client) GamesBySwiss(ctx context.Context, id string, opts ...GamesBySwi
 	path := "/api/swiss/{id}/games"
 	path = pathReplace(path, "id", id)
 
+	queryValues := url.Values{}
 	var headers http.Header
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "player", params.Player)
 		addQueryParam(queryValues, "moves", params.Moves)
 		addQueryParam(queryValues, "pgnInJson", params.PgnInJSON)
@@ -1760,13 +1766,13 @@ func (c *Client) GamesBySwiss(ctx context.Context, id string, opts ...GamesBySwi
 		addQueryParam(queryValues, "accuracy", params.Accuracy)
 		addQueryParam(queryValues, "opening", params.Opening)
 		addQueryParam(queryValues, "division", params.Division)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
 		headers = make(http.Header)
 		if params.Accept != nil {
 			headers.Set("Accept", fmt.Sprintf("%v", *params.Accept))
 		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result GameJSON
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson", headers); err != nil {
@@ -1792,13 +1798,13 @@ func (c *Client) ResultsBySwiss(ctx context.Context, id string, opts ...ResultsB
 	path := "/api/swiss/{id}/results"
 	path = pathReplace(path, "id", id)
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "nb", params.Nb)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
@@ -1828,16 +1834,16 @@ func (c *Client) APITeamSwiss(ctx context.Context, teamID string, opts ...APITea
 	path := "/api/team/{teamId}/swiss"
 	path = pathReplace(path, "teamId", teamID)
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "max", params.Max)
 		addQueryParam(queryValues, "status", params.Status)
 		addQueryParam(queryValues, "createdBy", params.CreatedBy)
 		addQueryParam(queryValues, "name", params.Name)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result SwissTournament
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
@@ -1872,16 +1878,16 @@ func (c *Client) StudyChapterPgn(ctx context.Context, studyID string, chapterID 
 	path = pathReplace(path, "studyId", studyID)
 	path = pathReplace(path, "chapterId", chapterID)
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "clocks", params.Clocks)
 		addQueryParam(queryValues, "comments", params.Comments)
 		addQueryParam(queryValues, "variations", params.Variations)
 		addQueryParam(queryValues, "orientation", params.Orientation)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result StudyPgn
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-chess-pgn"); err != nil {
@@ -1915,16 +1921,16 @@ func (c *Client) StudyAllChaptersPgn(ctx context.Context, studyID string, opts .
 	path := "/api/study/{studyId}.pgn"
 	path = pathReplace(path, "studyId", studyID)
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "clocks", params.Clocks)
 		addQueryParam(queryValues, "comments", params.Comments)
 		addQueryParam(queryValues, "variations", params.Variations)
 		addQueryParam(queryValues, "orientation", params.Orientation)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result StudyPgn
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-chess-pgn"); err != nil {
@@ -2037,16 +2043,16 @@ func (c *Client) StudyExportAllPgn(ctx context.Context, username string, opts ..
 	path := "/api/study/by/{username}/export.pgn"
 	path = pathReplace(path, "username", username)
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "clocks", params.Clocks)
 		addQueryParam(queryValues, "comments", params.Comments)
 		addQueryParam(queryValues, "variations", params.Variations)
 		addQueryParam(queryValues, "orientation", params.Orientation)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result StudyPgn
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-chess-pgn"); err != nil {
@@ -2106,15 +2112,15 @@ type BroadcastsOfficialParams struct {
 func (c *Client) BroadcastsOfficial(ctx context.Context, opts ...BroadcastsOfficialParams) (*BroadcastWithRounds, error) {
 	path := "/api/broadcast"
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "nb", params.Nb)
 		addQueryParam(queryValues, "html", params.HTML)
 		addQueryParam(queryValues, "live", params.Live)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result BroadcastWithRounds
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
@@ -2137,14 +2143,14 @@ type BroadcastsTopParams struct {
 func (c *Client) BroadcastsTop(ctx context.Context, opts ...BroadcastsTopParams) (*BroadcastTop, error) {
 	path := "/api/broadcast/top"
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "page", params.Page)
 		addQueryParam(queryValues, "html", params.HTML)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result BroadcastTop
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -2170,14 +2176,14 @@ func (c *Client) BroadcastsByUser(ctx context.Context, username string, opts ...
 	path := "/api/broadcast/by/{username}"
 	path = pathReplace(path, "username", username)
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "page", params.Page)
 		addQueryParam(queryValues, "html", params.HTML)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -2200,14 +2206,14 @@ type BroadcastsSearchParams struct {
 func (c *Client) BroadcastsSearch(ctx context.Context, opts ...BroadcastsSearchParams) (*any, error) {
 	path := "/api/broadcast/search"
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "page", params.Page)
 		addQueryParam(queryValues, "q", params.Q)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -2352,13 +2358,13 @@ func (c *Client) BroadcastRoundUpdate(ctx context.Context, broadcastRoundID stri
 	path := "/broadcast/round/{broadcastRoundId}/edit"
 	path = pathReplace(path, "broadcastRoundId", broadcastRoundID)
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "patch", params.Patch)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result BroadcastRound
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
@@ -2417,14 +2423,14 @@ func (c *Client) BroadcastStreamRoundPgn(ctx context.Context, broadcastRoundID s
 	path := "/api/stream/broadcast/round/{broadcastRoundId}.pgn"
 	path = pathReplace(path, "broadcastRoundId", broadcastRoundID)
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "clocks", params.Clocks)
 		addQueryParam(queryValues, "comments", params.Comments)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result StudyPgn
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-chess-pgn"); err != nil {
@@ -2454,14 +2460,14 @@ func (c *Client) BroadcastRoundPgn(ctx context.Context, broadcastRoundID string,
 	path := "/api/broadcast/round/{broadcastRoundId}.pgn"
 	path = pathReplace(path, "broadcastRoundId", broadcastRoundID)
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "clocks", params.Clocks)
 		addQueryParam(queryValues, "comments", params.Comments)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result StudyPgn
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-chess-pgn"); err != nil {
@@ -2490,14 +2496,14 @@ func (c *Client) BroadcastAllRoundsPgn(ctx context.Context, broadcastTournamentI
 	path := "/api/broadcast/{broadcastTournamentId}.pgn"
 	path = pathReplace(path, "broadcastTournamentId", broadcastTournamentID)
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "clocks", params.Clocks)
 		addQueryParam(queryValues, "comments", params.Comments)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result StudyPgn
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-chess-pgn"); err != nil {
@@ -2521,13 +2527,13 @@ type BroadcastMyRoundsGetParams struct {
 func (c *Client) BroadcastMyRoundsGet(ctx context.Context, opts ...BroadcastMyRoundsGetParams) (*BroadcastMyRound, error) {
 	path := "/api/broadcast/my-rounds"
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "nb", params.Nb)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result BroadcastMyRound
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
@@ -2567,9 +2573,14 @@ func (c *Client) FidePlayerRatings(ctx context.Context, playerID int64) (*FidePl
 // FidePlayerSearch - Search FIDE players
 //
 // List of FIDE players search results for a query.
-func (c *Client) FidePlayerSearch(ctx context.Context) (*[]FidePlayer, error) {
+func (c *Client) FidePlayerSearch(ctx context.Context, q string) (*[]FidePlayer, error) {
 	path := "/api/fide/player"
 
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "q", q)
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
+	}
 	var result []FidePlayer
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -2618,13 +2629,13 @@ type TeamAllParams struct {
 func (c *Client) TeamAll(ctx context.Context, opts ...TeamAllParams) (*TeamPaginatorJSON, error) {
 	path := "/api/team/all"
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "page", params.Page)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result TeamPaginatorJSON
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -2660,14 +2671,14 @@ type TeamSearchParams struct {
 func (c *Client) TeamSearch(ctx context.Context, opts ...TeamSearchParams) (*TeamPaginatorJSON, error) {
 	path := "/api/team/search"
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "text", params.Text)
 		addQueryParam(queryValues, "page", params.Page)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result TeamPaginatorJSON
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -2692,13 +2703,13 @@ func (c *Client) TeamIDUsers(ctx context.Context, teamID string, opts ...TeamIDU
 	path := "/api/team/{teamId}/users"
 	path = pathReplace(path, "teamId", teamID)
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "full", params.Full)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
@@ -2728,16 +2739,16 @@ func (c *Client) APITeamArena(ctx context.Context, teamID string, opts ...APITea
 	path := "/api/team/{teamId}/arena"
 	path = pathReplace(path, "teamId", teamID)
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "max", params.Max)
 		addQueryParam(queryValues, "status", params.Status)
 		addQueryParam(queryValues, "createdBy", params.CreatedBy)
 		addQueryParam(queryValues, "name", params.Name)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result ArenaTournament
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
@@ -2793,13 +2804,13 @@ func (c *Client) TeamRequests(ctx context.Context, teamID string, opts ...TeamRe
 	path := "/api/team/{teamId}/requests"
 	path = pathReplace(path, "teamId", teamID)
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "declined", params.Declined)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result []TeamRequestWithUser
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -2899,13 +2910,13 @@ func (c *Client) APICrosstable(ctx context.Context, user1 string, user2 string, 
 	path = pathReplace(path, "user1", user1)
 	path = pathReplace(path, "user2", user2)
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "matchup", params.Matchup)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result Crosstable
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -2942,12 +2953,13 @@ type APIPlayerAutocompleteParams struct {
 // APIPlayerAutocomplete - Autocomplete usernames
 //
 // Provides autocompletion options for an incomplete username.
-func (c *Client) APIPlayerAutocomplete(ctx context.Context, opts ...APIPlayerAutocompleteParams) (*any, error) {
+func (c *Client) APIPlayerAutocomplete(ctx context.Context, term string, opts ...APIPlayerAutocompleteParams) (*any, error) {
 	path := "/api/player/autocomplete"
 
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "term", term)
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "exists", params.Exists)
 		addQueryParam(queryValues, "object", params.Object)
 		addQueryParam(queryValues, "names", params.Names)
@@ -2956,9 +2968,9 @@ func (c *Client) APIPlayerAutocomplete(ctx context.Context, opts ...APIPlayerAut
 		addQueryParam(queryValues, "tour", params.Tour)
 		addQueryParam(queryValues, "swiss", params.Swiss)
 		addQueryParam(queryValues, "teacher", params.Teacher)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -3163,13 +3175,13 @@ func (c *Client) BoardGameMove(ctx context.Context, gameID string, move string, 
 	path = pathReplace(path, "gameId", gameID)
 	path = pathReplace(path, "move", move)
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "offeringDraw", params.OfferingDraw)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
@@ -3325,13 +3337,13 @@ type APIBotOnlineParams struct {
 func (c *Client) APIBotOnline(ctx context.Context, opts ...APIBotOnlineParams) (*User, error) {
 	path := "/api/bot/online"
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "nb", params.Nb)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result User
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
@@ -3395,13 +3407,13 @@ func (c *Client) BotGameMove(ctx context.Context, gameID string, move string, op
 	path = pathReplace(path, "gameId", gameID)
 	path = pathReplace(path, "move", move)
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "offeringDraw", params.OfferingDraw)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
@@ -3587,13 +3599,13 @@ func (c *Client) ChallengeAccept(ctx context.Context, challengeID string, opts .
 	path := "/api/challenge/{challengeId}/accept"
 	path = pathReplace(path, "challengeId", challengeID)
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "color", params.Color)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
@@ -3631,13 +3643,13 @@ func (c *Client) ChallengeCancel(ctx context.Context, challengeID string, opts .
 	path := "/api/challenge/{challengeId}/cancel"
 	path = pathReplace(path, "challengeId", challengeID)
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "opponentToken", params.OpponentToken)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
@@ -3694,17 +3706,18 @@ type ChallengeStartClocksParams struct {
 // If the clocks have already started, the call will have no effect.
 //
 // For AI games with only one player, omit the `token2` parameter.
-func (c *Client) ChallengeStartClocks(ctx context.Context, gameID string, opts ...ChallengeStartClocksParams) (*Ok, error) {
+func (c *Client) ChallengeStartClocks(ctx context.Context, gameID string, token1 string, opts ...ChallengeStartClocksParams) (*Ok, error) {
 	path := "/api/challenge/{gameId}/start-clocks"
 	path = pathReplace(path, "gameId", gameID)
 
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "token1", token1)
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "token2", params.Token2)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
@@ -3846,10 +3859,10 @@ func (c *Client) BulkPairingIDGamesGet(ctx context.Context, id string, opts ...B
 	path := "/api/bulk-pairing/{id}/games"
 	path = pathReplace(path, "id", id)
 
+	queryValues := url.Values{}
 	var headers http.Header
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "moves", params.Moves)
 		addQueryParam(queryValues, "pgnInJson", params.PgnInJSON)
 		addQueryParam(queryValues, "tags", params.Tags)
@@ -3859,13 +3872,13 @@ func (c *Client) BulkPairingIDGamesGet(ctx context.Context, id string, opts ...B
 		addQueryParam(queryValues, "opening", params.Opening)
 		addQueryParam(queryValues, "division", params.Division)
 		addQueryParam(queryValues, "literate", params.Literate)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
 		headers = make(http.Header)
 		if params.Accept != nil {
 			headers.Set("Accept", fmt.Sprintf("%v", *params.Accept))
 		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result GameJSON
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson", headers); err != nil {
@@ -3933,17 +3946,18 @@ type APICloudEvalParams struct {
 // Up to 5 variations may be available. Variants are supported.
 // Use this endpoint to fetch a few positions here and there.
 // If you want to download a lot of positions, [get the full list](https://database.lichess.org/#evals) from our exported database.
-func (c *Client) APICloudEval(ctx context.Context, opts ...APICloudEvalParams) (*CloudEval, error) {
+func (c *Client) APICloudEval(ctx context.Context, fen string, opts ...APICloudEvalParams) (*CloudEval, error) {
 	path := "/api/cloud-eval"
 
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "fen", fen)
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "multiPv", params.MultiPv)
 		addQueryParam(queryValues, "variant", params.Variant)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result CloudEval
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -4132,18 +4146,23 @@ type OauthParams struct {
 //
 // Finally, continue by using the authorization code to
 // [obtain an access token](#tag/oauth/POST/api/token).
-func (c *Client) Oauth(ctx context.Context, opts ...OauthParams) error {
+func (c *Client) Oauth(ctx context.Context, responseType string, clientID string, redirectURI string, codeChallengeMethod string, codeChallenge string, opts ...OauthParams) error {
 	path := "/oauth"
 
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "response_type", responseType)
+	addQueryParam(queryValues, "client_id", clientID)
+	addQueryParam(queryValues, "redirect_uri", redirectURI)
+	addQueryParam(queryValues, "code_challenge_method", codeChallengeMethod)
+	addQueryParam(queryValues, "code_challenge", codeChallenge)
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "scope", params.Scope)
 		addQueryParam(queryValues, "username", params.Username)
 		addQueryParam(queryValues, "state", params.State)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	if err := c.do(ctx, "GET", path, nil, nil, "application/json"); err != nil {
 		return err
@@ -4219,18 +4238,18 @@ type OpeningExplorerMasterParams struct {
 func (c *Client) OpeningExplorerMaster(ctx context.Context, opts ...OpeningExplorerMasterParams) (*OpeningExplorerMasters, error) {
 	path := "/masters"
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "fen", params.Fen)
 		addQueryParam(queryValues, "play", params.Play)
 		addQueryParam(queryValues, "since", params.Since)
 		addQueryParam(queryValues, "until", params.Until)
 		addQueryParam(queryValues, "moves", params.Moves)
 		addQueryParam(queryValues, "topGames", params.TopGames)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result OpeningExplorerMasters
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -4287,9 +4306,9 @@ type OpeningExplorerLichessParams struct {
 func (c *Client) OpeningExplorerLichess(ctx context.Context, opts ...OpeningExplorerLichessParams) (*OpeningExplorerLichess, error) {
 	path := "/lichess"
 
+	queryValues := url.Values{}
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "variant", params.Variant)
 		addQueryParam(queryValues, "fen", params.Fen)
 		addQueryParam(queryValues, "play", params.Play)
@@ -4301,9 +4320,9 @@ func (c *Client) OpeningExplorerLichess(ctx context.Context, opts ...OpeningExpl
 		addQueryParam(queryValues, "topGames", params.TopGames)
 		addQueryParam(queryValues, "recentGames", params.RecentGames)
 		addQueryParam(queryValues, "history", params.History)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result OpeningExplorerLichess
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -4352,12 +4371,14 @@ type OpeningExplorerPlayerParams struct {
 // ongoing games at most once every day.
 //
 // Example: `curl https://explorer.lichess.org/player?player=revoof&color=white&play=d2d4,d7d5&recentGames=1`
-func (c *Client) OpeningExplorerPlayer(ctx context.Context, opts ...OpeningExplorerPlayerParams) (*OpeningExplorerPlayer, error) {
+func (c *Client) OpeningExplorerPlayer(ctx context.Context, player string, color string, opts ...OpeningExplorerPlayerParams) (*OpeningExplorerPlayer, error) {
 	path := "/player"
 
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "player", player)
+	addQueryParam(queryValues, "color", color)
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "variant", params.Variant)
 		addQueryParam(queryValues, "fen", params.Fen)
 		addQueryParam(queryValues, "play", params.Play)
@@ -4367,9 +4388,9 @@ func (c *Client) OpeningExplorerPlayer(ctx context.Context, opts ...OpeningExplo
 		addQueryParam(queryValues, "until", params.Until)
 		addQueryParam(queryValues, "moves", params.Moves)
 		addQueryParam(queryValues, "recentGames", params.RecentGames)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result OpeningExplorerPlayer
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
@@ -4407,16 +4428,17 @@ type TablebaseStandardParams struct {
 // **Endpoint: <https://tablebase.lichess.org>**
 //
 // Example: `curl http://tablebase.lichess.org/standard?fen=4k3/6KP/8/8/8/8/7p/8_w_-_-_0_1`
-func (c *Client) TablebaseStandard(ctx context.Context, opts ...TablebaseStandardParams) (*TablebaseJSON, error) {
+func (c *Client) TablebaseStandard(ctx context.Context, fen string, opts ...TablebaseStandardParams) (*TablebaseJSON, error) {
 	path := "/standard"
 
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "fen", fen)
 	if len(opts) > 0 {
 		params := opts[0]
-		queryValues := url.Values{}
 		addQueryParam(queryValues, "dtc", params.Dtc)
-		if len(queryValues) > 0 {
-			path += "?" + queryValues.Encode()
-		}
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
 	}
 	var result TablebaseJSON
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -4428,9 +4450,14 @@ func (c *Client) TablebaseStandard(ctx context.Context, opts ...TablebaseStandar
 // TablebaseAtomic - Tablebase lookup for Atomic chess
 //
 // **Endpoint: <https://tablebase.lichess.org>**
-func (c *Client) TablebaseAtomic(ctx context.Context) (*TablebaseJSON, error) {
+func (c *Client) TablebaseAtomic(ctx context.Context, fen string) (*TablebaseJSON, error) {
 	path := "/atomic"
 
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "fen", fen)
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
+	}
 	var result TablebaseJSON
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -4441,9 +4468,14 @@ func (c *Client) TablebaseAtomic(ctx context.Context) (*TablebaseJSON, error) {
 // AntichessAtomic - Tablebase lookup for Antichess
 //
 // **Endpoint: <https://tablebase.lichess.org>**
-func (c *Client) AntichessAtomic(ctx context.Context) (*TablebaseJSON, error) {
+func (c *Client) AntichessAtomic(ctx context.Context, fen string) (*TablebaseJSON, error) {
 	path := "/antichess"
 
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "fen", fen)
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
+	}
 	var result TablebaseJSON
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, err
