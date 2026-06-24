@@ -4,13 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NowPlaying** | [**[]ApiAccountPlaying200ResponseNowPlayingInner**](ApiAccountPlaying200ResponseNowPlayingInner.md) |  | 
+**NbMyTurn** | **int32** | Number of games where it is my turn to play | 
+**NowPlaying** | [**[]ApiAccountPlaying200ResponseNowPlayingInner**](ApiAccountPlaying200ResponseNowPlayingInner.md) | Games I&#39;m currently playing | 
 
 ## Methods
 
 ### NewApiAccountPlaying200Response
 
-`func NewApiAccountPlaying200Response(nowPlaying []ApiAccountPlaying200ResponseNowPlayingInner, ) *ApiAccountPlaying200Response`
+`func NewApiAccountPlaying200Response(nbMyTurn int32, nowPlaying []ApiAccountPlaying200ResponseNowPlayingInner, ) *ApiAccountPlaying200Response`
 
 NewApiAccountPlaying200Response instantiates a new ApiAccountPlaying200Response object
 This constructor will assign default values to properties that have it defined,
@@ -24,6 +25,26 @@ will change when the set of required properties is changed
 NewApiAccountPlaying200ResponseWithDefaults instantiates a new ApiAccountPlaying200Response object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetNbMyTurn
+
+`func (o *ApiAccountPlaying200Response) GetNbMyTurn() int32`
+
+GetNbMyTurn returns the NbMyTurn field if non-nil, zero value otherwise.
+
+### GetNbMyTurnOk
+
+`func (o *ApiAccountPlaying200Response) GetNbMyTurnOk() (*int32, bool)`
+
+GetNbMyTurnOk returns a tuple with the NbMyTurn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNbMyTurn
+
+`func (o *ApiAccountPlaying200Response) SetNbMyTurn(v int32)`
+
+SetNbMyTurn sets NbMyTurn field to given value.
+
 
 ### GetNowPlaying
 

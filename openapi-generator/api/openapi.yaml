@@ -94,7 +94,7 @@ info:
     name: AGPL-3.0-or-later
     url: https://www.gnu.org/licenses/agpl-3.0.txt
   title: Lichess.org API reference
-  version: 2.0.146
+  version: 2.0.147
   x-logo:
     url: https://lichess1.org/assets/logo/lichess-pad12.svg
 servers:
@@ -38000,6 +38000,7 @@ components:
       - variant
     apiAccountPlaying_200_response:
       example:
+        nbMyTurn: 1
         nowPlaying:
         - gameId: rCRw1AuO
           fullId: rCRw1AuOvonq
@@ -38021,12 +38022,17 @@ components:
             key: standard
             name: Standard
       properties:
+        nbMyTurn:
+          description: Number of games where it is my turn to play
+          type: integer
         nowPlaying:
+          description: Games I'm currently playing
           items:
             $ref: "#/components/schemas/apiAccountPlaying_200_response_nowPlaying_inner"
           type: array
           default: null
       required:
+      - nbMyTurn
       - nowPlaying
     gameImport_request:
       properties:
