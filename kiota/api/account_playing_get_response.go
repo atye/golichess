@@ -10,7 +10,9 @@ import (
 type AccountPlayingGetResponse struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // The nowPlaying property
+    // Number of games where it is my turn to play
+    nbMyTurn *int32
+    // Games I'm currently playing
     nowPlaying []AccountPlayingGetResponse_nowPlayingable
 }
 // NewAccountPlayingGetResponse instantiates a new AccountPlayingGetResponse and sets the default values.
@@ -34,6 +36,16 @@ func (m *AccountPlayingGetResponse) GetAdditionalData()(map[string]any) {
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *AccountPlayingGetResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+    res["nbMyTurn"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetNbMyTurn(val)
+        }
+        return nil
+    }
     res["nowPlaying"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetCollectionOfObjectValues(CreateAccountPlayingGetResponse_nowPlayingFromDiscriminatorValue)
         if err != nil {
@@ -52,13 +64,24 @@ func (m *AccountPlayingGetResponse) GetFieldDeserializers()(map[string]func(i878
     }
     return res
 }
-// GetNowPlaying gets the nowPlaying property value. The nowPlaying property
+// GetNbMyTurn gets the nbMyTurn property value. Number of games where it is my turn to play
+// returns a *int32 when successful
+func (m *AccountPlayingGetResponse) GetNbMyTurn()(*int32) {
+    return m.nbMyTurn
+}
+// GetNowPlaying gets the nowPlaying property value. Games I'm currently playing
 // returns a []AccountPlayingGetResponse_nowPlayingable when successful
 func (m *AccountPlayingGetResponse) GetNowPlaying()([]AccountPlayingGetResponse_nowPlayingable) {
     return m.nowPlaying
 }
 // Serialize serializes information the current object
 func (m *AccountPlayingGetResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+    {
+        err := writer.WriteInt32Value("nbMyTurn", m.GetNbMyTurn())
+        if err != nil {
+            return err
+        }
+    }
     if m.GetNowPlaying() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetNowPlaying()))
         for i, v := range m.GetNowPlaying() {
@@ -83,13 +106,19 @@ func (m *AccountPlayingGetResponse) Serialize(writer i878a80d2330e89d26896388a3f
 func (m *AccountPlayingGetResponse) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetNowPlaying sets the nowPlaying property value. The nowPlaying property
+// SetNbMyTurn sets the nbMyTurn property value. Number of games where it is my turn to play
+func (m *AccountPlayingGetResponse) SetNbMyTurn(value *int32)() {
+    m.nbMyTurn = value
+}
+// SetNowPlaying sets the nowPlaying property value. Games I'm currently playing
 func (m *AccountPlayingGetResponse) SetNowPlaying(value []AccountPlayingGetResponse_nowPlayingable)() {
     m.nowPlaying = value
 }
 type AccountPlayingGetResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetNbMyTurn()(*int32)
     GetNowPlaying()([]AccountPlayingGetResponse_nowPlayingable)
+    SetNbMyTurn(value *int32)()
     SetNowPlaying(value []AccountPlayingGetResponse_nowPlayingable)()
 }
