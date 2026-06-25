@@ -2,7 +2,7 @@
   "descriptionHash": "075B1D9C95BFE2E6E977BBB01226255522F4E7C1FC4F5F2D2AF37A077F4375683CA9B0E862A1131B1E696588413D42DD44CC2AD9F464EBDA8C041FE58B5C4FB3",
   "descriptionLocation": "../lichess-api-bundled.yaml",
   "lockFileVersion": "1.0.0",
-  "kiotaVersion": "1.32.2",
+  "kiotaVersion": "1.32.3",
   "clientClassName": "LichessClient",
   "typeAccessModifier": "Public",
   "clientNamespaceName": "github.com/atye/golichess/kiota",
