@@ -24,6 +24,11 @@ func NewStreamBroadcastRequestBuilder(rawUrl string, requestAdapter i2ae4187f7da
     urlParams["request-raw-url"] = rawUrl
     return NewStreamBroadcastRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Group the group property
+// returns a *StreamBroadcastGroupRequestBuilder when successful
+func (m *StreamBroadcastRequestBuilder) Group()(*StreamBroadcastGroupRequestBuilder) {
+    return NewStreamBroadcastGroupRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Round the round property
 // returns a *StreamBroadcastRoundRequestBuilder when successful
 func (m *StreamBroadcastRequestBuilder) Round()(*StreamBroadcastRoundRequestBuilder) {
