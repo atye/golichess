@@ -2439,6 +2439,44 @@ func (c *Client) BroadcastStreamRoundPgn(ctx context.Context, broadcastRoundID s
 	return &result, nil
 }
 
+// BroadcastStreamGroupPgnParams contains optional parameters for the BroadcastStreamGroupPgn operation.
+type BroadcastStreamGroupPgnParams struct {
+	// Include clock comments in the PGN moves, when available.
+	// Example: `2. exd5 { [%clk 1:01:27] } e5 { [%clk 1:01:28] }`
+	Clocks *bool `json:"clocks,omitempty"`
+	// Include analysis comments in the PGN moves, when available.
+	// Example: `12. Bxf6 { [%eval 0.23] }`
+	Comments *bool `json:"comments,omitempty"`
+}
+
+// BroadcastStreamGroupPgn - Stream ongoing broadcast rounds of a group as PGN
+//
+// For a given broadcast group ([example](https://lichess.org/broadcast/fide-world-cadets-cup-2026/albQx5zq)),
+// selects all the ongoing and recently finished rounds, and sends all games of these rounds in PGN format.
+// Then, it waits for new moves to be played. As soon as it happens, the entire PGN of the game is sent to the stream.
+// The stream will also send PGNs when games are added to the rounds.
+// This is the best way to get updates about an ongoing broadcast with multiple concurrent rounds.
+// To stream a single round, use [this endpoint instead](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn).
+func (c *Client) BroadcastStreamGroupPgn(ctx context.Context, broadcastGroupID string, opts ...BroadcastStreamGroupPgnParams) (*StudyPgn, error) {
+	path := "/api/stream/broadcast/group/{broadcastGroupId}.pgn"
+	path = pathReplace(path, "broadcastGroupId", broadcastGroupID)
+
+	queryValues := url.Values{}
+	if len(opts) > 0 {
+		params := opts[0]
+		addQueryParam(queryValues, "clocks", params.Clocks)
+		addQueryParam(queryValues, "comments", params.Comments)
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
+	}
+	var result StudyPgn
+	if err := c.do(ctx, "GET", path, nil, &result, "application/x-chess-pgn"); err != nil {
+		return nil, err
+	}
+	return &result, nil
+}
+
 // BroadcastRoundPgnParams contains optional parameters for the BroadcastRoundPgn operation.
 type BroadcastRoundPgnParams struct {
 	// Include clock comments in the PGN moves, when available.
