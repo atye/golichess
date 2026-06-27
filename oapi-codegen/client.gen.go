@@ -9023,6 +9023,17 @@ type ApiStormDashboardParams struct {
 	Days *int `form:"days,omitempty" json:"days,omitempty"`
 }
 
+// BroadcastStreamGroupPgnParams defines parameters for BroadcastStreamGroupPgn.
+type BroadcastStreamGroupPgnParams struct {
+	// Clocks Include clock comments in the PGN moves, when available.
+	// Example: `2. exd5 { [%clk 1:01:27] } e5 { [%clk 1:01:28] }`
+	Clocks *bool `form:"clocks,omitempty" json:"clocks,omitempty"`
+
+	// Comments Include analysis comments in the PGN moves, when available.
+	// Example: `12. Bxf6 { [%eval 0.23] }`
+	Comments *bool `form:"comments,omitempty" json:"comments,omitempty"`
+}
+
 // BroadcastStreamRoundPgnParams defines parameters for BroadcastStreamRoundPgn.
 type BroadcastStreamRoundPgnParams struct {
 	// Clocks Include clock comments in the PGN moves, when available.
@@ -13878,6 +13889,9 @@ type ClientInterface interface {
 	// ApiStormDashboard request
 	ApiStormDashboard(ctx context.Context, username string, params *ApiStormDashboardParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// BroadcastStreamGroupPgn request
+	BroadcastStreamGroupPgn(ctx context.Context, broadcastGroupId string, params *BroadcastStreamGroupPgnParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// BroadcastStreamRoundPgn request
 	BroadcastStreamRoundPgn(ctx context.Context, broadcastRoundId string, params *BroadcastStreamRoundPgnParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -15554,6 +15568,18 @@ func (c *Client) ApiSimul(ctx context.Context, reqEditors ...RequestEditorFn) (*
 
 func (c *Client) ApiStormDashboard(ctx context.Context, username string, params *ApiStormDashboardParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewApiStormDashboardRequest(c.Server, username, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) BroadcastStreamGroupPgn(ctx context.Context, broadcastGroupId string, params *BroadcastStreamGroupPgnParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewBroadcastStreamGroupPgnRequest(c.Server, broadcastGroupId, params)
 	if err != nil {
 		return nil, err
 	}
@@ -21988,6 +22014,79 @@ func NewApiStormDashboardRequest(server string, username string, params *ApiStor
 	return req, nil
 }
 
+// NewBroadcastStreamGroupPgnRequest generates requests for BroadcastStreamGroupPgn
+func NewBroadcastStreamGroupPgnRequest(server string, broadcastGroupId string, params *BroadcastStreamGroupPgnParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "broadcastGroupId", broadcastGroupId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/stream/broadcast/group/%s.pgn", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Clocks != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "clocks", *params.Clocks, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Comments != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "comments", *params.Comments, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewBroadcastStreamRoundPgnRequest generates requests for BroadcastStreamRoundPgn
 func NewBroadcastStreamRoundPgnRequest(server string, broadcastRoundId string, params *BroadcastStreamRoundPgnParams) (*http.Request, error) {
 	var err error
@@ -27720,6 +27819,9 @@ type ClientWithResponsesInterface interface {
 	// ApiStormDashboardWithResponse request
 	ApiStormDashboardWithResponse(ctx context.Context, username string, params *ApiStormDashboardParams, reqEditors ...RequestEditorFn) (*ApiStormDashboardResponse, error)
 
+	// BroadcastStreamGroupPgnWithResponse request
+	BroadcastStreamGroupPgnWithResponse(ctx context.Context, broadcastGroupId string, params *BroadcastStreamGroupPgnParams, reqEditors ...RequestEditorFn) (*BroadcastStreamGroupPgnResponse, error)
+
 	// BroadcastStreamRoundPgnWithResponse request
 	BroadcastStreamRoundPgnWithResponse(ctx context.Context, broadcastRoundId string, params *BroadcastStreamRoundPgnParams, reqEditors ...RequestEditorFn) (*BroadcastStreamRoundPgnResponse, error)
 
@@ -31030,6 +31132,35 @@ func (r ApiStormDashboardResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r ApiStormDashboardResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type BroadcastStreamGroupPgnResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r BroadcastStreamGroupPgnResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r BroadcastStreamGroupPgnResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r BroadcastStreamGroupPgnResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -34799,6 +34930,15 @@ func (c *ClientWithResponses) ApiStormDashboardWithResponse(ctx context.Context,
 	return ParseApiStormDashboardResponse(rsp)
 }
 
+// BroadcastStreamGroupPgnWithResponse request returning *BroadcastStreamGroupPgnResponse
+func (c *ClientWithResponses) BroadcastStreamGroupPgnWithResponse(ctx context.Context, broadcastGroupId string, params *BroadcastStreamGroupPgnParams, reqEditors ...RequestEditorFn) (*BroadcastStreamGroupPgnResponse, error) {
+	rsp, err := c.BroadcastStreamGroupPgn(ctx, broadcastGroupId, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseBroadcastStreamGroupPgnResponse(rsp)
+}
+
 // BroadcastStreamRoundPgnWithResponse request returning *BroadcastStreamRoundPgnResponse
 func (c *ClientWithResponses) BroadcastStreamRoundPgnWithResponse(ctx context.Context, broadcastRoundId string, params *BroadcastStreamRoundPgnParams, reqEditors ...RequestEditorFn) (*BroadcastStreamRoundPgnResponse, error) {
 	rsp, err := c.BroadcastStreamRoundPgn(ctx, broadcastRoundId, params, reqEditors...)
@@ -38496,6 +38636,22 @@ func ParseApiStormDashboardResponse(rsp *http.Response) (*ApiStormDashboardRespo
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseBroadcastStreamGroupPgnResponse parses an HTTP response from a BroadcastStreamGroupPgnWithResponse call
+func ParseBroadcastStreamGroupPgnResponse(rsp *http.Response) (*BroadcastStreamGroupPgnResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &BroadcastStreamGroupPgnResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
