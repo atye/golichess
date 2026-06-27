@@ -12,6 +12,8 @@ type GameJson struct {
     additionalData map[string]any
     // The analysis property
     analysis []GameMoveAnalysisable
+    // The arena tournament the game is from
+    arenaTour GameJson_arenaTourable
     // The clock property
     clock GameJson_clockable
     // The clocks property
@@ -46,10 +48,8 @@ type GameJson struct {
     speed *Speed
     // The status property
     status *GameStatusName
-    // The swiss property
-    swiss *string
-    // The tournament property
-    tournament *string
+    // The swiss tournament the game is from
+    swissTour GameJson_swissTourable
     // The variant property
     variant *VariantKey
     // The winner property
@@ -78,6 +78,11 @@ func (m *GameJson) GetAdditionalData()(map[string]any) {
 // returns a []GameMoveAnalysisable when successful
 func (m *GameJson) GetAnalysis()([]GameMoveAnalysisable) {
     return m.analysis
+}
+// GetArenaTour gets the arenaTour property value. The arena tournament the game is from
+// returns a GameJson_arenaTourable when successful
+func (m *GameJson) GetArenaTour()(GameJson_arenaTourable) {
+    return m.arenaTour
 }
 // GetClock gets the clock property value. The clock property
 // returns a GameJson_clockable when successful
@@ -121,6 +126,16 @@ func (m *GameJson) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896
                 }
             }
             m.SetAnalysis(res)
+        }
+        return nil
+    }
+    res["arenaTour"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateGameJson_arenaTourFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetArenaTour(val.(GameJson_arenaTourable))
         }
         return nil
     }
@@ -300,23 +315,13 @@ func (m *GameJson) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896
         }
         return nil
     }
-    res["swiss"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
+    res["swissTour"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateGameJson_swissTourFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetSwiss(val)
-        }
-        return nil
-    }
-    res["tournament"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTournament(val)
+            m.SetSwissTour(val.(GameJson_swissTourable))
         }
         return nil
     }
@@ -402,15 +407,10 @@ func (m *GameJson) GetSpeed()(*Speed) {
 func (m *GameJson) GetStatus()(*GameStatusName) {
     return m.status
 }
-// GetSwiss gets the swiss property value. The swiss property
-// returns a *string when successful
-func (m *GameJson) GetSwiss()(*string) {
-    return m.swiss
-}
-// GetTournament gets the tournament property value. The tournament property
-// returns a *string when successful
-func (m *GameJson) GetTournament()(*string) {
-    return m.tournament
+// GetSwissTour gets the swissTour property value. The swiss tournament the game is from
+// returns a GameJson_swissTourable when successful
+func (m *GameJson) GetSwissTour()(GameJson_swissTourable) {
+    return m.swissTour
 }
 // GetVariant gets the variant property value. The variant property
 // returns a *VariantKey when successful
@@ -432,6 +432,12 @@ func (m *GameJson) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c01
             }
         }
         err := writer.WriteCollectionOfObjectValues("analysis", cast)
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteObjectValue("arenaTour", m.GetArenaTour())
         if err != nil {
             return err
         }
@@ -541,13 +547,7 @@ func (m *GameJson) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c01
         }
     }
     {
-        err := writer.WriteStringValue("swiss", m.GetSwiss())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("tournament", m.GetTournament())
+        err := writer.WriteObjectValue("swissTour", m.GetSwissTour())
         if err != nil {
             return err
         }
@@ -581,6 +581,10 @@ func (m *GameJson) SetAdditionalData(value map[string]any)() {
 // SetAnalysis sets the analysis property value. The analysis property
 func (m *GameJson) SetAnalysis(value []GameMoveAnalysisable)() {
     m.analysis = value
+}
+// SetArenaTour sets the arenaTour property value. The arena tournament the game is from
+func (m *GameJson) SetArenaTour(value GameJson_arenaTourable)() {
+    m.arenaTour = value
 }
 // SetClock sets the clock property value. The clock property
 func (m *GameJson) SetClock(value GameJson_clockable)() {
@@ -650,13 +654,9 @@ func (m *GameJson) SetSpeed(value *Speed)() {
 func (m *GameJson) SetStatus(value *GameStatusName)() {
     m.status = value
 }
-// SetSwiss sets the swiss property value. The swiss property
-func (m *GameJson) SetSwiss(value *string)() {
-    m.swiss = value
-}
-// SetTournament sets the tournament property value. The tournament property
-func (m *GameJson) SetTournament(value *string)() {
-    m.tournament = value
+// SetSwissTour sets the swissTour property value. The swiss tournament the game is from
+func (m *GameJson) SetSwissTour(value GameJson_swissTourable)() {
+    m.swissTour = value
 }
 // SetVariant sets the variant property value. The variant property
 func (m *GameJson) SetVariant(value *VariantKey)() {
@@ -670,6 +670,7 @@ type GameJsonable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetAnalysis()([]GameMoveAnalysisable)
+    GetArenaTour()(GameJson_arenaTourable)
     GetClock()(GameJson_clockable)
     GetClocks()([]int32)
     GetCreatedAt()(*int64)
@@ -687,11 +688,11 @@ type GameJsonable interface {
     GetSource()(*string)
     GetSpeed()(*Speed)
     GetStatus()(*GameStatusName)
-    GetSwiss()(*string)
-    GetTournament()(*string)
+    GetSwissTour()(GameJson_swissTourable)
     GetVariant()(*VariantKey)
     GetWinner()(*GameColor)
     SetAnalysis(value []GameMoveAnalysisable)()
+    SetArenaTour(value GameJson_arenaTourable)()
     SetClock(value GameJson_clockable)()
     SetClocks(value []int32)()
     SetCreatedAt(value *int64)()
@@ -709,8 +710,7 @@ type GameJsonable interface {
     SetSource(value *string)()
     SetSpeed(value *Speed)()
     SetStatus(value *GameStatusName)()
-    SetSwiss(value *string)()
-    SetTournament(value *string)()
+    SetSwissTour(value GameJson_swissTourable)()
     SetVariant(value *VariantKey)()
     SetWinner(value *GameColor)()
 }

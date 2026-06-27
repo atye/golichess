@@ -1,8 +1,8 @@
 {
-  "descriptionHash": "47CDE2F4CA89212560F4322A3A7BA1BDE92854F1B3518B356C12CA45281578F60D448A1EB5AA90125B8E97FCBAE7877CDA7E01D3E8C043C9BF8470A00C9BB03E",
+  "descriptionHash": "2D1BF5243BE292EE364B3C6E59F7877CB2114049E8E866AA5CA08FC8D0223662E7A5C5263641561C641D8BAE160D6EEC346E18D4FC52CA142FC72B0794F8AC89",
   "descriptionLocation": "../lichess-api-bundled.yaml",
   "lockFileVersion": "1.0.0",
-  "kiotaVersion": "1.32.3",
+  "kiotaVersion": "1.32.4",
   "clientClassName": "LichessClient",
   "typeAccessModifier": "Public",
   "clientNamespaceName": "github.com/atye/golichess/kiota",
