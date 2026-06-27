@@ -94,7 +94,7 @@ info:
     name: AGPL-3.0-or-later
     url: https://www.gnu.org/licenses/agpl-3.0.txt
   title: Lichess.org API reference
-  version: 2.0.147
+  version: 2.0.149
   x-logo:
     url: https://lichess1.org/assets/logo/lichess-pad12.svg
 servers:
@@ -5476,6 +5476,74 @@ paths:
               style: simple
       security: []
       summary: Stream an ongoing broadcast round as PGN
+      tags:
+      - Broadcasts
+  /api/stream/broadcast/group/{broadcastGroupId}.pgn:
+    get:
+      description: |
+        For a given broadcast group ([example](https://lichess.org/broadcast/fide-world-cadets-cup-2026/albQx5zq)),
+        selects all the ongoing and recently finished rounds, and sends all games of these rounds in PGN format.
+        Then, it waits for new moves to be played. As soon as it happens, the entire PGN of the game is sent to the stream.
+        The stream will also send PGNs when games are added to the rounds.
+        This is the best way to get updates about an ongoing broadcast with multiple concurrent rounds.
+        To stream a single round, use [this endpoint instead](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn).
+      operationId: broadcastStreamGroupPgn
+      parameters:
+      - description: "The broadcast group ID. It's the last past of the group URL,\
+          \ which can be found on the broadcast page overview section.\n[Example](https://lichess.org/broadcast/fide-world-cadets-cup-2026-o12/round-9/FUQFT39K)\
+          \ the group URL is \nhttps://lichess.org/broadcast/fide-world-cadets-cup-2026/albQx5zq\
+          \ and therefore the group ID is `albQx5zq`.\n"
+        explode: false
+        in: path
+        name: broadcastGroupId
+        required: true
+        schema:
+          maxLength: 8
+          minLength: 8
+          type: string
+        style: simple
+      - description: |
+          Include clock comments in the PGN moves, when available.
+          Example: `2. exd5 { [%clk 1:01:27] } e5 { [%clk 1:01:28] }`
+        explode: true
+        in: query
+        name: clocks
+        required: false
+        schema:
+          default: true
+          type: boolean
+        style: form
+      - description: |
+          Include analysis comments in the PGN moves, when available.
+          Example: `12. Bxf6 { [%eval 0.23] }`
+        explode: true
+        in: query
+        name: comments
+        required: false
+        schema:
+          default: true
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/x-chess-pgn:
+              examples:
+                pgn:
+                  $ref: "#/components/examples/broadcasts-streamOngoingBroadcastRoundAsPgn.pgn"
+              schema:
+                $ref: "#/components/schemas/StudyPgn"
+          description: "The PGN representation of the rounds games, then the PGNs\
+            \ of games as they are updated."
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                default: '''*'''
+                type: string
+              style: simple
+      security: []
+      summary: Stream ongoing broadcast rounds of a group as PGN
       tags:
       - Broadcasts
   /api/broadcast/round/{broadcastRoundId}.pgn:

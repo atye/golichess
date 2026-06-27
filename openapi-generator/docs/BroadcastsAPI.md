@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**BroadcastRoundPgn**](BroadcastsAPI.md#BroadcastRoundPgn) | **Get** /api/broadcast/round/{broadcastRoundId}.pgn | Export one round as PGN
 [**BroadcastRoundReset**](BroadcastsAPI.md#BroadcastRoundReset) | **Post** /api/broadcast/round/{broadcastRoundId}/reset | Reset a broadcast round
 [**BroadcastRoundUpdate**](BroadcastsAPI.md#BroadcastRoundUpdate) | **Post** /broadcast/round/{broadcastRoundId}/edit | Update a broadcast round
+[**BroadcastStreamGroupPgn**](BroadcastsAPI.md#BroadcastStreamGroupPgn) | **Get** /api/stream/broadcast/group/{broadcastGroupId}.pgn | Stream ongoing broadcast rounds of a group as PGN
 [**BroadcastStreamRoundPgn**](BroadcastsAPI.md#BroadcastStreamRoundPgn) | **Get** /api/stream/broadcast/round/{broadcastRoundId}.pgn | Stream an ongoing broadcast round as PGN
 [**BroadcastTeamLeaderboardGet**](BroadcastsAPI.md#BroadcastTeamLeaderboardGet) | **Get** /broadcast/{broadcastTournamentId}/teams/standings | Get the team leaderboard of a broadcast
 [**BroadcastTourCreate**](BroadcastsAPI.md#BroadcastTourCreate) | **Post** /broadcast/new | Create a broadcast tournament
@@ -801,6 +802,80 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: application/x-www-form-urlencoded
 - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## BroadcastStreamGroupPgn
+
+> string BroadcastStreamGroupPgn(ctx, broadcastGroupId).Clocks(clocks).Comments(comments).Execute()
+
+Stream ongoing broadcast rounds of a group as PGN
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/atye/golichess/openapigenerator"
+)
+
+func main() {
+	broadcastGroupId := "broadcastGroupId_example" // string | The broadcast group ID. It's the last past of the group URL, which can be found on the broadcast page overview section. [Example](https://lichess.org/broadcast/fide-world-cadets-cup-2026-o12/round-9/FUQFT39K) the group URL is  https://lichess.org/broadcast/fide-world-cadets-cup-2026/albQx5zq and therefore the group ID is `albQx5zq`. 
+	clocks := true // bool | Include clock comments in the PGN moves, when available. Example: `2. exd5 { [%clk 1:01:27] } e5 { [%clk 1:01:28] }`  (optional) (default to true)
+	comments := true // bool | Include analysis comments in the PGN moves, when available. Example: `12. Bxf6 { [%eval 0.23] }`  (optional) (default to true)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BroadcastsAPI.BroadcastStreamGroupPgn(context.Background(), broadcastGroupId).Clocks(clocks).Comments(comments).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BroadcastsAPI.BroadcastStreamGroupPgn``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `BroadcastStreamGroupPgn`: string
+	fmt.Fprintf(os.Stdout, "Response from `BroadcastsAPI.BroadcastStreamGroupPgn`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**broadcastGroupId** | **string** | The broadcast group ID. It&#39;s the last past of the group URL, which can be found on the broadcast page overview section. [Example](https://lichess.org/broadcast/fide-world-cadets-cup-2026-o12/round-9/FUQFT39K) the group URL is  https://lichess.org/broadcast/fide-world-cadets-cup-2026/albQx5zq and therefore the group ID is &#x60;albQx5zq&#x60;.  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiBroadcastStreamGroupPgnRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **clocks** | **bool** | Include clock comments in the PGN moves, when available. Example: &#x60;2. exd5 { [%clk 1:01:27] } e5 { [%clk 1:01:28] }&#x60;  | [default to true]
+ **comments** | **bool** | Include analysis comments in the PGN moves, when available. Example: &#x60;12. Bxf6 { [%eval 0.23] }&#x60;  | [default to true]
+
+### Return type
+
+**string**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/x-chess-pgn
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
