@@ -649,7 +649,7 @@ func (c *Client) GamePgn(ctx context.Context, gameID string, opts ...GamePgnPara
 //
 // Games also have a private players chat, which only the 2 players can see.
 func (c *Client) GameChatGet(ctx context.Context, gameID string) (*SpectatorGameChat, error) {
-	path := "/game/{gameId}/chat"
+	path := "/api/game/{gameId}/chat"
 	path = pathReplace(path, "gameId", gameID)
 
 	var result SpectatorGameChat

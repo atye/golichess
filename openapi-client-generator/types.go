@@ -634,11 +634,13 @@ type GameJSON struct {
 	Pgn         *string            `json:"pgn,omitempty"`
 	DaysPerTurn *int64             `json:"daysPerTurn,omitempty"`
 	Analysis    []GameMoveAnalysis `json:"analysis,omitempty"`
-	Tournament  *string            `json:"tournament,omitempty"`
-	Swiss       *string            `json:"swiss,omitempty"`
-	Clock       any                `json:"clock,omitempty"`
-	Clocks      []int64            `json:"clocks,omitempty"`
-	Division    any                `json:"division,omitempty"`
+	// The arena tournament the game is from
+	ArenaTour any `json:"arenaTour,omitempty"`
+	// The swiss tournament the game is from
+	SwissTour any     `json:"swissTour,omitempty"`
+	Clock     any     `json:"clock,omitempty"`
+	Clocks    []int64 `json:"clocks,omitempty"`
+	Division  any     `json:"division,omitempty"`
 }
 
 type SpectatorGameChat = []any
