@@ -74,6 +74,11 @@ func (m *ApiRequestBuilder) ExternalEngine()(*ExternalEngineRequestBuilder) {
 func (m *ApiRequestBuilder) Fide()(*FideRequestBuilder) {
     return NewFideRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Game the game property
+// returns a *GameRequestBuilder when successful
+func (m *ApiRequestBuilder) Game()(*GameRequestBuilder) {
+    return NewGameRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Games the games property
 // returns a *GamesRequestBuilder when successful
 func (m *ApiRequestBuilder) Games()(*GamesRequestBuilder) {
