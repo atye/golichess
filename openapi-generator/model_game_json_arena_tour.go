@@ -13,89 +13,99 @@ package openapigenerator
 
 import (
 	"encoding/json"
-	"bytes"
-	"fmt"
 )
 
-// checks if the PuzzleDashboardThemesValue type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &PuzzleDashboardThemesValue{}
+// checks if the GameJsonArenaTour type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GameJsonArenaTour{}
 
-// PuzzleDashboardThemesValue struct for PuzzleDashboardThemesValue
-type PuzzleDashboardThemesValue struct {
-	Results PuzzlePerformance `json:"results"`
-	Theme string `json:"theme"`
+// GameJsonArenaTour The arena tournament the game is from
+type GameJsonArenaTour struct {
+	Id *string `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
 }
 
-type _PuzzleDashboardThemesValue PuzzleDashboardThemesValue
-
-// NewPuzzleDashboardThemesValue instantiates a new PuzzleDashboardThemesValue object
+// NewGameJsonArenaTour instantiates a new GameJsonArenaTour object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPuzzleDashboardThemesValue(results PuzzlePerformance, theme string) *PuzzleDashboardThemesValue {
-	this := PuzzleDashboardThemesValue{}
-	this.Results = results
-	this.Theme = theme
+func NewGameJsonArenaTour() *GameJsonArenaTour {
+	this := GameJsonArenaTour{}
 	return &this
 }
 
-// NewPuzzleDashboardThemesValueWithDefaults instantiates a new PuzzleDashboardThemesValue object
+// NewGameJsonArenaTourWithDefaults instantiates a new GameJsonArenaTour object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPuzzleDashboardThemesValueWithDefaults() *PuzzleDashboardThemesValue {
-	this := PuzzleDashboardThemesValue{}
+func NewGameJsonArenaTourWithDefaults() *GameJsonArenaTour {
+	this := GameJsonArenaTour{}
 	return &this
 }
 
-// GetResults returns the Results field value
-func (o *PuzzleDashboardThemesValue) GetResults() PuzzlePerformance {
-	if o == nil {
-		var ret PuzzlePerformance
-		return ret
-	}
-
-	return o.Results
-}
-
-// GetResultsOk returns a tuple with the Results field value
-// and a boolean to check if the value has been set.
-func (o *PuzzleDashboardThemesValue) GetResultsOk() (*PuzzlePerformance, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Results, true
-}
-
-// SetResults sets field value
-func (o *PuzzleDashboardThemesValue) SetResults(v PuzzlePerformance) {
-	o.Results = v
-}
-
-// GetTheme returns the Theme field value
-func (o *PuzzleDashboardThemesValue) GetTheme() string {
-	if o == nil {
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *GameJsonArenaTour) GetId() string {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
-
-	return o.Theme
+	return *o.Id
 }
 
-// GetThemeOk returns a tuple with the Theme field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PuzzleDashboardThemesValue) GetThemeOk() (*string, bool) {
-	if o == nil {
+func (o *GameJsonArenaTour) GetIdOk() (*string, bool) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Theme, true
+	return o.Id, true
 }
 
-// SetTheme sets field value
-func (o *PuzzleDashboardThemesValue) SetTheme(v string) {
-	o.Theme = v
+// HasId returns a boolean if a field has been set.
+func (o *GameJsonArenaTour) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
 }
 
-func (o PuzzleDashboardThemesValue) MarshalJSON() ([]byte, error) {
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *GameJsonArenaTour) SetId(v string) {
+	o.Id = &v
+}
+
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *GameJsonArenaTour) GetName() string {
+	if o == nil || IsNil(o.Name) {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GameJsonArenaTour) GetNameOk() (*string, bool) {
+	if o == nil || IsNil(o.Name) {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *GameJsonArenaTour) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *GameJsonArenaTour) SetName(v string) {
+	o.Name = &v
+}
+
+func (o GameJsonArenaTour) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -103,83 +113,49 @@ func (o PuzzleDashboardThemesValue) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o PuzzleDashboardThemesValue) ToMap() (map[string]interface{}, error) {
+func (o GameJsonArenaTour) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["results"] = o.Results
-	toSerialize["theme"] = o.Theme
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
 	return toSerialize, nil
 }
 
-func (o *PuzzleDashboardThemesValue) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"results",
-		"theme",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varPuzzleDashboardThemesValue := _PuzzleDashboardThemesValue{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPuzzleDashboardThemesValue)
-
-	if err != nil {
-		return err
-	}
-
-	*o = PuzzleDashboardThemesValue(varPuzzleDashboardThemesValue)
-
-	return err
-}
-
-type NullablePuzzleDashboardThemesValue struct {
-	value *PuzzleDashboardThemesValue
+type NullableGameJsonArenaTour struct {
+	value *GameJsonArenaTour
 	isSet bool
 }
 
-func (v NullablePuzzleDashboardThemesValue) Get() *PuzzleDashboardThemesValue {
+func (v NullableGameJsonArenaTour) Get() *GameJsonArenaTour {
 	return v.value
 }
 
-func (v *NullablePuzzleDashboardThemesValue) Set(val *PuzzleDashboardThemesValue) {
+func (v *NullableGameJsonArenaTour) Set(val *GameJsonArenaTour) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePuzzleDashboardThemesValue) IsSet() bool {
+func (v NullableGameJsonArenaTour) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePuzzleDashboardThemesValue) Unset() {
+func (v *NullableGameJsonArenaTour) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePuzzleDashboardThemesValue(val *PuzzleDashboardThemesValue) *NullablePuzzleDashboardThemesValue {
-	return &NullablePuzzleDashboardThemesValue{value: val, isSet: true}
+func NewNullableGameJsonArenaTour(val *GameJsonArenaTour) *NullableGameJsonArenaTour {
+	return &NullableGameJsonArenaTour{value: val, isSet: true}
 }
 
-func (v NullablePuzzleDashboardThemesValue) MarshalJSON() ([]byte, error) {
+func (v NullableGameJsonArenaTour) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePuzzleDashboardThemesValue) UnmarshalJSON(src []byte) error {
+func (v *NullableGameJsonArenaTour) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

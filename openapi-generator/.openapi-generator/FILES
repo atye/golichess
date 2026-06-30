@@ -173,6 +173,7 @@ docs/GameFullEventClock.md
 docs/GameFullEventPerf.md
 docs/GameImport200Response.md
 docs/GameJson.md
+docs/GameJsonArenaTour.md
 docs/GameJsonClock.md
 docs/GameJsonDivision.md
 docs/GameMoveAnalysis.md
@@ -539,6 +540,7 @@ model_game_full_event_clock.go
 model_game_full_event_perf.go
 model_game_import_200_response.go
 model_game_json.go
+model_game_json_arena_tour.go
 model_game_json_clock.go
 model_game_json_division.go
 model_game_move_analysis.go

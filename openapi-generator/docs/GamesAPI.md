@@ -9,7 +9,7 @@ Method | HTTP request | Description
 [**ApiGamesUser**](GamesAPI.md#ApiGamesUser) | **Get** /api/games/user/{username} | Export games of a user
 [**ApiImportedGamesUser**](GamesAPI.md#ApiImportedGamesUser) | **Get** /api/games/export/imports | Export your imported games
 [**ApiUserCurrentGame**](GamesAPI.md#ApiUserCurrentGame) | **Get** /api/user/{username}/current-game | Export ongoing game of a user
-[**GameChatGet**](GamesAPI.md#GameChatGet) | **Get** /game/{gameId}/chat | Fetch the spectator game chat
+[**GameChatGet**](GamesAPI.md#GameChatGet) | **Get** /api/game/{gameId}/chat | Fetch the spectator game chat
 [**GameImport**](GamesAPI.md#GameImport) | **Post** /api/import | Import one game
 [**GamePgn**](GamesAPI.md#GamePgn) | **Get** /game/export/{gameId} | Export one game
 [**GamesByIds**](GamesAPI.md#GamesByIds) | **Post** /api/stream/games/{streamId} | Stream games by IDs

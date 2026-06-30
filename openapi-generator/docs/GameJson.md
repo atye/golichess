@@ -21,8 +21,8 @@ Name | Type | Description | Notes
 **Pgn** | Pointer to **string** |  | [optional] 
 **DaysPerTurn** | Pointer to **int32** |  | [optional] 
 **Analysis** | Pointer to [**[]GameMoveAnalysis**](GameMoveAnalysis.md) |  | [optional] 
-**Tournament** | Pointer to **string** |  | [optional] 
-**Swiss** | Pointer to **string** |  | [optional] 
+**ArenaTour** | Pointer to [**GameJsonArenaTour**](GameJsonArenaTour.md) |  | [optional] 
+**SwissTour** | Pointer to [**ApiStudyPost200Response**](ApiStudyPost200Response.md) |  | [optional] 
 **Clock** | Pointer to [**GameJsonClock**](GameJsonClock.md) |  | [optional] 
 **Clocks** | Pointer to **[]int32** |  | [optional] 
 **Division** | Pointer to [**GameJsonDivision**](GameJsonDivision.md) |  | [optional] 
@@ -426,55 +426,55 @@ SetAnalysis sets Analysis field to given value.
 
 HasAnalysis returns a boolean if a field has been set.
 
-### GetTournament
+### GetArenaTour
 
-`func (o *GameJson) GetTournament() string`
+`func (o *GameJson) GetArenaTour() GameJsonArenaTour`
 
-GetTournament returns the Tournament field if non-nil, zero value otherwise.
+GetArenaTour returns the ArenaTour field if non-nil, zero value otherwise.
 
-### GetTournamentOk
+### GetArenaTourOk
 
-`func (o *GameJson) GetTournamentOk() (*string, bool)`
+`func (o *GameJson) GetArenaTourOk() (*GameJsonArenaTour, bool)`
 
-GetTournamentOk returns a tuple with the Tournament field if it's non-nil, zero value otherwise
+GetArenaTourOk returns a tuple with the ArenaTour field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTournament
+### SetArenaTour
 
-`func (o *GameJson) SetTournament(v string)`
+`func (o *GameJson) SetArenaTour(v GameJsonArenaTour)`
 
-SetTournament sets Tournament field to given value.
+SetArenaTour sets ArenaTour field to given value.
 
-### HasTournament
+### HasArenaTour
 
-`func (o *GameJson) HasTournament() bool`
+`func (o *GameJson) HasArenaTour() bool`
 
-HasTournament returns a boolean if a field has been set.
+HasArenaTour returns a boolean if a field has been set.
 
-### GetSwiss
+### GetSwissTour
 
-`func (o *GameJson) GetSwiss() string`
+`func (o *GameJson) GetSwissTour() ApiStudyPost200Response`
 
-GetSwiss returns the Swiss field if non-nil, zero value otherwise.
+GetSwissTour returns the SwissTour field if non-nil, zero value otherwise.
 
-### GetSwissOk
+### GetSwissTourOk
 
-`func (o *GameJson) GetSwissOk() (*string, bool)`
+`func (o *GameJson) GetSwissTourOk() (*ApiStudyPost200Response, bool)`
 
-GetSwissOk returns a tuple with the Swiss field if it's non-nil, zero value otherwise
+GetSwissTourOk returns a tuple with the SwissTour field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSwiss
+### SetSwissTour
 
-`func (o *GameJson) SetSwiss(v string)`
+`func (o *GameJson) SetSwissTour(v ApiStudyPost200Response)`
 
-SetSwiss sets Swiss field to given value.
+SetSwissTour sets SwissTour field to given value.
 
-### HasSwiss
+### HasSwissTour
 
-`func (o *GameJson) HasSwiss() bool`
+`func (o *GameJson) HasSwissTour() bool`
 
-HasSwiss returns a boolean if a field has been set.
+HasSwissTour returns a boolean if a field has been set.
 
 ### GetClock
 

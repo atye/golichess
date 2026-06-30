@@ -94,7 +94,7 @@ info:
     name: AGPL-3.0-or-later
     url: https://www.gnu.org/licenses/agpl-3.0.txt
   title: Lichess.org API reference
-  version: 2.0.149
+  version: 2.0.151
   x-logo:
     url: https://lichess1.org/assets/logo/lichess-pad12.svg
 servers:
@@ -1596,7 +1596,7 @@ paths:
       summary: Export one game
       tags:
       - Games
-  /game/{gameId}/chat:
+  /api/game/{gameId}/chat:
     get:
       description: |
         Get the messages posted in the public spectator chat of a game.
@@ -32691,10 +32691,10 @@ components:
             $ref: "#/components/schemas/GameMoveAnalysis"
           type: array
           default: null
-        tournament:
-          type: string
-        swiss:
-          type: string
+        arenaTour:
+          $ref: "#/components/schemas/GameJson_arenaTour"
+        swissTour:
+          $ref: "#/components/schemas/apiStudyPost_200_response"
         clock:
           $ref: "#/components/schemas/GameJson_clock"
         clocks:
@@ -42310,6 +42310,13 @@ components:
           type: string
         comment:
           example: Blunder. Nxg6 was best.
+          type: string
+    GameJson_arenaTour:
+      description: The arena tournament the game is from
+      properties:
+        id:
+          type: string
+        name:
           type: string
     GameJson_clock:
       properties:
