@@ -346,7 +346,7 @@ func (c *Client) APIPuzzleReplay(ctx context.Context, days int64, theme string) 
 
 	var result PuzzleReplay
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
-		return nil, parseanyError(err)
+		return nil, parseanyResponse(err)
 	}
 	return &result, nil
 }
@@ -427,7 +427,7 @@ func (c *Client) RacerGet(ctx context.Context, id string) (*PuzzleRaceResults, e
 
 	var result PuzzleRaceResults
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
-		return nil, parseNotFoundError(err)
+		return nil, parseNotFoundResponse(err)
 	}
 	return &result, nil
 }
@@ -1027,7 +1027,7 @@ func (c *Client) StreamGame(ctx context.Context, id string) (*MoveStream, error)
 
 	var result MoveStream
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
-		return nil, parseanyError(err)
+		return nil, parseanyResponse(err)
 	}
 	return &result, nil
 }
@@ -1276,7 +1276,7 @@ func (c *Client) APITournamentPost(ctx context.Context, body any) (*ArenaTournam
 
 	var result ArenaTournamentFull
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -1324,7 +1324,7 @@ func (c *Client) APITournamentUpdate(ctx context.Context, id string, body any) (
 
 	var result ArenaTournamentFull
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -1339,7 +1339,7 @@ func (c *Client) APITournamentJoin(ctx context.Context, id string, body *any) (*
 
 	var result Ok
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -1354,7 +1354,7 @@ func (c *Client) APITournamentWithdraw(ctx context.Context, id string) (*Ok, err
 
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -1368,7 +1368,7 @@ func (c *Client) APITournamentTerminate(ctx context.Context, id string) (*Ok, er
 
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -1383,7 +1383,7 @@ func (c *Client) APITournamentTeamBattlePost(ctx context.Context, id string, bod
 
 	var result ArenaTournamentFull
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -1599,7 +1599,7 @@ func (c *Client) APISwissNew(ctx context.Context, teamID string, body any) (*Swi
 
 	var result SwissTournament
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -1631,7 +1631,7 @@ func (c *Client) APISwissUpdate(ctx context.Context, id string, body any) (*Swis
 
 	var result SwissTournament
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -1646,7 +1646,7 @@ func (c *Client) APISwissScheduleNextRound(ctx context.Context, id string, body 
 	path = pathReplace(path, "id", id)
 
 	if err := c.do(ctx, "POST", path, body, nil, "application/json"); err != nil {
-		return parseErrorError(err)
+		return parseErrorResponse(err)
 	}
 	return nil
 }
@@ -1660,7 +1660,7 @@ func (c *Client) APISwissJoin(ctx context.Context, id string, body *any) (*Ok, e
 
 	var result Ok
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -1689,7 +1689,7 @@ func (c *Client) APISwissTerminate(ctx context.Context, id string) (*Ok, error) 
 
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -1961,7 +1961,7 @@ func (c *Client) APIStudyPost(ctx context.Context, body any) (*any, error) {
 
 	var result any
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -1978,7 +1978,7 @@ func (c *Client) APIStudyImportPgn(ctx context.Context, studyID string, body any
 
 	var result StudyImportPgnChapters
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -1998,7 +1998,7 @@ func (c *Client) APIStudyChapterTags(ctx context.Context, studyID string, chapte
 	path = pathReplace(path, "chapterId", chapterID)
 
 	if err := c.do(ctx, "POST", path, body, nil, "application/json"); err != nil {
-		return parseErrorError(err)
+		return parseErrorResponse(err)
 	}
 	return nil
 }
@@ -2013,7 +2013,7 @@ func (c *Client) APIStudyChapterMoves(ctx context.Context, studyID string, chapt
 	path = pathReplace(path, "chapterId", chapterID)
 
 	if err := c.do(ctx, "POST", path, body, nil, "application/json"); err != nil {
-		return parseErrorError(err)
+		return parseErrorResponse(err)
 	}
 	return nil
 }
@@ -2231,7 +2231,7 @@ func (c *Client) BroadcastTourCreate(ctx context.Context, body BroadcastForm) (*
 
 	var result BroadcastWithRounds
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -2274,7 +2274,7 @@ func (c *Client) BroadcastPlayerGet(ctx context.Context, broadcastTournamentID s
 
 	var result BroadcastPlayerEntryWithFideAndGames
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
-		return nil, parseNotFoundError(err)
+		return nil, parseNotFoundResponse(err)
 	}
 	return &result, nil
 }
@@ -2304,7 +2304,7 @@ func (c *Client) BroadcastTourUpdate(ctx context.Context, broadcastTournamentID 
 
 	var result Ok
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -2321,7 +2321,7 @@ func (c *Client) BroadcastRoundCreate(ctx context.Context, broadcastTournamentID
 
 	var result BroadcastRoundNew
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -2368,7 +2368,7 @@ func (c *Client) BroadcastRoundUpdate(ctx context.Context, broadcastRoundID stri
 	}
 	var result BroadcastRound
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -2397,7 +2397,7 @@ func (c *Client) BroadcastPush(ctx context.Context, broadcastRoundID string, bod
 
 	var result BroadcastPgnPush
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
-		return nil, parseanyError(err)
+		return nil, parseanyResponse(err)
 	}
 	return &result, nil
 }
@@ -2913,7 +2913,7 @@ func (c *Client) TeamIDPmAll(ctx context.Context, teamID string, body any) (*Ok,
 
 	var result Ok
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -3167,7 +3167,7 @@ func (c *Client) APIBoardSeek(ctx context.Context, body *any) (*any, error) {
 
 	var result any
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -3193,7 +3193,7 @@ func (c *Client) BoardGameStream(ctx context.Context, gameID string) (*any, erro
 
 	var result any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
-		return nil, parseNotFoundError(err)
+		return nil, parseNotFoundResponse(err)
 	}
 	return &result, nil
 }
@@ -3223,7 +3223,7 @@ func (c *Client) BoardGameMove(ctx context.Context, gameID string, move string, 
 	}
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -3253,7 +3253,7 @@ func (c *Client) BoardGameChatPost(ctx context.Context, gameID string, body any)
 
 	var result Ok
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -3267,7 +3267,7 @@ func (c *Client) BoardGameAbort(ctx context.Context, gameID string) (*Ok, error)
 
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -3281,7 +3281,7 @@ func (c *Client) BoardGameResign(ctx context.Context, gameID string) (*Ok, error
 
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -3298,7 +3298,7 @@ func (c *Client) BoardGameDraw(ctx context.Context, gameID string, accept any) (
 
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -3315,7 +3315,7 @@ func (c *Client) BoardGameTakeback(ctx context.Context, gameID string, accept an
 
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -3329,7 +3329,7 @@ func (c *Client) BoardGameClaimVictory(ctx context.Context, gameID string) (*Ok,
 
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -3343,7 +3343,7 @@ func (c *Client) BoardGameClaimDraw(ctx context.Context, gameID string) (*Ok, er
 
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -3358,7 +3358,7 @@ func (c *Client) BoardGameBerserk(ctx context.Context, gameID string) (*Ok, erro
 
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -3404,7 +3404,7 @@ func (c *Client) BotAccountUpgrade(ctx context.Context) (*Ok, error) {
 
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -3425,7 +3425,7 @@ func (c *Client) BotGameStream(ctx context.Context, gameID string) (*any, error)
 
 	var result any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
-		return nil, parseNotFoundError(err)
+		return nil, parseNotFoundResponse(err)
 	}
 	return &result, nil
 }
@@ -3455,7 +3455,7 @@ func (c *Client) BotGameMove(ctx context.Context, gameID string, move string, op
 	}
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -3483,7 +3483,7 @@ func (c *Client) BotGameChat(ctx context.Context, gameID string, body any) (*Ok,
 
 	var result Ok
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -3497,7 +3497,7 @@ func (c *Client) BotGameAbort(ctx context.Context, gameID string) (*Ok, error) {
 
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -3511,7 +3511,7 @@ func (c *Client) BotGameResign(ctx context.Context, gameID string) (*Ok, error) 
 
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -3528,7 +3528,7 @@ func (c *Client) BotGameDraw(ctx context.Context, gameID string, accept any) (*O
 
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -3545,7 +3545,7 @@ func (c *Client) BotGameTakeback(ctx context.Context, gameID string, accept any)
 
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -3559,7 +3559,7 @@ func (c *Client) BotGameClaimVictory(ctx context.Context, gameID string) (*Ok, e
 
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -3573,7 +3573,7 @@ func (c *Client) BotGameClaimDraw(ctx context.Context, gameID string) (*Ok, erro
 
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -3604,7 +3604,7 @@ func (c *Client) ChallengeCreate(ctx context.Context, username string, body *any
 
 	var result ChallengeJSON
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -3647,7 +3647,7 @@ func (c *Client) ChallengeAccept(ctx context.Context, challengeID string, opts .
 	}
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
-		return nil, parseNotFoundError(err)
+		return nil, parseNotFoundResponse(err)
 	}
 	return &result, nil
 }
@@ -3661,7 +3661,7 @@ func (c *Client) ChallengeDecline(ctx context.Context, challengeID string, body 
 
 	var result Ok
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
-		return nil, parseNotFoundError(err)
+		return nil, parseNotFoundResponse(err)
 	}
 	return &result, nil
 }
@@ -3691,7 +3691,7 @@ func (c *Client) ChallengeCancel(ctx context.Context, challengeID string, opts .
 	}
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
-		return nil, parseNotFoundError(err)
+		return nil, parseNotFoundResponse(err)
 	}
 	return &result, nil
 }
@@ -3705,7 +3705,7 @@ func (c *Client) ChallengeAi(ctx context.Context, body any) (*any, error) {
 
 	var result any
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -3726,7 +3726,7 @@ func (c *Client) ChallengeOpen(ctx context.Context, body *any) (*ChallengeOpenJS
 
 	var result ChallengeOpenJSON
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -3805,7 +3805,7 @@ func (c *Client) BulkPairingCreate(ctx context.Context, body any) (*BulkPairing,
 
 	var result BulkPairing
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -3822,7 +3822,7 @@ func (c *Client) BulkPairingStartClocks(ctx context.Context, id string) (*Ok, er
 
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
-		return nil, parseNotFoundError(err)
+		return nil, parseNotFoundResponse(err)
 	}
 	return &result, nil
 }
@@ -3836,7 +3836,7 @@ func (c *Client) BulkPairingGet(ctx context.Context, id string) (*BulkPairing, e
 
 	var result BulkPairing
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
-		return nil, parseNotFoundError(err)
+		return nil, parseNotFoundResponse(err)
 	}
 	return &result, nil
 }
@@ -3852,7 +3852,7 @@ func (c *Client) BulkPairingDelete(ctx context.Context, id string) (*Ok, error) 
 
 	var result Ok
 	if err := c.do(ctx, "DELETE", path, nil, &result, "application/json"); err != nil {
-		return nil, parseNotFoundError(err)
+		return nil, parseNotFoundResponse(err)
 	}
 	return &result, nil
 }
@@ -3950,7 +3950,7 @@ func (c *Client) AdminChallengeTokens(ctx context.Context, body any) (*map[strin
 
 	var result map[string]string
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -3964,7 +3964,7 @@ func (c *Client) InboxUsername(ctx context.Context, username string, body any) (
 
 	var result Ok
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
-		return nil, parseErrorError(err)
+		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
 }
@@ -3999,7 +3999,7 @@ func (c *Client) APICloudEval(ctx context.Context, fen string, opts ...APICloudE
 	}
 	var result CloudEval
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
-		return nil, parseanyError(err)
+		return nil, parseanyResponse(err)
 	}
 	return &result, nil
 }
@@ -4216,7 +4216,7 @@ func (c *Client) APIToken(ctx context.Context, body any) (*any, error) {
 
 	var result any
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
-		return nil, parseOAuthErrorError(err)
+		return nil, parseOAuthErrorResponse(err)
 	}
 	return &result, nil
 }

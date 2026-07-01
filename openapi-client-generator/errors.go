@@ -33,10 +33,20 @@ type APIError struct {
 }
 
 func (e *APIError) Error() string {
-	if len(e.Body) > 0 {
-		return fmt.Sprintf("API error %d %s: %s", e.StatusCode, e.Status, string(e.Body))
+	// Status already carries the code (e.g. "409 Conflict"); reconstruct it from StatusCode for the
+	// sentinel errors, which set only StatusCode, so the code is never printed twice.
+	status := e.Status
+	if status == "" {
+		if text := http.StatusText(e.StatusCode); text != "" {
+			status = fmt.Sprintf("%d %s", e.StatusCode, text)
+		} else {
+			status = fmt.Sprintf("%d", e.StatusCode)
+		}
 	}
-	return fmt.Sprintf("API error %d", e.StatusCode)
+	if len(e.Body) > 0 {
+		return fmt.Sprintf("API error %s: %s", status, e.Body)
+	}
+	return fmt.Sprintf("API error %s", status)
 }
 
 // Is supports errors.Is by matching on status code.
@@ -62,7 +72,7 @@ func (e *anyResponse) Unwrap() error {
 	return e.APIError
 }
 
-func parseanyError(err error) error {
+func parseanyResponse(err error) error {
 	var apiErr *APIError
 	if !errors.As(err, &apiErr) || len(apiErr.Body) == 0 {
 		return err
@@ -88,7 +98,7 @@ func (e *NotFoundResponse) Unwrap() error {
 	return e.APIError
 }
 
-func parseNotFoundError(err error) error {
+func parseNotFoundResponse(err error) error {
 	var apiErr *APIError
 	if !errors.As(err, &apiErr) || len(apiErr.Body) == 0 {
 		return err
@@ -114,7 +124,7 @@ func (e *ErrorResponse) Unwrap() error {
 	return e.APIError
 }
 
-func parseErrorError(err error) error {
+func parseErrorResponse(err error) error {
 	var apiErr *APIError
 	if !errors.As(err, &apiErr) || len(apiErr.Body) == 0 {
 		return err
@@ -140,7 +150,7 @@ func (e *SwissUnauthorisedEditResponse) Unwrap() error {
 	return e.APIError
 }
 
-func parseSwissUnauthorisedEditError(err error) error {
+func parseSwissUnauthorisedEditResponse(err error) error {
 	var apiErr *APIError
 	if !errors.As(err, &apiErr) || len(apiErr.Body) == 0 {
 		return err
@@ -166,7 +176,7 @@ func (e *OAuthErrorResponse) Unwrap() error {
 	return e.APIError
 }
 
-func parseOAuthErrorError(err error) error {
+func parseOAuthErrorResponse(err error) error {
 	var apiErr *APIError
 	if !errors.As(err, &apiErr) || len(apiErr.Body) == 0 {
 		return err
