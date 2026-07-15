@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**ApiGamesUser**](GamesAPI.md#ApiGamesUser) | **Get** /api/games/user/{username} | Export games of a user
 [**ApiImportedGamesUser**](GamesAPI.md#ApiImportedGamesUser) | **Get** /api/games/export/imports | Export your imported games
 [**ApiUserCurrentGame**](GamesAPI.md#ApiUserCurrentGame) | **Get** /api/user/{username}/current-game | Export ongoing game of a user
+[**BookmarkToggle**](GamesAPI.md#BookmarkToggle) | **Post** /bookmark/{gameId} | Bookmark a game
 [**GameChatGet**](GamesAPI.md#GameChatGet) | **Get** /api/game/{gameId}/chat | Fetch the spectator game chat
 [**GameImport**](GamesAPI.md#GameImport) | **Post** /api/import | Import one game
 [**GamePgn**](GamesAPI.md#GamePgn) | **Get** /game/export/{gameId} | Export one game
@@ -441,6 +442,76 @@ No authorization required
 
 - **Content-Type**: Not defined
 - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## BookmarkToggle
+
+> BookmarkToggle(ctx, gameId).V(v).Execute()
+
+Bookmark a game
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/atye/golichess/openapigenerator"
+)
+
+func main() {
+	gameId := "5IrD6Gzz" // string | 
+	v := true // bool | Explicitly set the bookmark instead of toggling it. `true` adds the bookmark, `false` removes it.  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.GamesAPI.BookmarkToggle(context.Background(), gameId).V(v).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `GamesAPI.BookmarkToggle``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**gameId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiBookmarkToggleRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **v** | **bool** | Explicitly set the bookmark instead of toggling it. &#x60;true&#x60; adds the bookmark, &#x60;false&#x60; removes it.  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
