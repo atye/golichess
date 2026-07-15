@@ -1147,6 +1147,37 @@ func (c *Client) APIExportBookmarks(ctx context.Context, opts ...APIExportBookma
 	return &result, nil
 }
 
+// BookmarkToggleParams contains optional parameters for the BookmarkToggle operation.
+type BookmarkToggleParams struct {
+	// Explicitly set the bookmark instead of toggling it.
+	// `true` adds the bookmark, `false` removes it.
+	V *bool `json:"v,omitempty"`
+}
+
+// BookmarkToggle - Bookmark a game
+//
+// Add or remove a bookmark on a game, for the logged in user.
+// By default, the bookmark is toggled: added if absent, removed if present.
+// Use the `v` parameter to explicitly set the bookmark instead, making the request idempotent.
+// Bookmarked games can be downloaded with the [export your bookmarked games](#tag/games/GET/api/games/export/bookmarks) endpoint.
+func (c *Client) BookmarkToggle(ctx context.Context, gameID string, opts ...BookmarkToggleParams) error {
+	path := "/bookmark/{gameId}"
+	path = pathReplace(path, "gameId", gameID)
+
+	queryValues := url.Values{}
+	if len(opts) > 0 {
+		params := opts[0]
+		addQueryParam(queryValues, "v", params.V)
+	}
+	if len(queryValues) > 0 {
+		path += "?" + queryValues.Encode()
+	}
+	if err := c.do(ctx, "POST", path, nil, nil, "application/json"); err != nil {
+		return err
+	}
+	return nil
+}
+
 // TvChannels - Get current TV games
 //
 // Get basic info about the best games being played for each speed and variant,
@@ -2530,6 +2561,10 @@ type BroadcastAllRoundsPgnParams struct {
 // If a `study:read` [OAuth token](#tag/OAuth) is provided,
 // the private rounds where the user is a contributor will be available.
 // You may want to [download only the games of a single round](#tag/broadcasts/GET/api/broadcast/round/{broadcastRoundId}.pgn) instead.
+//
+// To get real-time updates about an ongoing tournament, please use the
+// [round PGN stream](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn) or
+// [group PGN stream](#tag/broadcasts/GET/api/stream/broadcast/group/{broadcastGroupId}.pgn) endpoints instead.
 func (c *Client) BroadcastAllRoundsPgn(ctx context.Context, broadcastTournamentID string, opts ...BroadcastAllRoundsPgnParams) (*StudyPgn, error) {
 	path := "/api/broadcast/{broadcastTournamentId}.pgn"
 	path = pathReplace(path, "broadcastTournamentId", broadcastTournamentID)
