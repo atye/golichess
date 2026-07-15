@@ -12,7 +12,7 @@ import (
 type BroadcastWithBroadcastTournamentIdPgnRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
-// BroadcastWithBroadcastTournamentIdPgnRequestBuilderGetQueryParameters download all games of all rounds of a broadcast in PGN format.If a `study:read` [OAuth token](#tag/OAuth) is provided,the private rounds where the user is a contributor will be available.You may want to [download only the games of a single round](#tag/broadcasts/GET/api/broadcast/round/{broadcastRoundId}.pgn) instead.
+// BroadcastWithBroadcastTournamentIdPgnRequestBuilderGetQueryParameters download all games of all rounds of a broadcast in PGN format.If a `study:read` [OAuth token](#tag/OAuth) is provided,the private rounds where the user is a contributor will be available.You may want to [download only the games of a single round](#tag/broadcasts/GET/api/broadcast/round/{broadcastRoundId}.pgn) instead.To get real-time updates about an ongoing tournament, please use the [round PGN stream](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn) or[group PGN stream](#tag/broadcasts/GET/api/stream/broadcast/group/{broadcastGroupId}.pgn) endpoints instead.
 type BroadcastWithBroadcastTournamentIdPgnRequestBuilderGetQueryParameters struct {
     // Include clock comments in the PGN moves, when available.Example: `2. exd5 { [%clk 1:01:27] } e5 { [%clk 1:01:28] }`
     Clocks *bool "uriparametername:\"clocks\""
@@ -44,7 +44,7 @@ func NewBroadcastWithBroadcastTournamentIdPgnRequestBuilder(rawUrl string, reque
     urlParams["request-raw-url"] = rawUrl
     return NewBroadcastWithBroadcastTournamentIdPgnRequestBuilderInternal(urlParams, requestAdapter, nil)
 }
-// Get download all games of all rounds of a broadcast in PGN format.If a `study:read` [OAuth token](#tag/OAuth) is provided,the private rounds where the user is a contributor will be available.You may want to [download only the games of a single round](#tag/broadcasts/GET/api/broadcast/round/{broadcastRoundId}.pgn) instead.
+// Get download all games of all rounds of a broadcast in PGN format.If a `study:read` [OAuth token](#tag/OAuth) is provided,the private rounds where the user is a contributor will be available.You may want to [download only the games of a single round](#tag/broadcasts/GET/api/broadcast/round/{broadcastRoundId}.pgn) instead.To get real-time updates about an ongoing tournament, please use the [round PGN stream](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn) or[group PGN stream](#tag/broadcasts/GET/api/stream/broadcast/group/{broadcastGroupId}.pgn) endpoints instead.
 // returns a []byte when successful
 func (m *BroadcastWithBroadcastTournamentIdPgnRequestBuilder) Get(ctx context.Context, requestConfiguration *BroadcastWithBroadcastTournamentIdPgnRequestBuilderGetRequestConfiguration)([]byte, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
@@ -60,7 +60,7 @@ func (m *BroadcastWithBroadcastTournamentIdPgnRequestBuilder) Get(ctx context.Co
     }
     return res.([]byte), nil
 }
-// ToGetRequestInformation download all games of all rounds of a broadcast in PGN format.If a `study:read` [OAuth token](#tag/OAuth) is provided,the private rounds where the user is a contributor will be available.You may want to [download only the games of a single round](#tag/broadcasts/GET/api/broadcast/round/{broadcastRoundId}.pgn) instead.
+// ToGetRequestInformation download all games of all rounds of a broadcast in PGN format.If a `study:read` [OAuth token](#tag/OAuth) is provided,the private rounds where the user is a contributor will be available.You may want to [download only the games of a single round](#tag/broadcasts/GET/api/broadcast/round/{broadcastRoundId}.pgn) instead.To get real-time updates about an ongoing tournament, please use the [round PGN stream](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn) or[group PGN stream](#tag/broadcasts/GET/api/stream/broadcast/group/{broadcastGroupId}.pgn) endpoints instead.
 // returns a *RequestInformation when successful
 func (m *BroadcastWithBroadcastTournamentIdPgnRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *BroadcastWithBroadcastTournamentIdPgnRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

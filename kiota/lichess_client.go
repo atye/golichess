@@ -16,6 +16,7 @@ import (
     i48b0d1ebfc304b840ad15ce7b3aea6cf69f084567ec89e7e39458a9b8919b7d9 "github.com/atye/golichess/kiota/game"
     i53f161edb347a875019760216b1570ddcdd5b86d7d21dfdc20ae79f04e22e1ed "github.com/atye/golichess/kiota/oauth"
     i5e98ef327a9e13c3370c7b026c4562b05cb16dd8a76fb410278cb3edcc065d94 "github.com/atye/golichess/kiota/standard"
+    i6a844f06ab6c0bf1b9657f212733ffb2b0205ed1a6ac1ac8640c72e761206fe8 "github.com/atye/golichess/kiota/bookmark"
     i753649b3dbfe9efb0f9dc972724539a1e6707f0a1a3c779fef120cbf202af330 "github.com/atye/golichess/kiota/swiss"
     i79fc6cf537e44c9396ee94d44cc66672e02756695cab0ea6c0ba54d3197bc2ac "github.com/atye/golichess/kiota/api"
     i8d09ab70c1cb71052b1b1af13da1315343a9580d77188296a8b677e3d6f1951a "github.com/atye/golichess/kiota/antichess"
@@ -43,6 +44,11 @@ func (m *LichessClient) Api()(*i79fc6cf537e44c9396ee94d44cc66672e02756695cab0ea6
 // returns a *AtomicRequestBuilder when successful
 func (m *LichessClient) Atomic()(*i1d35e6070e0d971eb89dc0e64e807dc85a9c0fcb0946e9be1e5f875b12a5139d.AtomicRequestBuilder) {
     return i1d35e6070e0d971eb89dc0e64e807dc85a9c0fcb0946e9be1e5f875b12a5139d.NewAtomicRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Bookmark the bookmark property
+// returns a *BookmarkRequestBuilder when successful
+func (m *LichessClient) Bookmark()(*i6a844f06ab6c0bf1b9657f212733ffb2b0205ed1a6ac1ac8640c72e761206fe8.BookmarkRequestBuilder) {
+    return i6a844f06ab6c0bf1b9657f212733ffb2b0205ed1a6ac1ac8640c72e761206fe8.NewBookmarkRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // Broadcast the broadcast property
 // returns a *BroadcastRequestBuilder when successful
