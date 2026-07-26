@@ -44,7 +44,7 @@ func NewExternalEngineWorkRequestBuilder(rawUrl string, requestAdapter i2ae4187f
     urlParams["request-raw-url"] = rawUrl
     return NewExternalEngineWorkRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Post **Endpoint: `https://engine.lichess.ovh/api/external-engine/work`**Wait for an analysis requests to any of the external engines thathave been registered with the given `secret`.Uses long polling.After acquiring a request, the provider should immediately[start streaming the results](#tag/external-engine/POST/api/external-engine/work/{id}).
+// Post **Endpoint: `https://engine.lichess.ovh/api/external-engine/work`**Wait for an analysis requests to any of the external engines thathave been registered with the given `providerSecret`.Uses long polling.After acquiring a request, the provider should immediately[start streaming the results](#tag/external-engine/POST/api/external-engine/work/{id}).
 // Deprecated: This method is obsolete. Use PostAsWorkPostResponse instead.
 // returns a ExternalEngineWorkResponseable when successful
 func (m *ExternalEngineWorkRequestBuilder) Post(ctx context.Context, body ExternalEngineWorkPostRequestBodyable, requestConfiguration *ExternalEngineWorkRequestBuilderPostRequestConfiguration)(ExternalEngineWorkResponseable, error) {
@@ -61,7 +61,7 @@ func (m *ExternalEngineWorkRequestBuilder) Post(ctx context.Context, body Extern
     }
     return res.(ExternalEngineWorkResponseable), nil
 }
-// PostAsWorkPostResponse **Endpoint: `https://engine.lichess.ovh/api/external-engine/work`**Wait for an analysis requests to any of the external engines thathave been registered with the given `secret`.Uses long polling.After acquiring a request, the provider should immediately[start streaming the results](#tag/external-engine/POST/api/external-engine/work/{id}).
+// PostAsWorkPostResponse **Endpoint: `https://engine.lichess.ovh/api/external-engine/work`**Wait for an analysis requests to any of the external engines thathave been registered with the given `providerSecret`.Uses long polling.After acquiring a request, the provider should immediately[start streaming the results](#tag/external-engine/POST/api/external-engine/work/{id}).
 // returns a ExternalEngineWorkPostResponseable when successful
 func (m *ExternalEngineWorkRequestBuilder) PostAsWorkPostResponse(ctx context.Context, body ExternalEngineWorkPostRequestBodyable, requestConfiguration *ExternalEngineWorkRequestBuilderPostRequestConfiguration)(ExternalEngineWorkPostResponseable, error) {
     requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration);
@@ -77,7 +77,7 @@ func (m *ExternalEngineWorkRequestBuilder) PostAsWorkPostResponse(ctx context.Co
     }
     return res.(ExternalEngineWorkPostResponseable), nil
 }
-// ToPostRequestInformation **Endpoint: `https://engine.lichess.ovh/api/external-engine/work`**Wait for an analysis requests to any of the external engines thathave been registered with the given `secret`.Uses long polling.After acquiring a request, the provider should immediately[start streaming the results](#tag/external-engine/POST/api/external-engine/work/{id}).
+// ToPostRequestInformation **Endpoint: `https://engine.lichess.ovh/api/external-engine/work`**Wait for an analysis requests to any of the external engines thathave been registered with the given `providerSecret`.Uses long polling.After acquiring a request, the provider should immediately[start streaming the results](#tag/external-engine/POST/api/external-engine/work/{id}).
 // returns a *RequestInformation when successful
 func (m *ExternalEngineWorkRequestBuilder) ToPostRequestInformation(ctx context.Context, body ExternalEngineWorkPostRequestBodyable, requestConfiguration *ExternalEngineWorkRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
