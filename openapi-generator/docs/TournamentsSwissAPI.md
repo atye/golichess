@@ -365,14 +365,14 @@ func main() {
 	nbRounds := int32(56) // int32 | Maximum number of rounds to play
 	name := "name_example" // string | The tournament name. Leave empty to get a random Grandmaster name (optional)
 	startsAt := int64(789) // int64 | Timestamp in milliseconds to start the tournament at a given date and time. By default, it starts 10 minutes after creation. (optional)
-	roundInterval := int32(56) // int32 | How long to wait between each round, in seconds. Set to 99999999 to manually schedule each round from the tournament UI. If empty or -1, a sensible value is picked automatically.  (optional)
+	roundInterval := int32(56) // int32 | How long to wait between each round, in seconds. Set to 99999999 to manually schedule each round from the tournament UI, or [with the API](#tag/tournaments-swiss/POST/api/swiss/{id}/schedule-next-round). If empty or -1, a sensible value is picked automatically.  (optional)
 	variant := openapiclient.VariantKey("standard") // VariantKey |  (optional) (default to "standard")
 	position := "position_example" // string | Custom initial position (in X-FEN). Variant must be standard and the game cannot be rated. (optional) (default to "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
 	description := "description_example" // string | Anything you want to tell players about the tournament (optional)
 	rated := true // bool | Games are rated and impact players ratings (optional) (default to true)
 	password := "password_example" // string | Make the tournament private and restrict access with a password. (optional)
 	forbiddenPairings := "forbiddenPairings_example" // string | Usernames of players that must not play together. Two usernames per line, separated by a space.  (optional)
-	manualPairings := "manualPairings_example" // string | Manual pairings for the next round. Two usernames per line, separated by a space. Example: ``` PlayerA PlayerB PlayerC PlayerD ``` To give a bye (1 point) to a player instead of a pairing, add a line like so: ``` PlayerE 1 ``` Missing players will be considered absent and get zero points.  (optional)
+	manualPairings := "manualPairings_example" // string | Manual pairings for the next round. Two usernames per line, separated by a space. Present players without a valid pairing will be given a bye, which is worth 1 point. Forfeited players will get 0 points.  (optional)
 	chatFor := int32(56) // int32 | Who can read and write in the chat. - 0  = No-one - 10 = Only team leaders - 20 = Only team members - 30 = All Lichess players  (optional) (default to 20)
 	conditionsMinRatingRating := int32(56) // int32 | Minimum rating to join. Leave empty to let everyone join the tournament. (optional)
 	conditionsMaxRatingRating := int32(56) // int32 | Maximum rating to join. Based on best rating reached in the last 7 days. Leave empty to let everyone join the tournament. (optional)
@@ -413,14 +413,14 @@ Name | Type | Description  | Notes
  **nbRounds** | **int32** | Maximum number of rounds to play | 
  **name** | **string** | The tournament name. Leave empty to get a random Grandmaster name | 
  **startsAt** | **int64** | Timestamp in milliseconds to start the tournament at a given date and time. By default, it starts 10 minutes after creation. | 
- **roundInterval** | **int32** | How long to wait between each round, in seconds. Set to 99999999 to manually schedule each round from the tournament UI. If empty or -1, a sensible value is picked automatically.  | 
+ **roundInterval** | **int32** | How long to wait between each round, in seconds. Set to 99999999 to manually schedule each round from the tournament UI, or [with the API](#tag/tournaments-swiss/POST/api/swiss/{id}/schedule-next-round). If empty or -1, a sensible value is picked automatically.  | 
  **variant** | [**VariantKey**](VariantKey.md) |  | [default to &quot;standard&quot;]
  **position** | **string** | Custom initial position (in X-FEN). Variant must be standard and the game cannot be rated. | [default to &quot;rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1&quot;]
  **description** | **string** | Anything you want to tell players about the tournament | 
  **rated** | **bool** | Games are rated and impact players ratings | [default to true]
  **password** | **string** | Make the tournament private and restrict access with a password. | 
  **forbiddenPairings** | **string** | Usernames of players that must not play together. Two usernames per line, separated by a space.  | 
- **manualPairings** | **string** | Manual pairings for the next round. Two usernames per line, separated by a space. Example: &#x60;&#x60;&#x60; PlayerA PlayerB PlayerC PlayerD &#x60;&#x60;&#x60; To give a bye (1 point) to a player instead of a pairing, add a line like so: &#x60;&#x60;&#x60; PlayerE 1 &#x60;&#x60;&#x60; Missing players will be considered absent and get zero points.  | 
+ **manualPairings** | **string** | Manual pairings for the next round. Two usernames per line, separated by a space. Present players without a valid pairing will be given a bye, which is worth 1 point. Forfeited players will get 0 points.  | 
  **chatFor** | **int32** | Who can read and write in the chat. - 0  &#x3D; No-one - 10 &#x3D; Only team leaders - 20 &#x3D; Only team members - 30 &#x3D; All Lichess players  | [default to 20]
  **conditionsMinRatingRating** | **int32** | Minimum rating to join. Leave empty to let everyone join the tournament. | 
  **conditionsMaxRatingRating** | **int32** | Maximum rating to join. Based on best rating reached in the last 7 days. Leave empty to let everyone join the tournament. | 

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Twitch** | Pointer to [**UserStreamerTwitch**](UserStreamerTwitch.md) |  | [optional] 
-**Youtube** | Pointer to [**UserStreamerTwitch**](UserStreamerTwitch.md) |  | [optional] 
+**Youtube** | Pointer to [**UserStreamerYoutube**](UserStreamerYoutube.md) |  | [optional] 
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasTwitch returns a boolean if a field has been set.
 
 ### GetYoutube
 
-`func (o *UserStreamer) GetYoutube() UserStreamerTwitch`
+`func (o *UserStreamer) GetYoutube() UserStreamerYoutube`
 
 GetYoutube returns the Youtube field if non-nil, zero value otherwise.
 
 ### GetYoutubeOk
 
-`func (o *UserStreamer) GetYoutubeOk() (*UserStreamerTwitch, bool)`
+`func (o *UserStreamer) GetYoutubeOk() (*UserStreamerYoutube, bool)`
 
 GetYoutubeOk returns a tuple with the Youtube field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetYoutube
 
-`func (o *UserStreamer) SetYoutube(v UserStreamerTwitch)`
+`func (o *UserStreamer) SetYoutube(v UserStreamerYoutube)`
 
 SetYoutube sets Youtube field to given value.
 

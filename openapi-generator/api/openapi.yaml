@@ -94,7 +94,7 @@ info:
     name: AGPL-3.0-or-later
     url: https://www.gnu.org/licenses/agpl-3.0.txt
   title: Lichess.org API reference
-  version: 2.0.153
+  version: 2.0.154
   x-logo:
     url: https://lichess1.org/assets/logo/lichess-pad12.svg
 servers:
@@ -2386,7 +2386,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/apiPuzzleReplay_404_response"
+                $ref: "#/components/schemas/streamGame_429_response"
           description: Too many streams opened at the same time from this IP.
       security: []
       summary: Stream moves of a game
@@ -3682,7 +3682,7 @@ paths:
         content:
           application/x-www-form-urlencoded:
             schema:
-              $ref: "#/components/schemas/apiSwissNew_request"
+              $ref: "#/components/schemas/apiSwissUpdate_request"
         description: Parameters of the tournament
         required: true
       responses:
@@ -4572,7 +4572,7 @@ paths:
         content:
           application/x-www-form-urlencoded:
             schema:
-              $ref: "#/components/schemas/apiStudyChapterTags_request"
+              $ref: "#/components/schemas/apiStudyChapterMoves_request"
         required: true
       responses:
         "204":
@@ -5443,7 +5443,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/apiPuzzleReplay_404_response"
+                $ref: "#/components/schemas/broadcastPush_400_response"
           description: There was a problem with the pushed PGN.
           headers:
             Access-Control-Allow-Origin:
@@ -8945,7 +8945,7 @@ paths:
         content:
           application/x-www-form-urlencoded:
             schema:
-              $ref: "#/components/schemas/writeNote_request"
+              $ref: "#/components/schemas/inboxUsername_request"
         required: true
       responses:
         "200":
@@ -9020,7 +9020,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/apiPuzzleReplay_404_response"
+                $ref: "#/components/schemas/apiCloudEval_404_response"
           description: The position was not found in the cloud evaluation database.
       security: []
       summary: Get cloud evaluation of a position.
@@ -9230,6 +9230,7 @@ paths:
     post:
       description: |
         **Endpoint: `https://engine.lichess.ovh/api/external-engine/{id}/analyse`**
+
         Request analysis from an external engine.
         Response content is streamed as [newline delimited JSON](#description/streaming-with-nd-json).
         The properties are based on the [UCI specification](https://backscattering.de/chess/uci/#engine).
@@ -9284,8 +9285,9 @@ paths:
     post:
       description: |
         **Endpoint: `https://engine.lichess.ovh/api/external-engine/work`**
+
         Wait for an analysis requests to any of the external engines that
-        have been registered with the given `secret`.
+        have been registered with the given `providerSecret`.
         Uses long polling.
         After acquiring a request, the provider should immediately
         [start streaming the results](#tag/external-engine/POST/api/external-engine/work/{id}).
@@ -9346,6 +9348,7 @@ paths:
     post:
       description: |
         **Endpoint: `https://engine.lichess.ovh/api/external-engine/work/{id}`**
+
         Submit a stream of analysis as [UCI output](https://backscattering.de/chess/uci/#engine-info).
         * The engine should always be in `UCI_Chess960` mode.
         * `UCI_AnalyseMode` enabled if available.
@@ -30936,12 +30939,12 @@ components:
         twitch:
           channel: https://www.twitch.tv/lichessdotorg
         youtube:
-          channel: https://www.twitch.tv/lichessdotorg
+          channel: https://www.youtube.com/c/LichessDotOrg
       properties:
         twitch:
           $ref: "#/components/schemas/UserStreamer_twitch"
         youtube:
-          $ref: "#/components/schemas/UserStreamer_twitch"
+          $ref: "#/components/schemas/UserStreamer_youtube"
     UserExtended:
       allOf:
       - $ref: "#/components/schemas/User"
@@ -31135,7 +31138,7 @@ components:
           twitch:
             channel: https://www.twitch.tv/lichessdotorg
           youtube:
-            channel: https://www.twitch.tv/lichessdotorg
+            channel: https://www.youtube.com/c/LichessDotOrg
         followable: true
         following: true
         blocking: true
@@ -32948,7 +32951,7 @@ components:
         arenaTour:
           $ref: "#/components/schemas/GameJson_arenaTour"
         swissTour:
-          $ref: "#/components/schemas/apiStudyPost_200_response"
+          $ref: "#/components/schemas/GameJson_swissTour"
         clock:
           $ref: "#/components/schemas/GameJson_clock"
         clocks:
@@ -38356,6 +38359,13 @@ components:
       required:
       - nbMyTurn
       - nowPlaying
+    streamGame_429_response:
+      example:
+        error: Please only run 8 request(s) at a time
+      properties:
+        error:
+          example: Please only run 8 request(s) at a time
+          type: string
     gameImport_request:
       properties:
         pgn:
@@ -39448,6 +39458,200 @@ components:
       - clock.increment
       - clock.limit
       - nbRounds
+    apiSwissUpdate_request:
+      properties:
+        name:
+          description: The tournament name. Leave empty to get a random Grandmaster
+            name
+          maxLength: 30
+          minLength: 2
+          type: string
+        clock.limit:
+          description: Clock initial time in seconds
+          enum:
+          - 0
+          - 15
+          - 30
+          - 45
+          - 60
+          - 90
+          - 120
+          - 180
+          - 240
+          - 300
+          - 360
+          - 420
+          - 480
+          - 600
+          - 900
+          - 1200
+          - 1500
+          - 1800
+          - 2400
+          - 3000
+          - 3600
+          - 4200
+          - 4800
+          - 5400
+          - 6000
+          - 6600
+          - 7200
+          - 7800
+          - 8400
+          - 9000
+          - 9600
+          - 10200
+          - 10800
+          example: 300
+          type: integer
+        clock.increment:
+          description: Clock increment in seconds
+          example: 1
+          maximum: 120
+          minimum: 0
+          type: integer
+        nbRounds:
+          description: Maximum number of rounds to play
+          maximum: 100
+          minimum: 3
+          type: integer
+        startsAt:
+          description: "Timestamp in milliseconds to start the tournament at a given\
+            \ date and time. By default, it starts 10 minutes after creation."
+          format: int64
+          type: integer
+        roundInterval:
+          description: |
+            How long to wait between each round, in seconds.
+            Set to 99999999 to manually schedule each round from the tournament UI, or [with the API](#tag/tournaments-swiss/POST/api/swiss/{id}/schedule-next-round).
+            If empty or -1, a sensible value is picked automatically.
+          enum:
+          - -1
+          - 5
+          - 10
+          - 20
+          - 30
+          - 45
+          - 60
+          - 120
+          - 180
+          - 300
+          - 600
+          - 900
+          - 1200
+          - 1800
+          - 2700
+          - 3600
+          - 86400
+          - 172800
+          - 604800
+          - 99999999
+          type: integer
+        variant:
+          $ref: "#/components/schemas/VariantKey"
+        position:
+          $ref: "#/components/schemas/SwissFromPositionFEN"
+        description:
+          description: Anything you want to tell players about the tournament
+          type: string
+        rated:
+          default: true
+          description: Games are rated and impact players ratings
+          type: boolean
+        password:
+          description: Make the tournament private and restrict access with a password.
+          type: string
+        forbiddenPairings:
+          description: |
+            Usernames of players that must not play together.
+            Two usernames per line, separated by a space.
+          type: string
+        manualPairings:
+          description: |
+            Manual pairings for the next round.
+            Two usernames per line, separated by a space.
+            Present players without a valid pairing will be given a bye, which is worth 1 point.
+            Forfeited players will get 0 points.
+          type: string
+        chatFor:
+          default: 20
+          description: |
+            Who can read and write in the chat.
+            - 0  = No-one
+            - 10 = Only team leaders
+            - 20 = Only team members
+            - 30 = All Lichess players
+          enum:
+          - 0
+          - 10
+          - 20
+          - 30
+          type: integer
+        conditions.minRating.rating:
+          description: Minimum rating to join. Leave empty to let everyone join the
+            tournament.
+          enum:
+          - 1000
+          - 1100
+          - 1200
+          - 1300
+          - 1400
+          - 1500
+          - 1600
+          - 1700
+          - 1800
+          - 1900
+          - 2000
+          - 2100
+          - 2200
+          - 2300
+          - 2400
+          - 2500
+          - 2600
+          type: integer
+        conditions.maxRating.rating:
+          description: Maximum rating to join. Based on best rating reached in the
+            last 7 days. Leave empty to let everyone join the tournament.
+          enum:
+          - 2200
+          - 2100
+          - 2000
+          - 1900
+          - 1800
+          - 1700
+          - 1600
+          - 1500
+          - 1400
+          - 1300
+          - 1200
+          - 1100
+          - 1000
+          - 900
+          - 800
+          type: integer
+        conditions.nbRatedGame.nb:
+          description: Minimum number of rated games required to join.
+          maximum: 200
+          minimum: 0
+          type: integer
+        conditions.playYourGames:
+          default: false
+          description: |
+            Only let players join if they have played their last swiss game.
+            If they failed to show up in a recent swiss event, they won't be able to enter yours.
+            This results in a better swiss experience for the players who actually show up.
+          type: boolean
+        conditions.allowList:
+          description: |
+            Predefined list of usernames that are allowed to join, separated by commas.
+            If this list is non-empty, then usernames absent from this list will be forbidden to join.
+            Adding `%titled` to the list additionally allows any titled player to join.
+            Example: `thibault,german11,%titled`
+          type: string
+      required:
+      - clock.increment
+      - clock.limit
+      - nbRounds
     apiSwissScheduleNextRound_request:
       properties:
         date:
@@ -39584,6 +39788,15 @@ components:
         pgn:
           description: |
             PGN text containing the tags. Only the tags are used. Moves are just ignored.
+          type: string
+      required:
+      - pgn
+    apiStudyChapterMoves_request:
+      properties:
+        pgn:
+          description: |
+            PGN text containing the moves that will replace the chapter's existing moves.
+            Any provided tags are ignored.
           type: string
       required:
       - pgn
@@ -39825,6 +40038,12 @@ components:
       - maxPerPage
       - nextPage
       - previousPage
+    broadcastPush_400_response:
+      example:
+        error: Cannot parse moves
+      properties:
+        error:
+          type: string
     apiSimul_200_response:
       example:
         pending:
@@ -40806,6 +41025,20 @@ components:
       required:
       - description
       - users
+    inboxUsername_request:
+      properties:
+        text:
+          example: Thank you for the game!
+          type: string
+      required:
+      - text
+    apiCloudEval_404_response:
+      example:
+        error: No cloud evaluation available for that position
+      properties:
+        error:
+          example: No cloud evaluation available for that position
+          type: string
     apiExternalEngineAnalyse_request:
       properties:
         clientSecret:
@@ -40954,7 +41187,7 @@ components:
       - access_token
       - expires_in
       - token_type
-    tokenTest_200_response_value_oneOf:
+    tokenTest_200_response_value:
       nullable: true
       properties:
         userId:
@@ -40967,11 +41200,6 @@ components:
           description: Unix-timestamp in milliseconds or null if the token never expires.
           nullable: true
           type: integer
-    tokenTest_200_response_value:
-      nullable: true
-      oneOf:
-      - $ref: "#/components/schemas/tokenTest_200_response_value_oneOf"
-      x-additionalPropertiesName: token
     TopUser_perfs_value:
       example:
         rating: 0
@@ -40990,6 +41218,14 @@ components:
       properties:
         channel:
           example: https://www.twitch.tv/lichessdotorg
+          format: uri
+          type: string
+    UserStreamer_youtube:
+      example:
+        channel: https://www.youtube.com/c/LichessDotOrg
+      properties:
+        channel:
+          example: https://www.youtube.com/c/LichessDotOrg
           format: uri
           type: string
     PerfStat_user:
@@ -42571,6 +42807,11 @@ components:
         id:
           type: string
         name:
+          type: string
+    GameJson_swissTour:
+      description: The swiss tournament the game is from
+      properties:
+        id:
           type: string
     GameJson_clock:
       properties:

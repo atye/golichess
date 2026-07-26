@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **UserId** | Pointer to **string** |  | [optional] 
 **Scopes** | Pointer to **string** | Comma-separated list of scopes. Empty string if the token has no scopes. | [optional] 
-**Expires** | Pointer to **int32** | Unix-timestamp in milliseconds or null if the token never expires. | [optional] 
+**Expires** | Pointer to **NullableInt32** | Unix-timestamp in milliseconds or null if the token never expires. | [optional] 
 
 ## Methods
 
@@ -102,6 +102,16 @@ SetExpires sets Expires field to given value.
 
 HasExpires returns a boolean if a field has been set.
 
+### SetExpiresNil
+
+`func (o *TokenTest200ResponseValue) SetExpiresNil(b bool)`
+
+ SetExpiresNil sets the value for Expires to be an explicit nil
+
+### UnsetExpires
+`func (o *TokenTest200ResponseValue) UnsetExpires()`
+
+UnsetExpires ensures that no value is present for Expires, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

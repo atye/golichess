@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 **DaysPerTurn** | Pointer to **int32** |  | [optional] 
 **Analysis** | Pointer to [**[]GameMoveAnalysis**](GameMoveAnalysis.md) |  | [optional] 
 **ArenaTour** | Pointer to [**GameJsonArenaTour**](GameJsonArenaTour.md) |  | [optional] 
-**SwissTour** | Pointer to [**ApiStudyPost200Response**](ApiStudyPost200Response.md) |  | [optional] 
+**SwissTour** | Pointer to [**GameJsonSwissTour**](GameJsonSwissTour.md) |  | [optional] 
 **Clock** | Pointer to [**GameJsonClock**](GameJsonClock.md) |  | [optional] 
 **Clocks** | Pointer to **[]int32** |  | [optional] 
 **Division** | Pointer to [**GameJsonDivision**](GameJsonDivision.md) |  | [optional] 
@@ -453,20 +453,20 @@ HasArenaTour returns a boolean if a field has been set.
 
 ### GetSwissTour
 
-`func (o *GamePgn200Response) GetSwissTour() ApiStudyPost200Response`
+`func (o *GamePgn200Response) GetSwissTour() GameJsonSwissTour`
 
 GetSwissTour returns the SwissTour field if non-nil, zero value otherwise.
 
 ### GetSwissTourOk
 
-`func (o *GamePgn200Response) GetSwissTourOk() (*ApiStudyPost200Response, bool)`
+`func (o *GamePgn200Response) GetSwissTourOk() (*GameJsonSwissTour, bool)`
 
 GetSwissTourOk returns a tuple with the SwissTour field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSwissTour
 
-`func (o *GamePgn200Response) SetSwissTour(v ApiStudyPost200Response)`
+`func (o *GamePgn200Response) SetSwissTour(v GameJsonSwissTour)`
 
 SetSwissTour sets SwissTour field to given value.
 
