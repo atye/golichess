@@ -648,20 +648,20 @@ type SpectatorGameChat = []any
 type GameStatusID int64
 
 const (
-	GameStatusID10 GameStatusID = "10"
-	GameStatusID20 GameStatusID = "20"
-	GameStatusID25 GameStatusID = "25"
-	GameStatusID30 GameStatusID = "30"
-	GameStatusID31 GameStatusID = "31"
-	GameStatusID32 GameStatusID = "32"
-	GameStatusID33 GameStatusID = "33"
-	GameStatusID34 GameStatusID = "34"
-	GameStatusID35 GameStatusID = "35"
-	GameStatusID36 GameStatusID = "36"
-	GameStatusID37 GameStatusID = "37"
-	GameStatusID38 GameStatusID = "38"
-	GameStatusID39 GameStatusID = "39"
-	GameStatusID60 GameStatusID = "60"
+	GameStatusID10 GameStatusID = 10
+	GameStatusID20 GameStatusID = 20
+	GameStatusID25 GameStatusID = 25
+	GameStatusID30 GameStatusID = 30
+	GameStatusID31 GameStatusID = 31
+	GameStatusID32 GameStatusID = 32
+	GameStatusID33 GameStatusID = 33
+	GameStatusID34 GameStatusID = 34
+	GameStatusID35 GameStatusID = 35
+	GameStatusID36 GameStatusID = 36
+	GameStatusID37 GameStatusID = 37
+	GameStatusID38 GameStatusID = 38
+	GameStatusID39 GameStatusID = 39
+	GameStatusID60 GameStatusID = 60
 )
 
 type GameStreamGame struct {
@@ -689,7 +689,7 @@ const (
 	GameSourceAPI        GameSource = "api"
 	GameSourceTournament GameSource = "tournament"
 	GameSourcePosition   GameSource = "position"
-	GameSourceImport_    GameSource = "import"
+	GameSourceImport     GameSource = "import"
 	GameSourceImportlive GameSource = "importlive"
 	GameSourceSimul      GameSource = "simul"
 	GameSourceRelay      GameSource = "relay"
@@ -793,9 +793,9 @@ type Clock struct {
 type ArenaStatus int64
 
 const (
-	ArenaStatus10 ArenaStatus = "10"
-	ArenaStatus20 ArenaStatus = "20"
-	ArenaStatus30 ArenaStatus = "30"
+	ArenaStatus10 ArenaStatus = 10
+	ArenaStatus20 ArenaStatus = 20
+	ArenaStatus30 ArenaStatus = 30
 )
 
 type ArenaPerf struct {
@@ -2065,12 +2065,12 @@ func (u TimelineEntriesItem) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for TimelineEntriesItem.
 func (u *TimelineEntriesItem) UnmarshalJSON(data []byte) error {
 	var disc struct {
-		Type_ string `json:"type"`
+		Type string `json:"type"`
 	}
 	if err := json.Unmarshal(data, &disc); err != nil {
 		return fmt.Errorf("unmarshaling TimelineEntriesItem discriminator: %w", err)
 	}
-	switch disc.Type_ {
+	switch disc.Type {
 	case "blog-post":
 		var v TimelineEntryBlogPost
 		if err := json.Unmarshal(data, &v); err != nil {
@@ -2177,7 +2177,7 @@ func (u *TimelineEntriesItem) UnmarshalJSON(data []byte) error {
 		u.Value = v
 		return nil
 	default:
-		return fmt.Errorf("unknown type value: %q", disc.Type_)
+		return fmt.Errorf("unknown type value: %q", disc.Type)
 	}
 }
 

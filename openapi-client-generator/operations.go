@@ -4,13 +4,15 @@ package openapi_client_generator
 
 import (
 	"context"
-	"fmt"
 	"net/http"
 	"net/url"
 )
 
-// APIUsersStatusParams contains optional parameters for the APIUsersStatus operation.
+// APIUsersStatusParams contains the parameters for the APIUsersStatus operation.
+// Required parameters are value fields; optional parameters are pointers.
 type APIUsersStatusParams struct {
+	// User IDs separated by commas. Up to 100 IDs.
+	Ids string `json:"ids"`
 	// Also return the network signal of the player, when available.
 	// It ranges from 1 (poor connection, lag > 500ms) to 4 (great connection, lag < 150ms)
 	// Defaults to `false` to preserve server resources.
@@ -29,19 +31,15 @@ type APIUsersStatusParams struct {
 // This API is very fast and cheap on lichess side.
 // So you can call it quite often (like once every 5 seconds).
 // Use it to track players and know when they're connected on lichess and playing games.
-func (c *Client) APIUsersStatus(ctx context.Context, ids string, opts ...APIUsersStatusParams) (*[]any, error) {
+func (c *Client) APIUsersStatus(ctx context.Context, params APIUsersStatusParams) (*[]any, error) {
 	path := "/api/users/status"
-
 	queryValues := url.Values{}
-	addQueryParam(queryValues, "ids", ids)
-	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "withSignal", params.WithSignal)
-		addQueryParam(queryValues, "withGameIds", params.WithGameIds)
-		addQueryParam(queryValues, "withGameMetas", params.WithGameMetas)
-	}
+	addQueryParam(queryValues, "ids", "form", true, params.Ids)
+	addQueryParam(queryValues, "withSignal", "form", true, params.WithSignal)
+	addQueryParam(queryValues, "withGameIds", "form", true, params.WithGameIds)
+	addQueryParam(queryValues, "withGameMetas", "form", true, params.WithGameMetas)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result []any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -56,7 +54,6 @@ func (c *Client) APIUsersStatus(ctx context.Context, ids string, opts ...APIUser
 // See <https://lichess.org/player>.
 func (c *Client) Player(ctx context.Context) (*Top10s, error) {
 	path := "/api/player"
-
 	var result Top10s
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -71,9 +68,8 @@ func (c *Client) Player(ctx context.Context) (*Top10s, error) {
 // See <https://lichess.org/player/top/100/bullet>.
 func (c *Client) PlayerTopNbPerfType(ctx context.Context, nb int64, perfType string) (*Leaderboard, error) {
 	path := "/api/player/top/{nb}/{perfType}"
-	path = pathReplace(path, "nb", nb)
-	path = pathReplace(path, "perfType", perfType)
-
+	path = pathReplace(path, "nb", "simple", false, nb)
+	path = pathReplace(path, "perfType", "simple", false, perfType)
 	var result Leaderboard
 	if err := c.do(ctx, "GET", path, nil, &result, "application/vnd.lichess.v3+json"); err != nil {
 		return nil, err
@@ -81,7 +77,8 @@ func (c *Client) PlayerTopNbPerfType(ctx context.Context, nb int64, perfType str
 	return &result, nil
 }
 
-// APIUserParams contains optional parameters for the APIUser operation.
+// APIUserParams contains the parameters for the APIUser operation.
+// Required parameters are value fields; optional parameters are pointers.
 type APIUserParams struct {
 	// Include user trophies
 	Trophies *bool `json:"trophies,omitempty"`
@@ -98,18 +95,18 @@ type APIUserParams struct {
 // Read public data of a user.
 func (c *Client) APIUser(ctx context.Context, username string, opts ...APIUserParams) (*UserExtended, error) {
 	path := "/api/user/{username}"
-	path = pathReplace(path, "username", username)
-
-	queryValues := url.Values{}
+	path = pathReplace(path, "username", "simple", false, username)
+	var params APIUserParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "trophies", params.Trophies)
-		addQueryParam(queryValues, "profile", params.Profile)
-		addQueryParam(queryValues, "rank", params.Rank)
-		addQueryParam(queryValues, "fideId", params.FideID)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "trophies", "form", true, params.Trophies)
+	addQueryParam(queryValues, "profile", "form", true, params.Profile)
+	addQueryParam(queryValues, "rank", "form", true, params.Rank)
+	addQueryParam(queryValues, "fideId", "form", true, params.FideID)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result UserExtended
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -126,8 +123,7 @@ func (c *Client) APIUser(ctx context.Context, username string, opts ...APIUserPa
 // `month` starts at zero (January).
 func (c *Client) APIUserRatingHistory(ctx context.Context, username string) (*RatingHistory, error) {
 	path := "/api/user/{username}/rating-history"
-	path = pathReplace(path, "username", username)
-
+	path = pathReplace(path, "username", "simple", false, username)
 	var result RatingHistory
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -141,9 +137,8 @@ func (c *Client) APIUserRatingHistory(ctx context.Context, username string) (*Ra
 // Similar to the [performance pages on the website](https://lichess.org/@/thibault/perf/bullet).
 func (c *Client) APIUserPerf(ctx context.Context, username string, perf PerfType) (*PerfStat, error) {
 	path := "/api/user/{username}/perf/{perf}"
-	path = pathReplace(path, "username", username)
-	path = pathReplace(path, "perf", perf)
-
+	path = pathReplace(path, "username", "simple", false, username)
+	path = pathReplace(path, "perf", "simple", false, perf)
 	var result PerfStat
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -156,8 +151,7 @@ func (c *Client) APIUserPerf(ctx context.Context, username string, perf PerfType
 // Read data to generate the activity feed of a user.
 func (c *Client) APIUserActivity(ctx context.Context, username string) (*[]UserActivity, error) {
 	path := "/api/user/{username}/activity"
-	path = pathReplace(path, "username", username)
-
+	path = pathReplace(path, "username", "simple", false, username)
 	var result []UserActivity
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -170,7 +164,6 @@ func (c *Client) APIUserActivity(ctx context.Context, username string) (*[]UserA
 // Get the daily Lichess puzzle in JSON format.
 func (c *Client) APIPuzzleDaily(ctx context.Context) (*PuzzleAndGame, error) {
 	path := "/api/puzzle/daily"
-
 	var result PuzzleAndGame
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -183,8 +176,7 @@ func (c *Client) APIPuzzleDaily(ctx context.Context) (*PuzzleAndGame, error) {
 // Get a single Lichess puzzle in JSON format.
 func (c *Client) APIPuzzleID(ctx context.Context, id string) (*PuzzleAndGame, error) {
 	path := "/api/puzzle/{id}"
-	path = pathReplace(path, "id", id)
-
+	path = pathReplace(path, "id", "simple", false, id)
 	var result PuzzleAndGame
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -192,7 +184,8 @@ func (c *Client) APIPuzzleID(ctx context.Context, id string) (*PuzzleAndGame, er
 	return &result, nil
 }
 
-// APIPuzzleNextParams contains optional parameters for the APIPuzzleNext operation.
+// APIPuzzleNextParams contains the parameters for the APIPuzzleNext operation.
+// Required parameters are value fields; optional parameters are pointers.
 type APIPuzzleNextParams struct {
 	// The theme or opening to filter puzzles with.
 	//
@@ -213,16 +206,16 @@ type APIPuzzleNextParams struct {
 // **DO NOT** use this endpoint to enumerate puzzles for mass download. Instead, download the [full public puzzle database](https://database.lichess.org/#puzzles).
 func (c *Client) APIPuzzleNext(ctx context.Context, opts ...APIPuzzleNextParams) (*PuzzleAndGame, error) {
 	path := "/api/puzzle/next"
-
-	queryValues := url.Values{}
+	var params APIPuzzleNextParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "angle", params.Angle)
-		addQueryParam(queryValues, "difficulty", params.Difficulty)
-		addQueryParam(queryValues, "color", params.Color)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "angle", "form", true, params.Angle)
+	addQueryParam(queryValues, "difficulty", "form", true, params.Difficulty)
+	addQueryParam(queryValues, "color", "form", true, params.Color)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result PuzzleAndGame
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -231,7 +224,8 @@ func (c *Client) APIPuzzleNext(ctx context.Context, opts ...APIPuzzleNextParams)
 	return &result, nil
 }
 
-// APIPuzzleBatchSelectParams contains optional parameters for the APIPuzzleBatchSelect operation.
+// APIPuzzleBatchSelectParams contains the parameters for the APIPuzzleBatchSelect operation.
+// Required parameters are value fields; optional parameters are pointers.
 type APIPuzzleBatchSelectParams struct {
 	// The desired puzzle difficulty, relative to the authenticated user puzzle rating, or 1500 if anonymous.
 	Difficulty *string `json:"difficulty,omitempty"`
@@ -251,17 +245,17 @@ type APIPuzzleBatchSelectParams struct {
 // **DO NOT** use this endpoint to enumerate puzzles for mass download. Instead, download the [full public puzzle database](https://database.lichess.org/#puzzles).
 func (c *Client) APIPuzzleBatchSelect(ctx context.Context, angle string, opts ...APIPuzzleBatchSelectParams) (*PuzzleBatchSelect, error) {
 	path := "/api/puzzle/batch/{angle}"
-	path = pathReplace(path, "angle", angle)
-
-	queryValues := url.Values{}
+	path = pathReplace(path, "angle", "simple", false, angle)
+	var params APIPuzzleBatchSelectParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "difficulty", params.Difficulty)
-		addQueryParam(queryValues, "nb", params.Nb)
-		addQueryParam(queryValues, "color", params.Color)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "difficulty", "form", true, params.Difficulty)
+	addQueryParam(queryValues, "nb", "form", true, params.Nb)
+	addQueryParam(queryValues, "color", "form", true, params.Color)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result PuzzleBatchSelect
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -270,7 +264,8 @@ func (c *Client) APIPuzzleBatchSelect(ctx context.Context, angle string, opts ..
 	return &result, nil
 }
 
-// APIPuzzleBatchSolveParams contains optional parameters for the APIPuzzleBatchSolve operation.
+// APIPuzzleBatchSolveParams contains the parameters for the APIPuzzleBatchSolve operation.
+// Required parameters are value fields; optional parameters are pointers.
 type APIPuzzleBatchSolveParams struct {
 	// When > 0, the response includes a new puzzle batch with that many puzzles.
 	//
@@ -284,15 +279,15 @@ type APIPuzzleBatchSolveParams struct {
 // Set puzzles as solved and update ratings.
 func (c *Client) APIPuzzleBatchSolve(ctx context.Context, angle string, body PuzzleBatchSolveRequest, opts ...APIPuzzleBatchSolveParams) (*PuzzleBatchSolveResponse, error) {
 	path := "/api/puzzle/batch/{angle}"
-	path = pathReplace(path, "angle", angle)
-
-	queryValues := url.Values{}
+	path = pathReplace(path, "angle", "simple", false, angle)
+	var params APIPuzzleBatchSolveParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "nb", params.Nb)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "nb", "form", true, params.Nb)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result PuzzleBatchSolveResponse
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
@@ -301,7 +296,8 @@ func (c *Client) APIPuzzleBatchSolve(ctx context.Context, angle string, body Puz
 	return &result, nil
 }
 
-// APIPuzzleActivityParams contains optional parameters for the APIPuzzleActivity operation.
+// APIPuzzleActivityParams contains the parameters for the APIPuzzleActivity operation.
+// Required parameters are value fields; optional parameters are pointers.
 type APIPuzzleActivityParams struct {
 	// How many entries to download. Leave empty to download all activity.
 	Max *int64 `json:"max,omitempty"`
@@ -318,16 +314,16 @@ type APIPuzzleActivityParams struct {
 // We recommend streaming the response, for it can be very long.
 func (c *Client) APIPuzzleActivity(ctx context.Context, opts ...APIPuzzleActivityParams) (*PuzzleActivity, error) {
 	path := "/api/puzzle/activity"
-
-	queryValues := url.Values{}
+	var params APIPuzzleActivityParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "max", params.Max)
-		addQueryParam(queryValues, "before", params.Before)
-		addQueryParam(queryValues, "since", params.Since)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "max", "form", true, params.Max)
+	addQueryParam(queryValues, "before", "form", true, params.Before)
+	addQueryParam(queryValues, "since", "form", true, params.Since)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result PuzzleActivity
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
@@ -341,9 +337,8 @@ func (c *Client) APIPuzzleActivity(ctx context.Context, opts ...APIPuzzleActivit
 // Gets the puzzle IDs of remaining puzzles to re-attempt in JSON format.
 func (c *Client) APIPuzzleReplay(ctx context.Context, days int64, theme string) (*PuzzleReplay, error) {
 	path := "/api/puzzle/replay/{days}/{theme}"
-	path = pathReplace(path, "days", days)
-	path = pathReplace(path, "theme", theme)
-
+	path = pathReplace(path, "days", "simple", false, days)
+	path = pathReplace(path, "theme", "simple", false, theme)
 	var result PuzzleReplay
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, parseanyResponse(err)
@@ -358,8 +353,7 @@ func (c *Client) APIPuzzleReplay(ctx context.Context, days int64, theme string) 
 // Allows re-creating the [improvement/strengths](https://lichess.org/training/dashboard/30/improvementAreas) interfaces.
 func (c *Client) APIPuzzleDashboard(ctx context.Context, days int64) (*PuzzleDashboard, error) {
 	path := "/api/puzzle/dashboard/{days}"
-	path = pathReplace(path, "days", days)
-
+	path = pathReplace(path, "days", "simple", false, days)
 	var result PuzzleDashboard
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -367,7 +361,8 @@ func (c *Client) APIPuzzleDashboard(ctx context.Context, days int64) (*PuzzleDas
 	return &result, nil
 }
 
-// APIStormDashboardParams contains optional parameters for the APIStormDashboard operation.
+// APIStormDashboardParams contains the parameters for the APIStormDashboard operation.
+// Required parameters are value fields; optional parameters are pointers.
 type APIStormDashboardParams struct {
 	// How many days of history to return
 	Days *int64 `json:"days,omitempty"`
@@ -380,15 +375,15 @@ type APIStormDashboardParams struct {
 // Use `?days=0` if you only care about the highscores.
 func (c *Client) APIStormDashboard(ctx context.Context, username string, opts ...APIStormDashboardParams) (*PuzzleStormDashboard, error) {
 	path := "/api/storm/dashboard/{username}"
-	path = pathReplace(path, "username", username)
-
-	queryValues := url.Values{}
+	path = pathReplace(path, "username", "simple", false, username)
+	var params APIStormDashboardParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "days", params.Days)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "days", "form", true, params.Days)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result PuzzleStormDashboard
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -405,7 +400,6 @@ func (c *Client) APIStormDashboard(ctx context.Context, username string, opts ..
 // - <https://lichess.org/racer>
 func (c *Client) RacerPost(ctx context.Context) (*PuzzleRacer, error) {
 	path := "/api/racer"
-
 	var result PuzzleRacer
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -423,8 +417,7 @@ func (c *Client) RacerPost(ctx context.Context) (*PuzzleRacer, error) {
 // for 30 minutes. After that delay, they are permanently deleted.
 func (c *Client) RacerGet(ctx context.Context, id string) (*PuzzleRaceResults, error) {
 	path := "/api/racer/{id}"
-	path = pathReplace(path, "id", id)
-
+	path = pathReplace(path, "id", "simple", false, id)
 	var result PuzzleRaceResults
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, parseNotFoundResponse(err)
@@ -432,7 +425,8 @@ func (c *Client) RacerGet(ctx context.Context, id string) (*PuzzleRaceResults, e
 	return &result, nil
 }
 
-// APIUsersParams contains optional parameters for the APIUsers operation.
+// APIUsersParams contains the parameters for the APIUsers operation.
+// Required parameters are value fields; optional parameters are pointers.
 type APIUsersParams struct {
 	// Include user profile data
 	Profile *bool `json:"profile,omitempty"`
@@ -449,15 +443,15 @@ type APIUsersParams struct {
 // This endpoint is limited to 8,000 users every 10 minutes, and 120,000 every day.
 func (c *Client) APIUsers(ctx context.Context, body string, opts ...APIUsersParams) (*[]User, error) {
 	path := "/api/users"
-
-	queryValues := url.Values{}
+	var params APIUsersParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "profile", params.Profile)
-		addQueryParam(queryValues, "rank", params.Rank)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "profile", "form", true, params.Profile)
+	addQueryParam(queryValues, "rank", "form", true, params.Rank)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result []User
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
@@ -471,7 +465,6 @@ func (c *Client) APIUsers(ctx context.Context, body string, opts ...APIUsersPara
 // Public information about the logged in user.
 func (c *Client) AccountMe(ctx context.Context) (*UserExtended, error) {
 	path := "/api/account"
-
 	var result UserExtended
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -484,7 +477,6 @@ func (c *Client) AccountMe(ctx context.Context) (*UserExtended, error) {
 // Read the email address of the logged in user.
 func (c *Client) AccountEmail(ctx context.Context) (*any, error) {
 	path := "/api/account/email"
-
 	var result any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -499,7 +491,6 @@ func (c *Client) AccountEmail(ctx context.Context) (*any, error) {
 // - <https://github.com/ornicar/lila/blob/master/modules/pref/src/main/Pref.scala>
 func (c *Client) Account(ctx context.Context) (*any, error) {
 	path := "/api/account/preferences"
-
 	var result any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -513,7 +504,6 @@ func (c *Client) Account(ctx context.Context) (*any, error) {
 // - <https://lichess.org/account/kid>
 func (c *Client) AccountKid(ctx context.Context) (*any, error) {
 	path := "/api/account/kid"
-
 	var result any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -521,17 +511,23 @@ func (c *Client) AccountKid(ctx context.Context) (*any, error) {
 	return &result, nil
 }
 
+// AccountKidPostParams contains the parameters for the AccountKidPost operation.
+// Required parameters are value fields; optional parameters are pointers.
+type AccountKidPostParams struct {
+	// Kid mode status
+	V bool `json:"v"`
+}
+
 // AccountKidPost - Set my kid mode status
 //
 // Set the kid mode status of the logged in user.
 // - <https://lichess.org/account/kid>
-func (c *Client) AccountKidPost(ctx context.Context, v bool) (*Ok, error) {
+func (c *Client) AccountKidPost(ctx context.Context, params AccountKidPostParams) (*Ok, error) {
 	path := "/api/account/kid"
-
 	queryValues := url.Values{}
-	addQueryParam(queryValues, "v", v)
+	addQueryParam(queryValues, "v", "form", true, params.V)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
@@ -540,7 +536,8 @@ func (c *Client) AccountKidPost(ctx context.Context, v bool) (*Ok, error) {
 	return &result, nil
 }
 
-// TimelineParams contains optional parameters for the Timeline operation.
+// TimelineParams contains the parameters for the Timeline operation.
+// Required parameters are value fields; optional parameters are pointers.
 type TimelineParams struct {
 	// Show events since this timestamp.
 	Since *int64 `json:"since,omitempty"`
@@ -553,15 +550,15 @@ type TimelineParams struct {
 // Get the timeline events of the logged in user.
 func (c *Client) Timeline(ctx context.Context, opts ...TimelineParams) (*Timeline, error) {
 	path := "/api/timeline"
-
-	queryValues := url.Values{}
+	var params TimelineParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "since", params.Since)
-		addQueryParam(queryValues, "nb", params.Nb)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "since", "form", true, params.Since)
+	addQueryParam(queryValues, "nb", "form", true, params.Nb)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result Timeline
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -570,7 +567,8 @@ func (c *Client) Timeline(ctx context.Context, opts ...TimelineParams) (*Timelin
 	return &result, nil
 }
 
-// GamePgnParams contains optional parameters for the GamePgn operation.
+// GamePgnParams contains the parameters for the GamePgn operation.
+// Required parameters are value fields; optional parameters are pointers.
 type GamePgnParams struct {
 	// Include the PGN moves.
 	Moves *bool `json:"moves,omitempty"`
@@ -612,30 +610,27 @@ type GamePgnParams struct {
 // Ongoing games are delayed by 3 moves, as to prevent cheat bots from using this API.
 func (c *Client) GamePgn(ctx context.Context, gameID string, opts ...GamePgnParams) (*any, error) {
 	path := "/game/export/{gameId}"
-	path = pathReplace(path, "gameId", gameID)
-
-	queryValues := url.Values{}
-	var headers http.Header
+	path = pathReplace(path, "gameId", "simple", false, gameID)
+	var params GamePgnParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "moves", params.Moves)
-		addQueryParam(queryValues, "pgnInJson", params.PgnInJSON)
-		addQueryParam(queryValues, "tags", params.Tags)
-		addQueryParam(queryValues, "clocks", params.Clocks)
-		addQueryParam(queryValues, "evals", params.Evals)
-		addQueryParam(queryValues, "accuracy", params.Accuracy)
-		addQueryParam(queryValues, "opening", params.Opening)
-		addQueryParam(queryValues, "division", params.Division)
-		addQueryParam(queryValues, "literate", params.Literate)
-		addQueryParam(queryValues, "withBookmarked", params.WithBookmarked)
-		headers = make(http.Header)
-		if params.Accept != nil {
-			headers.Set("Accept", fmt.Sprintf("%v", *params.Accept))
-		}
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "moves", "form", true, params.Moves)
+	addQueryParam(queryValues, "pgnInJson", "form", true, params.PgnInJSON)
+	addQueryParam(queryValues, "tags", "form", true, params.Tags)
+	addQueryParam(queryValues, "clocks", "form", true, params.Clocks)
+	addQueryParam(queryValues, "evals", "form", true, params.Evals)
+	addQueryParam(queryValues, "accuracy", "form", true, params.Accuracy)
+	addQueryParam(queryValues, "opening", "form", true, params.Opening)
+	addQueryParam(queryValues, "division", "form", true, params.Division)
+	addQueryParam(queryValues, "literate", "form", true, params.Literate)
+	addQueryParam(queryValues, "withBookmarked", "form", true, params.WithBookmarked)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
+	headers := make(http.Header)
+	setHeader(headers, "Accept", false, params.Accept)
 	var result any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json", headers); err != nil {
 		return nil, err
@@ -650,8 +645,7 @@ func (c *Client) GamePgn(ctx context.Context, gameID string, opts ...GamePgnPara
 // Games also have a private players chat, which only the 2 players can see.
 func (c *Client) GameChatGet(ctx context.Context, gameID string) (*SpectatorGameChat, error) {
 	path := "/api/game/{gameId}/chat"
-	path = pathReplace(path, "gameId", gameID)
-
+	path = pathReplace(path, "gameId", "simple", false, gameID)
 	var result SpectatorGameChat
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
 		return nil, err
@@ -659,7 +653,8 @@ func (c *Client) GameChatGet(ctx context.Context, gameID string) (*SpectatorGame
 	return &result, nil
 }
 
-// APIUserCurrentGameParams contains optional parameters for the APIUserCurrentGame operation.
+// APIUserCurrentGameParams contains the parameters for the APIUserCurrentGame operation.
+// Required parameters are value fields; optional parameters are pointers.
 type APIUserCurrentGameParams struct {
 	// Include the PGN moves.
 	Moves *bool `json:"moves,omitempty"`
@@ -699,29 +694,26 @@ type APIUserCurrentGameParams struct {
 // Ongoing games are delayed by 3 moves, as to prevent cheat bots from using this API.
 func (c *Client) APIUserCurrentGame(ctx context.Context, username string, opts ...APIUserCurrentGameParams) (*any, error) {
 	path := "/api/user/{username}/current-game"
-	path = pathReplace(path, "username", username)
-
-	queryValues := url.Values{}
-	var headers http.Header
+	path = pathReplace(path, "username", "simple", false, username)
+	var params APIUserCurrentGameParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "moves", params.Moves)
-		addQueryParam(queryValues, "pgnInJson", params.PgnInJSON)
-		addQueryParam(queryValues, "tags", params.Tags)
-		addQueryParam(queryValues, "clocks", params.Clocks)
-		addQueryParam(queryValues, "evals", params.Evals)
-		addQueryParam(queryValues, "accuracy", params.Accuracy)
-		addQueryParam(queryValues, "opening", params.Opening)
-		addQueryParam(queryValues, "division", params.Division)
-		addQueryParam(queryValues, "literate", params.Literate)
-		headers = make(http.Header)
-		if params.Accept != nil {
-			headers.Set("Accept", fmt.Sprintf("%v", *params.Accept))
-		}
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "moves", "form", true, params.Moves)
+	addQueryParam(queryValues, "pgnInJson", "form", true, params.PgnInJSON)
+	addQueryParam(queryValues, "tags", "form", true, params.Tags)
+	addQueryParam(queryValues, "clocks", "form", true, params.Clocks)
+	addQueryParam(queryValues, "evals", "form", true, params.Evals)
+	addQueryParam(queryValues, "accuracy", "form", true, params.Accuracy)
+	addQueryParam(queryValues, "opening", "form", true, params.Opening)
+	addQueryParam(queryValues, "division", "form", true, params.Division)
+	addQueryParam(queryValues, "literate", "form", true, params.Literate)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
+	headers := make(http.Header)
+	setHeader(headers, "Accept", false, params.Accept)
 	var result any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json", headers); err != nil {
 		return nil, err
@@ -729,7 +721,8 @@ func (c *Client) APIUserCurrentGame(ctx context.Context, username string, opts .
 	return &result, nil
 }
 
-// APIGamesUserParams contains optional parameters for the APIGamesUser operation.
+// APIGamesUserParams contains the parameters for the APIGamesUser operation.
+// Required parameters are value fields; optional parameters are pointers.
 type APIGamesUserParams struct {
 	// Download games played since this timestamp. Defaults to account creation date.
 	Since *int64 `json:"since,omitempty"`
@@ -804,42 +797,39 @@ type APIGamesUserParams struct {
 //   - Authenticated, downloading your own games: 60 games per second
 func (c *Client) APIGamesUser(ctx context.Context, username string, opts ...APIGamesUserParams) (*any, error) {
 	path := "/api/games/user/{username}"
-	path = pathReplace(path, "username", username)
-
-	queryValues := url.Values{}
-	var headers http.Header
+	path = pathReplace(path, "username", "simple", false, username)
+	var params APIGamesUserParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "since", params.Since)
-		addQueryParam(queryValues, "until", params.Until)
-		addQueryParam(queryValues, "max", params.Max)
-		addQueryParam(queryValues, "vs", params.Vs)
-		addQueryParam(queryValues, "rated", params.Rated)
-		addQueryParam(queryValues, "perfType", params.PerfType)
-		addQueryParam(queryValues, "color", params.Color)
-		addQueryParam(queryValues, "analysed", params.Analysed)
-		addQueryParam(queryValues, "moves", params.Moves)
-		addQueryParam(queryValues, "pgnInJson", params.PgnInJSON)
-		addQueryParam(queryValues, "tags", params.Tags)
-		addQueryParam(queryValues, "clocks", params.Clocks)
-		addQueryParam(queryValues, "evals", params.Evals)
-		addQueryParam(queryValues, "accuracy", params.Accuracy)
-		addQueryParam(queryValues, "opening", params.Opening)
-		addQueryParam(queryValues, "division", params.Division)
-		addQueryParam(queryValues, "ongoing", params.Ongoing)
-		addQueryParam(queryValues, "finished", params.Finished)
-		addQueryParam(queryValues, "literate", params.Literate)
-		addQueryParam(queryValues, "lastFen", params.LastFen)
-		addQueryParam(queryValues, "withBookmarked", params.WithBookmarked)
-		addQueryParam(queryValues, "sort", params.Sort)
-		headers = make(http.Header)
-		if params.Accept != nil {
-			headers.Set("Accept", fmt.Sprintf("%v", *params.Accept))
-		}
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "since", "form", true, params.Since)
+	addQueryParam(queryValues, "until", "form", true, params.Until)
+	addQueryParam(queryValues, "max", "form", true, params.Max)
+	addQueryParam(queryValues, "vs", "form", true, params.Vs)
+	addQueryParam(queryValues, "rated", "form", true, params.Rated)
+	addQueryParam(queryValues, "perfType", "form", true, params.PerfType)
+	addQueryParam(queryValues, "color", "form", true, params.Color)
+	addQueryParam(queryValues, "analysed", "form", true, params.Analysed)
+	addQueryParam(queryValues, "moves", "form", true, params.Moves)
+	addQueryParam(queryValues, "pgnInJson", "form", true, params.PgnInJSON)
+	addQueryParam(queryValues, "tags", "form", true, params.Tags)
+	addQueryParam(queryValues, "clocks", "form", true, params.Clocks)
+	addQueryParam(queryValues, "evals", "form", true, params.Evals)
+	addQueryParam(queryValues, "accuracy", "form", true, params.Accuracy)
+	addQueryParam(queryValues, "opening", "form", true, params.Opening)
+	addQueryParam(queryValues, "division", "form", true, params.Division)
+	addQueryParam(queryValues, "ongoing", "form", true, params.Ongoing)
+	addQueryParam(queryValues, "finished", "form", true, params.Finished)
+	addQueryParam(queryValues, "literate", "form", true, params.Literate)
+	addQueryParam(queryValues, "lastFen", "form", true, params.LastFen)
+	addQueryParam(queryValues, "withBookmarked", "form", true, params.WithBookmarked)
+	addQueryParam(queryValues, "sort", "form", true, params.Sort)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
+	headers := make(http.Header)
+	setHeader(headers, "Accept", false, params.Accept)
 	var result any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson", headers); err != nil {
 		return nil, err
@@ -847,7 +837,8 @@ func (c *Client) APIGamesUser(ctx context.Context, username string, opts ...APIG
 	return &result, nil
 }
 
-// GamesExportIdsParams contains optional parameters for the GamesExportIds operation.
+// GamesExportIdsParams contains the parameters for the GamesExportIds operation.
+// Required parameters are value fields; optional parameters are pointers.
 type GamesExportIdsParams struct {
 	// Include the PGN moves.
 	Moves *bool `json:"moves,omitempty"`
@@ -889,28 +880,25 @@ type GamesExportIdsParams struct {
 // Ongoing games are delayed by 3 moves, as to prevent cheat bots from using this API.
 func (c *Client) GamesExportIds(ctx context.Context, body string, opts ...GamesExportIdsParams) (*any, error) {
 	path := "/api/games/export/_ids"
-
-	queryValues := url.Values{}
-	var headers http.Header
+	var params GamesExportIdsParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "moves", params.Moves)
-		addQueryParam(queryValues, "pgnInJson", params.PgnInJSON)
-		addQueryParam(queryValues, "tags", params.Tags)
-		addQueryParam(queryValues, "clocks", params.Clocks)
-		addQueryParam(queryValues, "evals", params.Evals)
-		addQueryParam(queryValues, "accuracy", params.Accuracy)
-		addQueryParam(queryValues, "opening", params.Opening)
-		addQueryParam(queryValues, "division", params.Division)
-		addQueryParam(queryValues, "literate", params.Literate)
-		headers = make(http.Header)
-		if params.Accept != nil {
-			headers.Set("Accept", fmt.Sprintf("%v", *params.Accept))
-		}
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "moves", "form", true, params.Moves)
+	addQueryParam(queryValues, "pgnInJson", "form", true, params.PgnInJSON)
+	addQueryParam(queryValues, "tags", "form", true, params.Tags)
+	addQueryParam(queryValues, "clocks", "form", true, params.Clocks)
+	addQueryParam(queryValues, "evals", "form", true, params.Evals)
+	addQueryParam(queryValues, "accuracy", "form", true, params.Accuracy)
+	addQueryParam(queryValues, "opening", "form", true, params.Opening)
+	addQueryParam(queryValues, "division", "form", true, params.Division)
+	addQueryParam(queryValues, "literate", "form", true, params.Literate)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
+	headers := make(http.Header)
+	setHeader(headers, "Accept", false, params.Accept)
 	var result any
 	if err := c.do(ctx, "POST", path, body, &result, "application/json", headers); err != nil {
 		return nil, err
@@ -918,7 +906,8 @@ func (c *Client) GamesExportIds(ctx context.Context, body string, opts ...GamesE
 	return &result, nil
 }
 
-// GamesByUsersParams contains optional parameters for the GamesByUsers operation.
+// GamesByUsersParams contains the parameters for the GamesByUsers operation.
+// Required parameters are value fields; optional parameters are pointers.
 type GamesByUsersParams struct {
 	// Include the already started games at the beginning of the stream.
 	WithCurrentGames *bool `json:"withCurrentGames,omitempty"`
@@ -935,14 +924,14 @@ type GamesByUsersParams struct {
 // The method is `POST` so a longer list of IDs can be sent in the request body.
 func (c *Client) GamesByUsers(ctx context.Context, body string, opts ...GamesByUsersParams) (*GameStream, error) {
 	path := "/api/stream/games-by-users"
-
-	queryValues := url.Values{}
+	var params GamesByUsersParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "withCurrentGames", params.WithCurrentGames)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "withCurrentGames", "form", true, params.WithCurrentGames)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result GameStream
 	if err := c.do(ctx, "POST", path, body, &result, "application/x-ndjson"); err != nil {
@@ -960,8 +949,7 @@ func (c *Client) GamesByUsers(ctx context.Context, body string, opts ...GamesByU
 // While the stream is open, it is possible to [add new game IDs to watch](#tag/games/POST/api/stream/games/{streamId}/add).
 func (c *Client) GamesByIds(ctx context.Context, streamID string, body string) (*GameStream, error) {
 	path := "/api/stream/games/{streamId}"
-	path = pathReplace(path, "streamId", streamID)
-
+	path = pathReplace(path, "streamId", "simple", false, streamID)
 	var result GameStream
 	if err := c.do(ctx, "POST", path, body, &result, "application/x-ndjson"); err != nil {
 		return nil, err
@@ -975,8 +963,7 @@ func (c *Client) GamesByIds(ctx context.Context, streamID string, body string) (
 // The stream will immediately outputs the games that already exists, then emit an event each time a game is started or finished.
 func (c *Client) GamesByIdsAdd(ctx context.Context, streamID string, body string) (*Ok, error) {
 	path := "/api/stream/games/{streamId}/add"
-	path = pathReplace(path, "streamId", streamID)
-
+	path = pathReplace(path, "streamId", "simple", false, streamID)
 	var result Ok
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
 		return nil, err
@@ -984,7 +971,8 @@ func (c *Client) GamesByIdsAdd(ctx context.Context, streamID string, body string
 	return &result, nil
 }
 
-// APIAccountPlayingParams contains optional parameters for the APIAccountPlaying operation.
+// APIAccountPlayingParams contains the parameters for the APIAccountPlaying operation.
+// Required parameters are value fields; optional parameters are pointers.
 type APIAccountPlayingParams struct {
 	// Max number of games to fetch
 	Nb *int64 `json:"nb,omitempty"`
@@ -997,14 +985,14 @@ type APIAccountPlayingParams struct {
 // The most urgent games are listed first.
 func (c *Client) APIAccountPlaying(ctx context.Context, opts ...APIAccountPlayingParams) (*any, error) {
 	path := "/api/account/playing"
-
-	queryValues := url.Values{}
+	var params APIAccountPlayingParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "nb", params.Nb)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "nb", "form", true, params.Nb)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -1023,8 +1011,7 @@ func (c *Client) APIAccountPlaying(ctx context.Context, opts ...APIAccountPlayin
 // No more than 8 game streams can be opened at the same time from the same IP address.
 func (c *Client) StreamGame(ctx context.Context, id string) (*MoveStream, error) {
 	path := "/api/stream/game/{id}"
-	path = pathReplace(path, "id", id)
-
+	path = pathReplace(path, "id", "simple", false, id)
 	var result MoveStream
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
 		return nil, parseanyResponse(err)
@@ -1041,7 +1028,6 @@ func (c *Client) StreamGame(ctx context.Context, id string) (*MoveStream, error)
 // [https://lichess.org/analysis/pgn/e4_e5_Nf3_Nc6_Bc4_Bc5_Bxf7+](https://lichess.org/analysis/pgn/e4_e5_Nf3_Nc6_Bc4_Bc5_Bxf7+)
 func (c *Client) GameImport(ctx context.Context, body any) (*any, error) {
 	path := "/api/import"
-
 	var result any
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
 		return nil, err
@@ -1054,7 +1040,6 @@ func (c *Client) GameImport(ctx context.Context, body any) (*any, error) {
 // Download all games imported by you. Games are exported in PGN format.
 func (c *Client) APIImportedGamesUser(ctx context.Context) (*GamePgn, error) {
 	path := "/api/games/export/imports"
-
 	var result GamePgn
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-chess-pgn"); err != nil {
 		return nil, err
@@ -1062,7 +1047,8 @@ func (c *Client) APIImportedGamesUser(ctx context.Context) (*GamePgn, error) {
 	return &result, nil
 }
 
-// APIExportBookmarksParams contains optional parameters for the APIExportBookmarks operation.
+// APIExportBookmarksParams contains the parameters for the APIExportBookmarks operation.
+// Required parameters are value fields; optional parameters are pointers.
 type APIExportBookmarksParams struct {
 	// Download games bookmarked since this timestamp. Defaults to account creation date.
 	Since *int64 `json:"since,omitempty"`
@@ -1113,33 +1099,30 @@ type APIExportBookmarksParams struct {
 // We recommend streaming the response, for it can be very long.
 func (c *Client) APIExportBookmarks(ctx context.Context, opts ...APIExportBookmarksParams) (*any, error) {
 	path := "/api/games/export/bookmarks"
-
-	queryValues := url.Values{}
-	var headers http.Header
+	var params APIExportBookmarksParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "since", params.Since)
-		addQueryParam(queryValues, "until", params.Until)
-		addQueryParam(queryValues, "max", params.Max)
-		addQueryParam(queryValues, "moves", params.Moves)
-		addQueryParam(queryValues, "pgnInJson", params.PgnInJSON)
-		addQueryParam(queryValues, "tags", params.Tags)
-		addQueryParam(queryValues, "clocks", params.Clocks)
-		addQueryParam(queryValues, "evals", params.Evals)
-		addQueryParam(queryValues, "accuracy", params.Accuracy)
-		addQueryParam(queryValues, "opening", params.Opening)
-		addQueryParam(queryValues, "division", params.Division)
-		addQueryParam(queryValues, "literate", params.Literate)
-		addQueryParam(queryValues, "lastFen", params.LastFen)
-		addQueryParam(queryValues, "sort", params.Sort)
-		headers = make(http.Header)
-		if params.Accept != nil {
-			headers.Set("Accept", fmt.Sprintf("%v", *params.Accept))
-		}
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "since", "form", true, params.Since)
+	addQueryParam(queryValues, "until", "form", true, params.Until)
+	addQueryParam(queryValues, "max", "form", true, params.Max)
+	addQueryParam(queryValues, "moves", "form", true, params.Moves)
+	addQueryParam(queryValues, "pgnInJson", "form", true, params.PgnInJSON)
+	addQueryParam(queryValues, "tags", "form", true, params.Tags)
+	addQueryParam(queryValues, "clocks", "form", true, params.Clocks)
+	addQueryParam(queryValues, "evals", "form", true, params.Evals)
+	addQueryParam(queryValues, "accuracy", "form", true, params.Accuracy)
+	addQueryParam(queryValues, "opening", "form", true, params.Opening)
+	addQueryParam(queryValues, "division", "form", true, params.Division)
+	addQueryParam(queryValues, "literate", "form", true, params.Literate)
+	addQueryParam(queryValues, "lastFen", "form", true, params.LastFen)
+	addQueryParam(queryValues, "sort", "form", true, params.Sort)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
+	headers := make(http.Header)
+	setHeader(headers, "Accept", false, params.Accept)
 	var result any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json", headers); err != nil {
 		return nil, err
@@ -1147,7 +1130,8 @@ func (c *Client) APIExportBookmarks(ctx context.Context, opts ...APIExportBookma
 	return &result, nil
 }
 
-// BookmarkToggleParams contains optional parameters for the BookmarkToggle operation.
+// BookmarkToggleParams contains the parameters for the BookmarkToggle operation.
+// Required parameters are value fields; optional parameters are pointers.
 type BookmarkToggleParams struct {
 	// Explicitly set the bookmark instead of toggling it.
 	// `true` adds the bookmark, `false` removes it.
@@ -1162,15 +1146,15 @@ type BookmarkToggleParams struct {
 // Bookmarked games can be downloaded with the [export your bookmarked games](#tag/games/GET/api/games/export/bookmarks) endpoint.
 func (c *Client) BookmarkToggle(ctx context.Context, gameID string, opts ...BookmarkToggleParams) error {
 	path := "/bookmark/{gameId}"
-	path = pathReplace(path, "gameId", gameID)
-
-	queryValues := url.Values{}
+	path = pathReplace(path, "gameId", "simple", false, gameID)
+	var params BookmarkToggleParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "v", params.V)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "v", "form", true, params.V)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	if err := c.do(ctx, "POST", path, nil, nil, "application/json"); err != nil {
 		return err
@@ -1185,7 +1169,6 @@ func (c *Client) BookmarkToggle(ctx context.Context, gameID string, opts ...Book
 // See [lichess.org/tv](https://lichess.org/tv).
 func (c *Client) TvChannels(ctx context.Context) (*any, error) {
 	path := "/api/tv/channels"
-
 	var result any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -1199,7 +1182,6 @@ func (c *Client) TvChannels(ctx context.Context) (*any, error) {
 // Try it with `curl https://lichess.org/api/tv/feed`.
 func (c *Client) TvFeed(ctx context.Context) (*TvFeed, error) {
 	path := "/api/tv/feed"
-
 	var result TvFeed
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
 		return nil, err
@@ -1213,8 +1195,7 @@ func (c *Client) TvFeed(ctx context.Context) (*TvFeed, error) {
 // Try it with `curl https://lichess.org/api/tv/rapid/feed`.
 func (c *Client) TvChannelFeed(ctx context.Context, channel string) (*TvFeed, error) {
 	path := "/api/tv/{channel}/feed"
-	path = pathReplace(path, "channel", channel)
-
+	path = pathReplace(path, "channel", "simple", false, channel)
 	var result TvFeed
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
 		return nil, err
@@ -1222,7 +1203,8 @@ func (c *Client) TvChannelFeed(ctx context.Context, channel string) (*TvFeed, er
 	return &result, nil
 }
 
-// TvChannelGamesParams contains optional parameters for the TvChannelGames operation.
+// TvChannelGamesParams contains the parameters for the TvChannelGames operation.
+// Required parameters are value fields; optional parameters are pointers.
 type TvChannelGamesParams struct {
 	// Number of games to fetch.
 	Nb *int64 `json:"nb,omitempty"`
@@ -1251,26 +1233,23 @@ type TvChannelGamesParams struct {
 // Available in PGN or [ndjson](#description/streaming-with-nd-json) format, depending on the request `Accept` header.
 func (c *Client) TvChannelGames(ctx context.Context, channel string, opts ...TvChannelGamesParams) (*GameJSON, error) {
 	path := "/api/tv/{channel}"
-	path = pathReplace(path, "channel", channel)
-
-	queryValues := url.Values{}
-	var headers http.Header
+	path = pathReplace(path, "channel", "simple", false, channel)
+	var params TvChannelGamesParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "nb", params.Nb)
-		addQueryParam(queryValues, "moves", params.Moves)
-		addQueryParam(queryValues, "pgnInJson", params.PgnInJSON)
-		addQueryParam(queryValues, "tags", params.Tags)
-		addQueryParam(queryValues, "clocks", params.Clocks)
-		addQueryParam(queryValues, "opening", params.Opening)
-		headers = make(http.Header)
-		if params.Accept != nil {
-			headers.Set("Accept", fmt.Sprintf("%v", *params.Accept))
-		}
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "nb", "form", true, params.Nb)
+	addQueryParam(queryValues, "moves", "form", true, params.Moves)
+	addQueryParam(queryValues, "pgnInJson", "form", true, params.PgnInJSON)
+	addQueryParam(queryValues, "tags", "form", true, params.Tags)
+	addQueryParam(queryValues, "clocks", "form", true, params.Clocks)
+	addQueryParam(queryValues, "opening", "form", true, params.Opening)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
+	headers := make(http.Header)
+	setHeader(headers, "Accept", false, params.Accept)
 	var result GameJSON
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson", headers); err != nil {
 		return nil, err
@@ -1284,7 +1263,6 @@ func (c *Client) TvChannelGames(ctx context.Context, channel string, opts ...TvC
 // This API is used to display the [Lichess tournament schedule](https://lichess.org/tournament).
 func (c *Client) APITournament(ctx context.Context) (*ArenaTournaments, error) {
 	path := "/api/tournament"
-
 	var result ArenaTournaments
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -1304,7 +1282,6 @@ func (c *Client) APITournament(ctx context.Context) (*ArenaTournaments, error) {
 //   - Clock time in comparison to tournament length must be reasonable: 3 <= (minutes * 60) / (96 * clockTime + 48 * clockIncrement + 15) <= 150
 func (c *Client) APITournamentPost(ctx context.Context, body any) (*ArenaTournamentFull, error) {
 	path := "/api/tournament"
-
 	var result ArenaTournamentFull
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -1312,7 +1289,8 @@ func (c *Client) APITournamentPost(ctx context.Context, body any) (*ArenaTournam
 	return &result, nil
 }
 
-// TournamentParams contains optional parameters for the Tournament operation.
+// TournamentParams contains the parameters for the Tournament operation.
+// Required parameters are value fields; optional parameters are pointers.
 type TournamentParams struct {
 	// Specify which page of player standings to view.
 	Page *int64 `json:"page,omitempty"`
@@ -1323,15 +1301,15 @@ type TournamentParams struct {
 // Get detailed info about recently finished, current, or upcoming tournament's duels, player standings, and other info.
 func (c *Client) Tournament(ctx context.Context, id string, opts ...TournamentParams) (*ArenaTournamentFull, error) {
 	path := "/api/tournament/{id}"
-	path = pathReplace(path, "id", id)
-
-	queryValues := url.Values{}
+	path = pathReplace(path, "id", "simple", false, id)
+	var params TournamentParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "page", params.Page)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "page", "form", true, params.Page)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result ArenaTournamentFull
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -1351,8 +1329,7 @@ func (c *Client) Tournament(ctx context.Context, id string, opts ...TournamentPa
 //   - Clock time in comparison to tournament length must be reasonable: 3 <= (minutes * 60) / (96 * clockTime + 48 * clockIncrement + 15) <= 150
 func (c *Client) APITournamentUpdate(ctx context.Context, id string, body any) (*ArenaTournamentFull, error) {
 	path := "/api/tournament/{id}"
-	path = pathReplace(path, "id", id)
-
+	path = pathReplace(path, "id", "simple", false, id)
 	var result ArenaTournamentFull
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -1366,8 +1343,7 @@ func (c *Client) APITournamentUpdate(ctx context.Context, id string, body any) (
 // Also unpauses if you had previously [paused](#tag/arena-tournaments/POST/api/tournament/{id}/withdraw) the tournament.
 func (c *Client) APITournamentJoin(ctx context.Context, id string, body *any) (*Ok, error) {
 	path := "/api/tournament/{id}/join"
-	path = pathReplace(path, "id", id)
-
+	path = pathReplace(path, "id", "simple", false, id)
 	var result Ok
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -1381,8 +1357,7 @@ func (c *Client) APITournamentJoin(ctx context.Context, id string, body *any) (*
 // It's possible to join again later. Points and streaks are preserved.
 func (c *Client) APITournamentWithdraw(ctx context.Context, id string) (*Ok, error) {
 	path := "/api/tournament/{id}/withdraw"
-	path = pathReplace(path, "id", id)
-
+	path = pathReplace(path, "id", "simple", false, id)
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -1395,8 +1370,7 @@ func (c *Client) APITournamentWithdraw(ctx context.Context, id string) (*Ok, err
 // Terminate an Arena tournament
 func (c *Client) APITournamentTerminate(ctx context.Context, id string) (*Ok, error) {
 	path := "/api/tournament/{id}/terminate"
-	path = pathReplace(path, "id", id)
-
+	path = pathReplace(path, "id", "simple", false, id)
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -1410,8 +1384,7 @@ func (c *Client) APITournamentTerminate(ctx context.Context, id string) (*Ok, er
 // To update the other attributes of a team battle, use the [tournament update endpoint](#tag/arena-tournaments/POST/api/tournament/{id}).
 func (c *Client) APITournamentTeamBattlePost(ctx context.Context, id string, body any) (*ArenaTournamentFull, error) {
 	path := "/api/tournament/team-battle/{id}"
-	path = pathReplace(path, "id", id)
-
+	path = pathReplace(path, "id", "simple", false, id)
 	var result ArenaTournamentFull
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -1419,7 +1392,8 @@ func (c *Client) APITournamentTeamBattlePost(ctx context.Context, id string, bod
 	return &result, nil
 }
 
-// GamesByTournamentParams contains optional parameters for the GamesByTournament operation.
+// GamesByTournamentParams contains the parameters for the GamesByTournament operation.
+// Required parameters are value fields; optional parameters are pointers.
 type GamesByTournamentParams struct {
 	// Only games of a particular player. Leave empty to fetch games of all players.
 	Player *string `json:"player,omitempty"`
@@ -1460,29 +1434,26 @@ type GamesByTournamentParams struct {
 //   - [OAuth2 authenticated](#description/authentication) request: 30 games per second
 func (c *Client) GamesByTournament(ctx context.Context, id string, opts ...GamesByTournamentParams) (*GameJSON, error) {
 	path := "/api/tournament/{id}/games"
-	path = pathReplace(path, "id", id)
-
-	queryValues := url.Values{}
-	var headers http.Header
+	path = pathReplace(path, "id", "simple", false, id)
+	var params GamesByTournamentParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "player", params.Player)
-		addQueryParam(queryValues, "moves", params.Moves)
-		addQueryParam(queryValues, "pgnInJson", params.PgnInJSON)
-		addQueryParam(queryValues, "tags", params.Tags)
-		addQueryParam(queryValues, "clocks", params.Clocks)
-		addQueryParam(queryValues, "evals", params.Evals)
-		addQueryParam(queryValues, "accuracy", params.Accuracy)
-		addQueryParam(queryValues, "opening", params.Opening)
-		addQueryParam(queryValues, "division", params.Division)
-		headers = make(http.Header)
-		if params.Accept != nil {
-			headers.Set("Accept", fmt.Sprintf("%v", *params.Accept))
-		}
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "player", "form", true, params.Player)
+	addQueryParam(queryValues, "moves", "form", true, params.Moves)
+	addQueryParam(queryValues, "pgnInJson", "form", true, params.PgnInJSON)
+	addQueryParam(queryValues, "tags", "form", true, params.Tags)
+	addQueryParam(queryValues, "clocks", "form", true, params.Clocks)
+	addQueryParam(queryValues, "evals", "form", true, params.Evals)
+	addQueryParam(queryValues, "accuracy", "form", true, params.Accuracy)
+	addQueryParam(queryValues, "opening", "form", true, params.Opening)
+	addQueryParam(queryValues, "division", "form", true, params.Division)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
+	headers := make(http.Header)
+	setHeader(headers, "Accept", false, params.Accept)
 	var result GameJSON
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson", headers); err != nil {
 		return nil, err
@@ -1490,7 +1461,8 @@ func (c *Client) GamesByTournament(ctx context.Context, id string, opts ...Games
 	return &result, nil
 }
 
-// ResultsByTournamentParams contains optional parameters for the ResultsByTournament operation.
+// ResultsByTournamentParams contains the parameters for the ResultsByTournament operation.
+// Required parameters are value fields; optional parameters are pointers.
 type ResultsByTournamentParams struct {
 	// Max number of players to fetch
 	Nb *int64 `json:"nb,omitempty"`
@@ -1508,16 +1480,16 @@ type ResultsByTournamentParams struct {
 // Use on finished tournaments for guaranteed consistency.
 func (c *Client) ResultsByTournament(ctx context.Context, id string, opts ...ResultsByTournamentParams) (*any, error) {
 	path := "/api/tournament/{id}/results"
-	path = pathReplace(path, "id", id)
-
-	queryValues := url.Values{}
+	path = pathReplace(path, "id", "simple", false, id)
+	var params ResultsByTournamentParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "nb", params.Nb)
-		addQueryParam(queryValues, "sheet", params.Sheet)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "nb", "form", true, params.Nb)
+	addQueryParam(queryValues, "sheet", "form", true, params.Sheet)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
@@ -1531,8 +1503,7 @@ func (c *Client) ResultsByTournament(ctx context.Context, id string, opts ...Res
 // Teams of a team battle tournament, with top players, sorted by rank (best first).
 func (c *Client) TeamsByTournament(ctx context.Context, id string) (*any, error) {
 	path := "/api/tournament/{id}/teams"
-	path = pathReplace(path, "id", id)
-
+	path = pathReplace(path, "id", "simple", false, id)
 	var result any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -1540,7 +1511,8 @@ func (c *Client) TeamsByTournament(ctx context.Context, id string) (*any, error)
 	return &result, nil
 }
 
-// APIUserNameTournamentCreatedParams contains optional parameters for the APIUserNameTournamentCreated operation.
+// APIUserNameTournamentCreatedParams contains the parameters for the APIUserNameTournamentCreated operation.
+// Required parameters are value fields; optional parameters are pointers.
 type APIUserNameTournamentCreatedParams struct {
 	// Max number of tournaments to fetch
 	Nb *int64 `json:"nb,omitempty"`
@@ -1561,16 +1533,16 @@ type APIUserNameTournamentCreatedParams struct {
 //   - Authenticated, downloading your own tournaments: 50 tournaments per second
 func (c *Client) APIUserNameTournamentCreated(ctx context.Context, username string, opts ...APIUserNameTournamentCreatedParams) (*ArenaTournament, error) {
 	path := "/api/user/{username}/tournament/created"
-	path = pathReplace(path, "username", username)
-
-	queryValues := url.Values{}
+	path = pathReplace(path, "username", "simple", false, username)
+	var params APIUserNameTournamentCreatedParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "nb", params.Nb)
-		addQueryParam(queryValues, "status", params.Status)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "nb", "form", true, params.Nb)
+	addQueryParam(queryValues, "status", "form", true, params.Status)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result ArenaTournament
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
@@ -1579,7 +1551,8 @@ func (c *Client) APIUserNameTournamentCreated(ctx context.Context, username stri
 	return &result, nil
 }
 
-// APIUserNameTournamentPlayedParams contains optional parameters for the APIUserNameTournamentPlayed operation.
+// APIUserNameTournamentPlayedParams contains the parameters for the APIUserNameTournamentPlayed operation.
+// Required parameters are value fields; optional parameters are pointers.
 type APIUserNameTournamentPlayedParams struct {
 	// Max number of tournaments to fetch
 	Nb *int64 `json:"nb,omitempty"`
@@ -1598,16 +1571,16 @@ type APIUserNameTournamentPlayedParams struct {
 //   - Authenticated, downloading your own tournaments: 50 tournaments per second
 func (c *Client) APIUserNameTournamentPlayed(ctx context.Context, username string, opts ...APIUserNameTournamentPlayedParams) (*ArenaTournamentPlayed, error) {
 	path := "/api/user/{username}/tournament/played"
-	path = pathReplace(path, "username", username)
-
-	queryValues := url.Values{}
+	path = pathReplace(path, "username", "simple", false, username)
+	var params APIUserNameTournamentPlayedParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "nb", params.Nb)
-		addQueryParam(queryValues, "performance", params.Performance)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "nb", "form", true, params.Nb)
+	addQueryParam(queryValues, "performance", "form", true, params.Performance)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result ArenaTournamentPlayed
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
@@ -1626,8 +1599,7 @@ func (c *Client) APIUserNameTournamentPlayed(ctx context.Context, username strin
 //   - 15s and 0+1 variant tournaments cannot be rated
 func (c *Client) APISwissNew(ctx context.Context, teamID string, body any) (*SwissTournament, error) {
 	path := "/api/swiss/new/{teamId}"
-	path = pathReplace(path, "teamId", teamID)
-
+	path = pathReplace(path, "teamId", "simple", false, teamID)
 	var result SwissTournament
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -1640,8 +1612,7 @@ func (c *Client) APISwissNew(ctx context.Context, teamID string, body any) (*Swi
 // Get detailed info about a Swiss tournament.
 func (c *Client) Swiss(ctx context.Context, id string) (*SwissTournament, error) {
 	path := "/api/swiss/{id}"
-	path = pathReplace(path, "id", id)
-
+	path = pathReplace(path, "id", "simple", false, id)
 	var result SwissTournament
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -1658,8 +1629,7 @@ func (c *Client) Swiss(ctx context.Context, id string) (*SwissTournament, error)
 //   - 15s and 0+1 variant tournaments cannot be rated
 func (c *Client) APISwissUpdate(ctx context.Context, id string, body any) (*SwissTournament, error) {
 	path := "/api/swiss/{id}/edit"
-	path = pathReplace(path, "id", id)
-
+	path = pathReplace(path, "id", "simple", false, id)
 	var result SwissTournament
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -1674,8 +1644,7 @@ func (c *Client) APISwissUpdate(ctx context.Context, id string, body any) (*Swis
 // All further rounds will need to be manually scheduled, unless the `roundInterval` field is changed back to automatic scheduling.
 func (c *Client) APISwissScheduleNextRound(ctx context.Context, id string, body any) error {
 	path := "/api/swiss/{id}/schedule-next-round"
-	path = pathReplace(path, "id", id)
-
+	path = pathReplace(path, "id", "simple", false, id)
 	if err := c.do(ctx, "POST", path, body, nil, "application/json"); err != nil {
 		return parseErrorResponse(err)
 	}
@@ -1687,8 +1656,7 @@ func (c *Client) APISwissScheduleNextRound(ctx context.Context, id string, body 
 // Join a Swiss tournament, possibly with a password.
 func (c *Client) APISwissJoin(ctx context.Context, id string, body *any) (*Ok, error) {
 	path := "/api/swiss/{id}/join"
-	path = pathReplace(path, "id", id)
-
+	path = pathReplace(path, "id", "simple", false, id)
 	var result Ok
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -1702,8 +1670,7 @@ func (c *Client) APISwissJoin(ctx context.Context, id string, body *any) (*Ok, e
 // It's possible to join again later. Points are preserved.
 func (c *Client) APISwissWithdraw(ctx context.Context, id string) (*Ok, error) {
 	path := "/api/swiss/{id}/withdraw"
-	path = pathReplace(path, "id", id)
-
+	path = pathReplace(path, "id", "simple", false, id)
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -1716,8 +1683,7 @@ func (c *Client) APISwissWithdraw(ctx context.Context, id string) (*Ok, error) {
 // Terminate a Swiss tournament
 func (c *Client) APISwissTerminate(ctx context.Context, id string) (*Ok, error) {
 	path := "/api/swiss/{id}/terminate"
-	path = pathReplace(path, "id", id)
-
+	path = pathReplace(path, "id", "simple", false, id)
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -1732,8 +1698,7 @@ func (c *Client) APISwissTerminate(ctx context.Context, id string) (*Ok, error) 
 // Example: <https://lichess.org/swiss/j8rtJ5GL.trf>
 func (c *Client) SwissTrf(ctx context.Context, id string) (*string, error) {
 	path := "/swiss/{id}.trf"
-	path = pathReplace(path, "id", id)
-
+	path = pathReplace(path, "id", "simple", false, id)
 	var result string
 	if err := c.do(ctx, "GET", path, nil, &result, "text/plain"); err != nil {
 		return nil, err
@@ -1741,7 +1706,8 @@ func (c *Client) SwissTrf(ctx context.Context, id string) (*string, error) {
 	return &result, nil
 }
 
-// GamesBySwissParams contains optional parameters for the GamesBySwiss operation.
+// GamesBySwissParams contains the parameters for the GamesBySwiss operation.
+// Required parameters are value fields; optional parameters are pointers.
 type GamesBySwissParams struct {
 	// Only the games played by a given player
 	Player *string `json:"player,omitempty"`
@@ -1782,29 +1748,26 @@ type GamesBySwissParams struct {
 //   - [OAuth2 authenticated](#description/authentication) request: 30 games per second
 func (c *Client) GamesBySwiss(ctx context.Context, id string, opts ...GamesBySwissParams) (*GameJSON, error) {
 	path := "/api/swiss/{id}/games"
-	path = pathReplace(path, "id", id)
-
-	queryValues := url.Values{}
-	var headers http.Header
+	path = pathReplace(path, "id", "simple", false, id)
+	var params GamesBySwissParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "player", params.Player)
-		addQueryParam(queryValues, "moves", params.Moves)
-		addQueryParam(queryValues, "pgnInJson", params.PgnInJSON)
-		addQueryParam(queryValues, "tags", params.Tags)
-		addQueryParam(queryValues, "clocks", params.Clocks)
-		addQueryParam(queryValues, "evals", params.Evals)
-		addQueryParam(queryValues, "accuracy", params.Accuracy)
-		addQueryParam(queryValues, "opening", params.Opening)
-		addQueryParam(queryValues, "division", params.Division)
-		headers = make(http.Header)
-		if params.Accept != nil {
-			headers.Set("Accept", fmt.Sprintf("%v", *params.Accept))
-		}
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "player", "form", true, params.Player)
+	addQueryParam(queryValues, "moves", "form", true, params.Moves)
+	addQueryParam(queryValues, "pgnInJson", "form", true, params.PgnInJSON)
+	addQueryParam(queryValues, "tags", "form", true, params.Tags)
+	addQueryParam(queryValues, "clocks", "form", true, params.Clocks)
+	addQueryParam(queryValues, "evals", "form", true, params.Evals)
+	addQueryParam(queryValues, "accuracy", "form", true, params.Accuracy)
+	addQueryParam(queryValues, "opening", "form", true, params.Opening)
+	addQueryParam(queryValues, "division", "form", true, params.Division)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
+	headers := make(http.Header)
+	setHeader(headers, "Accept", false, params.Accept)
 	var result GameJSON
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson", headers); err != nil {
 		return nil, err
@@ -1812,7 +1775,8 @@ func (c *Client) GamesBySwiss(ctx context.Context, id string, opts ...GamesBySwi
 	return &result, nil
 }
 
-// ResultsBySwissParams contains optional parameters for the ResultsBySwiss operation.
+// ResultsBySwissParams contains the parameters for the ResultsBySwiss operation.
+// Required parameters are value fields; optional parameters are pointers.
 type ResultsBySwissParams struct {
 	// Max number of players to fetch
 	Nb *int64 `json:"nb,omitempty"`
@@ -1827,15 +1791,15 @@ type ResultsBySwissParams struct {
 // Use on finished tournaments for guaranteed consistency.
 func (c *Client) ResultsBySwiss(ctx context.Context, id string, opts ...ResultsBySwissParams) (*any, error) {
 	path := "/api/swiss/{id}/results"
-	path = pathReplace(path, "id", id)
-
-	queryValues := url.Values{}
+	path = pathReplace(path, "id", "simple", false, id)
+	var params ResultsBySwissParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "nb", params.Nb)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "nb", "form", true, params.Nb)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
@@ -1844,7 +1808,8 @@ func (c *Client) ResultsBySwiss(ctx context.Context, id string, opts ...ResultsB
 	return &result, nil
 }
 
-// APITeamSwissParams contains optional parameters for the APITeamSwiss operation.
+// APITeamSwissParams contains the parameters for the APITeamSwiss operation.
+// Required parameters are value fields; optional parameters are pointers.
 type APITeamSwissParams struct {
 	// How many tournaments to download.
 	Max *int64 `json:"max,omitempty"`
@@ -1863,18 +1828,18 @@ type APITeamSwissParams struct {
 // Tournaments are streamed as [ndjson](#description/streaming-with-nd-json).
 func (c *Client) APITeamSwiss(ctx context.Context, teamID string, opts ...APITeamSwissParams) (*SwissTournament, error) {
 	path := "/api/team/{teamId}/swiss"
-	path = pathReplace(path, "teamId", teamID)
-
-	queryValues := url.Values{}
+	path = pathReplace(path, "teamId", "simple", false, teamID)
+	var params APITeamSwissParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "max", params.Max)
-		addQueryParam(queryValues, "status", params.Status)
-		addQueryParam(queryValues, "createdBy", params.CreatedBy)
-		addQueryParam(queryValues, "name", params.Name)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "max", "form", true, params.Max)
+	addQueryParam(queryValues, "status", "form", true, params.Status)
+	addQueryParam(queryValues, "createdBy", "form", true, params.CreatedBy)
+	addQueryParam(queryValues, "name", "form", true, params.Name)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result SwissTournament
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
@@ -1883,7 +1848,8 @@ func (c *Client) APITeamSwiss(ctx context.Context, teamID string, opts ...APITea
 	return &result, nil
 }
 
-// StudyChapterPgnParams contains optional parameters for the StudyChapterPgn operation.
+// StudyChapterPgnParams contains the parameters for the StudyChapterPgn operation.
+// Required parameters are value fields; optional parameters are pointers.
 type StudyChapterPgnParams struct {
 	// Include clock comments in the PGN moves, when available.
 	// Example: `2. exd5 { [%clk 1:01:27] } e5 { [%clk 1:01:28] }`
@@ -1906,19 +1872,19 @@ type StudyChapterPgnParams struct {
 // If not, only public (non-unlisted) study chapters are read.
 func (c *Client) StudyChapterPgn(ctx context.Context, studyID string, chapterID string, opts ...StudyChapterPgnParams) (*StudyPgn, error) {
 	path := "/api/study/{studyId}/{chapterId}.pgn"
-	path = pathReplace(path, "studyId", studyID)
-	path = pathReplace(path, "chapterId", chapterID)
-
-	queryValues := url.Values{}
+	path = pathReplace(path, "studyId", "simple", false, studyID)
+	path = pathReplace(path, "chapterId", "simple", false, chapterID)
+	var params StudyChapterPgnParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "clocks", params.Clocks)
-		addQueryParam(queryValues, "comments", params.Comments)
-		addQueryParam(queryValues, "variations", params.Variations)
-		addQueryParam(queryValues, "orientation", params.Orientation)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "clocks", "form", true, params.Clocks)
+	addQueryParam(queryValues, "comments", "form", true, params.Comments)
+	addQueryParam(queryValues, "variations", "form", true, params.Variations)
+	addQueryParam(queryValues, "orientation", "form", true, params.Orientation)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result StudyPgn
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-chess-pgn"); err != nil {
@@ -1927,7 +1893,8 @@ func (c *Client) StudyChapterPgn(ctx context.Context, studyID string, chapterID 
 	return &result, nil
 }
 
-// StudyAllChaptersPgnParams contains optional parameters for the StudyAllChaptersPgn operation.
+// StudyAllChaptersPgnParams contains the parameters for the StudyAllChaptersPgn operation.
+// Required parameters are value fields; optional parameters are pointers.
 type StudyAllChaptersPgnParams struct {
 	// Include clock comments in the PGN moves, when available.
 	// Example: `2. exd5 { [%clk 1:01:27] } e5 { [%clk 1:01:28] }`
@@ -1950,18 +1917,18 @@ type StudyAllChaptersPgnParams struct {
 // If not, only public (non-unlisted) study chapters are read.
 func (c *Client) StudyAllChaptersPgn(ctx context.Context, studyID string, opts ...StudyAllChaptersPgnParams) (*StudyPgn, error) {
 	path := "/api/study/{studyId}.pgn"
-	path = pathReplace(path, "studyId", studyID)
-
-	queryValues := url.Values{}
+	path = pathReplace(path, "studyId", "simple", false, studyID)
+	var params StudyAllChaptersPgnParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "clocks", params.Clocks)
-		addQueryParam(queryValues, "comments", params.Comments)
-		addQueryParam(queryValues, "variations", params.Variations)
-		addQueryParam(queryValues, "orientation", params.Orientation)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "clocks", "form", true, params.Clocks)
+	addQueryParam(queryValues, "comments", "form", true, params.Comments)
+	addQueryParam(queryValues, "variations", "form", true, params.Variations)
+	addQueryParam(queryValues, "orientation", "form", true, params.Orientation)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result StudyPgn
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-chess-pgn"); err != nil {
@@ -1975,8 +1942,7 @@ func (c *Client) StudyAllChaptersPgn(ctx context.Context, studyID string, opts .
 // Only get the study headers, including `Last-Modified`.
 func (c *Client) StudyAllChaptersHead(ctx context.Context, studyID string) error {
 	path := "/api/study/{studyId}.pgn"
-	path = pathReplace(path, "studyId", studyID)
-
+	path = pathReplace(path, "studyId", "simple", false, studyID)
 	if err := c.do(ctx, "HEAD", path, nil, nil, "application/json"); err != nil {
 		return err
 	}
@@ -1989,7 +1955,6 @@ func (c *Client) StudyAllChaptersHead(ctx context.Context, studyID string) error
 // You can make up to 30 new studies per day.
 func (c *Client) APIStudyPost(ctx context.Context, body any) (*any, error) {
 	path := "/api/study"
-
 	var result any
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -2005,8 +1970,7 @@ func (c *Client) APIStudyPost(ctx context.Context, body any) (*any, error) {
 // Note that a study can contain at most 64 chapters.
 func (c *Client) APIStudyImportPgn(ctx context.Context, studyID string, body any) (*StudyImportPgnChapters, error) {
 	path := "/api/study/{studyId}/import-pgn"
-	path = pathReplace(path, "studyId", studyID)
-
+	path = pathReplace(path, "studyId", "simple", false, studyID)
 	var result StudyImportPgnChapters
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -2025,9 +1989,8 @@ func (c *Client) APIStudyImportPgn(ctx context.Context, studyID string, body any
 // The chapter keeps the tags that you don't provide.
 func (c *Client) APIStudyChapterTags(ctx context.Context, studyID string, chapterID string, body any) error {
 	path := "/api/study/{studyId}/{chapterId}/tags"
-	path = pathReplace(path, "studyId", studyID)
-	path = pathReplace(path, "chapterId", chapterID)
-
+	path = pathReplace(path, "studyId", "simple", false, studyID)
+	path = pathReplace(path, "chapterId", "simple", false, chapterID)
 	if err := c.do(ctx, "POST", path, body, nil, "application/json"); err != nil {
 		return parseErrorResponse(err)
 	}
@@ -2040,16 +2003,16 @@ func (c *Client) APIStudyChapterTags(ctx context.Context, studyID string, chapte
 // No tags will be modified.
 func (c *Client) APIStudyChapterMoves(ctx context.Context, studyID string, chapterID string, body any) error {
 	path := "/api/study/{studyId}/{chapterId}/moves"
-	path = pathReplace(path, "studyId", studyID)
-	path = pathReplace(path, "chapterId", chapterID)
-
+	path = pathReplace(path, "studyId", "simple", false, studyID)
+	path = pathReplace(path, "chapterId", "simple", false, chapterID)
 	if err := c.do(ctx, "POST", path, body, nil, "application/json"); err != nil {
 		return parseErrorResponse(err)
 	}
 	return nil
 }
 
-// StudyExportAllPgnParams contains optional parameters for the StudyExportAllPgn operation.
+// StudyExportAllPgnParams contains the parameters for the StudyExportAllPgn operation.
+// Required parameters are value fields; optional parameters are pointers.
 type StudyExportAllPgnParams struct {
 	// Include clock comments in the PGN moves, when available.
 	// Example: `2. exd5 { [%clk 1:01:27] } e5 { [%clk 1:01:28] }`
@@ -2072,18 +2035,18 @@ type StudyExportAllPgnParams struct {
 // If not, only public (non-unlisted) studies are included.
 func (c *Client) StudyExportAllPgn(ctx context.Context, username string, opts ...StudyExportAllPgnParams) (*StudyPgn, error) {
 	path := "/api/study/by/{username}/export.pgn"
-	path = pathReplace(path, "username", username)
-
-	queryValues := url.Values{}
+	path = pathReplace(path, "username", "simple", false, username)
+	var params StudyExportAllPgnParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "clocks", params.Clocks)
-		addQueryParam(queryValues, "comments", params.Comments)
-		addQueryParam(queryValues, "variations", params.Variations)
-		addQueryParam(queryValues, "orientation", params.Orientation)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "clocks", "form", true, params.Clocks)
+	addQueryParam(queryValues, "comments", "form", true, params.Comments)
+	addQueryParam(queryValues, "variations", "form", true, params.Variations)
+	addQueryParam(queryValues, "orientation", "form", true, params.Orientation)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result StudyPgn
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-chess-pgn"); err != nil {
@@ -2100,8 +2063,7 @@ func (c *Client) StudyExportAllPgn(ctx context.Context, username string, opts ..
 // Studies are streamed as [ndjson](#description/streaming-with-nd-json).
 func (c *Client) StudyListMetadata(ctx context.Context, username string) (*StudyMetadata, error) {
 	path := "/api/study/by/{username}"
-	path = pathReplace(path, "username", username)
-
+	path = pathReplace(path, "username", "simple", false, username)
 	var result StudyMetadata
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
 		return nil, err
@@ -2116,16 +2078,16 @@ func (c *Client) StudyListMetadata(ctx context.Context, username string) (*Study
 // an empty one will be automatically created to replace it.
 func (c *Client) APIStudyStudyIDChapterIDDelete(ctx context.Context, studyID string, chapterID string) error {
 	path := "/api/study/{studyId}/{chapterId}"
-	path = pathReplace(path, "studyId", studyID)
-	path = pathReplace(path, "chapterId", chapterID)
-
+	path = pathReplace(path, "studyId", "simple", false, studyID)
+	path = pathReplace(path, "chapterId", "simple", false, chapterID)
 	if err := c.do(ctx, "DELETE", path, nil, nil, "application/json"); err != nil {
 		return err
 	}
 	return nil
 }
 
-// BroadcastsOfficialParams contains optional parameters for the BroadcastsOfficial operation.
+// BroadcastsOfficialParams contains the parameters for the BroadcastsOfficial operation.
+// Required parameters are value fields; optional parameters are pointers.
 type BroadcastsOfficialParams struct {
 	// Max number of broadcasts to fetch
 	Nb *int64 `json:"nb,omitempty"`
@@ -2142,16 +2104,16 @@ type BroadcastsOfficialParams struct {
 // Broadcasts are streamed as [ndjson](#description/streaming-with-nd-json).
 func (c *Client) BroadcastsOfficial(ctx context.Context, opts ...BroadcastsOfficialParams) (*BroadcastWithRounds, error) {
 	path := "/api/broadcast"
-
-	queryValues := url.Values{}
+	var params BroadcastsOfficialParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "nb", params.Nb)
-		addQueryParam(queryValues, "html", params.HTML)
-		addQueryParam(queryValues, "live", params.Live)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "nb", "form", true, params.Nb)
+	addQueryParam(queryValues, "html", "form", true, params.HTML)
+	addQueryParam(queryValues, "live", "form", true, params.Live)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result BroadcastWithRounds
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
@@ -2160,7 +2122,8 @@ func (c *Client) BroadcastsOfficial(ctx context.Context, opts ...BroadcastsOffic
 	return &result, nil
 }
 
-// BroadcastsTopParams contains optional parameters for the BroadcastsTop operation.
+// BroadcastsTopParams contains the parameters for the BroadcastsTop operation.
+// Required parameters are value fields; optional parameters are pointers.
 type BroadcastsTopParams struct {
 	// Which page to fetch. Only page 1 has "active" broadcasts.
 	Page *int64 `json:"page,omitempty"`
@@ -2173,15 +2136,15 @@ type BroadcastsTopParams struct {
 // The same data, in the same order, as can be seen on [https://lichess.org/broadcast](/broadcast).
 func (c *Client) BroadcastsTop(ctx context.Context, opts ...BroadcastsTopParams) (*BroadcastTop, error) {
 	path := "/api/broadcast/top"
-
-	queryValues := url.Values{}
+	var params BroadcastsTopParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "page", params.Page)
-		addQueryParam(queryValues, "html", params.HTML)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "page", "form", true, params.Page)
+	addQueryParam(queryValues, "html", "form", true, params.HTML)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result BroadcastTop
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -2190,7 +2153,8 @@ func (c *Client) BroadcastsTop(ctx context.Context, opts ...BroadcastsTopParams)
 	return &result, nil
 }
 
-// BroadcastsByUserParams contains optional parameters for the BroadcastsByUser operation.
+// BroadcastsByUserParams contains the parameters for the BroadcastsByUser operation.
+// Required parameters are value fields; optional parameters are pointers.
 type BroadcastsByUserParams struct {
 	Page *int64 `json:"page,omitempty"`
 	// Convert the "description" field from markdown to HTML
@@ -2205,16 +2169,16 @@ type BroadcastsByUserParams struct {
 // If you are authenticated as the user whose broadcasts you are requesting, you will also see your private and unlisted broadcasts.
 func (c *Client) BroadcastsByUser(ctx context.Context, username string, opts ...BroadcastsByUserParams) (*any, error) {
 	path := "/api/broadcast/by/{username}"
-	path = pathReplace(path, "username", username)
-
-	queryValues := url.Values{}
+	path = pathReplace(path, "username", "simple", false, username)
+	var params BroadcastsByUserParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "page", params.Page)
-		addQueryParam(queryValues, "html", params.HTML)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "page", "form", true, params.Page)
+	addQueryParam(queryValues, "html", "form", true, params.HTML)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -2223,7 +2187,8 @@ func (c *Client) BroadcastsByUser(ctx context.Context, username string, opts ...
 	return &result, nil
 }
 
-// BroadcastsSearchParams contains optional parameters for the BroadcastsSearch operation.
+// BroadcastsSearchParams contains the parameters for the BroadcastsSearch operation.
+// Required parameters are value fields; optional parameters are pointers.
 type BroadcastsSearchParams struct {
 	// Which page to fetch.
 	Page *int64 `json:"page,omitempty"`
@@ -2236,15 +2201,15 @@ type BroadcastsSearchParams struct {
 // Search across recent official broadcasts.
 func (c *Client) BroadcastsSearch(ctx context.Context, opts ...BroadcastsSearchParams) (*any, error) {
 	path := "/api/broadcast/search"
-
-	queryValues := url.Values{}
+	var params BroadcastsSearchParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "page", params.Page)
-		addQueryParam(queryValues, "q", params.Q)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "page", "form", true, params.Page)
+	addQueryParam(queryValues, "q", "form", true, params.Q)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -2259,7 +2224,6 @@ func (c *Client) BroadcastsSearch(ctx context.Context, opts ...BroadcastsSearchP
 // This endpoint accepts the same form data as the [web form](https://lichess.org/broadcast/new).
 func (c *Client) BroadcastTourCreate(ctx context.Context, body BroadcastForm) (*BroadcastWithRounds, error) {
 	path := "/broadcast/new"
-
 	var result BroadcastWithRounds
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -2272,8 +2236,7 @@ func (c *Client) BroadcastTourCreate(ctx context.Context, body BroadcastForm) (*
 // Get information about a broadcast tournament.
 func (c *Client) BroadcastTourGet(ctx context.Context, broadcastTournamentID string) (*BroadcastWithRoundsAndFullGroup, error) {
 	path := "/api/broadcast/{broadcastTournamentId}"
-	path = pathReplace(path, "broadcastTournamentId", broadcastTournamentID)
-
+	path = pathReplace(path, "broadcastTournamentId", "simple", false, broadcastTournamentID)
 	var result BroadcastWithRoundsAndFullGroup
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -2286,8 +2249,7 @@ func (c *Client) BroadcastTourGet(ctx context.Context, broadcastTournamentID str
 // Get the list of players of a broadcast tournament, if available.
 func (c *Client) BroadcastPlayersGet(ctx context.Context, broadcastTournamentID string) (*[]BroadcastPlayerEntry, error) {
 	path := "/broadcast/{broadcastTournamentId}/players"
-	path = pathReplace(path, "broadcastTournamentId", broadcastTournamentID)
-
+	path = pathReplace(path, "broadcastTournamentId", "simple", false, broadcastTournamentID)
 	var result []BroadcastPlayerEntry
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -2300,9 +2262,8 @@ func (c *Client) BroadcastPlayersGet(ctx context.Context, broadcastTournamentID 
 // Get the details of a specific player and their games from a broadcast tournament.
 func (c *Client) BroadcastPlayerGet(ctx context.Context, broadcastTournamentID string, playerID string) (*BroadcastPlayerEntryWithFideAndGames, error) {
 	path := "/broadcast/{broadcastTournamentId}/players/{playerId}"
-	path = pathReplace(path, "broadcastTournamentId", broadcastTournamentID)
-	path = pathReplace(path, "playerId", playerID)
-
+	path = pathReplace(path, "broadcastTournamentId", "simple", false, broadcastTournamentID)
+	path = pathReplace(path, "playerId", "simple", false, playerID)
 	var result BroadcastPlayerEntryWithFideAndGames
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, parseNotFoundResponse(err)
@@ -2315,8 +2276,7 @@ func (c *Client) BroadcastPlayerGet(ctx context.Context, broadcastTournamentID s
 // Get the team leaderboard of a broadcast tournament, if available.
 func (c *Client) BroadcastTeamLeaderboardGet(ctx context.Context, broadcastTournamentID string) (*[]BroadcastTeamLeaderboardEntry, error) {
 	path := "/broadcast/{broadcastTournamentId}/teams/standings"
-	path = pathReplace(path, "broadcastTournamentId", broadcastTournamentID)
-
+	path = pathReplace(path, "broadcastTournamentId", "simple", false, broadcastTournamentID)
 	var result []BroadcastTeamLeaderboardEntry
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -2331,8 +2291,7 @@ func (c *Client) BroadcastTeamLeaderboardGet(ctx context.Context, broadcastTourn
 // All fields must be populated with data. Missing fields will override the broadcast with empty data.
 func (c *Client) BroadcastTourUpdate(ctx context.Context, broadcastTournamentID string, body BroadcastForm) (*Ok, error) {
 	path := "/broadcast/{broadcastTournamentId}/edit"
-	path = pathReplace(path, "broadcastTournamentId", broadcastTournamentID)
-
+	path = pathReplace(path, "broadcastTournamentId", "simple", false, broadcastTournamentID)
 	var result Ok
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -2348,8 +2307,7 @@ func (c *Client) BroadcastTourUpdate(ctx context.Context, broadcastTournamentID 
 // Choose one between `syncUrl`, `syncUrls`, `syncIds` and `syncUsers`, if it is missing, the broadcast needs to be fed by [pushing PGN to it](#tag/broadcasts/POST/api/broadcast/round/{broadcastRoundId}/push)
 func (c *Client) BroadcastRoundCreate(ctx context.Context, broadcastTournamentID string, body BroadcastRoundForm) (*BroadcastRoundNew, error) {
 	path := "/broadcast/{broadcastTournamentId}/new"
-	path = pathReplace(path, "broadcastTournamentId", broadcastTournamentID)
-
+	path = pathReplace(path, "broadcastTournamentId", "simple", false, broadcastTournamentID)
 	var result BroadcastRoundNew
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -2362,10 +2320,9 @@ func (c *Client) BroadcastRoundCreate(ctx context.Context, broadcastTournamentID
 // Get information about a broadcast round.
 func (c *Client) BroadcastRoundGet(ctx context.Context, broadcastTournamentSlug string, broadcastRoundSlug string, broadcastRoundID string) (*BroadcastRound, error) {
 	path := "/api/broadcast/{broadcastTournamentSlug}/{broadcastRoundSlug}/{broadcastRoundId}"
-	path = pathReplace(path, "broadcastTournamentSlug", broadcastTournamentSlug)
-	path = pathReplace(path, "broadcastRoundSlug", broadcastRoundSlug)
-	path = pathReplace(path, "broadcastRoundId", broadcastRoundID)
-
+	path = pathReplace(path, "broadcastTournamentSlug", "simple", false, broadcastTournamentSlug)
+	path = pathReplace(path, "broadcastRoundSlug", "simple", false, broadcastRoundSlug)
+	path = pathReplace(path, "broadcastRoundId", "simple", false, broadcastRoundID)
 	var result BroadcastRound
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -2373,7 +2330,8 @@ func (c *Client) BroadcastRoundGet(ctx context.Context, broadcastTournamentSlug 
 	return &result, nil
 }
 
-// BroadcastRoundUpdateParams contains optional parameters for the BroadcastRoundUpdate operation.
+// BroadcastRoundUpdateParams contains the parameters for the BroadcastRoundUpdate operation.
+// Required parameters are value fields; optional parameters are pointers.
 type BroadcastRoundUpdateParams struct {
 	// Only update the provided fields, leaving others unchanged
 	Patch *bool `json:"patch,omitempty"`
@@ -2387,15 +2345,15 @@ type BroadcastRoundUpdateParams struct {
 // For instance, if you omit `startDate`, then any pre-existing start date will be removed.
 func (c *Client) BroadcastRoundUpdate(ctx context.Context, broadcastRoundID string, body BroadcastRoundForm, opts ...BroadcastRoundUpdateParams) (*BroadcastRound, error) {
 	path := "/broadcast/round/{broadcastRoundId}/edit"
-	path = pathReplace(path, "broadcastRoundId", broadcastRoundID)
-
-	queryValues := url.Values{}
+	path = pathReplace(path, "broadcastRoundId", "simple", false, broadcastRoundID)
+	var params BroadcastRoundUpdateParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "patch", params.Patch)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "patch", "form", true, params.Patch)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result BroadcastRound
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
@@ -2409,8 +2367,7 @@ func (c *Client) BroadcastRoundUpdate(ctx context.Context, broadcastRoundID stri
 // Remove any games from the broadcast round and reset it to its initial state.
 func (c *Client) BroadcastRoundReset(ctx context.Context, broadcastRoundID string) (*Ok, error) {
 	path := "/api/broadcast/round/{broadcastRoundId}/reset"
-	path = pathReplace(path, "broadcastRoundId", broadcastRoundID)
-
+	path = pathReplace(path, "broadcastRoundId", "simple", false, broadcastRoundID)
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -2424,8 +2381,7 @@ func (c *Client) BroadcastRoundReset(ctx context.Context, broadcastRoundID strin
 // Only for broadcasts without a source URL.
 func (c *Client) BroadcastPush(ctx context.Context, broadcastRoundID string, body string) (*BroadcastPgnPush, error) {
 	path := "/api/broadcast/round/{broadcastRoundId}/push"
-	path = pathReplace(path, "broadcastRoundId", broadcastRoundID)
-
+	path = pathReplace(path, "broadcastRoundId", "simple", false, broadcastRoundID)
 	var result BroadcastPgnPush
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
 		return nil, parseanyResponse(err)
@@ -2433,7 +2389,8 @@ func (c *Client) BroadcastPush(ctx context.Context, broadcastRoundID string, bod
 	return &result, nil
 }
 
-// BroadcastStreamRoundPgnParams contains optional parameters for the BroadcastStreamRoundPgn operation.
+// BroadcastStreamRoundPgnParams contains the parameters for the BroadcastStreamRoundPgn operation.
+// Required parameters are value fields; optional parameters are pointers.
 type BroadcastStreamRoundPgnParams struct {
 	// Include clock comments in the PGN moves, when available.
 	// Example: `2. exd5 { [%clk 1:01:27] } e5 { [%clk 1:01:28] }`
@@ -2452,16 +2409,16 @@ type BroadcastStreamRoundPgnParams struct {
 // and no pollings means no latency, and minimum impact on the server.
 func (c *Client) BroadcastStreamRoundPgn(ctx context.Context, broadcastRoundID string, opts ...BroadcastStreamRoundPgnParams) (*StudyPgn, error) {
 	path := "/api/stream/broadcast/round/{broadcastRoundId}.pgn"
-	path = pathReplace(path, "broadcastRoundId", broadcastRoundID)
-
-	queryValues := url.Values{}
+	path = pathReplace(path, "broadcastRoundId", "simple", false, broadcastRoundID)
+	var params BroadcastStreamRoundPgnParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "clocks", params.Clocks)
-		addQueryParam(queryValues, "comments", params.Comments)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "clocks", "form", true, params.Clocks)
+	addQueryParam(queryValues, "comments", "form", true, params.Comments)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result StudyPgn
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-chess-pgn"); err != nil {
@@ -2470,7 +2427,8 @@ func (c *Client) BroadcastStreamRoundPgn(ctx context.Context, broadcastRoundID s
 	return &result, nil
 }
 
-// BroadcastStreamGroupPgnParams contains optional parameters for the BroadcastStreamGroupPgn operation.
+// BroadcastStreamGroupPgnParams contains the parameters for the BroadcastStreamGroupPgn operation.
+// Required parameters are value fields; optional parameters are pointers.
 type BroadcastStreamGroupPgnParams struct {
 	// Include clock comments in the PGN moves, when available.
 	// Example: `2. exd5 { [%clk 1:01:27] } e5 { [%clk 1:01:28] }`
@@ -2490,16 +2448,16 @@ type BroadcastStreamGroupPgnParams struct {
 // To stream a single round, use [this endpoint instead](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn).
 func (c *Client) BroadcastStreamGroupPgn(ctx context.Context, broadcastGroupID string, opts ...BroadcastStreamGroupPgnParams) (*StudyPgn, error) {
 	path := "/api/stream/broadcast/group/{broadcastGroupId}.pgn"
-	path = pathReplace(path, "broadcastGroupId", broadcastGroupID)
-
-	queryValues := url.Values{}
+	path = pathReplace(path, "broadcastGroupId", "simple", false, broadcastGroupID)
+	var params BroadcastStreamGroupPgnParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "clocks", params.Clocks)
-		addQueryParam(queryValues, "comments", params.Comments)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "clocks", "form", true, params.Clocks)
+	addQueryParam(queryValues, "comments", "form", true, params.Comments)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result StudyPgn
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-chess-pgn"); err != nil {
@@ -2508,7 +2466,8 @@ func (c *Client) BroadcastStreamGroupPgn(ctx context.Context, broadcastGroupID s
 	return &result, nil
 }
 
-// BroadcastRoundPgnParams contains optional parameters for the BroadcastRoundPgn operation.
+// BroadcastRoundPgnParams contains the parameters for the BroadcastRoundPgn operation.
+// Required parameters are value fields; optional parameters are pointers.
 type BroadcastRoundPgnParams struct {
 	// Include clock comments in the PGN moves, when available.
 	// Example: `2. exd5 { [%clk 1:01:27] } e5 { [%clk 1:01:28] }`
@@ -2527,16 +2486,16 @@ type BroadcastRoundPgnParams struct {
 // a new PGN every time a game is updated, in real-time.
 func (c *Client) BroadcastRoundPgn(ctx context.Context, broadcastRoundID string, opts ...BroadcastRoundPgnParams) (*StudyPgn, error) {
 	path := "/api/broadcast/round/{broadcastRoundId}.pgn"
-	path = pathReplace(path, "broadcastRoundId", broadcastRoundID)
-
-	queryValues := url.Values{}
+	path = pathReplace(path, "broadcastRoundId", "simple", false, broadcastRoundID)
+	var params BroadcastRoundPgnParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "clocks", params.Clocks)
-		addQueryParam(queryValues, "comments", params.Comments)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "clocks", "form", true, params.Clocks)
+	addQueryParam(queryValues, "comments", "form", true, params.Comments)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result StudyPgn
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-chess-pgn"); err != nil {
@@ -2545,7 +2504,8 @@ func (c *Client) BroadcastRoundPgn(ctx context.Context, broadcastRoundID string,
 	return &result, nil
 }
 
-// BroadcastAllRoundsPgnParams contains optional parameters for the BroadcastAllRoundsPgn operation.
+// BroadcastAllRoundsPgnParams contains the parameters for the BroadcastAllRoundsPgn operation.
+// Required parameters are value fields; optional parameters are pointers.
 type BroadcastAllRoundsPgnParams struct {
 	// Include clock comments in the PGN moves, when available.
 	// Example: `2. exd5 { [%clk 1:01:27] } e5 { [%clk 1:01:28] }`
@@ -2567,16 +2527,16 @@ type BroadcastAllRoundsPgnParams struct {
 // [group PGN stream](#tag/broadcasts/GET/api/stream/broadcast/group/{broadcastGroupId}.pgn) endpoints instead.
 func (c *Client) BroadcastAllRoundsPgn(ctx context.Context, broadcastTournamentID string, opts ...BroadcastAllRoundsPgnParams) (*StudyPgn, error) {
 	path := "/api/broadcast/{broadcastTournamentId}.pgn"
-	path = pathReplace(path, "broadcastTournamentId", broadcastTournamentID)
-
-	queryValues := url.Values{}
+	path = pathReplace(path, "broadcastTournamentId", "simple", false, broadcastTournamentID)
+	var params BroadcastAllRoundsPgnParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "clocks", params.Clocks)
-		addQueryParam(queryValues, "comments", params.Comments)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "clocks", "form", true, params.Clocks)
+	addQueryParam(queryValues, "comments", "form", true, params.Comments)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result StudyPgn
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-chess-pgn"); err != nil {
@@ -2585,7 +2545,8 @@ func (c *Client) BroadcastAllRoundsPgn(ctx context.Context, broadcastTournamentI
 	return &result, nil
 }
 
-// BroadcastMyRoundsGetParams contains optional parameters for the BroadcastMyRoundsGet operation.
+// BroadcastMyRoundsGetParams contains the parameters for the BroadcastMyRoundsGet operation.
+// Required parameters are value fields; optional parameters are pointers.
 type BroadcastMyRoundsGetParams struct {
 	// How many rounds to get
 	Nb *int64 `json:"nb,omitempty"`
@@ -2599,14 +2560,14 @@ type BroadcastMyRoundsGetParams struct {
 // Rounds are ordered by rank, which is roughly chronological, most recent first, slightly pondered with popularity.
 func (c *Client) BroadcastMyRoundsGet(ctx context.Context, opts ...BroadcastMyRoundsGetParams) (*BroadcastMyRound, error) {
 	path := "/api/broadcast/my-rounds"
-
-	queryValues := url.Values{}
+	var params BroadcastMyRoundsGetParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "nb", params.Nb)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "nb", "form", true, params.Nb)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result BroadcastMyRound
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
@@ -2620,8 +2581,7 @@ func (c *Client) BroadcastMyRoundsGet(ctx context.Context, opts ...BroadcastMyRo
 // Get information about a FIDE player.
 func (c *Client) FidePlayerGet(ctx context.Context, playerID int64) (*FidePlayer, error) {
 	path := "/api/fide/player/{playerId}"
-	path = pathReplace(path, "playerId", playerID)
-
+	path = pathReplace(path, "playerId", "simple", false, playerID)
 	var result FidePlayer
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -2634,8 +2594,7 @@ func (c *Client) FidePlayerGet(ctx context.Context, playerID int64) (*FidePlayer
 // Historical standard, rapid and blitz ratings of a FIDE player
 func (c *Client) FidePlayerRatings(ctx context.Context, playerID int64) (*FidePlayerRatings, error) {
 	path := "/api/fide/player/{playerId}/ratings"
-	path = pathReplace(path, "playerId", playerID)
-
+	path = pathReplace(path, "playerId", "simple", false, playerID)
 	var result FidePlayerRatings
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -2643,16 +2602,22 @@ func (c *Client) FidePlayerRatings(ctx context.Context, playerID int64) (*FidePl
 	return &result, nil
 }
 
+// FidePlayerSearchParams contains the parameters for the FidePlayerSearch operation.
+// Required parameters are value fields; optional parameters are pointers.
+type FidePlayerSearchParams struct {
+	// The search query.
+	Q string `json:"q"`
+}
+
 // FidePlayerSearch - Search FIDE players
 //
 // List of FIDE players search results for a query.
-func (c *Client) FidePlayerSearch(ctx context.Context, q string) (*[]FidePlayer, error) {
+func (c *Client) FidePlayerSearch(ctx context.Context, params FidePlayerSearchParams) (*[]FidePlayer, error) {
 	path := "/api/fide/player"
-
 	queryValues := url.Values{}
-	addQueryParam(queryValues, "q", q)
+	addQueryParam(queryValues, "q", "form", true, params.Q)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result []FidePlayer
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -2669,7 +2634,6 @@ func (c *Client) FidePlayerSearch(ctx context.Context, q string) (*[]FidePlayer,
 // When [authenticated with OAuth2](#description/authentication), the pending list will be populated with your created, but unstarted simuls.
 func (c *Client) APISimul(ctx context.Context) (*any, error) {
 	path := "/api/simul"
-
 	var result any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -2682,8 +2646,7 @@ func (c *Client) APISimul(ctx context.Context) (*any, error) {
 // Public info about a team. Includes the list of publicly visible leaders.
 func (c *Client) TeamShow(ctx context.Context, teamID string) (*Team, error) {
 	path := "/api/team/{teamId}"
-	path = pathReplace(path, "teamId", teamID)
-
+	path = pathReplace(path, "teamId", "simple", false, teamID)
 	var result Team
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -2691,7 +2654,8 @@ func (c *Client) TeamShow(ctx context.Context, teamID string) (*Team, error) {
 	return &result, nil
 }
 
-// TeamAllParams contains optional parameters for the TeamAll operation.
+// TeamAllParams contains the parameters for the TeamAll operation.
+// Required parameters are value fields; optional parameters are pointers.
 type TeamAllParams struct {
 	Page *int64 `json:"page,omitempty"`
 }
@@ -2701,14 +2665,14 @@ type TeamAllParams struct {
 // Paginator of the most popular teams.
 func (c *Client) TeamAll(ctx context.Context, opts ...TeamAllParams) (*TeamPaginatorJSON, error) {
 	path := "/api/team/all"
-
-	queryValues := url.Values{}
+	var params TeamAllParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "page", params.Page)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "page", "form", true, params.Page)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result TeamPaginatorJSON
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -2723,8 +2687,7 @@ func (c *Client) TeamAll(ctx context.Context, opts ...TeamAllParams) (*TeamPagin
 // Teams that hide their player list are only included if you also belong to the team.
 func (c *Client) TeamOfUsername(ctx context.Context, username string) (*[]Team, error) {
 	path := "/api/team/of/{username}"
-	path = pathReplace(path, "username", username)
-
+	path = pathReplace(path, "username", "simple", false, username)
 	var result []Team
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -2732,7 +2695,8 @@ func (c *Client) TeamOfUsername(ctx context.Context, username string) (*[]Team, 
 	return &result, nil
 }
 
-// TeamSearchParams contains optional parameters for the TeamSearch operation.
+// TeamSearchParams contains the parameters for the TeamSearch operation.
+// Required parameters are value fields; optional parameters are pointers.
 type TeamSearchParams struct {
 	Text *string `json:"text,omitempty"`
 	Page *int64  `json:"page,omitempty"`
@@ -2743,15 +2707,15 @@ type TeamSearchParams struct {
 // Paginator of team search results for a keyword.
 func (c *Client) TeamSearch(ctx context.Context, opts ...TeamSearchParams) (*TeamPaginatorJSON, error) {
 	path := "/api/team/search"
-
-	queryValues := url.Values{}
+	var params TeamSearchParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "text", params.Text)
-		addQueryParam(queryValues, "page", params.Page)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "text", "form", true, params.Text)
+	addQueryParam(queryValues, "page", "form", true, params.Page)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result TeamPaginatorJSON
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -2760,7 +2724,8 @@ func (c *Client) TeamSearch(ctx context.Context, opts ...TeamSearchParams) (*Tea
 	return &result, nil
 }
 
-// TeamIDUsersParams contains optional parameters for the TeamIDUsers operation.
+// TeamIDUsersParams contains the parameters for the TeamIDUsers operation.
+// Required parameters are value fields; optional parameters are pointers.
 type TeamIDUsersParams struct {
 	// Full user documents with performance ratings.
 	// This limits the response to 1,000 users.
@@ -2774,15 +2739,15 @@ type TeamIDUsersParams struct {
 // Up to 5,000 users are streamed as [ndjson](#description/streaming-with-nd-json).
 func (c *Client) TeamIDUsers(ctx context.Context, teamID string, opts ...TeamIDUsersParams) (*any, error) {
 	path := "/api/team/{teamId}/users"
-	path = pathReplace(path, "teamId", teamID)
-
-	queryValues := url.Values{}
+	path = pathReplace(path, "teamId", "simple", false, teamID)
+	var params TeamIDUsersParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "full", params.Full)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "full", "form", true, params.Full)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
@@ -2791,7 +2756,8 @@ func (c *Client) TeamIDUsers(ctx context.Context, teamID string, opts ...TeamIDU
 	return &result, nil
 }
 
-// APITeamArenaParams contains optional parameters for the APITeamArena operation.
+// APITeamArenaParams contains the parameters for the APITeamArena operation.
+// Required parameters are value fields; optional parameters are pointers.
 type APITeamArenaParams struct {
 	// How many tournaments to download.
 	Max *int64 `json:"max,omitempty"`
@@ -2810,18 +2776,18 @@ type APITeamArenaParams struct {
 // Tournaments are streamed as [ndjson](#description/streaming-with-nd-json).
 func (c *Client) APITeamArena(ctx context.Context, teamID string, opts ...APITeamArenaParams) (*ArenaTournament, error) {
 	path := "/api/team/{teamId}/arena"
-	path = pathReplace(path, "teamId", teamID)
-
-	queryValues := url.Values{}
+	path = pathReplace(path, "teamId", "simple", false, teamID)
+	var params APITeamArenaParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "max", params.Max)
-		addQueryParam(queryValues, "status", params.Status)
-		addQueryParam(queryValues, "createdBy", params.CreatedBy)
-		addQueryParam(queryValues, "name", params.Name)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "max", "form", true, params.Max)
+	addQueryParam(queryValues, "status", "form", true, params.Status)
+	addQueryParam(queryValues, "createdBy", "form", true, params.CreatedBy)
+	addQueryParam(queryValues, "name", "form", true, params.Name)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result ArenaTournament
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
@@ -2840,8 +2806,7 @@ func (c *Client) APITeamArena(ctx context.Context, teamID string, opts ...APITea
 // `403 Forbidden`.
 func (c *Client) TeamIDJoin(ctx context.Context, teamID string, body *any) (*Ok, error) {
 	path := "/team/{teamId}/join"
-	path = pathReplace(path, "teamId", teamID)
-
+	path = pathReplace(path, "teamId", "simple", false, teamID)
 	var result Ok
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
 		return nil, err
@@ -2855,8 +2820,7 @@ func (c *Client) TeamIDJoin(ctx context.Context, teamID string, body *any) (*Ok,
 // - <https://lichess.org/team>
 func (c *Client) TeamIDQuit(ctx context.Context, teamID string) (*Ok, error) {
 	path := "/team/{teamId}/quit"
-	path = pathReplace(path, "teamId", teamID)
-
+	path = pathReplace(path, "teamId", "simple", false, teamID)
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -2864,7 +2828,8 @@ func (c *Client) TeamIDQuit(ctx context.Context, teamID string) (*Ok, error) {
 	return &result, nil
 }
 
-// TeamRequestsParams contains optional parameters for the TeamRequests operation.
+// TeamRequestsParams contains the parameters for the TeamRequests operation.
+// Required parameters are value fields; optional parameters are pointers.
 type TeamRequestsParams struct {
 	// Get the declined join requests
 	Declined *bool `json:"declined,omitempty"`
@@ -2875,15 +2840,15 @@ type TeamRequestsParams struct {
 // Get pending join requests of your team
 func (c *Client) TeamRequests(ctx context.Context, teamID string, opts ...TeamRequestsParams) (*[]TeamRequestWithUser, error) {
 	path := "/api/team/{teamId}/requests"
-	path = pathReplace(path, "teamId", teamID)
-
-	queryValues := url.Values{}
+	path = pathReplace(path, "teamId", "simple", false, teamID)
+	var params TeamRequestsParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "declined", params.Declined)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "declined", "form", true, params.Declined)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result []TeamRequestWithUser
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -2897,9 +2862,8 @@ func (c *Client) TeamRequests(ctx context.Context, teamID string, opts ...TeamRe
 // Accept someone's request to join your team
 func (c *Client) TeamRequestAccept(ctx context.Context, teamID string, userID string) (*Ok, error) {
 	path := "/api/team/{teamId}/request/{userId}/accept"
-	path = pathReplace(path, "teamId", teamID)
-	path = pathReplace(path, "userId", userID)
-
+	path = pathReplace(path, "teamId", "simple", false, teamID)
+	path = pathReplace(path, "userId", "simple", false, userID)
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -2912,9 +2876,8 @@ func (c *Client) TeamRequestAccept(ctx context.Context, teamID string, userID st
 // Decline someone's request to join your team
 func (c *Client) TeamRequestDecline(ctx context.Context, teamID string, userID string) (*Ok, error) {
 	path := "/api/team/{teamId}/request/{userId}/decline"
-	path = pathReplace(path, "teamId", teamID)
-	path = pathReplace(path, "userId", userID)
-
+	path = pathReplace(path, "teamId", "simple", false, teamID)
+	path = pathReplace(path, "userId", "simple", false, userID)
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -2928,9 +2891,8 @@ func (c *Client) TeamRequestDecline(ctx context.Context, teamID string, userID s
 // - <https://lichess.org/team>
 func (c *Client) TeamIDKickUserID(ctx context.Context, teamID string, userID string) (*Ok, error) {
 	path := "/api/team/{teamId}/kick/{userId}"
-	path = pathReplace(path, "teamId", teamID)
-	path = pathReplace(path, "userId", userID)
-
+	path = pathReplace(path, "teamId", "simple", false, teamID)
+	path = pathReplace(path, "userId", "simple", false, userID)
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -2944,8 +2906,7 @@ func (c *Client) TeamIDKickUserID(ctx context.Context, teamID string, userID str
 // You must be a team leader with the "Messages" permission.
 func (c *Client) TeamIDPmAll(ctx context.Context, teamID string, body any) (*Ok, error) {
 	path := "/team/{teamId}/pm-all"
-	path = pathReplace(path, "teamId", teamID)
-
+	path = pathReplace(path, "teamId", "simple", false, teamID)
 	var result Ok
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -2960,7 +2921,6 @@ func (c *Client) TeamIDPmAll(ctx context.Context, teamID string, body any) (*Ok,
 // So you can call it quite often (like once every 5 seconds).
 func (c *Client) StreamerLive(ctx context.Context) (*[]map[string]any, error) {
 	path := "/api/streamer/live"
-
 	var result []map[string]any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -2968,7 +2928,8 @@ func (c *Client) StreamerLive(ctx context.Context) (*[]map[string]any, error) {
 	return &result, nil
 }
 
-// APICrosstableParams contains optional parameters for the APICrosstable operation.
+// APICrosstableParams contains the parameters for the APICrosstable operation.
+// Required parameters are value fields; optional parameters are pointers.
 type APICrosstableParams struct {
 	// Whether to get the current match data, if any
 	Matchup *bool `json:"matchup,omitempty"`
@@ -2980,16 +2941,16 @@ type APICrosstableParams struct {
 // If the `matchup` flag is provided, and the users are currently playing, also gets the current match game number and scores.
 func (c *Client) APICrosstable(ctx context.Context, user1 string, user2 string, opts ...APICrosstableParams) (*Crosstable, error) {
 	path := "/api/crosstable/{user1}/{user2}"
-	path = pathReplace(path, "user1", user1)
-	path = pathReplace(path, "user2", user2)
-
-	queryValues := url.Values{}
+	path = pathReplace(path, "user1", "simple", false, user1)
+	path = pathReplace(path, "user2", "simple", false, user2)
+	var params APICrosstableParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "matchup", params.Matchup)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "matchup", "form", true, params.Matchup)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result Crosstable
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -2998,8 +2959,11 @@ func (c *Client) APICrosstable(ctx context.Context, user1 string, user2 string, 
 	return &result, nil
 }
 
-// APIPlayerAutocompleteParams contains optional parameters for the APIPlayerAutocomplete operation.
+// APIPlayerAutocompleteParams contains the parameters for the APIPlayerAutocomplete operation.
+// Required parameters are value fields; optional parameters are pointers.
 type APIPlayerAutocompleteParams struct {
+	// The beginning of a username
+	Term string `json:"term"`
 	// If `true`, only checks if the user exists.
 	Exists *bool `json:"exists,omitempty"`
 	// - `false` returns an array of usernames
@@ -3026,24 +2990,20 @@ type APIPlayerAutocompleteParams struct {
 // APIPlayerAutocomplete - Autocomplete usernames
 //
 // Provides autocompletion options for an incomplete username.
-func (c *Client) APIPlayerAutocomplete(ctx context.Context, term string, opts ...APIPlayerAutocompleteParams) (*any, error) {
+func (c *Client) APIPlayerAutocomplete(ctx context.Context, params APIPlayerAutocompleteParams) (*any, error) {
 	path := "/api/player/autocomplete"
-
 	queryValues := url.Values{}
-	addQueryParam(queryValues, "term", term)
-	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "exists", params.Exists)
-		addQueryParam(queryValues, "object", params.Object)
-		addQueryParam(queryValues, "names", params.Names)
-		addQueryParam(queryValues, "friend", params.Friend)
-		addQueryParam(queryValues, "team", params.Team)
-		addQueryParam(queryValues, "tour", params.Tour)
-		addQueryParam(queryValues, "swiss", params.Swiss)
-		addQueryParam(queryValues, "teacher", params.Teacher)
-	}
+	addQueryParam(queryValues, "term", "form", true, params.Term)
+	addQueryParam(queryValues, "exists", "form", true, params.Exists)
+	addQueryParam(queryValues, "object", "form", true, params.Object)
+	addQueryParam(queryValues, "names", "form", true, params.Names)
+	addQueryParam(queryValues, "friend", "form", true, params.Friend)
+	addQueryParam(queryValues, "team", "form", true, params.Team)
+	addQueryParam(queryValues, "tour", "form", true, params.Tour)
+	addQueryParam(queryValues, "swiss", "form", true, params.Swiss)
+	addQueryParam(queryValues, "teacher", "form", true, params.Teacher)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -3057,8 +3017,7 @@ func (c *Client) APIPlayerAutocomplete(ctx context.Context, term string, opts ..
 // Get the private notes that you have added for a user.
 func (c *Client) ReadNote(ctx context.Context, username string) (*[]UserNote, error) {
 	path := "/api/user/{username}/note"
-	path = pathReplace(path, "username", username)
-
+	path = pathReplace(path, "username", "simple", false, username)
 	var result []UserNote
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -3071,8 +3030,7 @@ func (c *Client) ReadNote(ctx context.Context, username string) (*[]UserNote, er
 // Add a private note available only to you about this account.
 func (c *Client) WriteNote(ctx context.Context, username string, body any) (*Ok, error) {
 	path := "/api/user/{username}/note"
-	path = pathReplace(path, "username", username)
-
+	path = pathReplace(path, "username", "simple", false, username)
 	var result Ok
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
 		return nil, err
@@ -3085,7 +3043,6 @@ func (c *Client) WriteNote(ctx context.Context, username string, body any) (*Ok,
 // Users are streamed as [ndjson](#description/streaming-with-nd-json).
 func (c *Client) APIUserFollowing(ctx context.Context) (*UserExtended, error) {
 	path := "/api/rel/following"
-
 	var result UserExtended
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
 		return nil, err
@@ -3098,8 +3055,7 @@ func (c *Client) APIUserFollowing(ctx context.Context) (*UserExtended, error) {
 // Follow a player, adding them to your list of Lichess friends.
 func (c *Client) FollowUser(ctx context.Context, username string) (*Ok, error) {
 	path := "/api/rel/follow/{username}"
-	path = pathReplace(path, "username", username)
-
+	path = pathReplace(path, "username", "simple", false, username)
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -3112,8 +3068,7 @@ func (c *Client) FollowUser(ctx context.Context, username string) (*Ok, error) {
 // Unfollow a player, removing them from your list of Lichess friends.
 func (c *Client) UnfollowUser(ctx context.Context, username string) (*Ok, error) {
 	path := "/api/rel/unfollow/{username}"
-	path = pathReplace(path, "username", username)
-
+	path = pathReplace(path, "username", "simple", false, username)
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -3126,8 +3081,7 @@ func (c *Client) UnfollowUser(ctx context.Context, username string) (*Ok, error)
 // Block a player, adding them to your list of blocked Lichess users.
 func (c *Client) BlockUser(ctx context.Context, username string) (*Ok, error) {
 	path := "/api/rel/block/{username}"
-	path = pathReplace(path, "username", username)
-
+	path = pathReplace(path, "username", "simple", false, username)
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -3140,8 +3094,7 @@ func (c *Client) BlockUser(ctx context.Context, username string) (*Ok, error) {
 // Unblock a player, removing them from your list of blocked Lichess users.
 func (c *Client) UnblockUser(ctx context.Context, username string) (*Ok, error) {
 	path := "/api/rel/unblock/{username}"
-	path = pathReplace(path, "username", username)
-
+	path = pathReplace(path, "username", "simple", false, username)
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -3167,7 +3120,6 @@ func (c *Client) UnblockUser(ctx context.Context, username string) (*Ok, error) 
 // Only one global event stream can be active at a time. When the stream opens, the previous one with the same access token is closed.
 func (c *Client) APIStreamEvent(ctx context.Context) (*any, error) {
 	path := "/api/stream/event"
-
 	var result any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
 		return nil, err
@@ -3199,7 +3151,6 @@ func (c *Client) APIStreamEvent(ctx context.Context) (*any, error) {
 // The response is not streamed, it immediately completes with the seek ID. The seek remains active on the server until it is joined by someone.
 func (c *Client) APIBoardSeek(ctx context.Context, body *any) (*any, error) {
 	path := "/api/board/seek"
-
 	var result any
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -3224,8 +3175,7 @@ func (c *Client) APIBoardSeek(ctx context.Context, body *any) (*any, error) {
 // The server closes the stream when the game ends, or if the game has already ended.
 func (c *Client) BoardGameStream(ctx context.Context, gameID string) (*any, error) {
 	path := "/api/board/game/stream/{gameId}"
-	path = pathReplace(path, "gameId", gameID)
-
+	path = pathReplace(path, "gameId", "simple", false, gameID)
 	var result any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
 		return nil, parseNotFoundResponse(err)
@@ -3233,7 +3183,8 @@ func (c *Client) BoardGameStream(ctx context.Context, gameID string) (*any, erro
 	return &result, nil
 }
 
-// BoardGameMoveParams contains optional parameters for the BoardGameMove operation.
+// BoardGameMoveParams contains the parameters for the BoardGameMove operation.
+// Required parameters are value fields; optional parameters are pointers.
 type BoardGameMoveParams struct {
 	// Whether to offer (or agree to) a draw
 	OfferingDraw *bool `json:"offeringDraw,omitempty"`
@@ -3245,16 +3196,16 @@ type BoardGameMoveParams struct {
 // The move can also contain a draw offer/agreement.
 func (c *Client) BoardGameMove(ctx context.Context, gameID string, move string, opts ...BoardGameMoveParams) (*Ok, error) {
 	path := "/api/board/game/{gameId}/move/{move}"
-	path = pathReplace(path, "gameId", gameID)
-	path = pathReplace(path, "move", move)
-
-	queryValues := url.Values{}
+	path = pathReplace(path, "gameId", "simple", false, gameID)
+	path = pathReplace(path, "move", "simple", false, move)
+	var params BoardGameMoveParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "offeringDraw", params.OfferingDraw)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "offeringDraw", "form", true, params.OfferingDraw)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
@@ -3270,8 +3221,7 @@ func (c *Client) BoardGameMove(ctx context.Context, gameID string, move string, 
 // Games can also have a public spectator chat.
 func (c *Client) BoardGameChatGet(ctx context.Context, gameID string) (*PlayerGameChat, error) {
 	path := "/api/board/game/{gameId}/chat"
-	path = pathReplace(path, "gameId", gameID)
-
+	path = pathReplace(path, "gameId", "simple", false, gameID)
 	var result PlayerGameChat
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
 		return nil, err
@@ -3284,8 +3234,7 @@ func (c *Client) BoardGameChatGet(ctx context.Context, gameID string) (*PlayerGa
 // Post a message to the player or spectator chat, in a game being played with the Board API.
 func (c *Client) BoardGameChatPost(ctx context.Context, gameID string, body any) (*Ok, error) {
 	path := "/api/board/game/{gameId}/chat"
-	path = pathReplace(path, "gameId", gameID)
-
+	path = pathReplace(path, "gameId", "simple", false, gameID)
 	var result Ok
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -3298,8 +3247,7 @@ func (c *Client) BoardGameChatPost(ctx context.Context, gameID string, body any)
 // Abort a game being played with the Board API.
 func (c *Client) BoardGameAbort(ctx context.Context, gameID string) (*Ok, error) {
 	path := "/api/board/game/{gameId}/abort"
-	path = pathReplace(path, "gameId", gameID)
-
+	path = pathReplace(path, "gameId", "simple", false, gameID)
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -3312,8 +3260,7 @@ func (c *Client) BoardGameAbort(ctx context.Context, gameID string) (*Ok, error)
 // Resign a game being played with the Board API.
 func (c *Client) BoardGameResign(ctx context.Context, gameID string) (*Ok, error) {
 	path := "/api/board/game/{gameId}/resign"
-	path = pathReplace(path, "gameId", gameID)
-
+	path = pathReplace(path, "gameId", "simple", false, gameID)
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -3328,9 +3275,8 @@ func (c *Client) BoardGameResign(ctx context.Context, gameID string) (*Ok, error
 // - `no`: Decline a draw offer from the opponent.
 func (c *Client) BoardGameDraw(ctx context.Context, gameID string, accept any) (*Ok, error) {
 	path := "/api/board/game/{gameId}/draw/{accept}"
-	path = pathReplace(path, "gameId", gameID)
-	path = pathReplace(path, "accept", accept)
-
+	path = pathReplace(path, "gameId", "simple", false, gameID)
+	path = pathReplace(path, "accept", "simple", false, accept)
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -3345,9 +3291,8 @@ func (c *Client) BoardGameDraw(ctx context.Context, gameID string, accept any) (
 // - `no`: Decline a takeback offer from the opponent.
 func (c *Client) BoardGameTakeback(ctx context.Context, gameID string, accept any) (*Ok, error) {
 	path := "/api/board/game/{gameId}/takeback/{accept}"
-	path = pathReplace(path, "gameId", gameID)
-	path = pathReplace(path, "accept", accept)
-
+	path = pathReplace(path, "gameId", "simple", false, gameID)
+	path = pathReplace(path, "accept", "simple", false, accept)
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -3360,8 +3305,7 @@ func (c *Client) BoardGameTakeback(ctx context.Context, gameID string, accept an
 // Claim victory when the opponent has left the game for a while.
 func (c *Client) BoardGameClaimVictory(ctx context.Context, gameID string) (*Ok, error) {
 	path := "/api/board/game/{gameId}/claim-victory"
-	path = pathReplace(path, "gameId", gameID)
-
+	path = pathReplace(path, "gameId", "simple", false, gameID)
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -3374,8 +3318,7 @@ func (c *Client) BoardGameClaimVictory(ctx context.Context, gameID string) (*Ok,
 // Claim draw when the opponent has left the game for a while.
 func (c *Client) BoardGameClaimDraw(ctx context.Context, gameID string) (*Ok, error) {
 	path := "/api/board/game/{gameId}/claim-draw"
-	path = pathReplace(path, "gameId", gameID)
-
+	path = pathReplace(path, "gameId", "simple", false, gameID)
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -3389,8 +3332,7 @@ func (c *Client) BoardGameClaimDraw(ctx context.Context, gameID string) (*Ok, er
 // Only available in arena tournaments that allow berserk, and before each player has made a move.
 func (c *Client) BoardGameBerserk(ctx context.Context, gameID string) (*Ok, error) {
 	path := "/api/board/game/{gameId}/berserk"
-	path = pathReplace(path, "gameId", gameID)
-
+	path = pathReplace(path, "gameId", "simple", false, gameID)
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -3398,7 +3340,8 @@ func (c *Client) BoardGameBerserk(ctx context.Context, gameID string) (*Ok, erro
 	return &result, nil
 }
 
-// APIBotOnlineParams contains optional parameters for the APIBotOnline operation.
+// APIBotOnlineParams contains the parameters for the APIBotOnline operation.
+// Required parameters are value fields; optional parameters are pointers.
 type APIBotOnlineParams struct {
 	// How many bot users to fetch
 	Nb *int64 `json:"nb,omitempty"`
@@ -3409,14 +3352,14 @@ type APIBotOnlineParams struct {
 // Stream the [online bot users](https://lichess.org/player/bots), as [ndjson](#description/streaming-with-nd-json).
 func (c *Client) APIBotOnline(ctx context.Context, opts ...APIBotOnlineParams) (*User, error) {
 	path := "/api/bot/online"
-
-	queryValues := url.Values{}
+	var params APIBotOnlineParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "nb", params.Nb)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "nb", "form", true, params.Nb)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result User
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
@@ -3436,7 +3379,6 @@ func (c *Client) APIBotOnline(ctx context.Context, opts ...APIBotOnlineParams) (
 // the `title` field should be set to `BOT`.
 func (c *Client) BotAccountUpgrade(ctx context.Context) (*Ok, error) {
 	path := "/api/bot/account/upgrade"
-
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -3456,8 +3398,7 @@ func (c *Client) BotAccountUpgrade(ctx context.Context) (*Ok, error) {
 // The first line is always of type `gameFull`.
 func (c *Client) BotGameStream(ctx context.Context, gameID string) (*any, error) {
 	path := "/api/bot/game/stream/{gameId}"
-	path = pathReplace(path, "gameId", gameID)
-
+	path = pathReplace(path, "gameId", "simple", false, gameID)
 	var result any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
 		return nil, parseNotFoundResponse(err)
@@ -3465,7 +3406,8 @@ func (c *Client) BotGameStream(ctx context.Context, gameID string) (*any, error)
 	return &result, nil
 }
 
-// BotGameMoveParams contains optional parameters for the BotGameMove operation.
+// BotGameMoveParams contains the parameters for the BotGameMove operation.
+// Required parameters are value fields; optional parameters are pointers.
 type BotGameMoveParams struct {
 	// Whether to offer (or agree to) a draw
 	OfferingDraw *bool `json:"offeringDraw,omitempty"`
@@ -3477,16 +3419,16 @@ type BotGameMoveParams struct {
 // The move can also contain a draw offer/agreement.
 func (c *Client) BotGameMove(ctx context.Context, gameID string, move string, opts ...BotGameMoveParams) (*Ok, error) {
 	path := "/api/bot/game/{gameId}/move/{move}"
-	path = pathReplace(path, "gameId", gameID)
-	path = pathReplace(path, "move", move)
-
-	queryValues := url.Values{}
+	path = pathReplace(path, "gameId", "simple", false, gameID)
+	path = pathReplace(path, "move", "simple", false, move)
+	var params BotGameMoveParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "offeringDraw", params.OfferingDraw)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "offeringDraw", "form", true, params.OfferingDraw)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
@@ -3500,8 +3442,7 @@ func (c *Client) BotGameMove(ctx context.Context, gameID string, move string, op
 // Get the messages posted in the game chat
 func (c *Client) BotGameChatGet(ctx context.Context, gameID string) (*PlayerGameChat, error) {
 	path := "/api/bot/game/{gameId}/chat"
-	path = pathReplace(path, "gameId", gameID)
-
+	path = pathReplace(path, "gameId", "simple", false, gameID)
 	var result PlayerGameChat
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
 		return nil, err
@@ -3514,8 +3455,7 @@ func (c *Client) BotGameChatGet(ctx context.Context, gameID string) (*PlayerGame
 // Post a message to the player or spectator chat, in a game being played with the Bot API.
 func (c *Client) BotGameChat(ctx context.Context, gameID string, body any) (*Ok, error) {
 	path := "/api/bot/game/{gameId}/chat"
-	path = pathReplace(path, "gameId", gameID)
-
+	path = pathReplace(path, "gameId", "simple", false, gameID)
 	var result Ok
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -3528,8 +3468,7 @@ func (c *Client) BotGameChat(ctx context.Context, gameID string, body any) (*Ok,
 // Abort a game being played with the Bot API.
 func (c *Client) BotGameAbort(ctx context.Context, gameID string) (*Ok, error) {
 	path := "/api/bot/game/{gameId}/abort"
-	path = pathReplace(path, "gameId", gameID)
-
+	path = pathReplace(path, "gameId", "simple", false, gameID)
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -3542,8 +3481,7 @@ func (c *Client) BotGameAbort(ctx context.Context, gameID string) (*Ok, error) {
 // Resign a game being played with the Bot API.
 func (c *Client) BotGameResign(ctx context.Context, gameID string) (*Ok, error) {
 	path := "/api/bot/game/{gameId}/resign"
-	path = pathReplace(path, "gameId", gameID)
-
+	path = pathReplace(path, "gameId", "simple", false, gameID)
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -3558,9 +3496,8 @@ func (c *Client) BotGameResign(ctx context.Context, gameID string) (*Ok, error) 
 // - `no`: Decline a draw offer from the opponent.
 func (c *Client) BotGameDraw(ctx context.Context, gameID string, accept any) (*Ok, error) {
 	path := "/api/bot/game/{gameId}/draw/{accept}"
-	path = pathReplace(path, "gameId", gameID)
-	path = pathReplace(path, "accept", accept)
-
+	path = pathReplace(path, "gameId", "simple", false, gameID)
+	path = pathReplace(path, "accept", "simple", false, accept)
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -3575,9 +3512,8 @@ func (c *Client) BotGameDraw(ctx context.Context, gameID string, accept any) (*O
 // - `no`: Decline a takeback offer from the opponent.
 func (c *Client) BotGameTakeback(ctx context.Context, gameID string, accept any) (*Ok, error) {
 	path := "/api/bot/game/{gameId}/takeback/{accept}"
-	path = pathReplace(path, "gameId", gameID)
-	path = pathReplace(path, "accept", accept)
-
+	path = pathReplace(path, "gameId", "simple", false, gameID)
+	path = pathReplace(path, "accept", "simple", false, accept)
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -3590,8 +3526,7 @@ func (c *Client) BotGameTakeback(ctx context.Context, gameID string, accept any)
 // Claim victory when the opponent has left the game for a while.
 func (c *Client) BotGameClaimVictory(ctx context.Context, gameID string) (*Ok, error) {
 	path := "/api/bot/game/{gameId}/claim-victory"
-	path = pathReplace(path, "gameId", gameID)
-
+	path = pathReplace(path, "gameId", "simple", false, gameID)
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -3604,8 +3539,7 @@ func (c *Client) BotGameClaimVictory(ctx context.Context, gameID string) (*Ok, e
 // Claim draw when the opponent has left the game for a while.
 func (c *Client) BotGameClaimDraw(ctx context.Context, gameID string) (*Ok, error) {
 	path := "/api/bot/game/{gameId}/claim-draw"
-	path = pathReplace(path, "gameId", gameID)
-
+	path = pathReplace(path, "gameId", "simple", false, gameID)
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -3618,7 +3552,6 @@ func (c *Client) BotGameClaimDraw(ctx context.Context, gameID string) (*Ok, erro
 // Get a list of challenges created by or targeted at you.
 func (c *Client) ChallengeList(ctx context.Context) (*any, error) {
 	path := "/api/challenge"
-
 	var result any
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -3635,8 +3568,7 @@ func (c *Client) ChallengeList(ctx context.Context) (*any, error) {
 // To prevent that, use the `keepAliveStream` flag described below.
 func (c *Client) ChallengeCreate(ctx context.Context, username string, body *any) (*ChallengeJSON, error) {
 	path := "/api/challenge/{username}"
-	path = pathReplace(path, "username", username)
-
+	path = pathReplace(path, "username", "simple", false, username)
 	var result ChallengeJSON
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -3649,8 +3581,7 @@ func (c *Client) ChallengeCreate(ctx context.Context, username string, body *any
 // Get details about a challenge, even if it has been recently accepted, canceled or declined.
 func (c *Client) ChallengeShow(ctx context.Context, challengeID string) (*ChallengeJSON, error) {
 	path := "/api/challenge/{challengeId}/show"
-	path = pathReplace(path, "challengeId", challengeID)
-
+	path = pathReplace(path, "challengeId", "simple", false, challengeID)
 	var result ChallengeJSON
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -3658,7 +3589,8 @@ func (c *Client) ChallengeShow(ctx context.Context, challengeID string) (*Challe
 	return &result, nil
 }
 
-// ChallengeAcceptParams contains optional parameters for the ChallengeAccept operation.
+// ChallengeAcceptParams contains the parameters for the ChallengeAccept operation.
+// Required parameters are value fields; optional parameters are pointers.
 type ChallengeAcceptParams struct {
 	// Accept challenge as this color (only valid if this is an [open challenge](#challenge/open))
 	Color *string `json:"color,omitempty"`
@@ -3670,15 +3602,15 @@ type ChallengeAcceptParams struct {
 // You should receive a `gameStart` event on the [incoming events stream](#tag/board/GET/api/board/game/stream/{gameId}).
 func (c *Client) ChallengeAccept(ctx context.Context, challengeID string, opts ...ChallengeAcceptParams) (*Ok, error) {
 	path := "/api/challenge/{challengeId}/accept"
-	path = pathReplace(path, "challengeId", challengeID)
-
-	queryValues := url.Values{}
+	path = pathReplace(path, "challengeId", "simple", false, challengeID)
+	var params ChallengeAcceptParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "color", params.Color)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "color", "form", true, params.Color)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
@@ -3692,8 +3624,7 @@ func (c *Client) ChallengeAccept(ctx context.Context, challengeID string, opts .
 // Decline an incoming challenge.
 func (c *Client) ChallengeDecline(ctx context.Context, challengeID string, body *any) (*Ok, error) {
 	path := "/api/challenge/{challengeId}/decline"
-	path = pathReplace(path, "challengeId", challengeID)
-
+	path = pathReplace(path, "challengeId", "simple", false, challengeID)
 	var result Ok
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
 		return nil, parseNotFoundResponse(err)
@@ -3701,7 +3632,8 @@ func (c *Client) ChallengeDecline(ctx context.Context, challengeID string, body 
 	return &result, nil
 }
 
-// ChallengeCancelParams contains optional parameters for the ChallengeCancel operation.
+// ChallengeCancelParams contains the parameters for the ChallengeCancel operation.
+// Required parameters are value fields; optional parameters are pointers.
 type ChallengeCancelParams struct {
 	// Optional `challenge:write` token of the opponent. If set, the game can be canceled even if both players have moved.
 	OpponentToken *string `json:"opponentToken,omitempty"`
@@ -3714,15 +3646,15 @@ type ChallengeCancelParams struct {
 // Works for user challenges and open challenges alike.
 func (c *Client) ChallengeCancel(ctx context.Context, challengeID string, opts ...ChallengeCancelParams) (*Ok, error) {
 	path := "/api/challenge/{challengeId}/cancel"
-	path = pathReplace(path, "challengeId", challengeID)
-
-	queryValues := url.Values{}
+	path = pathReplace(path, "challengeId", "simple", false, challengeID)
+	var params ChallengeCancelParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "opponentToken", params.OpponentToken)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "opponentToken", "form", true, params.OpponentToken)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
@@ -3737,7 +3669,6 @@ func (c *Client) ChallengeCancel(ctx context.Context, challengeID string, opts .
 // You will be notified on the [event stream](#tag/board/GET/api/board/game/stream/{gameId}) that a new game has started.
 func (c *Client) ChallengeAi(ctx context.Context, body any) (*any, error) {
 	path := "/api/challenge/ai"
-
 	var result any
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -3758,7 +3689,6 @@ func (c *Client) ChallengeAi(ctx context.Context, body any) (*any, error) {
 // To directly pair 2 known players, use [this endpoint](#tag/bulk-pairings/GET/api/bulk-pairing) instead.
 func (c *Client) ChallengeOpen(ctx context.Context, body *any) (*ChallengeOpenJSON, error) {
 	path := "/api/challenge/open"
-
 	var result ChallengeOpenJSON
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -3766,8 +3696,11 @@ func (c *Client) ChallengeOpen(ctx context.Context, body *any) (*ChallengeOpenJS
 	return &result, nil
 }
 
-// ChallengeStartClocksParams contains optional parameters for the ChallengeStartClocks operation.
+// ChallengeStartClocksParams contains the parameters for the ChallengeStartClocks operation.
+// Required parameters are value fields; optional parameters are pointers.
 type ChallengeStartClocksParams struct {
+	// OAuth token of a player
+	Token1 string `json:"token1"`
 	// OAuth token of the other player. Omit for AI games that have only one player.
 	Token2 *string `json:"token2,omitempty"`
 }
@@ -3779,18 +3712,14 @@ type ChallengeStartClocksParams struct {
 // If the clocks have already started, the call will have no effect.
 //
 // For AI games with only one player, omit the `token2` parameter.
-func (c *Client) ChallengeStartClocks(ctx context.Context, gameID string, token1 string, opts ...ChallengeStartClocksParams) (*Ok, error) {
+func (c *Client) ChallengeStartClocks(ctx context.Context, gameID string, params ChallengeStartClocksParams) (*Ok, error) {
 	path := "/api/challenge/{gameId}/start-clocks"
-	path = pathReplace(path, "gameId", gameID)
-
+	path = pathReplace(path, "gameId", "simple", false, gameID)
 	queryValues := url.Values{}
-	addQueryParam(queryValues, "token1", token1)
-	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "token2", params.Token2)
-	}
+	addQueryParam(queryValues, "token1", "form", true, params.Token1)
+	addQueryParam(queryValues, "token2", "form", true, params.Token2)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
@@ -3804,7 +3733,6 @@ func (c *Client) ChallengeStartClocks(ctx context.Context, gameID string, token1
 // Get a list of bulk pairings you created.
 func (c *Client) BulkPairingList(ctx context.Context) (*[]BulkPairing, error) {
 	path := "/api/bulk-pairing"
-
 	var result []BulkPairing
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -3837,7 +3765,6 @@ func (c *Client) BulkPairingList(ctx context.Context) (*[]BulkPairing, error) {
 // A successful bulk creation returns a JSON bulk document. Its ID can be used for further operations.
 func (c *Client) BulkPairingCreate(ctx context.Context, body any) (*BulkPairing, error) {
 	path := "/api/bulk-pairing"
-
 	var result BulkPairing
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -3853,8 +3780,7 @@ func (c *Client) BulkPairingCreate(ctx context.Context, body any) (*BulkPairing,
 // If the clocks have already started (`bulk.startClocksAt` is in the past), then this does nothing.
 func (c *Client) BulkPairingStartClocks(ctx context.Context, id string) (*Ok, error) {
 	path := "/api/bulk-pairing/{id}/start-clocks"
-	path = pathReplace(path, "id", id)
-
+	path = pathReplace(path, "id", "simple", false, id)
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
 		return nil, parseNotFoundResponse(err)
@@ -3867,8 +3793,7 @@ func (c *Client) BulkPairingStartClocks(ctx context.Context, id string) (*Ok, er
 // Get a single bulk pairing by its ID.
 func (c *Client) BulkPairingGet(ctx context.Context, id string) (*BulkPairing, error) {
 	path := "/api/bulk-pairing/{id}"
-	path = pathReplace(path, "id", id)
-
+	path = pathReplace(path, "id", "simple", false, id)
 	var result BulkPairing
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, parseNotFoundResponse(err)
@@ -3883,8 +3808,7 @@ func (c *Client) BulkPairingGet(ctx context.Context, id string) (*BulkPairing, e
 // Canceling a bulk pairing does not refund the rate limit cost of that bulk pairing.
 func (c *Client) BulkPairingDelete(ctx context.Context, id string) (*Ok, error) {
 	path := "/api/bulk-pairing/{id}"
-	path = pathReplace(path, "id", id)
-
+	path = pathReplace(path, "id", "simple", false, id)
 	var result Ok
 	if err := c.do(ctx, "DELETE", path, nil, &result, "application/json"); err != nil {
 		return nil, parseNotFoundResponse(err)
@@ -3892,7 +3816,8 @@ func (c *Client) BulkPairingDelete(ctx context.Context, id string) (*Ok, error) 
 	return &result, nil
 }
 
-// BulkPairingIDGamesGetParams contains optional parameters for the BulkPairingIDGamesGet operation.
+// BulkPairingIDGamesGetParams contains the parameters for the BulkPairingIDGamesGet operation.
+// Required parameters are value fields; optional parameters are pointers.
 type BulkPairingIDGamesGetParams struct {
 	// Include the PGN moves.
 	Moves *bool `json:"moves,omitempty"`
@@ -3930,29 +3855,26 @@ type BulkPairingIDGamesGetParams struct {
 // Download games of a bulk in PGN or [ndjson](#description/streaming-with-nd-json) format, depending on the request `Accept` header.
 func (c *Client) BulkPairingIDGamesGet(ctx context.Context, id string, opts ...BulkPairingIDGamesGetParams) (*GameJSON, error) {
 	path := "/api/bulk-pairing/{id}/games"
-	path = pathReplace(path, "id", id)
-
-	queryValues := url.Values{}
-	var headers http.Header
+	path = pathReplace(path, "id", "simple", false, id)
+	var params BulkPairingIDGamesGetParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "moves", params.Moves)
-		addQueryParam(queryValues, "pgnInJson", params.PgnInJSON)
-		addQueryParam(queryValues, "tags", params.Tags)
-		addQueryParam(queryValues, "clocks", params.Clocks)
-		addQueryParam(queryValues, "evals", params.Evals)
-		addQueryParam(queryValues, "accuracy", params.Accuracy)
-		addQueryParam(queryValues, "opening", params.Opening)
-		addQueryParam(queryValues, "division", params.Division)
-		addQueryParam(queryValues, "literate", params.Literate)
-		headers = make(http.Header)
-		if params.Accept != nil {
-			headers.Set("Accept", fmt.Sprintf("%v", *params.Accept))
-		}
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "moves", "form", true, params.Moves)
+	addQueryParam(queryValues, "pgnInJson", "form", true, params.PgnInJSON)
+	addQueryParam(queryValues, "tags", "form", true, params.Tags)
+	addQueryParam(queryValues, "clocks", "form", true, params.Clocks)
+	addQueryParam(queryValues, "evals", "form", true, params.Evals)
+	addQueryParam(queryValues, "accuracy", "form", true, params.Accuracy)
+	addQueryParam(queryValues, "opening", "form", true, params.Opening)
+	addQueryParam(queryValues, "division", "form", true, params.Division)
+	addQueryParam(queryValues, "literate", "form", true, params.Literate)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
+	headers := make(http.Header)
+	setHeader(headers, "Accept", false, params.Accept)
 	var result GameJSON
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson", headers); err != nil {
 		return nil, err
@@ -3965,9 +3887,8 @@ func (c *Client) BulkPairingIDGamesGet(ctx context.Context, id string, opts ...B
 // Add seconds to the opponent's clock. Can be used to create games with time odds.
 func (c *Client) RoundAddTime(ctx context.Context, gameID string, seconds int64) (*Ok, error) {
 	path := "/api/round/{gameId}/add-time/{seconds}"
-	path = pathReplace(path, "gameId", gameID)
-	path = pathReplace(path, "seconds", seconds)
-
+	path = pathReplace(path, "gameId", "simple", false, gameID)
+	path = pathReplace(path, "seconds", "simple", false, seconds)
 	var result Ok
 	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -3982,7 +3903,6 @@ func (c *Client) RoundAddTime(ctx context.Context, gameID string, seconds int64)
 // If a similar token already exists for a user, it is reused. This endpoint is idempotent.
 func (c *Client) AdminChallengeTokens(ctx context.Context, body any) (*map[string]string, error) {
 	path := "/api/token/admin-challenge"
-
 	var result map[string]string
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -3995,8 +3915,7 @@ func (c *Client) AdminChallengeTokens(ctx context.Context, body any) (*map[strin
 // Send a private message to another player.
 func (c *Client) InboxUsername(ctx context.Context, username string, body any) (*Ok, error) {
 	path := "/inbox/{username}"
-	path = pathReplace(path, "username", username)
-
+	path = pathReplace(path, "username", "simple", false, username)
 	var result Ok
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
@@ -4004,8 +3923,11 @@ func (c *Client) InboxUsername(ctx context.Context, username string, body any) (
 	return &result, nil
 }
 
-// APICloudEvalParams contains optional parameters for the APICloudEval operation.
+// APICloudEvalParams contains the parameters for the APICloudEval operation.
+// Required parameters are value fields; optional parameters are pointers.
 type APICloudEvalParams struct {
+	// X-FEN of the position
+	Fen string `json:"fen"`
 	// Number of variations
 	MultiPv *int64 `json:"multiPv,omitempty"`
 	// Variant
@@ -4019,18 +3941,14 @@ type APICloudEvalParams struct {
 // Up to 5 variations may be available. Variants are supported.
 // Use this endpoint to fetch a few positions here and there.
 // If you want to download a lot of positions, [get the full list](https://database.lichess.org/#evals) from our exported database.
-func (c *Client) APICloudEval(ctx context.Context, fen string, opts ...APICloudEvalParams) (*CloudEval, error) {
+func (c *Client) APICloudEval(ctx context.Context, params APICloudEvalParams) (*CloudEval, error) {
 	path := "/api/cloud-eval"
-
 	queryValues := url.Values{}
-	addQueryParam(queryValues, "fen", fen)
-	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "multiPv", params.MultiPv)
-		addQueryParam(queryValues, "variant", params.Variant)
-	}
+	addQueryParam(queryValues, "fen", "form", true, params.Fen)
+	addQueryParam(queryValues, "multiPv", "form", true, params.MultiPv)
+	addQueryParam(queryValues, "variant", "form", true, params.Variant)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result CloudEval
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -4045,7 +3963,6 @@ func (c *Client) APICloudEval(ctx context.Context, fen string, opts ...APICloudE
 // and the credentials required to use them.
 func (c *Client) APIExternalEngineList(ctx context.Context) (*[]ExternalEngine, error) {
 	path := "/api/external-engine"
-
 	var result []ExternalEngine
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -4060,7 +3977,6 @@ func (c *Client) APIExternalEngineList(ctx context.Context) (*[]ExternalEngine, 
 // After registering, the provider should start waiting for analyis requests.
 func (c *Client) APIExternalEngineCreate(ctx context.Context, body ExternalEngineRegistration) (*ExternalEngine, error) {
 	path := "/api/external-engine"
-
 	var result ExternalEngine
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
 		return nil, err
@@ -4073,8 +3989,7 @@ func (c *Client) APIExternalEngineCreate(ctx context.Context, body ExternalEngin
 // Get properties and credentials of an external engine.
 func (c *Client) APIExternalEngineGet(ctx context.Context, id string) (*ExternalEngine, error) {
 	path := "/api/external-engine/{id}"
-	path = pathReplace(path, "id", id)
-
+	path = pathReplace(path, "id", "simple", false, id)
 	var result ExternalEngine
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -4087,8 +4002,7 @@ func (c *Client) APIExternalEngineGet(ctx context.Context, id string) (*External
 // Updates the properties of an external engine.
 func (c *Client) APIExternalEnginePut(ctx context.Context, id string, body ExternalEngineRegistration) (*ExternalEngine, error) {
 	path := "/api/external-engine/{id}"
-	path = pathReplace(path, "id", id)
-
+	path = pathReplace(path, "id", "simple", false, id)
 	var result ExternalEngine
 	if err := c.do(ctx, "PUT", path, body, &result, "application/json"); err != nil {
 		return nil, err
@@ -4101,8 +4015,7 @@ func (c *Client) APIExternalEnginePut(ctx context.Context, id string, body Exter
 // Unregisters an external engine.
 func (c *Client) APIExternalEngineDelete(ctx context.Context, id string) (*Ok, error) {
 	path := "/api/external-engine/{id}"
-	path = pathReplace(path, "id", id)
-
+	path = pathReplace(path, "id", "simple", false, id)
 	var result Ok
 	if err := c.do(ctx, "DELETE", path, nil, &result, "application/json"); err != nil {
 		return nil, err
@@ -4113,6 +4026,7 @@ func (c *Client) APIExternalEngineDelete(ctx context.Context, id string) (*Ok, e
 // APIExternalEngineAnalyse - Analyse with external engine
 //
 // **Endpoint: `https://engine.lichess.ovh/api/external-engine/{id}/analyse`**
+//
 // Request analysis from an external engine.
 // Response content is streamed as [newline delimited JSON](#description/streaming-with-nd-json).
 // The properties are based on the [UCI specification](https://backscattering.de/chess/uci/#engine).
@@ -4120,8 +4034,7 @@ func (c *Client) APIExternalEngineDelete(ctx context.Context, id string) (*Ok, e
 // is reached, or the provider goes away.
 func (c *Client) APIExternalEngineAnalyse(ctx context.Context, id string, body any) (*any, error) {
 	path := "/api/external-engine/{id}/analyse"
-	path = pathReplace(path, "id", id)
-
+	path = pathReplace(path, "id", "simple", false, id)
 	var result any
 	if err := c.do(ctx, "POST", path, body, &result, "application/x-ndjson"); err != nil {
 		return nil, err
@@ -4132,14 +4045,14 @@ func (c *Client) APIExternalEngineAnalyse(ctx context.Context, id string, body a
 // APIExternalEngineAcquire - Acquire analysis request
 //
 // **Endpoint: `https://engine.lichess.ovh/api/external-engine/work`**
+//
 // Wait for an analysis requests to any of the external engines that
-// have been registered with the given `secret`.
+// have been registered with the given `providerSecret`.
 // Uses long polling.
 // After acquiring a request, the provider should immediately
 // [start streaming the results](#tag/external-engine/POST/api/external-engine/work/{id}).
 func (c *Client) APIExternalEngineAcquire(ctx context.Context, body any) (*any, error) {
 	path := "/api/external-engine/work"
-
 	var result any
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
 		return nil, err
@@ -4150,6 +4063,7 @@ func (c *Client) APIExternalEngineAcquire(ctx context.Context, body any) (*any, 
 // APIExternalEngineSubmit - Answer analysis request
 //
 // **Endpoint: `https://engine.lichess.ovh/api/external-engine/work/{id}`**
+//
 // Submit a stream of analysis as [UCI output](https://backscattering.de/chess/uci/#engine-info).
 // * The engine should always be in `UCI_Chess960` mode.
 // * `UCI_AnalyseMode` enabled if available.
@@ -4165,16 +4079,26 @@ func (c *Client) APIExternalEngineAcquire(ctx context.Context, body any) (*any, 
 // the requester has gone away and analysis should be stopped.
 func (c *Client) APIExternalEngineSubmit(ctx context.Context, id string, body string) error {
 	path := "/api/external-engine/work/{id}"
-	path = pathReplace(path, "id", id)
-
+	path = pathReplace(path, "id", "simple", false, id)
 	if err := c.do(ctx, "POST", path, body, nil, "application/json"); err != nil {
 		return err
 	}
 	return nil
 }
 
-// OauthParams contains optional parameters for the Oauth operation.
+// OauthParams contains the parameters for the Oauth operation.
+// Required parameters are value fields; optional parameters are pointers.
 type OauthParams struct {
+	// Must be `code`.
+	ResponseType string `json:"response_type"`
+	// Arbitrary identifier that uniquely identifies your application.
+	ClientID string `json:"client_id"`
+	// The absolute URL that the user should be redirected to with the authorization result.
+	RedirectURI string `json:"redirect_uri"`
+	// Must be `S256`.
+	CodeChallengeMethod string `json:"code_challenge_method"`
+	// Compute `BASE64URL(SHA256(code_verifier))`.
+	CodeChallenge string `json:"code_challenge"`
 	// Space separated list of requested OAuth scopes, if any.
 	Scope *string `json:"scope,omitempty"`
 	// Hint that you want the user to log in with a specific Lichess username.
@@ -4219,23 +4143,19 @@ type OauthParams struct {
 //
 // Finally, continue by using the authorization code to
 // [obtain an access token](#tag/oauth/POST/api/token).
-func (c *Client) Oauth(ctx context.Context, responseType string, clientID string, redirectURI string, codeChallengeMethod string, codeChallenge string, opts ...OauthParams) error {
+func (c *Client) Oauth(ctx context.Context, params OauthParams) error {
 	path := "/oauth"
-
 	queryValues := url.Values{}
-	addQueryParam(queryValues, "response_type", responseType)
-	addQueryParam(queryValues, "client_id", clientID)
-	addQueryParam(queryValues, "redirect_uri", redirectURI)
-	addQueryParam(queryValues, "code_challenge_method", codeChallengeMethod)
-	addQueryParam(queryValues, "code_challenge", codeChallenge)
-	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "scope", params.Scope)
-		addQueryParam(queryValues, "username", params.Username)
-		addQueryParam(queryValues, "state", params.State)
-	}
+	addQueryParam(queryValues, "response_type", "form", true, params.ResponseType)
+	addQueryParam(queryValues, "client_id", "form", true, params.ClientID)
+	addQueryParam(queryValues, "redirect_uri", "form", true, params.RedirectURI)
+	addQueryParam(queryValues, "code_challenge_method", "form", true, params.CodeChallengeMethod)
+	addQueryParam(queryValues, "code_challenge", "form", true, params.CodeChallenge)
+	addQueryParam(queryValues, "scope", "form", true, params.Scope)
+	addQueryParam(queryValues, "username", "form", true, params.Username)
+	addQueryParam(queryValues, "state", "form", true, params.State)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	if err := c.do(ctx, "GET", path, nil, nil, "application/json"); err != nil {
 		return err
@@ -4248,7 +4168,6 @@ func (c *Client) Oauth(ctx context.Context, responseType string, clientID string
 // OAuth2 token endpoint. Exchanges an authorization code for an access token.
 func (c *Client) APIToken(ctx context.Context, body any) (*any, error) {
 	path := "/api/token"
-
 	var result any
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
 		return nil, parseOAuthErrorResponse(err)
@@ -4261,7 +4180,6 @@ func (c *Client) APIToken(ctx context.Context, body any) (*any, error) {
 // Revokes the access token sent as Bearer for this request.
 func (c *Client) APITokenDelete(ctx context.Context) error {
 	path := "/api/token"
-
 	if err := c.do(ctx, "DELETE", path, nil, nil, "application/json"); err != nil {
 		return err
 	}
@@ -4276,7 +4194,6 @@ func (c *Client) APITokenDelete(ctx context.Context) error {
 // The method is `POST` so a longer list of tokens can be sent in the request body.
 func (c *Client) TokenTest(ctx context.Context, body string) (*map[string]any, error) {
 	path := "/api/token/test"
-
 	var result map[string]any
 	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
 		return nil, err
@@ -4284,7 +4201,8 @@ func (c *Client) TokenTest(ctx context.Context, body string) (*map[string]any, e
 	return &result, nil
 }
 
-// OpeningExplorerMasterParams contains optional parameters for the OpeningExplorerMaster operation.
+// OpeningExplorerMasterParams contains the parameters for the OpeningExplorerMaster operation.
+// Required parameters are value fields; optional parameters are pointers.
 type OpeningExplorerMasterParams struct {
 	// X-FEN of the root position
 	Fen *string `json:"fen,omitempty"`
@@ -4310,19 +4228,19 @@ type OpeningExplorerMasterParams struct {
 // Example: `curl https://explorer.lichess.org/masters?play=d2d4,d7d5,c2c4,c7c6,c4d5`
 func (c *Client) OpeningExplorerMaster(ctx context.Context, opts ...OpeningExplorerMasterParams) (*OpeningExplorerMasters, error) {
 	path := "/masters"
-
-	queryValues := url.Values{}
+	var params OpeningExplorerMasterParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "fen", params.Fen)
-		addQueryParam(queryValues, "play", params.Play)
-		addQueryParam(queryValues, "since", params.Since)
-		addQueryParam(queryValues, "until", params.Until)
-		addQueryParam(queryValues, "moves", params.Moves)
-		addQueryParam(queryValues, "topGames", params.TopGames)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "fen", "form", true, params.Fen)
+	addQueryParam(queryValues, "play", "form", true, params.Play)
+	addQueryParam(queryValues, "since", "form", true, params.Since)
+	addQueryParam(queryValues, "until", "form", true, params.Until)
+	addQueryParam(queryValues, "moves", "form", true, params.Moves)
+	addQueryParam(queryValues, "topGames", "form", true, params.TopGames)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result OpeningExplorerMasters
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -4331,7 +4249,8 @@ func (c *Client) OpeningExplorerMaster(ctx context.Context, opts ...OpeningExplo
 	return &result, nil
 }
 
-// OpeningExplorerLichessParams contains optional parameters for the OpeningExplorerLichess operation.
+// OpeningExplorerLichessParams contains the parameters for the OpeningExplorerLichess operation.
+// Required parameters are value fields; optional parameters are pointers.
 type OpeningExplorerLichessParams struct {
 	// Variant
 	Variant *VariantKey `json:"variant,omitempty"`
@@ -4378,24 +4297,24 @@ type OpeningExplorerLichessParams struct {
 // Example: `curl https://explorer.lichess.org/lichess?variant=standard&speeds=blitz,rapid,classical&ratings=2200,2500&fen=rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR%20w%20KQkq%20-%200%201`
 func (c *Client) OpeningExplorerLichess(ctx context.Context, opts ...OpeningExplorerLichessParams) (*OpeningExplorerLichess, error) {
 	path := "/lichess"
-
-	queryValues := url.Values{}
+	var params OpeningExplorerLichessParams
 	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "variant", params.Variant)
-		addQueryParam(queryValues, "fen", params.Fen)
-		addQueryParam(queryValues, "play", params.Play)
-		addQueryParam(queryValues, "speeds", params.Speeds)
-		addQueryParam(queryValues, "ratings", params.Ratings)
-		addQueryParam(queryValues, "since", params.Since)
-		addQueryParam(queryValues, "until", params.Until)
-		addQueryParam(queryValues, "moves", params.Moves)
-		addQueryParam(queryValues, "topGames", params.TopGames)
-		addQueryParam(queryValues, "recentGames", params.RecentGames)
-		addQueryParam(queryValues, "history", params.History)
+		params = opts[0]
 	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "variant", "form", true, params.Variant)
+	addQueryParam(queryValues, "fen", "form", true, params.Fen)
+	addQueryParam(queryValues, "play", "form", true, params.Play)
+	addQueryParam(queryValues, "speeds", "form", true, params.Speeds)
+	addQueryParam(queryValues, "ratings", "form", true, params.Ratings)
+	addQueryParam(queryValues, "since", "form", true, params.Since)
+	addQueryParam(queryValues, "until", "form", true, params.Until)
+	addQueryParam(queryValues, "moves", "form", true, params.Moves)
+	addQueryParam(queryValues, "topGames", "form", true, params.TopGames)
+	addQueryParam(queryValues, "recentGames", "form", true, params.RecentGames)
+	addQueryParam(queryValues, "history", "form", true, params.History)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result OpeningExplorerLichess
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -4404,8 +4323,13 @@ func (c *Client) OpeningExplorerLichess(ctx context.Context, opts ...OpeningExpl
 	return &result, nil
 }
 
-// OpeningExplorerPlayerParams contains optional parameters for the OpeningExplorerPlayer operation.
+// OpeningExplorerPlayerParams contains the parameters for the OpeningExplorerPlayer operation.
+// Required parameters are value fields; optional parameters are pointers.
 type OpeningExplorerPlayerParams struct {
+	// Username or ID of the player
+	Player string `json:"player"`
+	// Look for games with *player* on the given side
+	Color string `json:"color"`
 	// Variant
 	Variant *VariantKey `json:"variant,omitempty"`
 	// X-FEN of the root position
@@ -4444,26 +4368,22 @@ type OpeningExplorerPlayerParams struct {
 // ongoing games at most once every day.
 //
 // Example: `curl https://explorer.lichess.org/player?player=revoof&color=white&play=d2d4,d7d5&recentGames=1`
-func (c *Client) OpeningExplorerPlayer(ctx context.Context, player string, color string, opts ...OpeningExplorerPlayerParams) (*OpeningExplorerPlayer, error) {
+func (c *Client) OpeningExplorerPlayer(ctx context.Context, params OpeningExplorerPlayerParams) (*OpeningExplorerPlayer, error) {
 	path := "/player"
-
 	queryValues := url.Values{}
-	addQueryParam(queryValues, "player", player)
-	addQueryParam(queryValues, "color", color)
-	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "variant", params.Variant)
-		addQueryParam(queryValues, "fen", params.Fen)
-		addQueryParam(queryValues, "play", params.Play)
-		addQueryParam(queryValues, "speeds", params.Speeds)
-		addQueryParam(queryValues, "modes", params.Modes)
-		addQueryParam(queryValues, "since", params.Since)
-		addQueryParam(queryValues, "until", params.Until)
-		addQueryParam(queryValues, "moves", params.Moves)
-		addQueryParam(queryValues, "recentGames", params.RecentGames)
-	}
+	addQueryParam(queryValues, "player", "form", true, params.Player)
+	addQueryParam(queryValues, "color", "form", true, params.Color)
+	addQueryParam(queryValues, "variant", "form", true, params.Variant)
+	addQueryParam(queryValues, "fen", "form", true, params.Fen)
+	addQueryParam(queryValues, "play", "form", true, params.Play)
+	addQueryParam(queryValues, "speeds", "form", true, params.Speeds)
+	addQueryParam(queryValues, "modes", "form", true, params.Modes)
+	addQueryParam(queryValues, "since", "form", true, params.Since)
+	addQueryParam(queryValues, "until", "form", true, params.Until)
+	addQueryParam(queryValues, "moves", "form", true, params.Moves)
+	addQueryParam(queryValues, "recentGames", "form", true, params.RecentGames)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result OpeningExplorerPlayer
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
@@ -4479,8 +4399,7 @@ func (c *Client) OpeningExplorerPlayer(ctx context.Context, player string, color
 // Example: `curl https://explorer.lichess.org/masters/pgn/aAbqI4ey`
 func (c *Client) OpeningExplorerMasterGame(ctx context.Context, gameID string) (*string, error) {
 	path := "/masters/pgn/{gameId}"
-	path = pathReplace(path, "gameId", gameID)
-
+	path = pathReplace(path, "gameId", "simple", false, gameID)
 	var result string
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-chess-pgn"); err != nil {
 		return nil, err
@@ -4488,8 +4407,11 @@ func (c *Client) OpeningExplorerMasterGame(ctx context.Context, gameID string) (
 	return &result, nil
 }
 
-// TablebaseStandardParams contains optional parameters for the TablebaseStandard operation.
+// TablebaseStandardParams contains the parameters for the TablebaseStandard operation.
+// Required parameters are value fields; optional parameters are pointers.
 type TablebaseStandardParams struct {
+	// X-FEN of the position. Underscores allowed.
+	Fen string `json:"fen"`
 	// When to query the tablebase for `dtc` values. The default is
 	// `auxiliary`, i.e., only when the position is not covered by one of the
 	// other tablebases.
@@ -4501,35 +4423,37 @@ type TablebaseStandardParams struct {
 // **Endpoint: <https://tablebase.lichess.org>**
 //
 // Example: `curl http://tablebase.lichess.org/standard?fen=4k3/6KP/8/8/8/8/7p/8_w_-_-_0_1`
-func (c *Client) TablebaseStandard(ctx context.Context, fen string, opts ...TablebaseStandardParams) (*TablebaseJSON, error) {
+func (c *Client) TablebaseStandard(ctx context.Context, params TablebaseStandardParams) (*TablebaseJSON, error) {
 	path := "/standard"
-
 	queryValues := url.Values{}
-	addQueryParam(queryValues, "fen", fen)
-	if len(opts) > 0 {
-		params := opts[0]
-		addQueryParam(queryValues, "dtc", params.Dtc)
-	}
+	addQueryParam(queryValues, "fen", "form", true, params.Fen)
+	addQueryParam(queryValues, "dtc", "form", true, params.Dtc)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result TablebaseJSON
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
+}
+
+// TablebaseAtomicParams contains the parameters for the TablebaseAtomic operation.
+// Required parameters are value fields; optional parameters are pointers.
+type TablebaseAtomicParams struct {
+	// X-FEN of the position. Underscores allowed.
+	Fen string `json:"fen"`
 }
 
 // TablebaseAtomic - Tablebase lookup for Atomic chess
 //
 // **Endpoint: <https://tablebase.lichess.org>**
-func (c *Client) TablebaseAtomic(ctx context.Context, fen string) (*TablebaseJSON, error) {
+func (c *Client) TablebaseAtomic(ctx context.Context, params TablebaseAtomicParams) (*TablebaseJSON, error) {
 	path := "/atomic"
-
 	queryValues := url.Values{}
-	addQueryParam(queryValues, "fen", fen)
+	addQueryParam(queryValues, "fen", "form", true, params.Fen)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result TablebaseJSON
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
@@ -4538,16 +4462,22 @@ func (c *Client) TablebaseAtomic(ctx context.Context, fen string) (*TablebaseJSO
 	return &result, nil
 }
 
+// AntichessAtomicParams contains the parameters for the AntichessAtomic operation.
+// Required parameters are value fields; optional parameters are pointers.
+type AntichessAtomicParams struct {
+	// X-FEN of the position. Underscores allowed.
+	Fen string `json:"fen"`
+}
+
 // AntichessAtomic - Tablebase lookup for Antichess
 //
 // **Endpoint: <https://tablebase.lichess.org>**
-func (c *Client) AntichessAtomic(ctx context.Context, fen string) (*TablebaseJSON, error) {
+func (c *Client) AntichessAtomic(ctx context.Context, params AntichessAtomicParams) (*TablebaseJSON, error) {
 	path := "/antichess"
-
 	queryValues := url.Values{}
-	addQueryParam(queryValues, "fen", fen)
+	addQueryParam(queryValues, "fen", "form", true, params.Fen)
 	if len(queryValues) > 0 {
-		path += "?" + queryValues.Encode()
+		path += "?" + encodeQuery(queryValues)
 	}
 	var result TablebaseJSON
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
