@@ -2637,24 +2637,6 @@ func (e StreamerLive200JSONResponseBodyStreamService) Valid() bool {
 	}
 }
 
-// Defines values for ApiStudyPostFormdataBodySticky.
-const (
-	False ApiStudyPostFormdataBodySticky = "false"
-	True  ApiStudyPostFormdataBodySticky = "true"
-)
-
-// Valid indicates whether the value is a known member of the ApiStudyPostFormdataBodySticky enum.
-func (e ApiStudyPostFormdataBodySticky) Valid() bool {
-	switch e {
-	case False:
-		return true
-	case True:
-		return true
-	default:
-		return false
-	}
-}
-
 // Defines values for ApiStudyPostFormdataBodyVisibility.
 const (
 	ApiStudyPostFormdataBodyVisibilityPrivate  ApiStudyPostFormdataBodyVisibility = "private"
@@ -8920,14 +8902,20 @@ type ApiStudyPostFormdataBody struct {
 	Chat      StudyUserSelection `form:"chat" json:"chat"`
 	Cloneable StudyUserSelection `form:"cloneable" json:"cloneable"`
 	Computer  StudyUserSelection `form:"computer" json:"computer"`
-	Explorer  StudyUserSelection `form:"explorer" json:"explorer"`
+
+	// Description Add pinned study comment right under the board.
+	Description *bool              `form:"description,omitempty" json:"description,omitempty"`
+	Explorer    StudyUserSelection `form:"explorer" json:"explorer"`
+
+	// Flair See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
+	Flair *Flair `form:"flair,omitempty" json:"flair,omitempty"`
 
 	// Name The study name.
 	Name      string             `form:"name" json:"name"`
 	Shareable StudyUserSelection `form:"shareable" json:"shareable"`
 
-	// Sticky Keep everyone on the same chapter and position
-	Sticky *ApiStudyPostFormdataBodySticky `form:"sticky,omitempty" json:"sticky,omitempty"`
+	// Sticky Keep everyone on the same chapter and position.
+	Sticky *bool `form:"sticky,omitempty" json:"sticky,omitempty"`
 
 	// Visibility Who can view the study.
 	// * `public`: Default. Anyone can view the study, it appears on public listings
@@ -8935,9 +8923,6 @@ type ApiStudyPostFormdataBody struct {
 	// * `private`: Only the study members can view the study
 	Visibility ApiStudyPostFormdataBodyVisibility `form:"visibility" json:"visibility"`
 }
-
-// ApiStudyPostFormdataBodySticky defines parameters for ApiStudyPost.
-type ApiStudyPostFormdataBodySticky string
 
 // ApiStudyPostFormdataBodyVisibility defines parameters for ApiStudyPost.
 type ApiStudyPostFormdataBodyVisibility string
