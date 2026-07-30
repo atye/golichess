@@ -94,7 +94,7 @@ info:
     name: AGPL-3.0-or-later
     url: https://www.gnu.org/licenses/agpl-3.0.txt
   title: Lichess.org API reference
-  version: 2.0.154
+  version: 2.0.155
   x-logo:
     url: https://lichess1.org/assets/logo/lichess-pad12.svg
 servers:
@@ -39716,6 +39716,8 @@ components:
           - unlisted
           - private
           type: string
+        flair:
+          $ref: "#/components/schemas/Flair"
         computer:
           $ref: "#/components/schemas/StudyUserSelection"
         explorer:
@@ -39727,12 +39729,13 @@ components:
         chat:
           $ref: "#/components/schemas/StudyUserSelection"
         sticky:
-          default: "true"
-          description: Keep everyone on the same chapter and position
-          enum:
-          - "true"
-          - "false"
-          type: string
+          default: true
+          description: Keep everyone on the same chapter and position.
+          type: boolean
+        description:
+          default: false
+          description: Add pinned study comment right under the board.
+          type: boolean
       required:
       - chat
       - cloneable

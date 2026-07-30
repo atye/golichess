@@ -245,7 +245,7 @@ Name | Type | Description  | Notes
 
 ## ApiStudyPost
 
-> ApiStudyPost200Response ApiStudyPost(ctx).Name(name).Visibility(visibility).Computer(computer).Explorer(explorer).Cloneable(cloneable).Shareable(shareable).Chat(chat).Sticky(sticky).Execute()
+> ApiStudyPost200Response ApiStudyPost(ctx).Name(name).Visibility(visibility).Computer(computer).Explorer(explorer).Cloneable(cloneable).Shareable(shareable).Chat(chat).Flair(flair).Sticky(sticky).Description(description).Execute()
 
 Create a new Study
 
@@ -271,11 +271,13 @@ func main() {
 	cloneable := openapiclient.StudyUserSelection("nobody") // StudyUserSelection | 
 	shareable := openapiclient.StudyUserSelection("nobody") // StudyUserSelection | 
 	chat := openapiclient.StudyUserSelection("nobody") // StudyUserSelection | 
-	sticky := "sticky_example" // string | Keep everyone on the same chapter and position (optional) (default to "true")
+	flair := "flair_example" // string | See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair) (optional)
+	sticky := true // bool | Keep everyone on the same chapter and position. (optional) (default to true)
+	description := true // bool | Add pinned study comment right under the board. (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StudiesAPI.ApiStudyPost(context.Background()).Name(name).Visibility(visibility).Computer(computer).Explorer(explorer).Cloneable(cloneable).Shareable(shareable).Chat(chat).Sticky(sticky).Execute()
+	resp, r, err := apiClient.StudiesAPI.ApiStudyPost(context.Background()).Name(name).Visibility(visibility).Computer(computer).Explorer(explorer).Cloneable(cloneable).Shareable(shareable).Chat(chat).Flair(flair).Sticky(sticky).Description(description).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StudiesAPI.ApiStudyPost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -303,7 +305,9 @@ Name | Type | Description  | Notes
  **cloneable** | [**StudyUserSelection**](StudyUserSelection.md) |  | 
  **shareable** | [**StudyUserSelection**](StudyUserSelection.md) |  | 
  **chat** | [**StudyUserSelection**](StudyUserSelection.md) |  | 
- **sticky** | **string** | Keep everyone on the same chapter and position | [default to &quot;true&quot;]
+ **flair** | **string** | See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair) | 
+ **sticky** | **bool** | Keep everyone on the same chapter and position. | [default to true]
+ **description** | **bool** | Add pinned study comment right under the board. | [default to false]
 
 ### Return type
 
