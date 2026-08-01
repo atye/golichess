@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Info** | Pointer to [**BroadcastFormGroupingInfo**](BroadcastFormGroupingInfo.md) |  | [optional] 
-**ScoreGroups** | Pointer to **[]string** |  | [optional] 
+**ScoreGroups** | Pointer to **[]string** | This parameter is repeated with an index for each score group, like &#39;grouping.scoreGroups[0]&#x3D;wYigbpXq,M5YHvpOX&#39; | [optional] 
 
 ## Methods
 

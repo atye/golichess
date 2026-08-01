@@ -187,7 +187,7 @@ func main() {
 	studyId := "studyId_example" // string | ID of the study
 	pgn := "pgn_example" // string | PGN to import. Can contain multiple games separated by 2 or more newlines. 
 	name := "name_example" // string | Name of the new chapter. If not specified, or if multiple chapters are created, the names will be inferred from the PGN tags.  (optional)
-	orientation := "orientation_example" // string | Default board orientation. (optional) (default to "white")
+	orientation := "orientation_example" // string | Board orientation. If not specified, the orientation is automatically determined.  (optional)
 	variant := openapiclient.VariantKey("standard") // VariantKey |  (optional) (default to "standard")
 	mode := "mode_example" // string | Analysis mode. If not specified, Normal analysis. * practice - Practise with Computer * conceal - Hide next moves * gamebook - Interactive lesson  (optional)
 
@@ -221,7 +221,7 @@ Name | Type | Description  | Notes
 
  **pgn** | **string** | PGN to import. Can contain multiple games separated by 2 or more newlines.  | 
  **name** | **string** | Name of the new chapter. If not specified, or if multiple chapters are created, the names will be inferred from the PGN tags.  | 
- **orientation** | **string** | Default board orientation. | [default to &quot;white&quot;]
+ **orientation** | **string** | Board orientation. If not specified, the orientation is automatically determined.  | 
  **variant** | [**VariantKey**](VariantKey.md) |  | [default to &quot;standard&quot;]
  **mode** | **string** | Analysis mode. If not specified, Normal analysis. * practice - Practise with Computer * conceal - Hide next moves * gamebook - Interactive lesson  | 
 

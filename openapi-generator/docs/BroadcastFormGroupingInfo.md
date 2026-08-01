@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** | Name of the group | [optional] 
-**Tours** | Pointer to **string** | A comma separated list of tournament IDs to group together.  | [optional] 
+**Tours** | Pointer to **string** | A linebreak separated list of tournament IDs to group together.  | [optional] 
 
 ## Methods
 
