@@ -2407,7 +2407,7 @@ type BroadcastStreamRoundPgnParams struct {
 // The stream will also send PGNs when games are added to the round.
 // This is the best way to get updates about an ongoing round. Streaming means no polling,
 // and no pollings means no latency, and minimum impact on the server.
-func (c *Client) BroadcastStreamRoundPgn(ctx context.Context, broadcastRoundID string, opts ...BroadcastStreamRoundPgnParams) (*StudyPgn, error) {
+func (c *Client) BroadcastStreamRoundPgn(ctx context.Context, broadcastRoundID string, opts ...BroadcastStreamRoundPgnParams) (*BroadcastPgn, error) {
 	path := "/api/stream/broadcast/round/{broadcastRoundId}.pgn"
 	path = pathReplace(path, "broadcastRoundId", "simple", false, broadcastRoundID)
 	var params BroadcastStreamRoundPgnParams
@@ -2420,7 +2420,7 @@ func (c *Client) BroadcastStreamRoundPgn(ctx context.Context, broadcastRoundID s
 	if len(queryValues) > 0 {
 		path += "?" + encodeQuery(queryValues)
 	}
-	var result StudyPgn
+	var result BroadcastPgn
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-chess-pgn"); err != nil {
 		return nil, err
 	}
@@ -2446,7 +2446,7 @@ type BroadcastStreamGroupPgnParams struct {
 // The stream will also send PGNs when games are added to the rounds.
 // This is the best way to get updates about an ongoing broadcast with multiple concurrent rounds.
 // To stream a single round, use [this endpoint instead](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn).
-func (c *Client) BroadcastStreamGroupPgn(ctx context.Context, broadcastGroupID string, opts ...BroadcastStreamGroupPgnParams) (*StudyPgn, error) {
+func (c *Client) BroadcastStreamGroupPgn(ctx context.Context, broadcastGroupID string, opts ...BroadcastStreamGroupPgnParams) (*BroadcastPgn, error) {
 	path := "/api/stream/broadcast/group/{broadcastGroupId}.pgn"
 	path = pathReplace(path, "broadcastGroupId", "simple", false, broadcastGroupID)
 	var params BroadcastStreamGroupPgnParams
@@ -2459,7 +2459,7 @@ func (c *Client) BroadcastStreamGroupPgn(ctx context.Context, broadcastGroupID s
 	if len(queryValues) > 0 {
 		path += "?" + encodeQuery(queryValues)
 	}
-	var result StudyPgn
+	var result BroadcastPgn
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-chess-pgn"); err != nil {
 		return nil, err
 	}
@@ -2484,7 +2484,7 @@ type BroadcastRoundPgnParams struct {
 // and very inefficient.
 // Instead, consider [streaming the tournament](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn) to get
 // a new PGN every time a game is updated, in real-time.
-func (c *Client) BroadcastRoundPgn(ctx context.Context, broadcastRoundID string, opts ...BroadcastRoundPgnParams) (*StudyPgn, error) {
+func (c *Client) BroadcastRoundPgn(ctx context.Context, broadcastRoundID string, opts ...BroadcastRoundPgnParams) (*BroadcastPgn, error) {
 	path := "/api/broadcast/round/{broadcastRoundId}.pgn"
 	path = pathReplace(path, "broadcastRoundId", "simple", false, broadcastRoundID)
 	var params BroadcastRoundPgnParams
@@ -2497,7 +2497,7 @@ func (c *Client) BroadcastRoundPgn(ctx context.Context, broadcastRoundID string,
 	if len(queryValues) > 0 {
 		path += "?" + encodeQuery(queryValues)
 	}
-	var result StudyPgn
+	var result BroadcastPgn
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-chess-pgn"); err != nil {
 		return nil, err
 	}
@@ -2525,7 +2525,7 @@ type BroadcastAllRoundsPgnParams struct {
 // To get real-time updates about an ongoing tournament, please use the
 // [round PGN stream](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn) or
 // [group PGN stream](#tag/broadcasts/GET/api/stream/broadcast/group/{broadcastGroupId}.pgn) endpoints instead.
-func (c *Client) BroadcastAllRoundsPgn(ctx context.Context, broadcastTournamentID string, opts ...BroadcastAllRoundsPgnParams) (*StudyPgn, error) {
+func (c *Client) BroadcastAllRoundsPgn(ctx context.Context, broadcastTournamentID string, opts ...BroadcastAllRoundsPgnParams) (*BroadcastPgn, error) {
 	path := "/api/broadcast/{broadcastTournamentId}.pgn"
 	path = pathReplace(path, "broadcastTournamentId", "simple", false, broadcastTournamentID)
 	var params BroadcastAllRoundsPgnParams
@@ -2538,7 +2538,7 @@ func (c *Client) BroadcastAllRoundsPgn(ctx context.Context, broadcastTournamentI
 	if len(queryValues) > 0 {
 		path += "?" + encodeQuery(queryValues)
 	}
-	var result StudyPgn
+	var result BroadcastPgn
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-chess-pgn"); err != nil {
 		return nil, err
 	}

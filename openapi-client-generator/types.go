@@ -1409,6 +1409,8 @@ type BroadcastPgnPush struct {
 	Games []any `json:"games"`
 }
 
+type BroadcastPgn = string
+
 type BroadcastMyRound struct {
 	Round BroadcastRoundInfo      `json:"round"`
 	Tour  BroadcastTour           `json:"tour"`
