@@ -12,7 +12,7 @@ type BroadcastForm_grouping_info struct {
     additionalData map[string]any
     // Name of the group
     name *string
-    // A comma separated list of tournament IDs to group together.
+    // A linebreak separated list of tournament IDs to group together.
     tours *string
 }
 // NewBroadcastForm_grouping_info instantiates a new BroadcastForm_grouping_info and sets the default values.
@@ -63,7 +63,7 @@ func (m *BroadcastForm_grouping_info) GetFieldDeserializers()(map[string]func(i8
 func (m *BroadcastForm_grouping_info) GetName()(*string) {
     return m.name
 }
-// GetTours gets the tours property value. A comma separated list of tournament IDs to group together.
+// GetTours gets the tours property value. A linebreak separated list of tournament IDs to group together.
 // returns a *string when successful
 func (m *BroadcastForm_grouping_info) GetTours()(*string) {
     return m.tours
@@ -98,7 +98,7 @@ func (m *BroadcastForm_grouping_info) SetAdditionalData(value map[string]any)() 
 func (m *BroadcastForm_grouping_info) SetName(value *string)() {
     m.name = value
 }
-// SetTours sets the tours property value. A comma separated list of tournament IDs to group together.
+// SetTours sets the tours property value. A linebreak separated list of tournament IDs to group together.
 func (m *BroadcastForm_grouping_info) SetTours(value *string)() {
     m.tours = value
 }

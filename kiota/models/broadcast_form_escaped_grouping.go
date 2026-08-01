@@ -13,7 +13,7 @@ type BroadcastForm_grouping struct {
     additionalData map[string]any
     // The info property
     info BroadcastForm_grouping_infoable
-    // The scoreGroups property
+    // This parameter is repeated with an index for each score group, like 'grouping.scoreGroups[0]=wYigbpXq,M5YHvpOX'
     scoreGroups []string
 }
 // NewBroadcastForm_grouping instantiates a new BroadcastForm_grouping and sets the default values.
@@ -70,7 +70,7 @@ func (m *BroadcastForm_grouping) GetFieldDeserializers()(map[string]func(i878a80
 func (m *BroadcastForm_grouping) GetInfo()(BroadcastForm_grouping_infoable) {
     return m.info
 }
-// GetScoreGroups gets the scoreGroups property value. The scoreGroups property
+// GetScoreGroups gets the scoreGroups property value. This parameter is repeated with an index for each score group, like 'grouping.scoreGroups[0]=wYigbpXq,M5YHvpOX'
 // returns a []string when successful
 func (m *BroadcastForm_grouping) GetScoreGroups()([]string) {
     return m.scoreGroups
@@ -105,7 +105,7 @@ func (m *BroadcastForm_grouping) SetAdditionalData(value map[string]any)() {
 func (m *BroadcastForm_grouping) SetInfo(value BroadcastForm_grouping_infoable)() {
     m.info = value
 }
-// SetScoreGroups sets the scoreGroups property value. The scoreGroups property
+// SetScoreGroups sets the scoreGroups property value. This parameter is repeated with an index for each score group, like 'grouping.scoreGroups[0]=wYigbpXq,M5YHvpOX'
 func (m *BroadcastForm_grouping) SetScoreGroups(value []string)() {
     m.scoreGroups = value
 }
