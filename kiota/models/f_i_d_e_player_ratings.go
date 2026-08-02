@@ -7,7 +7,7 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// FIDEPlayerRatings data points are encoded. Each number contains a year, a month, and an ELO rating.`2015081568` -> `August 2015: 1568`Here's an example decoding implementation in JS:```js  const decodePoint = point => {    const elo = point % 10000;    const dateNum = Math.floor(point / 10000);    const year = Math.floor(dateNum / 100);    const month = dateNum % 100;    return [year, month, elo];  };```Consecutive months with same ELO are omitted. For a given ELO, only the first and last month are provided.
+// FIDEPlayerRatings data points are encoded. Each number contains a year, a month, and an elo rating.`2015081568` -> `August 2015: 1568`Here's an example decoding implementation in JS:```js  const decodePoint = point => {    const elo = point % 10000;    const dateNum = Math.floor(point / 10000);    const year = Math.floor(dateNum / 100);    const month = dateNum % 100;    return [year, month, elo];  };```Consecutive months with same elo are omitted. For a given elo, only the first and last month are provided.
 type FIDEPlayerRatings struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
