@@ -1442,7 +1442,7 @@ type FidePlayer struct {
 	Photo  *FidePlayerPhoto `json:"photo,omitempty"`
 }
 
-// FidePlayerRatings - Data points are encoded. Each number contains a year, a month, and an ELO rating.
+// FidePlayerRatings - Data points are encoded. Each number contains a year, a month, and an elo rating.
 //
 // `2015081568` -> `August 2015: 1568`
 //
@@ -1460,7 +1460,7 @@ type FidePlayer struct {
 //
 // ```
 //
-// Consecutive months with same ELO are omitted. For a given ELO, only the first and last month are provided.
+// Consecutive months with same elo are omitted. For a given elo, only the first and last month are provided.
 type FidePlayerRatings struct {
 	Standard []float64 `json:"standard"`
 	Rapid    []float64 `json:"rapid"`
