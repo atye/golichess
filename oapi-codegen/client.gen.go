@@ -5966,7 +5966,7 @@ type FIDEPlayerPhoto struct {
 	Small string `json:"small"`
 }
 
-// FIDEPlayerRatings Data points are encoded. Each number contains a year, a month, and an ELO rating.
+// FIDEPlayerRatings Data points are encoded. Each number contains a year, a month, and an elo rating.
 //
 // `2015081568` -> `August 2015: 1568`
 //
@@ -5984,7 +5984,7 @@ type FIDEPlayerPhoto struct {
 //
 // ```
 //
-// Consecutive months with same ELO are omitted. For a given ELO, only the first and last month are provided.
+// Consecutive months with same elo are omitted. For a given elo, only the first and last month are provided.
 type FIDEPlayerRatings struct {
 	Blitz    []float32 `json:"blitz"`
 	Rapid    []float32 `json:"rapid"`
