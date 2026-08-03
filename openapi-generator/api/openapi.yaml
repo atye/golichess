@@ -94,7 +94,7 @@ info:
     name: AGPL-3.0-or-later
     url: https://www.gnu.org/licenses/agpl-3.0.txt
   title: Lichess.org API reference
-  version: 2.0.157
+  version: 2.0.158
   x-logo:
     url: https://lichess1.org/assets/logo/lichess-pad12.svg
 servers:
@@ -36351,7 +36351,7 @@ components:
       - name
     FIDEPlayerRatings:
       description: |
-        Data points are encoded. Each number contains a year, a month, and an ELO rating.
+        Data points are encoded. Each number contains a year, a month, and an elo rating.
 
         `2015081568` -> `August 2015: 1568`
 
@@ -36367,7 +36367,7 @@ components:
           };
         ```
 
-        Consecutive months with same ELO are omitted. For a given ELO, only the first and last month are provided.
+        Consecutive months with same elo are omitted. For a given elo, only the first and last month are provided.
       example:
         standard:
         - 0.8008281904610115
