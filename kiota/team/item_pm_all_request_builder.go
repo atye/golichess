@@ -33,7 +33,7 @@ func NewItemPmAllRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee2633
     urlParams["request-raw-url"] = rawUrl
     return NewItemPmAllRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Post send a private message to all members of a team.You must be a team leader with the "Messages" permission.
+// Post send a team update to all members of a team.You must be a team leader with the "Updates" permission.
 // returns a Okable when successful
 // returns a ErrorEscaped error when the service returns a 400 status code
 func (m *ItemPmAllRequestBuilder) Post(ctx context.Context, body ItemPmAllPostRequestBodyable, requestConfiguration *ItemPmAllRequestBuilderPostRequestConfiguration)(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Okable, error) {
@@ -53,7 +53,7 @@ func (m *ItemPmAllRequestBuilder) Post(ctx context.Context, body ItemPmAllPostRe
     }
     return res.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Okable), nil
 }
-// ToPostRequestInformation send a private message to all members of a team.You must be a team leader with the "Messages" permission.
+// ToPostRequestInformation send a team update to all members of a team.You must be a team leader with the "Updates" permission.
 // returns a *RequestInformation when successful
 func (m *ItemPmAllRequestBuilder) ToPostRequestInformation(ctx context.Context, body ItemPmAllPostRequestBodyable, requestConfiguration *ItemPmAllRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
