@@ -199,6 +199,7 @@ docs/GameStreamGamePlayers.md
 docs/GameStreamGamePlayersWhite.md
 docs/GamesAPI.md
 docs/Leaderboard.md
+docs/LightTeam.md
 docs/LightUser.md
 docs/LightUserOnline.md
 docs/MateVariation.md
@@ -318,6 +319,12 @@ docs/TeamIdUsers200Response.md
 docs/TeamPaginatorJson.md
 docs/TeamRequest.md
 docs/TeamRequestWithUser.md
+docs/TeamUpdate.md
+docs/TeamUpdateMsg.md
+docs/TeamUpdates.md
+docs/TeamUpdatesByTeamInner.md
+docs/TeamUpdatesOfTeam.md
+docs/TeamUpdatesPager.md
 docs/TeamsAPI.md
 docs/TeamsByTournament200Response.md
 docs/TeamsByTournament200ResponseTeamsInner.md
@@ -569,6 +576,7 @@ model_game_stream_game_clock.go
 model_game_stream_game_players.go
 model_game_stream_game_players_white.go
 model_leaderboard.go
+model_light_team.go
 model_light_user.go
 model_light_user_online.go
 model_mate_variation.go
@@ -679,6 +687,12 @@ model_team_id_users_200_response.go
 model_team_paginator_json.go
 model_team_request.go
 model_team_request_with_user.go
+model_team_update.go
+model_team_update_msg.go
+model_team_updates.go
+model_team_updates_by_team_inner.go
+model_team_updates_of_team.go
+model_team_updates_pager.go
 model_teams_by_tournament_200_response.go
 model_teams_by_tournament_200_response_teams_inner.go
 model_teams_by_tournament_200_response_teams_inner_players_inner.go

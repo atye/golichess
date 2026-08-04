@@ -16,6 +16,7 @@ Method | HTTP request | Description
 [**BroadcastRoundUpdate**](BroadcastsAPI.md#BroadcastRoundUpdate) | **Post** /broadcast/round/{broadcastRoundId}/edit | Update a broadcast round
 [**BroadcastStreamGroupPgn**](BroadcastsAPI.md#BroadcastStreamGroupPgn) | **Get** /api/stream/broadcast/group/{broadcastGroupId}.pgn | Stream ongoing broadcast rounds of a group as PGN
 [**BroadcastStreamRoundPgn**](BroadcastsAPI.md#BroadcastStreamRoundPgn) | **Get** /api/stream/broadcast/round/{broadcastRoundId}.pgn | Stream an ongoing broadcast round as PGN
+[**BroadcastStreamTourPgn**](BroadcastsAPI.md#BroadcastStreamTourPgn) | **Get** /api/stream/broadcast/tour/{broadcastTourId}.pgn | Stream ongoing broadcast rounds of a tournament as PGN
 [**BroadcastTeamLeaderboardGet**](BroadcastsAPI.md#BroadcastTeamLeaderboardGet) | **Get** /broadcast/{broadcastTournamentId}/teams/standings | Get the team leaderboard of a broadcast
 [**BroadcastTourCreate**](BroadcastsAPI.md#BroadcastTourCreate) | **Post** /broadcast/new | Create a broadcast tournament
 [**BroadcastTourGet**](BroadcastsAPI.md#BroadcastTourGet) | **Get** /api/broadcast/{broadcastTournamentId} | Get a broadcast tournament
@@ -930,6 +931,80 @@ Name | Type | Description  | Notes
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiBroadcastStreamRoundPgnRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **clocks** | **bool** | Include clock comments in the PGN moves, when available. Example: &#x60;2. exd5 { [%clk 1:01:27] } e5 { [%clk 1:01:28] }&#x60;  | [default to true]
+ **comments** | **bool** | Include analysis comments in the PGN moves, when available. Example: &#x60;12. Bxf6 { [%eval 0.23] }&#x60;  | [default to true]
+
+### Return type
+
+**string**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/x-chess-pgn
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## BroadcastStreamTourPgn
+
+> string BroadcastStreamTourPgn(ctx, broadcastTourId).Clocks(clocks).Comments(comments).Execute()
+
+Stream ongoing broadcast rounds of a tournament as PGN
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/atye/golichess/openapigenerator"
+)
+
+func main() {
+	broadcastTourId := "broadcastTourId_example" // string | The broadcast tournament ID. It's the last past of the tournament URL, which can be found on the broadcast page overview section. [Example](https://lichess.org/broadcast/sparkassen-chess-trophy-2026-open-a/jfEpUuzg) the tournament URL is  https://lichess.org/broadcast/sparkassen-chess-trophy-2026-open-a/jfEpUuzg and therefore the tournament ID is `jfEpUuzg `. 
+	clocks := true // bool | Include clock comments in the PGN moves, when available. Example: `2. exd5 { [%clk 1:01:27] } e5 { [%clk 1:01:28] }`  (optional) (default to true)
+	comments := true // bool | Include analysis comments in the PGN moves, when available. Example: `12. Bxf6 { [%eval 0.23] }`  (optional) (default to true)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BroadcastsAPI.BroadcastStreamTourPgn(context.Background(), broadcastTourId).Clocks(clocks).Comments(comments).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BroadcastsAPI.BroadcastStreamTourPgn``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `BroadcastStreamTourPgn`: string
+	fmt.Fprintf(os.Stdout, "Response from `BroadcastsAPI.BroadcastStreamTourPgn`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**broadcastTourId** | **string** | The broadcast tournament ID. It&#39;s the last past of the tournament URL, which can be found on the broadcast page overview section. [Example](https://lichess.org/broadcast/sparkassen-chess-trophy-2026-open-a/jfEpUuzg) the tournament URL is  https://lichess.org/broadcast/sparkassen-chess-trophy-2026-open-a/jfEpUuzg and therefore the tournament ID is &#x60;jfEpUuzg &#x60;.  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiBroadcastStreamTourPgnRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

@@ -94,7 +94,7 @@ info:
     name: AGPL-3.0-or-later
     url: https://www.gnu.org/licenses/agpl-3.0.txt
   title: Lichess.org API reference
-  version: 2.0.158
+  version: 2.0.161
   x-logo:
     url: https://lichess1.org/assets/logo/lichess-pad12.svg
 servers:
@@ -5522,6 +5522,74 @@ paths:
       summary: Stream an ongoing broadcast round as PGN
       tags:
       - Broadcasts
+  /api/stream/broadcast/tour/{broadcastTourId}.pgn:
+    get:
+      description: |
+        For a given broadcast tournament ([example](https://lichess.org/broadcast/sparkassen-chess-trophy-2026-open-a/jfEpUuzg)),
+        selects all the ongoing and recently finished rounds, and sends all games of these rounds in PGN format.
+        Then, it waits for new moves to be played. As soon as it happens, the entire PGN of the game is sent to the stream.
+        The stream will also send PGNs when games are added to the rounds.
+        This is the best way to get updates about an ongoing broadcast tournament across all its rounds.
+        To stream a single round, use [this endpoint instead](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn).
+      operationId: broadcastStreamTourPgn
+      parameters:
+      - description: "The broadcast tournament ID. It's the last past of the tournament\
+          \ URL, which can be found on the broadcast page overview section.\n[Example](https://lichess.org/broadcast/sparkassen-chess-trophy-2026-open-a/jfEpUuzg)\
+          \ the tournament URL is \nhttps://lichess.org/broadcast/sparkassen-chess-trophy-2026-open-a/jfEpUuzg\
+          \ and therefore the tournament ID is `jfEpUuzg `.\n"
+        explode: false
+        in: path
+        name: broadcastTourId
+        required: true
+        schema:
+          maxLength: 8
+          minLength: 8
+          type: string
+        style: simple
+      - description: |
+          Include clock comments in the PGN moves, when available.
+          Example: `2. exd5 { [%clk 1:01:27] } e5 { [%clk 1:01:28] }`
+        explode: true
+        in: query
+        name: clocks
+        required: false
+        schema:
+          default: true
+          type: boolean
+        style: form
+      - description: |
+          Include analysis comments in the PGN moves, when available.
+          Example: `12. Bxf6 { [%eval 0.23] }`
+        explode: true
+        in: query
+        name: comments
+        required: false
+        schema:
+          default: true
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/x-chess-pgn:
+              examples:
+                pgn:
+                  $ref: "#/components/examples/broadcasts-streamOngoingBroadcastRoundAsPgn.pgn"
+              schema:
+                $ref: "#/components/schemas/BroadcastPgn"
+          description: "The PGN representation of the rounds games, then the PGNs\
+            \ of games as they are updated."
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                default: '''*'''
+                type: string
+              style: simple
+      security: []
+      summary: Stream ongoing broadcast rounds of a tournament as PGN
+      tags:
+      - Broadcasts
   /api/stream/broadcast/group/{broadcastGroupId}.pgn:
     get:
       description: |
@@ -6445,11 +6513,95 @@ paths:
       summary: Kick a user from your team
       tags:
       - Teams
+  /team/updates:
+    get:
+      description: |
+        Paginator of the most recent updates posted by team leaders of teams you have joined.
+      operationId: teamUpdates
+      parameters:
+      - explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          example: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                default:
+                  $ref: "#/components/examples/teams-updates.json"
+              schema:
+                $ref: "#/components/schemas/TeamUpdates"
+          description: A paginated list of team updates
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                default: '''*'''
+                type: string
+              style: simple
+      security:
+      - OAuth2:
+        - team:read
+      summary: Get updates from your teams
+      tags:
+      - Teams
+  /team/updates/{teamId}:
+    get:
+      description: |
+        Paginator of the most recent updates posted by team leaders of a team you have joined.
+      operationId: teamUpdatesByTeamId
+      parameters:
+      - explode: false
+        in: path
+        name: teamId
+        required: true
+        schema:
+          example: coders
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          example: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                default:
+                  $ref: "#/components/examples/teams-updates-of-team"
+              schema:
+                $ref: "#/components/schemas/TeamUpdatesOfTeam"
+          description: A paginated list of team updates
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                default: '''*'''
+                type: string
+              style: simple
+      security:
+      - OAuth2:
+        - team:read
+      summary: Get updates from one of your teams
+      tags:
+      - Teams
   /team/{teamId}/pm-all:
     post:
       description: |
-        Send a private message to all members of a team.
-        You must be a team leader with the "Messages" permission.
+        Send a team update to all members of a team.
+        You must be a team leader with the "Updates" permission.
       operationId: teamIdPmAll
       parameters:
       - explode: false
@@ -6472,7 +6624,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Ok"
-          description: The message has successfully been sent to all team members.
+          description: The update has been posted successfully.
           headers:
             Access-Control-Allow-Origin:
               explode: false
@@ -6485,11 +6637,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-          description: The sending of message to all team members has failed.
+          description: The update could not be posted.
       security:
       - OAuth2:
         - team:lead
-      summary: Message all members
+      summary: Send a team update
       tags:
       - Teams
   /api/streamer/live:
@@ -27698,6 +27850,94 @@ components:
           name: Mennonite
           flair: objects.closed-mailbox-with-raised-flag
           id: mennonite
+    teams-updates.json:
+      value:
+        byTeam:
+        - last: 1785681992878
+          team:
+            id: lichess-chess960
+            name: Lichess Chess960
+          unread: 0
+        - last: 1785594732863
+          team:
+            flair: objects.hammer-and-wrench
+            id: coders
+            name: Coders
+          unread: 6
+        updates:
+          currentPage: 1
+          currentPageResults:
+          - msg:
+              date: 1785681992878
+              id: 3gJtsRcB
+              sender:
+                name: thibault
+                flair: nature.seedling
+                patron: true
+                patronColor: 10
+                id: thibault
+              team:
+                id: lichess-chess960
+                name: Lichess Chess960
+              text: New regulations for the 2022 FIDE World Fischer Random Chess Championship
+            seen: true
+          - msg:
+              date: 1785594732863
+              id: CjLyCrW9
+              sender:
+                name: thibault
+                flair: nature.seedling
+                patron: true
+                patronColor: 10
+                id: thibault
+              team:
+                flair: objects.hammer-and-wrench
+                id: coders
+                name: Coders
+              text: Some fascinating update about the coders team
+            seen: false
+          maxPerPage: 6
+          nbPages: 8
+          nbResults: 46
+          nextPage: 2
+    teams-updates-of-team:
+      value:
+        team:
+          id: lichess-chess960
+          name: Lichess Chess960
+        subscribed: true
+        byTeam:
+        - last: 1785681992878
+          team:
+            id: lichess-chess960
+            name: Lichess Chess960
+          unread: 0
+        - last: 1785594732863
+          team:
+            flair: objects.hammer-and-wrench
+            id: coders
+            name: Coders
+          unread: 6
+        updates:
+          currentPage: 1
+          currentPageResults:
+          - msg:
+              date: 1785681992878
+              id: 3gJtsRcB
+              sender:
+                name: thibault
+                flair: nature.seedling
+                patron: true
+                patronColor: 10
+                id: thibault
+              team:
+                id: lichess-chess960
+                name: Lichess Chess960
+              text: New regulations for the 2022 FIDE World Fischer Random Chess Championship
+            seen: true
+          maxPerPage: 6
+          nbPages: 1
+          nbResults: 1
     users-getLiveStreamers.json:
       value:
       - name: batOnchikeat
@@ -36662,6 +36902,269 @@ components:
       required:
       - request
       - user
+    LightTeam:
+      example:
+        id: id
+        name: name
+        flair: flair
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        flair:
+          description: "See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)"
+          type: string
+      required:
+      - id
+      - name
+    TeamUpdate:
+      example:
+        msg:
+          id: id
+          date: 0
+          sender:
+            id: id
+            name: name
+            flair: flair
+            title: GM
+            patron: true
+            patronColor: 4
+          team:
+            id: id
+            name: name
+            flair: flair
+          text: text
+        seen: true
+      properties:
+        msg:
+          $ref: "#/components/schemas/TeamUpdate_msg"
+        seen:
+          type: boolean
+      required:
+      - msg
+      - seen
+    TeamUpdatesPager:
+      example:
+        currentPage: 4
+        maxPerPage: 15
+        currentPageResults:
+        - msg:
+            id: id
+            date: 0
+            sender:
+              id: id
+              name: name
+              flair: flair
+              title: GM
+              patron: true
+              patronColor: 4
+            team:
+              id: id
+              name: name
+              flair: flair
+            text: text
+          seen: true
+        - msg:
+            id: id
+            date: 0
+            sender:
+              id: id
+              name: name
+              flair: flair
+              title: GM
+              patron: true
+              patronColor: 4
+            team:
+              id: id
+              name: name
+              flair: flair
+            text: text
+          seen: true
+        previousPage: 3
+        nextPage: 5
+        nbResults: 6
+        nbPages: 1
+      properties:
+        currentPage:
+          example: 4
+          type: integer
+        maxPerPage:
+          example: 15
+          type: integer
+        currentPageResults:
+          items:
+            $ref: "#/components/schemas/TeamUpdate"
+          type: array
+          default: null
+        previousPage:
+          example: 3
+          nullable: true
+          type: integer
+        nextPage:
+          example: 5
+          nullable: true
+          type: integer
+        nbResults:
+          type: integer
+        nbPages:
+          type: integer
+      required:
+      - currentPage
+      - currentPageResults
+      - maxPerPage
+      - nbPages
+      - nbResults
+      - nextPage
+      - previousPage
+    TeamUpdatesByTeam:
+      items:
+        $ref: "#/components/schemas/TeamUpdatesByTeam_inner"
+      type: array
+      default: null
+    TeamUpdates:
+      example:
+        updates:
+          currentPage: 4
+          maxPerPage: 15
+          currentPageResults:
+          - msg:
+              id: id
+              date: 0
+              sender:
+                id: id
+                name: name
+                flair: flair
+                title: GM
+                patron: true
+                patronColor: 4
+              team:
+                id: id
+                name: name
+                flair: flair
+              text: text
+            seen: true
+          - msg:
+              id: id
+              date: 0
+              sender:
+                id: id
+                name: name
+                flair: flair
+                title: GM
+                patron: true
+                patronColor: 4
+              team:
+                id: id
+                name: name
+                flair: flair
+              text: text
+            seen: true
+          previousPage: 3
+          nextPage: 5
+          nbResults: 6
+          nbPages: 1
+        byTeam:
+        - team:
+            id: id
+            name: name
+            flair: flair
+          last: 5.962133916683182
+          unread: 5
+        - team:
+            id: id
+            name: name
+            flair: flair
+          last: 5.962133916683182
+          unread: 5
+      properties:
+        updates:
+          $ref: "#/components/schemas/TeamUpdatesPager"
+        byTeam:
+          items:
+            $ref: "#/components/schemas/TeamUpdatesByTeam_inner"
+          type: array
+          default: null
+      required:
+      - byTeam
+      - updates
+    TeamUpdatesOfTeam:
+      example:
+        team:
+          id: id
+          name: name
+          flair: flair
+        subscribed: true
+        updates:
+          currentPage: 4
+          maxPerPage: 15
+          currentPageResults:
+          - msg:
+              id: id
+              date: 0
+              sender:
+                id: id
+                name: name
+                flair: flair
+                title: GM
+                patron: true
+                patronColor: 4
+              team:
+                id: id
+                name: name
+                flair: flair
+              text: text
+            seen: true
+          - msg:
+              id: id
+              date: 0
+              sender:
+                id: id
+                name: name
+                flair: flair
+                title: GM
+                patron: true
+                patronColor: 4
+              team:
+                id: id
+                name: name
+                flair: flair
+              text: text
+            seen: true
+          previousPage: 3
+          nextPage: 5
+          nbResults: 6
+          nbPages: 1
+        byTeam:
+        - team:
+            id: id
+            name: name
+            flair: flair
+          last: 5.962133916683182
+          unread: 5
+        - team:
+            id: id
+            name: name
+            flair: flair
+          last: 5.962133916683182
+          unread: 5
+      properties:
+        team:
+          $ref: "#/components/schemas/LightTeam"
+        subscribed:
+          type: boolean
+        updates:
+          $ref: "#/components/schemas/TeamUpdatesPager"
+        byTeam:
+          items:
+            $ref: "#/components/schemas/TeamUpdatesByTeam_inner"
+          type: array
+          default: null
+      required:
+      - byTeam
+      - subscribed
+      - team
+      - updates
     Crosstable:
       example:
         users:
@@ -43732,6 +44235,57 @@ components:
           type: string
         name:
           type: string
+    TeamUpdate_msg:
+      example:
+        id: id
+        date: 0
+        sender:
+          id: id
+          name: name
+          flair: flair
+          title: GM
+          patron: true
+          patronColor: 4
+        team:
+          id: id
+          name: name
+          flair: flair
+        text: text
+      properties:
+        id:
+          type: string
+        date:
+          type: integer
+        sender:
+          $ref: "#/components/schemas/LightUser"
+        team:
+          $ref: "#/components/schemas/LightTeam"
+        text:
+          type: string
+      required:
+      - date
+      - id
+      - sender
+      - text
+    TeamUpdatesByTeam_inner:
+      example:
+        team:
+          id: id
+          name: name
+          flair: flair
+        last: 5.962133916683182
+        unread: 5
+      properties:
+        team:
+          $ref: "#/components/schemas/LightTeam"
+        last:
+          type: number
+        unread:
+          type: integer
+      required:
+      - last
+      - team
+      - unread
     Player:
       properties:
         id:

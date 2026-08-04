@@ -9,7 +9,7 @@ Method | HTTP request | Description
 [**TeamAll**](TeamsAPI.md#TeamAll) | **Get** /api/team/all | Get popular teams
 [**TeamIdJoin**](TeamsAPI.md#TeamIdJoin) | **Post** /team/{teamId}/join | Join a team
 [**TeamIdKickUserId**](TeamsAPI.md#TeamIdKickUserId) | **Post** /api/team/{teamId}/kick/{userId} | Kick a user from your team
-[**TeamIdPmAll**](TeamsAPI.md#TeamIdPmAll) | **Post** /team/{teamId}/pm-all | Message all members
+[**TeamIdPmAll**](TeamsAPI.md#TeamIdPmAll) | **Post** /team/{teamId}/pm-all | Send a team update
 [**TeamIdQuit**](TeamsAPI.md#TeamIdQuit) | **Post** /team/{teamId}/quit | Leave a team
 [**TeamIdUsers**](TeamsAPI.md#TeamIdUsers) | **Get** /api/team/{teamId}/users | Get members of a team
 [**TeamOfUsername**](TeamsAPI.md#TeamOfUsername) | **Get** /api/team/of/{username} | Teams of a player
@@ -18,6 +18,8 @@ Method | HTTP request | Description
 [**TeamRequests**](TeamsAPI.md#TeamRequests) | **Get** /api/team/{teamId}/requests | Get join requests
 [**TeamSearch**](TeamsAPI.md#TeamSearch) | **Get** /api/team/search | Search teams
 [**TeamShow**](TeamsAPI.md#TeamShow) | **Get** /api/team/{teamId} | Get a single team
+[**TeamUpdates**](TeamsAPI.md#TeamUpdates) | **Get** /team/updates | Get updates from your teams
+[**TeamUpdatesByTeamId**](TeamsAPI.md#TeamUpdatesByTeamId) | **Get** /team/updates/{teamId} | Get updates from one of your teams
 
 
 
@@ -394,7 +396,7 @@ Name | Type | Description  | Notes
 
 > Ok TeamIdPmAll(ctx, teamId).Message(message).Execute()
 
-Message all members
+Send a team update
 
 
 
@@ -1019,6 +1021,144 @@ Name | Type | Description  | Notes
 ### Authorization
 
 No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## TeamUpdates
+
+> TeamUpdates TeamUpdates(ctx).Page(page).Execute()
+
+Get updates from your teams
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/atye/golichess/openapigenerator"
+)
+
+func main() {
+	page := int32(1) // int32 |  (optional) (default to 1)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TeamsAPI.TeamUpdates(context.Background()).Page(page).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TeamsAPI.TeamUpdates``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `TeamUpdates`: TeamUpdates
+	fmt.Fprintf(os.Stdout, "Response from `TeamsAPI.TeamUpdates`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiTeamUpdatesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | **int32** |  | [default to 1]
+
+### Return type
+
+[**TeamUpdates**](TeamUpdates.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## TeamUpdatesByTeamId
+
+> TeamUpdatesOfTeam TeamUpdatesByTeamId(ctx, teamId).Page(page).Execute()
+
+Get updates from one of your teams
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/atye/golichess/openapigenerator"
+)
+
+func main() {
+	teamId := "coders" // string | 
+	page := int32(1) // int32 |  (optional) (default to 1)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TeamsAPI.TeamUpdatesByTeamId(context.Background(), teamId).Page(page).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TeamsAPI.TeamUpdatesByTeamId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `TeamUpdatesByTeamId`: TeamUpdatesOfTeam
+	fmt.Fprintf(os.Stdout, "Response from `TeamsAPI.TeamUpdatesByTeamId`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**teamId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiTeamUpdatesByTeamIdRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **page** | **int32** |  | [default to 1]
+
+### Return type
+
+[**TeamUpdatesOfTeam**](TeamUpdatesOfTeam.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
