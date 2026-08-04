@@ -1529,6 +1529,42 @@ type TeamRequestWithUser struct {
 	User    User        `json:"user"`
 }
 
+type LightTeam struct {
+	ID   string `json:"id"`
+	Name string `json:"name"`
+	// See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
+	Flair *Flair `json:"flair,omitempty"`
+}
+
+type TeamUpdate struct {
+	Msg  any  `json:"msg"`
+	Seen bool `json:"seen"`
+}
+
+type TeamUpdatesPager struct {
+	CurrentPage        int64        `json:"currentPage"`
+	MaxPerPage         int64        `json:"maxPerPage"`
+	CurrentPageResults []TeamUpdate `json:"currentPageResults"`
+	PreviousPage       *int64       `json:"previousPage"`
+	NextPage           *int64       `json:"nextPage"`
+	NbResults          int64        `json:"nbResults"`
+	NbPages            int64        `json:"nbPages"`
+}
+
+type TeamUpdatesByTeam = []any
+
+type TeamUpdates struct {
+	Updates TeamUpdatesPager  `json:"updates"`
+	ByTeam  TeamUpdatesByTeam `json:"byTeam"`
+}
+
+type TeamUpdatesOfTeam struct {
+	Team       LightTeam         `json:"team"`
+	Subscribed bool              `json:"subscribed"`
+	Updates    TeamUpdatesPager  `json:"updates"`
+	ByTeam     TeamUpdatesByTeam `json:"byTeam"`
+}
+
 type Crosstable struct {
 	Users   any   `json:"users"`
 	NbGames int64 `json:"nbGames"`

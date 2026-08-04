@@ -2427,6 +2427,45 @@ func (c *Client) BroadcastStreamRoundPgn(ctx context.Context, broadcastRoundID s
 	return &result, nil
 }
 
+// BroadcastStreamTourPgnParams contains the parameters for the BroadcastStreamTourPgn operation.
+// Required parameters are value fields; optional parameters are pointers.
+type BroadcastStreamTourPgnParams struct {
+	// Include clock comments in the PGN moves, when available.
+	// Example: `2. exd5 { [%clk 1:01:27] } e5 { [%clk 1:01:28] }`
+	Clocks *bool `json:"clocks,omitempty"`
+	// Include analysis comments in the PGN moves, when available.
+	// Example: `12. Bxf6 { [%eval 0.23] }`
+	Comments *bool `json:"comments,omitempty"`
+}
+
+// BroadcastStreamTourPgn - Stream ongoing broadcast rounds of a tournament as PGN
+//
+// For a given broadcast tournament ([example](https://lichess.org/broadcast/sparkassen-chess-trophy-2026-open-a/jfEpUuzg)),
+// selects all the ongoing and recently finished rounds, and sends all games of these rounds in PGN format.
+// Then, it waits for new moves to be played. As soon as it happens, the entire PGN of the game is sent to the stream.
+// The stream will also send PGNs when games are added to the rounds.
+// This is the best way to get updates about an ongoing broadcast tournament across all its rounds.
+// To stream a single round, use [this endpoint instead](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn).
+func (c *Client) BroadcastStreamTourPgn(ctx context.Context, broadcastTourID string, opts ...BroadcastStreamTourPgnParams) (*BroadcastPgn, error) {
+	path := "/api/stream/broadcast/tour/{broadcastTourId}.pgn"
+	path = pathReplace(path, "broadcastTourId", "simple", false, broadcastTourID)
+	var params BroadcastStreamTourPgnParams
+	if len(opts) > 0 {
+		params = opts[0]
+	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "clocks", "form", true, params.Clocks)
+	addQueryParam(queryValues, "comments", "form", true, params.Comments)
+	if len(queryValues) > 0 {
+		path += "?" + encodeQuery(queryValues)
+	}
+	var result BroadcastPgn
+	if err := c.do(ctx, "GET", path, nil, &result, "application/x-chess-pgn"); err != nil {
+		return nil, err
+	}
+	return &result, nil
+}
+
 // BroadcastStreamGroupPgnParams contains the parameters for the BroadcastStreamGroupPgn operation.
 // Required parameters are value fields; optional parameters are pointers.
 type BroadcastStreamGroupPgnParams struct {
@@ -2900,10 +2939,65 @@ func (c *Client) TeamIDKickUserID(ctx context.Context, teamID string, userID str
 	return &result, nil
 }
 
-// TeamIDPmAll - Message all members
+// TeamUpdatesParams contains the parameters for the TeamUpdates operation.
+// Required parameters are value fields; optional parameters are pointers.
+type TeamUpdatesParams struct {
+	Page *int64 `json:"page,omitempty"`
+}
+
+// TeamUpdates - Get updates from your teams
 //
-// Send a private message to all members of a team.
-// You must be a team leader with the "Messages" permission.
+// Paginator of the most recent updates posted by team leaders of teams you have joined.
+func (c *Client) TeamUpdates(ctx context.Context, opts ...TeamUpdatesParams) (*TeamUpdates, error) {
+	path := "/team/updates"
+	var params TeamUpdatesParams
+	if len(opts) > 0 {
+		params = opts[0]
+	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "page", "form", true, params.Page)
+	if len(queryValues) > 0 {
+		path += "?" + encodeQuery(queryValues)
+	}
+	var result TeamUpdates
+	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+		return nil, err
+	}
+	return &result, nil
+}
+
+// TeamUpdatesByTeamIDParams contains the parameters for the TeamUpdatesByTeamID operation.
+// Required parameters are value fields; optional parameters are pointers.
+type TeamUpdatesByTeamIDParams struct {
+	Page *int64 `json:"page,omitempty"`
+}
+
+// TeamUpdatesByTeamID - Get updates from one of your teams
+//
+// Paginator of the most recent updates posted by team leaders of a team you have joined.
+func (c *Client) TeamUpdatesByTeamID(ctx context.Context, teamID string, opts ...TeamUpdatesByTeamIDParams) (*TeamUpdatesOfTeam, error) {
+	path := "/team/updates/{teamId}"
+	path = pathReplace(path, "teamId", "simple", false, teamID)
+	var params TeamUpdatesByTeamIDParams
+	if len(opts) > 0 {
+		params = opts[0]
+	}
+	queryValues := url.Values{}
+	addQueryParam(queryValues, "page", "form", true, params.Page)
+	if len(queryValues) > 0 {
+		path += "?" + encodeQuery(queryValues)
+	}
+	var result TeamUpdatesOfTeam
+	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+		return nil, err
+	}
+	return &result, nil
+}
+
+// TeamIDPmAll - Send a team update
+//
+// Send a team update to all members of a team.
+// You must be a team leader with the "Updates" permission.
 func (c *Client) TeamIDPmAll(ctx context.Context, teamID string, body any) (*Ok, error) {
 	path := "/team/{teamId}/pm-all"
 	path = pathReplace(path, "teamId", "simple", false, teamID)
