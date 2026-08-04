@@ -36,3 +36,8 @@ func NewTeamRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1
     urlParams["request-raw-url"] = rawUrl
     return NewTeamRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Updates the updates property
+// returns a *UpdatesRequestBuilder when successful
+func (m *TeamRequestBuilder) Updates()(*UpdatesRequestBuilder) {
+    return NewUpdatesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}

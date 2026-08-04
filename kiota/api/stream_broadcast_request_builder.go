@@ -34,3 +34,8 @@ func (m *StreamBroadcastRequestBuilder) Group()(*StreamBroadcastGroupRequestBuil
 func (m *StreamBroadcastRequestBuilder) Round()(*StreamBroadcastRoundRequestBuilder) {
     return NewStreamBroadcastRoundRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Tour the tour property
+// returns a *StreamBroadcastTourRequestBuilder when successful
+func (m *StreamBroadcastRequestBuilder) Tour()(*StreamBroadcastTourRequestBuilder) {
+    return NewStreamBroadcastTourRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
