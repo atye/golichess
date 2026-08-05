@@ -722,6 +722,9 @@ func (u MoveStreamEntry) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements json.Unmarshaler for MoveStreamEntry.
 func (u *MoveStreamEntry) UnmarshalJSON(data []byte) error {
+	if string(data) == "null" {
+		return nil
+	}
 	var errors []error
 	return fmt.Errorf("data did not match any variant of MoveStreamEntry: %v", errors)
 }
@@ -766,6 +769,9 @@ func (u TvFeed) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements json.Unmarshaler for TvFeed.
 func (u *TvFeed) UnmarshalJSON(data []byte) error {
+	if string(data) == "null" {
+		return nil
+	}
 	var errors []error
 	var valTvFeedFeatured TvFeedFeatured
 	if err := json.Unmarshal(data, &valTvFeedFeatured); err == nil {
@@ -823,6 +829,9 @@ func (u ArenaPosition) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements json.Unmarshaler for ArenaPosition.
 func (u *ArenaPosition) UnmarshalJSON(data []byte) error {
+	if string(data) == "null" {
+		return nil
+	}
 	var errors []error
 	return fmt.Errorf("data did not match any variant of ArenaPosition: %v", errors)
 }
@@ -1595,6 +1604,9 @@ func (u GameEventOpponent) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements json.Unmarshaler for GameEventOpponent.
 func (u *GameEventOpponent) UnmarshalJSON(data []byte) error {
+	if string(data) == "null" {
+		return nil
+	}
 	var errors []error
 	return fmt.Errorf("data did not match any variant of GameEventOpponent: %v", errors)
 }
@@ -1685,6 +1697,9 @@ func (u TimeControl) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements json.Unmarshaler for TimeControl.
 func (u *TimeControl) UnmarshalJSON(data []byte) error {
+	if string(data) == "null" {
+		return nil
+	}
 	var errors []error
 	return fmt.Errorf("data did not match any variant of TimeControl: %v", errors)
 }
@@ -1944,6 +1959,9 @@ func (u ExternalEngineWork) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements json.Unmarshaler for ExternalEngineWork.
 func (u *ExternalEngineWork) UnmarshalJSON(data []byte) error {
+	if string(data) == "null" {
+		return nil
+	}
 	var errors []error
 	return fmt.Errorf("data did not match any variant of ExternalEngineWork: %v", errors)
 }
@@ -2093,15 +2111,42 @@ type TablebaseJSON struct {
 // Variants: TimelineEntryFollow, TimelineEntryTeamJoin, TimelineEntryTeamCreate, TimelineEntryForumPost, TimelineEntryBlogPost, TimelineEntryUblogPost, TimelineEntryTourJoin, TimelineEntryGameEnd, TimelineEntrySimul, TimelineEntryStudyLike, TimelineEntryPlanStart, TimelineEntryPlanRenew, TimelineEntryUblogPostLike, TimelineEntryStreamStart
 type TimelineEntriesItem struct {
 	Value any
+
+	unknownDiscriminator string
+	raw                  json.RawMessage
+}
+
+// IsUnknownVariant reports whether the payload carried a type
+// this client does not know. Value is nil in that case; the original JSON is
+// available from Raw and is re-marshaled unchanged.
+func (u TimelineEntriesItem) IsUnknownVariant() bool {
+	return u.Value == nil && len(u.raw) > 0
+}
+
+// UnknownDiscriminator returns the unrecognized type value,
+// or "" when the payload decoded into a known variant.
+func (u TimelineEntriesItem) UnknownDiscriminator() string {
+	return u.unknownDiscriminator
+}
+
+// Raw returns the original JSON of an unrecognized variant, or nil.
+func (u TimelineEntriesItem) Raw() json.RawMessage {
+	return u.raw
 }
 
 // MarshalJSON implements json.Marshaler for TimelineEntriesItem.
 func (u TimelineEntriesItem) MarshalJSON() ([]byte, error) {
+	if u.IsUnknownVariant() {
+		return u.raw, nil
+	}
 	return json.Marshal(u.Value)
 }
 
 // UnmarshalJSON implements json.Unmarshaler for TimelineEntriesItem.
 func (u *TimelineEntriesItem) UnmarshalJSON(data []byte) error {
+	if string(data) == "null" {
+		return nil
+	}
 	var disc struct {
 		Type string `json:"type"`
 	}
@@ -2114,108 +2159,117 @@ func (u *TimelineEntriesItem) UnmarshalJSON(data []byte) error {
 		if err := json.Unmarshal(data, &v); err != nil {
 			return err
 		}
-		u.Value = v
+		*u = TimelineEntriesItem{Value: v}
 		return nil
 	case "follow":
 		var v TimelineEntryFollow
 		if err := json.Unmarshal(data, &v); err != nil {
 			return err
 		}
-		u.Value = v
+		*u = TimelineEntriesItem{Value: v}
 		return nil
 	case "forum-post":
 		var v TimelineEntryForumPost
 		if err := json.Unmarshal(data, &v); err != nil {
 			return err
 		}
-		u.Value = v
+		*u = TimelineEntriesItem{Value: v}
 		return nil
 	case "game-end":
 		var v TimelineEntryGameEnd
 		if err := json.Unmarshal(data, &v); err != nil {
 			return err
 		}
-		u.Value = v
+		*u = TimelineEntriesItem{Value: v}
 		return nil
 	case "plan-renew":
 		var v TimelineEntryPlanRenew
 		if err := json.Unmarshal(data, &v); err != nil {
 			return err
 		}
-		u.Value = v
+		*u = TimelineEntriesItem{Value: v}
 		return nil
 	case "plan-start":
 		var v TimelineEntryPlanStart
 		if err := json.Unmarshal(data, &v); err != nil {
 			return err
 		}
-		u.Value = v
+		*u = TimelineEntriesItem{Value: v}
 		return nil
 	case "simul-create":
 		var v TimelineEntrySimul
 		if err := json.Unmarshal(data, &v); err != nil {
 			return err
 		}
-		u.Value = v
+		*u = TimelineEntriesItem{Value: v}
 		return nil
 	case "simul-join":
 		var v TimelineEntrySimul
 		if err := json.Unmarshal(data, &v); err != nil {
 			return err
 		}
-		u.Value = v
+		*u = TimelineEntriesItem{Value: v}
 		return nil
 	case "stream-start":
 		var v TimelineEntryStreamStart
 		if err := json.Unmarshal(data, &v); err != nil {
 			return err
 		}
-		u.Value = v
+		*u = TimelineEntriesItem{Value: v}
 		return nil
 	case "study-like":
 		var v TimelineEntryStudyLike
 		if err := json.Unmarshal(data, &v); err != nil {
 			return err
 		}
-		u.Value = v
+		*u = TimelineEntriesItem{Value: v}
 		return nil
 	case "team-create":
 		var v TimelineEntryTeamCreate
 		if err := json.Unmarshal(data, &v); err != nil {
 			return err
 		}
-		u.Value = v
+		*u = TimelineEntriesItem{Value: v}
 		return nil
 	case "team-join":
 		var v TimelineEntryTeamJoin
 		if err := json.Unmarshal(data, &v); err != nil {
 			return err
 		}
-		u.Value = v
+		*u = TimelineEntriesItem{Value: v}
 		return nil
 	case "tour-join":
 		var v TimelineEntryTourJoin
 		if err := json.Unmarshal(data, &v); err != nil {
 			return err
 		}
-		u.Value = v
+		*u = TimelineEntriesItem{Value: v}
 		return nil
 	case "ublog-post":
 		var v TimelineEntryUblogPost
 		if err := json.Unmarshal(data, &v); err != nil {
 			return err
 		}
-		u.Value = v
+		*u = TimelineEntriesItem{Value: v}
 		return nil
 	case "ublog-post-like":
 		var v TimelineEntryUblogPostLike
 		if err := json.Unmarshal(data, &v); err != nil {
 			return err
 		}
-		u.Value = v
+		*u = TimelineEntriesItem{Value: v}
 		return nil
+	case "":
+		return fmt.Errorf("unmarshaling TimelineEntriesItem: missing type discriminator")
 	default:
-		return fmt.Errorf("unknown type value: %q", disc.Type)
+		// Adding a variant to a oneOf is meant to be a backward-compatible change,
+		// so an unrecognized one is preserved verbatim instead of failing the decode
+		// of the whole payload it happens to appear in.
+		*u = TimelineEntriesItem{
+			unknownDiscriminator: disc.Type,
+			raw:                  append(json.RawMessage(nil), data...),
+		}
+		return nil
 	}
 }
 
@@ -2232,6 +2286,9 @@ func (u ChallengeJSONDestUser) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements json.Unmarshaler for ChallengeJSONDestUser.
 func (u *ChallengeJSONDestUser) UnmarshalJSON(data []byte) error {
+	if string(data) == "null" {
+		return nil
+	}
 	var errors []error
 	var valChallengeUser ChallengeUser
 	if err := json.Unmarshal(data, &valChallengeUser); err == nil {
@@ -2256,6 +2313,9 @@ func (u GameEventPlayerTitle) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements json.Unmarshaler for GameEventPlayerTitle.
 func (u *GameEventPlayerTitle) UnmarshalJSON(data []byte) error {
+	if string(data) == "null" {
+		return nil
+	}
 	var errors []error
 	var valTitle Title
 	if err := json.Unmarshal(data, &valTitle); err == nil {
@@ -2280,6 +2340,9 @@ func (u OpeningExplorerMastersGameWinner) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements json.Unmarshaler for OpeningExplorerMastersGameWinner.
 func (u *OpeningExplorerMastersGameWinner) UnmarshalJSON(data []byte) error {
+	if string(data) == "null" {
+		return nil
+	}
 	var errors []error
 	var valGameColor GameColor
 	if err := json.Unmarshal(data, &valGameColor); err == nil {
@@ -2304,6 +2367,9 @@ func (u OpeningExplorerMastersOpening) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements json.Unmarshaler for OpeningExplorerMastersOpening.
 func (u *OpeningExplorerMastersOpening) UnmarshalJSON(data []byte) error {
+	if string(data) == "null" {
+		return nil
+	}
 	var errors []error
 	var valOpeningExplorerOpening OpeningExplorerOpening
 	if err := json.Unmarshal(data, &valOpeningExplorerOpening); err == nil {
@@ -2313,4 +2379,141 @@ func (u *OpeningExplorerMastersOpening) UnmarshalJSON(data []byte) error {
 		errors = append(errors, err)
 	}
 	return fmt.Errorf("data did not match any variant of OpeningExplorerMastersOpening: %v", errors)
+}
+
+// GamePgnResponse represents a union type (oneOf/anyOf).
+// Variants: GamePgn, GameJSON
+type GamePgnResponse struct {
+	Value any
+}
+
+// MarshalJSON implements json.Marshaler for GamePgnResponse.
+func (u GamePgnResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(u.Value)
+}
+
+// UnmarshalJSON implements json.Unmarshaler for GamePgnResponse.
+func (u *GamePgnResponse) UnmarshalJSON(data []byte) error {
+	if string(data) == "null" {
+		return nil
+	}
+	var errors []error
+	var valGamePgn GamePgn
+	if err := json.Unmarshal(data, &valGamePgn); err == nil {
+		u.Value = valGamePgn
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	var valGameJSON GameJSON
+	if err := json.Unmarshal(data, &valGameJSON); err == nil {
+		u.Value = valGameJSON
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	return fmt.Errorf("data did not match any variant of GamePgnResponse: %v", errors)
+}
+
+// APIStreamEventResponse represents a union type (oneOf/anyOf).
+// Variants: GameStartEvent, GameFinishEvent, ChallengeEvent, ChallengeCanceledEvent, ChallengeDeclinedEvent
+type APIStreamEventResponse struct {
+	Value any
+}
+
+// MarshalJSON implements json.Marshaler for APIStreamEventResponse.
+func (u APIStreamEventResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(u.Value)
+}
+
+// UnmarshalJSON implements json.Unmarshaler for APIStreamEventResponse.
+func (u *APIStreamEventResponse) UnmarshalJSON(data []byte) error {
+	if string(data) == "null" {
+		return nil
+	}
+	var errors []error
+	var valGameStartEvent GameStartEvent
+	if err := json.Unmarshal(data, &valGameStartEvent); err == nil {
+		u.Value = valGameStartEvent
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	var valGameFinishEvent GameFinishEvent
+	if err := json.Unmarshal(data, &valGameFinishEvent); err == nil {
+		u.Value = valGameFinishEvent
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	var valChallengeEvent ChallengeEvent
+	if err := json.Unmarshal(data, &valChallengeEvent); err == nil {
+		u.Value = valChallengeEvent
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	var valChallengeCanceledEvent ChallengeCanceledEvent
+	if err := json.Unmarshal(data, &valChallengeCanceledEvent); err == nil {
+		u.Value = valChallengeCanceledEvent
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	var valChallengeDeclinedEvent ChallengeDeclinedEvent
+	if err := json.Unmarshal(data, &valChallengeDeclinedEvent); err == nil {
+		u.Value = valChallengeDeclinedEvent
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	return fmt.Errorf("data did not match any variant of APIStreamEventResponse: %v", errors)
+}
+
+// BoardGameStreamResponse represents a union type (oneOf/anyOf).
+// Variants: GameFullEvent, GameStateEvent, ChatLineEvent, OpponentGoneEvent
+type BoardGameStreamResponse struct {
+	Value any
+}
+
+// MarshalJSON implements json.Marshaler for BoardGameStreamResponse.
+func (u BoardGameStreamResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(u.Value)
+}
+
+// UnmarshalJSON implements json.Unmarshaler for BoardGameStreamResponse.
+func (u *BoardGameStreamResponse) UnmarshalJSON(data []byte) error {
+	if string(data) == "null" {
+		return nil
+	}
+	var errors []error
+	var valGameFullEvent GameFullEvent
+	if err := json.Unmarshal(data, &valGameFullEvent); err == nil {
+		u.Value = valGameFullEvent
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	var valGameStateEvent GameStateEvent
+	if err := json.Unmarshal(data, &valGameStateEvent); err == nil {
+		u.Value = valGameStateEvent
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	var valChatLineEvent ChatLineEvent
+	if err := json.Unmarshal(data, &valChatLineEvent); err == nil {
+		u.Value = valChatLineEvent
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	var valOpponentGoneEvent OpponentGoneEvent
+	if err := json.Unmarshal(data, &valOpponentGoneEvent); err == nil {
+		u.Value = valOpponentGoneEvent
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	return fmt.Errorf("data did not match any variant of BoardGameStreamResponse: %v", errors)
 }

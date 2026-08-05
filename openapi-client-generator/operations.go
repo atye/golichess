@@ -608,7 +608,7 @@ type GamePgnParams struct {
 //
 // Download one game in either PGN or JSON format.
 // Ongoing games are delayed by 3 moves, as to prevent cheat bots from using this API.
-func (c *Client) GamePgn(ctx context.Context, gameID string, opts ...GamePgnParams) (*any, error) {
+func (c *Client) GamePgn(ctx context.Context, gameID string, opts ...GamePgnParams) (*GamePgnResponse, error) {
 	path := "/game/export/{gameId}"
 	path = pathReplace(path, "gameId", "simple", false, gameID)
 	var params GamePgnParams
@@ -631,7 +631,7 @@ func (c *Client) GamePgn(ctx context.Context, gameID string, opts ...GamePgnPara
 	}
 	headers := make(http.Header)
 	setHeader(headers, "Accept", false, params.Accept)
-	var result any
+	var result GamePgnResponse
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json", headers); err != nil {
 		return nil, err
 	}
@@ -692,7 +692,7 @@ type APIUserCurrentGameParams struct {
 // Download the ongoing game, or the last game played, of a user.
 // Available in either PGN or JSON format.
 // Ongoing games are delayed by 3 moves, as to prevent cheat bots from using this API.
-func (c *Client) APIUserCurrentGame(ctx context.Context, username string, opts ...APIUserCurrentGameParams) (*any, error) {
+func (c *Client) APIUserCurrentGame(ctx context.Context, username string, opts ...APIUserCurrentGameParams) (*GamePgnResponse, error) {
 	path := "/api/user/{username}/current-game"
 	path = pathReplace(path, "username", "simple", false, username)
 	var params APIUserCurrentGameParams
@@ -714,7 +714,7 @@ func (c *Client) APIUserCurrentGame(ctx context.Context, username string, opts .
 	}
 	headers := make(http.Header)
 	setHeader(headers, "Accept", false, params.Accept)
-	var result any
+	var result GamePgnResponse
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json", headers); err != nil {
 		return nil, err
 	}
@@ -795,7 +795,7 @@ type APIGamesUserParams struct {
 //   - Anonymous request: 20 games per second
 //   - [OAuth2 authenticated](#description/authentication) request: 30 games per second
 //   - Authenticated, downloading your own games: 60 games per second
-func (c *Client) APIGamesUser(ctx context.Context, username string, opts ...APIGamesUserParams) (*any, error) {
+func (c *Client) APIGamesUser(ctx context.Context, username string, opts ...APIGamesUserParams) (*GamePgnResponse, error) {
 	path := "/api/games/user/{username}"
 	path = pathReplace(path, "username", "simple", false, username)
 	var params APIGamesUserParams
@@ -830,7 +830,7 @@ func (c *Client) APIGamesUser(ctx context.Context, username string, opts ...APIG
 	}
 	headers := make(http.Header)
 	setHeader(headers, "Accept", false, params.Accept)
-	var result any
+	var result GamePgnResponse
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson", headers); err != nil {
 		return nil, err
 	}
@@ -878,7 +878,7 @@ type GamesExportIdsParams struct {
 // The method is `POST` so a longer list of IDs can be sent in the request body.
 // 300 IDs can be submitted.
 // Ongoing games are delayed by 3 moves, as to prevent cheat bots from using this API.
-func (c *Client) GamesExportIds(ctx context.Context, body string, opts ...GamesExportIdsParams) (*any, error) {
+func (c *Client) GamesExportIds(ctx context.Context, body string, opts ...GamesExportIdsParams) (*GamePgnResponse, error) {
 	path := "/api/games/export/_ids"
 	var params GamesExportIdsParams
 	if len(opts) > 0 {
@@ -899,7 +899,7 @@ func (c *Client) GamesExportIds(ctx context.Context, body string, opts ...GamesE
 	}
 	headers := make(http.Header)
 	setHeader(headers, "Accept", false, params.Accept)
-	var result any
+	var result GamePgnResponse
 	if err := c.do(ctx, "POST", path, body, &result, "application/json", headers); err != nil {
 		return nil, err
 	}
@@ -1097,7 +1097,7 @@ type APIExportBookmarksParams struct {
 // Download all games bookmarked by you, in PGN or [ndjson](#description/streaming-with-nd-json) format.
 // Games are sorted by reverse chronological order (most recent first).
 // We recommend streaming the response, for it can be very long.
-func (c *Client) APIExportBookmarks(ctx context.Context, opts ...APIExportBookmarksParams) (*any, error) {
+func (c *Client) APIExportBookmarks(ctx context.Context, opts ...APIExportBookmarksParams) (*GamePgnResponse, error) {
 	path := "/api/games/export/bookmarks"
 	var params APIExportBookmarksParams
 	if len(opts) > 0 {
@@ -1123,7 +1123,7 @@ func (c *Client) APIExportBookmarks(ctx context.Context, opts ...APIExportBookma
 	}
 	headers := make(http.Header)
 	setHeader(headers, "Accept", false, params.Accept)
-	var result any
+	var result GamePgnResponse
 	if err := c.do(ctx, "GET", path, nil, &result, "application/json", headers); err != nil {
 		return nil, err
 	}
@@ -3212,9 +3212,9 @@ func (c *Client) UnblockUser(ctx context.Context, username string) (*Ok, error) 
 // When the stream opens, all current challenges and games are sent.
 //
 // Only one global event stream can be active at a time. When the stream opens, the previous one with the same access token is closed.
-func (c *Client) APIStreamEvent(ctx context.Context) (*any, error) {
+func (c *Client) APIStreamEvent(ctx context.Context) (*APIStreamEventResponse, error) {
 	path := "/api/stream/event"
-	var result any
+	var result APIStreamEventResponse
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
 		return nil, err
 	}
@@ -3267,10 +3267,10 @@ func (c *Client) APIBoardSeek(ctx context.Context, body *any) (*any, error) {
 // The first line is always of type `gameFull`.
 //
 // The server closes the stream when the game ends, or if the game has already ended.
-func (c *Client) BoardGameStream(ctx context.Context, gameID string) (*any, error) {
+func (c *Client) BoardGameStream(ctx context.Context, gameID string) (*BoardGameStreamResponse, error) {
 	path := "/api/board/game/stream/{gameId}"
 	path = pathReplace(path, "gameId", "simple", false, gameID)
-	var result any
+	var result BoardGameStreamResponse
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
 		return nil, parseNotFoundResponse(err)
 	}
@@ -3490,10 +3490,10 @@ func (c *Client) BotAccountUpgrade(ctx context.Context) (*Ok, error) {
 // - `chatLine` Chat message sent by a user (or the bot itself) in the `room` "player" or "spectator".
 // - `opponentGone` Whether the opponent has left the game, and how long before you can claim a win or draw.
 // The first line is always of type `gameFull`.
-func (c *Client) BotGameStream(ctx context.Context, gameID string) (*any, error) {
+func (c *Client) BotGameStream(ctx context.Context, gameID string) (*BoardGameStreamResponse, error) {
 	path := "/api/bot/game/stream/{gameId}"
 	path = pathReplace(path, "gameId", "simple", false, gameID)
-	var result any
+	var result BoardGameStreamResponse
 	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
 		return nil, parseNotFoundResponse(err)
 	}
