@@ -726,6 +726,15 @@ func (u *MoveStreamEntry) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 	var errors []error
+	// A variant with no Go type of its own still covers payloads the spec says are
+	// valid, so they decode into any rather than failing as an unmatched variant.
+	var untyped any
+	if err := json.Unmarshal(data, &untyped); err == nil {
+		u.Value = untyped
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
 	return fmt.Errorf("data did not match any variant of MoveStreamEntry: %v", errors)
 }
 
@@ -773,16 +782,16 @@ func (u *TvFeed) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 	var errors []error
-	var valTvFeedFeatured TvFeedFeatured
-	if err := json.Unmarshal(data, &valTvFeedFeatured); err == nil {
-		u.Value = valTvFeedFeatured
+	var variant0 TvFeedFeatured
+	if err := json.Unmarshal(data, &variant0); err == nil {
+		u.Value = variant0
 		return nil
 	} else {
 		errors = append(errors, err)
 	}
-	var valTvFeedFen TvFeedFen
-	if err := json.Unmarshal(data, &valTvFeedFen); err == nil {
-		u.Value = valTvFeedFen
+	var variant1 TvFeedFen
+	if err := json.Unmarshal(data, &variant1); err == nil {
+		u.Value = variant1
 		return nil
 	} else {
 		errors = append(errors, err)
@@ -833,6 +842,15 @@ func (u *ArenaPosition) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 	var errors []error
+	// A variant with no Go type of its own still covers payloads the spec says are
+	// valid, so they decode into any rather than failing as an unmatched variant.
+	var untyped any
+	if err := json.Unmarshal(data, &untyped); err == nil {
+		u.Value = untyped
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
 	return fmt.Errorf("data did not match any variant of ArenaPosition: %v", errors)
 }
 
@@ -1608,6 +1626,15 @@ func (u *GameEventOpponent) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 	var errors []error
+	// A variant with no Go type of its own still covers payloads the spec says are
+	// valid, so they decode into any rather than failing as an unmatched variant.
+	var untyped any
+	if err := json.Unmarshal(data, &untyped); err == nil {
+		u.Value = untyped
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
 	return fmt.Errorf("data did not match any variant of GameEventOpponent: %v", errors)
 }
 
@@ -1701,6 +1728,15 @@ func (u *TimeControl) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 	var errors []error
+	// A variant with no Go type of its own still covers payloads the spec says are
+	// valid, so they decode into any rather than failing as an unmatched variant.
+	var untyped any
+	if err := json.Unmarshal(data, &untyped); err == nil {
+		u.Value = untyped
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
 	return fmt.Errorf("data did not match any variant of TimeControl: %v", errors)
 }
 
@@ -1713,21 +1749,21 @@ const (
 )
 
 type ChallengeJSON struct {
-	ID          string                `json:"id"`
-	URL         string                `json:"url"`
-	Status      ChallengeStatus       `json:"status"`
-	Challenger  ChallengeUser         `json:"challenger"`
-	DestUser    ChallengeJSONDestUser `json:"destUser"`
-	Variant     Variant               `json:"variant"`
-	Rated       bool                  `json:"rated"`
-	Speed       Speed                 `json:"speed"`
-	TimeControl TimeControl           `json:"timeControl"`
-	Color       ChallengeColor        `json:"color"`
-	FinalColor  *GameColor            `json:"finalColor,omitempty"`
-	Perf        any                   `json:"perf"`
-	Direction   *string               `json:"direction,omitempty"`
-	InitialFen  *string               `json:"initialFen,omitempty"`
-	RematchOf   *string               `json:"rematchOf,omitempty"`
+	ID          string          `json:"id"`
+	URL         string          `json:"url"`
+	Status      ChallengeStatus `json:"status"`
+	Challenger  ChallengeUser   `json:"challenger"`
+	DestUser    *ChallengeUser  `json:"destUser"`
+	Variant     Variant         `json:"variant"`
+	Rated       bool            `json:"rated"`
+	Speed       Speed           `json:"speed"`
+	TimeControl TimeControl     `json:"timeControl"`
+	Color       ChallengeColor  `json:"color"`
+	FinalColor  *GameColor      `json:"finalColor,omitempty"`
+	Perf        any             `json:"perf"`
+	Direction   *string         `json:"direction,omitempty"`
+	InitialFen  *string         `json:"initialFen,omitempty"`
+	RematchOf   *string         `json:"rematchOf,omitempty"`
 }
 
 type ChallengeEvent struct {
@@ -1755,12 +1791,12 @@ type ChallengeDeclinedEvent struct {
 }
 
 type GameEventPlayer struct {
-	AiLevel     *int64                `json:"aiLevel,omitempty"`
-	ID          string                `json:"id"`
-	Name        string                `json:"name"`
-	Title       *GameEventPlayerTitle `json:"title,omitempty"`
-	Rating      *int64                `json:"rating,omitempty"`
-	Provisional *bool                 `json:"provisional,omitempty"`
+	AiLevel     *int64 `json:"aiLevel,omitempty"`
+	ID          string `json:"id"`
+	Name        string `json:"name"`
+	Title       *Title `json:"title,omitempty"`
+	Rating      *int64 `json:"rating,omitempty"`
+	Provisional *bool  `json:"provisional,omitempty"`
 }
 
 type GameStateEvent struct {
@@ -1963,6 +1999,15 @@ func (u *ExternalEngineWork) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 	var errors []error
+	// A variant with no Go type of its own still covers payloads the spec says are
+	// valid, so they decode into any rather than failing as an unmatched variant.
+	var untyped any
+	if err := json.Unmarshal(data, &untyped); err == nil {
+		u.Value = untyped
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
 	return fmt.Errorf("data did not match any variant of ExternalEngineWork: %v", errors)
 }
 
@@ -1984,57 +2029,57 @@ type OpeningExplorerGamePlayer struct {
 }
 
 type OpeningExplorerMastersGame struct {
-	ID     string                           `json:"id"`
-	Winner OpeningExplorerMastersGameWinner `json:"winner"`
-	White  OpeningExplorerGamePlayer        `json:"white"`
-	Black  OpeningExplorerGamePlayer        `json:"black"`
-	Year   int64                            `json:"year"`
-	Month  *string                          `json:"month,omitempty"`
+	ID     string                    `json:"id"`
+	Winner *GameColor                `json:"winner"`
+	White  OpeningExplorerGamePlayer `json:"white"`
+	Black  OpeningExplorerGamePlayer `json:"black"`
+	Year   int64                     `json:"year"`
+	Month  *string                   `json:"month,omitempty"`
 }
 
 type OpeningExplorerMasters struct {
-	Opening  OpeningExplorerMastersOpening `json:"opening"`
-	White    int64                         `json:"white"`
-	Draws    int64                         `json:"draws"`
-	Black    int64                         `json:"black"`
-	Moves    []any                         `json:"moves"`
-	TopGames []any                         `json:"topGames"`
+	Opening  *OpeningExplorerOpening `json:"opening"`
+	White    int64                   `json:"white"`
+	Draws    int64                   `json:"draws"`
+	Black    int64                   `json:"black"`
+	Moves    []any                   `json:"moves"`
+	TopGames []any                   `json:"topGames"`
 }
 
 type OpeningExplorerLichessGame struct {
-	ID     string                           `json:"id"`
-	Winner OpeningExplorerMastersGameWinner `json:"winner"`
-	Speed  *Speed                           `json:"speed,omitempty"`
-	White  OpeningExplorerGamePlayer        `json:"white"`
-	Black  OpeningExplorerGamePlayer        `json:"black"`
-	Year   float64                          `json:"year"`
-	Month  *string                          `json:"month"`
+	ID     string                    `json:"id"`
+	Winner *GameColor                `json:"winner"`
+	Speed  *Speed                    `json:"speed,omitempty"`
+	White  OpeningExplorerGamePlayer `json:"white"`
+	Black  OpeningExplorerGamePlayer `json:"black"`
+	Year   float64                   `json:"year"`
+	Month  *string                   `json:"month"`
 }
 
 type OpeningExplorerLichess struct {
-	Opening     OpeningExplorerMastersOpening `json:"opening"`
-	White       int64                         `json:"white"`
-	Draws       int64                         `json:"draws"`
-	Black       int64                         `json:"black"`
-	Moves       []any                         `json:"moves"`
-	TopGames    []any                         `json:"topGames"`
-	RecentGames []any                         `json:"recentGames,omitempty"`
-	History     []any                         `json:"history,omitempty"`
+	Opening     *OpeningExplorerOpening `json:"opening"`
+	White       int64                   `json:"white"`
+	Draws       int64                   `json:"draws"`
+	Black       int64                   `json:"black"`
+	Moves       []any                   `json:"moves"`
+	TopGames    []any                   `json:"topGames"`
+	RecentGames []any                   `json:"recentGames,omitempty"`
+	History     []any                   `json:"history,omitempty"`
 }
 
 type OpeningExplorerPlayerGame struct {
-	ID     string                           `json:"id"`
-	Winner OpeningExplorerMastersGameWinner `json:"winner"`
-	Speed  Speed                            `json:"speed"`
-	Mode   string                           `json:"mode"`
-	White  OpeningExplorerGamePlayer        `json:"white"`
-	Black  OpeningExplorerGamePlayer        `json:"black"`
-	Year   int64                            `json:"year"`
-	Month  string                           `json:"month"`
+	ID     string                    `json:"id"`
+	Winner *GameColor                `json:"winner"`
+	Speed  Speed                     `json:"speed"`
+	Mode   string                    `json:"mode"`
+	White  OpeningExplorerGamePlayer `json:"white"`
+	Black  OpeningExplorerGamePlayer `json:"black"`
+	Year   int64                     `json:"year"`
+	Month  string                    `json:"month"`
 }
 
 type OpeningExplorerPlayer struct {
-	Opening OpeningExplorerMastersOpening `json:"opening"`
+	Opening *OpeningExplorerOpening `json:"opening"`
 	// Waiting for other players to be indexed first
 	QueuePosition int64 `json:"queuePosition"`
 	White         int64 `json:"white"`
@@ -2113,7 +2158,7 @@ type TimelineEntriesItem struct {
 	Value any
 
 	unknownDiscriminator string
-	raw                  json.RawMessage
+	raw                  string
 }
 
 // IsUnknownVariant reports whether the payload carried a type
@@ -2131,13 +2176,16 @@ func (u TimelineEntriesItem) UnknownDiscriminator() string {
 
 // Raw returns the original JSON of an unrecognized variant, or nil.
 func (u TimelineEntriesItem) Raw() json.RawMessage {
-	return u.raw
+	if u.raw == "" {
+		return nil
+	}
+	return json.RawMessage(u.raw)
 }
 
 // MarshalJSON implements json.Marshaler for TimelineEntriesItem.
 func (u TimelineEntriesItem) MarshalJSON() ([]byte, error) {
 	if u.IsUnknownVariant() {
-		return u.raw, nil
+		return []byte(u.raw), nil
 	}
 	return json.Marshal(u.Value)
 }
@@ -2267,118 +2315,10 @@ func (u *TimelineEntriesItem) UnmarshalJSON(data []byte) error {
 		// of the whole payload it happens to appear in.
 		*u = TimelineEntriesItem{
 			unknownDiscriminator: disc.Type,
-			raw:                  append(json.RawMessage(nil), data...),
+			raw:                  string(data),
 		}
 		return nil
 	}
-}
-
-// ChallengeJSONDestUser represents a union type (oneOf/anyOf).
-// Variants: ChallengeUser, any
-type ChallengeJSONDestUser struct {
-	Value any
-}
-
-// MarshalJSON implements json.Marshaler for ChallengeJSONDestUser.
-func (u ChallengeJSONDestUser) MarshalJSON() ([]byte, error) {
-	return json.Marshal(u.Value)
-}
-
-// UnmarshalJSON implements json.Unmarshaler for ChallengeJSONDestUser.
-func (u *ChallengeJSONDestUser) UnmarshalJSON(data []byte) error {
-	if string(data) == "null" {
-		return nil
-	}
-	var errors []error
-	var valChallengeUser ChallengeUser
-	if err := json.Unmarshal(data, &valChallengeUser); err == nil {
-		u.Value = valChallengeUser
-		return nil
-	} else {
-		errors = append(errors, err)
-	}
-	return fmt.Errorf("data did not match any variant of ChallengeJSONDestUser: %v", errors)
-}
-
-// GameEventPlayerTitle represents a union type (oneOf/anyOf).
-// Variants: Title, any
-type GameEventPlayerTitle struct {
-	Value any
-}
-
-// MarshalJSON implements json.Marshaler for GameEventPlayerTitle.
-func (u GameEventPlayerTitle) MarshalJSON() ([]byte, error) {
-	return json.Marshal(u.Value)
-}
-
-// UnmarshalJSON implements json.Unmarshaler for GameEventPlayerTitle.
-func (u *GameEventPlayerTitle) UnmarshalJSON(data []byte) error {
-	if string(data) == "null" {
-		return nil
-	}
-	var errors []error
-	var valTitle Title
-	if err := json.Unmarshal(data, &valTitle); err == nil {
-		u.Value = valTitle
-		return nil
-	} else {
-		errors = append(errors, err)
-	}
-	return fmt.Errorf("data did not match any variant of GameEventPlayerTitle: %v", errors)
-}
-
-// OpeningExplorerMastersGameWinner represents a union type (oneOf/anyOf).
-// Variants: GameColor, any
-type OpeningExplorerMastersGameWinner struct {
-	Value any
-}
-
-// MarshalJSON implements json.Marshaler for OpeningExplorerMastersGameWinner.
-func (u OpeningExplorerMastersGameWinner) MarshalJSON() ([]byte, error) {
-	return json.Marshal(u.Value)
-}
-
-// UnmarshalJSON implements json.Unmarshaler for OpeningExplorerMastersGameWinner.
-func (u *OpeningExplorerMastersGameWinner) UnmarshalJSON(data []byte) error {
-	if string(data) == "null" {
-		return nil
-	}
-	var errors []error
-	var valGameColor GameColor
-	if err := json.Unmarshal(data, &valGameColor); err == nil {
-		u.Value = valGameColor
-		return nil
-	} else {
-		errors = append(errors, err)
-	}
-	return fmt.Errorf("data did not match any variant of OpeningExplorerMastersGameWinner: %v", errors)
-}
-
-// OpeningExplorerMastersOpening represents a union type (oneOf/anyOf).
-// Variants: OpeningExplorerOpening, any
-type OpeningExplorerMastersOpening struct {
-	Value any
-}
-
-// MarshalJSON implements json.Marshaler for OpeningExplorerMastersOpening.
-func (u OpeningExplorerMastersOpening) MarshalJSON() ([]byte, error) {
-	return json.Marshal(u.Value)
-}
-
-// UnmarshalJSON implements json.Unmarshaler for OpeningExplorerMastersOpening.
-func (u *OpeningExplorerMastersOpening) UnmarshalJSON(data []byte) error {
-	if string(data) == "null" {
-		return nil
-	}
-	var errors []error
-	var valOpeningExplorerOpening OpeningExplorerOpening
-	if err := json.Unmarshal(data, &valOpeningExplorerOpening); err == nil {
-		u.Value = valOpeningExplorerOpening
-		return nil
-	} else {
-		errors = append(errors, err)
-	}
-	return fmt.Errorf("data did not match any variant of OpeningExplorerMastersOpening: %v", errors)
 }
 
 // GamePgnResponse represents a union type (oneOf/anyOf).
@@ -2398,21 +2338,57 @@ func (u *GamePgnResponse) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 	var errors []error
-	var valGamePgn GamePgn
-	if err := json.Unmarshal(data, &valGamePgn); err == nil {
-		u.Value = valGamePgn
+	var variant0 GamePgn
+	if err := json.Unmarshal(data, &variant0); err == nil {
+		u.Value = variant0
 		return nil
 	} else {
 		errors = append(errors, err)
 	}
-	var valGameJSON GameJSON
-	if err := json.Unmarshal(data, &valGameJSON); err == nil {
-		u.Value = valGameJSON
+	var variant1 GameJSON
+	if err := json.Unmarshal(data, &variant1); err == nil {
+		u.Value = variant1
 		return nil
 	} else {
 		errors = append(errors, err)
 	}
 	return fmt.Errorf("data did not match any variant of GamePgnResponse: %v", errors)
+}
+
+// APIPlayerAutocompleteResponse represents a union type (oneOf/anyOf).
+// Variants: []string, any
+type APIPlayerAutocompleteResponse struct {
+	Value any
+}
+
+// MarshalJSON implements json.Marshaler for APIPlayerAutocompleteResponse.
+func (u APIPlayerAutocompleteResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(u.Value)
+}
+
+// UnmarshalJSON implements json.Unmarshaler for APIPlayerAutocompleteResponse.
+func (u *APIPlayerAutocompleteResponse) UnmarshalJSON(data []byte) error {
+	if string(data) == "null" {
+		return nil
+	}
+	var errors []error
+	var variant0 []string
+	if err := json.Unmarshal(data, &variant0); err == nil {
+		u.Value = variant0
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	// A variant with no Go type of its own still covers payloads the spec says are
+	// valid, so they decode into any rather than failing as an unmatched variant.
+	var untyped any
+	if err := json.Unmarshal(data, &untyped); err == nil {
+		u.Value = untyped
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	return fmt.Errorf("data did not match any variant of APIPlayerAutocompleteResponse: %v", errors)
 }
 
 // APIStreamEventResponse represents a union type (oneOf/anyOf).
@@ -2432,37 +2408,37 @@ func (u *APIStreamEventResponse) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 	var errors []error
-	var valGameStartEvent GameStartEvent
-	if err := json.Unmarshal(data, &valGameStartEvent); err == nil {
-		u.Value = valGameStartEvent
+	var variant0 GameStartEvent
+	if err := json.Unmarshal(data, &variant0); err == nil {
+		u.Value = variant0
 		return nil
 	} else {
 		errors = append(errors, err)
 	}
-	var valGameFinishEvent GameFinishEvent
-	if err := json.Unmarshal(data, &valGameFinishEvent); err == nil {
-		u.Value = valGameFinishEvent
+	var variant1 GameFinishEvent
+	if err := json.Unmarshal(data, &variant1); err == nil {
+		u.Value = variant1
 		return nil
 	} else {
 		errors = append(errors, err)
 	}
-	var valChallengeEvent ChallengeEvent
-	if err := json.Unmarshal(data, &valChallengeEvent); err == nil {
-		u.Value = valChallengeEvent
+	var variant2 ChallengeEvent
+	if err := json.Unmarshal(data, &variant2); err == nil {
+		u.Value = variant2
 		return nil
 	} else {
 		errors = append(errors, err)
 	}
-	var valChallengeCanceledEvent ChallengeCanceledEvent
-	if err := json.Unmarshal(data, &valChallengeCanceledEvent); err == nil {
-		u.Value = valChallengeCanceledEvent
+	var variant3 ChallengeCanceledEvent
+	if err := json.Unmarshal(data, &variant3); err == nil {
+		u.Value = variant3
 		return nil
 	} else {
 		errors = append(errors, err)
 	}
-	var valChallengeDeclinedEvent ChallengeDeclinedEvent
-	if err := json.Unmarshal(data, &valChallengeDeclinedEvent); err == nil {
-		u.Value = valChallengeDeclinedEvent
+	var variant4 ChallengeDeclinedEvent
+	if err := json.Unmarshal(data, &variant4); err == nil {
+		u.Value = variant4
 		return nil
 	} else {
 		errors = append(errors, err)
@@ -2487,30 +2463,30 @@ func (u *BoardGameStreamResponse) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 	var errors []error
-	var valGameFullEvent GameFullEvent
-	if err := json.Unmarshal(data, &valGameFullEvent); err == nil {
-		u.Value = valGameFullEvent
+	var variant0 GameFullEvent
+	if err := json.Unmarshal(data, &variant0); err == nil {
+		u.Value = variant0
 		return nil
 	} else {
 		errors = append(errors, err)
 	}
-	var valGameStateEvent GameStateEvent
-	if err := json.Unmarshal(data, &valGameStateEvent); err == nil {
-		u.Value = valGameStateEvent
+	var variant1 GameStateEvent
+	if err := json.Unmarshal(data, &variant1); err == nil {
+		u.Value = variant1
 		return nil
 	} else {
 		errors = append(errors, err)
 	}
-	var valChatLineEvent ChatLineEvent
-	if err := json.Unmarshal(data, &valChatLineEvent); err == nil {
-		u.Value = valChatLineEvent
+	var variant2 ChatLineEvent
+	if err := json.Unmarshal(data, &variant2); err == nil {
+		u.Value = variant2
 		return nil
 	} else {
 		errors = append(errors, err)
 	}
-	var valOpponentGoneEvent OpponentGoneEvent
-	if err := json.Unmarshal(data, &valOpponentGoneEvent); err == nil {
-		u.Value = valOpponentGoneEvent
+	var variant3 OpponentGoneEvent
+	if err := json.Unmarshal(data, &variant3); err == nil {
+		u.Value = variant3
 		return nil
 	} else {
 		errors = append(errors, err)

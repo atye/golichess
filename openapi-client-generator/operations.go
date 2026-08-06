@@ -42,7 +42,7 @@ func (c *Client) APIUsersStatus(ctx context.Context, params APIUsersStatusParams
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result []any
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -55,7 +55,7 @@ func (c *Client) APIUsersStatus(ctx context.Context, params APIUsersStatusParams
 func (c *Client) Player(ctx context.Context) (*Top10s, error) {
 	path := "/api/player"
 	var result Top10s
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -71,7 +71,7 @@ func (c *Client) PlayerTopNbPerfType(ctx context.Context, nb int64, perfType str
 	path = pathReplace(path, "nb", "simple", false, nb)
 	path = pathReplace(path, "perfType", "simple", false, perfType)
 	var result Leaderboard
-	if err := c.do(ctx, "GET", path, nil, &result, "application/vnd.lichess.v3+json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/vnd.lichess.v3+json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -109,7 +109,7 @@ func (c *Client) APIUser(ctx context.Context, username string, opts ...APIUserPa
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result UserExtended
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -125,7 +125,7 @@ func (c *Client) APIUserRatingHistory(ctx context.Context, username string) (*Ra
 	path := "/api/user/{username}/rating-history"
 	path = pathReplace(path, "username", "simple", false, username)
 	var result RatingHistory
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -140,7 +140,7 @@ func (c *Client) APIUserPerf(ctx context.Context, username string, perf PerfType
 	path = pathReplace(path, "username", "simple", false, username)
 	path = pathReplace(path, "perf", "simple", false, perf)
 	var result PerfStat
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -153,7 +153,7 @@ func (c *Client) APIUserActivity(ctx context.Context, username string) (*[]UserA
 	path := "/api/user/{username}/activity"
 	path = pathReplace(path, "username", "simple", false, username)
 	var result []UserActivity
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -165,7 +165,7 @@ func (c *Client) APIUserActivity(ctx context.Context, username string) (*[]UserA
 func (c *Client) APIPuzzleDaily(ctx context.Context) (*PuzzleAndGame, error) {
 	path := "/api/puzzle/daily"
 	var result PuzzleAndGame
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -178,7 +178,7 @@ func (c *Client) APIPuzzleID(ctx context.Context, id string) (*PuzzleAndGame, er
 	path := "/api/puzzle/{id}"
 	path = pathReplace(path, "id", "simple", false, id)
 	var result PuzzleAndGame
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -218,7 +218,7 @@ func (c *Client) APIPuzzleNext(ctx context.Context, opts ...APIPuzzleNextParams)
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result PuzzleAndGame
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -258,7 +258,7 @@ func (c *Client) APIPuzzleBatchSelect(ctx context.Context, angle string, opts ..
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result PuzzleBatchSelect
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -290,7 +290,7 @@ func (c *Client) APIPuzzleBatchSolve(ctx context.Context, angle string, body Puz
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result PuzzleBatchSolveResponse
-	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "application/json", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -326,7 +326,7 @@ func (c *Client) APIPuzzleActivity(ctx context.Context, opts ...APIPuzzleActivit
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result PuzzleActivity
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-ndjson"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -340,7 +340,7 @@ func (c *Client) APIPuzzleReplay(ctx context.Context, days int64, theme string) 
 	path = pathReplace(path, "days", "simple", false, days)
 	path = pathReplace(path, "theme", "simple", false, theme)
 	var result PuzzleReplay
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, parseanyResponse(err)
 	}
 	return &result, nil
@@ -355,7 +355,7 @@ func (c *Client) APIPuzzleDashboard(ctx context.Context, days int64) (*PuzzleDas
 	path := "/api/puzzle/dashboard/{days}"
 	path = pathReplace(path, "days", "simple", false, days)
 	var result PuzzleDashboard
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -386,7 +386,7 @@ func (c *Client) APIStormDashboard(ctx context.Context, username string, opts ..
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result PuzzleStormDashboard
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -401,7 +401,7 @@ func (c *Client) APIStormDashboard(ctx context.Context, username string, opts ..
 func (c *Client) RacerPost(ctx context.Context) (*PuzzleRacer, error) {
 	path := "/api/racer"
 	var result PuzzleRacer
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -419,7 +419,7 @@ func (c *Client) RacerGet(ctx context.Context, id string) (*PuzzleRaceResults, e
 	path := "/api/racer/{id}"
 	path = pathReplace(path, "id", "simple", false, id)
 	var result PuzzleRaceResults
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, parseNotFoundResponse(err)
 	}
 	return &result, nil
@@ -454,7 +454,7 @@ func (c *Client) APIUsers(ctx context.Context, body string, opts ...APIUsersPara
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result []User
-	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "text/plain", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -466,7 +466,7 @@ func (c *Client) APIUsers(ctx context.Context, body string, opts ...APIUsersPara
 func (c *Client) AccountMe(ctx context.Context) (*UserExtended, error) {
 	path := "/api/account"
 	var result UserExtended
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -478,7 +478,7 @@ func (c *Client) AccountMe(ctx context.Context) (*UserExtended, error) {
 func (c *Client) AccountEmail(ctx context.Context) (*any, error) {
 	path := "/api/account/email"
 	var result any
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -492,7 +492,7 @@ func (c *Client) AccountEmail(ctx context.Context) (*any, error) {
 func (c *Client) Account(ctx context.Context) (*any, error) {
 	path := "/api/account/preferences"
 	var result any
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -505,7 +505,7 @@ func (c *Client) Account(ctx context.Context) (*any, error) {
 func (c *Client) AccountKid(ctx context.Context) (*any, error) {
 	path := "/api/account/kid"
 	var result any
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -530,7 +530,7 @@ func (c *Client) AccountKidPost(ctx context.Context, params AccountKidPostParams
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result Ok
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -561,7 +561,7 @@ func (c *Client) Timeline(ctx context.Context, opts ...TimelineParams) (*Timelin
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result Timeline
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -632,7 +632,7 @@ func (c *Client) GamePgn(ctx context.Context, gameID string, opts ...GamePgnPara
 	headers := make(http.Header)
 	setHeader(headers, "Accept", false, params.Accept)
 	var result GamePgnResponse
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json", headers); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json", headers); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -647,7 +647,7 @@ func (c *Client) GameChatGet(ctx context.Context, gameID string) (*SpectatorGame
 	path := "/api/game/{gameId}/chat"
 	path = pathReplace(path, "gameId", "simple", false, gameID)
 	var result SpectatorGameChat
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-ndjson"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -715,7 +715,7 @@ func (c *Client) APIUserCurrentGame(ctx context.Context, username string, opts .
 	headers := make(http.Header)
 	setHeader(headers, "Accept", false, params.Accept)
 	var result GamePgnResponse
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json", headers); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json", headers); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -831,7 +831,7 @@ func (c *Client) APIGamesUser(ctx context.Context, username string, opts ...APIG
 	headers := make(http.Header)
 	setHeader(headers, "Accept", false, params.Accept)
 	var result GamePgnResponse
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson", headers); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-ndjson", headers); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -900,7 +900,7 @@ func (c *Client) GamesExportIds(ctx context.Context, body string, opts ...GamesE
 	headers := make(http.Header)
 	setHeader(headers, "Accept", false, params.Accept)
 	var result GamePgnResponse
-	if err := c.do(ctx, "POST", path, body, &result, "application/json", headers); err != nil {
+	if err := c.do(ctx, "POST", path, body, "text/plain", &result, "application/json", headers); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -934,7 +934,7 @@ func (c *Client) GamesByUsers(ctx context.Context, body string, opts ...GamesByU
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result GameStream
-	if err := c.do(ctx, "POST", path, body, &result, "application/x-ndjson"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "text/plain", &result, "application/x-ndjson"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -951,7 +951,7 @@ func (c *Client) GamesByIds(ctx context.Context, streamID string, body string) (
 	path := "/api/stream/games/{streamId}"
 	path = pathReplace(path, "streamId", "simple", false, streamID)
 	var result GameStream
-	if err := c.do(ctx, "POST", path, body, &result, "application/x-ndjson"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "text/plain", &result, "application/x-ndjson"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -965,7 +965,7 @@ func (c *Client) GamesByIdsAdd(ctx context.Context, streamID string, body string
 	path := "/api/stream/games/{streamId}/add"
 	path = pathReplace(path, "streamId", "simple", false, streamID)
 	var result Ok
-	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "text/plain", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -995,7 +995,7 @@ func (c *Client) APIAccountPlaying(ctx context.Context, opts ...APIAccountPlayin
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result any
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -1013,7 +1013,7 @@ func (c *Client) StreamGame(ctx context.Context, id string) (*MoveStream, error)
 	path := "/api/stream/game/{id}"
 	path = pathReplace(path, "id", "simple", false, id)
 	var result MoveStream
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-ndjson"); err != nil {
 		return nil, parseanyResponse(err)
 	}
 	return &result, nil
@@ -1029,7 +1029,7 @@ func (c *Client) StreamGame(ctx context.Context, id string) (*MoveStream, error)
 func (c *Client) GameImport(ctx context.Context, body any) (*any, error) {
 	path := "/api/import"
 	var result any
-	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "application/x-www-form-urlencoded", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -1041,7 +1041,7 @@ func (c *Client) GameImport(ctx context.Context, body any) (*any, error) {
 func (c *Client) APIImportedGamesUser(ctx context.Context) (*GamePgn, error) {
 	path := "/api/games/export/imports"
 	var result GamePgn
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-chess-pgn"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-chess-pgn"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -1124,7 +1124,7 @@ func (c *Client) APIExportBookmarks(ctx context.Context, opts ...APIExportBookma
 	headers := make(http.Header)
 	setHeader(headers, "Accept", false, params.Accept)
 	var result GamePgnResponse
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json", headers); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json", headers); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -1156,7 +1156,7 @@ func (c *Client) BookmarkToggle(ctx context.Context, gameID string, opts ...Book
 	if len(queryValues) > 0 {
 		path += "?" + encodeQuery(queryValues)
 	}
-	if err := c.do(ctx, "POST", path, nil, nil, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", nil, "application/json"); err != nil {
 		return err
 	}
 	return nil
@@ -1170,7 +1170,7 @@ func (c *Client) BookmarkToggle(ctx context.Context, gameID string, opts ...Book
 func (c *Client) TvChannels(ctx context.Context) (*any, error) {
 	path := "/api/tv/channels"
 	var result any
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -1183,7 +1183,7 @@ func (c *Client) TvChannels(ctx context.Context) (*any, error) {
 func (c *Client) TvFeed(ctx context.Context) (*TvFeed, error) {
 	path := "/api/tv/feed"
 	var result TvFeed
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-ndjson"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -1197,7 +1197,7 @@ func (c *Client) TvChannelFeed(ctx context.Context, channel string) (*TvFeed, er
 	path := "/api/tv/{channel}/feed"
 	path = pathReplace(path, "channel", "simple", false, channel)
 	var result TvFeed
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-ndjson"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -1251,7 +1251,7 @@ func (c *Client) TvChannelGames(ctx context.Context, channel string, opts ...TvC
 	headers := make(http.Header)
 	setHeader(headers, "Accept", false, params.Accept)
 	var result GameJSON
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson", headers); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-ndjson", headers); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -1264,7 +1264,7 @@ func (c *Client) TvChannelGames(ctx context.Context, channel string, opts ...TvC
 func (c *Client) APITournament(ctx context.Context) (*ArenaTournaments, error) {
 	path := "/api/tournament"
 	var result ArenaTournaments
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -1283,7 +1283,7 @@ func (c *Client) APITournament(ctx context.Context) (*ArenaTournaments, error) {
 func (c *Client) APITournamentPost(ctx context.Context, body any) (*ArenaTournamentFull, error) {
 	path := "/api/tournament"
 	var result ArenaTournamentFull
-	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "application/x-www-form-urlencoded", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -1312,7 +1312,7 @@ func (c *Client) Tournament(ctx context.Context, id string, opts ...TournamentPa
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result ArenaTournamentFull
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -1331,7 +1331,7 @@ func (c *Client) APITournamentUpdate(ctx context.Context, id string, body any) (
 	path := "/api/tournament/{id}"
 	path = pathReplace(path, "id", "simple", false, id)
 	var result ArenaTournamentFull
-	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "application/x-www-form-urlencoded", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -1345,7 +1345,7 @@ func (c *Client) APITournamentJoin(ctx context.Context, id string, body *any) (*
 	path := "/api/tournament/{id}/join"
 	path = pathReplace(path, "id", "simple", false, id)
 	var result Ok
-	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "application/x-www-form-urlencoded", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -1359,7 +1359,7 @@ func (c *Client) APITournamentWithdraw(ctx context.Context, id string) (*Ok, err
 	path := "/api/tournament/{id}/withdraw"
 	path = pathReplace(path, "id", "simple", false, id)
 	var result Ok
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -1372,7 +1372,7 @@ func (c *Client) APITournamentTerminate(ctx context.Context, id string) (*Ok, er
 	path := "/api/tournament/{id}/terminate"
 	path = pathReplace(path, "id", "simple", false, id)
 	var result Ok
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -1386,7 +1386,7 @@ func (c *Client) APITournamentTeamBattlePost(ctx context.Context, id string, bod
 	path := "/api/tournament/team-battle/{id}"
 	path = pathReplace(path, "id", "simple", false, id)
 	var result ArenaTournamentFull
-	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "application/x-www-form-urlencoded", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -1455,7 +1455,7 @@ func (c *Client) GamesByTournament(ctx context.Context, id string, opts ...Games
 	headers := make(http.Header)
 	setHeader(headers, "Accept", false, params.Accept)
 	var result GameJSON
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson", headers); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-ndjson", headers); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -1492,7 +1492,7 @@ func (c *Client) ResultsByTournament(ctx context.Context, id string, opts ...Res
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result any
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-ndjson"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -1505,7 +1505,7 @@ func (c *Client) TeamsByTournament(ctx context.Context, id string) (*any, error)
 	path := "/api/tournament/{id}/teams"
 	path = pathReplace(path, "id", "simple", false, id)
 	var result any
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -1545,7 +1545,7 @@ func (c *Client) APIUserNameTournamentCreated(ctx context.Context, username stri
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result ArenaTournament
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-ndjson"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -1583,7 +1583,7 @@ func (c *Client) APIUserNameTournamentPlayed(ctx context.Context, username strin
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result ArenaTournamentPlayed
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-ndjson"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -1601,7 +1601,7 @@ func (c *Client) APISwissNew(ctx context.Context, teamID string, body any) (*Swi
 	path := "/api/swiss/new/{teamId}"
 	path = pathReplace(path, "teamId", "simple", false, teamID)
 	var result SwissTournament
-	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "application/x-www-form-urlencoded", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -1614,7 +1614,7 @@ func (c *Client) Swiss(ctx context.Context, id string) (*SwissTournament, error)
 	path := "/api/swiss/{id}"
 	path = pathReplace(path, "id", "simple", false, id)
 	var result SwissTournament
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -1631,7 +1631,7 @@ func (c *Client) APISwissUpdate(ctx context.Context, id string, body any) (*Swis
 	path := "/api/swiss/{id}/edit"
 	path = pathReplace(path, "id", "simple", false, id)
 	var result SwissTournament
-	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "application/x-www-form-urlencoded", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -1645,7 +1645,7 @@ func (c *Client) APISwissUpdate(ctx context.Context, id string, body any) (*Swis
 func (c *Client) APISwissScheduleNextRound(ctx context.Context, id string, body any) error {
 	path := "/api/swiss/{id}/schedule-next-round"
 	path = pathReplace(path, "id", "simple", false, id)
-	if err := c.do(ctx, "POST", path, body, nil, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "application/x-www-form-urlencoded", nil, "application/json"); err != nil {
 		return parseErrorResponse(err)
 	}
 	return nil
@@ -1658,7 +1658,7 @@ func (c *Client) APISwissJoin(ctx context.Context, id string, body *any) (*Ok, e
 	path := "/api/swiss/{id}/join"
 	path = pathReplace(path, "id", "simple", false, id)
 	var result Ok
-	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "application/x-www-form-urlencoded", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -1672,7 +1672,7 @@ func (c *Client) APISwissWithdraw(ctx context.Context, id string) (*Ok, error) {
 	path := "/api/swiss/{id}/withdraw"
 	path = pathReplace(path, "id", "simple", false, id)
 	var result Ok
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -1685,7 +1685,7 @@ func (c *Client) APISwissTerminate(ctx context.Context, id string) (*Ok, error) 
 	path := "/api/swiss/{id}/terminate"
 	path = pathReplace(path, "id", "simple", false, id)
 	var result Ok
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -1700,7 +1700,7 @@ func (c *Client) SwissTrf(ctx context.Context, id string) (*string, error) {
 	path := "/swiss/{id}.trf"
 	path = pathReplace(path, "id", "simple", false, id)
 	var result string
-	if err := c.do(ctx, "GET", path, nil, &result, "text/plain"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "text/plain"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -1769,7 +1769,7 @@ func (c *Client) GamesBySwiss(ctx context.Context, id string, opts ...GamesBySwi
 	headers := make(http.Header)
 	setHeader(headers, "Accept", false, params.Accept)
 	var result GameJSON
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson", headers); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-ndjson", headers); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -1802,7 +1802,7 @@ func (c *Client) ResultsBySwiss(ctx context.Context, id string, opts ...ResultsB
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result any
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-ndjson"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -1842,7 +1842,7 @@ func (c *Client) APITeamSwiss(ctx context.Context, teamID string, opts ...APITea
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result SwissTournament
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-ndjson"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -1887,7 +1887,7 @@ func (c *Client) StudyChapterPgn(ctx context.Context, studyID string, chapterID 
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result StudyPgn
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-chess-pgn"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-chess-pgn"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -1931,7 +1931,7 @@ func (c *Client) StudyAllChaptersPgn(ctx context.Context, studyID string, opts .
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result StudyPgn
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-chess-pgn"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-chess-pgn"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -1943,7 +1943,7 @@ func (c *Client) StudyAllChaptersPgn(ctx context.Context, studyID string, opts .
 func (c *Client) StudyAllChaptersHead(ctx context.Context, studyID string) error {
 	path := "/api/study/{studyId}.pgn"
 	path = pathReplace(path, "studyId", "simple", false, studyID)
-	if err := c.do(ctx, "HEAD", path, nil, nil, "application/json"); err != nil {
+	if err := c.do(ctx, "HEAD", path, nil, "", nil, "application/json"); err != nil {
 		return err
 	}
 	return nil
@@ -1956,7 +1956,7 @@ func (c *Client) StudyAllChaptersHead(ctx context.Context, studyID string) error
 func (c *Client) APIStudyPost(ctx context.Context, body any) (*any, error) {
 	path := "/api/study"
 	var result any
-	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "application/x-www-form-urlencoded", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -1972,7 +1972,7 @@ func (c *Client) APIStudyImportPgn(ctx context.Context, studyID string, body any
 	path := "/api/study/{studyId}/import-pgn"
 	path = pathReplace(path, "studyId", "simple", false, studyID)
 	var result StudyImportPgnChapters
-	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "application/x-www-form-urlencoded", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -1991,7 +1991,7 @@ func (c *Client) APIStudyChapterTags(ctx context.Context, studyID string, chapte
 	path := "/api/study/{studyId}/{chapterId}/tags"
 	path = pathReplace(path, "studyId", "simple", false, studyID)
 	path = pathReplace(path, "chapterId", "simple", false, chapterID)
-	if err := c.do(ctx, "POST", path, body, nil, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "application/x-www-form-urlencoded", nil, "application/json"); err != nil {
 		return parseErrorResponse(err)
 	}
 	return nil
@@ -2005,7 +2005,7 @@ func (c *Client) APIStudyChapterMoves(ctx context.Context, studyID string, chapt
 	path := "/api/study/{studyId}/{chapterId}/moves"
 	path = pathReplace(path, "studyId", "simple", false, studyID)
 	path = pathReplace(path, "chapterId", "simple", false, chapterID)
-	if err := c.do(ctx, "POST", path, body, nil, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "application/x-www-form-urlencoded", nil, "application/json"); err != nil {
 		return parseErrorResponse(err)
 	}
 	return nil
@@ -2049,7 +2049,7 @@ func (c *Client) StudyExportAllPgn(ctx context.Context, username string, opts ..
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result StudyPgn
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-chess-pgn"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-chess-pgn"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -2065,7 +2065,7 @@ func (c *Client) StudyListMetadata(ctx context.Context, username string) (*Study
 	path := "/api/study/by/{username}"
 	path = pathReplace(path, "username", "simple", false, username)
 	var result StudyMetadata
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-ndjson"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -2080,7 +2080,7 @@ func (c *Client) APIStudyStudyIDChapterIDDelete(ctx context.Context, studyID str
 	path := "/api/study/{studyId}/{chapterId}"
 	path = pathReplace(path, "studyId", "simple", false, studyID)
 	path = pathReplace(path, "chapterId", "simple", false, chapterID)
-	if err := c.do(ctx, "DELETE", path, nil, nil, "application/json"); err != nil {
+	if err := c.do(ctx, "DELETE", path, nil, "", nil, "application/json"); err != nil {
 		return err
 	}
 	return nil
@@ -2116,7 +2116,7 @@ func (c *Client) BroadcastsOfficial(ctx context.Context, opts ...BroadcastsOffic
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result BroadcastWithRounds
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-ndjson"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -2147,7 +2147,7 @@ func (c *Client) BroadcastsTop(ctx context.Context, opts ...BroadcastsTopParams)
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result BroadcastTop
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -2181,7 +2181,7 @@ func (c *Client) BroadcastsByUser(ctx context.Context, username string, opts ...
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result any
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -2212,7 +2212,7 @@ func (c *Client) BroadcastsSearch(ctx context.Context, opts ...BroadcastsSearchP
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result any
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -2225,7 +2225,7 @@ func (c *Client) BroadcastsSearch(ctx context.Context, opts ...BroadcastsSearchP
 func (c *Client) BroadcastTourCreate(ctx context.Context, body BroadcastForm) (*BroadcastWithRounds, error) {
 	path := "/broadcast/new"
 	var result BroadcastWithRounds
-	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "application/x-www-form-urlencoded", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -2238,7 +2238,7 @@ func (c *Client) BroadcastTourGet(ctx context.Context, broadcastTournamentID str
 	path := "/api/broadcast/{broadcastTournamentId}"
 	path = pathReplace(path, "broadcastTournamentId", "simple", false, broadcastTournamentID)
 	var result BroadcastWithRoundsAndFullGroup
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -2251,7 +2251,7 @@ func (c *Client) BroadcastPlayersGet(ctx context.Context, broadcastTournamentID 
 	path := "/broadcast/{broadcastTournamentId}/players"
 	path = pathReplace(path, "broadcastTournamentId", "simple", false, broadcastTournamentID)
 	var result []BroadcastPlayerEntry
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -2265,7 +2265,7 @@ func (c *Client) BroadcastPlayerGet(ctx context.Context, broadcastTournamentID s
 	path = pathReplace(path, "broadcastTournamentId", "simple", false, broadcastTournamentID)
 	path = pathReplace(path, "playerId", "simple", false, playerID)
 	var result BroadcastPlayerEntryWithFideAndGames
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, parseNotFoundResponse(err)
 	}
 	return &result, nil
@@ -2278,7 +2278,7 @@ func (c *Client) BroadcastTeamLeaderboardGet(ctx context.Context, broadcastTourn
 	path := "/broadcast/{broadcastTournamentId}/teams/standings"
 	path = pathReplace(path, "broadcastTournamentId", "simple", false, broadcastTournamentID)
 	var result []BroadcastTeamLeaderboardEntry
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -2293,7 +2293,7 @@ func (c *Client) BroadcastTourUpdate(ctx context.Context, broadcastTournamentID 
 	path := "/broadcast/{broadcastTournamentId}/edit"
 	path = pathReplace(path, "broadcastTournamentId", "simple", false, broadcastTournamentID)
 	var result Ok
-	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "application/x-www-form-urlencoded", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -2309,7 +2309,7 @@ func (c *Client) BroadcastRoundCreate(ctx context.Context, broadcastTournamentID
 	path := "/broadcast/{broadcastTournamentId}/new"
 	path = pathReplace(path, "broadcastTournamentId", "simple", false, broadcastTournamentID)
 	var result BroadcastRoundNew
-	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "application/x-www-form-urlencoded", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -2324,7 +2324,7 @@ func (c *Client) BroadcastRoundGet(ctx context.Context, broadcastTournamentSlug 
 	path = pathReplace(path, "broadcastRoundSlug", "simple", false, broadcastRoundSlug)
 	path = pathReplace(path, "broadcastRoundId", "simple", false, broadcastRoundID)
 	var result BroadcastRound
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -2356,7 +2356,7 @@ func (c *Client) BroadcastRoundUpdate(ctx context.Context, broadcastRoundID stri
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result BroadcastRound
-	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "application/x-www-form-urlencoded", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -2369,7 +2369,7 @@ func (c *Client) BroadcastRoundReset(ctx context.Context, broadcastRoundID strin
 	path := "/api/broadcast/round/{broadcastRoundId}/reset"
 	path = pathReplace(path, "broadcastRoundId", "simple", false, broadcastRoundID)
 	var result Ok
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -2383,7 +2383,7 @@ func (c *Client) BroadcastPush(ctx context.Context, broadcastRoundID string, bod
 	path := "/api/broadcast/round/{broadcastRoundId}/push"
 	path = pathReplace(path, "broadcastRoundId", "simple", false, broadcastRoundID)
 	var result BroadcastPgnPush
-	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "text/plain", &result, "application/json"); err != nil {
 		return nil, parseanyResponse(err)
 	}
 	return &result, nil
@@ -2421,7 +2421,7 @@ func (c *Client) BroadcastStreamRoundPgn(ctx context.Context, broadcastRoundID s
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result BroadcastPgn
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-chess-pgn"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-chess-pgn"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -2460,7 +2460,7 @@ func (c *Client) BroadcastStreamTourPgn(ctx context.Context, broadcastTourID str
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result BroadcastPgn
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-chess-pgn"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-chess-pgn"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -2499,7 +2499,7 @@ func (c *Client) BroadcastStreamGroupPgn(ctx context.Context, broadcastGroupID s
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result BroadcastPgn
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-chess-pgn"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-chess-pgn"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -2537,7 +2537,7 @@ func (c *Client) BroadcastRoundPgn(ctx context.Context, broadcastRoundID string,
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result BroadcastPgn
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-chess-pgn"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-chess-pgn"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -2578,7 +2578,7 @@ func (c *Client) BroadcastAllRoundsPgn(ctx context.Context, broadcastTournamentI
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result BroadcastPgn
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-chess-pgn"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-chess-pgn"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -2609,7 +2609,7 @@ func (c *Client) BroadcastMyRoundsGet(ctx context.Context, opts ...BroadcastMyRo
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result BroadcastMyRound
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-ndjson"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -2622,7 +2622,7 @@ func (c *Client) FidePlayerGet(ctx context.Context, playerID int64) (*FidePlayer
 	path := "/api/fide/player/{playerId}"
 	path = pathReplace(path, "playerId", "simple", false, playerID)
 	var result FidePlayer
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -2635,7 +2635,7 @@ func (c *Client) FidePlayerRatings(ctx context.Context, playerID int64) (*FidePl
 	path := "/api/fide/player/{playerId}/ratings"
 	path = pathReplace(path, "playerId", "simple", false, playerID)
 	var result FidePlayerRatings
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -2659,7 +2659,7 @@ func (c *Client) FidePlayerSearch(ctx context.Context, params FidePlayerSearchPa
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result []FidePlayer
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -2674,7 +2674,7 @@ func (c *Client) FidePlayerSearch(ctx context.Context, params FidePlayerSearchPa
 func (c *Client) APISimul(ctx context.Context) (*any, error) {
 	path := "/api/simul"
 	var result any
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -2687,7 +2687,7 @@ func (c *Client) TeamShow(ctx context.Context, teamID string) (*Team, error) {
 	path := "/api/team/{teamId}"
 	path = pathReplace(path, "teamId", "simple", false, teamID)
 	var result Team
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -2714,7 +2714,7 @@ func (c *Client) TeamAll(ctx context.Context, opts ...TeamAllParams) (*TeamPagin
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result TeamPaginatorJSON
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -2728,7 +2728,7 @@ func (c *Client) TeamOfUsername(ctx context.Context, username string) (*[]Team, 
 	path := "/api/team/of/{username}"
 	path = pathReplace(path, "username", "simple", false, username)
 	var result []Team
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -2757,7 +2757,7 @@ func (c *Client) TeamSearch(ctx context.Context, opts ...TeamSearchParams) (*Tea
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result TeamPaginatorJSON
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -2789,7 +2789,7 @@ func (c *Client) TeamIDUsers(ctx context.Context, teamID string, opts ...TeamIDU
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result any
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-ndjson"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -2829,7 +2829,7 @@ func (c *Client) APITeamArena(ctx context.Context, teamID string, opts ...APITea
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result ArenaTournament
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-ndjson"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -2847,7 +2847,7 @@ func (c *Client) TeamIDJoin(ctx context.Context, teamID string, body *any) (*Ok,
 	path := "/team/{teamId}/join"
 	path = pathReplace(path, "teamId", "simple", false, teamID)
 	var result Ok
-	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "application/x-www-form-urlencoded", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -2861,7 +2861,7 @@ func (c *Client) TeamIDQuit(ctx context.Context, teamID string) (*Ok, error) {
 	path := "/team/{teamId}/quit"
 	path = pathReplace(path, "teamId", "simple", false, teamID)
 	var result Ok
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -2890,7 +2890,7 @@ func (c *Client) TeamRequests(ctx context.Context, teamID string, opts ...TeamRe
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result []TeamRequestWithUser
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -2904,7 +2904,7 @@ func (c *Client) TeamRequestAccept(ctx context.Context, teamID string, userID st
 	path = pathReplace(path, "teamId", "simple", false, teamID)
 	path = pathReplace(path, "userId", "simple", false, userID)
 	var result Ok
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -2918,7 +2918,7 @@ func (c *Client) TeamRequestDecline(ctx context.Context, teamID string, userID s
 	path = pathReplace(path, "teamId", "simple", false, teamID)
 	path = pathReplace(path, "userId", "simple", false, userID)
 	var result Ok
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -2933,7 +2933,7 @@ func (c *Client) TeamIDKickUserID(ctx context.Context, teamID string, userID str
 	path = pathReplace(path, "teamId", "simple", false, teamID)
 	path = pathReplace(path, "userId", "simple", false, userID)
 	var result Ok
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -2960,7 +2960,7 @@ func (c *Client) TeamUpdates(ctx context.Context, opts ...TeamUpdatesParams) (*T
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result TeamUpdates
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -2988,7 +2988,7 @@ func (c *Client) TeamUpdatesByTeamID(ctx context.Context, teamID string, opts ..
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result TeamUpdatesOfTeam
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -3002,7 +3002,7 @@ func (c *Client) TeamIDPmAll(ctx context.Context, teamID string, body any) (*Ok,
 	path := "/team/{teamId}/pm-all"
 	path = pathReplace(path, "teamId", "simple", false, teamID)
 	var result Ok
-	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "application/x-www-form-urlencoded", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -3016,7 +3016,7 @@ func (c *Client) TeamIDPmAll(ctx context.Context, teamID string, body any) (*Ok,
 func (c *Client) StreamerLive(ctx context.Context) (*[]map[string]any, error) {
 	path := "/api/streamer/live"
 	var result []map[string]any
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -3047,7 +3047,7 @@ func (c *Client) APICrosstable(ctx context.Context, user1 string, user2 string, 
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result Crosstable
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -3084,7 +3084,7 @@ type APIPlayerAutocompleteParams struct {
 // APIPlayerAutocomplete - Autocomplete usernames
 //
 // Provides autocompletion options for an incomplete username.
-func (c *Client) APIPlayerAutocomplete(ctx context.Context, params APIPlayerAutocompleteParams) (*any, error) {
+func (c *Client) APIPlayerAutocomplete(ctx context.Context, params APIPlayerAutocompleteParams) (*APIPlayerAutocompleteResponse, error) {
 	path := "/api/player/autocomplete"
 	queryValues := url.Values{}
 	addQueryParam(queryValues, "term", "form", true, params.Term)
@@ -3099,8 +3099,8 @@ func (c *Client) APIPlayerAutocomplete(ctx context.Context, params APIPlayerAuto
 	if len(queryValues) > 0 {
 		path += "?" + encodeQuery(queryValues)
 	}
-	var result any
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	var result APIPlayerAutocompleteResponse
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -3113,7 +3113,7 @@ func (c *Client) ReadNote(ctx context.Context, username string) (*[]UserNote, er
 	path := "/api/user/{username}/note"
 	path = pathReplace(path, "username", "simple", false, username)
 	var result []UserNote
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -3126,7 +3126,7 @@ func (c *Client) WriteNote(ctx context.Context, username string, body any) (*Ok,
 	path := "/api/user/{username}/note"
 	path = pathReplace(path, "username", "simple", false, username)
 	var result Ok
-	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "application/x-www-form-urlencoded", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -3138,7 +3138,7 @@ func (c *Client) WriteNote(ctx context.Context, username string, body any) (*Ok,
 func (c *Client) APIUserFollowing(ctx context.Context) (*UserExtended, error) {
 	path := "/api/rel/following"
 	var result UserExtended
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-ndjson"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -3151,7 +3151,7 @@ func (c *Client) FollowUser(ctx context.Context, username string) (*Ok, error) {
 	path := "/api/rel/follow/{username}"
 	path = pathReplace(path, "username", "simple", false, username)
 	var result Ok
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -3164,7 +3164,7 @@ func (c *Client) UnfollowUser(ctx context.Context, username string) (*Ok, error)
 	path := "/api/rel/unfollow/{username}"
 	path = pathReplace(path, "username", "simple", false, username)
 	var result Ok
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -3177,7 +3177,7 @@ func (c *Client) BlockUser(ctx context.Context, username string) (*Ok, error) {
 	path := "/api/rel/block/{username}"
 	path = pathReplace(path, "username", "simple", false, username)
 	var result Ok
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -3190,7 +3190,7 @@ func (c *Client) UnblockUser(ctx context.Context, username string) (*Ok, error) 
 	path := "/api/rel/unblock/{username}"
 	path = pathReplace(path, "username", "simple", false, username)
 	var result Ok
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -3215,7 +3215,7 @@ func (c *Client) UnblockUser(ctx context.Context, username string) (*Ok, error) 
 func (c *Client) APIStreamEvent(ctx context.Context) (*APIStreamEventResponse, error) {
 	path := "/api/stream/event"
 	var result APIStreamEventResponse
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-ndjson"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -3246,7 +3246,7 @@ func (c *Client) APIStreamEvent(ctx context.Context) (*APIStreamEventResponse, e
 func (c *Client) APIBoardSeek(ctx context.Context, body *any) (*any, error) {
 	path := "/api/board/seek"
 	var result any
-	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "application/x-www-form-urlencoded", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -3271,7 +3271,7 @@ func (c *Client) BoardGameStream(ctx context.Context, gameID string) (*BoardGame
 	path := "/api/board/game/stream/{gameId}"
 	path = pathReplace(path, "gameId", "simple", false, gameID)
 	var result BoardGameStreamResponse
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-ndjson"); err != nil {
 		return nil, parseNotFoundResponse(err)
 	}
 	return &result, nil
@@ -3302,7 +3302,7 @@ func (c *Client) BoardGameMove(ctx context.Context, gameID string, move string, 
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result Ok
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -3317,7 +3317,7 @@ func (c *Client) BoardGameChatGet(ctx context.Context, gameID string) (*PlayerGa
 	path := "/api/board/game/{gameId}/chat"
 	path = pathReplace(path, "gameId", "simple", false, gameID)
 	var result PlayerGameChat
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-ndjson"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -3330,7 +3330,7 @@ func (c *Client) BoardGameChatPost(ctx context.Context, gameID string, body any)
 	path := "/api/board/game/{gameId}/chat"
 	path = pathReplace(path, "gameId", "simple", false, gameID)
 	var result Ok
-	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "application/x-www-form-urlencoded", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -3343,7 +3343,7 @@ func (c *Client) BoardGameAbort(ctx context.Context, gameID string) (*Ok, error)
 	path := "/api/board/game/{gameId}/abort"
 	path = pathReplace(path, "gameId", "simple", false, gameID)
 	var result Ok
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -3356,7 +3356,7 @@ func (c *Client) BoardGameResign(ctx context.Context, gameID string) (*Ok, error
 	path := "/api/board/game/{gameId}/resign"
 	path = pathReplace(path, "gameId", "simple", false, gameID)
 	var result Ok
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -3372,7 +3372,7 @@ func (c *Client) BoardGameDraw(ctx context.Context, gameID string, accept any) (
 	path = pathReplace(path, "gameId", "simple", false, gameID)
 	path = pathReplace(path, "accept", "simple", false, accept)
 	var result Ok
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -3388,7 +3388,7 @@ func (c *Client) BoardGameTakeback(ctx context.Context, gameID string, accept an
 	path = pathReplace(path, "gameId", "simple", false, gameID)
 	path = pathReplace(path, "accept", "simple", false, accept)
 	var result Ok
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -3401,7 +3401,7 @@ func (c *Client) BoardGameClaimVictory(ctx context.Context, gameID string) (*Ok,
 	path := "/api/board/game/{gameId}/claim-victory"
 	path = pathReplace(path, "gameId", "simple", false, gameID)
 	var result Ok
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -3414,7 +3414,7 @@ func (c *Client) BoardGameClaimDraw(ctx context.Context, gameID string) (*Ok, er
 	path := "/api/board/game/{gameId}/claim-draw"
 	path = pathReplace(path, "gameId", "simple", false, gameID)
 	var result Ok
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -3428,7 +3428,7 @@ func (c *Client) BoardGameBerserk(ctx context.Context, gameID string) (*Ok, erro
 	path := "/api/board/game/{gameId}/berserk"
 	path = pathReplace(path, "gameId", "simple", false, gameID)
 	var result Ok
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -3456,7 +3456,7 @@ func (c *Client) APIBotOnline(ctx context.Context, opts ...APIBotOnlineParams) (
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result User
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-ndjson"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -3474,7 +3474,7 @@ func (c *Client) APIBotOnline(ctx context.Context, opts ...APIBotOnlineParams) (
 func (c *Client) BotAccountUpgrade(ctx context.Context) (*Ok, error) {
 	path := "/api/bot/account/upgrade"
 	var result Ok
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -3494,7 +3494,7 @@ func (c *Client) BotGameStream(ctx context.Context, gameID string) (*BoardGameSt
 	path := "/api/bot/game/stream/{gameId}"
 	path = pathReplace(path, "gameId", "simple", false, gameID)
 	var result BoardGameStreamResponse
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-ndjson"); err != nil {
 		return nil, parseNotFoundResponse(err)
 	}
 	return &result, nil
@@ -3525,7 +3525,7 @@ func (c *Client) BotGameMove(ctx context.Context, gameID string, move string, op
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result Ok
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -3538,7 +3538,7 @@ func (c *Client) BotGameChatGet(ctx context.Context, gameID string) (*PlayerGame
 	path := "/api/bot/game/{gameId}/chat"
 	path = pathReplace(path, "gameId", "simple", false, gameID)
 	var result PlayerGameChat
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-ndjson"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -3551,7 +3551,7 @@ func (c *Client) BotGameChat(ctx context.Context, gameID string, body any) (*Ok,
 	path := "/api/bot/game/{gameId}/chat"
 	path = pathReplace(path, "gameId", "simple", false, gameID)
 	var result Ok
-	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "application/x-www-form-urlencoded", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -3564,7 +3564,7 @@ func (c *Client) BotGameAbort(ctx context.Context, gameID string) (*Ok, error) {
 	path := "/api/bot/game/{gameId}/abort"
 	path = pathReplace(path, "gameId", "simple", false, gameID)
 	var result Ok
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -3577,7 +3577,7 @@ func (c *Client) BotGameResign(ctx context.Context, gameID string) (*Ok, error) 
 	path := "/api/bot/game/{gameId}/resign"
 	path = pathReplace(path, "gameId", "simple", false, gameID)
 	var result Ok
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -3593,7 +3593,7 @@ func (c *Client) BotGameDraw(ctx context.Context, gameID string, accept any) (*O
 	path = pathReplace(path, "gameId", "simple", false, gameID)
 	path = pathReplace(path, "accept", "simple", false, accept)
 	var result Ok
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -3609,7 +3609,7 @@ func (c *Client) BotGameTakeback(ctx context.Context, gameID string, accept any)
 	path = pathReplace(path, "gameId", "simple", false, gameID)
 	path = pathReplace(path, "accept", "simple", false, accept)
 	var result Ok
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -3622,7 +3622,7 @@ func (c *Client) BotGameClaimVictory(ctx context.Context, gameID string) (*Ok, e
 	path := "/api/bot/game/{gameId}/claim-victory"
 	path = pathReplace(path, "gameId", "simple", false, gameID)
 	var result Ok
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -3635,7 +3635,7 @@ func (c *Client) BotGameClaimDraw(ctx context.Context, gameID string) (*Ok, erro
 	path := "/api/bot/game/{gameId}/claim-draw"
 	path = pathReplace(path, "gameId", "simple", false, gameID)
 	var result Ok
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -3647,7 +3647,7 @@ func (c *Client) BotGameClaimDraw(ctx context.Context, gameID string) (*Ok, erro
 func (c *Client) ChallengeList(ctx context.Context) (*any, error) {
 	path := "/api/challenge"
 	var result any
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -3664,7 +3664,7 @@ func (c *Client) ChallengeCreate(ctx context.Context, username string, body *any
 	path := "/api/challenge/{username}"
 	path = pathReplace(path, "username", "simple", false, username)
 	var result ChallengeJSON
-	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "application/x-www-form-urlencoded", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -3677,7 +3677,7 @@ func (c *Client) ChallengeShow(ctx context.Context, challengeID string) (*Challe
 	path := "/api/challenge/{challengeId}/show"
 	path = pathReplace(path, "challengeId", "simple", false, challengeID)
 	var result ChallengeJSON
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -3707,7 +3707,7 @@ func (c *Client) ChallengeAccept(ctx context.Context, challengeID string, opts .
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result Ok
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, parseNotFoundResponse(err)
 	}
 	return &result, nil
@@ -3720,7 +3720,7 @@ func (c *Client) ChallengeDecline(ctx context.Context, challengeID string, body 
 	path := "/api/challenge/{challengeId}/decline"
 	path = pathReplace(path, "challengeId", "simple", false, challengeID)
 	var result Ok
-	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "application/x-www-form-urlencoded", &result, "application/json"); err != nil {
 		return nil, parseNotFoundResponse(err)
 	}
 	return &result, nil
@@ -3751,7 +3751,7 @@ func (c *Client) ChallengeCancel(ctx context.Context, challengeID string, opts .
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result Ok
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, parseNotFoundResponse(err)
 	}
 	return &result, nil
@@ -3764,7 +3764,7 @@ func (c *Client) ChallengeCancel(ctx context.Context, challengeID string, opts .
 func (c *Client) ChallengeAi(ctx context.Context, body any) (*any, error) {
 	path := "/api/challenge/ai"
 	var result any
-	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "application/x-www-form-urlencoded", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -3784,7 +3784,7 @@ func (c *Client) ChallengeAi(ctx context.Context, body any) (*any, error) {
 func (c *Client) ChallengeOpen(ctx context.Context, body *any) (*ChallengeOpenJSON, error) {
 	path := "/api/challenge/open"
 	var result ChallengeOpenJSON
-	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "application/x-www-form-urlencoded", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -3816,7 +3816,7 @@ func (c *Client) ChallengeStartClocks(ctx context.Context, gameID string, params
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result Ok
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -3828,7 +3828,7 @@ func (c *Client) ChallengeStartClocks(ctx context.Context, gameID string, params
 func (c *Client) BulkPairingList(ctx context.Context) (*[]BulkPairing, error) {
 	path := "/api/bulk-pairing"
 	var result []BulkPairing
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -3860,7 +3860,7 @@ func (c *Client) BulkPairingList(ctx context.Context) (*[]BulkPairing, error) {
 func (c *Client) BulkPairingCreate(ctx context.Context, body any) (*BulkPairing, error) {
 	path := "/api/bulk-pairing"
 	var result BulkPairing
-	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "application/x-www-form-urlencoded", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -3876,7 +3876,7 @@ func (c *Client) BulkPairingStartClocks(ctx context.Context, id string) (*Ok, er
 	path := "/api/bulk-pairing/{id}/start-clocks"
 	path = pathReplace(path, "id", "simple", false, id)
 	var result Ok
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, parseNotFoundResponse(err)
 	}
 	return &result, nil
@@ -3889,7 +3889,7 @@ func (c *Client) BulkPairingGet(ctx context.Context, id string) (*BulkPairing, e
 	path := "/api/bulk-pairing/{id}"
 	path = pathReplace(path, "id", "simple", false, id)
 	var result BulkPairing
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, parseNotFoundResponse(err)
 	}
 	return &result, nil
@@ -3904,7 +3904,7 @@ func (c *Client) BulkPairingDelete(ctx context.Context, id string) (*Ok, error) 
 	path := "/api/bulk-pairing/{id}"
 	path = pathReplace(path, "id", "simple", false, id)
 	var result Ok
-	if err := c.do(ctx, "DELETE", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "DELETE", path, nil, "", &result, "application/json"); err != nil {
 		return nil, parseNotFoundResponse(err)
 	}
 	return &result, nil
@@ -3970,7 +3970,7 @@ func (c *Client) BulkPairingIDGamesGet(ctx context.Context, id string, opts ...B
 	headers := make(http.Header)
 	setHeader(headers, "Accept", false, params.Accept)
 	var result GameJSON
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson", headers); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-ndjson", headers); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -3984,7 +3984,7 @@ func (c *Client) RoundAddTime(ctx context.Context, gameID string, seconds int64)
 	path = pathReplace(path, "gameId", "simple", false, gameID)
 	path = pathReplace(path, "seconds", "simple", false, seconds)
 	var result Ok
-	if err := c.do(ctx, "POST", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -3998,7 +3998,7 @@ func (c *Client) RoundAddTime(ctx context.Context, gameID string, seconds int64)
 func (c *Client) AdminChallengeTokens(ctx context.Context, body any) (*map[string]string, error) {
 	path := "/api/token/admin-challenge"
 	var result map[string]string
-	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "application/x-www-form-urlencoded", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -4011,7 +4011,7 @@ func (c *Client) InboxUsername(ctx context.Context, username string, body any) (
 	path := "/inbox/{username}"
 	path = pathReplace(path, "username", "simple", false, username)
 	var result Ok
-	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "application/x-www-form-urlencoded", &result, "application/json"); err != nil {
 		return nil, parseErrorResponse(err)
 	}
 	return &result, nil
@@ -4045,7 +4045,7 @@ func (c *Client) APICloudEval(ctx context.Context, params APICloudEvalParams) (*
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result CloudEval
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, parseanyResponse(err)
 	}
 	return &result, nil
@@ -4058,7 +4058,7 @@ func (c *Client) APICloudEval(ctx context.Context, params APICloudEvalParams) (*
 func (c *Client) APIExternalEngineList(ctx context.Context) (*[]ExternalEngine, error) {
 	path := "/api/external-engine"
 	var result []ExternalEngine
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -4072,7 +4072,7 @@ func (c *Client) APIExternalEngineList(ctx context.Context) (*[]ExternalEngine, 
 func (c *Client) APIExternalEngineCreate(ctx context.Context, body ExternalEngineRegistration) (*ExternalEngine, error) {
 	path := "/api/external-engine"
 	var result ExternalEngine
-	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "application/json", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -4085,7 +4085,7 @@ func (c *Client) APIExternalEngineGet(ctx context.Context, id string) (*External
 	path := "/api/external-engine/{id}"
 	path = pathReplace(path, "id", "simple", false, id)
 	var result ExternalEngine
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -4098,7 +4098,7 @@ func (c *Client) APIExternalEnginePut(ctx context.Context, id string, body Exter
 	path := "/api/external-engine/{id}"
 	path = pathReplace(path, "id", "simple", false, id)
 	var result ExternalEngine
-	if err := c.do(ctx, "PUT", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "PUT", path, body, "application/json", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -4111,7 +4111,7 @@ func (c *Client) APIExternalEngineDelete(ctx context.Context, id string) (*Ok, e
 	path := "/api/external-engine/{id}"
 	path = pathReplace(path, "id", "simple", false, id)
 	var result Ok
-	if err := c.do(ctx, "DELETE", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "DELETE", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -4130,7 +4130,7 @@ func (c *Client) APIExternalEngineAnalyse(ctx context.Context, id string, body a
 	path := "/api/external-engine/{id}/analyse"
 	path = pathReplace(path, "id", "simple", false, id)
 	var result any
-	if err := c.do(ctx, "POST", path, body, &result, "application/x-ndjson"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "application/json", &result, "application/x-ndjson"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -4148,7 +4148,7 @@ func (c *Client) APIExternalEngineAnalyse(ctx context.Context, id string, body a
 func (c *Client) APIExternalEngineAcquire(ctx context.Context, body any) (*any, error) {
 	path := "/api/external-engine/work"
 	var result any
-	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "application/json", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -4174,7 +4174,7 @@ func (c *Client) APIExternalEngineAcquire(ctx context.Context, body any) (*any, 
 func (c *Client) APIExternalEngineSubmit(ctx context.Context, id string, body string) error {
 	path := "/api/external-engine/work/{id}"
 	path = pathReplace(path, "id", "simple", false, id)
-	if err := c.do(ctx, "POST", path, body, nil, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "text/plain", nil, "application/json"); err != nil {
 		return err
 	}
 	return nil
@@ -4251,7 +4251,7 @@ func (c *Client) Oauth(ctx context.Context, params OauthParams) error {
 	if len(queryValues) > 0 {
 		path += "?" + encodeQuery(queryValues)
 	}
-	if err := c.do(ctx, "GET", path, nil, nil, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", nil, "application/json"); err != nil {
 		return err
 	}
 	return nil
@@ -4263,7 +4263,7 @@ func (c *Client) Oauth(ctx context.Context, params OauthParams) error {
 func (c *Client) APIToken(ctx context.Context, body any) (*any, error) {
 	path := "/api/token"
 	var result any
-	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "application/x-www-form-urlencoded", &result, "application/json"); err != nil {
 		return nil, parseOAuthErrorResponse(err)
 	}
 	return &result, nil
@@ -4274,7 +4274,7 @@ func (c *Client) APIToken(ctx context.Context, body any) (*any, error) {
 // Revokes the access token sent as Bearer for this request.
 func (c *Client) APITokenDelete(ctx context.Context) error {
 	path := "/api/token"
-	if err := c.do(ctx, "DELETE", path, nil, nil, "application/json"); err != nil {
+	if err := c.do(ctx, "DELETE", path, nil, "", nil, "application/json"); err != nil {
 		return err
 	}
 	return nil
@@ -4289,7 +4289,7 @@ func (c *Client) APITokenDelete(ctx context.Context) error {
 func (c *Client) TokenTest(ctx context.Context, body string) (*map[string]any, error) {
 	path := "/api/token/test"
 	var result map[string]any
-	if err := c.do(ctx, "POST", path, body, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "POST", path, body, "text/plain", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -4337,7 +4337,7 @@ func (c *Client) OpeningExplorerMaster(ctx context.Context, opts ...OpeningExplo
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result OpeningExplorerMasters
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -4411,7 +4411,7 @@ func (c *Client) OpeningExplorerLichess(ctx context.Context, opts ...OpeningExpl
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result OpeningExplorerLichess
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -4480,7 +4480,7 @@ func (c *Client) OpeningExplorerPlayer(ctx context.Context, params OpeningExplor
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result OpeningExplorerPlayer
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-ndjson"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-ndjson"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -4495,7 +4495,7 @@ func (c *Client) OpeningExplorerMasterGame(ctx context.Context, gameID string) (
 	path := "/masters/pgn/{gameId}"
 	path = pathReplace(path, "gameId", "simple", false, gameID)
 	var result string
-	if err := c.do(ctx, "GET", path, nil, &result, "application/x-chess-pgn"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-chess-pgn"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -4526,7 +4526,7 @@ func (c *Client) TablebaseStandard(ctx context.Context, params TablebaseStandard
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result TablebaseJSON
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -4550,7 +4550,7 @@ func (c *Client) TablebaseAtomic(ctx context.Context, params TablebaseAtomicPara
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result TablebaseJSON
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
@@ -4574,7 +4574,7 @@ func (c *Client) AntichessAtomic(ctx context.Context, params AntichessAtomicPara
 		path += "?" + encodeQuery(queryValues)
 	}
 	var result TablebaseJSON
-	if err := c.do(ctx, "GET", path, nil, &result, "application/json"); err != nil {
+	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
 		return nil, err
 	}
 	return &result, nil
