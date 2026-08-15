@@ -12599,7 +12599,7 @@ type ClientInterface interface {
 	// Download all games of a single round of a broadcast tournament in PGN format.
 	// You *could* poll this endpoint to get updates about a tournament, but it would be slow,
 	// and very inefficient.
-	// Instead, consider [streaming the tournament](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn) to get
+	// Instead, consider [streaming the round](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn) to get
 	// a new PGN every time a game is updated, in real-time.
 	//
 	// Corresponds with GET /api/broadcast/round/{broadcastRoundId}.pgn (the `BroadcastRoundPgn` operationId).
@@ -12662,6 +12662,7 @@ type ClientInterface interface {
 	//
 	// To get real-time updates about an ongoing tournament, please use the
 	// [round PGN stream](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn) or
+	// [tournament PGN stream](#tag/broadcasts/GET/api/stream/broadcast/tournament/{broadcastTournamentId}.pgn) or
 	// [group PGN stream](#tag/broadcasts/GET/api/stream/broadcast/group/{broadcastGroupId}.pgn) endpoints instead.
 	//
 	// Corresponds with GET /api/broadcast/{broadcastTournamentId}.pgn (the `BroadcastAllRoundsPgn` operationId).
@@ -15388,7 +15389,7 @@ func (c *Client) BroadcastMyRoundsGet(ctx context.Context, params *BroadcastMyRo
 // Download all games of a single round of a broadcast tournament in PGN format.
 // You *could* poll this endpoint to get updates about a tournament, but it would be slow,
 // and very inefficient.
-// Instead, consider [streaming the tournament](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn) to get
+// Instead, consider [streaming the round](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn) to get
 // a new PGN every time a game is updated, in real-time.
 //
 // Corresponds with GET /api/broadcast/round/{broadcastRoundId}.pgn (the `BroadcastRoundPgn` operationId).
@@ -15521,6 +15522,7 @@ func (c *Client) BroadcastTourGet(ctx context.Context, broadcastTournamentId str
 //
 // To get real-time updates about an ongoing tournament, please use the
 // [round PGN stream](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn) or
+// [tournament PGN stream](#tag/broadcasts/GET/api/stream/broadcast/tournament/{broadcastTournamentId}.pgn) or
 // [group PGN stream](#tag/broadcasts/GET/api/stream/broadcast/group/{broadcastGroupId}.pgn) endpoints instead.
 //
 // Corresponds with GET /api/broadcast/{broadcastTournamentId}.pgn (the `BroadcastAllRoundsPgn` operationId).
@@ -30597,7 +30599,7 @@ type ClientWithResponsesInterface interface {
 	// Download all games of a single round of a broadcast tournament in PGN format.
 	// You *could* poll this endpoint to get updates about a tournament, but it would be slow,
 	// and very inefficient.
-	// Instead, consider [streaming the tournament](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn) to get
+	// Instead, consider [streaming the round](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn) to get
 	// a new PGN every time a game is updated, in real-time.
 	//
 	// Returns a wrapper object for the known response body format(s).
@@ -30670,6 +30672,7 @@ type ClientWithResponsesInterface interface {
 	//
 	// To get real-time updates about an ongoing tournament, please use the
 	// [round PGN stream](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn) or
+	// [tournament PGN stream](#tag/broadcasts/GET/api/stream/broadcast/tournament/{broadcastTournamentId}.pgn) or
 	// [group PGN stream](#tag/broadcasts/GET/api/stream/broadcast/group/{broadcastGroupId}.pgn) endpoints instead.
 	//
 	// Returns a wrapper object for the known response body format(s).
@@ -42931,7 +42934,7 @@ func (c *ClientWithResponses) BroadcastMyRoundsGetWithResponse(ctx context.Conte
 // Download all games of a single round of a broadcast tournament in PGN format.
 // You *could* poll this endpoint to get updates about a tournament, but it would be slow,
 // and very inefficient.
-// Instead, consider [streaming the tournament](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn) to get
+// Instead, consider [streaming the round](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn) to get
 // a new PGN every time a game is updated, in real-time.
 //
 // Returns a wrapper object for the known response body format(s).
@@ -43046,6 +43049,7 @@ func (c *ClientWithResponses) BroadcastTourGetWithResponse(ctx context.Context, 
 //
 // To get real-time updates about an ongoing tournament, please use the
 // [round PGN stream](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn) or
+// [tournament PGN stream](#tag/broadcasts/GET/api/stream/broadcast/tournament/{broadcastTournamentId}.pgn) or
 // [group PGN stream](#tag/broadcasts/GET/api/stream/broadcast/group/{broadcastGroupId}.pgn) endpoints instead.
 //
 // Returns a wrapper object for the known response body format(s).
