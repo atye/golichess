@@ -94,7 +94,7 @@ info:
     name: AGPL-3.0-or-later
     url: https://www.gnu.org/licenses/agpl-3.0.txt
   title: Lichess.org API reference
-  version: 2.0.162
+  version: 2.0.163
   x-logo:
     url: https://lichess1.org/assets/logo/lichess-pad12.svg
 servers:
@@ -181,6 +181,10 @@ tags:
 
     Broadcasts are organized in tournaments, which have several rounds, which have several games.
     You must first create a tournament, then you can add rounds to them.
+    Tournaments can be linked together in a group.
+
+    All tournament endpoint requests must be authenticated with (at least) a `study:read` token.
+    Unauthenticated endpoints are [heavily rate-limited and might stop functioning](https://github.com/lichess-org/lila/pull/21283).
   name: Broadcasts
 - description: |
     Create many games for other players.
@@ -5028,7 +5032,6 @@ paths:
                 $ref: "#/components/schemas/BroadcastWithRoundsAndFullGroup"
           description: The information about the broadcast tournament.
       security:
-      - {}
       - OAuth2:
         - study:read
       summary: Get a broadcast tournament
@@ -5299,7 +5302,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/BroadcastRound"
           description: The information about the broadcast round.
-      security: []
+      security:
+      - OAuth2:
+        - study:read
       summary: Get a broadcast round
       tags:
       - Broadcasts
@@ -5518,7 +5523,9 @@ paths:
                 default: '''*'''
                 type: string
               style: simple
-      security: []
+      security:
+      - OAuth2:
+        - study:read
       summary: Stream an ongoing broadcast round as PGN
       tags:
       - Broadcasts
@@ -5586,7 +5593,9 @@ paths:
                 default: '''*'''
                 type: string
               style: simple
-      security: []
+      security:
+      - OAuth2:
+        - study:read
       summary: Stream ongoing broadcast rounds of a tournament as PGN
       tags:
       - Broadcasts
@@ -5654,7 +5663,9 @@ paths:
                 default: '''*'''
                 type: string
               style: simple
-      security: []
+      security:
+      - OAuth2:
+        - study:read
       summary: Stream ongoing broadcast rounds of a group as PGN
       tags:
       - Broadcasts
@@ -5664,7 +5675,7 @@ paths:
         Download all games of a single round of a broadcast tournament in PGN format.
         You *could* poll this endpoint to get updates about a tournament, but it would be slow,
         and very inefficient.
-        Instead, consider [streaming the tournament](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn) to get
+        Instead, consider [streaming the round](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn) to get
         a new PGN every time a game is updated, in real-time.
       operationId: broadcastRoundPgn
       parameters:
@@ -5717,7 +5728,9 @@ paths:
                 default: '''*'''
                 type: string
               style: simple
-      security: []
+      security:
+      - OAuth2:
+        - study:read
       summary: Export one round as PGN
       tags:
       - Broadcasts
@@ -5729,6 +5742,7 @@ paths:
         \ only the games of a single round](#tag/broadcasts/GET/api/broadcast/round/{broadcastRoundId}.pgn)\
         \ instead.\n\nTo get real-time updates about an ongoing tournament, please\
         \ use the \n[round PGN stream](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn)\
+        \ or\n[tournament PGN stream](#tag/broadcasts/GET/api/stream/broadcast/tournament/{broadcastTournamentId}.pgn)\
         \ or\n[group PGN stream](#tag/broadcasts/GET/api/stream/broadcast/group/{broadcastGroupId}.pgn)\
         \ endpoints instead.\n"
       operationId: broadcastAllRoundsPgn
