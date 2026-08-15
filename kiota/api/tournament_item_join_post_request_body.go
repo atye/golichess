@@ -22,8 +22,6 @@ func NewTournamentItemJoinPostRequestBody()(*TournamentItemJoinPostRequestBody) 
     m := &TournamentItemJoinPostRequestBody{
     }
     m.SetAdditionalData(make(map[string]any))
-    pairMeAsapValue := false
-    m.SetPairMeAsap(&pairMeAsapValue)
     return m
 }
 // CreateTournamentItemJoinPostRequestBodyFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

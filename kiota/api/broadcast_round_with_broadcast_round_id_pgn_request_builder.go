@@ -12,7 +12,7 @@ import (
 type BroadcastRoundWithBroadcastRoundIdPgnRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
-// BroadcastRoundWithBroadcastRoundIdPgnRequestBuilderGetQueryParameters download all games of a single round of a broadcast tournament in PGN format.You *could* poll this endpoint to get updates about a tournament, but it would be slow,and very inefficient.Instead, consider [streaming the tournament](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn) to geta new PGN every time a game is updated, in real-time.
+// BroadcastRoundWithBroadcastRoundIdPgnRequestBuilderGetQueryParameters download all games of a single round of a broadcast tournament in PGN format.You *could* poll this endpoint to get updates about a tournament, but it would be slow,and very inefficient.Instead, consider [streaming the round](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn) to geta new PGN every time a game is updated, in real-time.
 type BroadcastRoundWithBroadcastRoundIdPgnRequestBuilderGetQueryParameters struct {
     // Include clock comments in the PGN moves, when available.Example: `2. exd5 { [%clk 1:01:27] } e5 { [%clk 1:01:28] }`
     Clocks *bool "uriparametername:\"clocks\""
@@ -44,7 +44,7 @@ func NewBroadcastRoundWithBroadcastRoundIdPgnRequestBuilder(rawUrl string, reque
     urlParams["request-raw-url"] = rawUrl
     return NewBroadcastRoundWithBroadcastRoundIdPgnRequestBuilderInternal(urlParams, requestAdapter, nil)
 }
-// Get download all games of a single round of a broadcast tournament in PGN format.You *could* poll this endpoint to get updates about a tournament, but it would be slow,and very inefficient.Instead, consider [streaming the tournament](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn) to geta new PGN every time a game is updated, in real-time.
+// Get download all games of a single round of a broadcast tournament in PGN format.You *could* poll this endpoint to get updates about a tournament, but it would be slow,and very inefficient.Instead, consider [streaming the round](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn) to geta new PGN every time a game is updated, in real-time.
 // returns a []byte when successful
 func (m *BroadcastRoundWithBroadcastRoundIdPgnRequestBuilder) Get(ctx context.Context, requestConfiguration *BroadcastRoundWithBroadcastRoundIdPgnRequestBuilderGetRequestConfiguration)([]byte, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
@@ -60,7 +60,7 @@ func (m *BroadcastRoundWithBroadcastRoundIdPgnRequestBuilder) Get(ctx context.Co
     }
     return res.([]byte), nil
 }
-// ToGetRequestInformation download all games of a single round of a broadcast tournament in PGN format.You *could* poll this endpoint to get updates about a tournament, but it would be slow,and very inefficient.Instead, consider [streaming the tournament](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn) to geta new PGN every time a game is updated, in real-time.
+// ToGetRequestInformation download all games of a single round of a broadcast tournament in PGN format.You *could* poll this endpoint to get updates about a tournament, but it would be slow,and very inefficient.Instead, consider [streaming the round](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn) to geta new PGN every time a game is updated, in real-time.
 // returns a *RequestInformation when successful
 func (m *BroadcastRoundWithBroadcastRoundIdPgnRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *BroadcastRoundWithBroadcastRoundIdPgnRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

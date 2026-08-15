@@ -57,22 +57,10 @@ func NewTournamentItemTournamentPostRequestBody()(*TournamentItemTournamentPostR
     m := &TournamentItemTournamentPostRequestBody{
     }
     m.SetAdditionalData(make(map[string]any))
-    berserkableValue := true
-    m.SetBerserkable(&berserkableValue)
-    conditionsBotsValue := false
-    m.SetConditionsBots(&conditionsBotsValue)
-    hasChatValue := true
-    m.SetHasChat(&hasChatValue)
     positionValue := "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
     m.SetPosition(&positionValue)
-    ratedValue := true
-    m.SetRated(&ratedValue)
-    streakableValue := true
-    m.SetStreakable(&streakableValue)
     variantValue := STANDARD_VARIANTKEY
     m.SetVariant(&variantValue)
-    waitMinutesValue := int32(5)
-    m.SetWaitMinutes(&waitMinutesValue)
     return m
 }
 // CreateTournamentItemTournamentPostRequestBodyFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

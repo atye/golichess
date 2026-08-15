@@ -31,10 +31,6 @@ func NewRoundItemEditBroadcastRoundFormPostRequestBody()(*RoundItemEditBroadcast
     m := &RoundItemEditBroadcastRoundFormPostRequestBody{
     }
     m.SetAdditionalData(make(map[string]any))
-    ratedValue := true
-    m.SetRated(&ratedValue)
-    startsAfterPreviousValue := false
-    m.SetStartsAfterPrevious(&startsAfterPreviousValue)
     return m
 }
 // CreateRoundItemEditBroadcastRoundFormPostRequestBodyFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

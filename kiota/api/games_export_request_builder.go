@@ -11,6 +11,11 @@ import (
 type GamesExportRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+// _ids the _ids property
+// returns a *GamesExport_idsRequestBuilder when successful
+func (m *GamesExportRequestBuilder) _ids()(*GamesExport_idsRequestBuilder) {
+    return NewGamesExport_idsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Bookmarks the bookmarks property
 // returns a *GamesExportBookmarksRequestBuilder when successful
 func (m *GamesExportRequestBuilder) Bookmarks()(*GamesExportBookmarksRequestBuilder) {
@@ -28,11 +33,6 @@ func NewGamesExportRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee26
     urlParams := make(map[string]string)
     urlParams["request-raw-url"] = rawUrl
     return NewGamesExportRequestBuilderInternal(urlParams, requestAdapter)
-}
-// Ids the ids property
-// returns a *GamesExportIdsRequestBuilder when successful
-func (m *GamesExportRequestBuilder) Ids()(*GamesExportIdsRequestBuilder) {
-    return NewGamesExportIdsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // Imports the imports property
 // returns a *GamesExportImportsRequestBuilder when successful

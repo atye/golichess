@@ -8,6 +8,8 @@ import (
 )
 
 type PuzzleStormDashboard_days struct {
+    // The _id property
+    _id *string
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
     // The combo property
@@ -16,8 +18,6 @@ type PuzzleStormDashboard_days struct {
     errors *int32
     // The highest property
     highest *int32
-    // The id property
-    id *string
     // The moves property
     moves *int32
     // The runs property
@@ -58,6 +58,16 @@ func (m *PuzzleStormDashboard_days) GetErrors()(*int32) {
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *PuzzleStormDashboard_days) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+    res["_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetId(val)
+        }
+        return nil
+    }
     res["combo"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetInt32Value()
         if err != nil {
@@ -85,16 +95,6 @@ func (m *PuzzleStormDashboard_days) GetFieldDeserializers()(map[string]func(i878
         }
         if val != nil {
             m.SetHighest(val)
-        }
-        return nil
-    }
-    res["_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetId(val)
         }
         return nil
     }
@@ -145,10 +145,10 @@ func (m *PuzzleStormDashboard_days) GetFieldDeserializers()(map[string]func(i878
 func (m *PuzzleStormDashboard_days) GetHighest()(*int32) {
     return m.highest
 }
-// GetId gets the _id property value. The id property
+// GetId gets the _id property value. The _id property
 // returns a *string when successful
 func (m *PuzzleStormDashboard_days) GetId()(*string) {
-    return m.id
+    return m._id
 }
 // GetMoves gets the moves property value. The moves property
 // returns a *int32 when successful
@@ -191,12 +191,6 @@ func (m *PuzzleStormDashboard_days) Serialize(writer i878a80d2330e89d26896388a3f
         }
     }
     {
-        err := writer.WriteStringValue("_id", m.GetId())
-        if err != nil {
-            return err
-        }
-    }
-    {
         err := writer.WriteInt32Value("moves", m.GetMoves())
         if err != nil {
             return err
@@ -216,6 +210,12 @@ func (m *PuzzleStormDashboard_days) Serialize(writer i878a80d2330e89d26896388a3f
     }
     {
         err := writer.WriteInt32Value("time", m.GetTime())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("_id", m.GetId())
         if err != nil {
             return err
         }
@@ -244,9 +244,9 @@ func (m *PuzzleStormDashboard_days) SetErrors(value *int32)() {
 func (m *PuzzleStormDashboard_days) SetHighest(value *int32)() {
     m.highest = value
 }
-// SetId sets the _id property value. The id property
+// SetId sets the _id property value. The _id property
 func (m *PuzzleStormDashboard_days) SetId(value *string)() {
-    m.id = value
+    m._id = value
 }
 // SetMoves sets the moves property value. The moves property
 func (m *PuzzleStormDashboard_days) SetMoves(value *int32)() {

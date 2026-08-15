@@ -23,8 +23,6 @@ func NewBoardSeekPostRequestBody()(*BoardSeekPostRequestBody) {
     m := &BoardSeekPostRequestBody{
     }
     m.SetAdditionalData(make(map[string]any))
-    ratedValue := false
-    m.SetRated(&ratedValue)
     variantValue := STANDARD_VARIANTKEY
     m.SetVariant(&variantValue)
     return m

@@ -10,12 +10,174 @@ import (
     i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
 )
 
-// GamesExportIdsRequestBuilder builds and executes requests for operations under \api\games\export\_ids
-type GamesExportIdsRequestBuilder struct {
+// GamesExport_idsRequestBuilder builds and executes requests for operations under \api\games\export\_ids
+type GamesExport_idsRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
-// GamesExportIdsRequestBuilderPostQueryParameters download games by IDs in PGN or [ndjson](#description/streaming-with-nd-json) format, depending on the request `Accept` header.Games are sorted by reverse chronological order (most recent first)The method is `POST` so a longer list of IDs can be sent in the request body.300 IDs can be submitted.Ongoing games are delayed by 3 moves, as to prevent cheat bots from using this API.
-type GamesExportIdsRequestBuilderPostQueryParameters struct {
+// _idsPostResponse composed type wrapper for classes i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
+type _idsPostResponse struct {
+    // Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable
+    gameJson i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable
+    // Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
+    gamePgn i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
+}
+// New_idsPostResponse instantiates a new _idsPostResponse and sets the default values.
+func New_idsPostResponse()(*_idsPostResponse) {
+    m := &_idsPostResponse{
+    }
+    return m
+}
+// Create_idsPostResponseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
+// returns a Parsable when successful
+func Create_idsPostResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+    result := New_idsPostResponse()
+    if parseNode != nil {
+        mappingValueNode, err := parseNode.GetChildNode("")
+        if err != nil {
+            return nil, err
+        }
+        if mappingValueNode != nil {
+            mappingValue, err := mappingValueNode.GetStringValue()
+            if err != nil {
+                return nil, err
+            }
+            if mappingValue != nil {
+            }
+        }
+    }
+    return result, nil
+}
+// GetFieldDeserializers the deserialization information for the current model
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
+func (m *_idsPostResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
+    if m.GetGameJson() != nil {
+        return m.GetGameJson().GetFieldDeserializers()
+    } else if m.GetGamePgn() != nil {
+        return m.GetGamePgn().GetFieldDeserializers()
+    }
+    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+}
+// GetGameJson gets the GameJson property value. Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable
+// returns a GameJsonable when successful
+func (m *_idsPostResponse) GetGameJson()(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable) {
+    return m.gameJson
+}
+// GetGamePgn gets the GamePgn property value. Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
+// returns a GamePgnable when successful
+func (m *_idsPostResponse) GetGamePgn()(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable) {
+    return m.gamePgn
+}
+// GetIsComposedType determines if the current object is a wrapper around a composed type
+// returns a bool when successful
+func (m *_idsPostResponse) GetIsComposedType()(bool) {
+    return true
+}
+// Serialize serializes information the current object
+func (m *_idsPostResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+    if m.GetGameJson() != nil {
+        err := writer.WriteObjectValue("", m.GetGameJson())
+        if err != nil {
+            return err
+        }
+    } else if m.GetGamePgn() != nil {
+        err := writer.WriteObjectValue("", m.GetGamePgn())
+        if err != nil {
+            return err
+        }
+    }
+    return nil
+}
+// SetGameJson sets the GameJson property value. Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable
+func (m *_idsPostResponse) SetGameJson(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable)() {
+    m.gameJson = value
+}
+// SetGamePgn sets the GamePgn property value. Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
+func (m *_idsPostResponse) SetGamePgn(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable)() {
+    m.gamePgn = value
+}
+// _idsResponse composed type wrapper for classes i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
+type _idsResponse struct {
+    // Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable
+    gameJson i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable
+    // Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
+    gamePgn i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
+}
+// New_idsResponse instantiates a new _idsResponse and sets the default values.
+func New_idsResponse()(*_idsResponse) {
+    m := &_idsResponse{
+    }
+    return m
+}
+// Create_idsResponseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
+// returns a Parsable when successful
+func Create_idsResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+    result := New_idsResponse()
+    if parseNode != nil {
+        mappingValueNode, err := parseNode.GetChildNode("")
+        if err != nil {
+            return nil, err
+        }
+        if mappingValueNode != nil {
+            mappingValue, err := mappingValueNode.GetStringValue()
+            if err != nil {
+                return nil, err
+            }
+            if mappingValue != nil {
+            }
+        }
+    }
+    return result, nil
+}
+// GetFieldDeserializers the deserialization information for the current model
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
+func (m *_idsResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
+    if m.GetGameJson() != nil {
+        return m.GetGameJson().GetFieldDeserializers()
+    } else if m.GetGamePgn() != nil {
+        return m.GetGamePgn().GetFieldDeserializers()
+    }
+    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+}
+// GetGameJson gets the GameJson property value. Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable
+// returns a GameJsonable when successful
+func (m *_idsResponse) GetGameJson()(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable) {
+    return m.gameJson
+}
+// GetGamePgn gets the GamePgn property value. Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
+// returns a GamePgnable when successful
+func (m *_idsResponse) GetGamePgn()(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable) {
+    return m.gamePgn
+}
+// GetIsComposedType determines if the current object is a wrapper around a composed type
+// returns a bool when successful
+func (m *_idsResponse) GetIsComposedType()(bool) {
+    return true
+}
+// Serialize serializes information the current object
+func (m *_idsResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+    if m.GetGameJson() != nil {
+        err := writer.WriteObjectValue("", m.GetGameJson())
+        if err != nil {
+            return err
+        }
+    } else if m.GetGamePgn() != nil {
+        err := writer.WriteObjectValue("", m.GetGamePgn())
+        if err != nil {
+            return err
+        }
+    }
+    return nil
+}
+// SetGameJson sets the GameJson property value. Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable
+func (m *_idsResponse) SetGameJson(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable)() {
+    m.gameJson = value
+}
+// SetGamePgn sets the GamePgn property value. Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
+func (m *_idsResponse) SetGamePgn(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable)() {
+    m.gamePgn = value
+}
+// GamesExport_idsRequestBuilderPostQueryParameters download games by IDs in PGN or [ndjson](#description/streaming-with-nd-json) format, depending on the request `Accept` header.Games are sorted by reverse chronological order (most recent first)The method is `POST` so a longer list of IDs can be sent in the request body.300 IDs can be submitted.Ongoing games are delayed by 3 moves, as to prevent cheat bots from using this API.
+type GamesExport_idsRequestBuilderPostQueryParameters struct {
     // Include [accuracy percent](https://lichess.org/page/accuracy) of each player, when available. Only available in JSON.
     Accuracy *bool "uriparametername:\"accuracy\""
     // Include clock status when available.Either as PGN comments: `2. exd5 { [%clk 1:01:27] } e5 { [%clk 1:01:28] }`Or in a `clocks` JSON field, as centisecond integers, depending on the response type.
@@ -35,240 +197,78 @@ type GamesExportIdsRequestBuilderPostQueryParameters struct {
     // Include the PGN tags.
     Tags *bool "uriparametername:\"tags\""
 }
-// GamesExportIdsRequestBuilderPostRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
-type GamesExportIdsRequestBuilderPostRequestConfiguration struct {
+// GamesExport_idsRequestBuilderPostRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
+type GamesExport_idsRequestBuilderPostRequestConfiguration struct {
     // Request headers
     Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
     // Request options
     Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
     // Request query parameters
-    QueryParameters *GamesExportIdsRequestBuilderPostQueryParameters
+    QueryParameters *GamesExport_idsRequestBuilderPostQueryParameters
 }
-// IdsPostResponse composed type wrapper for classes i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
-type IdsPostResponse struct {
-    // Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable
-    gameJson i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable
-    // Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
-    gamePgn i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
-}
-// NewIdsPostResponse instantiates a new IdsPostResponse and sets the default values.
-func NewIdsPostResponse()(*IdsPostResponse) {
-    m := &IdsPostResponse{
-    }
-    return m
-}
-// CreateIdsPostResponseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateIdsPostResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewIdsPostResponse()
-    if parseNode != nil {
-        mappingValueNode, err := parseNode.GetChildNode("")
-        if err != nil {
-            return nil, err
-        }
-        if mappingValueNode != nil {
-            mappingValue, err := mappingValueNode.GetStringValue()
-            if err != nil {
-                return nil, err
-            }
-            if mappingValue != nil {
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *IdsPostResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    if m.GetGameJson() != nil {
-        return m.GetGameJson().GetFieldDeserializers()
-    } else if m.GetGamePgn() != nil {
-        return m.GetGamePgn().GetFieldDeserializers()
-    }
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetGameJson gets the GameJson property value. Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable
-// returns a GameJsonable when successful
-func (m *IdsPostResponse) GetGameJson()(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable) {
-    return m.gameJson
-}
-// GetGamePgn gets the GamePgn property value. Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
-// returns a GamePgnable when successful
-func (m *IdsPostResponse) GetGamePgn()(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable) {
-    return m.gamePgn
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *IdsPostResponse) GetIsComposedType()(bool) {
-    return true
-}
-// Serialize serializes information the current object
-func (m *IdsPostResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetGameJson() != nil {
-        err := writer.WriteObjectValue("", m.GetGameJson())
-        if err != nil {
-            return err
-        }
-    } else if m.GetGamePgn() != nil {
-        err := writer.WriteObjectValue("", m.GetGamePgn())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetGameJson sets the GameJson property value. Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable
-func (m *IdsPostResponse) SetGameJson(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable)() {
-    m.gameJson = value
-}
-// SetGamePgn sets the GamePgn property value. Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
-func (m *IdsPostResponse) SetGamePgn(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable)() {
-    m.gamePgn = value
-}
-// IdsResponse composed type wrapper for classes i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
-type IdsResponse struct {
-    // Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable
-    gameJson i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable
-    // Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
-    gamePgn i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
-}
-// NewIdsResponse instantiates a new IdsResponse and sets the default values.
-func NewIdsResponse()(*IdsResponse) {
-    m := &IdsResponse{
-    }
-    return m
-}
-// CreateIdsResponseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateIdsResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewIdsResponse()
-    if parseNode != nil {
-        mappingValueNode, err := parseNode.GetChildNode("")
-        if err != nil {
-            return nil, err
-        }
-        if mappingValueNode != nil {
-            mappingValue, err := mappingValueNode.GetStringValue()
-            if err != nil {
-                return nil, err
-            }
-            if mappingValue != nil {
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *IdsResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    if m.GetGameJson() != nil {
-        return m.GetGameJson().GetFieldDeserializers()
-    } else if m.GetGamePgn() != nil {
-        return m.GetGamePgn().GetFieldDeserializers()
-    }
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetGameJson gets the GameJson property value. Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable
-// returns a GameJsonable when successful
-func (m *IdsResponse) GetGameJson()(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable) {
-    return m.gameJson
-}
-// GetGamePgn gets the GamePgn property value. Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
-// returns a GamePgnable when successful
-func (m *IdsResponse) GetGamePgn()(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable) {
-    return m.gamePgn
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *IdsResponse) GetIsComposedType()(bool) {
-    return true
-}
-// Serialize serializes information the current object
-func (m *IdsResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetGameJson() != nil {
-        err := writer.WriteObjectValue("", m.GetGameJson())
-        if err != nil {
-            return err
-        }
-    } else if m.GetGamePgn() != nil {
-        err := writer.WriteObjectValue("", m.GetGamePgn())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetGameJson sets the GameJson property value. Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable
-func (m *IdsResponse) SetGameJson(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable)() {
-    m.gameJson = value
-}
-// SetGamePgn sets the GamePgn property value. Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
-func (m *IdsResponse) SetGamePgn(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable)() {
-    m.gamePgn = value
-}
-type IdsPostResponseable interface {
+type _idsPostResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetGameJson()(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable)
     GetGamePgn()(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable)
     SetGameJson(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable)()
     SetGamePgn(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable)()
 }
-type IdsResponseable interface {
+type _idsResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetGameJson()(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable)
     GetGamePgn()(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable)
     SetGameJson(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable)()
     SetGamePgn(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable)()
 }
-// NewGamesExportIdsRequestBuilderInternal instantiates a new GamesExportIdsRequestBuilder and sets the default values.
-func NewGamesExportIdsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*GamesExportIdsRequestBuilder) {
-    m := &GamesExportIdsRequestBuilder{
+// NewGamesExport_idsRequestBuilderInternal instantiates a new GamesExport_idsRequestBuilder and sets the default values.
+func NewGamesExport_idsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*GamesExport_idsRequestBuilder) {
+    m := &GamesExport_idsRequestBuilder{
         BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/games/export/_ids{?accuracy*,clocks*,division*,evals*,literate*,moves*,opening*,pgnInJson*,tags*}", pathParameters),
     }
     return m
 }
-// NewGamesExportIdsRequestBuilder instantiates a new GamesExportIdsRequestBuilder and sets the default values.
-func NewGamesExportIdsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*GamesExportIdsRequestBuilder) {
+// NewGamesExport_idsRequestBuilder instantiates a new GamesExport_idsRequestBuilder and sets the default values.
+func NewGamesExport_idsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*GamesExport_idsRequestBuilder) {
     urlParams := make(map[string]string)
     urlParams["request-raw-url"] = rawUrl
-    return NewGamesExportIdsRequestBuilderInternal(urlParams, requestAdapter)
+    return NewGamesExport_idsRequestBuilderInternal(urlParams, requestAdapter)
 }
 // Post download games by IDs in PGN or [ndjson](#description/streaming-with-nd-json) format, depending on the request `Accept` header.Games are sorted by reverse chronological order (most recent first)The method is `POST` so a longer list of IDs can be sent in the request body.300 IDs can be submitted.Ongoing games are delayed by 3 moves, as to prevent cheat bots from using this API.
-// Deprecated: This method is obsolete. Use PostAsIdsPostResponse instead.
-// returns a IdsResponseable when successful
-func (m *GamesExportIdsRequestBuilder) Post(ctx context.Context, body *string, requestConfiguration *GamesExportIdsRequestBuilderPostRequestConfiguration)(IdsResponseable, error) {
+// Deprecated: This method is obsolete. Use PostAs_idsPostResponse instead.
+// returns a _idsResponseable when successful
+func (m *GamesExport_idsRequestBuilder) Post(ctx context.Context, body *string, requestConfiguration *GamesExport_idsRequestBuilderPostRequestConfiguration)(_idsResponseable, error) {
     requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateIdsResponseFromDiscriminatorValue, nil)
+    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, Create_idsResponseFromDiscriminatorValue, nil)
     if err != nil {
         return nil, err
     }
     if res == nil {
         return nil, nil
     }
-    return res.(IdsResponseable), nil
+    return res.(_idsResponseable), nil
 }
-// PostAsIdsPostResponse download games by IDs in PGN or [ndjson](#description/streaming-with-nd-json) format, depending on the request `Accept` header.Games are sorted by reverse chronological order (most recent first)The method is `POST` so a longer list of IDs can be sent in the request body.300 IDs can be submitted.Ongoing games are delayed by 3 moves, as to prevent cheat bots from using this API.
-// returns a IdsPostResponseable when successful
-func (m *GamesExportIdsRequestBuilder) PostAsIdsPostResponse(ctx context.Context, body *string, requestConfiguration *GamesExportIdsRequestBuilderPostRequestConfiguration)(IdsPostResponseable, error) {
+// PostAs_idsPostResponse download games by IDs in PGN or [ndjson](#description/streaming-with-nd-json) format, depending on the request `Accept` header.Games are sorted by reverse chronological order (most recent first)The method is `POST` so a longer list of IDs can be sent in the request body.300 IDs can be submitted.Ongoing games are delayed by 3 moves, as to prevent cheat bots from using this API.
+// returns a _idsPostResponseable when successful
+func (m *GamesExport_idsRequestBuilder) PostAs_idsPostResponse(ctx context.Context, body *string, requestConfiguration *GamesExport_idsRequestBuilderPostRequestConfiguration)(_idsPostResponseable, error) {
     requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateIdsPostResponseFromDiscriminatorValue, nil)
+    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, Create_idsPostResponseFromDiscriminatorValue, nil)
     if err != nil {
         return nil, err
     }
     if res == nil {
         return nil, nil
     }
-    return res.(IdsPostResponseable), nil
+    return res.(_idsPostResponseable), nil
 }
 // ToPostRequestInformation download games by IDs in PGN or [ndjson](#description/streaming-with-nd-json) format, depending on the request `Accept` header.Games are sorted by reverse chronological order (most recent first)The method is `POST` so a longer list of IDs can be sent in the request body.300 IDs can be submitted.Ongoing games are delayed by 3 moves, as to prevent cheat bots from using this API.
 // returns a *RequestInformation when successful
-func (m *GamesExportIdsRequestBuilder) ToPostRequestInformation(ctx context.Context, body *string, requestConfiguration *GamesExportIdsRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+func (m *GamesExport_idsRequestBuilder) ToPostRequestInformation(ctx context.Context, body *string, requestConfiguration *GamesExport_idsRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
     if requestConfiguration != nil {
         if requestConfiguration.QueryParameters != nil {
@@ -282,7 +282,7 @@ func (m *GamesExportIdsRequestBuilder) ToPostRequestInformation(ctx context.Cont
     return requestInfo, nil
 }
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
-// returns a *GamesExportIdsRequestBuilder when successful
-func (m *GamesExportIdsRequestBuilder) WithUrl(rawUrl string)(*GamesExportIdsRequestBuilder) {
-    return NewGamesExportIdsRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+// returns a *GamesExport_idsRequestBuilder when successful
+func (m *GamesExport_idsRequestBuilder) WithUrl(rawUrl string)(*GamesExport_idsRequestBuilder) {
+    return NewGamesExport_idsRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
 }

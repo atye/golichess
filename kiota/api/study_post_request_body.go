@@ -35,10 +35,6 @@ func NewStudyPostRequestBody()(*StudyPostRequestBody) {
     m := &StudyPostRequestBody{
     }
     m.SetAdditionalData(make(map[string]any))
-    descriptionValue := false
-    m.SetDescription(&descriptionValue)
-    stickyValue := true
-    m.SetSticky(&stickyValue)
     return m
 }
 // CreateStudyPostRequestBodyFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
