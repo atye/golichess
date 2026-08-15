@@ -2521,7 +2521,7 @@ type BroadcastRoundPgnParams struct {
 // Download all games of a single round of a broadcast tournament in PGN format.
 // You *could* poll this endpoint to get updates about a tournament, but it would be slow,
 // and very inefficient.
-// Instead, consider [streaming the tournament](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn) to get
+// Instead, consider [streaming the round](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn) to get
 // a new PGN every time a game is updated, in real-time.
 func (c *Client) BroadcastRoundPgn(ctx context.Context, broadcastRoundID string, opts ...BroadcastRoundPgnParams) (*BroadcastPgn, error) {
 	path := "/api/broadcast/round/{broadcastRoundId}.pgn"
@@ -2563,6 +2563,7 @@ type BroadcastAllRoundsPgnParams struct {
 //
 // To get real-time updates about an ongoing tournament, please use the
 // [round PGN stream](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn) or
+// [tournament PGN stream](#tag/broadcasts/GET/api/stream/broadcast/tournament/{broadcastTournamentId}.pgn) or
 // [group PGN stream](#tag/broadcasts/GET/api/stream/broadcast/group/{broadcastGroupId}.pgn) endpoints instead.
 func (c *Client) BroadcastAllRoundsPgn(ctx context.Context, broadcastTournamentID string, opts ...BroadcastAllRoundsPgnParams) (*BroadcastPgn, error) {
 	path := "/api/broadcast/{broadcastTournamentId}.pgn"
