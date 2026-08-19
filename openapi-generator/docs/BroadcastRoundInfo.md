@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Name** | **string** |  | 
 **Slug** | **string** |  | 
 **CreatedAt** | **int64** |  | 
-**Rated** | **bool** | Whether the round is used for rating calculations | 
+**Rated** | Pointer to **bool** | Whether the round is used for rating calculations | [optional] 
 **Ongoing** | Pointer to **bool** |  | [optional] 
 **StartsAt** | Pointer to **int64** |  | [optional] 
 **StartsAfterPrevious** | Pointer to **bool** | The start date/time is unknown and the round will start automatically when the previous round completes | [optional] 
@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 
 ### NewBroadcastRoundInfo
 
-`func NewBroadcastRoundInfo(id string, name string, slug string, createdAt int64, rated bool, url string, ) *BroadcastRoundInfo`
+`func NewBroadcastRoundInfo(id string, name string, slug string, createdAt int64, url string, ) *BroadcastRoundInfo`
 
 NewBroadcastRoundInfo instantiates a new BroadcastRoundInfo object
 This constructor will assign default values to properties that have it defined,
@@ -136,6 +136,11 @@ and a boolean to check if the value has been set.
 
 SetRated sets Rated field to given value.
 
+### HasRated
+
+`func (o *BroadcastRoundInfo) HasRated() bool`
+
+HasRated returns a boolean if a field has been set.
 
 ### GetOngoing
 
