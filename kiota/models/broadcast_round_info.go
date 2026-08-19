@@ -17,6 +17,7 @@ type BroadcastRoundInfo struct {
     // The delay property
     delay *int64
     // The finished property
+    // Deprecated: 
     finished *bool
     // The finishedAt property
     finishedAt *int64
@@ -206,6 +207,7 @@ func (m *BroadcastRoundInfo) GetFieldDeserializers()(map[string]func(i878a80d233
     return res
 }
 // GetFinished gets the finished property value. The finished property
+// Deprecated: 
 // returns a *bool when successful
 func (m *BroadcastRoundInfo) GetFinished()(*bool) {
     return m.finished
@@ -360,6 +362,7 @@ func (m *BroadcastRoundInfo) SetDelay(value *int64)() {
     m.delay = value
 }
 // SetFinished sets the finished property value. The finished property
+// Deprecated: 
 func (m *BroadcastRoundInfo) SetFinished(value *bool)() {
     m.finished = value
 }
