@@ -5414,14 +5414,15 @@ type BroadcastRoundInfo struct {
 	// CustomScoring Scoring overrides for wins or draws.
 	CustomScoring *BroadcastCustomScoring `json:"customScoring,omitempty"`
 	Delay         *int64                  `json:"delay,omitempty"`
-	Finished      *bool                   `json:"finished,omitempty"`
-	FinishedAt    *int64                  `json:"finishedAt,omitempty"`
-	Id            string                  `json:"id"`
-	Name          string                  `json:"name"`
-	Ongoing       *bool                   `json:"ongoing,omitempty"`
+	// Deprecated: this property has been marked as deprecated upstream, but no `x-deprecated-reason` was set
+	Finished   *bool  `json:"finished,omitempty"`
+	FinishedAt *int64 `json:"finishedAt,omitempty"`
+	Id         string `json:"id"`
+	Name       string `json:"name"`
+	Ongoing    *bool  `json:"ongoing,omitempty"`
 
 	// Rated Whether the round is used for rating calculations
-	Rated bool   `json:"rated"`
+	Rated *bool  `json:"rated,omitempty"`
 	Slug  string `json:"slug"`
 
 	// StartsAfterPrevious The start date/time is unknown and the round will start automatically when the previous round completes
