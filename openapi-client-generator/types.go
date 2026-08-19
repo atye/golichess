@@ -1101,15 +1101,16 @@ type BroadcastRoundInfo struct {
 	Slug      string `json:"slug"`
 	CreatedAt int64  `json:"createdAt"`
 	// Whether the round is used for rating calculations
-	Rated    bool   `json:"rated"`
+	Rated    *bool  `json:"rated,omitempty"`
 	Ongoing  *bool  `json:"ongoing,omitempty"`
 	StartsAt *int64 `json:"startsAt,omitempty"`
 	// The start date/time is unknown and the round will start automatically when the previous round completes
 	StartsAfterPrevious *bool  `json:"startsAfterPrevious,omitempty"`
 	FinishedAt          *int64 `json:"finishedAt,omitempty"`
-	Finished            *bool  `json:"finished,omitempty"`
-	URL                 string `json:"url"`
-	Delay               *int64 `json:"delay,omitempty"`
+	// Deprecated: this field is deprecated.
+	Finished *bool  `json:"finished,omitempty"`
+	URL      string `json:"url"`
+	Delay    *int64 `json:"delay,omitempty"`
 	// Scoring overrides for wins or draws.
 	CustomScoring *BroadcastCustomScoring `json:"customScoring,omitempty"`
 }
