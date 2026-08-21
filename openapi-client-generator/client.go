@@ -13,6 +13,10 @@ import (
 	"time"
 )
 
+// DefaultBaseURL is the server this API declares first, with every template
+// variable at its default value.
+const DefaultBaseURL = "https://lichess.org"
+
 // Client is an API client for Lichess.org API reference.
 type Client struct {
 	baseURL     string
@@ -149,6 +153,8 @@ func (c *Client) do(ctx context.Context, method string, path string, body any, c
 			}
 			continue
 		}
+
+		captureResponse(ctx, resp)
 
 		if resp.StatusCode < 200 || resp.StatusCode >= 300 {
 			return &APIError{StatusCode: resp.StatusCode, Status: resp.Status, Body: respBody}

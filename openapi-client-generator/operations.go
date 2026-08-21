@@ -65,7 +65,7 @@ func (c *Client) Player(ctx context.Context) (*Top10s, error) {
 //
 // Get the leaderboard for a single speed or variant (a.k.a. `perfType`).
 // There is no leaderboard for correspondence or puzzles.
-// See <https://lichess.org/player/top/100/bullet>.
+// See <https://lichess.org/player/top/bullet>.
 func (c *Client) PlayerTopNbPerfType(ctx context.Context, nb int64, perfType string) (*Leaderboard, error) {
 	path := "/api/player/top/{nb}/{perfType}"
 	path = pathReplace(path, "nb", "simple", false, nb)
@@ -341,7 +341,7 @@ func (c *Client) APIPuzzleReplay(ctx context.Context, days int64, theme string) 
 	path = pathReplace(path, "theme", "simple", false, theme)
 	var result PuzzleReplay
 	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
-		return nil, parseanyResponse(err)
+		return nil, parseAPIPuzzleReplayResponse404Error(err)
 	}
 	return &result, nil
 }
@@ -1014,7 +1014,7 @@ func (c *Client) StreamGame(ctx context.Context, id string) (*MoveStream, error)
 	path = pathReplace(path, "id", "simple", false, id)
 	var result MoveStream
 	if err := c.do(ctx, "GET", path, nil, "", &result, "application/x-ndjson"); err != nil {
-		return nil, parseanyResponse(err)
+		return nil, parseStreamGameResponse429Error(err)
 	}
 	return &result, nil
 }
@@ -2384,7 +2384,7 @@ func (c *Client) BroadcastPush(ctx context.Context, broadcastRoundID string, bod
 	path = pathReplace(path, "broadcastRoundId", "simple", false, broadcastRoundID)
 	var result BroadcastPgnPush
 	if err := c.do(ctx, "POST", path, body, "text/plain", &result, "application/json"); err != nil {
-		return nil, parseanyResponse(err)
+		return nil, parseBroadcastPushResponse400Error(err)
 	}
 	return &result, nil
 }
@@ -4047,7 +4047,7 @@ func (c *Client) APICloudEval(ctx context.Context, params APICloudEvalParams) (*
 	}
 	var result CloudEval
 	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json"); err != nil {
-		return nil, parseanyResponse(err)
+		return nil, parseAPICloudEvalResponse404Error(err)
 	}
 	return &result, nil
 }

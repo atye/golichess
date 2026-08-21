@@ -61,26 +61,26 @@ func (e *APIError) Is(target error) bool {
 	return e.StatusCode == t.StatusCode
 }
 
-// anyResponse wraps an APIError with a parsed any body.
-type anyResponse struct {
+// APIPuzzleReplayResponse404Error wraps an APIError with a parsed any body.
+type APIPuzzleReplayResponse404Error struct {
 	*APIError
 	Detail any
 }
 
-func (e *anyResponse) Error() string {
+func (e *APIPuzzleReplayResponse404Error) Error() string {
 	return e.APIError.Error()
 }
 
-func (e *anyResponse) Unwrap() error {
+func (e *APIPuzzleReplayResponse404Error) Unwrap() error {
 	return e.APIError
 }
 
-func parseanyResponse(err error) error {
+func parseAPIPuzzleReplayResponse404Error(err error) error {
 	var apiErr *APIError
 	if !errors.As(err, &apiErr) || len(apiErr.Body) == 0 {
 		return err
 	}
-	resp := &anyResponse{APIError: apiErr}
+	resp := &APIPuzzleReplayResponse404Error{APIError: apiErr}
 	if json.Unmarshal(apiErr.Body, &resp.Detail) == nil {
 		return resp
 	}
@@ -107,6 +107,32 @@ func parseNotFoundResponse(err error) error {
 		return err
 	}
 	resp := &NotFoundResponse{APIError: apiErr}
+	if json.Unmarshal(apiErr.Body, &resp.Detail) == nil {
+		return resp
+	}
+	return err
+}
+
+// StreamGameResponse429Error wraps an APIError with a parsed any body.
+type StreamGameResponse429Error struct {
+	*APIError
+	Detail any
+}
+
+func (e *StreamGameResponse429Error) Error() string {
+	return e.APIError.Error()
+}
+
+func (e *StreamGameResponse429Error) Unwrap() error {
+	return e.APIError
+}
+
+func parseStreamGameResponse429Error(err error) error {
+	var apiErr *APIError
+	if !errors.As(err, &apiErr) || len(apiErr.Body) == 0 {
+		return err
+	}
+	resp := &StreamGameResponse429Error{APIError: apiErr}
 	if json.Unmarshal(apiErr.Body, &resp.Detail) == nil {
 		return resp
 	}
@@ -159,6 +185,58 @@ func parseSwissUnauthorisedEditResponse(err error) error {
 		return err
 	}
 	resp := &SwissUnauthorisedEditResponse{APIError: apiErr}
+	if json.Unmarshal(apiErr.Body, &resp.Detail) == nil {
+		return resp
+	}
+	return err
+}
+
+// BroadcastPushResponse400Error wraps an APIError with a parsed any body.
+type BroadcastPushResponse400Error struct {
+	*APIError
+	Detail any
+}
+
+func (e *BroadcastPushResponse400Error) Error() string {
+	return e.APIError.Error()
+}
+
+func (e *BroadcastPushResponse400Error) Unwrap() error {
+	return e.APIError
+}
+
+func parseBroadcastPushResponse400Error(err error) error {
+	var apiErr *APIError
+	if !errors.As(err, &apiErr) || len(apiErr.Body) == 0 {
+		return err
+	}
+	resp := &BroadcastPushResponse400Error{APIError: apiErr}
+	if json.Unmarshal(apiErr.Body, &resp.Detail) == nil {
+		return resp
+	}
+	return err
+}
+
+// APICloudEvalResponse404Error wraps an APIError with a parsed any body.
+type APICloudEvalResponse404Error struct {
+	*APIError
+	Detail any
+}
+
+func (e *APICloudEvalResponse404Error) Error() string {
+	return e.APIError.Error()
+}
+
+func (e *APICloudEvalResponse404Error) Unwrap() error {
+	return e.APIError
+}
+
+func parseAPICloudEvalResponse404Error(err error) error {
+	var apiErr *APIError
+	if !errors.As(err, &apiErr) || len(apiErr.Body) == 0 {
+		return err
+	}
+	resp := &APICloudEvalResponse404Error{APIError: apiErr}
 	if json.Unmarshal(apiErr.Body, &resp.Detail) == nil {
 		return resp
 	}

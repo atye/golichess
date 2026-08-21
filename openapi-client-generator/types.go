@@ -771,6 +771,25 @@ type TvFeed struct {
 	Value any
 }
 
+// Base returns the TvFeedBase that every variant of TvFeed carries, or
+// nil when Value holds none of them. It is a copy: writing to it does not change
+// the value the union holds.
+func (u TvFeed) Base() *TvFeedBase {
+	switch v := u.Value.(type) {
+	case TvFeedFeatured:
+		return &TvFeedBase{
+			T: v.T,
+			D: v.D,
+		}
+	case TvFeedFen:
+		return &TvFeedBase{
+			T: v.T,
+			D: v.D,
+		}
+	}
+	return nil
+}
+
 // MarshalJSON implements json.Marshaler for TvFeed.
 func (u TvFeed) MarshalJSON() ([]byte, error) {
 	return json.Marshal(u.Value)
@@ -2183,6 +2202,85 @@ func (u TimelineEntriesItem) Raw() json.RawMessage {
 	return json.RawMessage(u.raw)
 }
 
+// Base returns the TimelineEntriesItemBase that every variant of TimelineEntriesItem carries, or
+// nil when Value holds none of them. It is a copy: writing to it does not change
+// the value the union holds.
+func (u TimelineEntriesItem) Base() *TimelineEntriesItemBase {
+	switch v := u.Value.(type) {
+	case TimelineEntryFollow:
+		return &TimelineEntriesItemBase{
+			Date: v.Date,
+			Data: v.Data,
+		}
+	case TimelineEntryTeamJoin:
+		return &TimelineEntriesItemBase{
+			Date: v.Date,
+			Data: v.Data,
+		}
+	case TimelineEntryTeamCreate:
+		return &TimelineEntriesItemBase{
+			Date: v.Date,
+			Data: v.Data,
+		}
+	case TimelineEntryForumPost:
+		return &TimelineEntriesItemBase{
+			Date: v.Date,
+			Data: v.Data,
+		}
+	case TimelineEntryBlogPost:
+		return &TimelineEntriesItemBase{
+			Date: v.Date,
+			Data: v.Data,
+		}
+	case TimelineEntryUblogPost:
+		return &TimelineEntriesItemBase{
+			Date: v.Date,
+			Data: v.Data,
+		}
+	case TimelineEntryTourJoin:
+		return &TimelineEntriesItemBase{
+			Date: v.Date,
+			Data: v.Data,
+		}
+	case TimelineEntryGameEnd:
+		return &TimelineEntriesItemBase{
+			Date: v.Date,
+			Data: v.Data,
+		}
+	case TimelineEntrySimul:
+		return &TimelineEntriesItemBase{
+			Date: v.Date,
+			Data: v.Data,
+		}
+	case TimelineEntryStudyLike:
+		return &TimelineEntriesItemBase{
+			Date: v.Date,
+			Data: v.Data,
+		}
+	case TimelineEntryPlanStart:
+		return &TimelineEntriesItemBase{
+			Date: v.Date,
+			Data: v.Data,
+		}
+	case TimelineEntryPlanRenew:
+		return &TimelineEntriesItemBase{
+			Date: v.Date,
+			Data: v.Data,
+		}
+	case TimelineEntryUblogPostLike:
+		return &TimelineEntriesItemBase{
+			Date: v.Date,
+			Data: v.Data,
+		}
+	case TimelineEntryStreamStart:
+		return &TimelineEntriesItemBase{
+			Date: v.Date,
+			Data: v.Data,
+		}
+	}
+	return nil
+}
+
 // MarshalJSON implements json.Marshaler for TimelineEntriesItem.
 func (u TimelineEntriesItem) MarshalJSON() ([]byte, error) {
 	if u.IsUnknownVariant() {
@@ -2398,6 +2496,35 @@ type APIStreamEventResponse struct {
 	Value any
 }
 
+// Base returns the APIStreamEventResponseBase that every variant of APIStreamEventResponse carries, or
+// nil when Value holds none of them. It is a copy: writing to it does not change
+// the value the union holds.
+func (u APIStreamEventResponse) Base() *APIStreamEventResponseBase {
+	switch v := u.Value.(type) {
+	case GameStartEvent:
+		return &APIStreamEventResponseBase{
+			Type: v.Type,
+		}
+	case GameFinishEvent:
+		return &APIStreamEventResponseBase{
+			Type: v.Type,
+		}
+	case ChallengeEvent:
+		return &APIStreamEventResponseBase{
+			Type: v.Type,
+		}
+	case ChallengeCanceledEvent:
+		return &APIStreamEventResponseBase{
+			Type: v.Type,
+		}
+	case ChallengeDeclinedEvent:
+		return &APIStreamEventResponseBase{
+			Type: v.Type,
+		}
+	}
+	return nil
+}
+
 // MarshalJSON implements json.Marshaler for APIStreamEventResponse.
 func (u APIStreamEventResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(u.Value)
@@ -2453,6 +2580,31 @@ type BoardGameStreamResponse struct {
 	Value any
 }
 
+// Base returns the BoardGameStreamResponseBase that every variant of BoardGameStreamResponse carries, or
+// nil when Value holds none of them. It is a copy: writing to it does not change
+// the value the union holds.
+func (u BoardGameStreamResponse) Base() *BoardGameStreamResponseBase {
+	switch v := u.Value.(type) {
+	case GameFullEvent:
+		return &BoardGameStreamResponseBase{
+			Type: v.Type,
+		}
+	case GameStateEvent:
+		return &BoardGameStreamResponseBase{
+			Type: v.Type,
+		}
+	case ChatLineEvent:
+		return &BoardGameStreamResponseBase{
+			Type: v.Type,
+		}
+	case OpponentGoneEvent:
+		return &BoardGameStreamResponseBase{
+			Type: v.Type,
+		}
+	}
+	return nil
+}
+
 // MarshalJSON implements json.Marshaler for BoardGameStreamResponse.
 func (u BoardGameStreamResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(u.Value)
@@ -2493,4 +2645,38 @@ func (u *BoardGameStreamResponse) UnmarshalJSON(data []byte) error {
 		errors = append(errors, err)
 	}
 	return fmt.Errorf("data did not match any variant of BoardGameStreamResponse: %v", errors)
+}
+
+// TvFeedBase - The properties every variant of TvFeed declares.
+// Derived from the variants rather than declared by the spec, so it
+// changes when they do.
+type TvFeedBase struct {
+	// The type of message.
+	// A summary of the game is sent as the first message and when the featured game changes.
+	// Subsequent messages are just the X-FEN, last move, and clocks.
+	T string `json:"t"`
+	// The data of the message
+	D any `json:"d"`
+}
+
+// TimelineEntriesItemBase - The properties every variant of TimelineEntriesItem declares.
+// Derived from the variants rather than declared by the spec, so it
+// changes when they do.
+type TimelineEntriesItemBase struct {
+	Date float64 `json:"date"`
+	Data any     `json:"data"`
+}
+
+// APIStreamEventResponseBase - The properties every variant of APIStreamEventResponse declares.
+// Derived from the variants rather than declared by the spec, so it
+// changes when they do.
+type APIStreamEventResponseBase struct {
+	Type string `json:"type"`
+}
+
+// BoardGameStreamResponseBase - The properties every variant of BoardGameStreamResponse declares.
+// Derived from the variants rather than declared by the spec, so it
+// changes when they do.
+type BoardGameStreamResponseBase struct {
+	Type string `json:"type"`
 }
