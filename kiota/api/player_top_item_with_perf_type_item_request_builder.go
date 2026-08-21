@@ -33,7 +33,7 @@ func NewPlayerTopItemWithPerfTypeItemRequestBuilder(rawUrl string, requestAdapte
     urlParams["request-raw-url"] = rawUrl
     return NewPlayerTopItemWithPerfTypeItemRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get get the leaderboard for a single speed or variant (a.k.a. `perfType`).There is no leaderboard for correspondence or puzzles.See <https://lichess.org/player/top/100/bullet>.
+// Get get the leaderboard for a single speed or variant (a.k.a. `perfType`).There is no leaderboard for correspondence or puzzles.See <https://lichess.org/player/top/bullet>.
 // returns a Leaderboardable when successful
 func (m *PlayerTopItemWithPerfTypeItemRequestBuilder) Get(ctx context.Context, requestConfiguration *PlayerTopItemWithPerfTypeItemRequestBuilderGetRequestConfiguration)(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Leaderboardable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
@@ -49,7 +49,7 @@ func (m *PlayerTopItemWithPerfTypeItemRequestBuilder) Get(ctx context.Context, r
     }
     return res.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Leaderboardable), nil
 }
-// ToGetRequestInformation get the leaderboard for a single speed or variant (a.k.a. `perfType`).There is no leaderboard for correspondence or puzzles.See <https://lichess.org/player/top/100/bullet>.
+// ToGetRequestInformation get the leaderboard for a single speed or variant (a.k.a. `perfType`).There is no leaderboard for correspondence or puzzles.See <https://lichess.org/player/top/bullet>.
 // returns a *RequestInformation when successful
 func (m *PlayerTopItemWithPerfTypeItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *PlayerTopItemWithPerfTypeItemRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
