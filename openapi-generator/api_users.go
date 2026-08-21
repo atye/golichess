@@ -183,7 +183,7 @@ See <https://lichess.org/player>.
 
 	Get the leaderboard for a single speed or variant (a.k.a. `perfType`).
 There is no leaderboard for correspondence or puzzles.
-See <https://lichess.org/player/top/100/bullet>.
+See <https://lichess.org/player/top/bullet>.
 
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -1464,7 +1464,7 @@ PlayerTopNbPerfType Get one leaderboard
 
 Get the leaderboard for a single speed or variant (a.k.a. `perfType`).
 There is no leaderboard for correspondence or puzzles.
-See <https://lichess.org/player/top/100/bullet>.
+See <https://lichess.org/player/top/bullet>.
 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
