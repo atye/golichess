@@ -13519,7 +13519,7 @@ type ClientInterface interface {
 	//
 	// Get the leaderboard for a single speed or variant (a.k.a. `perfType`).
 	// There is no leaderboard for correspondence or puzzles.
-	// See <https://lichess.org/player/top/100/bullet>.
+	// See <https://lichess.org/player/top/bullet>.
 	//
 	// Corresponds with GET /api/player/top/{nb}/{perfType} (the `PlayerTopNbPerfType` operationId).
 	PlayerTopNbPerfType(ctx context.Context, nb int, perfType PlayerTopNbPerfTypeParamsPerfType, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -16881,7 +16881,7 @@ func (c *Client) ApiPlayerAutocomplete(ctx context.Context, params *ApiPlayerAut
 //
 // Get the leaderboard for a single speed or variant (a.k.a. `perfType`).
 // There is no leaderboard for correspondence or puzzles.
-// See <https://lichess.org/player/top/100/bullet>.
+// See <https://lichess.org/player/top/bullet>.
 //
 // Corresponds with GET /api/player/top/{nb}/{perfType} (the `PlayerTopNbPerfType` operationId).
 func (c *Client) PlayerTopNbPerfType(ctx context.Context, nb int, perfType PlayerTopNbPerfTypeParamsPerfType, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -31581,7 +31581,7 @@ type ClientWithResponsesInterface interface {
 	//
 	// Get the leaderboard for a single speed or variant (a.k.a. `perfType`).
 	// There is no leaderboard for correspondence or puzzles.
-	// See <https://lichess.org/player/top/100/bullet>.
+	// See <https://lichess.org/player/top/bullet>.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
@@ -44308,7 +44308,7 @@ func (c *ClientWithResponses) ApiPlayerAutocompleteWithResponse(ctx context.Cont
 //
 // Get the leaderboard for a single speed or variant (a.k.a. `perfType`).
 // There is no leaderboard for correspondence or puzzles.
-// See <https://lichess.org/player/top/100/bullet>.
+// See <https://lichess.org/player/top/bullet>.
 //
 // Returns a wrapper object for the known response body format(s).
 //
