@@ -5,6 +5,7 @@ package openapi_client_generator
 import (
 	"encoding/json"
 	"fmt"
+	"time"
 )
 
 // Flair - See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
@@ -38,9 +39,9 @@ type Patron = bool
 type PatronColor = int64
 
 type TopUser struct {
-	ID       string         `json:"id"`
-	Username string         `json:"username"`
-	Perfs    map[string]any `json:"perfs,omitempty"`
+	ID       string                       `json:"id"`
+	Username string                       `json:"username"`
+	Perfs    map[string]TopUserPerfsValue `json:"perfs,omitempty"`
 	// only appears if the user is a titled player or a bot user
 	Title *Title `json:"title,omitempty"`
 	// Use patronColor value instead to determine if player is a patron.
@@ -186,8 +187,8 @@ type Count struct {
 }
 
 type UserStreamer struct {
-	Twitch  any `json:"twitch,omitempty"`
-	Youtube any `json:"youtube,omitempty"`
+	Twitch  *UserStreamerTwitch `json:"twitch,omitempty"`
+	Youtube *UserStreamerTwitch `json:"youtube,omitempty"`
 }
 
 type UserExtended struct {
@@ -251,18 +252,18 @@ type LightUser struct {
 }
 
 type PerfStat struct {
-	User       any     `json:"user"`
-	Perf       any     `json:"perf"`
-	Rank       *int64  `json:"rank"`
-	Percentile float64 `json:"percentile"`
-	Stat       any     `json:"stat"`
+	User       PerfStatUser `json:"user"`
+	Perf       PerfStatPerf `json:"perf"`
+	Rank       *int64       `json:"rank"`
+	Percentile float64      `json:"percentile"`
+	Stat       PerfStatStat `json:"stat"`
 }
 
 type UserActivityScore struct {
-	Win  int64 `json:"win"`
-	Loss int64 `json:"loss"`
-	Draw int64 `json:"draw"`
-	Rp   any   `json:"rp"`
+	Win  int64               `json:"win"`
+	Loss int64               `json:"loss"`
+	Draw int64               `json:"draw"`
+	Rp   UserActivityScoreRp `json:"rp"`
 }
 
 type GameColor string
@@ -288,14 +289,14 @@ const (
 )
 
 type UserActivityCorrespondenceGame struct {
-	ID       string      `json:"id"`
-	Color    GameColor   `json:"color"`
-	URL      string      `json:"url"`
-	Variant  *VariantKey `json:"variant,omitempty"`
-	Speed    *string     `json:"speed,omitempty"`
-	Perf     *string     `json:"perf,omitempty"`
-	Rated    *bool       `json:"rated,omitempty"`
-	Opponent any         `json:"opponent"`
+	ID       string                                 `json:"id"`
+	Color    GameColor                              `json:"color"`
+	URL      string                                 `json:"url"`
+	Variant  *VariantKey                            `json:"variant,omitempty"`
+	Speed    *string                                `json:"speed,omitempty"`
+	Perf     *string                                `json:"perf,omitempty"`
+	Rated    *bool                                  `json:"rated,omitempty"`
+	Opponent UserActivityCorrespondenceGameOpponent `json:"opponent"`
 }
 
 type UserActivityFollowList struct {
@@ -304,28 +305,28 @@ type UserActivityFollowList struct {
 }
 
 type UserActivity struct {
-	Interval            any             `json:"interval"`
-	Games               any             `json:"games,omitempty"`
-	Puzzles             any             `json:"puzzles,omitempty"`
-	Storm               *PuzzleModePerf `json:"storm,omitempty"`
-	Racer               *PuzzleModePerf `json:"racer,omitempty"`
-	Streak              *PuzzleModePerf `json:"streak,omitempty"`
-	Tournaments         any             `json:"tournaments,omitempty"`
-	Practice            []any           `json:"practice,omitempty"`
-	Simuls              []string        `json:"simuls,omitempty"`
-	CorrespondenceMoves any             `json:"correspondenceMoves,omitempty"`
-	CorrespondenceEnds  any             `json:"correspondenceEnds,omitempty"`
-	Follows             any             `json:"follows,omitempty"`
-	Studies             []any           `json:"studies,omitempty"`
-	Teams               []any           `json:"teams,omitempty"`
-	Posts               []any           `json:"posts,omitempty"`
-	Patron              any             `json:"patron,omitempty"`
-	Stream              *bool           `json:"stream,omitempty"`
+	Interval            UserActivityInterval                        `json:"interval"`
+	Games               *UserActivityGames                          `json:"games,omitempty"`
+	Puzzles             *UserActivityPuzzles                        `json:"puzzles,omitempty"`
+	Storm               *PuzzleModePerf                             `json:"storm,omitempty"`
+	Racer               *PuzzleModePerf                             `json:"racer,omitempty"`
+	Streak              *PuzzleModePerf                             `json:"streak,omitempty"`
+	Tournaments         *UserActivityTournaments                    `json:"tournaments,omitempty"`
+	Practice            []UserActivityPracticeItem                  `json:"practice,omitempty"`
+	Simuls              []string                                    `json:"simuls,omitempty"`
+	CorrespondenceMoves *UserActivityCorrespondenceMoves            `json:"correspondenceMoves,omitempty"`
+	CorrespondenceEnds  *UserActivityCorrespondenceEnds             `json:"correspondenceEnds,omitempty"`
+	Follows             *UserActivityFollows                        `json:"follows,omitempty"`
+	Studies             []UserActivityTournamentsBestItemTournament `json:"studies,omitempty"`
+	Teams               []UserActivityTeamsItem                     `json:"teams,omitempty"`
+	Posts               []UserActivityPostsItem                     `json:"posts,omitempty"`
+	Patron              *UserActivityPatron                         `json:"patron,omitempty"`
+	Stream              *bool                                       `json:"stream,omitempty"`
 }
 
 type PuzzleAndGame struct {
-	Game   any `json:"game"`
-	Puzzle any `json:"puzzle"`
+	Game   PuzzleAndGameGame   `json:"game"`
+	Puzzle PuzzleAndGamePuzzle `json:"puzzle"`
 }
 
 type PuzzleGlicko struct {
@@ -340,24 +341,24 @@ type PuzzleBatchSelect struct {
 }
 
 type PuzzleBatchSolveRequest struct {
-	Solutions []any `json:"solutions,omitempty"`
+	Solutions []PuzzleBatchSolveRequestSolutionsItem `json:"solutions,omitempty"`
 }
 
 type PuzzleBatchSolveResponse struct {
-	Puzzles []PuzzleAndGame `json:"puzzles,omitempty"`
-	Glicko  *PuzzleGlicko   `json:"glicko,omitempty"`
-	Rounds  []any           `json:"rounds,omitempty"`
+	Puzzles []PuzzleAndGame                      `json:"puzzles,omitempty"`
+	Glicko  *PuzzleGlicko                        `json:"glicko,omitempty"`
+	Rounds  []PuzzleBatchSolveResponseRoundsItem `json:"rounds,omitempty"`
 }
 
 type PuzzleActivity struct {
-	Date   int64 `json:"date"`
-	Puzzle any   `json:"puzzle"`
-	Win    bool  `json:"win"`
+	Date   int64                `json:"date"`
+	Puzzle PuzzleActivityPuzzle `json:"puzzle"`
+	Win    bool                 `json:"win"`
 }
 
 type PuzzleReplay struct {
-	Replay any `json:"replay"`
-	Angle  any `json:"angle"`
+	Replay PuzzleReplayReplay `json:"replay"`
+	Angle  PuzzleReplayAngle  `json:"angle"`
 }
 
 type PuzzlePerformance struct {
@@ -369,14 +370,14 @@ type PuzzlePerformance struct {
 }
 
 type PuzzleDashboard struct {
-	Days   int64             `json:"days"`
-	Global PuzzlePerformance `json:"global"`
-	Themes map[string]any    `json:"themes"`
+	Days   int64                                 `json:"days"`
+	Global PuzzlePerformance                     `json:"global"`
+	Themes map[string]PuzzleDashboardThemesValue `json:"themes"`
 }
 
 type PuzzleStormDashboard struct {
-	Days []any `json:"days"`
-	High any   `json:"high"`
+	Days []PuzzleStormDashboardDaysItem `json:"days"`
+	High PuzzleStormDashboardHigh       `json:"high"`
 }
 
 type PuzzleRacer struct {
@@ -390,9 +391,9 @@ type PuzzleRaceResults struct {
 	// Owner of the puzzle race
 	Owner string `json:"owner"`
 	// List of players participating in the race
-	Players []any `json:"players"`
+	Players []PuzzleRaceResultsPlayersItem `json:"players"`
 	// List of puzzles in the race
-	Puzzles []any `json:"puzzles"`
+	Puzzles []PuzzleRaceResultsPuzzlesItem `json:"puzzles"`
 	// Timestamp in milliseconds when the race finishes
 	FinishesAt int64 `json:"finishesAt"`
 	// Timestamp in milliseconds when the race started
@@ -461,92 +462,92 @@ type UserPreferences struct {
 type Ok = any
 
 type TimelineEntryFollow struct {
-	Type string  `json:"type"`
-	Date float64 `json:"date"`
-	Data any     `json:"data"`
+	Type string                  `json:"type"`
+	Date float64                 `json:"date"`
+	Data TimelineEntryFollowData `json:"data"`
 }
 
 type TimelineEntryTeamJoin struct {
-	Type string  `json:"type"`
-	Date float64 `json:"date"`
-	Data any     `json:"data"`
+	Type string                    `json:"type"`
+	Date float64                   `json:"date"`
+	Data TimelineEntryTeamJoinData `json:"data"`
 }
 
 type TimelineEntryTeamCreate struct {
-	Type string  `json:"type"`
-	Date float64 `json:"date"`
-	Data any     `json:"data"`
+	Type string                    `json:"type"`
+	Date float64                   `json:"date"`
+	Data TimelineEntryTeamJoinData `json:"data"`
 }
 
 type TimelineEntryForumPost struct {
-	Type string  `json:"type"`
-	Date float64 `json:"date"`
-	Data any     `json:"data"`
+	Type string                     `json:"type"`
+	Date float64                    `json:"date"`
+	Data TimelineEntryForumPostData `json:"data"`
 }
 
 type TimelineEntryBlogPost struct {
-	Type string  `json:"type"`
-	Date float64 `json:"date"`
-	Data any     `json:"data"`
+	Type string                    `json:"type"`
+	Date float64                   `json:"date"`
+	Data TimelineEntryBlogPostData `json:"data"`
 }
 
 type TimelineEntryUblogPost struct {
-	Type string  `json:"type"`
-	Date float64 `json:"date"`
-	Data any     `json:"data"`
+	Type string                     `json:"type"`
+	Date float64                    `json:"date"`
+	Data TimelineEntryUblogPostData `json:"data"`
 }
 
 type TimelineEntryTourJoin struct {
-	Type string  `json:"type"`
-	Date float64 `json:"date"`
-	Data any     `json:"data"`
+	Type string                    `json:"type"`
+	Date float64                   `json:"date"`
+	Data TimelineEntryTourJoinData `json:"data"`
 }
 
 type TimelineEntryGameEnd struct {
-	Type string  `json:"type"`
-	Date float64 `json:"date"`
-	Data any     `json:"data"`
+	Type string                   `json:"type"`
+	Date float64                  `json:"date"`
+	Data TimelineEntryGameEndData `json:"data"`
 }
 
 type TimelineEntrySimul struct {
-	Type string  `json:"type"`
-	Date float64 `json:"date"`
-	Data any     `json:"data"`
+	Type string                 `json:"type"`
+	Date float64                `json:"date"`
+	Data TimelineEntrySimulData `json:"data"`
 }
 
 type TimelineEntryStudyLike struct {
-	Type string  `json:"type"`
-	Date float64 `json:"date"`
-	Data any     `json:"data"`
+	Type string                     `json:"type"`
+	Date float64                    `json:"date"`
+	Data TimelineEntryStudyLikeData `json:"data"`
 }
 
 type TimelineEntryPlanStart struct {
-	Type string  `json:"type"`
-	Date float64 `json:"date"`
-	Data any     `json:"data"`
+	Type string                     `json:"type"`
+	Date float64                    `json:"date"`
+	Data TimelineEntryPlanStartData `json:"data"`
 }
 
 type TimelineEntryPlanRenew struct {
-	Type string  `json:"type"`
-	Date float64 `json:"date"`
-	Data any     `json:"data"`
+	Type string                     `json:"type"`
+	Date float64                    `json:"date"`
+	Data TimelineEntryPlanRenewData `json:"data"`
 }
 
 type TimelineEntryUblogPostLike struct {
-	Type string  `json:"type"`
-	Date float64 `json:"date"`
-	Data any     `json:"data"`
+	Type string                         `json:"type"`
+	Date float64                        `json:"date"`
+	Data TimelineEntryUblogPostLikeData `json:"data"`
 }
 
 type TimelineEntryStreamStart struct {
-	Type string  `json:"type"`
-	Date float64 `json:"date"`
-	Data any     `json:"data"`
+	Type string                       `json:"type"`
+	Date float64                      `json:"date"`
+	Data TimelineEntryStreamStartData `json:"data"`
 }
 
 type Timeline struct {
-	Entries []TimelineEntriesItem `json:"entries"`
-	Users   map[string]any        `json:"users"`
+	Entries []TimelineEntriesItem         `json:"entries"`
+	Users   map[string]TimelineUsersValue `json:"users"`
 }
 
 type GamePgn = string
@@ -582,14 +583,14 @@ const (
 )
 
 type GamePlayerUser struct {
-	User        LightUser `json:"user"`
-	Rating      int64     `json:"rating"`
-	RatingDiff  *int64    `json:"ratingDiff,omitempty"`
-	Name        *string   `json:"name,omitempty"`
-	Provisional *bool     `json:"provisional,omitempty"`
-	AiLevel     *int64    `json:"aiLevel,omitempty"`
-	Analysis    any       `json:"analysis,omitempty"`
-	Team        *string   `json:"team,omitempty"`
+	User        LightUser               `json:"user"`
+	Rating      int64                   `json:"rating"`
+	RatingDiff  *int64                  `json:"ratingDiff,omitempty"`
+	Name        *string                 `json:"name,omitempty"`
+	Provisional *bool                   `json:"provisional,omitempty"`
+	AiLevel     *int64                  `json:"aiLevel,omitempty"`
+	Analysis    *GamePlayerUserAnalysis `json:"analysis,omitempty"`
+	Team        *string                 `json:"team,omitempty"`
 }
 
 type GamePlayers struct {
@@ -613,7 +614,7 @@ type GameMoveAnalysis struct {
 	// Best variation in SAN notation (only if played move was inaccurate)
 	Variation *string `json:"variation,omitempty"`
 	// Judgment annotation (only if played move was inaccurate)
-	Judgment any `json:"judgment,omitempty"`
+	Judgment *GameMoveAnalysisJudgment `json:"judgment,omitempty"`
 }
 
 type GameJSON struct {
@@ -635,15 +636,15 @@ type GameJSON struct {
 	DaysPerTurn *int64             `json:"daysPerTurn,omitempty"`
 	Analysis    []GameMoveAnalysis `json:"analysis,omitempty"`
 	// The arena tournament the game is from
-	ArenaTour any `json:"arenaTour,omitempty"`
+	ArenaTour *GameJSONArenaTour `json:"arenaTour,omitempty"`
 	// The swiss tournament the game is from
-	SwissTour any     `json:"swissTour,omitempty"`
-	Clock     any     `json:"clock,omitempty"`
-	Clocks    []int64 `json:"clocks,omitempty"`
-	Division  any     `json:"division,omitempty"`
+	SwissTour *GameJSONSwissTour `json:"swissTour,omitempty"`
+	Clock     *GameJSONClock     `json:"clock,omitempty"`
+	Clocks    []int64            `json:"clocks,omitempty"`
+	Division  *GameJSONDivision  `json:"division,omitempty"`
 }
 
-type SpectatorGameChat = []any
+type SpectatorGameChat = []SpectatorGameChatItem
 
 type GameStatusID int64
 
@@ -665,17 +666,17 @@ const (
 )
 
 type GameStreamGame struct {
-	ID         string          `json:"id"`
-	Rated      *bool           `json:"rated,omitempty"`
-	Variant    *VariantKey     `json:"variant,omitempty"`
-	Speed      *Speed          `json:"speed,omitempty"`
-	Perf       *PerfType       `json:"perf,omitempty"`
-	CreatedAt  *int64          `json:"createdAt,omitempty"`
-	Status     *GameStatusID   `json:"status,omitempty"`
-	StatusName *GameStatusName `json:"statusName,omitempty"`
-	Clock      any             `json:"clock,omitempty"`
-	Players    any             `json:"players,omitempty"`
-	Winner     *GameColor      `json:"winner,omitempty"`
+	ID         string                 `json:"id"`
+	Rated      *bool                  `json:"rated,omitempty"`
+	Variant    *VariantKey            `json:"variant,omitempty"`
+	Speed      *Speed                 `json:"speed,omitempty"`
+	Perf       *PerfType              `json:"perf,omitempty"`
+	CreatedAt  *int64                 `json:"createdAt,omitempty"`
+	Status     *GameStatusID          `json:"status,omitempty"`
+	StatusName *GameStatusName        `json:"statusName,omitempty"`
+	Clock      *GameStreamGameClock   `json:"clock,omitempty"`
+	Players    *GameStreamGamePlayers `json:"players,omitempty"`
+	Winner     *GameColor             `json:"winner,omitempty"`
 }
 
 type GameStream = []GameStreamGame
@@ -710,9 +711,15 @@ type GameStatus struct {
 }
 
 // MoveStreamEntry represents a union type (oneOf/anyOf).
-// Variants: any, any
+// Variants: MoveStreamEntryVariant, MoveStreamEntryVariant2
 type MoveStreamEntry struct {
 	Value any
+}
+
+// unionValue hands the decoded variant to the parameter encoders, which write
+// the value a union carries rather than the wrapper carrying it.
+func (u MoveStreamEntry) unionValue() any {
+	return u.Value
 }
 
 // MarshalJSON implements json.Marshaler for MoveStreamEntry.
@@ -726,11 +733,16 @@ func (u *MoveStreamEntry) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 	var errors []error
-	// A variant with no Go type of its own still covers payloads the spec says are
-	// valid, so they decode into any rather than failing as an unmatched variant.
-	var untyped any
-	if err := json.Unmarshal(data, &untyped); err == nil {
-		u.Value = untyped
+	var variant0 MoveStreamEntryVariant
+	if err := json.Unmarshal(data, &variant0); err == nil {
+		u.Value = variant0
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	var variant1 MoveStreamEntryVariant2
+	if err := json.Unmarshal(data, &variant1); err == nil {
+		u.Value = variant1
 		return nil
 	} else {
 		errors = append(errors, err)
@@ -753,7 +765,7 @@ type TvFeedFeatured struct {
 	// Subsequent messages are just the X-FEN, last move, and clocks.
 	T string `json:"t"`
 	// The data of the message
-	D any `json:"d"`
+	D Featured `json:"d"`
 }
 
 type TvFeedFen struct {
@@ -762,7 +774,7 @@ type TvFeedFen struct {
 	// Subsequent messages are just the X-FEN, last move, and clocks.
 	T string `json:"t"`
 	// The data of the message
-	D any `json:"d"`
+	D Fen `json:"d"`
 }
 
 // TvFeed represents a union type (oneOf/anyOf).
@@ -779,15 +791,19 @@ func (u TvFeed) Base() *TvFeedBase {
 	case TvFeedFeatured:
 		return &TvFeedBase{
 			T: v.T,
-			D: v.D,
 		}
 	case TvFeedFen:
 		return &TvFeedBase{
 			T: v.T,
-			D: v.D,
 		}
 	}
 	return nil
+}
+
+// unionValue hands the decoded variant to the parameter encoders, which write
+// the value a union carries rather than the wrapper carrying it.
+func (u TvFeed) unionValue() any {
+	return u.Value
 }
 
 // MarshalJSON implements json.Marshaler for TvFeed.
@@ -845,9 +861,34 @@ type ArenaRatingObj struct {
 }
 
 // ArenaPosition represents a union type (oneOf/anyOf).
-// Variants: any, any
+// Variants: Thematic, CustomPosition
 type ArenaPosition struct {
 	Value any
+}
+
+// Base returns the ArenaPositionBase that every variant of ArenaPosition carries, or
+// nil when Value holds none of them. It is a copy: writing to it does not change
+// the value the union holds.
+func (u ArenaPosition) Base() *ArenaPositionBase {
+	switch v := u.Value.(type) {
+	case Thematic:
+		return &ArenaPositionBase{
+			Name: v.Name,
+			Fen:  v.Fen,
+		}
+	case CustomPosition:
+		return &ArenaPositionBase{
+			Name: v.Name,
+			Fen:  v.Fen,
+		}
+	}
+	return nil
+}
+
+// unionValue hands the decoded variant to the parameter encoders, which write
+// the value a union carries rather than the wrapper carrying it.
+func (u ArenaPosition) unionValue() any {
+	return u.Value
 }
 
 // MarshalJSON implements json.Marshaler for ArenaPosition.
@@ -861,11 +902,16 @@ func (u *ArenaPosition) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 	var errors []error
-	// A variant with no Go type of its own still covers payloads the spec says are
-	// valid, so they decode into any rather than failing as an unmatched variant.
-	var untyped any
-	if err := json.Unmarshal(data, &untyped); err == nil {
-		u.Value = untyped
+	var variant0 Thematic
+	if err := json.Unmarshal(data, &variant0); err == nil {
+		u.Value = variant0
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	var variant1 CustomPosition
+	if err := json.Unmarshal(data, &variant1); err == nil {
+		u.Value = variant1
 		return nil
 	} else {
 		errors = append(errors, err)
@@ -886,22 +932,22 @@ type ArenaTournament struct {
 	StartsAt   int64   `json:"startsAt"`
 	FinishesAt int64   `json:"finishesAt"`
 	// 10: created, 20: started, 30: finished
-	Status              ArenaStatus     `json:"status"`
-	Perf                ArenaPerf       `json:"perf"`
-	SecondsToStart      *int64          `json:"secondsToStart,omitempty"`
-	HasMaxRating        *bool           `json:"hasMaxRating,omitempty"`
-	MaxRating           *ArenaRatingObj `json:"maxRating,omitempty"`
-	MinRating           *ArenaRatingObj `json:"minRating,omitempty"`
-	MinRatedGames       any             `json:"minRatedGames,omitempty"`
-	BotsAllowed         *bool           `json:"botsAllowed,omitempty"`
-	MinAccountAgeInDays *int64          `json:"minAccountAgeInDays,omitempty"`
-	OnlyTitled          *bool           `json:"onlyTitled,omitempty"`
-	TeamMember          *string         `json:"teamMember,omitempty"`
-	Private             *bool           `json:"private,omitempty"`
-	Position            *ArenaPosition  `json:"position,omitempty"`
-	Schedule            any             `json:"schedule,omitempty"`
-	TeamBattle          any             `json:"teamBattle,omitempty"`
-	Winner              *LightUser      `json:"winner,omitempty"`
+	Status              ArenaStatus                   `json:"status"`
+	Perf                ArenaPerf                     `json:"perf"`
+	SecondsToStart      *int64                        `json:"secondsToStart,omitempty"`
+	HasMaxRating        *bool                         `json:"hasMaxRating,omitempty"`
+	MaxRating           *ArenaRatingObj               `json:"maxRating,omitempty"`
+	MinRating           *ArenaRatingObj               `json:"minRating,omitempty"`
+	MinRatedGames       *ArenaTournamentMinRatedGames `json:"minRatedGames,omitempty"`
+	BotsAllowed         *bool                         `json:"botsAllowed,omitempty"`
+	MinAccountAgeInDays *int64                        `json:"minAccountAgeInDays,omitempty"`
+	OnlyTitled          *bool                         `json:"onlyTitled,omitempty"`
+	TeamMember          *string                       `json:"teamMember,omitempty"`
+	Private             *bool                         `json:"private,omitempty"`
+	Position            *ArenaPosition                `json:"position,omitempty"`
+	Schedule            *ArenaTournamentSchedule      `json:"schedule,omitempty"`
+	TeamBattle          *ArenaTournamentTeamBattle    `json:"teamBattle,omitempty"`
+	Winner              *LightUser                    `json:"winner,omitempty"`
 }
 
 type ArenaTournaments struct {
@@ -929,45 +975,45 @@ type ArenaSheet struct {
 }
 
 type ArenaTournamentFull struct {
-	ID                 string    `json:"id"`
-	FullName           string    `json:"fullName"`
-	Rated              *bool     `json:"rated,omitempty"`
-	Spotlight          any       `json:"spotlight,omitempty"`
-	Berserkable        *bool     `json:"berserkable,omitempty"`
-	OnlyTitled         *bool     `json:"onlyTitled,omitempty"`
-	Clock              Clock     `json:"clock"`
-	Minutes            *int64    `json:"minutes,omitempty"`
-	CreatedBy          *string   `json:"createdBy,omitempty"`
-	System             *string   `json:"system,omitempty"`
-	SecondsToStart     *int64    `json:"secondsToStart,omitempty"`
-	SecondsToFinish    *int64    `json:"secondsToFinish,omitempty"`
-	IsFinished         *bool     `json:"isFinished,omitempty"`
-	IsRecentlyFinished *bool     `json:"isRecentlyFinished,omitempty"`
-	PairingsClosed     *bool     `json:"pairingsClosed,omitempty"`
-	StartsAt           *string   `json:"startsAt,omitempty"`
-	NbPlayers          int64     `json:"nbPlayers"`
-	Verdicts           *Verdicts `json:"verdicts,omitempty"`
+	ID                 string                        `json:"id"`
+	FullName           string                        `json:"fullName"`
+	Rated              *bool                         `json:"rated,omitempty"`
+	Spotlight          *ArenaTournamentFullSpotlight `json:"spotlight,omitempty"`
+	Berserkable        *bool                         `json:"berserkable,omitempty"`
+	OnlyTitled         *bool                         `json:"onlyTitled,omitempty"`
+	Clock              Clock                         `json:"clock"`
+	Minutes            *int64                        `json:"minutes,omitempty"`
+	CreatedBy          *string                       `json:"createdBy,omitempty"`
+	System             *string                       `json:"system,omitempty"`
+	SecondsToStart     *int64                        `json:"secondsToStart,omitempty"`
+	SecondsToFinish    *int64                        `json:"secondsToFinish,omitempty"`
+	IsFinished         *bool                         `json:"isFinished,omitempty"`
+	IsRecentlyFinished *bool                         `json:"isRecentlyFinished,omitempty"`
+	PairingsClosed     *bool                         `json:"pairingsClosed,omitempty"`
+	StartsAt           *string                       `json:"startsAt,omitempty"`
+	NbPlayers          int64                         `json:"nbPlayers"`
+	Verdicts           *Verdicts                     `json:"verdicts,omitempty"`
 	// The quote displayed on the tournament page
-	Quote       any `json:"quote,omitempty"`
-	GreatPlayer any `json:"greatPlayer,omitempty"`
+	Quote       *ArenaTournamentFullQuote       `json:"quote,omitempty"`
+	GreatPlayer *ArenaTournamentFullGreatPlayer `json:"greatPlayer,omitempty"`
 	// List of usernames allowed to join the tournament
-	AllowList           []string        `json:"allowList,omitempty"`
-	HasMaxRating        *bool           `json:"hasMaxRating,omitempty"`
-	MaxRating           *ArenaRatingObj `json:"maxRating,omitempty"`
-	MinRating           *ArenaRatingObj `json:"minRating,omitempty"`
-	MinRatedGames       any             `json:"minRatedGames,omitempty"`
-	BotsAllowed         *bool           `json:"botsAllowed,omitempty"`
-	MinAccountAgeInDays *int64          `json:"minAccountAgeInDays,omitempty"`
-	Perf                any             `json:"perf,omitempty"`
-	Schedule            any             `json:"schedule,omitempty"`
-	Description         *string         `json:"description,omitempty"`
-	Variant             *string         `json:"variant,omitempty"`
-	Duels               []any           `json:"duels,omitempty"`
-	Standing            any             `json:"standing,omitempty"`
-	Featured            any             `json:"featured,omitempty"`
-	Podium              []any           `json:"podium,omitempty"`
-	Stats               any             `json:"stats,omitempty"`
-	MyUsername          *string         `json:"myUsername,omitempty"`
+	AllowList           []string                        `json:"allowList,omitempty"`
+	HasMaxRating        *bool                           `json:"hasMaxRating,omitempty"`
+	MaxRating           *ArenaRatingObj                 `json:"maxRating,omitempty"`
+	MinRating           *ArenaRatingObj                 `json:"minRating,omitempty"`
+	MinRatedGames       *ArenaTournamentMinRatedGames   `json:"minRatedGames,omitempty"`
+	BotsAllowed         *bool                           `json:"botsAllowed,omitempty"`
+	MinAccountAgeInDays *int64                          `json:"minAccountAgeInDays,omitempty"`
+	Perf                *ArenaTournamentFullPerf        `json:"perf,omitempty"`
+	Schedule            *ArenaTournamentFullSchedule    `json:"schedule,omitempty"`
+	Description         *string                         `json:"description,omitempty"`
+	Variant             *string                         `json:"variant,omitempty"`
+	Duels               []ArenaTournamentFullDuelsItem  `json:"duels,omitempty"`
+	Standing            *ArenaTournamentFullStanding    `json:"standing,omitempty"`
+	Featured            *ArenaTournamentFullFeatured    `json:"featured,omitempty"`
+	Podium              []ArenaTournamentFullPodiumItem `json:"podium,omitempty"`
+	Stats               *ArenaTournamentFullStats       `json:"stats,omitempty"`
+	MyUsername          *string                         `json:"myUsername,omitempty"`
 }
 
 type Error struct {
@@ -1000,22 +1046,22 @@ const (
 )
 
 type SwissTournament struct {
-	ID        string  `json:"id"`
-	CreatedBy string  `json:"createdBy"`
-	StartsAt  string  `json:"startsAt"`
-	Name      string  `json:"name"`
-	Clock     any     `json:"clock"`
-	Variant   string  `json:"variant"`
-	Round     float64 `json:"round"`
-	NbRounds  float64 `json:"nbRounds"`
-	NbPlayers float64 `json:"nbPlayers"`
-	NbOngoing float64 `json:"nbOngoing"`
+	ID        string               `json:"id"`
+	CreatedBy string               `json:"createdBy"`
+	StartsAt  string               `json:"startsAt"`
+	Name      string               `json:"name"`
+	Clock     SwissTournamentClock `json:"clock"`
+	Variant   string               `json:"variant"`
+	Round     float64              `json:"round"`
+	NbRounds  float64              `json:"nbRounds"`
+	NbPlayers float64              `json:"nbPlayers"`
+	NbOngoing float64              `json:"nbOngoing"`
 	// The current state of the swiss tournament
-	Status    SwissStatus `json:"status"`
-	Stats     any         `json:"stats,omitempty"`
-	Rated     bool        `json:"rated"`
-	Verdicts  Verdicts    `json:"verdicts"`
-	NextRound any         `json:"nextRound,omitempty"`
+	Status    SwissStatus               `json:"status"`
+	Stats     *SwissTournamentStats     `json:"stats,omitempty"`
+	Rated     bool                      `json:"rated"`
+	Verdicts  Verdicts                  `json:"verdicts"`
+	NextRound *SwissTournamentNextRound `json:"nextRound,omitempty"`
 }
 
 type SwissUnauthorisedEdit = any
@@ -1033,7 +1079,7 @@ const (
 )
 
 type StudyImportPgnChapters struct {
-	Chapters []any `json:"chapters,omitempty"`
+	Chapters []StudyImportPgnChaptersChaptersItem `json:"chapters,omitempty"`
 }
 
 type StudyMetadata struct {
@@ -1135,7 +1181,7 @@ type BroadcastRoundInfo struct {
 }
 
 // BroadcastPhotos - Photos of players, when available. The object keys are FIDE IDs
-type BroadcastPhotos = map[string]any
+type BroadcastPhotos = map[string]BroadcastPhotosValue
 
 type BroadcastWithRounds struct {
 	Tour           BroadcastTour        `json:"tour"`
@@ -1156,7 +1202,7 @@ type BroadcastTop struct {
 	Active []BroadcastWithLastRound `json:"active,omitempty"`
 	// Deprecated: this field is deprecated.
 	Upcoming []BroadcastWithLastRound `json:"upcoming,omitempty"`
-	Past     any                      `json:"past,omitempty"`
+	Past     *BroadcastTopPast        `json:"past,omitempty"`
 }
 
 type BroadcastByUser struct {
@@ -1281,7 +1327,7 @@ type BroadcastForm struct {
 	Tier      *int64                          `json:"tier,omitempty"`
 	Tiebreaks []BroadcastTiebreakExtendedCode `json:"tiebreaks,omitempty"`
 	// Group this broadcast along with others
-	Grouping any `json:"grouping,omitempty"`
+	Grouping *BroadcastFormGrouping `json:"grouping,omitempty"`
 }
 
 type BroadcastGroupTour struct {
@@ -1335,11 +1381,11 @@ type BroadcastPlayerEntry struct {
 	Score  *float64 `json:"score,omitempty"`
 	Played *int64   `json:"played,omitempty"`
 	// Rating differences by FIDE time control.
-	RatingDiffs any `json:"ratingDiffs,omitempty"`
+	RatingDiffs *StatByFideTc `json:"ratingDiffs,omitempty"`
 	// Player's ratings at the time of the tournament.
-	RatingsMap any `json:"ratingsMap,omitempty"`
+	RatingsMap *StatByFideTc `json:"ratingsMap,omitempty"`
 	// Performance ratings by FIDE time control.
-	Performances any                       `json:"performances,omitempty"`
+	Performances *StatByFideTc             `json:"performances,omitempty"`
 	Tiebreaks    []BroadcastPlayerTiebreak `json:"tiebreaks,omitempty"`
 	Rank         *int64                    `json:"rank,omitempty"`
 }
@@ -1370,7 +1416,7 @@ type BroadcastGameEntry struct {
 
 type BroadcastPlayerEntryWithFideAndGames struct {
 	BroadcastPlayerEntry
-	Fide any `json:"fide,omitempty"`
+	Fide *BroadcastPlayerEntryWithFideAndGamesFide `json:"fide,omitempty"`
 	// List of games played by the player in the broadcast tournament
 	Games []BroadcastGameEntry `json:"games,omitempty"`
 }
@@ -1416,8 +1462,8 @@ type BroadcastRoundForm struct {
 
 type BroadcastRoundStudyInfo struct {
 	// Whether the currently authenticated user has permission to update the study
-	Writeable *bool `json:"writeable,omitempty"`
-	Features  any   `json:"features,omitempty"`
+	Writeable *bool                            `json:"writeable,omitempty"`
+	Features  *BroadcastRoundStudyInfoFeatures `json:"features,omitempty"`
 }
 
 type BroadcastRoundNew struct {
@@ -1427,13 +1473,13 @@ type BroadcastRoundNew struct {
 }
 
 type BroadcastRoundGame struct {
-	ID        string  `json:"id"`
-	Name      string  `json:"name"`
-	Fen       *string `json:"fen,omitempty"`
-	Players   []any   `json:"players,omitempty"`
-	LastMove  *string `json:"lastMove,omitempty"`
-	Check     *string `json:"check,omitempty"`
-	ThinkTime *int64  `json:"thinkTime,omitempty"`
+	ID        string                          `json:"id"`
+	Name      string                          `json:"name"`
+	Fen       *string                         `json:"fen,omitempty"`
+	Players   []BroadcastRoundGamePlayersItem `json:"players,omitempty"`
+	LastMove  *string                         `json:"lastMove,omitempty"`
+	Check     *string                         `json:"check,omitempty"`
+	ThinkTime *int64                          `json:"thinkTime,omitempty"`
 	// The result of the game
 	Status *string `json:"status,omitempty"`
 }
@@ -1453,7 +1499,7 @@ type BroadcastRound struct {
 type BroadcastPgnPushTags = map[string]string
 
 type BroadcastPgnPush struct {
-	Games []any `json:"games"`
+	Games []BroadcastPgnPushGamesItem `json:"games"`
 }
 
 type BroadcastPgn = string
@@ -1515,20 +1561,20 @@ type FidePlayerRatings struct {
 }
 
 type Simul struct {
-	ID               string         `json:"id"`
-	Host             map[string]any `json:"host"`
-	Name             string         `json:"name"`
-	FullName         string         `json:"fullName"`
-	Variants         []any          `json:"variants"`
-	IsCreated        bool           `json:"isCreated"`
-	IsFinished       bool           `json:"isFinished"`
-	IsRunning        bool           `json:"isRunning"`
-	Text             *string        `json:"text,omitempty"`
-	EstimatedStartAt *int64         `json:"estimatedStartAt,omitempty"`
-	StartedAt        *int64         `json:"startedAt,omitempty"`
-	FinishedAt       *int64         `json:"finishedAt,omitempty"`
-	NbApplicants     int64          `json:"nbApplicants"`
-	NbPairings       int64          `json:"nbPairings"`
+	ID               string              `json:"id"`
+	Host             SimulHost           `json:"host"`
+	Name             string              `json:"name"`
+	FullName         string              `json:"fullName"`
+	Variants         []SimulVariantsItem `json:"variants"`
+	IsCreated        bool                `json:"isCreated"`
+	IsFinished       bool                `json:"isFinished"`
+	IsRunning        bool                `json:"isRunning"`
+	Text             *string             `json:"text,omitempty"`
+	EstimatedStartAt *int64              `json:"estimatedStartAt,omitempty"`
+	StartedAt        *int64              `json:"startedAt,omitempty"`
+	FinishedAt       *int64              `json:"finishedAt,omitempty"`
+	NbApplicants     int64               `json:"nbApplicants"`
+	NbPairings       int64               `json:"nbPairings"`
 }
 
 type Team struct {
@@ -1584,8 +1630,8 @@ type LightTeam struct {
 }
 
 type TeamUpdate struct {
-	Msg  any  `json:"msg"`
-	Seen bool `json:"seen"`
+	Msg  TeamUpdateMsg `json:"msg"`
+	Seen bool          `json:"seen"`
 }
 
 type TeamUpdatesPager struct {
@@ -1598,7 +1644,7 @@ type TeamUpdatesPager struct {
 	NbPages            int64        `json:"nbPages"`
 }
 
-type TeamUpdatesByTeam = []any
+type TeamUpdatesByTeam = []TeamUpdatesByTeamItem
 
 type TeamUpdates struct {
 	Updates TeamUpdatesPager  `json:"updates"`
@@ -1630,9 +1676,32 @@ type UserNote struct {
 }
 
 // GameEventOpponent represents a union type (oneOf/anyOf).
-// Variants: any, any
+// Variants: Player, AiOpponent
 type GameEventOpponent struct {
 	Value any
+}
+
+// Base returns the GameEventOpponentBase that every variant of GameEventOpponent carries, or
+// nil when Value holds none of them. It is a copy: writing to it does not change
+// the value the union holds.
+func (u GameEventOpponent) Base() *GameEventOpponentBase {
+	switch v := u.Value.(type) {
+	case Player:
+		return &GameEventOpponentBase{
+			Username: v.Username,
+		}
+	case AiOpponent:
+		return &GameEventOpponentBase{
+			Username: v.Username,
+		}
+	}
+	return nil
+}
+
+// unionValue hands the decoded variant to the parameter encoders, which write
+// the value a union carries rather than the wrapper carrying it.
+func (u GameEventOpponent) unionValue() any {
+	return u.Value
 }
 
 // MarshalJSON implements json.Marshaler for GameEventOpponent.
@@ -1646,11 +1715,16 @@ func (u *GameEventOpponent) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 	var errors []error
-	// A variant with no Go type of its own still covers payloads the spec says are
-	// valid, so they decode into any rather than failing as an unmatched variant.
-	var untyped any
-	if err := json.Unmarshal(data, &untyped); err == nil {
-		u.Value = untyped
+	var variant0 Player
+	if err := json.Unmarshal(data, &variant0); err == nil {
+		u.Value = variant0
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	var variant1 AiOpponent
+	if err := json.Unmarshal(data, &variant1); err == nil {
+		u.Value = variant1
 		return nil
 	} else {
 		errors = append(errors, err)
@@ -1732,9 +1806,36 @@ type ChallengeUser struct {
 }
 
 // TimeControl represents a union type (oneOf/anyOf).
-// Variants: any, any, any
+// Variants: RealTime, Correspondence, Unlimited
 type TimeControl struct {
 	Value any
+}
+
+// Base returns the TimeControlBase that every variant of TimeControl carries, or
+// nil when Value holds none of them. It is a copy: writing to it does not change
+// the value the union holds.
+func (u TimeControl) Base() *TimeControlBase {
+	switch v := u.Value.(type) {
+	case RealTime:
+		return &TimeControlBase{
+			Type: v.Type,
+		}
+	case Correspondence:
+		return &TimeControlBase{
+			Type: v.Type,
+		}
+	case Unlimited:
+		return &TimeControlBase{
+			Type: v.Type,
+		}
+	}
+	return nil
+}
+
+// unionValue hands the decoded variant to the parameter encoders, which write
+// the value a union carries rather than the wrapper carrying it.
+func (u TimeControl) unionValue() any {
+	return u.Value
 }
 
 // MarshalJSON implements json.Marshaler for TimeControl.
@@ -1748,11 +1849,23 @@ func (u *TimeControl) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 	var errors []error
-	// A variant with no Go type of its own still covers payloads the spec says are
-	// valid, so they decode into any rather than failing as an unmatched variant.
-	var untyped any
-	if err := json.Unmarshal(data, &untyped); err == nil {
-		u.Value = untyped
+	var variant0 RealTime
+	if err := json.Unmarshal(data, &variant0); err == nil {
+		u.Value = variant0
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	var variant1 Correspondence
+	if err := json.Unmarshal(data, &variant1); err == nil {
+		u.Value = variant1
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	var variant2 Unlimited
+	if err := json.Unmarshal(data, &variant2); err == nil {
+		u.Value = variant2
 		return nil
 	} else {
 		errors = append(errors, err)
@@ -1769,21 +1882,21 @@ const (
 )
 
 type ChallengeJSON struct {
-	ID          string          `json:"id"`
-	URL         string          `json:"url"`
-	Status      ChallengeStatus `json:"status"`
-	Challenger  ChallengeUser   `json:"challenger"`
-	DestUser    *ChallengeUser  `json:"destUser"`
-	Variant     Variant         `json:"variant"`
-	Rated       bool            `json:"rated"`
-	Speed       Speed           `json:"speed"`
-	TimeControl TimeControl     `json:"timeControl"`
-	Color       ChallengeColor  `json:"color"`
-	FinalColor  *GameColor      `json:"finalColor,omitempty"`
-	Perf        any             `json:"perf"`
-	Direction   *string         `json:"direction,omitempty"`
-	InitialFen  *string         `json:"initialFen,omitempty"`
-	RematchOf   *string         `json:"rematchOf,omitempty"`
+	ID          string            `json:"id"`
+	URL         string            `json:"url"`
+	Status      ChallengeStatus   `json:"status"`
+	Challenger  ChallengeUser     `json:"challenger"`
+	DestUser    *ChallengeUser    `json:"destUser"`
+	Variant     Variant           `json:"variant"`
+	Rated       bool              `json:"rated"`
+	Speed       Speed             `json:"speed"`
+	TimeControl TimeControl       `json:"timeControl"`
+	Color       ChallengeColor    `json:"color"`
+	FinalColor  *GameColor        `json:"finalColor,omitempty"`
+	Perf        ChallengeJSONPerf `json:"perf"`
+	Direction   *string           `json:"direction,omitempty"`
+	InitialFen  *string           `json:"initialFen,omitempty"`
+	RematchOf   *string           `json:"rematchOf,omitempty"`
 }
 
 type ChallengeEvent struct {
@@ -1843,22 +1956,22 @@ type GameStateEvent struct {
 	// true if black is proposing takeback, else omitted
 	Btakeback *bool `json:"btakeback,omitempty"`
 	// A game may be aborted if a player doesn't make their first move in time
-	Expiration any `json:"expiration,omitempty"`
+	Expiration *GameStateEventExpiration `json:"expiration,omitempty"`
 }
 
 type GameFullEvent struct {
-	Type       string          `json:"type"`
-	ID         string          `json:"id"`
-	Variant    Variant         `json:"variant"`
-	Clock      any             `json:"clock,omitempty"`
-	Speed      Speed           `json:"speed"`
-	Perf       any             `json:"perf"`
-	Rated      bool            `json:"rated"`
-	CreatedAt  int64           `json:"createdAt"`
-	White      GameEventPlayer `json:"white"`
-	Black      GameEventPlayer `json:"black"`
-	InitialFen string          `json:"initialFen"`
-	State      GameStateEvent  `json:"state"`
+	Type       string              `json:"type"`
+	ID         string              `json:"id"`
+	Variant    Variant             `json:"variant"`
+	Clock      *GameFullEventClock `json:"clock,omitempty"`
+	Speed      Speed               `json:"speed"`
+	Perf       GameFullEventPerf   `json:"perf"`
+	Rated      bool                `json:"rated"`
+	CreatedAt  int64               `json:"createdAt"`
+	White      GameEventPlayer     `json:"white"`
+	Black      GameEventPlayer     `json:"black"`
+	InitialFen string              `json:"initialFen"`
+	State      GameStateEvent      `json:"state"`
 	// If the game is correspondence
 	DaysPerTurn  *int64  `json:"daysPerTurn,omitempty"`
 	TournamentID *string `json:"tournamentId,omitempty"`
@@ -1877,44 +1990,44 @@ type OpponentGoneEvent struct {
 	ClaimWinInSeconds *int64 `json:"claimWinInSeconds,omitempty"`
 }
 
-type PlayerGameChat = []any
+type PlayerGameChat = []SpectatorGameChatItem
 
 type ChallengeOpenJSON struct {
-	ID          string          `json:"id"`
-	URL         string          `json:"url"`
-	Status      ChallengeStatus `json:"status"`
-	Challenger  any             `json:"challenger"`
-	DestUser    any             `json:"destUser"`
-	Variant     Variant         `json:"variant"`
-	Rated       bool            `json:"rated"`
-	Speed       Speed           `json:"speed"`
-	TimeControl TimeControl     `json:"timeControl"`
-	Color       ChallengeColor  `json:"color"`
-	FinalColor  *GameColor      `json:"finalColor,omitempty"`
-	Perf        any             `json:"perf"`
-	InitialFen  *string         `json:"initialFen,omitempty"`
-	URLWhite    string          `json:"urlWhite"`
-	URLBlack    string          `json:"urlBlack"`
-	Open        any             `json:"open"`
+	ID          string                `json:"id"`
+	URL         string                `json:"url"`
+	Status      ChallengeStatus       `json:"status"`
+	Challenger  any                   `json:"challenger"`
+	DestUser    any                   `json:"destUser"`
+	Variant     Variant               `json:"variant"`
+	Rated       bool                  `json:"rated"`
+	Speed       Speed                 `json:"speed"`
+	TimeControl TimeControl           `json:"timeControl"`
+	Color       ChallengeColor        `json:"color"`
+	FinalColor  *GameColor            `json:"finalColor,omitempty"`
+	Perf        ChallengeOpenJSONPerf `json:"perf"`
+	InitialFen  *string               `json:"initialFen,omitempty"`
+	URLWhite    string                `json:"urlWhite"`
+	URLBlack    string                `json:"urlBlack"`
+	Open        ChallengeOpenJSONOpen `json:"open"`
 }
 
 type BulkPairing struct {
-	ID            string     `json:"id"`
-	Games         []any      `json:"games"`
-	Variant       VariantKey `json:"variant"`
-	Clock         Clock      `json:"clock"`
-	PairAt        int64      `json:"pairAt"`
-	PairedAt      *int64     `json:"pairedAt"`
-	Rated         bool       `json:"rated"`
-	StartClocksAt int64      `json:"startClocksAt"`
-	ScheduledAt   int64      `json:"scheduledAt"`
+	ID            string                 `json:"id"`
+	Games         []BulkPairingGamesItem `json:"games"`
+	Variant       VariantKey             `json:"variant"`
+	Clock         Clock                  `json:"clock"`
+	PairAt        int64                  `json:"pairAt"`
+	PairedAt      *int64                 `json:"pairedAt"`
+	Rated         bool                   `json:"rated"`
+	StartClocksAt int64                  `json:"startClocksAt"`
+	ScheduledAt   int64                  `json:"scheduledAt"`
 }
 
 type CloudEval struct {
-	Depth  int64  `json:"depth"`
-	Fen    string `json:"fen"`
-	Knodes int64  `json:"knodes"`
-	Pvs    []any  `json:"pvs"`
+	Depth  int64              `json:"depth"`
+	Fen    string             `json:"fen"`
+	Knodes int64              `json:"knodes"`
+	Pvs    []CloudEvalPvsItem `json:"pvs"`
 }
 
 type UciVariant string
@@ -2003,9 +2116,30 @@ type ExternalEngineWorkCommon struct {
 }
 
 // ExternalEngineWork represents a union type (oneOf/anyOf).
-// Variants: any, any, any
+// Variants: ExternalEngineWorkVariant, ExternalEngineWorkVariant2, ExternalEngineWorkVariant3
 type ExternalEngineWork struct {
 	Value any
+}
+
+// Base returns the ExternalEngineWorkCommon that every variant of ExternalEngineWork carries, or
+// nil when Value holds none of them. It is a copy: writing to it does not change
+// the value the union holds.
+func (u ExternalEngineWork) Base() *ExternalEngineWorkCommon {
+	switch v := u.Value.(type) {
+	case ExternalEngineWorkVariant:
+		return &v.ExternalEngineWorkCommon
+	case ExternalEngineWorkVariant2:
+		return &v.ExternalEngineWorkCommon
+	case ExternalEngineWorkVariant3:
+		return &v.ExternalEngineWorkCommon
+	}
+	return nil
+}
+
+// unionValue hands the decoded variant to the parameter encoders, which write
+// the value a union carries rather than the wrapper carrying it.
+func (u ExternalEngineWork) unionValue() any {
+	return u.Value
 }
 
 // MarshalJSON implements json.Marshaler for ExternalEngineWork.
@@ -2019,11 +2153,23 @@ func (u *ExternalEngineWork) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 	var errors []error
-	// A variant with no Go type of its own still covers payloads the spec says are
-	// valid, so they decode into any rather than failing as an unmatched variant.
-	var untyped any
-	if err := json.Unmarshal(data, &untyped); err == nil {
-		u.Value = untyped
+	var variant0 ExternalEngineWorkVariant
+	if err := json.Unmarshal(data, &variant0); err == nil {
+		u.Value = variant0
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	var variant1 ExternalEngineWorkVariant2
+	if err := json.Unmarshal(data, &variant1); err == nil {
+		u.Value = variant1
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	var variant2 ExternalEngineWorkVariant3
+	if err := json.Unmarshal(data, &variant2); err == nil {
+		u.Value = variant2
 		return nil
 	} else {
 		errors = append(errors, err)
@@ -2058,12 +2204,12 @@ type OpeningExplorerMastersGame struct {
 }
 
 type OpeningExplorerMasters struct {
-	Opening  *OpeningExplorerOpening `json:"opening"`
-	White    int64                   `json:"white"`
-	Draws    int64                   `json:"draws"`
-	Black    int64                   `json:"black"`
-	Moves    []any                   `json:"moves"`
-	TopGames []any                   `json:"topGames"`
+	Opening  *OpeningExplorerOpening              `json:"opening"`
+	White    int64                                `json:"white"`
+	Draws    int64                                `json:"draws"`
+	Black    int64                                `json:"black"`
+	Moves    []any                                `json:"moves"`
+	TopGames []OpeningExplorerMastersTopGamesItem `json:"topGames"`
 }
 
 type OpeningExplorerLichessGame struct {
@@ -2077,14 +2223,14 @@ type OpeningExplorerLichessGame struct {
 }
 
 type OpeningExplorerLichess struct {
-	Opening     *OpeningExplorerOpening `json:"opening"`
-	White       int64                   `json:"white"`
-	Draws       int64                   `json:"draws"`
-	Black       int64                   `json:"black"`
-	Moves       []any                   `json:"moves"`
-	TopGames    []any                   `json:"topGames"`
-	RecentGames []any                   `json:"recentGames,omitempty"`
-	History     []any                   `json:"history,omitempty"`
+	Opening     *OpeningExplorerOpening              `json:"opening"`
+	White       int64                                `json:"white"`
+	Draws       int64                                `json:"draws"`
+	Black       int64                                `json:"black"`
+	Moves       []OpeningExplorerLichessMovesItem    `json:"moves"`
+	TopGames    []OpeningExplorerLichessTopGamesItem `json:"topGames"`
+	RecentGames []OpeningExplorerLichessTopGamesItem `json:"recentGames,omitempty"`
+	History     []OpeningExplorerLichessHistoryItem  `json:"history,omitempty"`
 }
 
 type OpeningExplorerPlayerGame struct {
@@ -2101,12 +2247,12 @@ type OpeningExplorerPlayerGame struct {
 type OpeningExplorerPlayer struct {
 	Opening *OpeningExplorerOpening `json:"opening"`
 	// Waiting for other players to be indexed first
-	QueuePosition int64 `json:"queuePosition"`
-	White         int64 `json:"white"`
-	Draws         int64 `json:"draws"`
-	Black         int64 `json:"black"`
-	Moves         []any `json:"moves"`
-	RecentGames   []any `json:"recentGames"`
+	QueuePosition int64                                  `json:"queuePosition"`
+	White         int64                                  `json:"white"`
+	Draws         int64                                  `json:"draws"`
+	Black         int64                                  `json:"black"`
+	Moves         []OpeningExplorerPlayerMovesItem       `json:"moves"`
+	RecentGames   []OpeningExplorerPlayerRecentGamesItem `json:"recentGames"`
 }
 
 type TablebaseMove struct {
@@ -2172,6 +2318,476 @@ type TablebaseJSON struct {
 	Moves []TablebaseMove `json:"moves"`
 }
 
+type TopUserPerfsValue struct {
+	Rating   int64 `json:"rating"`
+	Progress int64 `json:"progress"`
+}
+
+type UserStreamerTwitch struct {
+	Channel *string `json:"channel,omitempty"`
+}
+
+type PerfStatUser struct {
+	Name string `json:"name"`
+}
+
+type PerfStatPerfGlicko struct {
+	Rating      *float64 `json:"rating,omitempty"`
+	Deviation   *float64 `json:"deviation,omitempty"`
+	Provisional *bool    `json:"provisional,omitempty"`
+}
+
+type PerfStatPerf struct {
+	Glicko   *PerfStatPerfGlicko `json:"glicko,omitempty"`
+	Nb       *int64              `json:"nb,omitempty"`
+	Progress *int64              `json:"progress,omitempty"`
+}
+
+type PerfStatStatHighest struct {
+	Int    int64     `json:"int"`
+	At     time.Time `json:"at"`
+	GameID string    `json:"gameId"`
+}
+
+type PerfStatStatBestWinsResultsItem struct {
+	OpRating int64     `json:"opRating"`
+	OpID     LightUser `json:"opId"`
+	At       time.Time `json:"at"`
+	GameID   string    `json:"gameId"`
+}
+
+type PerfStatStatBestWins struct {
+	Results []PerfStatStatBestWinsResultsItem `json:"results"`
+}
+
+type PerfStatStatCount struct {
+	All         int64   `json:"all"`
+	Rated       int64   `json:"rated"`
+	Win         int64   `json:"win"`
+	Loss        int64   `json:"loss"`
+	Draw        int64   `json:"draw"`
+	Tour        int64   `json:"tour"`
+	Berserk     int64   `json:"berserk"`
+	OpAvg       float64 `json:"opAvg"`
+	Seconds     int64   `json:"seconds"`
+	Disconnects int64   `json:"disconnects"`
+}
+
+type PerfStatStatResultStreakWinCurFrom struct {
+	At     time.Time `json:"at"`
+	GameID string    `json:"gameId"`
+}
+
+type PerfStatStatResultStreakWinCur struct {
+	V    int64                               `json:"v"`
+	From *PerfStatStatResultStreakWinCurFrom `json:"from,omitempty"`
+	To   *PerfStatStatResultStreakWinCurFrom `json:"to,omitempty"`
+}
+
+type PerfStatStatResultStreakWin struct {
+	Cur PerfStatStatResultStreakWinCur `json:"cur"`
+	Max PerfStatStatResultStreakWinCur `json:"max"`
+}
+
+type PerfStatStatResultStreakLossMaxFrom struct {
+	At     string `json:"at"`
+	GameID string `json:"gameId"`
+}
+
+type PerfStatStatResultStreakLossMax struct {
+	V    int64                                `json:"v"`
+	From *PerfStatStatResultStreakLossMaxFrom `json:"from,omitempty"`
+	To   *PerfStatStatResultStreakLossMaxFrom `json:"to,omitempty"`
+}
+
+type PerfStatStatResultStreakLoss struct {
+	Cur PerfStatStatResultStreakWinCur  `json:"cur"`
+	Max PerfStatStatResultStreakLossMax `json:"max"`
+}
+
+type PerfStatStatResultStreak struct {
+	Win  PerfStatStatResultStreakWin  `json:"win"`
+	Loss PerfStatStatResultStreakLoss `json:"loss"`
+}
+
+type PerfStatStatPlayStreakNbCur struct {
+	V int64 `json:"v"`
+}
+
+type PerfStatStatPlayStreakNb struct {
+	Cur PerfStatStatPlayStreakNbCur    `json:"cur"`
+	Max PerfStatStatResultStreakWinCur `json:"max"`
+}
+
+type PerfStatStatPlayStreak struct {
+	Nb       PerfStatStatPlayStreakNb `json:"nb"`
+	Time     PerfStatStatPlayStreakNb `json:"time"`
+	LastDate *time.Time               `json:"lastDate,omitempty"`
+}
+
+type PerfStatStat struct {
+	Highest      *PerfStatStatHighest     `json:"highest,omitempty"`
+	Lowest       *PerfStatStatHighest     `json:"lowest,omitempty"`
+	BestWins     PerfStatStatBestWins     `json:"bestWins"`
+	WorstLosses  PerfStatStatBestWins     `json:"worstLosses"`
+	Count        PerfStatStatCount        `json:"count"`
+	ResultStreak PerfStatStatResultStreak `json:"resultStreak"`
+	PlayStreak   PerfStatStatPlayStreak   `json:"playStreak"`
+}
+
+type UserActivityScoreRp struct {
+	Before int64 `json:"before"`
+	After  int64 `json:"after"`
+}
+
+type UserActivityCorrespondenceGameOpponentVariant struct {
+	AiLevel int64 `json:"aiLevel"`
+}
+
+type UserActivityCorrespondenceGameOpponentVariant2 struct {
+	User   string `json:"user"`
+	Rating int64  `json:"rating"`
+}
+
+// UserActivityCorrespondenceGameOpponent represents a union type (oneOf/anyOf).
+// Variants: UserActivityCorrespondenceGameOpponentVariant, UserActivityCorrespondenceGameOpponentVariant2
+type UserActivityCorrespondenceGameOpponent struct {
+	Value any
+}
+
+// unionValue hands the decoded variant to the parameter encoders, which write
+// the value a union carries rather than the wrapper carrying it.
+func (u UserActivityCorrespondenceGameOpponent) unionValue() any {
+	return u.Value
+}
+
+// MarshalJSON implements json.Marshaler for UserActivityCorrespondenceGameOpponent.
+func (u UserActivityCorrespondenceGameOpponent) MarshalJSON() ([]byte, error) {
+	return json.Marshal(u.Value)
+}
+
+// UnmarshalJSON implements json.Unmarshaler for UserActivityCorrespondenceGameOpponent.
+func (u *UserActivityCorrespondenceGameOpponent) UnmarshalJSON(data []byte) error {
+	if string(data) == "null" {
+		return nil
+	}
+	var errors []error
+	var variant0 UserActivityCorrespondenceGameOpponentVariant
+	if err := json.Unmarshal(data, &variant0); err == nil {
+		u.Value = variant0
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	var variant1 UserActivityCorrespondenceGameOpponentVariant2
+	if err := json.Unmarshal(data, &variant1); err == nil {
+		u.Value = variant1
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	return fmt.Errorf("data did not match any variant of UserActivityCorrespondenceGameOpponent: %v", errors)
+}
+
+type UserActivityInterval struct {
+	Start int64 `json:"start"`
+	End   int64 `json:"end"`
+}
+
+type UserActivityGames struct {
+	Chess960       *UserActivityScore `json:"chess960,omitempty"`
+	Atomic         *UserActivityScore `json:"atomic,omitempty"`
+	RacingKings    *UserActivityScore `json:"racingKings,omitempty"`
+	UltraBullet    *UserActivityScore `json:"ultraBullet,omitempty"`
+	Blitz          *UserActivityScore `json:"blitz,omitempty"`
+	KingOfTheHill  *UserActivityScore `json:"kingOfTheHill,omitempty"`
+	Bullet         *UserActivityScore `json:"bullet,omitempty"`
+	Correspondence *UserActivityScore `json:"correspondence,omitempty"`
+	Horde          *UserActivityScore `json:"horde,omitempty"`
+	Puzzle         *UserActivityScore `json:"puzzle,omitempty"`
+	Classical      *UserActivityScore `json:"classical,omitempty"`
+	Rapid          *UserActivityScore `json:"rapid,omitempty"`
+}
+
+type UserActivityPuzzles struct {
+	Score *UserActivityScore `json:"score,omitempty"`
+}
+
+type UserActivityTournamentsBestItemTournament struct {
+	ID   string `json:"id"`
+	Name string `json:"name"`
+}
+
+type UserActivityTournamentsBestItem struct {
+	Tournament  UserActivityTournamentsBestItemTournament `json:"tournament"`
+	NbGames     int64                                     `json:"nbGames"`
+	Score       int64                                     `json:"score"`
+	Rank        int64                                     `json:"rank"`
+	RankPercent int64                                     `json:"rankPercent"`
+}
+
+type UserActivityTournaments struct {
+	Nb   *int64                            `json:"nb,omitempty"`
+	Best []UserActivityTournamentsBestItem `json:"best,omitempty"`
+}
+
+type UserActivityPracticeItem struct {
+	URL         string `json:"url"`
+	Name        string `json:"name"`
+	NbPositions int64  `json:"nbPositions"`
+}
+
+type UserActivityCorrespondenceMoves struct {
+	Nb    int64                            `json:"nb"`
+	Games []UserActivityCorrespondenceGame `json:"games"`
+}
+
+type UserActivityCorrespondenceEndsCorrespondence struct {
+	Score UserActivityScore                `json:"score"`
+	Games []UserActivityCorrespondenceGame `json:"games"`
+}
+
+type UserActivityCorrespondenceEnds struct {
+	Correspondence UserActivityCorrespondenceEndsCorrespondence `json:"correspondence"`
+}
+
+type UserActivityFollows struct {
+	In  *UserActivityFollowList `json:"in,omitempty"`
+	Out *UserActivityFollowList `json:"out,omitempty"`
+}
+
+type UserActivityTeamsItem struct {
+	URL  string `json:"url"`
+	Name string `json:"name"`
+	// See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
+	Flair *Flair `json:"flair,omitempty"`
+}
+
+type UserActivityPostsItemPostsItem struct {
+	URL  string `json:"url"`
+	Text string `json:"text"`
+}
+
+type UserActivityPostsItem struct {
+	TopicURL  string                           `json:"topicUrl"`
+	TopicName string                           `json:"topicName"`
+	Posts     []UserActivityPostsItemPostsItem `json:"posts"`
+}
+
+type UserActivityPatron struct {
+	Months int64 `json:"months"`
+}
+
+type PuzzleAndGameGamePerf struct {
+	Key  PerfType `json:"key"`
+	Name string   `json:"name"`
+}
+
+type PuzzleAndGameGamePlayersItem struct {
+	Color GameColor `json:"color"`
+	// See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
+	Flair *Flair `json:"flair,omitempty"`
+	ID    string `json:"id"`
+	Name  string `json:"name"`
+	// Use patronColor value instead to determine if player is a patron.
+	//
+	// Deprecated: this field is deprecated.
+	Patron *Patron `json:"patron,omitempty"`
+	// Players can choose a color for their Patron wings.
+	// See [here for the color mappings](https://github.com/lichess-org/lila/blob/master/ui/lib/css/abstract/_patron-colors.scss).
+	//
+	// The presence of this field indicates the player is an active Patron.
+	PatronColor *PatronColor `json:"patronColor,omitempty"`
+	Rating      int64        `json:"rating"`
+	// only appears if the user is a titled player or a bot user
+	Title *Title `json:"title,omitempty"`
+}
+
+type PuzzleAndGameGame struct {
+	Clock   string                         `json:"clock"`
+	ID      string                         `json:"id"`
+	Perf    PuzzleAndGameGamePerf          `json:"perf"`
+	Pgn     string                         `json:"pgn"`
+	Players []PuzzleAndGameGamePlayersItem `json:"players"`
+	Rated   bool                           `json:"rated"`
+}
+
+type PuzzleAndGamePuzzle struct {
+	ID         string  `json:"id"`
+	InitialPly int64   `json:"initialPly"`
+	Plays      int64   `json:"plays"`
+	Rating     int64   `json:"rating"`
+	Fen        *string `json:"fen,omitempty"`
+	// In UCI format, e.g. "e2e4"
+	LastMove *string  `json:"lastMove,omitempty"`
+	Solution []string `json:"solution"`
+	Themes   []string `json:"themes"`
+}
+
+type PuzzleBatchSolveRequestSolutionsItem struct {
+	ID    *string `json:"id,omitempty"`
+	Win   *bool   `json:"win,omitempty"`
+	Rated *bool   `json:"rated,omitempty"`
+}
+
+type PuzzleBatchSolveResponseRoundsItem struct {
+	ID         *string `json:"id,omitempty"`
+	Win        *bool   `json:"win,omitempty"`
+	RatingDiff *int64  `json:"ratingDiff,omitempty"`
+}
+
+type PuzzleActivityPuzzle struct {
+	Fen      string   `json:"fen"`
+	ID       string   `json:"id"`
+	LastMove string   `json:"lastMove"`
+	Plays    int64    `json:"plays"`
+	Rating   int64    `json:"rating"`
+	Solution []string `json:"solution"`
+	Themes   []string `json:"themes"`
+}
+
+type PuzzleReplayReplay struct {
+	Days      int64    `json:"days"`
+	Theme     string   `json:"theme"`
+	Nb        int64    `json:"nb"`
+	Remaining []string `json:"remaining"`
+}
+
+type PuzzleReplayAngle struct {
+	Key  string `json:"key"`
+	Name string `json:"name"`
+	Desc string `json:"desc"`
+}
+
+type PuzzleDashboardThemesValue struct {
+	Results PuzzlePerformance `json:"results"`
+	Theme   string            `json:"theme"`
+}
+
+type PuzzleStormDashboardDaysItem struct {
+	ID      string `json:"_id"`
+	Combo   int64  `json:"combo"`
+	Errors  int64  `json:"errors"`
+	Highest int64  `json:"highest"`
+	Moves   int64  `json:"moves"`
+	Runs    int64  `json:"runs"`
+	Score   int64  `json:"score"`
+	Time    int64  `json:"time"`
+}
+
+type PuzzleStormDashboardHigh struct {
+	AllTime int64 `json:"allTime"`
+	Day     int64 `json:"day"`
+	Month   int64 `json:"month"`
+	Week    int64 `json:"week"`
+}
+
+type PuzzleRaceResultsPlayersItem struct {
+	// Player username
+	Name string `json:"name"`
+	// Player's current score in the race
+	Score int64 `json:"score"`
+	// User ID. Missing if player is anonymous.
+	ID *string `json:"id,omitempty"`
+	// User's flair icon
+	Flair *string `json:"flair,omitempty"`
+	// Use patronColor value instead to determine if player is a patron.
+	//
+	// Deprecated: this field is deprecated.
+	Patron *Patron `json:"patron,omitempty"`
+	// Players can choose a color for their Patron wings.
+	// See [here for the color mappings](https://github.com/lichess-org/lila/blob/master/ui/lib/css/abstract/_patron-colors.scss).
+	//
+	// The presence of this field indicates the player is an active Patron.
+	PatronColor *PatronColor `json:"patronColor,omitempty"`
+}
+
+type PuzzleRaceResultsPuzzlesItem struct {
+	// Puzzle ID
+	ID string `json:"id"`
+	// X-FEN position of the puzzle
+	Fen string `json:"fen"`
+	// Solution moves sequence
+	Line string `json:"line"`
+	// Puzzle Glicko2 rating
+	Rating int64 `json:"rating"`
+}
+
+type TimelineEntryFollowData struct {
+	U1 string `json:"u1"`
+	U2 string `json:"u2"`
+}
+
+type TimelineEntryTeamJoinData struct {
+	UserID string `json:"userId"`
+	TeamID string `json:"teamId"`
+}
+
+type TimelineEntryForumPostData struct {
+	UserID    string `json:"userId"`
+	TopicID   string `json:"topicId"`
+	TopicName string `json:"topicName"`
+	PostID    string `json:"postId"`
+}
+
+type TimelineEntryBlogPostData struct {
+	ID    string `json:"id"`
+	Slug  string `json:"slug"`
+	Title string `json:"title"`
+}
+
+type TimelineEntryUblogPostData struct {
+	UserID string `json:"userId"`
+	ID     string `json:"id"`
+	Slug   string `json:"slug"`
+	Title  string `json:"title"`
+}
+
+type TimelineEntryTourJoinData struct {
+	UserID   string `json:"userId"`
+	TourID   string `json:"tourId"`
+	TourName string `json:"tourName"`
+}
+
+type TimelineEntryGameEndData struct {
+	FullID   string   `json:"fullId"`
+	Opponent string   `json:"opponent"`
+	Win      bool     `json:"win"`
+	Perf     PerfType `json:"perf"`
+}
+
+type TimelineEntrySimulData struct {
+	UserID    string `json:"userId"`
+	SimulID   string `json:"simulId"`
+	SimulName string `json:"simulName"`
+}
+
+type TimelineEntryStudyLikeData struct {
+	UserID    string `json:"userId"`
+	StudyID   string `json:"studyId"`
+	StudyName string `json:"studyName"`
+}
+
+type TimelineEntryPlanStartData struct {
+	UserID string `json:"userId"`
+}
+
+type TimelineEntryPlanRenewData struct {
+	UserID string  `json:"userId"`
+	Months float64 `json:"months"`
+}
+
+type TimelineEntryUblogPostLikeData struct {
+	UserID string `json:"userId"`
+	ID     string `json:"id"`
+	Title  string `json:"title"`
+}
+
+type TimelineEntryStreamStartData struct {
+	ID    string  `json:"id"`
+	Title *string `json:"title,omitempty"`
+}
+
 // TimelineEntriesItem represents a union type (oneOf/anyOf).
 // Variants: TimelineEntryFollow, TimelineEntryTeamJoin, TimelineEntryTeamCreate, TimelineEntryForumPost, TimelineEntryBlogPost, TimelineEntryUblogPost, TimelineEntryTourJoin, TimelineEntryGameEnd, TimelineEntrySimul, TimelineEntryStudyLike, TimelineEntryPlanStart, TimelineEntryPlanRenew, TimelineEntryUblogPostLike, TimelineEntryStreamStart
 type TimelineEntriesItem struct {
@@ -2210,75 +2826,67 @@ func (u TimelineEntriesItem) Base() *TimelineEntriesItemBase {
 	case TimelineEntryFollow:
 		return &TimelineEntriesItemBase{
 			Date: v.Date,
-			Data: v.Data,
 		}
 	case TimelineEntryTeamJoin:
 		return &TimelineEntriesItemBase{
 			Date: v.Date,
-			Data: v.Data,
 		}
 	case TimelineEntryTeamCreate:
 		return &TimelineEntriesItemBase{
 			Date: v.Date,
-			Data: v.Data,
 		}
 	case TimelineEntryForumPost:
 		return &TimelineEntriesItemBase{
 			Date: v.Date,
-			Data: v.Data,
 		}
 	case TimelineEntryBlogPost:
 		return &TimelineEntriesItemBase{
 			Date: v.Date,
-			Data: v.Data,
 		}
 	case TimelineEntryUblogPost:
 		return &TimelineEntriesItemBase{
 			Date: v.Date,
-			Data: v.Data,
 		}
 	case TimelineEntryTourJoin:
 		return &TimelineEntriesItemBase{
 			Date: v.Date,
-			Data: v.Data,
 		}
 	case TimelineEntryGameEnd:
 		return &TimelineEntriesItemBase{
 			Date: v.Date,
-			Data: v.Data,
 		}
 	case TimelineEntrySimul:
 		return &TimelineEntriesItemBase{
 			Date: v.Date,
-			Data: v.Data,
 		}
 	case TimelineEntryStudyLike:
 		return &TimelineEntriesItemBase{
 			Date: v.Date,
-			Data: v.Data,
 		}
 	case TimelineEntryPlanStart:
 		return &TimelineEntriesItemBase{
 			Date: v.Date,
-			Data: v.Data,
 		}
 	case TimelineEntryPlanRenew:
 		return &TimelineEntriesItemBase{
 			Date: v.Date,
-			Data: v.Data,
 		}
 	case TimelineEntryUblogPostLike:
 		return &TimelineEntriesItemBase{
 			Date: v.Date,
-			Data: v.Data,
 		}
 	case TimelineEntryStreamStart:
 		return &TimelineEntriesItemBase{
 			Date: v.Date,
-			Data: v.Data,
 		}
 	}
 	return nil
+}
+
+// unionValue hands the decoded variant to the parameter encoders, which write
+// the value a union carries rather than the wrapper carrying it.
+func (u TimelineEntriesItem) unionValue() any {
+	return u.Value
 }
 
 // MarshalJSON implements json.Marshaler for TimelineEntriesItem.
@@ -2420,10 +3028,658 @@ func (u *TimelineEntriesItem) UnmarshalJSON(data []byte) error {
 	}
 }
 
+type TimelineUsersValue struct {
+	ID   string `json:"id"`
+	Name string `json:"name"`
+	// only appears if the user is a titled player or a bot user
+	Title *Title `json:"title,omitempty"`
+	// See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
+	Flair *Flair `json:"flair,omitempty"`
+	// Use patronColor value instead to determine if player is a patron.
+	//
+	// Deprecated: this field is deprecated.
+	Patron *Patron `json:"patron,omitempty"`
+	// Players can choose a color for their Patron wings.
+	// See [here for the color mappings](https://github.com/lichess-org/lila/blob/master/ui/lib/css/abstract/_patron-colors.scss).
+	//
+	// The presence of this field indicates the player is an active Patron.
+	PatronColor *PatronColor `json:"patronColor,omitempty"`
+}
+
+type GamePlayerUserAnalysis struct {
+	Inaccuracy int64  `json:"inaccuracy"`
+	Mistake    int64  `json:"mistake"`
+	Blunder    int64  `json:"blunder"`
+	Acpl       int64  `json:"acpl"`
+	Accuracy   *int64 `json:"accuracy,omitempty"`
+}
+
+// GameMoveAnalysisJudgment - Judgment annotation (only if played move was inaccurate)
+type GameMoveAnalysisJudgment struct {
+	Name    *string `json:"name,omitempty"`
+	Comment *string `json:"comment,omitempty"`
+}
+
+// GameJSONArenaTour - The arena tournament the game is from
+type GameJSONArenaTour struct {
+	ID   *string `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+// GameJSONSwissTour - The swiss tournament the game is from
+type GameJSONSwissTour struct {
+	ID *string `json:"id,omitempty"`
+}
+
+type GameJSONClock struct {
+	Initial   int64 `json:"initial"`
+	Increment int64 `json:"increment"`
+	TotalTime int64 `json:"totalTime"`
+}
+
+type GameJSONDivision struct {
+	// Ply at which the middlegame begins
+	Middle *int64 `json:"middle,omitempty"`
+	// Ply at which the endgame begins
+	End *int64 `json:"end,omitempty"`
+}
+
+type SpectatorGameChatItem struct {
+	Text string `json:"text"`
+	User string `json:"user"`
+}
+
+type GameStreamGameClock struct {
+	Initial   *int64 `json:"initial,omitempty"`
+	Increment *int64 `json:"increment,omitempty"`
+	TotalTime *int64 `json:"totalTime,omitempty"`
+}
+
+type GameStreamGamePlayersWhite struct {
+	UserID *string `json:"userId,omitempty"`
+	Rating *int64  `json:"rating,omitempty"`
+}
+
+type GameStreamGamePlayers struct {
+	White *GameStreamGamePlayersWhite `json:"white,omitempty"`
+	Black *GameStreamGamePlayersWhite `json:"black,omitempty"`
+}
+
+type MoveStreamEntryVariant struct {
+	ID            string       `json:"id"`
+	Variant       *Variant     `json:"variant,omitempty"`
+	Speed         *Speed       `json:"speed,omitempty"`
+	Perf          *PerfType    `json:"perf,omitempty"`
+	Rated         *bool        `json:"rated,omitempty"`
+	InitialFen    *string      `json:"initialFen,omitempty"`
+	Fen           *string      `json:"fen,omitempty"`
+	Player        *GameColor   `json:"player,omitempty"`
+	Turns         *int64       `json:"turns,omitempty"`
+	StartedAtTurn *int64       `json:"startedAtTurn,omitempty"`
+	Source        *GameSource  `json:"source,omitempty"`
+	Status        *GameStatus  `json:"status,omitempty"`
+	CreatedAt     *int64       `json:"createdAt,omitempty"`
+	LastMove      *string      `json:"lastMove,omitempty"`
+	Players       *GamePlayers `json:"players,omitempty"`
+}
+
+type MoveStreamEntryVariant2 struct {
+	Fen string  `json:"fen"`
+	Lm  *string `json:"lm,omitempty"`
+	Wc  int64   `json:"wc"`
+	Bc  int64   `json:"bc"`
+}
+
+type FeaturedPlayersItem struct {
+	Color  GameColor `json:"color"`
+	User   LightUser `json:"user"`
+	Rating int64     `json:"rating"`
+	// The player's remaining time in seconds
+	Seconds int64 `json:"seconds"`
+}
+
+// Featured - The data of the message
+type Featured struct {
+	// The game ID
+	ID          string                `json:"id"`
+	Orientation GameColor             `json:"orientation"`
+	Players     []FeaturedPlayersItem `json:"players"`
+	// The X-FEN of the current position
+	Fen string `json:"fen"`
+}
+
+// Fen - The data of the message
+type Fen struct {
+	// The X-FEN of the current position
+	Fen string `json:"fen"`
+	// The last move in UCI format (King to rook for Chess960-compatible
+	// castling notation)
+	Lm string `json:"lm"`
+	// White's clock in seconds
+	Wc int64 `json:"wc"`
+	// Black's clock in seconds
+	Bc int64 `json:"bc"`
+}
+
+type Thematic struct {
+	Eco  string `json:"eco"`
+	Name string `json:"name"`
+	Fen  string `json:"fen"`
+	URL  string `json:"url"`
+}
+
+type CustomPosition struct {
+	Name string `json:"name"`
+	Fen  string `json:"fen"`
+}
+
+type ArenaTournamentMinRatedGames struct {
+	Nb *int64 `json:"nb,omitempty"`
+}
+
+type ArenaTournamentSchedule struct {
+	Freq  *string `json:"freq,omitempty"`
+	Speed *string `json:"speed,omitempty"`
+}
+
+type ArenaTournamentTeamBattle struct {
+	Teams     []string `json:"teams,omitempty"`
+	NbLeaders *int64   `json:"nbLeaders,omitempty"`
+}
+
+type ArenaTournamentFullSpotlight struct {
+	Headline *string `json:"headline,omitempty"`
+}
+
+// ArenaTournamentFullQuote - The quote displayed on the tournament page
+type ArenaTournamentFullQuote struct {
+	Text   *string `json:"text,omitempty"`
+	Author *string `json:"author,omitempty"`
+}
+
+type ArenaTournamentFullGreatPlayer struct {
+	Name *string `json:"name,omitempty"`
+	URL  *string `json:"url,omitempty"`
+}
+
+type ArenaTournamentFullPerf struct {
+	Icon string `json:"icon"`
+	Key  string `json:"key"`
+	Name string `json:"name"`
+}
+
+type ArenaTournamentFullSchedule struct {
+	Freq  string `json:"freq"`
+	Speed string `json:"speed"`
+}
+
+type ArenaTournamentFullDuelsItemPItem struct {
+	N *string `json:"n,omitempty"`
+	R *int64  `json:"r,omitempty"`
+	K *int64  `json:"k,omitempty"`
+}
+
+type ArenaTournamentFullDuelsItem struct {
+	ID *string                             `json:"id,omitempty"`
+	P  []ArenaTournamentFullDuelsItemPItem `json:"p,omitempty"`
+}
+
+type ArenaTournamentFullStandingPlayersItem struct {
+	Name *string `json:"name,omitempty"`
+	// only appears if the user is a titled player or a bot user
+	Title *Title `json:"title,omitempty"`
+	// Use patronColor value instead to determine if player is a patron.
+	//
+	// Deprecated: this field is deprecated.
+	Patron *Patron `json:"patron,omitempty"`
+	// Players can choose a color for their Patron wings.
+	// See [here for the color mappings](https://github.com/lichess-org/lila/blob/master/ui/lib/css/abstract/_patron-colors.scss).
+	//
+	// The presence of this field indicates the player is an active Patron.
+	PatronColor *PatronColor `json:"patronColor,omitempty"`
+	// See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
+	Flair  *Flair      `json:"flair,omitempty"`
+	Rank   *int64      `json:"rank,omitempty"`
+	Rating *int64      `json:"rating,omitempty"`
+	Score  *int64      `json:"score,omitempty"`
+	Sheet  *ArenaSheet `json:"sheet,omitempty"`
+}
+
+type ArenaTournamentFullStanding struct {
+	Page    *int64                                   `json:"page,omitempty"`
+	Players []ArenaTournamentFullStandingPlayersItem `json:"players,omitempty"`
+}
+
+type ArenaTournamentFullFeaturedWhite struct {
+	Name   *string `json:"name,omitempty"`
+	ID     *string `json:"id,omitempty"`
+	Rank   *int64  `json:"rank,omitempty"`
+	Rating *int64  `json:"rating,omitempty"`
+}
+
+type ArenaTournamentFullFeaturedC struct {
+	// white's clock in seconds
+	White *int64 `json:"white,omitempty"`
+	// black's clock in seconds
+	Black *int64 `json:"black,omitempty"`
+}
+
+type ArenaTournamentFullFeatured struct {
+	ID          *string                           `json:"id,omitempty"`
+	Fen         *string                           `json:"fen,omitempty"`
+	Orientation *string                           `json:"orientation,omitempty"`
+	Color       *string                           `json:"color,omitempty"`
+	LastMove    *string                           `json:"lastMove,omitempty"`
+	White       *ArenaTournamentFullFeaturedWhite `json:"white,omitempty"`
+	Black       *ArenaTournamentFullFeaturedWhite `json:"black,omitempty"`
+	C           *ArenaTournamentFullFeaturedC     `json:"c,omitempty"`
+}
+
+type ArenaTournamentFullPodiumItemNb struct {
+	Game    *int64 `json:"game,omitempty"`
+	Berserk *int64 `json:"berserk,omitempty"`
+	Win     *int64 `json:"win,omitempty"`
+}
+
+type ArenaTournamentFullPodiumItem struct {
+	Name *string `json:"name,omitempty"`
+	// only appears if the user is a titled player or a bot user
+	Title *Title `json:"title,omitempty"`
+	// Use patronColor value instead to determine if player is a patron.
+	//
+	// Deprecated: this field is deprecated.
+	Patron *Patron `json:"patron,omitempty"`
+	// Players can choose a color for their Patron wings.
+	// See [here for the color mappings](https://github.com/lichess-org/lila/blob/master/ui/lib/css/abstract/_patron-colors.scss).
+	//
+	// The presence of this field indicates the player is an active Patron.
+	PatronColor *PatronColor `json:"patronColor,omitempty"`
+	// See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
+	Flair       *Flair                           `json:"flair,omitempty"`
+	Rank        *int64                           `json:"rank,omitempty"`
+	Rating      *int64                           `json:"rating,omitempty"`
+	Score       *int64                           `json:"score,omitempty"`
+	Nb          *ArenaTournamentFullPodiumItemNb `json:"nb,omitempty"`
+	Performance *int64                           `json:"performance,omitempty"`
+}
+
+type ArenaTournamentFullStats struct {
+	Games         int64 `json:"games"`
+	Moves         int64 `json:"moves"`
+	WhiteWins     int64 `json:"whiteWins"`
+	BlackWins     int64 `json:"blackWins"`
+	Draws         int64 `json:"draws"`
+	Berserks      int64 `json:"berserks"`
+	AverageRating int64 `json:"averageRating"`
+}
+
+type SwissTournamentClock struct {
+	Limit     float64 `json:"limit"`
+	Increment float64 `json:"increment"`
+}
+
+type SwissTournamentStats struct {
+	Games         float64 `json:"games"`
+	WhiteWins     float64 `json:"whiteWins"`
+	BlackWins     float64 `json:"blackWins"`
+	Draws         float64 `json:"draws"`
+	Byes          float64 `json:"byes"`
+	Absences      float64 `json:"absences"`
+	AverageRating float64 `json:"averageRating"`
+}
+
+type SwissTournamentNextRound struct {
+	At *time.Time `json:"at,omitempty"`
+	// The number of seconds until the next round starts.
+	In *int64 `json:"in,omitempty"`
+}
+
+type StudyImportPgnChaptersChaptersItemPlayersItem struct {
+	// The player name
+	Name *string `json:"name,omitempty"`
+	// The player rating
+	Rating *int64 `json:"rating,omitempty"`
+}
+
+type StudyImportPgnChaptersChaptersItem struct {
+	// The chapter ID
+	ID *string `json:"id,omitempty"`
+	// The chapter name
+	Name    *string                                         `json:"name,omitempty"`
+	Players []StudyImportPgnChaptersChaptersItemPlayersItem `json:"players,omitempty"`
+	// The chapter status
+	Status *string `json:"status,omitempty"`
+}
+
+type BroadcastPhotosValue struct {
+	// URL of a small (100x100) thumbnail of the photo
+	Small string `json:"small"`
+	// URL of a medium (500x500) version of the photo
+	Medium string `json:"medium"`
+	// If set, then you should make it appear next to the photo
+	Credit *string `json:"credit,omitempty"`
+}
+
+type BroadcastTopPast struct {
+	CurrentPage        *int64                   `json:"currentPage,omitempty"`
+	MaxPerPage         *int64                   `json:"maxPerPage,omitempty"`
+	CurrentPageResults []BroadcastWithLastRound `json:"currentPageResults,omitempty"`
+	PreviousPage       *int64                   `json:"previousPage,omitempty"`
+	NextPage           *int64                   `json:"nextPage,omitempty"`
+}
+
+type BroadcastFormGroupingInfo struct {
+	// Name of the group
+	Name *string `json:"name,omitempty"`
+	// A linebreak separated list of tournament IDs to group together.
+	Tours *string `json:"tours,omitempty"`
+}
+
+// BroadcastFormGrouping - Group this broadcast along with others
+type BroadcastFormGrouping struct {
+	Info *BroadcastFormGroupingInfo `json:"info,omitempty"`
+	// This parameter is repeated with an index for each score group, like 'grouping.scoreGroups[0]=wYigbpXq,M5YHvpOX'
+	ScoreGroups []string `json:"scoreGroups,omitempty"`
+}
+
+type BroadcastPlayerEntryWithFideAndGamesFide struct {
+	// Year of birth
+	Year *int64 `json:"year,omitempty"`
+	// Player's current ratings from the latest FIDE rating list.
+	Ratings *StatByFideTc `json:"ratings,omitempty"`
+}
+
+type BroadcastRoundStudyInfoFeatures struct {
+	// Whether chat is enabled for the currently authenticated user
+	Chat *bool `json:"chat,omitempty"`
+	// Whether engine analysis is enabled for the currently authenticated user
+	Computer *bool `json:"computer,omitempty"`
+	// Whether the opening explorer + tablebase is enabled for the currently authenticated user
+	Explorer *bool `json:"explorer,omitempty"`
+}
+
+type BroadcastRoundGamePlayersItem struct {
+	Name *string `json:"name,omitempty"`
+	// only appears if the user is a titled player or a bot user
+	Title  *Title  `json:"title,omitempty"`
+	Rating *int64  `json:"rating,omitempty"`
+	FideID *int64  `json:"fideId,omitempty"`
+	Fed    *string `json:"fed,omitempty"`
+	Clock  *int64  `json:"clock,omitempty"`
+}
+
+type BroadcastPgnPushGamesItem struct {
+	Tags  BroadcastPgnPushTags `json:"tags"`
+	Moves *int64               `json:"moves,omitempty"`
+	Error *string              `json:"error,omitempty"`
+}
+
+type SimulHost struct {
+	LightUser
+	Rating      *int64  `json:"rating,omitempty"`
+	Provisional *bool   `json:"provisional,omitempty"`
+	GameID      *string `json:"gameId,omitempty"`
+	Online      *bool   `json:"online,omitempty"`
+}
+
+type SimulVariantsItem struct {
+	Key  *VariantKey `json:"key,omitempty"`
+	Icon *string     `json:"icon,omitempty"`
+	Name *string     `json:"name,omitempty"`
+}
+
+type TeamUpdateMsg struct {
+	ID     string     `json:"id"`
+	Date   int64      `json:"date"`
+	Sender LightUser  `json:"sender"`
+	Team   *LightTeam `json:"team,omitempty"`
+	Text   string     `json:"text"`
+}
+
+type TeamUpdatesByTeamItem struct {
+	Team   LightTeam `json:"team"`
+	Last   float64   `json:"last"`
+	Unread int64     `json:"unread"`
+}
+
+type Player struct {
+	ID         string `json:"id"`
+	Username   string `json:"username"`
+	Rating     int64  `json:"rating"`
+	RatingDiff *int64 `json:"ratingDiff,omitempty"`
+}
+
+type AiOpponent struct {
+	ID       any    `json:"id"`
+	Username string `json:"username"`
+	// AI level, from 1 to 8, where 1 is the weakest and 8 is the strongest.
+	Ai int64 `json:"ai"`
+}
+
+type RealTime struct {
+	Type      *string `json:"type,omitempty"`
+	Limit     *int64  `json:"limit,omitempty"`
+	Increment *int64  `json:"increment,omitempty"`
+	Show      *string `json:"show,omitempty"`
+}
+
+type Correspondence struct {
+	Type        *string `json:"type,omitempty"`
+	DaysPerTurn *int64  `json:"daysPerTurn,omitempty"`
+}
+
+type Unlimited struct {
+	Type *string `json:"type,omitempty"`
+}
+
+type ChallengeJSONPerf struct {
+	Icon string `json:"icon"`
+	Name string `json:"name"`
+}
+
+// GameStateEventExpiration - A game may be aborted if a player doesn't make their first move in time
+type GameStateEventExpiration struct {
+	// Milliseconds since the last move was played, or since the game started
+	IdleMillis int64 `json:"idleMillis"`
+	// Time each player has to make their first move, before the game is aborted
+	MillisToMove int64 `json:"millisToMove"`
+}
+
+type GameFullEventClock struct {
+	// Initial time in milliseconds
+	Initial *int64 `json:"initial,omitempty"`
+	// Increment time in milliseconds
+	Increment *int64 `json:"increment,omitempty"`
+}
+
+type GameFullEventPerf struct {
+	// Translated perf name (e.g. "Classical" or "Blitz")
+	Name *string `json:"name,omitempty"`
+}
+
+type ChallengeOpenJSONPerf struct {
+	Icon *string `json:"icon,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type ChallengeOpenJSONOpen struct {
+	// An optional array of two user ids. If set, only these users will be allowed to join the game. The first username gets the white pieces.
+	UserIds []string `json:"userIds,omitempty"`
+}
+
+type BulkPairingGamesItem struct {
+	ID    *string `json:"id,omitempty"`
+	Black *string `json:"black,omitempty"`
+	White *string `json:"white,omitempty"`
+}
+
+type NonMateVariation struct {
+	// Evaluation in centi-pawns, from White's point of view
+	Cp int64 `json:"cp"`
+	// Variation in UCI notation (King to rook for Chess960-compatible
+	// castling notation)
+	Moves string `json:"moves"`
+}
+
+type MateVariation struct {
+	// Evaluation in moves to mate, from White's point of view
+	Mate int64 `json:"mate"`
+	// Variation in UCI notation (King to rook for Chess960-compatible
+	// castling notation)
+	Moves string `json:"moves"`
+}
+
+// CloudEvalPvsItem represents a union type (oneOf/anyOf).
+// Variants: NonMateVariation, MateVariation
+type CloudEvalPvsItem struct {
+	Value any
+}
+
+// Base returns the CloudEvalPvsItemBase that every variant of CloudEvalPvsItem carries, or
+// nil when Value holds none of them. It is a copy: writing to it does not change
+// the value the union holds.
+func (u CloudEvalPvsItem) Base() *CloudEvalPvsItemBase {
+	switch v := u.Value.(type) {
+	case NonMateVariation:
+		return &CloudEvalPvsItemBase{
+			Moves: v.Moves,
+		}
+	case MateVariation:
+		return &CloudEvalPvsItemBase{
+			Moves: v.Moves,
+		}
+	}
+	return nil
+}
+
+// unionValue hands the decoded variant to the parameter encoders, which write
+// the value a union carries rather than the wrapper carrying it.
+func (u CloudEvalPvsItem) unionValue() any {
+	return u.Value
+}
+
+// MarshalJSON implements json.Marshaler for CloudEvalPvsItem.
+func (u CloudEvalPvsItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(u.Value)
+}
+
+// UnmarshalJSON implements json.Unmarshaler for CloudEvalPvsItem.
+func (u *CloudEvalPvsItem) UnmarshalJSON(data []byte) error {
+	if string(data) == "null" {
+		return nil
+	}
+	var errors []error
+	var variant0 NonMateVariation
+	if err := json.Unmarshal(data, &variant0); err == nil {
+		u.Value = variant0
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	var variant1 MateVariation
+	if err := json.Unmarshal(data, &variant1); err == nil {
+		u.Value = variant1
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	return fmt.Errorf("data did not match any variant of CloudEvalPvsItem: %v", errors)
+}
+
+type ExternalEngineWorkVariant struct {
+	// Amount of time to analyse the position, in milliseconds.
+	Movetime int64 `json:"movetime"`
+	ExternalEngineWorkCommon
+}
+
+type ExternalEngineWorkVariant2 struct {
+	// Analysis target depth
+	Depth int64 `json:"depth"`
+	ExternalEngineWorkCommon
+}
+
+type ExternalEngineWorkVariant3 struct {
+	// Number of nodes to analyse in the position
+	Nodes int64 `json:"nodes"`
+	ExternalEngineWorkCommon
+}
+
+type OpeningExplorerMastersTopGamesItem struct {
+	Uci string `json:"uci"`
+	OpeningExplorerMastersGame
+}
+
+type OpeningExplorerLichessMovesItem struct {
+	Uci           string                      `json:"uci"`
+	San           string                      `json:"san"`
+	AverageRating int64                       `json:"averageRating"`
+	White         int64                       `json:"white"`
+	Draws         int64                       `json:"draws"`
+	Black         int64                       `json:"black"`
+	Game          *OpeningExplorerLichessGame `json:"game"`
+	Opening       *OpeningExplorerOpening     `json:"opening"`
+}
+
+type OpeningExplorerLichessTopGamesItem struct {
+	Uci string `json:"uci"`
+	OpeningExplorerLichessGame
+}
+
+type OpeningExplorerLichessHistoryItem struct {
+	Month string `json:"month"`
+	White int64  `json:"white"`
+	Draws int64  `json:"draws"`
+	Black int64  `json:"black"`
+}
+
+type OpeningExplorerPlayerMovesItem struct {
+	Uci                   string                     `json:"uci"`
+	San                   string                     `json:"san"`
+	AverageOpponentRating int64                      `json:"averageOpponentRating"`
+	Performance           int64                      `json:"performance"`
+	White                 int64                      `json:"white"`
+	Draws                 int64                      `json:"draws"`
+	Black                 int64                      `json:"black"`
+	Game                  *OpeningExplorerPlayerGame `json:"game"`
+	Opening               *OpeningExplorerOpening    `json:"opening"`
+}
+
+type OpeningExplorerPlayerRecentGamesItem struct {
+	Uci string `json:"uci"`
+	OpeningExplorerPlayerGame
+}
+
+type APIUsersStatusResponseItem struct {
+	ID   string `json:"id"`
+	Name string `json:"name"`
+	// See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
+	Flair *Flair `json:"flair,omitempty"`
+	// only appears if the user is a titled player or a bot user
+	Title     *Title `json:"title,omitempty"`
+	Online    *bool  `json:"online,omitempty"`
+	Playing   *bool  `json:"playing,omitempty"`
+	Streaming *bool  `json:"streaming,omitempty"`
+	// Use patronColor value instead to determine if player is a patron.
+	//
+	// Deprecated: this field is deprecated.
+	Patron *Patron `json:"patron,omitempty"`
+	// Players can choose a color for their Patron wings.
+	// See [here for the color mappings](https://github.com/lichess-org/lila/blob/master/ui/lib/css/abstract/_patron-colors.scss).
+	//
+	// The presence of this field indicates the player is an active Patron.
+	PatronColor *PatronColor `json:"patronColor,omitempty"`
+}
+
 // GamePgnResponse represents a union type (oneOf/anyOf).
 // Variants: GamePgn, GameJSON
 type GamePgnResponse struct {
 	Value any
+}
+
+// unionValue hands the decoded variant to the parameter encoders, which write
+// the value a union carries rather than the wrapper carrying it.
+func (u GamePgnResponse) unionValue() any {
+	return u.Value
 }
 
 // MarshalJSON implements json.Marshaler for GamePgnResponse.
@@ -2454,10 +3710,673 @@ func (u *GamePgnResponse) UnmarshalJSON(data []byte) error {
 	return fmt.Errorf("data did not match any variant of GamePgnResponse: %v", errors)
 }
 
+// APIUserCurrentGameResponse represents a union type (oneOf/anyOf).
+// Variants: GamePgn, GameJSON
+type APIUserCurrentGameResponse struct {
+	Value any
+}
+
+// unionValue hands the decoded variant to the parameter encoders, which write
+// the value a union carries rather than the wrapper carrying it.
+func (u APIUserCurrentGameResponse) unionValue() any {
+	return u.Value
+}
+
+// MarshalJSON implements json.Marshaler for APIUserCurrentGameResponse.
+func (u APIUserCurrentGameResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(u.Value)
+}
+
+// UnmarshalJSON implements json.Unmarshaler for APIUserCurrentGameResponse.
+func (u *APIUserCurrentGameResponse) UnmarshalJSON(data []byte) error {
+	if string(data) == "null" {
+		return nil
+	}
+	var errors []error
+	var variant0 GamePgn
+	if err := json.Unmarshal(data, &variant0); err == nil {
+		u.Value = variant0
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	var variant1 GameJSON
+	if err := json.Unmarshal(data, &variant1); err == nil {
+		u.Value = variant1
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	return fmt.Errorf("data did not match any variant of APIUserCurrentGameResponse: %v", errors)
+}
+
+// APIGamesUserResponse represents a union type (oneOf/anyOf).
+// Variants: GamePgn, GameJSON
+type APIGamesUserResponse struct {
+	Value any
+}
+
+// unionValue hands the decoded variant to the parameter encoders, which write
+// the value a union carries rather than the wrapper carrying it.
+func (u APIGamesUserResponse) unionValue() any {
+	return u.Value
+}
+
+// MarshalJSON implements json.Marshaler for APIGamesUserResponse.
+func (u APIGamesUserResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(u.Value)
+}
+
+// UnmarshalJSON implements json.Unmarshaler for APIGamesUserResponse.
+func (u *APIGamesUserResponse) UnmarshalJSON(data []byte) error {
+	if string(data) == "null" {
+		return nil
+	}
+	var errors []error
+	var variant0 GamePgn
+	if err := json.Unmarshal(data, &variant0); err == nil {
+		u.Value = variant0
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	var variant1 GameJSON
+	if err := json.Unmarshal(data, &variant1); err == nil {
+		u.Value = variant1
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	return fmt.Errorf("data did not match any variant of APIGamesUserResponse: %v", errors)
+}
+
+// GamesExportIdsResponse represents a union type (oneOf/anyOf).
+// Variants: GamePgn, GameJSON
+type GamesExportIdsResponse struct {
+	Value any
+}
+
+// unionValue hands the decoded variant to the parameter encoders, which write
+// the value a union carries rather than the wrapper carrying it.
+func (u GamesExportIdsResponse) unionValue() any {
+	return u.Value
+}
+
+// MarshalJSON implements json.Marshaler for GamesExportIdsResponse.
+func (u GamesExportIdsResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(u.Value)
+}
+
+// UnmarshalJSON implements json.Unmarshaler for GamesExportIdsResponse.
+func (u *GamesExportIdsResponse) UnmarshalJSON(data []byte) error {
+	if string(data) == "null" {
+		return nil
+	}
+	var errors []error
+	var variant0 GamePgn
+	if err := json.Unmarshal(data, &variant0); err == nil {
+		u.Value = variant0
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	var variant1 GameJSON
+	if err := json.Unmarshal(data, &variant1); err == nil {
+		u.Value = variant1
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	return fmt.Errorf("data did not match any variant of GamesExportIdsResponse: %v", errors)
+}
+
+type APIAccountPlayingResponseNowPlayingItemOpponent struct {
+	ID         string `json:"id"`
+	Username   string `json:"username"`
+	Rating     *int64 `json:"rating,omitempty"`
+	RatingDiff *int64 `json:"ratingDiff,omitempty"`
+	Ai         *int64 `json:"ai,omitempty"`
+}
+
+type APIAccountPlayingResponseNowPlayingItem struct {
+	FullID       string                                          `json:"fullId"`
+	GameID       string                                          `json:"gameId"`
+	Fen          string                                          `json:"fen"`
+	Color        GameColor                                       `json:"color"`
+	LastMove     string                                          `json:"lastMove"`
+	Source       GameSource                                      `json:"source"`
+	Status       *GameStatusName                                 `json:"status,omitempty"`
+	Variant      Variant                                         `json:"variant"`
+	Speed        Speed                                           `json:"speed"`
+	Perf         PerfType                                        `json:"perf"`
+	Rated        bool                                            `json:"rated"`
+	HasMoved     bool                                            `json:"hasMoved"`
+	Opponent     APIAccountPlayingResponseNowPlayingItemOpponent `json:"opponent"`
+	IsMyTurn     bool                                            `json:"isMyTurn"`
+	SecondsLeft  int64                                           `json:"secondsLeft"`
+	TournamentID *string                                         `json:"tournamentId,omitempty"`
+	SwissID      *string                                         `json:"swissId,omitempty"`
+	Winner       *GameColor                                      `json:"winner,omitempty"`
+	RatingDiff   *int64                                          `json:"ratingDiff,omitempty"`
+}
+
+type APIAccountPlayingResponse struct {
+	// Number of games where it is my turn to play
+	NbMyTurn int64 `json:"nbMyTurn"`
+	// Games I'm currently playing
+	NowPlaying []APIAccountPlayingResponseNowPlayingItem `json:"nowPlaying"`
+}
+
+type GameImportBody struct {
+	// The PGN. It can contain only one game. Most standard tags are supported.
+	Pgn *string `json:"pgn,omitempty"`
+}
+
+type GameImportResponse struct {
+	// The game ID
+	ID *string `json:"id,omitempty"`
+	// The game URL
+	URL *string `json:"url,omitempty"`
+}
+
+// APIExportBookmarksResponse represents a union type (oneOf/anyOf).
+// Variants: GamePgn, GameJSON
+type APIExportBookmarksResponse struct {
+	Value any
+}
+
+// unionValue hands the decoded variant to the parameter encoders, which write
+// the value a union carries rather than the wrapper carrying it.
+func (u APIExportBookmarksResponse) unionValue() any {
+	return u.Value
+}
+
+// MarshalJSON implements json.Marshaler for APIExportBookmarksResponse.
+func (u APIExportBookmarksResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(u.Value)
+}
+
+// UnmarshalJSON implements json.Unmarshaler for APIExportBookmarksResponse.
+func (u *APIExportBookmarksResponse) UnmarshalJSON(data []byte) error {
+	if string(data) == "null" {
+		return nil
+	}
+	var errors []error
+	var variant0 GamePgn
+	if err := json.Unmarshal(data, &variant0); err == nil {
+		u.Value = variant0
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	var variant1 GameJSON
+	if err := json.Unmarshal(data, &variant1); err == nil {
+		u.Value = variant1
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	return fmt.Errorf("data did not match any variant of APIExportBookmarksResponse: %v", errors)
+}
+
+type TvChannelsResponse struct {
+	Bot           TvGame `json:"bot"`
+	Blitz         TvGame `json:"blitz"`
+	RacingKings   TvGame `json:"racingKings"`
+	UltraBullet   TvGame `json:"ultraBullet"`
+	Bullet        TvGame `json:"bullet"`
+	Classical     TvGame `json:"classical"`
+	ThreeCheck    TvGame `json:"threeCheck"`
+	Antichess     TvGame `json:"antichess"`
+	Computer      TvGame `json:"computer"`
+	Horde         TvGame `json:"horde"`
+	Rapid         TvGame `json:"rapid"`
+	Atomic        TvGame `json:"atomic"`
+	Crazyhouse    TvGame `json:"crazyhouse"`
+	Chess960      TvGame `json:"chess960"`
+	KingOfTheHill TvGame `json:"kingOfTheHill"`
+	Best          TvGame `json:"best"`
+}
+
+type APITournamentPostBody struct {
+	// The tournament name. Leave empty to get a random Grandmaster name
+	Name *string `json:"name,omitempty"`
+	// Clock initial time in minutes
+	ClockTime float64 `json:"clockTime"`
+	// Clock increment in seconds
+	ClockIncrement int64 `json:"clockIncrement"`
+	// How long the tournament lasts, in minutes
+	Minutes int64 `json:"minutes"`
+	// How long to wait before starting the tournament, from now, in minutes
+	WaitMinutes *int64 `json:"waitMinutes,omitempty"`
+	// Timestamp (in milliseconds) to start the tournament at a given date and time. Overrides the `waitMinutes` setting
+	StartDate *int64      `json:"startDate,omitempty"`
+	Variant   *VariantKey `json:"variant,omitempty"`
+	// Games are rated and impact players ratings
+	Rated *bool `json:"rated,omitempty"`
+	// Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated.
+	Position *FromPositionFen `json:"position,omitempty"`
+	// Whether the players can use berserk. Only allowed if clockIncrement <= clockTime * 2
+	Berserkable *bool `json:"berserkable,omitempty"`
+	// After 2 wins, consecutive wins grant 4 points instead of 2.
+	Streakable *bool `json:"streakable,omitempty"`
+	// Whether the players can discuss in a chat
+	HasChat *bool `json:"hasChat,omitempty"`
+	// Anything you want to tell players about the tournament
+	Description *string `json:"description,omitempty"`
+	// Make the tournament private, and restrict access with a password.
+	// You can also [generate user-specific entry codes](https://github.com/lichess-org/api/tree/master/example/tournament-entry-code)
+	// based on this password.
+	Password *string `json:"password,omitempty"`
+	// Set the ID of a team you lead to create a team battle.
+	// The other teams can be added using the [team battle edit endpoint](#tag/arena-tournaments/POST/api/tournament/team-battle/{id}).
+	TeamBattleByTeam *string `json:"teamBattleByTeam,omitempty"`
+	// Restrict entry to members of a team.
+	// The teamId is the last part of a team URL, e.g. `https://lichess.org/team/coders` has teamId = `coders`.
+	// Leave empty to let everyone join the tournament.
+	// Do not use this to create team battles, use `teamBattleByTeam` instead.
+	ConditionsTeamMemberTeamID *string `json:"conditions.teamMember.teamId,omitempty"`
+	// Minimum rating to join. Leave empty to let everyone join the tournament.
+	ConditionsMinRatingRating *int64 `json:"conditions.minRating.rating,omitempty"`
+	// Maximum rating to join. Based on best rating reached in the last 7 days. Leave empty to let everyone join the tournament.
+	ConditionsMaxRatingRating *int64 `json:"conditions.maxRating.rating,omitempty"`
+	// Minimum number of rated games required to join.
+	ConditionsNbRatedGameNb *int64 `json:"conditions.nbRatedGame.nb,omitempty"`
+	// Predefined list of usernames that are allowed to join, separated by commas.
+	// If this list is non-empty, then usernames absent from this list will be forbidden to join.
+	// Adding `%titled` to the list additionally allows any titled player to join.
+	// Example: `thibault,german11,%titled`
+	ConditionsAllowList *string `json:"conditions.allowList,omitempty"`
+	// Whether bots are allowed to join the tournament.
+	ConditionsBots *bool `json:"conditions.bots,omitempty"`
+	// Minium account age in days required to join.
+	ConditionsAccountAge *int64 `json:"conditions.accountAge,omitempty"`
+}
+
+type APITournamentUpdateBody struct {
+	// The tournament name. Leave empty to get a random Grandmaster name
+	Name *string `json:"name,omitempty"`
+	// Clock initial time in minutes
+	ClockTime float64 `json:"clockTime"`
+	// Clock increment in seconds
+	ClockIncrement int64 `json:"clockIncrement"`
+	// How long the tournament lasts, in minutes
+	Minutes int64 `json:"minutes"`
+	// How long to wait before starting the tournament, from now, in minutes
+	WaitMinutes *int64 `json:"waitMinutes,omitempty"`
+	// Timestamp (in milliseconds) to start the tournament at a given date and time. Overrides the `waitMinutes` setting
+	StartDate *int64      `json:"startDate,omitempty"`
+	Variant   *VariantKey `json:"variant,omitempty"`
+	// Games are rated and impact players ratings
+	Rated *bool `json:"rated,omitempty"`
+	// Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated.
+	Position *FromPositionFen `json:"position,omitempty"`
+	// Whether the players can use berserk. Only allowed if clockIncrement <= clockTime * 2
+	Berserkable *bool `json:"berserkable,omitempty"`
+	// After 2 wins, consecutive wins grant 4 points instead of 2.
+	Streakable *bool `json:"streakable,omitempty"`
+	// Whether the players can discuss in a chat
+	HasChat *bool `json:"hasChat,omitempty"`
+	// Anything you want to tell players about the tournament
+	Description *string `json:"description,omitempty"`
+	// Make the tournament private, and restrict access with a password
+	Password *string `json:"password,omitempty"`
+	// Minimum rating to join. Leave empty to let everyone join the tournament.
+	ConditionsMinRatingRating *int64 `json:"conditions.minRating.rating,omitempty"`
+	// Maximum rating to join. Based on best rating reached in the last 7 days. Leave empty to let everyone join the tournament.
+	ConditionsMaxRatingRating *int64 `json:"conditions.maxRating.rating,omitempty"`
+	// Minimum number of rated games required to join.
+	ConditionsNbRatedGameNb *int64 `json:"conditions.nbRatedGame.nb,omitempty"`
+	// Predefined list of usernames that are allowed to join, separated by commas.
+	// If this list is non-empty, then usernames absent from this list will be forbidden to join.
+	// Adding `%titled` to the list additionally allows any titled player to join.
+	// Example: `thibault,german11,%titled`
+	ConditionsAllowList *string `json:"conditions.allowList,omitempty"`
+	// Whether bots are allowed to join the tournament.
+	ConditionsBots *bool `json:"conditions.bots,omitempty"`
+	// Minium account age in days required to join.
+	ConditionsAccountAge *int64 `json:"conditions.accountAge,omitempty"`
+}
+
+type APITournamentJoinBody struct {
+	// The tournament password, if one is required.
+	// Can also be a [user-specific entry code](https://github.com/lichess-org/api/tree/master/example/tournament-entry-code)
+	// generated and shared by the organizer.
+	Password *string `json:"password,omitempty"`
+	// The team to join the tournament with, for team battle tournaments
+	Team *string `json:"team,omitempty"`
+	// If the tournament is started, attempt to pair the user,
+	// even if they are not connected to the tournament page.
+	// This expires after one minute, to avoid pairing a user who is long gone.
+	// You may call "join" again to extend the waiting.
+	PairMeAsap *bool `json:"pairMeAsap,omitempty"`
+}
+
+type APITournamentTeamBattlePostBody struct {
+	// All team IDs of the team battle, separated by commas.
+	// Make sure to always send the full list.
+	// Teams that are not in the list will be removed from the team battle.
+	// Example: `coders,zhigalko_sergei-fan-club,hhSwTKZv`
+	Teams string `json:"teams"`
+	// Number team leaders per team.
+	NbLeaders int64 `json:"nbLeaders"`
+}
+
+type ResultsByTournamentResponse struct {
+	Rank        int64  `json:"rank"`
+	Score       int64  `json:"score"`
+	Rating      int64  `json:"rating"`
+	Username    string `json:"username"`
+	Performance int64  `json:"performance"`
+	// only appears if the user is a titled player or a bot user
+	Title *Title  `json:"title,omitempty"`
+	Team  *string `json:"team,omitempty"`
+	// See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
+	Flair *Flair `json:"flair,omitempty"`
+	// Players can choose a color for their Patron wings.
+	// See [here for the color mappings](https://github.com/lichess-org/lila/blob/master/ui/lib/css/abstract/_patron-colors.scss).
+	//
+	// The presence of this field indicates the player is an active Patron.
+	PatronColor *PatronColor `json:"patronColor,omitempty"`
+	Sheet       *ArenaSheet  `json:"sheet,omitempty"`
+}
+
+type TeamsByTournamentResponseTeamsItemPlayersItem struct {
+	User  LightUser `json:"user"`
+	Score *int64    `json:"score,omitempty"`
+}
+
+type TeamsByTournamentResponseTeamsItem struct {
+	Rank    int64                                           `json:"rank"`
+	ID      string                                          `json:"id"`
+	Score   int64                                           `json:"score"`
+	Players []TeamsByTournamentResponseTeamsItemPlayersItem `json:"players"`
+}
+
+type TeamsByTournamentResponse struct {
+	ID    string                               `json:"id"`
+	Teams []TeamsByTournamentResponseTeamsItem `json:"teams"`
+}
+
+type APISwissNewBody struct {
+	// The tournament name. Leave empty to get a random Grandmaster name
+	Name *string `json:"name,omitempty"`
+	// Clock initial time in seconds
+	ClockLimit int64 `json:"clock.limit"`
+	// Clock increment in seconds
+	ClockIncrement int64 `json:"clock.increment"`
+	// Maximum number of rounds to play
+	NbRounds int64 `json:"nbRounds"`
+	// Timestamp in milliseconds to start the tournament at a given date and time. By default, it starts 10 minutes after creation.
+	StartsAt *int64 `json:"startsAt,omitempty"`
+	// How long to wait between each round, in seconds.
+	// Set to 99999999 to manually schedule each round from the tournament UI.
+	// If empty or -1, a sensible value is picked automatically.
+	RoundInterval *int64      `json:"roundInterval,omitempty"`
+	Variant       *VariantKey `json:"variant,omitempty"`
+	// Custom initial position (in X-FEN). Variant must be standard and the game cannot be rated.
+	Position *SwissFromPositionFen `json:"position,omitempty"`
+	// Anything you want to tell players about the tournament
+	Description *string `json:"description,omitempty"`
+	// Games are rated and impact players ratings
+	Rated *bool `json:"rated,omitempty"`
+	// Make the tournament private and restrict access with a password.
+	Password *string `json:"password,omitempty"`
+	// Usernames of players that must not play together.
+	// Two usernames per line, separated by a space.
+	ForbiddenPairings *string `json:"forbiddenPairings,omitempty"`
+	// Manual pairings for the next round.
+	// Two usernames per line, separated by a space. Example:
+	// ```
+	// PlayerA PlayerB
+	// PlayerC PlayerD
+	// ```
+	// To give a bye (1 point) to a player instead of a pairing, add a line like so:
+	// ```
+	// PlayerE 1
+	// ```
+	// Missing players will be considered absent and get zero points.
+	ManualPairings *string `json:"manualPairings,omitempty"`
+	// Who can read and write in the chat.
+	// - 0  = No-one
+	// - 10 = Only team leaders
+	// - 20 = Only team members
+	// - 30 = All Lichess players
+	ChatFor *int64 `json:"chatFor,omitempty"`
+	// Minimum rating to join. Leave empty to let everyone join the tournament.
+	ConditionsMinRatingRating *int64 `json:"conditions.minRating.rating,omitempty"`
+	// Maximum rating to join. Based on best rating reached in the last 7 days. Leave empty to let everyone join the tournament.
+	ConditionsMaxRatingRating *int64 `json:"conditions.maxRating.rating,omitempty"`
+	// Minimum number of rated games required to join.
+	ConditionsNbRatedGameNb *int64 `json:"conditions.nbRatedGame.nb,omitempty"`
+	// Only let players join if they have played their last swiss game.
+	// If they failed to show up in a recent swiss event, they won't be able to enter yours.
+	// This results in a better swiss experience for the players who actually show up.
+	ConditionsPlayYourGames *bool `json:"conditions.playYourGames,omitempty"`
+	// Predefined list of usernames that are allowed to join, separated by commas.
+	// If this list is non-empty, then usernames absent from this list will be forbidden to join.
+	// Adding `%titled` to the list additionally allows any titled player to join.
+	// Example: `thibault,german11,%titled`
+	ConditionsAllowList *string `json:"conditions.allowList,omitempty"`
+}
+
+type APISwissUpdateBody struct {
+	// The tournament name. Leave empty to get a random Grandmaster name
+	Name *string `json:"name,omitempty"`
+	// Clock initial time in seconds
+	ClockLimit int64 `json:"clock.limit"`
+	// Clock increment in seconds
+	ClockIncrement int64 `json:"clock.increment"`
+	// Maximum number of rounds to play
+	NbRounds int64 `json:"nbRounds"`
+	// Timestamp in milliseconds to start the tournament at a given date and time. By default, it starts 10 minutes after creation.
+	StartsAt *int64 `json:"startsAt,omitempty"`
+	// How long to wait between each round, in seconds.
+	// Set to 99999999 to manually schedule each round from the tournament UI, or [with the API](#tag/tournaments-swiss/POST/api/swiss/{id}/schedule-next-round).
+	// If empty or -1, a sensible value is picked automatically.
+	RoundInterval *int64      `json:"roundInterval,omitempty"`
+	Variant       *VariantKey `json:"variant,omitempty"`
+	// Custom initial position (in X-FEN). Variant must be standard and the game cannot be rated.
+	Position *SwissFromPositionFen `json:"position,omitempty"`
+	// Anything you want to tell players about the tournament
+	Description *string `json:"description,omitempty"`
+	// Games are rated and impact players ratings
+	Rated *bool `json:"rated,omitempty"`
+	// Make the tournament private and restrict access with a password.
+	Password *string `json:"password,omitempty"`
+	// Usernames of players that must not play together.
+	// Two usernames per line, separated by a space.
+	ForbiddenPairings *string `json:"forbiddenPairings,omitempty"`
+	// Manual pairings for the next round.
+	// Two usernames per line, separated by a space.
+	// Present players without a valid pairing will be given a bye, which is worth 1 point.
+	// Forfeited players will get 0 points.
+	ManualPairings *string `json:"manualPairings,omitempty"`
+	// Who can read and write in the chat.
+	// - 0  = No-one
+	// - 10 = Only team leaders
+	// - 20 = Only team members
+	// - 30 = All Lichess players
+	ChatFor *int64 `json:"chatFor,omitempty"`
+	// Minimum rating to join. Leave empty to let everyone join the tournament.
+	ConditionsMinRatingRating *int64 `json:"conditions.minRating.rating,omitempty"`
+	// Maximum rating to join. Based on best rating reached in the last 7 days. Leave empty to let everyone join the tournament.
+	ConditionsMaxRatingRating *int64 `json:"conditions.maxRating.rating,omitempty"`
+	// Minimum number of rated games required to join.
+	ConditionsNbRatedGameNb *int64 `json:"conditions.nbRatedGame.nb,omitempty"`
+	// Only let players join if they have played their last swiss game.
+	// If they failed to show up in a recent swiss event, they won't be able to enter yours.
+	// This results in a better swiss experience for the players who actually show up.
+	ConditionsPlayYourGames *bool `json:"conditions.playYourGames,omitempty"`
+	// Predefined list of usernames that are allowed to join, separated by commas.
+	// If this list is non-empty, then usernames absent from this list will be forbidden to join.
+	// Adding `%titled` to the list additionally allows any titled player to join.
+	// Example: `thibault,german11,%titled`
+	ConditionsAllowList *string `json:"conditions.allowList,omitempty"`
+}
+
+type APISwissScheduleNextRoundBody struct {
+	// Timestamp in milliseconds to start the next round at a given date and time.
+	Date *int64 `json:"date,omitempty"`
+}
+
+type APISwissJoinBody struct {
+	// The tournament password, if one is required
+	Password *string `json:"password,omitempty"`
+}
+
+type ResultsBySwissResponse struct {
+	Absent   *bool   `json:"absent,omitempty"`
+	Rank     int64   `json:"rank"`
+	Points   float64 `json:"points"`
+	TieBreak int64   `json:"tieBreak"`
+	Rating   int64   `json:"rating"`
+	Username string  `json:"username"`
+	// only appears if the user is a titled player or a bot user
+	Title       *Title `json:"title,omitempty"`
+	Performance int64  `json:"performance"`
+}
+
+type APIStudyPostBody struct {
+	// The study name.
+	Name string `json:"name"`
+	// Who can view the study.
+	// * `public`: Default. Anyone can view the study, it appears on public listings
+	// * `unlisted`: Only people with the link can view the study, it doesn't appear on public listings
+	// * `private`: Only the study members can view the study
+	Visibility string `json:"visibility"`
+	// See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
+	Flair     *Flair             `json:"flair,omitempty"`
+	Computer  StudyUserSelection `json:"computer"`
+	Explorer  StudyUserSelection `json:"explorer"`
+	Cloneable StudyUserSelection `json:"cloneable"`
+	Shareable StudyUserSelection `json:"shareable"`
+	Chat      StudyUserSelection `json:"chat"`
+	// Keep everyone on the same chapter and position.
+	Sticky *bool `json:"sticky,omitempty"`
+	// Add pinned study comment right under the board.
+	Description *bool `json:"description,omitempty"`
+}
+
+type APIStudyPostResponse struct {
+	ID *string `json:"id,omitempty"`
+}
+
+type APIStudyImportPgnBody struct {
+	// PGN to import. Can contain multiple games separated by 2 or more newlines.
+	Pgn string `json:"pgn"`
+	// Name of the new chapter.
+	// If not specified, or if multiple chapters are created, the names will be inferred from the PGN tags.
+	Name *string `json:"name,omitempty"`
+	// Board orientation.
+	// If not specified, the orientation is automatically determined.
+	Orientation *string     `json:"orientation,omitempty"`
+	Variant     *VariantKey `json:"variant,omitempty"`
+	// Analysis mode.
+	// If not specified, Normal analysis.
+	// * practice - Practise with Computer
+	// * conceal - Hide next moves
+	// * gamebook - Interactive lesson
+	Mode *string `json:"mode,omitempty"`
+}
+
+type APIStudyChapterTagsBody struct {
+	// PGN text containing the tags. Only the tags are used. Moves are just ignored.
+	Pgn string `json:"pgn"`
+}
+
+type APIStudyChapterMovesBody struct {
+	// PGN text containing the moves that will replace the chapter's existing moves.
+	// Any provided tags are ignored.
+	Pgn string `json:"pgn"`
+}
+
+type BroadcastsByUserResponse struct {
+	CurrentPage        int64             `json:"currentPage"`
+	MaxPerPage         int64             `json:"maxPerPage"`
+	CurrentPageResults []BroadcastByUser `json:"currentPageResults"`
+	NbResults          int64             `json:"nbResults"`
+	PreviousPage       *int64            `json:"previousPage"`
+	NextPage           *int64            `json:"nextPage"`
+	NbPages            int64             `json:"nbPages"`
+}
+
+type BroadcastsSearchResponse struct {
+	CurrentPage        int64                    `json:"currentPage"`
+	MaxPerPage         int64                    `json:"maxPerPage"`
+	CurrentPageResults []BroadcastWithLastRound `json:"currentPageResults"`
+	PreviousPage       *int64                   `json:"previousPage"`
+	NextPage           *int64                   `json:"nextPage"`
+}
+
+type APISimulResponse struct {
+	Pending  []Simul `json:"pending,omitempty"`
+	Created  []Simul `json:"created,omitempty"`
+	Started  []Simul `json:"started,omitempty"`
+	Finished []Simul `json:"finished,omitempty"`
+}
+
+type TeamIDUsersResponse struct {
+	JoinedTeamAt *int64 `json:"joinedTeamAt,omitempty"`
+	ID           string `json:"id"`
+	Name         string `json:"name"`
+	// only appears if the user is a titled player or a bot user
+	Title *Title `json:"title,omitempty"`
+	// Players can choose a color for their Patron wings.
+	// See [here for the color mappings](https://github.com/lichess-org/lila/blob/master/ui/lib/css/abstract/_patron-colors.scss).
+	//
+	// The presence of this field indicates the player is an active Patron.
+	PatronColor *PatronColor `json:"patronColor,omitempty"`
+}
+
+type TeamIDJoinBody struct {
+	// Required if team manually reviews admission requests.
+	Message *string `json:"message,omitempty"`
+	// Optional password, if the team requires one.
+	Password *string `json:"password,omitempty"`
+}
+
+type TeamIDPmAllBody struct {
+	// The message to send to all your team members.
+	Message *string `json:"message,omitempty"`
+}
+
+type StreamerLiveResponseItemPart1Stream struct {
+	Service *string `json:"service,omitempty"`
+	// The stream title
+	Status *string `json:"status,omitempty"`
+	Lang   *string `json:"lang,omitempty"`
+}
+
+type StreamerLiveResponseItemPart1Streamer struct {
+	Name        *string `json:"name,omitempty"`
+	Headline    *string `json:"headline,omitempty"`
+	Description *string `json:"description,omitempty"`
+	Twitch      *string `json:"twitch,omitempty"`
+	Youtube     *string `json:"youtube,omitempty"`
+	Image       *string `json:"image,omitempty"`
+}
+
+type StreamerLiveResponseItem struct {
+	LightUser
+	Stream   *StreamerLiveResponseItemPart1Stream   `json:"stream,omitempty"`
+	Streamer *StreamerLiveResponseItemPart1Streamer `json:"streamer,omitempty"`
+}
+
+type APIPlayerAutocompleteResponseVariant struct {
+	Result []LightUserOnline `json:"result,omitempty"`
+}
+
 // APIPlayerAutocompleteResponse represents a union type (oneOf/anyOf).
-// Variants: []string, any
+// Variants: []string, APIPlayerAutocompleteResponseVariant
 type APIPlayerAutocompleteResponse struct {
 	Value any
+}
+
+// unionValue hands the decoded variant to the parameter encoders, which write
+// the value a union carries rather than the wrapper carrying it.
+func (u APIPlayerAutocompleteResponse) unionValue() any {
+	return u.Value
 }
 
 // MarshalJSON implements json.Marshaler for APIPlayerAutocompleteResponse.
@@ -2478,16 +4397,19 @@ func (u *APIPlayerAutocompleteResponse) UnmarshalJSON(data []byte) error {
 	} else {
 		errors = append(errors, err)
 	}
-	// A variant with no Go type of its own still covers payloads the spec says are
-	// valid, so they decode into any rather than failing as an unmatched variant.
-	var untyped any
-	if err := json.Unmarshal(data, &untyped); err == nil {
-		u.Value = untyped
+	var variant1 APIPlayerAutocompleteResponseVariant
+	if err := json.Unmarshal(data, &variant1); err == nil {
+		u.Value = variant1
 		return nil
 	} else {
 		errors = append(errors, err)
 	}
 	return fmt.Errorf("data did not match any variant of APIPlayerAutocompleteResponse: %v", errors)
+}
+
+type WriteNoteBody struct {
+	// The contents of the note
+	Text string `json:"text"`
 }
 
 // APIStreamEventResponse represents a union type (oneOf/anyOf).
@@ -2523,6 +4445,12 @@ func (u APIStreamEventResponse) Base() *APIStreamEventResponseBase {
 		}
 	}
 	return nil
+}
+
+// unionValue hands the decoded variant to the parameter encoders, which write
+// the value a union carries rather than the wrapper carrying it.
+func (u APIStreamEventResponse) unionValue() any {
+	return u.Value
 }
 
 // MarshalJSON implements json.Marshaler for APIStreamEventResponse.
@@ -2574,6 +4502,20 @@ func (u *APIStreamEventResponse) UnmarshalJSON(data []byte) error {
 	return fmt.Errorf("data did not match any variant of APIStreamEventResponse: %v", errors)
 }
 
+type APIBoardSeekBody struct {
+	// Whether the game is rated and impacts players ratings.
+	Rated   *bool       `json:"rated,omitempty"`
+	Variant *VariantKey `json:"variant,omitempty"`
+	// The rating range of potential opponents. Better left empty.
+	// Example: 1500-1800
+	RatingRange *string `json:"ratingRange,omitempty"`
+}
+
+// APIBoardSeekResponse - Only happens when doing a correspondence seek.
+type APIBoardSeekResponse struct {
+	ID string `json:"id"`
+}
+
 // BoardGameStreamResponse represents a union type (oneOf/anyOf).
 // Variants: GameFullEvent, GameStateEvent, ChatLineEvent, OpponentGoneEvent
 type BoardGameStreamResponse struct {
@@ -2603,6 +4545,12 @@ func (u BoardGameStreamResponse) Base() *BoardGameStreamResponseBase {
 		}
 	}
 	return nil
+}
+
+// unionValue hands the decoded variant to the parameter encoders, which write
+// the value a union carries rather than the wrapper carrying it.
+func (u BoardGameStreamResponse) unionValue() any {
+	return u.Value
 }
 
 // MarshalJSON implements json.Marshaler for BoardGameStreamResponse.
@@ -2647,6 +4595,314 @@ func (u *BoardGameStreamResponse) UnmarshalJSON(data []byte) error {
 	return fmt.Errorf("data did not match any variant of BoardGameStreamResponse: %v", errors)
 }
 
+type BoardGameChatPostBody struct {
+	Room string `json:"room"`
+	Text string `json:"text"`
+}
+
+// BoardGameDrawAccept represents a union type (oneOf/anyOf).
+// Variants: bool, string
+type BoardGameDrawAccept struct {
+	Value any
+}
+
+// unionValue hands the decoded variant to the parameter encoders, which write
+// the value a union carries rather than the wrapper carrying it.
+func (u BoardGameDrawAccept) unionValue() any {
+	return u.Value
+}
+
+// MarshalJSON implements json.Marshaler for BoardGameDrawAccept.
+func (u BoardGameDrawAccept) MarshalJSON() ([]byte, error) {
+	return json.Marshal(u.Value)
+}
+
+// UnmarshalJSON implements json.Unmarshaler for BoardGameDrawAccept.
+func (u *BoardGameDrawAccept) UnmarshalJSON(data []byte) error {
+	if string(data) == "null" {
+		return nil
+	}
+	var errors []error
+	var variant0 bool
+	if err := json.Unmarshal(data, &variant0); err == nil {
+		u.Value = variant0
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	var variant1 string
+	if err := json.Unmarshal(data, &variant1); err == nil {
+		u.Value = variant1
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	return fmt.Errorf("data did not match any variant of BoardGameDrawAccept: %v", errors)
+}
+
+// BotGameStreamResponse represents a union type (oneOf/anyOf).
+// Variants: GameFullEvent, GameStateEvent, ChatLineEvent, OpponentGoneEvent
+type BotGameStreamResponse struct {
+	Value any
+}
+
+// Base returns the BotGameStreamResponseBase that every variant of BotGameStreamResponse carries, or
+// nil when Value holds none of them. It is a copy: writing to it does not change
+// the value the union holds.
+func (u BotGameStreamResponse) Base() *BotGameStreamResponseBase {
+	switch v := u.Value.(type) {
+	case GameFullEvent:
+		return &BotGameStreamResponseBase{
+			Type: v.Type,
+		}
+	case GameStateEvent:
+		return &BotGameStreamResponseBase{
+			Type: v.Type,
+		}
+	case ChatLineEvent:
+		return &BotGameStreamResponseBase{
+			Type: v.Type,
+		}
+	case OpponentGoneEvent:
+		return &BotGameStreamResponseBase{
+			Type: v.Type,
+		}
+	}
+	return nil
+}
+
+// unionValue hands the decoded variant to the parameter encoders, which write
+// the value a union carries rather than the wrapper carrying it.
+func (u BotGameStreamResponse) unionValue() any {
+	return u.Value
+}
+
+// MarshalJSON implements json.Marshaler for BotGameStreamResponse.
+func (u BotGameStreamResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(u.Value)
+}
+
+// UnmarshalJSON implements json.Unmarshaler for BotGameStreamResponse.
+func (u *BotGameStreamResponse) UnmarshalJSON(data []byte) error {
+	if string(data) == "null" {
+		return nil
+	}
+	var errors []error
+	var variant0 GameFullEvent
+	if err := json.Unmarshal(data, &variant0); err == nil {
+		u.Value = variant0
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	var variant1 GameStateEvent
+	if err := json.Unmarshal(data, &variant1); err == nil {
+		u.Value = variant1
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	var variant2 ChatLineEvent
+	if err := json.Unmarshal(data, &variant2); err == nil {
+		u.Value = variant2
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	var variant3 OpponentGoneEvent
+	if err := json.Unmarshal(data, &variant3); err == nil {
+		u.Value = variant3
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	return fmt.Errorf("data did not match any variant of BotGameStreamResponse: %v", errors)
+}
+
+type BotGameChatBody struct {
+	Room string `json:"room"`
+	Text string `json:"text"`
+}
+
+type ChallengeListResponse struct {
+	// Incoming challenges i.e. targeted at you
+	In []ChallengeJSON `json:"in,omitempty"`
+	// Outgoing challenges i.e. created by you
+	Out []ChallengeJSON `json:"out,omitempty"`
+}
+
+type ChallengeCreateBody struct {
+	// Game is rated and impacts players ratings
+	Rated   *bool           `json:"rated,omitempty"`
+	Color   *ChallengeColor `json:"color,omitempty"`
+	Variant *VariantKey     `json:"variant,omitempty"`
+	// Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated.
+	Fen *FromPositionFen `json:"fen,omitempty"`
+	// If set, the response is streamed as [ndjson](#description/streaming-with-nd-json).
+	// The challenge is kept alive until the connection is closed by the client.
+	// When the challenge is accepted, declined or canceled, a message of the form `{"done":"accepted"}` is sent,
+	// then the connection is closed by the server.
+	// If not set, the response is not streamed, and the challenge expires after 20s if not accepted.
+	KeepAliveStream *bool `json:"keepAliveStream,omitempty"`
+	// Extra game rules separated by commas.
+	// Example: `noAbort,noRematch`
+	Rules *string `json:"rules,omitempty"`
+}
+
+type ChallengeDeclineBody struct {
+	// Reason challenge was declined. It will be translated to the player's language. See [the full list in the translation file](https://github.com/ornicar/lila/blob/master/translation/source/challenge.xml#L14).
+	Reason *string `json:"reason,omitempty"`
+}
+
+type ChallengeAiBody struct {
+	// AI strength
+	Level int64 `json:"level"`
+	// Clock initial time in seconds. If empty, a correspondence game is created.
+	ClockLimit *int64 `json:"clock.limit,omitempty"`
+	// Clock increment in seconds. If empty, a correspondence game is created.
+	ClockIncrement *int64 `json:"clock.increment,omitempty"`
+	// Days per move, for correspondence games. Clock settings must be omitted.
+	Days    *int64          `json:"days,omitempty"`
+	Color   *ChallengeColor `json:"color,omitempty"`
+	Variant *VariantKey     `json:"variant,omitempty"`
+	// Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated.
+	Fen *FromPositionFen `json:"fen,omitempty"`
+}
+
+type ChallengeOpenBody struct {
+	// Game is rated and impacts players ratings
+	Rated *bool `json:"rated,omitempty"`
+	// Clock initial time in seconds. If empty, a correspondence game is created.
+	ClockLimit *int64 `json:"clock.limit,omitempty"`
+	// Clock increment in seconds. If empty, a correspondence game is created.
+	ClockIncrement *int64 `json:"clock.increment,omitempty"`
+	// Days per turn. For correspondence challenges.
+	Days    *int64      `json:"days,omitempty"`
+	Variant *VariantKey `json:"variant,omitempty"`
+	// Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated.
+	Fen *FromPositionFen `json:"fen,omitempty"`
+	// Optional name for the challenge, that players will see on the challenge page.
+	Name *string `json:"name,omitempty"`
+	// Extra game rules separated by commas.
+	// Example: `noRematch,noGiveTime`
+	// The `noAbort` rule is available for Lichess admins only
+	Rules *string `json:"rules,omitempty"`
+	// Optional pair of usernames, separated by a comma.
+	// If set, only these users will be allowed to join the game.
+	// The first username gets the white pieces.
+	// Example: `Username1,Username2`
+	Users *string `json:"users,omitempty"`
+	// Timestamp in milliseconds to expire the challenge. Defaults to 24h after creation. Can't be more than 2 weeks after creation.
+	ExpiresAt *int64 `json:"expiresAt,omitempty"`
+}
+
+type BulkPairingCreateBody struct {
+	// OAuth tokens of all the players to pair, with the syntax `tokenOfWhitePlayerInGame1:tokenOfBlackPlayerInGame1,tokenOfWhitePlayerInGame2:tokenOfBlackPlayerInGame2,...`.
+	// The 2 tokens of the players of a game are separated with `:`. The first token gets the white pieces. Games are separated with `,`.
+	// Up to 1000 tokens can be sent, for a max of 500 games.
+	// Each token must be included at most once.
+	// Example: `token1:token2,token3:token4,token5:token6`
+	Players *string `json:"players,omitempty"`
+	// Clock initial time in seconds. Example: `600`
+	ClockLimit *int64 `json:"clock.limit,omitempty"`
+	// Clock increment in seconds. Example: `2`
+	ClockIncrement *int64 `json:"clock.increment,omitempty"`
+	// Days per turn. For correspondence games only.
+	Days *int64 `json:"days,omitempty"`
+	// Date at which the games will be created as a Unix timestamp in milliseconds.
+	// Up to 7 days in the future.
+	// Omit, or set to current date and time, to start the games immediately.
+	// Example: `1612289869919`
+	PairAt *int64 `json:"pairAt,omitempty"`
+	// Date at which the clocks will be automatically started as a Unix timestamp in milliseconds.
+	// Up to 7 days in the future.
+	// Note that the clocks can start earlier than specified, if players start making moves in the game.
+	// If omitted, the clocks will not start automatically.
+	// Example: `1612289869919`
+	StartClocksAt *int64 `json:"startClocksAt,omitempty"`
+	// Game is rated and impacts players ratings
+	Rated   *bool       `json:"rated,omitempty"`
+	Variant *VariantKey `json:"variant,omitempty"`
+	// Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated.
+	Fen *FromPositionFen `json:"fen,omitempty"`
+	// Message that will be sent to each player, when the game is created.  It is sent from your user account.
+	// `{opponent}` and `{game}` are placeholders that will be replaced with the opponent and the game URLs.
+	// You can omit this field to send the default message,
+	// but if you set your own message, it must at least contain the `{game}` placeholder.
+	Message *string `json:"message,omitempty"`
+	// Extra game rules separated by commas.
+	// Example: `noAbort,noRematch`
+	Rules *string `json:"rules,omitempty"`
+}
+
+type AdminChallengeTokensBody struct {
+	// Usernames separated with commas
+	Users string `json:"users"`
+	// User visible description of the token
+	Description string `json:"description"`
+}
+
+type InboxUsernameBody struct {
+	Text string `json:"text"`
+}
+
+type APIExternalEngineAnalyseBody struct {
+	ClientSecret string             `json:"clientSecret"`
+	Work         ExternalEngineWork `json:"work"`
+}
+
+type APIExternalEngineAnalyseResponsePvsItem struct {
+	// Current search depth of the pv
+	Depth int64 `json:"depth"`
+	// Evaluation in centi-pawns, from White's point of view
+	Cp *int64 `json:"cp,omitempty"`
+	// Evaluation in signed moves to mate, from White's point of view
+	Mate *int64 `json:"mate,omitempty"`
+	// Variation in UCI notation
+	Moves []string `json:"moves"`
+}
+
+type APIExternalEngineAnalyseResponse struct {
+	// Number of milliseconds the search has been going on
+	Time int64 `json:"time"`
+	// Current search depth
+	Depth int64 `json:"depth"`
+	// Number of nodes visited so far
+	Nodes int64 `json:"nodes"`
+	// Information about up to 5 pvs, with the primary pv at index 0.
+	Pvs []APIExternalEngineAnalyseResponsePvsItem `json:"pvs"`
+}
+
+type APIExternalEngineAcquireBody struct {
+	ProviderSecret string `json:"providerSecret"`
+}
+
+type APIExternalEngineAcquireResponse struct {
+	ID     string             `json:"id"`
+	Work   ExternalEngineWork `json:"work"`
+	Engine ExternalEngine     `json:"engine"`
+}
+
+type APITokenBody struct {
+	GrantType *string `json:"grant_type,omitempty"`
+	// The authorization code that was sent in the `code` parameter to your `redirect_uri`.
+	Code *string `json:"code,omitempty"`
+	// A `code_challenge` was used to request the authorization code. This must be the `code_verifier` it was derived from.
+	CodeVerifier *string `json:"code_verifier,omitempty"`
+	// Must match the `redirect_uri` used to request the authorization code.
+	RedirectURI *string `json:"redirect_uri,omitempty"`
+	// Must match the `client_id` used to request the authorization code.
+	ClientID *string `json:"client_id,omitempty"`
+}
+
+type TokenTestResponseValue struct {
+	UserID *string `json:"userId,omitempty"`
+	// Comma-separated list of scopes. Empty string if the token has no scopes.
+	Scopes *string `json:"scopes,omitempty"`
+	// Unix-timestamp in milliseconds or null if the token never expires.
+	Expires *int64 `json:"expires,omitempty"`
+}
+
 // TvFeedBase - The properties every variant of TvFeed declares.
 // Derived from the variants rather than declared by the spec, so it
 // changes when they do.
@@ -2655,8 +4911,28 @@ type TvFeedBase struct {
 	// A summary of the game is sent as the first message and when the featured game changes.
 	// Subsequent messages are just the X-FEN, last move, and clocks.
 	T string `json:"t"`
-	// The data of the message
-	D any `json:"d"`
+}
+
+// ArenaPositionBase - The properties every variant of ArenaPosition declares.
+// Derived from the variants rather than declared by the spec, so it
+// changes when they do.
+type ArenaPositionBase struct {
+	Name string `json:"name"`
+	Fen  string `json:"fen"`
+}
+
+// GameEventOpponentBase - The properties every variant of GameEventOpponent declares.
+// Derived from the variants rather than declared by the spec, so it
+// changes when they do.
+type GameEventOpponentBase struct {
+	Username string `json:"username"`
+}
+
+// TimeControlBase - The properties every variant of TimeControl declares.
+// Derived from the variants rather than declared by the spec, so it
+// changes when they do.
+type TimeControlBase struct {
+	Type *string `json:"type,omitempty"`
 }
 
 // TimelineEntriesItemBase - The properties every variant of TimelineEntriesItem declares.
@@ -2664,7 +4940,15 @@ type TvFeedBase struct {
 // changes when they do.
 type TimelineEntriesItemBase struct {
 	Date float64 `json:"date"`
-	Data any     `json:"data"`
+}
+
+// CloudEvalPvsItemBase - The properties every variant of CloudEvalPvsItem declares.
+// Derived from the variants rather than declared by the spec, so it
+// changes when they do.
+type CloudEvalPvsItemBase struct {
+	// Variation in UCI notation (King to rook for Chess960-compatible
+	// castling notation)
+	Moves string `json:"moves"`
 }
 
 // APIStreamEventResponseBase - The properties every variant of APIStreamEventResponse declares.
@@ -2678,5 +4962,12 @@ type APIStreamEventResponseBase struct {
 // Derived from the variants rather than declared by the spec, so it
 // changes when they do.
 type BoardGameStreamResponseBase struct {
+	Type string `json:"type"`
+}
+
+// BotGameStreamResponseBase - The properties every variant of BotGameStreamResponse declares.
+// Derived from the variants rather than declared by the spec, so it
+// changes when they do.
+type BotGameStreamResponseBase struct {
 	Type string `json:"type"`
 }

@@ -146,6 +146,9 @@ type ErrorResponse struct {
 }
 
 func (e *ErrorResponse) Error() string {
+	if e.Detail.Error != "" {
+		return fmt.Sprintf("API error %s: %s", e.statusLabel(), e.Detail.Error)
+	}
 	return e.APIError.Error()
 }
 
@@ -250,6 +253,12 @@ type OAuthErrorResponse struct {
 }
 
 func (e *OAuthErrorResponse) Error() string {
+	if e.Detail.ErrorDescription != nil && *e.Detail.ErrorDescription != "" {
+		return fmt.Sprintf("API error %s: %s", e.statusLabel(), *e.Detail.ErrorDescription)
+	}
+	if e.Detail.Error != "" {
+		return fmt.Sprintf("API error %s: %s", e.statusLabel(), e.Detail.Error)
+	}
 	return e.APIError.Error()
 }
 
