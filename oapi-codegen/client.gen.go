@@ -14539,6 +14539,9 @@ type ClientInterface interface {
 	// Format of an entry is `[year, month, day, rating]`.
 	// `month` starts at zero (January).
 	//
+	// Note: Rating history is generated on demand by [Authenticated OAuth requests](#description/authentication).
+	// Unauthenticated requests will return a cached version of the rating history if present, otherwise an empty array.
+	//
 	// Corresponds with GET /api/user/{username}/rating-history (the `ApiUserRatingHistory` operationId).
 	ApiUserRatingHistory(ctx context.Context, username string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -18940,6 +18943,9 @@ func (c *Client) ApiUserPerf(ctx context.Context, username string, perf PerfType
 // There is at most one entry per day.
 // Format of an entry is `[year, month, day, rating]`.
 // `month` starts at zero (January).
+//
+// Note: Rating history is generated on demand by [Authenticated OAuth requests](#description/authentication).
+// Unauthenticated requests will return a cached version of the rating history if present, otherwise an empty array.
 //
 // Corresponds with GET /api/user/{username}/rating-history (the `ApiUserRatingHistory` operationId).
 func (c *Client) ApiUserRatingHistory(ctx context.Context, username string, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -32729,6 +32735,9 @@ type ClientWithResponsesInterface interface {
 	// Format of an entry is `[year, month, day, rating]`.
 	// `month` starts at zero (January).
 	//
+	// Note: Rating history is generated on demand by [Authenticated OAuth requests](#description/authentication).
+	// Unauthenticated requests will return a cached version of the rating history if present, otherwise an empty array.
+	//
 	// Returns a wrapper object for the known response body format(s).
 	//
 	// Corresponds with GET /api/user/{username}/rating-history (the `ApiUserRatingHistory` operationId).
@@ -46079,6 +46088,9 @@ func (c *ClientWithResponses) ApiUserPerfWithResponse(ctx context.Context, usern
 // There is at most one entry per day.
 // Format of an entry is `[year, month, day, rating]`.
 // `month` starts at zero (January).
+//
+// Note: Rating history is generated on demand by [Authenticated OAuth requests](#description/authentication).
+// Unauthenticated requests will return a cached version of the rating history if present, otherwise an empty array.
 //
 // Returns a wrapper object for the known response body format(s).
 //
