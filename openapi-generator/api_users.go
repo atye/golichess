@@ -114,6 +114,9 @@ There is at most one entry per day.
 Format of an entry is `[year, month, day, rating]`.
 `month` starts at zero (January).
 
+Note: Rating history is generated on demand by [Authenticated OAuth requests](#description/authentication).
+Unauthenticated requests will return a cached version of the rating history if present, otherwise an empty array.
+
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param username
@@ -969,6 +972,9 @@ Read rating history of a user, for all perf types.
 There is at most one entry per day.
 Format of an entry is `[year, month, day, rating]`.
 `month` starts at zero (January).
+
+Note: Rating history is generated on demand by [Authenticated OAuth requests](#description/authentication).
+Unauthenticated requests will return a cached version of the rating history if present, otherwise an empty array.
 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
