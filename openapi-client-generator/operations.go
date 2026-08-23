@@ -137,6 +137,9 @@ func (c *Client) APIUser(ctx context.Context, username string, opts ...APIUserPa
 // There is at most one entry per day.
 // Format of an entry is `[year, month, day, rating]`.
 // `month` starts at zero (January).
+//
+// Note: Rating history is generated on demand by [Authenticated OAuth requests](#description/authentication).
+// Unauthenticated requests will return a cached version of the rating history if present, otherwise an empty array.
 func (c *Client) APIUserRatingHistory(ctx context.Context, username string) (*RatingHistory, error) {
 
 	path := "/api/user/{username}/rating-history"
