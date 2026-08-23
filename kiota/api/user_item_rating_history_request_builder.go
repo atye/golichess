@@ -33,7 +33,7 @@ func NewUserItemRatingHistoryRequestBuilder(rawUrl string, requestAdapter i2ae41
     urlParams["request-raw-url"] = rawUrl
     return NewUserItemRatingHistoryRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get read rating history of a user, for all perf types.There is at most one entry per day.Format of an entry is `[year, month, day, rating]`.`month` starts at zero (January).
+// Get read rating history of a user, for all perf types.There is at most one entry per day.Format of an entry is `[year, month, day, rating]`.`month` starts at zero (January).Note: Rating history is generated on demand by [Authenticated OAuth requests](#description/authentication).Unauthenticated requests will return a cached version of the rating history if present, otherwise an empty array.
 // returns a []RatingHistoryEntryable when successful
 func (m *UserItemRatingHistoryRequestBuilder) Get(ctx context.Context, requestConfiguration *UserItemRatingHistoryRequestBuilderGetRequestConfiguration)([]i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.RatingHistoryEntryable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
@@ -52,7 +52,7 @@ func (m *UserItemRatingHistoryRequestBuilder) Get(ctx context.Context, requestCo
     }
     return val, nil
 }
-// ToGetRequestInformation read rating history of a user, for all perf types.There is at most one entry per day.Format of an entry is `[year, month, day, rating]`.`month` starts at zero (January).
+// ToGetRequestInformation read rating history of a user, for all perf types.There is at most one entry per day.Format of an entry is `[year, month, day, rating]`.`month` starts at zero (January).Note: Rating history is generated on demand by [Authenticated OAuth requests](#description/authentication).Unauthenticated requests will return a cached version of the rating history if present, otherwise an empty array.
 // returns a *RequestInformation when successful
 func (m *UserItemRatingHistoryRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *UserItemRatingHistoryRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
