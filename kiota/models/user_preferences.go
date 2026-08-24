@@ -34,8 +34,6 @@ type UserPreferences struct {
     confirmResign *int32
     // 0 = No, 1 = Inside the board, 2 = Outside the board, 3 = All squares
     coords *int32
-    // The dark property
-    dark *bool
     // The destination property
     destination *bool
     // Show player flairs
@@ -82,8 +80,6 @@ type UserPreferences struct {
     theme *UserPreferences_theme
     // The theme3d property
     theme3d *UserPreferences_theme3d
-    // The transp property
-    transp *bool
     // The voiceMove property
     voiceMove *bool
     // 0 = No, 1 = yes, 2 = in-game only
@@ -165,11 +161,6 @@ func (m *UserPreferences) GetConfirmResign()(*int32) {
 // returns a *int32 when successful
 func (m *UserPreferences) GetCoords()(*int32) {
     return m.coords
-}
-// GetDark gets the dark property value. The dark property
-// returns a *bool when successful
-func (m *UserPreferences) GetDark()(*bool) {
-    return m.dark
 }
 // GetDestination gets the destination property value. The destination property
 // returns a *bool when successful
@@ -297,16 +288,6 @@ func (m *UserPreferences) GetFieldDeserializers()(map[string]func(i878a80d2330e8
         }
         if val != nil {
             m.SetCoords(val)
-        }
-        return nil
-    }
-    res["dark"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDark(val)
         }
         return nil
     }
@@ -540,16 +521,6 @@ func (m *UserPreferences) GetFieldDeserializers()(map[string]func(i878a80d2330e8
         }
         return nil
     }
-    res["transp"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTransp(val)
-        }
-        return nil
-    }
     res["voiceMove"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetBoolValue()
         if err != nil {
@@ -682,11 +653,6 @@ func (m *UserPreferences) GetTheme()(*UserPreferences_theme) {
 func (m *UserPreferences) GetTheme3d()(*UserPreferences_theme3d) {
     return m.theme3d
 }
-// GetTransp gets the transp property value. The transp property
-// returns a *bool when successful
-func (m *UserPreferences) GetTransp()(*bool) {
-    return m.transp
-}
 // GetVoiceMove gets the voiceMove property value. The voiceMove property
 // returns a *bool when successful
 func (m *UserPreferences) GetVoiceMove()(*bool) {
@@ -767,12 +733,6 @@ func (m *UserPreferences) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
     }
     {
         err := writer.WriteInt32Value("coords", m.GetCoords())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("dark", m.GetDark())
         if err != nil {
             return err
         }
@@ -921,12 +881,6 @@ func (m *UserPreferences) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
         }
     }
     {
-        err := writer.WriteBoolValue("transp", m.GetTransp())
-        if err != nil {
-            return err
-        }
-    }
-    {
         err := writer.WriteBoolValue("voiceMove", m.GetVoiceMove())
         if err != nil {
             return err
@@ -997,10 +951,6 @@ func (m *UserPreferences) SetConfirmResign(value *int32)() {
 // SetCoords sets the coords property value. 0 = No, 1 = Inside the board, 2 = Outside the board, 3 = All squares
 func (m *UserPreferences) SetCoords(value *int32)() {
     m.coords = value
-}
-// SetDark sets the dark property value. The dark property
-func (m *UserPreferences) SetDark(value *bool)() {
-    m.dark = value
 }
 // SetDestination sets the destination property value. The destination property
 func (m *UserPreferences) SetDestination(value *bool)() {
@@ -1094,10 +1044,6 @@ func (m *UserPreferences) SetTheme(value *UserPreferences_theme)() {
 func (m *UserPreferences) SetTheme3d(value *UserPreferences_theme3d)() {
     m.theme3d = value
 }
-// SetTransp sets the transp property value. The transp property
-func (m *UserPreferences) SetTransp(value *bool)() {
-    m.transp = value
-}
 // SetVoiceMove sets the voiceMove property value. The voiceMove property
 func (m *UserPreferences) SetVoiceMove(value *bool)() {
     m.voiceMove = value
@@ -1121,7 +1067,6 @@ type UserPreferencesable interface {
     GetClockTenths()(*int32)
     GetConfirmResign()(*int32)
     GetCoords()(*int32)
-    GetDark()(*bool)
     GetDestination()(*bool)
     GetFlairs()(*bool)
     GetFollow()(*bool)
@@ -1145,7 +1090,6 @@ type UserPreferencesable interface {
     GetTakeback()(*int32)
     GetTheme()(*UserPreferences_theme)
     GetTheme3d()(*UserPreferences_theme3d)
-    GetTransp()(*bool)
     GetVoiceMove()(*bool)
     GetZen()(*int32)
     SetAnimation(value *int32)()
@@ -1160,7 +1104,6 @@ type UserPreferencesable interface {
     SetClockTenths(value *int32)()
     SetConfirmResign(value *int32)()
     SetCoords(value *int32)()
-    SetDark(value *bool)()
     SetDestination(value *bool)()
     SetFlairs(value *bool)()
     SetFollow(value *bool)()
@@ -1184,7 +1127,6 @@ type UserPreferencesable interface {
     SetTakeback(value *int32)()
     SetTheme(value *UserPreferences_theme)()
     SetTheme3d(value *UserPreferences_theme3d)()
-    SetTransp(value *bool)()
     SetVoiceMove(value *bool)()
     SetZen(value *int32)()
 }
