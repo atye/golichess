@@ -5409,11 +5409,10 @@ type BroadcastRoundGameStatus string
 
 // BroadcastRoundInfo defines model for BroadcastRoundInfo.
 type BroadcastRoundInfo struct {
-	CreatedAt int64 `json:"createdAt"`
-
 	// CustomScoring Scoring overrides for wins or draws.
 	CustomScoring *BroadcastCustomScoring `json:"customScoring,omitempty"`
-	Delay         *int64                  `json:"delay,omitempty"`
+
+	// Finished Use finishedAt instead
 	// Deprecated: this property has been marked as deprecated upstream, but no `x-deprecated-reason` was set
 	Finished   *bool  `json:"finished,omitempty"`
 	FinishedAt *int64 `json:"finishedAt,omitempty"`
@@ -8210,7 +8209,6 @@ type UserPreferences struct {
 
 	// Coords 0 = No, 1 = Inside the board, 2 = Outside the board, 3 = All squares
 	Coords      *int  `json:"coords,omitempty"`
-	Dark        *bool `json:"dark,omitempty"`
 	Destination *bool `json:"destination,omitempty"`
 
 	// Flairs Show player flairs
@@ -8250,7 +8248,6 @@ type UserPreferences struct {
 	Takeback  *int                    `json:"takeback,omitempty"`
 	Theme     *UserPreferencesTheme   `json:"theme,omitempty"`
 	Theme3d   *UserPreferencesTheme3d `json:"theme3d,omitempty"`
-	Transp    *bool                   `json:"transp,omitempty"`
 	VoiceMove *bool                   `json:"voiceMove,omitempty"`
 
 	// Zen 0 = No, 1 = yes, 2 = in-game only
