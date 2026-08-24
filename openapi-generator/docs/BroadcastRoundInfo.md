@@ -7,22 +7,20 @@ Name | Type | Description | Notes
 **Id** | **string** |  | 
 **Name** | **string** |  | 
 **Slug** | **string** |  | 
-**CreatedAt** | **int64** |  | 
-**Rated** | Pointer to **bool** | Whether the round is used for rating calculations | [optional] 
 **Ongoing** | Pointer to **bool** |  | [optional] 
 **StartsAt** | Pointer to **int64** |  | [optional] 
 **StartsAfterPrevious** | Pointer to **bool** | The start date/time is unknown and the round will start automatically when the previous round completes | [optional] 
 **FinishedAt** | Pointer to **int64** |  | [optional] 
-**Finished** | Pointer to **bool** |  | [optional] 
+**Finished** | Pointer to **bool** | Use finishedAt instead | [optional] 
 **Url** | **string** |  | 
-**Delay** | Pointer to **int64** |  | [optional] 
+**Rated** | Pointer to **bool** | Whether the round is used for rating calculations | [optional] 
 **CustomScoring** | Pointer to [**BroadcastCustomScoring**](BroadcastCustomScoring.md) |  | [optional] 
 
 ## Methods
 
 ### NewBroadcastRoundInfo
 
-`func NewBroadcastRoundInfo(id string, name string, slug string, createdAt int64, url string, ) *BroadcastRoundInfo`
+`func NewBroadcastRoundInfo(id string, name string, slug string, url string, ) *BroadcastRoundInfo`
 
 NewBroadcastRoundInfo instantiates a new BroadcastRoundInfo object
 This constructor will assign default values to properties that have it defined,
@@ -96,51 +94,6 @@ and a boolean to check if the value has been set.
 
 SetSlug sets Slug field to given value.
 
-
-### GetCreatedAt
-
-`func (o *BroadcastRoundInfo) GetCreatedAt() int64`
-
-GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
-
-### GetCreatedAtOk
-
-`func (o *BroadcastRoundInfo) GetCreatedAtOk() (*int64, bool)`
-
-GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCreatedAt
-
-`func (o *BroadcastRoundInfo) SetCreatedAt(v int64)`
-
-SetCreatedAt sets CreatedAt field to given value.
-
-
-### GetRated
-
-`func (o *BroadcastRoundInfo) GetRated() bool`
-
-GetRated returns the Rated field if non-nil, zero value otherwise.
-
-### GetRatedOk
-
-`func (o *BroadcastRoundInfo) GetRatedOk() (*bool, bool)`
-
-GetRatedOk returns a tuple with the Rated field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRated
-
-`func (o *BroadcastRoundInfo) SetRated(v bool)`
-
-SetRated sets Rated field to given value.
-
-### HasRated
-
-`func (o *BroadcastRoundInfo) HasRated() bool`
-
-HasRated returns a boolean if a field has been set.
 
 ### GetOngoing
 
@@ -287,30 +240,30 @@ and a boolean to check if the value has been set.
 SetUrl sets Url field to given value.
 
 
-### GetDelay
+### GetRated
 
-`func (o *BroadcastRoundInfo) GetDelay() int64`
+`func (o *BroadcastRoundInfo) GetRated() bool`
 
-GetDelay returns the Delay field if non-nil, zero value otherwise.
+GetRated returns the Rated field if non-nil, zero value otherwise.
 
-### GetDelayOk
+### GetRatedOk
 
-`func (o *BroadcastRoundInfo) GetDelayOk() (*int64, bool)`
+`func (o *BroadcastRoundInfo) GetRatedOk() (*bool, bool)`
 
-GetDelayOk returns a tuple with the Delay field if it's non-nil, zero value otherwise
+GetRatedOk returns a tuple with the Rated field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDelay
+### SetRated
 
-`func (o *BroadcastRoundInfo) SetDelay(v int64)`
+`func (o *BroadcastRoundInfo) SetRated(v bool)`
 
-SetDelay sets Delay field to given value.
+SetRated sets Rated field to given value.
 
-### HasDelay
+### HasRated
 
-`func (o *BroadcastRoundInfo) HasDelay() bool`
+`func (o *BroadcastRoundInfo) HasRated() bool`
 
-HasDelay returns a boolean if a field has been set.
+HasRated returns a boolean if a field has been set.
 
 ### GetCustomScoring
 

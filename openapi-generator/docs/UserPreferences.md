@@ -4,8 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Dark** | Pointer to **bool** |  | [optional] 
-**Transp** | Pointer to **bool** |  | [optional] 
 **BgImg** | Pointer to **string** |  | [optional] 
 **Is3d** | Pointer to **bool** |  | [optional] 
 **Theme** | Pointer to **string** |  | [optional] 
@@ -62,56 +60,6 @@ will change when the set of required properties is changed
 NewUserPreferencesWithDefaults instantiates a new UserPreferences object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetDark
-
-`func (o *UserPreferences) GetDark() bool`
-
-GetDark returns the Dark field if non-nil, zero value otherwise.
-
-### GetDarkOk
-
-`func (o *UserPreferences) GetDarkOk() (*bool, bool)`
-
-GetDarkOk returns a tuple with the Dark field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDark
-
-`func (o *UserPreferences) SetDark(v bool)`
-
-SetDark sets Dark field to given value.
-
-### HasDark
-
-`func (o *UserPreferences) HasDark() bool`
-
-HasDark returns a boolean if a field has been set.
-
-### GetTransp
-
-`func (o *UserPreferences) GetTransp() bool`
-
-GetTransp returns the Transp field if non-nil, zero value otherwise.
-
-### GetTranspOk
-
-`func (o *UserPreferences) GetTranspOk() (*bool, bool)`
-
-GetTranspOk returns a tuple with the Transp field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTransp
-
-`func (o *UserPreferences) SetTransp(v bool)`
-
-SetTransp sets Transp field to given value.
-
-### HasTransp
-
-`func (o *UserPreferences) HasTransp() bool`
-
-HasTransp returns a boolean if a field has been set.
 
 ### GetBgImg
 

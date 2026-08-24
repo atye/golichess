@@ -94,7 +94,7 @@ info:
     name: AGPL-3.0-or-later
     url: https://www.gnu.org/licenses/agpl-3.0.txt
   title: Lichess.org API reference
-  version: 2.0.165
+  version: 2.0.166
   x-logo:
     url: https://lichess1.org/assets/logo/lichess-pad12.svg
 servers:
@@ -14010,8 +14010,6 @@ components:
     account-getMyPreferences.json:
       value:
         prefs:
-          dark: true
-          transp: false
           bgImg: https://lichess1.org/assets/lifat/background/gallery/bg10.webp
           is3d: false
           theme: brown
@@ -32508,8 +32506,6 @@ components:
       - error
     UserPreferences:
       example:
-        dark: true
-        transp: true
         bgImg: https://openapi-generator.tech
         is3d: true
         theme: blue
@@ -32548,10 +32544,6 @@ components:
         flairs: true
         sayGG: 9
       properties:
-        dark:
-          type: boolean
-        transp:
-          type: boolean
         bgImg:
           format: uri
           type: string
@@ -34715,8 +34707,8 @@ components:
       type: number
     BroadcastCustomPointsPerColor:
       example:
-        win: 2.3021358869347655
-        draw: 7.061401241503109
+        win: 5.962133916683182
+        draw: 5.637376656633329
       properties:
         win:
           maximum: 10
@@ -34733,11 +34725,11 @@ components:
       description: Scoring overrides for wins or draws.
       example:
         white:
-          win: 2.3021358869347655
-          draw: 7.061401241503109
+          win: 5.962133916683182
+          draw: 5.637376656633329
         black:
-          win: 2.3021358869347655
-          draw: 7.061401241503109
+          win: 5.962133916683182
+          draw: 5.637376656633329
       properties:
         white:
           $ref: "#/components/schemas/BroadcastCustomPointsPerColor"
@@ -34751,22 +34743,20 @@ components:
         id: id
         name: name
         slug: slug
-        createdAt: 6
-        rated: true
         ongoing: true
-        startsAt: 1
+        startsAt: 6
         startsAfterPrevious: true
-        finishedAt: 5
+        finishedAt: 1
         finished: true
         url: https://openapi-generator.tech
-        delay: 5
+        rated: true
         customScoring:
           white:
-            win: 2.3021358869347655
-            draw: 7.061401241503109
+            win: 5.962133916683182
+            draw: 5.637376656633329
           black:
-            win: 2.3021358869347655
-            draw: 7.061401241503109
+            win: 5.962133916683182
+            draw: 5.637376656633329
       properties:
         id:
           type: string
@@ -34774,12 +34764,6 @@ components:
           type: string
         slug:
           type: string
-        createdAt:
-          format: int64
-          type: integer
-        rated:
-          description: Whether the round is used for rating calculations
-          type: boolean
         ongoing:
           type: boolean
         startsAt:
@@ -34794,17 +34778,17 @@ components:
           type: integer
         finished:
           deprecated: true
+          description: Use finishedAt instead
           type: boolean
         url:
           format: uri
           type: string
-        delay:
-          format: int64
-          type: integer
+        rated:
+          description: Whether the round is used for rating calculations
+          type: boolean
         customScoring:
           $ref: "#/components/schemas/BroadcastCustomScoring"
       required:
-      - createdAt
       - id
       - name
       - slug
@@ -34851,41 +34835,37 @@ components:
         - id: id
           name: name
           slug: slug
-          createdAt: 6
-          rated: true
           ongoing: true
-          startsAt: 1
+          startsAt: 6
           startsAfterPrevious: true
-          finishedAt: 5
+          finishedAt: 1
           finished: true
           url: https://openapi-generator.tech
-          delay: 5
+          rated: true
           customScoring:
             white:
-              win: 2.3021358869347655
-              draw: 7.061401241503109
+              win: 5.962133916683182
+              draw: 5.637376656633329
             black:
-              win: 2.3021358869347655
-              draw: 7.061401241503109
+              win: 5.962133916683182
+              draw: 5.637376656633329
         - id: id
           name: name
           slug: slug
-          createdAt: 6
-          rated: true
           ongoing: true
-          startsAt: 1
+          startsAt: 6
           startsAfterPrevious: true
-          finishedAt: 5
+          finishedAt: 1
           finished: true
           url: https://openapi-generator.tech
-          delay: 5
+          rated: true
           customScoring:
             white:
-              win: 2.3021358869347655
-              draw: 7.061401241503109
+              win: 5.962133916683182
+              draw: 5.637376656633329
             black:
-              win: 2.3021358869347655
-              draw: 7.061401241503109
+              win: 5.962133916683182
+              draw: 5.637376656633329
         defaultRoundId: defaultRoundId
         photos:
           key:
@@ -34950,22 +34930,20 @@ components:
           id: id
           name: name
           slug: slug
-          createdAt: 6
-          rated: true
           ongoing: true
-          startsAt: 1
+          startsAt: 6
           startsAfterPrevious: true
-          finishedAt: 5
+          finishedAt: 1
           finished: true
           url: https://openapi-generator.tech
-          delay: 5
+          rated: true
           customScoring:
             white:
-              win: 2.3021358869347655
-              draw: 7.061401241503109
+              win: 5.962133916683182
+              draw: 5.637376656633329
             black:
-              win: 2.3021358869347655
-              draw: 7.061401241503109
+              win: 5.962133916683182
+              draw: 5.637376656633329
       properties:
         group:
           type: string
@@ -35012,22 +34990,20 @@ components:
             id: id
             name: name
             slug: slug
-            createdAt: 6
-            rated: true
             ongoing: true
-            startsAt: 1
+            startsAt: 6
             startsAfterPrevious: true
-            finishedAt: 5
+            finishedAt: 1
             finished: true
             url: https://openapi-generator.tech
-            delay: 5
+            rated: true
             customScoring:
               white:
-                win: 2.3021358869347655
-                draw: 7.061401241503109
+                win: 5.962133916683182
+                draw: 5.637376656633329
               black:
-                win: 2.3021358869347655
-                draw: 7.061401241503109
+                win: 5.962133916683182
+                draw: 5.637376656633329
         - group: group
           tour:
             id: id
@@ -35064,22 +35040,20 @@ components:
             id: id
             name: name
             slug: slug
-            createdAt: 6
-            rated: true
             ongoing: true
-            startsAt: 1
+            startsAt: 6
             startsAfterPrevious: true
-            finishedAt: 5
+            finishedAt: 1
             finished: true
             url: https://openapi-generator.tech
-            delay: 5
+            rated: true
             customScoring:
               white:
-                win: 2.3021358869347655
-                draw: 7.061401241503109
+                win: 5.962133916683182
+                draw: 5.637376656633329
               black:
-                win: 2.3021358869347655
-                draw: 7.061401241503109
+                win: 5.962133916683182
+                draw: 5.637376656633329
         upcoming: []
         past:
           currentPage: 4
@@ -35121,22 +35095,20 @@ components:
               id: id
               name: name
               slug: slug
-              createdAt: 6
-              rated: true
               ongoing: true
-              startsAt: 1
+              startsAt: 6
               startsAfterPrevious: true
-              finishedAt: 5
+              finishedAt: 1
               finished: true
               url: https://openapi-generator.tech
-              delay: 5
+              rated: true
               customScoring:
                 white:
-                  win: 2.3021358869347655
-                  draw: 7.061401241503109
+                  win: 5.962133916683182
+                  draw: 5.637376656633329
                 black:
-                  win: 2.3021358869347655
-                  draw: 7.061401241503109
+                  win: 5.962133916683182
+                  draw: 5.637376656633329
           - group: group
             tour:
               id: id
@@ -35173,22 +35145,20 @@ components:
               id: id
               name: name
               slug: slug
-              createdAt: 6
-              rated: true
               ongoing: true
-              startsAt: 1
+              startsAt: 6
               startsAfterPrevious: true
-              finishedAt: 5
+              finishedAt: 1
               finished: true
               url: https://openapi-generator.tech
-              delay: 5
+              rated: true
               customScoring:
                 white:
-                  win: 2.3021358869347655
-                  draw: 7.061401241503109
+                  win: 5.962133916683182
+                  draw: 5.637376656633329
                 black:
-                  win: 2.3021358869347655
-                  draw: 7.061401241503109
+                  win: 5.962133916683182
+                  draw: 5.637376656633329
           previousPage: 3
           nextPage: 5
       properties:
@@ -35504,41 +35474,37 @@ components:
         - id: id
           name: name
           slug: slug
-          createdAt: 6
-          rated: true
           ongoing: true
-          startsAt: 1
+          startsAt: 6
           startsAfterPrevious: true
-          finishedAt: 5
+          finishedAt: 1
           finished: true
           url: https://openapi-generator.tech
-          delay: 5
+          rated: true
           customScoring:
             white:
-              win: 2.3021358869347655
-              draw: 7.061401241503109
+              win: 5.962133916683182
+              draw: 5.637376656633329
             black:
-              win: 2.3021358869347655
-              draw: 7.061401241503109
+              win: 5.962133916683182
+              draw: 5.637376656633329
         - id: id
           name: name
           slug: slug
-          createdAt: 6
-          rated: true
           ongoing: true
-          startsAt: 1
+          startsAt: 6
           startsAfterPrevious: true
-          finishedAt: 5
+          finishedAt: 1
           finished: true
           url: https://openapi-generator.tech
-          delay: 5
+          rated: true
           customScoring:
             white:
-              win: 2.3021358869347655
-              draw: 7.061401241503109
+              win: 5.962133916683182
+              draw: 5.637376656633329
             black:
-              win: 2.3021358869347655
-              draw: 7.061401241503109
+              win: 5.962133916683182
+              draw: 5.637376656633329
         defaultRoundId: defaultRoundId
         photos:
           key:
@@ -36180,22 +36146,20 @@ components:
           id: id
           name: name
           slug: slug
-          createdAt: 6
-          rated: true
           ongoing: true
-          startsAt: 1
+          startsAt: 6
           startsAfterPrevious: true
-          finishedAt: 5
+          finishedAt: 1
           finished: true
           url: https://openapi-generator.tech
-          delay: 5
+          rated: true
           customScoring:
             white:
-              win: 2.3021358869347655
-              draw: 7.061401241503109
+              win: 5.962133916683182
+              draw: 5.637376656633329
             black:
-              win: 2.3021358869347655
-              draw: 7.061401241503109
+              win: 5.962133916683182
+              draw: 5.637376656633329
         tour:
           id: id
           name: name
@@ -36304,22 +36268,20 @@ components:
           id: id
           name: name
           slug: slug
-          createdAt: 6
-          rated: true
           ongoing: true
-          startsAt: 1
+          startsAt: 6
           startsAfterPrevious: true
-          finishedAt: 5
+          finishedAt: 1
           finished: true
           url: https://openapi-generator.tech
-          delay: 5
+          rated: true
           customScoring:
             white:
-              win: 2.3021358869347655
-              draw: 7.061401241503109
+              win: 5.962133916683182
+              draw: 5.637376656633329
             black:
-              win: 2.3021358869347655
-              draw: 7.061401241503109
+              win: 5.962133916683182
+              draw: 5.637376656633329
         tour:
           id: id
           name: name
@@ -36476,22 +36438,20 @@ components:
           id: id
           name: name
           slug: slug
-          createdAt: 6
-          rated: true
           ongoing: true
-          startsAt: 1
+          startsAt: 6
           startsAfterPrevious: true
-          finishedAt: 5
+          finishedAt: 1
           finished: true
           url: https://openapi-generator.tech
-          delay: 5
+          rated: true
           customScoring:
             white:
-              win: 2.3021358869347655
-              draw: 7.061401241503109
+              win: 5.962133916683182
+              draw: 5.637376656633329
             black:
-              win: 2.3021358869347655
-              draw: 7.061401241503109
+              win: 5.962133916683182
+              draw: 5.637376656633329
         tour:
           id: id
           name: name
@@ -38722,8 +38682,6 @@ components:
     account_200_response:
       example:
         prefs:
-          dark: true
-          transp: true
           bgImg: https://openapi-generator.tech
           is3d: true
           theme: blue
@@ -40475,22 +40433,20 @@ components:
             id: id
             name: name
             slug: slug
-            createdAt: 6
-            rated: true
             ongoing: true
-            startsAt: 1
+            startsAt: 6
             startsAfterPrevious: true
-            finishedAt: 5
+            finishedAt: 1
             finished: true
             url: https://openapi-generator.tech
-            delay: 5
+            rated: true
             customScoring:
               white:
-                win: 2.3021358869347655
-                draw: 7.061401241503109
+                win: 5.962133916683182
+                draw: 5.637376656633329
               black:
-                win: 2.3021358869347655
-                draw: 7.061401241503109
+                win: 5.962133916683182
+                draw: 5.637376656633329
         - group: group
           tour:
             id: id
@@ -40527,22 +40483,20 @@ components:
             id: id
             name: name
             slug: slug
-            createdAt: 6
-            rated: true
             ongoing: true
-            startsAt: 1
+            startsAt: 6
             startsAfterPrevious: true
-            finishedAt: 5
+            finishedAt: 1
             finished: true
             url: https://openapi-generator.tech
-            delay: 5
+            rated: true
             customScoring:
               white:
-                win: 2.3021358869347655
-                draw: 7.061401241503109
+                win: 5.962133916683182
+                draw: 5.637376656633329
               black:
-                win: 2.3021358869347655
-                draw: 7.061401241503109
+                win: 5.962133916683182
+                draw: 5.637376656633329
         previousPage: 1
         nextPage: 5
       properties:
@@ -44028,22 +43982,20 @@ components:
             id: id
             name: name
             slug: slug
-            createdAt: 6
-            rated: true
             ongoing: true
-            startsAt: 1
+            startsAt: 6
             startsAfterPrevious: true
-            finishedAt: 5
+            finishedAt: 1
             finished: true
             url: https://openapi-generator.tech
-            delay: 5
+            rated: true
             customScoring:
               white:
-                win: 2.3021358869347655
-                draw: 7.061401241503109
+                win: 5.962133916683182
+                draw: 5.637376656633329
               black:
-                win: 2.3021358869347655
-                draw: 7.061401241503109
+                win: 5.962133916683182
+                draw: 5.637376656633329
         - group: group
           tour:
             id: id
@@ -44080,22 +44032,20 @@ components:
             id: id
             name: name
             slug: slug
-            createdAt: 6
-            rated: true
             ongoing: true
-            startsAt: 1
+            startsAt: 6
             startsAfterPrevious: true
-            finishedAt: 5
+            finishedAt: 1
             finished: true
             url: https://openapi-generator.tech
-            delay: 5
+            rated: true
             customScoring:
               white:
-                win: 2.3021358869347655
-                draw: 7.061401241503109
+                win: 5.962133916683182
+                draw: 5.637376656633329
               black:
-                win: 2.3021358869347655
-                draw: 7.061401241503109
+                win: 5.962133916683182
+                draw: 5.637376656633329
         previousPage: 3
         nextPage: 5
       properties:
