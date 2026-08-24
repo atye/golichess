@@ -403,8 +403,6 @@ type PuzzleRaceResults struct {
 type NotFound = any
 
 type UserPreferences struct {
-	Dark       *bool   `json:"dark,omitempty"`
-	Transp     *bool   `json:"transp,omitempty"`
 	BgImg      *string `json:"bgImg,omitempty"`
 	Is3d       *bool   `json:"is3d,omitempty"`
 	Theme      *string `json:"theme,omitempty"`
@@ -1161,21 +1159,21 @@ type BroadcastCustomScoring struct {
 }
 
 type BroadcastRoundInfo struct {
-	ID        string `json:"id"`
-	Name      string `json:"name"`
-	Slug      string `json:"slug"`
-	CreatedAt int64  `json:"createdAt"`
-	// Whether the round is used for rating calculations
-	Rated    *bool  `json:"rated,omitempty"`
+	ID       string `json:"id"`
+	Name     string `json:"name"`
+	Slug     string `json:"slug"`
 	Ongoing  *bool  `json:"ongoing,omitempty"`
 	StartsAt *int64 `json:"startsAt,omitempty"`
 	// The start date/time is unknown and the round will start automatically when the previous round completes
 	StartsAfterPrevious *bool  `json:"startsAfterPrevious,omitempty"`
 	FinishedAt          *int64 `json:"finishedAt,omitempty"`
+	// Use finishedAt instead
+	//
 	// Deprecated: this field is deprecated.
 	Finished *bool  `json:"finished,omitempty"`
 	URL      string `json:"url"`
-	Delay    *int64 `json:"delay,omitempty"`
+	// Whether the round is used for rating calculations
+	Rated *bool `json:"rated,omitempty"`
 	// Scoring overrides for wins or draws.
 	CustomScoring *BroadcastCustomScoring `json:"customScoring,omitempty"`
 }
