@@ -85,16 +85,11 @@ func (dst *GameEventOpponent) UnmarshalJSON(data []byte) error {
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match
-        if err != nil {
-            return fmt.Errorf("data failed to match schemas in oneOf(GameEventOpponent): %v", err)
-        } else {
-            return fmt.Errorf("data failed to match schemas in oneOf(GameEventOpponent)")
-        }
-        if err != nil {
-            return fmt.Errorf("data failed to match schemas in oneOf(GameEventOpponent): %v", err)
-        } else {
-            return fmt.Errorf("data failed to match schemas in oneOf(GameEventOpponent)")
-        }
+		if err != nil {
+			return fmt.Errorf("data failed to match schemas in oneOf(GameEventOpponent): %v", err)
+		}
+
+		return fmt.Errorf("data failed to match schemas in oneOf(GameEventOpponent)")
 	}
 }
 

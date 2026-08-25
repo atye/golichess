@@ -9076,6 +9076,7 @@ paths:
               schema:
                 additionalProperties:
                   type: string
+                type: object
           description: The `challenge:write` tokens of each user
           headers:
             Access-Control-Allow-Origin:
@@ -9777,6 +9778,7 @@ paths:
               schema:
                 additionalProperties:
                   $ref: "#/components/schemas/tokenTest_200_response_value"
+                type: object
           description: The representation of the OAuth tokens.
       security: []
       summary: Test multiple OAuth tokens
@@ -29876,6 +29878,7 @@ components:
         perfs:
           additionalProperties:
             $ref: "#/components/schemas/TopUser_perfs_value"
+          type: object
         title:
           $ref: "#/components/schemas/Title"
         patron:
@@ -32384,6 +32387,7 @@ components:
         themes:
           additionalProperties:
             $ref: "#/components/schemas/PuzzleDashboard_themes_value"
+          type: object
       required:
       - days
       - global
@@ -33044,6 +33048,7 @@ components:
         users:
           additionalProperties:
             $ref: "#/components/schemas/Timeline_users_value"
+          type: object
       required:
       - entries
       - users
@@ -34797,6 +34802,7 @@ components:
       additionalProperties:
         $ref: "#/components/schemas/BroadcastPhotos_value"
       description: "Photos of players, when available. The object keys are FIDE IDs"
+      type: object
     BroadcastWithRounds:
       example:
         tour:
@@ -34889,6 +34895,7 @@ components:
             $ref: "#/components/schemas/BroadcastPhotos_value"
           description: "Photos of players, when available. The object keys are FIDE\
             \ IDs"
+          type: object
       required:
       - rounds
       - tour
@@ -35528,6 +35535,7 @@ components:
             $ref: "#/components/schemas/BroadcastPhotos_value"
           description: "Photos of players, when available. The object keys are FIDE\
             \ IDs"
+          type: object
       required:
       - rounds
       - tour
@@ -36402,6 +36410,7 @@ components:
             $ref: "#/components/schemas/BroadcastPhotos_value"
           description: "Photos of players, when available. The object keys are FIDE\
             \ IDs"
+          type: object
       required:
       - games
       - photos
@@ -36411,6 +36420,7 @@ components:
     BroadcastPgnPushTags:
       additionalProperties:
         type: string
+      type: object
     BroadcastPgnPush:
       example:
         games:
@@ -37150,7 +37160,8 @@ components:
         nbGames: 346
       properties:
         users:
-          additionalProperties: {}
+          additionalProperties:
+            type: number
         nbGames:
           type: integer
       required:
@@ -44161,6 +44172,7 @@ components:
         tags:
           additionalProperties:
             type: string
+          type: object
         moves:
           type: integer
         error:
