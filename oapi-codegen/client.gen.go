@@ -4811,6 +4811,7 @@ type ArenaTournamentFull struct {
 			PatronColor *PatronColor `json:"patronColor,omitempty"`
 			Rank        *int         `json:"rank,omitempty"`
 			Rating      *int         `json:"rating,omitempty"`
+			RealName    *string      `json:"realName,omitempty"`
 			Score       *int         `json:"score,omitempty"`
 			Sheet       *ArenaSheet  `json:"sheet,omitempty"`
 
@@ -5409,6 +5410,8 @@ type BroadcastRoundGameStatus string
 
 // BroadcastRoundInfo defines model for BroadcastRoundInfo.
 type BroadcastRoundInfo struct {
+	CreatedAt *int64 `json:"createdAt,omitempty"`
+
 	// CustomScoring Scoring overrides for wins or draws.
 	CustomScoring *BroadcastCustomScoring `json:"customScoring,omitempty"`
 
@@ -6325,15 +6328,32 @@ type GameOpening struct {
 // 1. e4 { [%clk 0:03:00] } e5 { [%clk 0:03:00] } 2. Nf3 { [%clk 0:02:59] } Nc6 { [%clk 0:02:58] } 3. Bb5 { [%clk 0:02:57] } d6 { [%clk 0:02:55] } 4. h3 { [%clk 0:02:54] } Nf6 { [%clk 0:02:52] } 5. Bxc6+ { [%clk 0:02:52] } bxc6 { [%clk 0:02:49] } 6. d3 { [%clk 0:02:51] } Be7 { [%clk 0:02:46] } 7. O-O { [%clk 0:02:47] } O-O { [%clk 0:02:45] } 8. b3 { [%clk 0:02:45] } d5 { [%clk 0:02:45] } 9. exd5 { [%clk 0:02:33] } cxd5 { [%clk 0:02:40] } 10. Nxe5 { [%clk 0:02:31] } Qd6 { [%clk 0:02:38] } 1-0
 type GamePgn = string
 
-// GamePlayerUser defines model for GamePlayerUser.
-type GamePlayerUser struct {
-	AiLevel  *int `json:"aiLevel,omitempty"`
+// GamePlayerAi One side of a game played by the Stockfish AI. AI sides carry the
+// strength level instead of `user` and `rating`.
+type GamePlayerAi struct {
+	AiLevel  int `json:"aiLevel"`
 	Analysis *struct {
 		Accuracy   *int `json:"accuracy,omitempty"`
 		Acpl       int  `json:"acpl"`
 		Blunder    int  `json:"blunder"`
 		Inaccuracy int  `json:"inaccuracy"`
 		Mistake    int  `json:"mistake"`
+	} `json:"analysis,omitempty"`
+}
+
+// GamePlayerUser defines model for GamePlayerUser.
+type GamePlayerUser struct {
+	Analysis *struct {
+		Accuracy   *int `json:"accuracy,omitempty"`
+		Acpl       int  `json:"acpl"`
+		Blunder    int  `json:"blunder"`
+		Inaccuracy int  `json:"inaccuracy"`
+		Mistake    int  `json:"mistake"`
+		Phases     *struct {
+			Endgame    *int `json:"endgame,omitempty"`
+			Middlegame *int `json:"middlegame,omitempty"`
+			Opening    *int `json:"opening,omitempty"`
+		} `json:"phases,omitempty"`
 	} `json:"analysis,omitempty"`
 	Name        *string   `json:"name,omitempty"`
 	Provisional *bool     `json:"provisional,omitempty"`
@@ -6345,8 +6365,18 @@ type GamePlayerUser struct {
 
 // GamePlayers defines model for GamePlayers.
 type GamePlayers struct {
-	Black GamePlayerUser `json:"black"`
-	White GamePlayerUser `json:"white"`
+	Black GamePlayers_Black `json:"black"`
+	White GamePlayers_White `json:"white"`
+}
+
+// GamePlayers_Black defines model for GamePlayers.Black.
+type GamePlayers_Black struct {
+	union json.RawMessage
+}
+
+// GamePlayers_White defines model for GamePlayers.White.
+type GamePlayers_White struct {
+	union json.RawMessage
 }
 
 // GameSource defines model for GameSource.
@@ -7590,8 +7620,8 @@ type TimeControl0 struct {
 	Limit     *int `json:"limit,omitempty"`
 
 	// Show Example: 5+2
-	Show *string           `json:"show,omitempty"`
-	Type *TimeControl0Type `json:"type,omitempty"`
+	Show *string          `json:"show,omitempty"`
+	Type TimeControl0Type `json:"type"`
 }
 
 // TimeControl0Type defines model for TimeControl.0.Type.
@@ -7599,8 +7629,8 @@ type TimeControl0Type string
 
 // TimeControl1 defines model for TimeControl.1.
 type TimeControl1 struct {
-	DaysPerTurn *int              `json:"daysPerTurn,omitempty"`
-	Type        *TimeControl1Type `json:"type,omitempty"`
+	DaysPerTurn *int             `json:"daysPerTurn,omitempty"`
+	Type        TimeControl1Type `json:"type"`
 }
 
 // TimeControl1Type defines model for TimeControl.1.Type.
@@ -7608,7 +7638,7 @@ type TimeControl1Type string
 
 // TimeControl2 defines model for TimeControl.2.
 type TimeControl2 struct {
-	Type *TimeControl2Type `json:"type,omitempty"`
+	Type TimeControl2Type `json:"type"`
 }
 
 // TimeControl2Type defines model for TimeControl.2.Type.
@@ -11111,6 +11141,130 @@ func (t GameEventOpponent) MarshalJSON() ([]byte, error) {
 }
 
 func (t *GameEventOpponent) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsGamePlayerUser returns the union data inside the GamePlayers_Black as a GamePlayerUser
+func (t GamePlayers_Black) AsGamePlayerUser() (GamePlayerUser, error) {
+	var body GamePlayerUser
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromGamePlayerUser overwrites any union data inside the GamePlayers_Black as the provided GamePlayerUser
+func (t *GamePlayers_Black) FromGamePlayerUser(v GamePlayerUser) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeGamePlayerUser performs a merge with any union data inside the GamePlayers_Black, using the provided GamePlayerUser
+func (t *GamePlayers_Black) MergeGamePlayerUser(v GamePlayerUser) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsGamePlayerAi returns the union data inside the GamePlayers_Black as a GamePlayerAi
+func (t GamePlayers_Black) AsGamePlayerAi() (GamePlayerAi, error) {
+	var body GamePlayerAi
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromGamePlayerAi overwrites any union data inside the GamePlayers_Black as the provided GamePlayerAi
+func (t *GamePlayers_Black) FromGamePlayerAi(v GamePlayerAi) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeGamePlayerAi performs a merge with any union data inside the GamePlayers_Black, using the provided GamePlayerAi
+func (t *GamePlayers_Black) MergeGamePlayerAi(v GamePlayerAi) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t GamePlayers_Black) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *GamePlayers_Black) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsGamePlayerUser returns the union data inside the GamePlayers_White as a GamePlayerUser
+func (t GamePlayers_White) AsGamePlayerUser() (GamePlayerUser, error) {
+	var body GamePlayerUser
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromGamePlayerUser overwrites any union data inside the GamePlayers_White as the provided GamePlayerUser
+func (t *GamePlayers_White) FromGamePlayerUser(v GamePlayerUser) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeGamePlayerUser performs a merge with any union data inside the GamePlayers_White, using the provided GamePlayerUser
+func (t *GamePlayers_White) MergeGamePlayerUser(v GamePlayerUser) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsGamePlayerAi returns the union data inside the GamePlayers_White as a GamePlayerAi
+func (t GamePlayers_White) AsGamePlayerAi() (GamePlayerAi, error) {
+	var body GamePlayerAi
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromGamePlayerAi overwrites any union data inside the GamePlayers_White as the provided GamePlayerAi
+func (t *GamePlayers_White) FromGamePlayerAi(v GamePlayerAi) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeGamePlayerAi performs a merge with any union data inside the GamePlayers_White, using the provided GamePlayerAi
+func (t *GamePlayers_White) MergeGamePlayerAi(v GamePlayerAi) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t GamePlayers_White) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *GamePlayers_White) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
