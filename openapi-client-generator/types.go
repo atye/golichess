@@ -586,14 +586,20 @@ type GamePlayerUser struct {
 	RatingDiff  *int64                  `json:"ratingDiff,omitempty"`
 	Name        *string                 `json:"name,omitempty"`
 	Provisional *bool                   `json:"provisional,omitempty"`
-	AiLevel     *int64                  `json:"aiLevel,omitempty"`
 	Analysis    *GamePlayerUserAnalysis `json:"analysis,omitempty"`
 	Team        *string                 `json:"team,omitempty"`
 }
 
+// GamePlayerAi - One side of a game played by the Stockfish AI. AI sides carry the
+// strength level instead of `user` and `rating`.
+type GamePlayerAi struct {
+	AiLevel  int64                 `json:"aiLevel"`
+	Analysis *GamePlayerAiAnalysis `json:"analysis,omitempty"`
+}
+
 type GamePlayers struct {
-	White GamePlayerUser `json:"white"`
-	Black GamePlayerUser `json:"black"`
+	White GamePlayersWhite `json:"white"`
+	Black GamePlayersWhite `json:"black"`
 }
 
 type GameOpening struct {
@@ -1159,11 +1165,12 @@ type BroadcastCustomScoring struct {
 }
 
 type BroadcastRoundInfo struct {
-	ID       string `json:"id"`
-	Name     string `json:"name"`
-	Slug     string `json:"slug"`
-	Ongoing  *bool  `json:"ongoing,omitempty"`
-	StartsAt *int64 `json:"startsAt,omitempty"`
+	ID        string `json:"id"`
+	Name      string `json:"name"`
+	Slug      string `json:"slug"`
+	CreatedAt *int64 `json:"createdAt,omitempty"`
+	Ongoing   *bool  `json:"ongoing,omitempty"`
+	StartsAt  *int64 `json:"startsAt,omitempty"`
 	// The start date/time is unknown and the round will start automatically when the previous round completes
 	StartsAfterPrevious *bool  `json:"startsAfterPrevious,omitempty"`
 	FinishedAt          *int64 `json:"finishedAt,omitempty"`
@@ -3044,12 +3051,67 @@ type TimelineUsersValue struct {
 	PatronColor *PatronColor `json:"patronColor,omitempty"`
 }
 
+type GamePlayerUserAnalysisPhases struct {
+	Opening    *int64 `json:"opening,omitempty"`
+	Middlegame *int64 `json:"middlegame,omitempty"`
+	Endgame    *int64 `json:"endgame,omitempty"`
+}
+
 type GamePlayerUserAnalysis struct {
+	Inaccuracy int64                         `json:"inaccuracy"`
+	Mistake    int64                         `json:"mistake"`
+	Blunder    int64                         `json:"blunder"`
+	Acpl       int64                         `json:"acpl"`
+	Accuracy   *int64                        `json:"accuracy,omitempty"`
+	Phases     *GamePlayerUserAnalysisPhases `json:"phases,omitempty"`
+}
+
+type GamePlayerAiAnalysis struct {
 	Inaccuracy int64  `json:"inaccuracy"`
 	Mistake    int64  `json:"mistake"`
 	Blunder    int64  `json:"blunder"`
 	Acpl       int64  `json:"acpl"`
 	Accuracy   *int64 `json:"accuracy,omitempty"`
+}
+
+// GamePlayersWhite represents a union type (oneOf/anyOf).
+// Variants: GamePlayerUser, GamePlayerAi
+type GamePlayersWhite struct {
+	Value any
+}
+
+// unionValue hands the decoded variant to the parameter encoders, which write
+// the value a union carries rather than the wrapper carrying it.
+func (u GamePlayersWhite) unionValue() any {
+	return u.Value
+}
+
+// MarshalJSON implements json.Marshaler for GamePlayersWhite.
+func (u GamePlayersWhite) MarshalJSON() ([]byte, error) {
+	return json.Marshal(u.Value)
+}
+
+// UnmarshalJSON implements json.Unmarshaler for GamePlayersWhite.
+func (u *GamePlayersWhite) UnmarshalJSON(data []byte) error {
+	if string(data) == "null" {
+		return nil
+	}
+	var errors []error
+	var variant0 GamePlayerUser
+	if err := json.Unmarshal(data, &variant0); err == nil {
+		u.Value = variant0
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	var variant1 GamePlayerAi
+	if err := json.Unmarshal(data, &variant1); err == nil {
+		u.Value = variant1
+		return nil
+	} else {
+		errors = append(errors, err)
+	}
+	return fmt.Errorf("data did not match any variant of GamePlayersWhite: %v", errors)
 }
 
 // GameMoveAnalysisJudgment - Judgment annotation (only if played move was inaccurate)
@@ -3236,11 +3298,12 @@ type ArenaTournamentFullStandingPlayersItem struct {
 	// The presence of this field indicates the player is an active Patron.
 	PatronColor *PatronColor `json:"patronColor,omitempty"`
 	// See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
-	Flair  *Flair      `json:"flair,omitempty"`
-	Rank   *int64      `json:"rank,omitempty"`
-	Rating *int64      `json:"rating,omitempty"`
-	Score  *int64      `json:"score,omitempty"`
-	Sheet  *ArenaSheet `json:"sheet,omitempty"`
+	Flair    *Flair      `json:"flair,omitempty"`
+	Rank     *int64      `json:"rank,omitempty"`
+	Rating   *int64      `json:"rating,omitempty"`
+	Score    *int64      `json:"score,omitempty"`
+	Sheet    *ArenaSheet `json:"sheet,omitempty"`
+	RealName *string     `json:"realName,omitempty"`
 }
 
 type ArenaTournamentFullStanding struct {
@@ -3455,19 +3518,19 @@ type AiOpponent struct {
 }
 
 type RealTime struct {
-	Type      *string `json:"type,omitempty"`
+	Type      string  `json:"type"`
 	Limit     *int64  `json:"limit,omitempty"`
 	Increment *int64  `json:"increment,omitempty"`
 	Show      *string `json:"show,omitempty"`
 }
 
 type Correspondence struct {
-	Type        *string `json:"type,omitempty"`
-	DaysPerTurn *int64  `json:"daysPerTurn,omitempty"`
+	Type        string `json:"type"`
+	DaysPerTurn *int64 `json:"daysPerTurn,omitempty"`
 }
 
 type Unlimited struct {
-	Type *string `json:"type,omitempty"`
+	Type string `json:"type"`
 }
 
 type ChallengeJSONPerf struct {
@@ -4930,7 +4993,7 @@ type GameEventOpponentBase struct {
 // Derived from the variants rather than declared by the spec, so it
 // changes when they do.
 type TimeControlBase struct {
-	Type *string `json:"type,omitempty"`
+	Type string `json:"type"`
 }
 
 // TimelineEntriesItemBase - The properties every variant of TimelineEntriesItem declares.
