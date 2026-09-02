@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | Pointer to **string** |  | [optional] 
+**Type** | **string** |  | 
 **Limit** | Pointer to **int32** |  | [optional] 
 **Increment** | Pointer to **int32** |  | [optional] 
 **Show** | Pointer to **string** |  | [optional] 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewRealTime
 
-`func NewRealTime() *RealTime`
+`func NewRealTime(type_ string, ) *RealTime`
 
 NewRealTime instantiates a new RealTime object
 This constructor will assign default values to properties that have it defined,
@@ -47,11 +47,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-### HasType
-
-`func (o *RealTime) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### GetLimit
 

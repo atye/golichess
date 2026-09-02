@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Blunder** | **int32** |  | 
 **Acpl** | **int32** |  | 
 **Accuracy** | Pointer to **int32** |  | [optional] 
+**Phases** | Pointer to [**GamePlayerUserAnalysisPhases**](GamePlayerUserAnalysisPhases.md) |  | [optional] 
 
 ## Methods
 
@@ -133,6 +134,31 @@ SetAccuracy sets Accuracy field to given value.
 `func (o *GamePlayerUserAnalysis) HasAccuracy() bool`
 
 HasAccuracy returns a boolean if a field has been set.
+
+### GetPhases
+
+`func (o *GamePlayerUserAnalysis) GetPhases() GamePlayerUserAnalysisPhases`
+
+GetPhases returns the Phases field if non-nil, zero value otherwise.
+
+### GetPhasesOk
+
+`func (o *GamePlayerUserAnalysis) GetPhasesOk() (*GamePlayerUserAnalysisPhases, bool)`
+
+GetPhasesOk returns a tuple with the Phases field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPhases
+
+`func (o *GamePlayerUserAnalysis) SetPhases(v GamePlayerUserAnalysisPhases)`
+
+SetPhases sets Phases field to given value.
+
+### HasPhases
+
+`func (o *GamePlayerUserAnalysis) HasPhases() bool`
+
+HasPhases returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

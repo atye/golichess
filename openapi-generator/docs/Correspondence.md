@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | Pointer to **string** |  | [optional] 
+**Type** | **string** |  | 
 **DaysPerTurn** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
 ### NewCorrespondence
 
-`func NewCorrespondence() *Correspondence`
+`func NewCorrespondence(type_ string, ) *Correspondence`
 
 NewCorrespondence instantiates a new Correspondence object
 This constructor will assign default values to properties that have it defined,
@@ -45,11 +45,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-### HasType
-
-`func (o *Correspondence) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### GetDaysPerTurn
 

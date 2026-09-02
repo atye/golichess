@@ -183,9 +183,13 @@ docs/GameMoveAnalysis.md
 docs/GameMoveAnalysisJudgment.md
 docs/GameOpening.md
 docs/GamePgn200Response.md
+docs/GamePlayerAi.md
+docs/GamePlayerAiAnalysis.md
 docs/GamePlayerUser.md
 docs/GamePlayerUserAnalysis.md
+docs/GamePlayerUserAnalysisPhases.md
 docs/GamePlayers.md
+docs/GamePlayersWhite.md
 docs/GameSource.md
 docs/GameStartEvent.md
 docs/GameStateEvent.md
@@ -561,9 +565,13 @@ model_game_move_analysis.go
 model_game_move_analysis_judgment.go
 model_game_opening.go
 model_game_pgn_200_response.go
+model_game_player_ai.go
+model_game_player_ai_analysis.go
 model_game_player_user.go
 model_game_player_user_analysis.go
+model_game_player_user_analysis_phases.go
 model_game_players.go
+model_game_players_white.go
 model_game_source.go
 model_game_start_event.go
 model_game_state_event.go

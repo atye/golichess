@@ -9,7 +9,6 @@ Name | Type | Description | Notes
 **RatingDiff** | Pointer to **int32** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Provisional** | Pointer to **bool** |  | [optional] 
-**AiLevel** | Pointer to **int32** |  | [optional] 
 **Analysis** | Pointer to [**GamePlayerUserAnalysis**](GamePlayerUserAnalysis.md) |  | [optional] 
 **Team** | Pointer to **string** |  | [optional] 
 
@@ -146,31 +145,6 @@ SetProvisional sets Provisional field to given value.
 `func (o *GamePlayerUser) HasProvisional() bool`
 
 HasProvisional returns a boolean if a field has been set.
-
-### GetAiLevel
-
-`func (o *GamePlayerUser) GetAiLevel() int32`
-
-GetAiLevel returns the AiLevel field if non-nil, zero value otherwise.
-
-### GetAiLevelOk
-
-`func (o *GamePlayerUser) GetAiLevelOk() (*int32, bool)`
-
-GetAiLevelOk returns a tuple with the AiLevel field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAiLevel
-
-`func (o *GamePlayerUser) SetAiLevel(v int32)`
-
-SetAiLevel sets AiLevel field to given value.
-
-### HasAiLevel
-
-`func (o *GamePlayerUser) HasAiLevel() bool`
-
-HasAiLevel returns a boolean if a field has been set.
 
 ### GetAnalysis
 

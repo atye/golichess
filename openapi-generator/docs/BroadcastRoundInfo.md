@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Id** | **string** |  | 
 **Name** | **string** |  | 
 **Slug** | **string** |  | 
+**CreatedAt** | Pointer to **int64** |  | [optional] 
 **Ongoing** | Pointer to **bool** |  | [optional] 
 **StartsAt** | Pointer to **int64** |  | [optional] 
 **StartsAfterPrevious** | Pointer to **bool** | The start date/time is unknown and the round will start automatically when the previous round completes | [optional] 
@@ -94,6 +95,31 @@ and a boolean to check if the value has been set.
 
 SetSlug sets Slug field to given value.
 
+
+### GetCreatedAt
+
+`func (o *BroadcastRoundInfo) GetCreatedAt() int64`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *BroadcastRoundInfo) GetCreatedAtOk() (*int64, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *BroadcastRoundInfo) SetCreatedAt(v int64)`
+
+SetCreatedAt sets CreatedAt field to given value.
+
+### HasCreatedAt
+
+`func (o *BroadcastRoundInfo) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
 
 ### GetOngoing
 

@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **Rating** | Pointer to **int32** |  | [optional] 
 **Score** | Pointer to **int32** |  | [optional] 
 **Sheet** | Pointer to [**ArenaSheet**](ArenaSheet.md) |  | [optional] 
+**RealName** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -257,6 +258,31 @@ SetSheet sets Sheet field to given value.
 `func (o *ArenaTournamentFullStandingPlayersInner) HasSheet() bool`
 
 HasSheet returns a boolean if a field has been set.
+
+### GetRealName
+
+`func (o *ArenaTournamentFullStandingPlayersInner) GetRealName() string`
+
+GetRealName returns the RealName field if non-nil, zero value otherwise.
+
+### GetRealNameOk
+
+`func (o *ArenaTournamentFullStandingPlayersInner) GetRealNameOk() (*string, bool)`
+
+GetRealNameOk returns a tuple with the RealName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRealName
+
+`func (o *ArenaTournamentFullStandingPlayersInner) SetRealName(v string)`
+
+SetRealName sets RealName field to given value.
+
+### HasRealName
+
+`func (o *ArenaTournamentFullStandingPlayersInner) HasRealName() bool`
+
+HasRealName returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
