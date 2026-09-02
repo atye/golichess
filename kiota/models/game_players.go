@@ -11,9 +11,185 @@ type GamePlayers struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
     // The black property
-    black GamePlayerUserable
+    black GamePlayers_GamePlayers_blackable
     // The white property
-    white GamePlayerUserable
+    white GamePlayers_GamePlayers_whiteable
+}
+// GamePlayers_GamePlayers_black composed type wrapper for classes GamePlayerAiable, GamePlayerUserable
+type GamePlayers_GamePlayers_black struct {
+    // Composed type representation for type GamePlayerAiable
+    gamePlayerAi GamePlayerAiable
+    // Composed type representation for type GamePlayerUserable
+    gamePlayerUser GamePlayerUserable
+}
+// NewGamePlayers_GamePlayers_black instantiates a new GamePlayers_GamePlayers_black and sets the default values.
+func NewGamePlayers_GamePlayers_black()(*GamePlayers_GamePlayers_black) {
+    m := &GamePlayers_GamePlayers_black{
+    }
+    return m
+}
+// CreateGamePlayers_GamePlayers_blackFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
+// returns a Parsable when successful
+func CreateGamePlayers_GamePlayers_blackFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+    result := NewGamePlayers_GamePlayers_black()
+    if parseNode != nil {
+        mappingValueNode, err := parseNode.GetChildNode("")
+        if err != nil {
+            return nil, err
+        }
+        if mappingValueNode != nil {
+            mappingValue, err := mappingValueNode.GetStringValue()
+            if err != nil {
+                return nil, err
+            }
+            if mappingValue != nil {
+            }
+        }
+    }
+    return result, nil
+}
+// GetFieldDeserializers the deserialization information for the current model
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
+func (m *GamePlayers_GamePlayers_black) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
+    if m.GetGamePlayerAi() != nil {
+        return m.GetGamePlayerAi().GetFieldDeserializers()
+    } else if m.GetGamePlayerUser() != nil {
+        return m.GetGamePlayerUser().GetFieldDeserializers()
+    }
+    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+}
+// GetGamePlayerAi gets the GamePlayerAi property value. Composed type representation for type GamePlayerAiable
+// returns a GamePlayerAiable when successful
+func (m *GamePlayers_GamePlayers_black) GetGamePlayerAi()(GamePlayerAiable) {
+    return m.gamePlayerAi
+}
+// GetGamePlayerUser gets the GamePlayerUser property value. Composed type representation for type GamePlayerUserable
+// returns a GamePlayerUserable when successful
+func (m *GamePlayers_GamePlayers_black) GetGamePlayerUser()(GamePlayerUserable) {
+    return m.gamePlayerUser
+}
+// GetIsComposedType determines if the current object is a wrapper around a composed type
+// returns a bool when successful
+func (m *GamePlayers_GamePlayers_black) GetIsComposedType()(bool) {
+    return true
+}
+// Serialize serializes information the current object
+func (m *GamePlayers_GamePlayers_black) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+    if m.GetGamePlayerAi() != nil {
+        err := writer.WriteObjectValue("", m.GetGamePlayerAi())
+        if err != nil {
+            return err
+        }
+    } else if m.GetGamePlayerUser() != nil {
+        err := writer.WriteObjectValue("", m.GetGamePlayerUser())
+        if err != nil {
+            return err
+        }
+    }
+    return nil
+}
+// SetGamePlayerAi sets the GamePlayerAi property value. Composed type representation for type GamePlayerAiable
+func (m *GamePlayers_GamePlayers_black) SetGamePlayerAi(value GamePlayerAiable)() {
+    m.gamePlayerAi = value
+}
+// SetGamePlayerUser sets the GamePlayerUser property value. Composed type representation for type GamePlayerUserable
+func (m *GamePlayers_GamePlayers_black) SetGamePlayerUser(value GamePlayerUserable)() {
+    m.gamePlayerUser = value
+}
+// GamePlayers_GamePlayers_white composed type wrapper for classes GamePlayerAiable, GamePlayerUserable
+type GamePlayers_GamePlayers_white struct {
+    // Composed type representation for type GamePlayerAiable
+    gamePlayerAi GamePlayerAiable
+    // Composed type representation for type GamePlayerUserable
+    gamePlayerUser GamePlayerUserable
+}
+// NewGamePlayers_GamePlayers_white instantiates a new GamePlayers_GamePlayers_white and sets the default values.
+func NewGamePlayers_GamePlayers_white()(*GamePlayers_GamePlayers_white) {
+    m := &GamePlayers_GamePlayers_white{
+    }
+    return m
+}
+// CreateGamePlayers_GamePlayers_whiteFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
+// returns a Parsable when successful
+func CreateGamePlayers_GamePlayers_whiteFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+    result := NewGamePlayers_GamePlayers_white()
+    if parseNode != nil {
+        mappingValueNode, err := parseNode.GetChildNode("")
+        if err != nil {
+            return nil, err
+        }
+        if mappingValueNode != nil {
+            mappingValue, err := mappingValueNode.GetStringValue()
+            if err != nil {
+                return nil, err
+            }
+            if mappingValue != nil {
+            }
+        }
+    }
+    return result, nil
+}
+// GetFieldDeserializers the deserialization information for the current model
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
+func (m *GamePlayers_GamePlayers_white) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
+    if m.GetGamePlayerAi() != nil {
+        return m.GetGamePlayerAi().GetFieldDeserializers()
+    } else if m.GetGamePlayerUser() != nil {
+        return m.GetGamePlayerUser().GetFieldDeserializers()
+    }
+    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+}
+// GetGamePlayerAi gets the GamePlayerAi property value. Composed type representation for type GamePlayerAiable
+// returns a GamePlayerAiable when successful
+func (m *GamePlayers_GamePlayers_white) GetGamePlayerAi()(GamePlayerAiable) {
+    return m.gamePlayerAi
+}
+// GetGamePlayerUser gets the GamePlayerUser property value. Composed type representation for type GamePlayerUserable
+// returns a GamePlayerUserable when successful
+func (m *GamePlayers_GamePlayers_white) GetGamePlayerUser()(GamePlayerUserable) {
+    return m.gamePlayerUser
+}
+// GetIsComposedType determines if the current object is a wrapper around a composed type
+// returns a bool when successful
+func (m *GamePlayers_GamePlayers_white) GetIsComposedType()(bool) {
+    return true
+}
+// Serialize serializes information the current object
+func (m *GamePlayers_GamePlayers_white) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+    if m.GetGamePlayerAi() != nil {
+        err := writer.WriteObjectValue("", m.GetGamePlayerAi())
+        if err != nil {
+            return err
+        }
+    } else if m.GetGamePlayerUser() != nil {
+        err := writer.WriteObjectValue("", m.GetGamePlayerUser())
+        if err != nil {
+            return err
+        }
+    }
+    return nil
+}
+// SetGamePlayerAi sets the GamePlayerAi property value. Composed type representation for type GamePlayerAiable
+func (m *GamePlayers_GamePlayers_white) SetGamePlayerAi(value GamePlayerAiable)() {
+    m.gamePlayerAi = value
+}
+// SetGamePlayerUser sets the GamePlayerUser property value. Composed type representation for type GamePlayerUserable
+func (m *GamePlayers_GamePlayers_white) SetGamePlayerUser(value GamePlayerUserable)() {
+    m.gamePlayerUser = value
+}
+type GamePlayers_GamePlayers_blackable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetGamePlayerAi()(GamePlayerAiable)
+    GetGamePlayerUser()(GamePlayerUserable)
+    SetGamePlayerAi(value GamePlayerAiable)()
+    SetGamePlayerUser(value GamePlayerUserable)()
+}
+type GamePlayers_GamePlayers_whiteable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetGamePlayerAi()(GamePlayerAiable)
+    GetGamePlayerUser()(GamePlayerUserable)
+    SetGamePlayerAi(value GamePlayerAiable)()
+    SetGamePlayerUser(value GamePlayerUserable)()
 }
 // NewGamePlayers instantiates a new GamePlayers and sets the default values.
 func NewGamePlayers()(*GamePlayers) {
@@ -33,8 +209,8 @@ func (m *GamePlayers) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetBlack gets the black property value. The black property
-// returns a GamePlayerUserable when successful
-func (m *GamePlayers) GetBlack()(GamePlayerUserable) {
+// returns a GamePlayers_GamePlayers_blackable when successful
+func (m *GamePlayers) GetBlack()(GamePlayers_GamePlayers_blackable) {
     return m.black
 }
 // GetFieldDeserializers the deserialization information for the current model
@@ -42,30 +218,30 @@ func (m *GamePlayers) GetBlack()(GamePlayerUserable) {
 func (m *GamePlayers) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["black"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateGamePlayerUserFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreateGamePlayers_GamePlayers_blackFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetBlack(val.(GamePlayerUserable))
+            m.SetBlack(val.(GamePlayers_GamePlayers_blackable))
         }
         return nil
     }
     res["white"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateGamePlayerUserFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreateGamePlayers_GamePlayers_whiteFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetWhite(val.(GamePlayerUserable))
+            m.SetWhite(val.(GamePlayers_GamePlayers_whiteable))
         }
         return nil
     }
     return res
 }
 // GetWhite gets the white property value. The white property
-// returns a GamePlayerUserable when successful
-func (m *GamePlayers) GetWhite()(GamePlayerUserable) {
+// returns a GamePlayers_GamePlayers_whiteable when successful
+func (m *GamePlayers) GetWhite()(GamePlayers_GamePlayers_whiteable) {
     return m.white
 }
 // Serialize serializes information the current object
@@ -95,18 +271,18 @@ func (m *GamePlayers) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetBlack sets the black property value. The black property
-func (m *GamePlayers) SetBlack(value GamePlayerUserable)() {
+func (m *GamePlayers) SetBlack(value GamePlayers_GamePlayers_blackable)() {
     m.black = value
 }
 // SetWhite sets the white property value. The white property
-func (m *GamePlayers) SetWhite(value GamePlayerUserable)() {
+func (m *GamePlayers) SetWhite(value GamePlayers_GamePlayers_whiteable)() {
     m.white = value
 }
 type GamePlayersable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetBlack()(GamePlayerUserable)
-    GetWhite()(GamePlayerUserable)
-    SetBlack(value GamePlayerUserable)()
-    SetWhite(value GamePlayerUserable)()
+    GetBlack()(GamePlayers_GamePlayers_blackable)
+    GetWhite()(GamePlayers_GamePlayers_whiteable)
+    SetBlack(value GamePlayers_GamePlayers_blackable)()
+    SetWhite(value GamePlayers_GamePlayers_whiteable)()
 }

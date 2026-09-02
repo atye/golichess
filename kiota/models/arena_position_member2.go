@@ -8,8 +8,6 @@ import (
 )
 
 type ArenaPositionMember2 struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
     // The fen property
     fen *string
     // The name property
@@ -19,18 +17,12 @@ type ArenaPositionMember2 struct {
 func NewArenaPositionMember2()(*ArenaPositionMember2) {
     m := &ArenaPositionMember2{
     }
-    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateArenaPositionMember2FromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
 func CreateArenaPositionMember2FromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewArenaPositionMember2(), nil
-}
-// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-// returns a map[string]any when successful
-func (m *ArenaPositionMember2) GetAdditionalData()(map[string]any) {
-    return m.additionalData
 }
 // GetFen gets the fen property value. The fen property
 // returns a *string when successful
@@ -82,17 +74,7 @@ func (m *ArenaPositionMember2) Serialize(writer i878a80d2330e89d26896388a3f487ee
             return err
         }
     }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
     return nil
-}
-// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ArenaPositionMember2) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
 }
 // SetFen sets the fen property value. The fen property
 func (m *ArenaPositionMember2) SetFen(value *string)() {
@@ -103,7 +85,6 @@ func (m *ArenaPositionMember2) SetName(value *string)() {
     m.name = value
 }
 type ArenaPositionMember2able interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetFen()(*string)
     GetName()(*string)

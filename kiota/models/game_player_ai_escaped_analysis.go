@@ -7,7 +7,7 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-type GamePlayerUser_analysis struct {
+type GamePlayerAi_analysis struct {
     // The accuracy property
     accuracy *int32
     // The acpl property
@@ -20,44 +20,42 @@ type GamePlayerUser_analysis struct {
     inaccuracy *int32
     // The mistake property
     mistake *int32
-    // The phases property
-    phases GamePlayerUser_analysis_phasesable
 }
-// NewGamePlayerUser_analysis instantiates a new GamePlayerUser_analysis and sets the default values.
-func NewGamePlayerUser_analysis()(*GamePlayerUser_analysis) {
-    m := &GamePlayerUser_analysis{
+// NewGamePlayerAi_analysis instantiates a new GamePlayerAi_analysis and sets the default values.
+func NewGamePlayerAi_analysis()(*GamePlayerAi_analysis) {
+    m := &GamePlayerAi_analysis{
     }
     m.SetAdditionalData(make(map[string]any))
     return m
 }
-// CreateGamePlayerUser_analysisFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
+// CreateGamePlayerAi_analysisFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateGamePlayerUser_analysisFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewGamePlayerUser_analysis(), nil
+func CreateGamePlayerAi_analysisFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+    return NewGamePlayerAi_analysis(), nil
 }
 // GetAccuracy gets the accuracy property value. The accuracy property
 // returns a *int32 when successful
-func (m *GamePlayerUser_analysis) GetAccuracy()(*int32) {
+func (m *GamePlayerAi_analysis) GetAccuracy()(*int32) {
     return m.accuracy
 }
 // GetAcpl gets the acpl property value. The acpl property
 // returns a *int32 when successful
-func (m *GamePlayerUser_analysis) GetAcpl()(*int32) {
+func (m *GamePlayerAi_analysis) GetAcpl()(*int32) {
     return m.acpl
 }
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *GamePlayerUser_analysis) GetAdditionalData()(map[string]any) {
+func (m *GamePlayerAi_analysis) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetBlunder gets the blunder property value. The blunder property
 // returns a *int32 when successful
-func (m *GamePlayerUser_analysis) GetBlunder()(*int32) {
+func (m *GamePlayerAi_analysis) GetBlunder()(*int32) {
     return m.blunder
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *GamePlayerUser_analysis) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
+func (m *GamePlayerAi_analysis) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["accuracy"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetInt32Value()
@@ -109,35 +107,20 @@ func (m *GamePlayerUser_analysis) GetFieldDeserializers()(map[string]func(i878a8
         }
         return nil
     }
-    res["phases"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateGamePlayerUser_analysis_phasesFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPhases(val.(GamePlayerUser_analysis_phasesable))
-        }
-        return nil
-    }
     return res
 }
 // GetInaccuracy gets the inaccuracy property value. The inaccuracy property
 // returns a *int32 when successful
-func (m *GamePlayerUser_analysis) GetInaccuracy()(*int32) {
+func (m *GamePlayerAi_analysis) GetInaccuracy()(*int32) {
     return m.inaccuracy
 }
 // GetMistake gets the mistake property value. The mistake property
 // returns a *int32 when successful
-func (m *GamePlayerUser_analysis) GetMistake()(*int32) {
+func (m *GamePlayerAi_analysis) GetMistake()(*int32) {
     return m.mistake
 }
-// GetPhases gets the phases property value. The phases property
-// returns a GamePlayerUser_analysis_phasesable when successful
-func (m *GamePlayerUser_analysis) GetPhases()(GamePlayerUser_analysis_phasesable) {
-    return m.phases
-}
 // Serialize serializes information the current object
-func (m *GamePlayerUser_analysis) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+func (m *GamePlayerAi_analysis) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
         err := writer.WriteInt32Value("accuracy", m.GetAccuracy())
         if err != nil {
@@ -169,12 +152,6 @@ func (m *GamePlayerUser_analysis) Serialize(writer i878a80d2330e89d26896388a3f48
         }
     }
     {
-        err := writer.WriteObjectValue("phases", m.GetPhases())
-        if err != nil {
-            return err
-        }
-    }
-    {
         err := writer.WriteAdditionalData(m.GetAdditionalData())
         if err != nil {
             return err
@@ -183,34 +160,30 @@ func (m *GamePlayerUser_analysis) Serialize(writer i878a80d2330e89d26896388a3f48
     return nil
 }
 // SetAccuracy sets the accuracy property value. The accuracy property
-func (m *GamePlayerUser_analysis) SetAccuracy(value *int32)() {
+func (m *GamePlayerAi_analysis) SetAccuracy(value *int32)() {
     m.accuracy = value
 }
 // SetAcpl sets the acpl property value. The acpl property
-func (m *GamePlayerUser_analysis) SetAcpl(value *int32)() {
+func (m *GamePlayerAi_analysis) SetAcpl(value *int32)() {
     m.acpl = value
 }
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *GamePlayerUser_analysis) SetAdditionalData(value map[string]any)() {
+func (m *GamePlayerAi_analysis) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetBlunder sets the blunder property value. The blunder property
-func (m *GamePlayerUser_analysis) SetBlunder(value *int32)() {
+func (m *GamePlayerAi_analysis) SetBlunder(value *int32)() {
     m.blunder = value
 }
 // SetInaccuracy sets the inaccuracy property value. The inaccuracy property
-func (m *GamePlayerUser_analysis) SetInaccuracy(value *int32)() {
+func (m *GamePlayerAi_analysis) SetInaccuracy(value *int32)() {
     m.inaccuracy = value
 }
 // SetMistake sets the mistake property value. The mistake property
-func (m *GamePlayerUser_analysis) SetMistake(value *int32)() {
+func (m *GamePlayerAi_analysis) SetMistake(value *int32)() {
     m.mistake = value
 }
-// SetPhases sets the phases property value. The phases property
-func (m *GamePlayerUser_analysis) SetPhases(value GamePlayerUser_analysis_phasesable)() {
-    m.phases = value
-}
-type GamePlayerUser_analysisable interface {
+type GamePlayerAi_analysisable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetAccuracy()(*int32)
@@ -218,11 +191,9 @@ type GamePlayerUser_analysisable interface {
     GetBlunder()(*int32)
     GetInaccuracy()(*int32)
     GetMistake()(*int32)
-    GetPhases()(GamePlayerUser_analysis_phasesable)
     SetAccuracy(value *int32)()
     SetAcpl(value *int32)()
     SetBlunder(value *int32)()
     SetInaccuracy(value *int32)()
     SetMistake(value *int32)()
-    SetPhases(value GamePlayerUser_analysis_phasesable)()
 }

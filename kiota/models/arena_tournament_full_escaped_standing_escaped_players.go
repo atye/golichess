@@ -23,6 +23,8 @@ type ArenaTournamentFull_standing_players struct {
     rank *int32
     // The rating property
     rating *int32
+    // The realName property
+    realName *string
     // The score property
     score *int32
     // The sheet property
@@ -111,6 +113,16 @@ func (m *ArenaTournamentFull_standing_players) GetFieldDeserializers()(map[strin
         }
         return nil
     }
+    res["realName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRealName(val)
+        }
+        return nil
+    }
     res["score"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetInt32Value()
         if err != nil {
@@ -174,6 +186,11 @@ func (m *ArenaTournamentFull_standing_players) GetRank()(*int32) {
 func (m *ArenaTournamentFull_standing_players) GetRating()(*int32) {
     return m.rating
 }
+// GetRealName gets the realName property value. The realName property
+// returns a *string when successful
+func (m *ArenaTournamentFull_standing_players) GetRealName()(*string) {
+    return m.realName
+}
 // GetScore gets the score property value. The score property
 // returns a *int32 when successful
 func (m *ArenaTournamentFull_standing_players) GetScore()(*int32) {
@@ -223,6 +240,12 @@ func (m *ArenaTournamentFull_standing_players) Serialize(writer i878a80d2330e89d
     }
     {
         err := writer.WriteInt32Value("rating", m.GetRating())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("realName", m.GetRealName())
         if err != nil {
             return err
         }
@@ -283,6 +306,10 @@ func (m *ArenaTournamentFull_standing_players) SetRank(value *int32)() {
 func (m *ArenaTournamentFull_standing_players) SetRating(value *int32)() {
     m.rating = value
 }
+// SetRealName sets the realName property value. The realName property
+func (m *ArenaTournamentFull_standing_players) SetRealName(value *string)() {
+    m.realName = value
+}
 // SetScore sets the score property value. The score property
 func (m *ArenaTournamentFull_standing_players) SetScore(value *int32)() {
     m.score = value
@@ -304,6 +331,7 @@ type ArenaTournamentFull_standing_playersable interface {
     GetPatronColor()(*int32)
     GetRank()(*int32)
     GetRating()(*int32)
+    GetRealName()(*string)
     GetScore()(*int32)
     GetSheet()(ArenaSheetable)
     GetTitle()(*Title)
@@ -313,6 +341,7 @@ type ArenaTournamentFull_standing_playersable interface {
     SetPatronColor(value *int32)()
     SetRank(value *int32)()
     SetRating(value *int32)()
+    SetRealName(value *string)()
     SetScore(value *int32)()
     SetSheet(value ArenaSheetable)()
     SetTitle(value *Title)()

@@ -10,6 +10,8 @@ import (
 type BroadcastRoundInfo struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
+    // The createdAt property
+    createdAt *int64
     // Scoring overrides for wins or draws.
     customScoring BroadcastCustomScoringable
     // Use finishedAt instead
@@ -51,6 +53,11 @@ func CreateBroadcastRoundInfoFromDiscriminatorValue(parseNode i878a80d2330e89d26
 func (m *BroadcastRoundInfo) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
+// GetCreatedAt gets the createdAt property value. The createdAt property
+// returns a *int64 when successful
+func (m *BroadcastRoundInfo) GetCreatedAt()(*int64) {
+    return m.createdAt
+}
 // GetCustomScoring gets the customScoring property value. Scoring overrides for wins or draws.
 // returns a BroadcastCustomScoringable when successful
 func (m *BroadcastRoundInfo) GetCustomScoring()(BroadcastCustomScoringable) {
@@ -60,6 +67,16 @@ func (m *BroadcastRoundInfo) GetCustomScoring()(BroadcastCustomScoringable) {
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *BroadcastRoundInfo) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+    res["createdAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCreatedAt(val)
+        }
+        return nil
+    }
     res["customScoring"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetObjectValue(CreateBroadcastCustomScoringFromDiscriminatorValue)
         if err != nil {
@@ -226,6 +243,12 @@ func (m *BroadcastRoundInfo) GetUrl()(*string) {
 // Serialize serializes information the current object
 func (m *BroadcastRoundInfo) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
+        err := writer.WriteInt64Value("createdAt", m.GetCreatedAt())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteObjectValue("customScoring", m.GetCustomScoring())
         if err != nil {
             return err
@@ -303,6 +326,10 @@ func (m *BroadcastRoundInfo) Serialize(writer i878a80d2330e89d26896388a3f487eef2
 func (m *BroadcastRoundInfo) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
+// SetCreatedAt sets the createdAt property value. The createdAt property
+func (m *BroadcastRoundInfo) SetCreatedAt(value *int64)() {
+    m.createdAt = value
+}
 // SetCustomScoring sets the customScoring property value. Scoring overrides for wins or draws.
 func (m *BroadcastRoundInfo) SetCustomScoring(value BroadcastCustomScoringable)() {
     m.customScoring = value
@@ -351,6 +378,7 @@ func (m *BroadcastRoundInfo) SetUrl(value *string)() {
 type BroadcastRoundInfoable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetCreatedAt()(*int64)
     GetCustomScoring()(BroadcastCustomScoringable)
     GetFinished()(*bool)
     GetFinishedAt()(*int64)
@@ -362,6 +390,7 @@ type BroadcastRoundInfoable interface {
     GetStartsAfterPrevious()(*bool)
     GetStartsAt()(*int64)
     GetUrl()(*string)
+    SetCreatedAt(value *int64)()
     SetCustomScoring(value BroadcastCustomScoringable)()
     SetFinished(value *bool)()
     SetFinishedAt(value *int64)()

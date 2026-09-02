@@ -8,8 +8,6 @@ import (
 )
 
 type ArenaPositionMember1 struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
     // The eco property
     eco *string
     // The fen property
@@ -23,18 +21,12 @@ type ArenaPositionMember1 struct {
 func NewArenaPositionMember1()(*ArenaPositionMember1) {
     m := &ArenaPositionMember1{
     }
-    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateArenaPositionMember1FromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
 func CreateArenaPositionMember1FromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewArenaPositionMember1(), nil
-}
-// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-// returns a map[string]any when successful
-func (m *ArenaPositionMember1) GetAdditionalData()(map[string]any) {
-    return m.additionalData
 }
 // GetEco gets the eco property value. The eco property
 // returns a *string when successful
@@ -128,17 +120,7 @@ func (m *ArenaPositionMember1) Serialize(writer i878a80d2330e89d26896388a3f487ee
             return err
         }
     }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
     return nil
-}
-// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ArenaPositionMember1) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
 }
 // SetEco sets the eco property value. The eco property
 func (m *ArenaPositionMember1) SetEco(value *string)() {
@@ -157,7 +139,6 @@ func (m *ArenaPositionMember1) SetUrl(value *string)() {
     m.url = value
 }
 type ArenaPositionMember1able interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetEco()(*string)
     GetFen()(*string)

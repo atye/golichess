@@ -10,8 +10,6 @@ import (
 type GamePlayerUser struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // The aiLevel property
-    aiLevel *int32
     // The analysis property
     analysis GamePlayerUser_analysisable
     // The name property
@@ -44,11 +42,6 @@ func CreateGamePlayerUserFromDiscriminatorValue(parseNode i878a80d2330e89d268963
 func (m *GamePlayerUser) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
-// GetAiLevel gets the aiLevel property value. The aiLevel property
-// returns a *int32 when successful
-func (m *GamePlayerUser) GetAiLevel()(*int32) {
-    return m.aiLevel
-}
 // GetAnalysis gets the analysis property value. The analysis property
 // returns a GamePlayerUser_analysisable when successful
 func (m *GamePlayerUser) GetAnalysis()(GamePlayerUser_analysisable) {
@@ -58,16 +51,6 @@ func (m *GamePlayerUser) GetAnalysis()(GamePlayerUser_analysisable) {
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *GamePlayerUser) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["aiLevel"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetAiLevel(val)
-        }
-        return nil
-    }
     res["analysis"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetObjectValue(CreateGamePlayerUser_analysisFromDiscriminatorValue)
         if err != nil {
@@ -173,12 +156,6 @@ func (m *GamePlayerUser) GetUser()(LightUserable) {
 // Serialize serializes information the current object
 func (m *GamePlayerUser) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
-        err := writer.WriteInt32Value("aiLevel", m.GetAiLevel())
-        if err != nil {
-            return err
-        }
-    }
-    {
         err := writer.WriteObjectValue("analysis", m.GetAnalysis())
         if err != nil {
             return err
@@ -232,10 +209,6 @@ func (m *GamePlayerUser) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
 func (m *GamePlayerUser) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetAiLevel sets the aiLevel property value. The aiLevel property
-func (m *GamePlayerUser) SetAiLevel(value *int32)() {
-    m.aiLevel = value
-}
 // SetAnalysis sets the analysis property value. The analysis property
 func (m *GamePlayerUser) SetAnalysis(value GamePlayerUser_analysisable)() {
     m.analysis = value
@@ -267,7 +240,6 @@ func (m *GamePlayerUser) SetUser(value LightUserable)() {
 type GamePlayerUserable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetAiLevel()(*int32)
     GetAnalysis()(GamePlayerUser_analysisable)
     GetName()(*string)
     GetProvisional()(*bool)
@@ -275,7 +247,6 @@ type GamePlayerUserable interface {
     GetRatingDiff()(*int32)
     GetTeam()(*string)
     GetUser()(LightUserable)
-    SetAiLevel(value *int32)()
     SetAnalysis(value GamePlayerUser_analysisable)()
     SetName(value *string)()
     SetProvisional(value *bool)()
