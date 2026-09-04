@@ -2,38 +2,42 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 type BroadcastPointStr int
 
 const (
-    ONE_BROADCASTPOINTSTR BroadcastPointStr = iota
-    ONETWO_BROADCASTPOINTSTR
-    ZERO_BROADCASTPOINTSTR
+	ONE_BROADCASTPOINTSTR BroadcastPointStr = iota
+	ONETWO_BROADCASTPOINTSTR
+	ZERO_BROADCASTPOINTSTR
 )
 
 func (i BroadcastPointStr) String() string {
-    return []string{"1", "1/2", "0"}[i]
+	return []string{"1", "1/2", "0"}[i]
 }
+
 func ParseBroadcastPointStr(v string) (any, error) {
-    result := ONE_BROADCASTPOINTSTR
-    switch v {
-        case "1":
-            result = ONE_BROADCASTPOINTSTR
-        case "1/2":
-            result = ONETWO_BROADCASTPOINTSTR
-        case "0":
-            result = ZERO_BROADCASTPOINTSTR
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := ONE_BROADCASTPOINTSTR
+	switch v {
+	case "1":
+		result = ONE_BROADCASTPOINTSTR
+	case "1/2":
+		result = ONETWO_BROADCASTPOINTSTR
+	case "0":
+		result = ZERO_BROADCASTPOINTSTR
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeBroadcastPointStr(values []BroadcastPointStr) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i BroadcastPointStr) isMultiValue() bool {
-    return false
+	return false
 }

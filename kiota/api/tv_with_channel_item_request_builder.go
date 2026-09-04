@@ -4,88 +4,96 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	"context"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // TvWithChannelItemRequestBuilder builds and executes requests for operations under \api\tv\{channel}
 type TvWithChannelItemRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // TvWithChannelItemRequestBuilderGetQueryParameters get a list of ongoing games for a given TV channel. Similar to [lichess.org/games](https://lichess.org/games).Available in PGN or [ndjson](#description/streaming-with-nd-json) format, depending on the request `Accept` header.
 type TvWithChannelItemRequestBuilderGetQueryParameters struct {
-    // Include clock status when available.Either as PGN comments: `2. exd5 { [%clk 1:01:27] } e5 { [%clk 1:01:28] }`Or in a `clocks` JSON field, as centisecond integers, depending on the response type.
-    Clocks *bool "uriparametername:\"clocks\""
-    // Include the PGN moves.
-    Moves *bool "uriparametername:\"moves\""
-    // Number of games to fetch.
-    Nb *int32 "uriparametername:\"nb\""
-    // Include the opening name.Example: `[Opening "King's Gambit Accepted, King's Knight Gambit"]`
-    Opening *bool "uriparametername:\"opening\""
-    // Include the full PGN within the JSON response, in a `pgn` field.
-    PgnInJson *bool "uriparametername:\"pgnInJson\""
-    // Include the PGN tags.
-    Tags *bool "uriparametername:\"tags\""
+	// Include clock status when available.Either as PGN comments: `2. exd5 { [%clk 1:01:27] } e5 { [%clk 1:01:28] }`Or in a `clocks` JSON field, as centisecond integers, depending on the response type.
+	Clocks *bool "uriparametername:\"clocks\""
+	// Include the PGN moves.
+	Moves *bool "uriparametername:\"moves\""
+	// Number of games to fetch.
+	Nb *int32 "uriparametername:\"nb\""
+	// Include the opening name.Example: `[Opening "King's Gambit Accepted, King's Knight Gambit"]`
+	Opening *bool "uriparametername:\"opening\""
+	// Include the full PGN within the JSON response, in a `pgn` field.
+	PgnInJson *bool "uriparametername:\"pgnInJson\""
+	// Include the PGN tags.
+	Tags *bool "uriparametername:\"tags\""
 }
+
 // TvWithChannelItemRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type TvWithChannelItemRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
-    // Request query parameters
-    QueryParameters *TvWithChannelItemRequestBuilderGetQueryParameters
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *TvWithChannelItemRequestBuilderGetQueryParameters
 }
+
 // NewTvWithChannelItemRequestBuilderInternal instantiates a new TvWithChannelItemRequestBuilder and sets the default values.
-func NewTvWithChannelItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*TvWithChannelItemRequestBuilder) {
-    m := &TvWithChannelItemRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/tv/{channel}{?clocks*,moves*,nb*,opening*,pgnInJson*,tags*}", pathParameters),
-    }
-    return m
+func NewTvWithChannelItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *TvWithChannelItemRequestBuilder {
+	m := &TvWithChannelItemRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/tv/{channel}{?clocks*,moves*,nb*,opening*,pgnInJson*,tags*}", pathParameters),
+	}
+	return m
 }
+
 // NewTvWithChannelItemRequestBuilder instantiates a new TvWithChannelItemRequestBuilder and sets the default values.
-func NewTvWithChannelItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*TvWithChannelItemRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewTvWithChannelItemRequestBuilderInternal(urlParams, requestAdapter)
+func NewTvWithChannelItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *TvWithChannelItemRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewTvWithChannelItemRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Feed the feed property
 // returns a *TvItemFeedRequestBuilder when successful
-func (m *TvWithChannelItemRequestBuilder) Feed()(*TvItemFeedRequestBuilder) {
-    return NewTvItemFeedRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *TvWithChannelItemRequestBuilder) Feed() *TvItemFeedRequestBuilder {
+	return NewTvItemFeedRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Get get a list of ongoing games for a given TV channel. Similar to [lichess.org/games](https://lichess.org/games).Available in PGN or [ndjson](#description/streaming-with-nd-json) format, depending on the request `Accept` header.
 // returns a []byte when successful
-func (m *TvWithChannelItemRequestBuilder) Get(ctx context.Context, requestConfiguration *TvWithChannelItemRequestBuilderGetRequestConfiguration)([]byte, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.([]byte), nil
+func (m *TvWithChannelItemRequestBuilder) Get(ctx context.Context, requestConfiguration *TvWithChannelItemRequestBuilderGetRequestConfiguration) ([]byte, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.([]byte), nil
 }
+
 // ToGetRequestInformation get a list of ongoing games for a given TV channel. Similar to [lichess.org/games](https://lichess.org/games).Available in PGN or [ndjson](#description/streaming-with-nd-json) format, depending on the request `Accept` header.
 // returns a *RequestInformation when successful
-func (m *TvWithChannelItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *TvWithChannelItemRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        if requestConfiguration.QueryParameters != nil {
-            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
-        }
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/x-chess-pgn, application/x-ndjson")
-    return requestInfo, nil
+func (m *TvWithChannelItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *TvWithChannelItemRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/x-chess-pgn, application/x-ndjson")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *TvWithChannelItemRequestBuilder when successful
-func (m *TvWithChannelItemRequestBuilder) WithUrl(rawUrl string)(*TvWithChannelItemRequestBuilder) {
-    return NewTvWithChannelItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *TvWithChannelItemRequestBuilder) WithUrl(rawUrl string) *TvWithChannelItemRequestBuilder {
+	return NewTvWithChannelItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

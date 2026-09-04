@@ -4,109 +4,119 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type UserActivity_posts_posts struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The text property
-    text *string
-    // The url property
-    url *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The text property
+	text *string
+	// The url property
+	url *string
 }
+
 // NewUserActivity_posts_posts instantiates a new UserActivity_posts_posts and sets the default values.
-func NewUserActivity_posts_posts()(*UserActivity_posts_posts) {
-    m := &UserActivity_posts_posts{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewUserActivity_posts_posts() *UserActivity_posts_posts {
+	m := &UserActivity_posts_posts{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateUserActivity_posts_postsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateUserActivity_posts_postsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewUserActivity_posts_posts(), nil
+func CreateUserActivity_posts_postsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewUserActivity_posts_posts(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *UserActivity_posts_posts) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *UserActivity_posts_posts) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *UserActivity_posts_posts) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["text"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetText(val)
-        }
-        return nil
-    }
-    res["url"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetUrl(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *UserActivity_posts_posts) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["text"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetText(val)
+		}
+		return nil
+	}
+	res["url"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetUrl(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetText gets the text property value. The text property
 // returns a *string when successful
-func (m *UserActivity_posts_posts) GetText()(*string) {
-    return m.text
+func (m *UserActivity_posts_posts) GetText() *string {
+	return m.text
 }
+
 // GetUrl gets the url property value. The url property
 // returns a *string when successful
-func (m *UserActivity_posts_posts) GetUrl()(*string) {
-    return m.url
+func (m *UserActivity_posts_posts) GetUrl() *string {
+	return m.url
 }
+
 // Serialize serializes information the current object
-func (m *UserActivity_posts_posts) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("text", m.GetText())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("url", m.GetUrl())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *UserActivity_posts_posts) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("text", m.GetText())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("url", m.GetUrl())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *UserActivity_posts_posts) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *UserActivity_posts_posts) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetText sets the text property value. The text property
-func (m *UserActivity_posts_posts) SetText(value *string)() {
-    m.text = value
+func (m *UserActivity_posts_posts) SetText(value *string) {
+	m.text = value
 }
+
 // SetUrl sets the url property value. The url property
-func (m *UserActivity_posts_posts) SetUrl(value *string)() {
-    m.url = value
+func (m *UserActivity_posts_posts) SetUrl(value *string) {
+	m.url = value
 }
+
 type UserActivity_posts_postsable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetText()(*string)
-    GetUrl()(*string)
-    SetText(value *string)()
-    SetUrl(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetText() *string
+	GetUrl() *string
+	SetText(value *string)
+	SetUrl(value *string)
 }

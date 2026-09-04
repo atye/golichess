@@ -4,75 +4,82 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	"context"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // UserItemTournamentCreatedRequestBuilder builds and executes requests for operations under \api\user\{username}\tournament\created
 type UserItemTournamentCreatedRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // UserItemTournamentCreatedRequestBuilderGetQueryParameters get all tournaments created by a given user.Tournaments are sorted by reverse chronological order of start date (last starting first).Tournaments are streamed as [ndjson](#description/streaming-with-nd-json).The stream is throttled, depending on who is making the request:  - Anonymous request: 20 tournaments per second  - [OAuth2 authenticated](#description/authentication) request: 30 tournaments per second  - Authenticated, downloading your own tournaments: 50 tournaments per second
 type UserItemTournamentCreatedRequestBuilderGetQueryParameters struct {
-    // Max number of tournaments to fetch
-    Nb *int32 "uriparametername:\"nb\""
-    // Include tournaments in the given status: "Created" (10), "Started" (20), "Finished" (30)You can add this parameter more than once to include tournaments in different statuses.Example: `?status=10&status=20`
-    Status *int32 "uriparametername:\"status\""
+	// Max number of tournaments to fetch
+	Nb *int32 "uriparametername:\"nb\""
+	// Include tournaments in the given status: "Created" (10), "Started" (20), "Finished" (30)You can add this parameter more than once to include tournaments in different statuses.Example: `?status=10&status=20`
+	Status *int32 "uriparametername:\"status\""
 }
+
 // UserItemTournamentCreatedRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type UserItemTournamentCreatedRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
-    // Request query parameters
-    QueryParameters *UserItemTournamentCreatedRequestBuilderGetQueryParameters
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *UserItemTournamentCreatedRequestBuilderGetQueryParameters
 }
+
 // NewUserItemTournamentCreatedRequestBuilderInternal instantiates a new UserItemTournamentCreatedRequestBuilder and sets the default values.
-func NewUserItemTournamentCreatedRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*UserItemTournamentCreatedRequestBuilder) {
-    m := &UserItemTournamentCreatedRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/user/{username}/tournament/created{?nb*,status*}", pathParameters),
-    }
-    return m
+func NewUserItemTournamentCreatedRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *UserItemTournamentCreatedRequestBuilder {
+	m := &UserItemTournamentCreatedRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/user/{username}/tournament/created{?nb*,status*}", pathParameters),
+	}
+	return m
 }
+
 // NewUserItemTournamentCreatedRequestBuilder instantiates a new UserItemTournamentCreatedRequestBuilder and sets the default values.
-func NewUserItemTournamentCreatedRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*UserItemTournamentCreatedRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewUserItemTournamentCreatedRequestBuilderInternal(urlParams, requestAdapter)
+func NewUserItemTournamentCreatedRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *UserItemTournamentCreatedRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewUserItemTournamentCreatedRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get get all tournaments created by a given user.Tournaments are sorted by reverse chronological order of start date (last starting first).Tournaments are streamed as [ndjson](#description/streaming-with-nd-json).The stream is throttled, depending on who is making the request:  - Anonymous request: 20 tournaments per second  - [OAuth2 authenticated](#description/authentication) request: 30 tournaments per second  - Authenticated, downloading your own tournaments: 50 tournaments per second
 // returns a []byte when successful
-func (m *UserItemTournamentCreatedRequestBuilder) Get(ctx context.Context, requestConfiguration *UserItemTournamentCreatedRequestBuilderGetRequestConfiguration)([]byte, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.([]byte), nil
+func (m *UserItemTournamentCreatedRequestBuilder) Get(ctx context.Context, requestConfiguration *UserItemTournamentCreatedRequestBuilderGetRequestConfiguration) ([]byte, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.([]byte), nil
 }
+
 // ToGetRequestInformation get all tournaments created by a given user.Tournaments are sorted by reverse chronological order of start date (last starting first).Tournaments are streamed as [ndjson](#description/streaming-with-nd-json).The stream is throttled, depending on who is making the request:  - Anonymous request: 20 tournaments per second  - [OAuth2 authenticated](#description/authentication) request: 30 tournaments per second  - Authenticated, downloading your own tournaments: 50 tournaments per second
 // returns a *RequestInformation when successful
-func (m *UserItemTournamentCreatedRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *UserItemTournamentCreatedRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        if requestConfiguration.QueryParameters != nil {
-            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
-        }
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/x-ndjson")
-    return requestInfo, nil
+func (m *UserItemTournamentCreatedRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *UserItemTournamentCreatedRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/x-ndjson")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *UserItemTournamentCreatedRequestBuilder when successful
-func (m *UserItemTournamentCreatedRequestBuilder) WithUrl(rawUrl string)(*UserItemTournamentCreatedRequestBuilder) {
-    return NewUserItemTournamentCreatedRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *UserItemTournamentCreatedRequestBuilder) WithUrl(rawUrl string) *UserItemTournamentCreatedRequestBuilder {
+	return NewUserItemTournamentCreatedRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

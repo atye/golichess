@@ -4,138 +4,150 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type GameOpening struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The eco property
-    eco *string
-    // The name property
-    name *string
-    // The ply property
-    ply *int32
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The eco property
+	eco *string
+	// The name property
+	name *string
+	// The ply property
+	ply *int32
 }
+
 // NewGameOpening instantiates a new GameOpening and sets the default values.
-func NewGameOpening()(*GameOpening) {
-    m := &GameOpening{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewGameOpening() *GameOpening {
+	m := &GameOpening{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateGameOpeningFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateGameOpeningFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewGameOpening(), nil
+func CreateGameOpeningFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewGameOpening(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *GameOpening) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *GameOpening) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetEco gets the eco property value. The eco property
 // returns a *string when successful
-func (m *GameOpening) GetEco()(*string) {
-    return m.eco
+func (m *GameOpening) GetEco() *string {
+	return m.eco
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *GameOpening) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["eco"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetEco(val)
-        }
-        return nil
-    }
-    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetName(val)
-        }
-        return nil
-    }
-    res["ply"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPly(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *GameOpening) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["eco"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetEco(val)
+		}
+		return nil
+	}
+	res["name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetName(val)
+		}
+		return nil
+	}
+	res["ply"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPly(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetName gets the name property value. The name property
 // returns a *string when successful
-func (m *GameOpening) GetName()(*string) {
-    return m.name
+func (m *GameOpening) GetName() *string {
+	return m.name
 }
+
 // GetPly gets the ply property value. The ply property
 // returns a *int32 when successful
-func (m *GameOpening) GetPly()(*int32) {
-    return m.ply
+func (m *GameOpening) GetPly() *int32 {
+	return m.ply
 }
+
 // Serialize serializes information the current object
-func (m *GameOpening) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("eco", m.GetEco())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("name", m.GetName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("ply", m.GetPly())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *GameOpening) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("eco", m.GetEco())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("name", m.GetName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("ply", m.GetPly())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *GameOpening) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *GameOpening) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetEco sets the eco property value. The eco property
-func (m *GameOpening) SetEco(value *string)() {
-    m.eco = value
+func (m *GameOpening) SetEco(value *string) {
+	m.eco = value
 }
+
 // SetName sets the name property value. The name property
-func (m *GameOpening) SetName(value *string)() {
-    m.name = value
+func (m *GameOpening) SetName(value *string) {
+	m.name = value
 }
+
 // SetPly sets the ply property value. The ply property
-func (m *GameOpening) SetPly(value *int32)() {
-    m.ply = value
+func (m *GameOpening) SetPly(value *int32) {
+	m.ply = value
 }
+
 type GameOpeningable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetEco()(*string)
-    GetName()(*string)
-    GetPly()(*int32)
-    SetEco(value *string)()
-    SetName(value *string)()
-    SetPly(value *int32)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetEco() *string
+	GetName() *string
+	GetPly() *int32
+	SetEco(value *string)
+	SetName(value *string)
+	SetPly(value *int32)
 }

@@ -4,116 +4,126 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // BroadcastForm_grouping group this broadcast along with others
 type BroadcastForm_grouping struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The info property
-    info BroadcastForm_grouping_infoable
-    // This parameter is repeated with an index for each score group, like 'grouping.scoreGroups[0]=wYigbpXq,M5YHvpOX'
-    scoreGroups []string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The info property
+	info BroadcastForm_grouping_infoable
+	// This parameter is repeated with an index for each score group, like 'grouping.scoreGroups[0]=wYigbpXq,M5YHvpOX'
+	scoreGroups []string
 }
+
 // NewBroadcastForm_grouping instantiates a new BroadcastForm_grouping and sets the default values.
-func NewBroadcastForm_grouping()(*BroadcastForm_grouping) {
-    m := &BroadcastForm_grouping{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewBroadcastForm_grouping() *BroadcastForm_grouping {
+	m := &BroadcastForm_grouping{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateBroadcastForm_groupingFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateBroadcastForm_groupingFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewBroadcastForm_grouping(), nil
+func CreateBroadcastForm_groupingFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewBroadcastForm_grouping(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *BroadcastForm_grouping) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *BroadcastForm_grouping) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *BroadcastForm_grouping) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["info"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateBroadcastForm_grouping_infoFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetInfo(val.(BroadcastForm_grouping_infoable))
-        }
-        return nil
-    }
-    res["scoreGroups"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfPrimitiveValues("string")
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]string, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = *(v.(*string))
-                }
-            }
-            m.SetScoreGroups(res)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *BroadcastForm_grouping) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["info"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateBroadcastForm_grouping_infoFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetInfo(val.(BroadcastForm_grouping_infoable))
+		}
+		return nil
+	}
+	res["scoreGroups"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfPrimitiveValues("string")
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]string, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = *(v.(*string))
+				}
+			}
+			m.SetScoreGroups(res)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetInfo gets the info property value. The info property
 // returns a BroadcastForm_grouping_infoable when successful
-func (m *BroadcastForm_grouping) GetInfo()(BroadcastForm_grouping_infoable) {
-    return m.info
+func (m *BroadcastForm_grouping) GetInfo() BroadcastForm_grouping_infoable {
+	return m.info
 }
+
 // GetScoreGroups gets the scoreGroups property value. This parameter is repeated with an index for each score group, like 'grouping.scoreGroups[0]=wYigbpXq,M5YHvpOX'
 // returns a []string when successful
-func (m *BroadcastForm_grouping) GetScoreGroups()([]string) {
-    return m.scoreGroups
+func (m *BroadcastForm_grouping) GetScoreGroups() []string {
+	return m.scoreGroups
 }
+
 // Serialize serializes information the current object
-func (m *BroadcastForm_grouping) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("info", m.GetInfo())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetScoreGroups() != nil {
-        err := writer.WriteCollectionOfStringValues("scoreGroups", m.GetScoreGroups())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *BroadcastForm_grouping) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteObjectValue("info", m.GetInfo())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetScoreGroups() != nil {
+		err := writer.WriteCollectionOfStringValues("scoreGroups", m.GetScoreGroups())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *BroadcastForm_grouping) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *BroadcastForm_grouping) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetInfo sets the info property value. The info property
-func (m *BroadcastForm_grouping) SetInfo(value BroadcastForm_grouping_infoable)() {
-    m.info = value
+func (m *BroadcastForm_grouping) SetInfo(value BroadcastForm_grouping_infoable) {
+	m.info = value
 }
+
 // SetScoreGroups sets the scoreGroups property value. This parameter is repeated with an index for each score group, like 'grouping.scoreGroups[0]=wYigbpXq,M5YHvpOX'
-func (m *BroadcastForm_grouping) SetScoreGroups(value []string)() {
-    m.scoreGroups = value
+func (m *BroadcastForm_grouping) SetScoreGroups(value []string) {
+	m.scoreGroups = value
 }
+
 type BroadcastForm_groupingable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetInfo()(BroadcastForm_grouping_infoable)
-    GetScoreGroups()([]string)
-    SetInfo(value BroadcastForm_grouping_infoable)()
-    SetScoreGroups(value []string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetInfo() BroadcastForm_grouping_infoable
+	GetScoreGroups() []string
+	SetInfo(value BroadcastForm_grouping_infoable)
+	SetScoreGroups(value []string)
 }

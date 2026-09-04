@@ -4,408 +4,444 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type BroadcastForm struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // Group this broadcast along with others
-    grouping BroadcastForm_groupingable
-    // Additional display information about the tournament
-    info BroadcastTourInfoable
-    // Optional long description of the broadcast. Markdown is supported.
-    markdown *string
-    // Name of the broadcast tournament.Example: `Sinquefield Cup`
-    name *string
-    // Optional replace player names, ratings and titles.One line per player, formatted as such:```txtplayer name / FIDE ID```Example:```txtMagnus Carlsen / 1503014```Player names ignore case and punctuation, and match all possible combinations of 2 words: "Jorge Rick Vito" will match "Jorge Rick", "jorge vito", "Rick, Vito", etc.If the player is NM or WNM, you can:```txtplayer name / FIDE ID / title```Alternatively, you may set tags manually, like so:```txtplayer name / rating / title / new name```All values are optional. Example:```txtMagnus Carlsen / 2863 / GMYouGotLittUp / 1890 / / Louis Litt```
-    players *string
-    // Show player's rating diffs
-    showRatingDiffs *bool
-    // Show players scores based on game results
-    showScores *bool
-    // Optional: assign players to teamsOne line per player, formatted as such:```txtTeam name; Fide Id or Player name```Example:```txtTeam Cats ; 3408230Team Dogs ; Scooby Doo```By default the PGN tags WhiteTeam and BlackTeam are used.
-    teams *string
-    // Show a team leaderboard. Requires WhiteTeam and BlackTeam PGN tags.
-    teamTable *bool
-    // The tiebreaks property
-    tiebreaks []BroadcastTiebreakExtendedCode
-    // Optional, for Lichess admins only, used to feature on /broadcast.* `3` for Official: normal tier* `4` for Official: high tier* `5` for Official: best tier
-    tier *int32
-    // Who can view the broadcast.* `public`: Default. Anyone can view the broadcast* `unlisted`: Only people with the link can view the broadcast* `private`: Only the broadcast owner(s) can view the broadcast
-    visibility *BroadcastForm_visibility
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// Group this broadcast along with others
+	grouping BroadcastForm_groupingable
+	// Additional display information about the tournament
+	info BroadcastTourInfoable
+	// Optional long description of the broadcast. Markdown is supported.
+	markdown *string
+	// Name of the broadcast tournament.Example: `Sinquefield Cup`
+	name *string
+	// Optional replace player names, ratings and titles.One line per player, formatted as such:```txtplayer name / FIDE ID```Example:```txtMagnus Carlsen / 1503014```Player names ignore case and punctuation, and match all possible combinations of 2 words: "Jorge Rick Vito" will match "Jorge Rick", "jorge vito", "Rick, Vito", etc.If the player is NM or WNM, you can:```txtplayer name / FIDE ID / title```Alternatively, you may set tags manually, like so:```txtplayer name / rating / title / new name```All values are optional. Example:```txtMagnus Carlsen / 2863 / GMYouGotLittUp / 1890 / / Louis Litt```
+	players *string
+	// Show player's rating diffs
+	showRatingDiffs *bool
+	// Show players scores based on game results
+	showScores *bool
+	// Optional: assign players to teamsOne line per player, formatted as such:```txtTeam name; Fide Id or Player name```Example:```txtTeam Cats ; 3408230Team Dogs ; Scooby Doo```By default the PGN tags WhiteTeam and BlackTeam are used.
+	teams *string
+	// Show a team leaderboard. Requires WhiteTeam and BlackTeam PGN tags.
+	teamTable *bool
+	// The tiebreaks property
+	tiebreaks []BroadcastTiebreakExtendedCode
+	// Optional, for Lichess admins only, used to feature on /broadcast.* `3` for Official: normal tier* `4` for Official: high tier* `5` for Official: best tier
+	tier *int32
+	// Who can view the broadcast.* `public`: Default. Anyone can view the broadcast* `unlisted`: Only people with the link can view the broadcast* `private`: Only the broadcast owner(s) can view the broadcast
+	visibility *BroadcastForm_visibility
 }
+
 // NewBroadcastForm instantiates a new BroadcastForm and sets the default values.
-func NewBroadcastForm()(*BroadcastForm) {
-    m := &BroadcastForm{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    visibilityValue := PUBLIC_BROADCASTFORM_VISIBILITY
-    m.SetVisibility(&visibilityValue)
-    return m
+func NewBroadcastForm() *BroadcastForm {
+	m := &BroadcastForm{}
+	m.SetAdditionalData(make(map[string]any))
+	showRatingDiffsValue := false
+	m.SetShowRatingDiffs(&showRatingDiffsValue)
+	showScoresValue := false
+	m.SetShowScores(&showScoresValue)
+	teamTableValue := false
+	m.SetTeamTable(&teamTableValue)
+	visibilityValue := PUBLIC_BROADCASTFORM_VISIBILITY
+	m.SetVisibility(&visibilityValue)
+	return m
 }
+
 // CreateBroadcastFormFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateBroadcastFormFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewBroadcastForm(), nil
+func CreateBroadcastFormFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewBroadcastForm(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *BroadcastForm) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *BroadcastForm) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *BroadcastForm) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["grouping"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateBroadcastForm_groupingFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetGrouping(val.(BroadcastForm_groupingable))
-        }
-        return nil
-    }
-    res["info"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateBroadcastTourInfoFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetInfo(val.(BroadcastTourInfoable))
-        }
-        return nil
-    }
-    res["markdown"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMarkdown(val)
-        }
-        return nil
-    }
-    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetName(val)
-        }
-        return nil
-    }
-    res["players"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPlayers(val)
-        }
-        return nil
-    }
-    res["showRatingDiffs"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetShowRatingDiffs(val)
-        }
-        return nil
-    }
-    res["showScores"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetShowScores(val)
-        }
-        return nil
-    }
-    res["teams"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTeams(val)
-        }
-        return nil
-    }
-    res["teamTable"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTeamTable(val)
-        }
-        return nil
-    }
-    res["tiebreaks"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfEnumValues(ParseBroadcastTiebreakExtendedCode)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]BroadcastTiebreakExtendedCode, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = *(v.(*BroadcastTiebreakExtendedCode))
-                }
-            }
-            m.SetTiebreaks(res)
-        }
-        return nil
-    }
-    res["tier"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTier(val)
-        }
-        return nil
-    }
-    res["visibility"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseBroadcastForm_visibility)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetVisibility(val.(*BroadcastForm_visibility))
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *BroadcastForm) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["grouping"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateBroadcastForm_groupingFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetGrouping(val.(BroadcastForm_groupingable))
+		}
+		return nil
+	}
+	res["info"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateBroadcastTourInfoFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetInfo(val.(BroadcastTourInfoable))
+		}
+		return nil
+	}
+	res["markdown"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMarkdown(val)
+		}
+		return nil
+	}
+	res["name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetName(val)
+		}
+		return nil
+	}
+	res["players"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPlayers(val)
+		}
+		return nil
+	}
+	res["showRatingDiffs"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetShowRatingDiffs(val)
+		}
+		return nil
+	}
+	res["showScores"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetShowScores(val)
+		}
+		return nil
+	}
+	res["teams"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTeams(val)
+		}
+		return nil
+	}
+	res["teamTable"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTeamTable(val)
+		}
+		return nil
+	}
+	res["tiebreaks"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfEnumValues(ParseBroadcastTiebreakExtendedCode)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]BroadcastTiebreakExtendedCode, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = *(v.(*BroadcastTiebreakExtendedCode))
+				}
+			}
+			m.SetTiebreaks(res)
+		}
+		return nil
+	}
+	res["tier"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTier(val)
+		}
+		return nil
+	}
+	res["visibility"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(ParseBroadcastForm_visibility)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetVisibility(val.(*BroadcastForm_visibility))
+		}
+		return nil
+	}
+	return res
 }
+
 // GetGrouping gets the grouping property value. Group this broadcast along with others
 // returns a BroadcastForm_groupingable when successful
-func (m *BroadcastForm) GetGrouping()(BroadcastForm_groupingable) {
-    return m.grouping
+func (m *BroadcastForm) GetGrouping() BroadcastForm_groupingable {
+	return m.grouping
 }
+
 // GetInfo gets the info property value. Additional display information about the tournament
 // returns a BroadcastTourInfoable when successful
-func (m *BroadcastForm) GetInfo()(BroadcastTourInfoable) {
-    return m.info
+func (m *BroadcastForm) GetInfo() BroadcastTourInfoable {
+	return m.info
 }
+
 // GetMarkdown gets the markdown property value. Optional long description of the broadcast. Markdown is supported.
 // returns a *string when successful
-func (m *BroadcastForm) GetMarkdown()(*string) {
-    return m.markdown
+func (m *BroadcastForm) GetMarkdown() *string {
+	return m.markdown
 }
+
 // GetName gets the name property value. Name of the broadcast tournament.Example: `Sinquefield Cup`
 // returns a *string when successful
-func (m *BroadcastForm) GetName()(*string) {
-    return m.name
+func (m *BroadcastForm) GetName() *string {
+	return m.name
 }
+
 // GetPlayers gets the players property value. Optional replace player names, ratings and titles.One line per player, formatted as such:```txtplayer name / FIDE ID```Example:```txtMagnus Carlsen / 1503014```Player names ignore case and punctuation, and match all possible combinations of 2 words: "Jorge Rick Vito" will match "Jorge Rick", "jorge vito", "Rick, Vito", etc.If the player is NM or WNM, you can:```txtplayer name / FIDE ID / title```Alternatively, you may set tags manually, like so:```txtplayer name / rating / title / new name```All values are optional. Example:```txtMagnus Carlsen / 2863 / GMYouGotLittUp / 1890 / / Louis Litt```
 // returns a *string when successful
-func (m *BroadcastForm) GetPlayers()(*string) {
-    return m.players
+func (m *BroadcastForm) GetPlayers() *string {
+	return m.players
 }
+
 // GetShowRatingDiffs gets the showRatingDiffs property value. Show player's rating diffs
 // returns a *bool when successful
-func (m *BroadcastForm) GetShowRatingDiffs()(*bool) {
-    return m.showRatingDiffs
+func (m *BroadcastForm) GetShowRatingDiffs() *bool {
+	return m.showRatingDiffs
 }
+
 // GetShowScores gets the showScores property value. Show players scores based on game results
 // returns a *bool when successful
-func (m *BroadcastForm) GetShowScores()(*bool) {
-    return m.showScores
+func (m *BroadcastForm) GetShowScores() *bool {
+	return m.showScores
 }
+
 // GetTeams gets the teams property value. Optional: assign players to teamsOne line per player, formatted as such:```txtTeam name; Fide Id or Player name```Example:```txtTeam Cats ; 3408230Team Dogs ; Scooby Doo```By default the PGN tags WhiteTeam and BlackTeam are used.
 // returns a *string when successful
-func (m *BroadcastForm) GetTeams()(*string) {
-    return m.teams
+func (m *BroadcastForm) GetTeams() *string {
+	return m.teams
 }
+
 // GetTeamTable gets the teamTable property value. Show a team leaderboard. Requires WhiteTeam and BlackTeam PGN tags.
 // returns a *bool when successful
-func (m *BroadcastForm) GetTeamTable()(*bool) {
-    return m.teamTable
+func (m *BroadcastForm) GetTeamTable() *bool {
+	return m.teamTable
 }
+
 // GetTiebreaks gets the tiebreaks property value. The tiebreaks property
 // returns a []BroadcastTiebreakExtendedCode when successful
-func (m *BroadcastForm) GetTiebreaks()([]BroadcastTiebreakExtendedCode) {
-    return m.tiebreaks
+func (m *BroadcastForm) GetTiebreaks() []BroadcastTiebreakExtendedCode {
+	return m.tiebreaks
 }
+
 // GetTier gets the tier property value. Optional, for Lichess admins only, used to feature on /broadcast.* `3` for Official: normal tier* `4` for Official: high tier* `5` for Official: best tier
 // returns a *int32 when successful
-func (m *BroadcastForm) GetTier()(*int32) {
-    return m.tier
+func (m *BroadcastForm) GetTier() *int32 {
+	return m.tier
 }
+
 // GetVisibility gets the visibility property value. Who can view the broadcast.* `public`: Default. Anyone can view the broadcast* `unlisted`: Only people with the link can view the broadcast* `private`: Only the broadcast owner(s) can view the broadcast
 // returns a *BroadcastForm_visibility when successful
-func (m *BroadcastForm) GetVisibility()(*BroadcastForm_visibility) {
-    return m.visibility
+func (m *BroadcastForm) GetVisibility() *BroadcastForm_visibility {
+	return m.visibility
 }
+
 // Serialize serializes information the current object
-func (m *BroadcastForm) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("grouping", m.GetGrouping())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("info", m.GetInfo())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("markdown", m.GetMarkdown())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("name", m.GetName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("players", m.GetPlayers())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("showRatingDiffs", m.GetShowRatingDiffs())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("showScores", m.GetShowScores())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("teams", m.GetTeams())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("teamTable", m.GetTeamTable())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetTiebreaks() != nil {
-        err := writer.WriteCollectionOfStringValues("tiebreaks", SerializeBroadcastTiebreakExtendedCode(m.GetTiebreaks()))
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("tier", m.GetTier())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetVisibility() != nil {
-        cast := (*m.GetVisibility()).String()
-        err := writer.WriteStringValue("visibility", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *BroadcastForm) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteObjectValue("grouping", m.GetGrouping())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("info", m.GetInfo())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("markdown", m.GetMarkdown())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("name", m.GetName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("players", m.GetPlayers())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("showRatingDiffs", m.GetShowRatingDiffs())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("showScores", m.GetShowScores())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("teams", m.GetTeams())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("teamTable", m.GetTeamTable())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetTiebreaks() != nil {
+		err := writer.WriteCollectionOfStringValues("tiebreaks", SerializeBroadcastTiebreakExtendedCode(m.GetTiebreaks()))
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("tier", m.GetTier())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetVisibility() != nil {
+		cast := (*m.GetVisibility()).String()
+		err := writer.WriteStringValue("visibility", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *BroadcastForm) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *BroadcastForm) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetGrouping sets the grouping property value. Group this broadcast along with others
-func (m *BroadcastForm) SetGrouping(value BroadcastForm_groupingable)() {
-    m.grouping = value
+func (m *BroadcastForm) SetGrouping(value BroadcastForm_groupingable) {
+	m.grouping = value
 }
+
 // SetInfo sets the info property value. Additional display information about the tournament
-func (m *BroadcastForm) SetInfo(value BroadcastTourInfoable)() {
-    m.info = value
+func (m *BroadcastForm) SetInfo(value BroadcastTourInfoable) {
+	m.info = value
 }
+
 // SetMarkdown sets the markdown property value. Optional long description of the broadcast. Markdown is supported.
-func (m *BroadcastForm) SetMarkdown(value *string)() {
-    m.markdown = value
+func (m *BroadcastForm) SetMarkdown(value *string) {
+	m.markdown = value
 }
+
 // SetName sets the name property value. Name of the broadcast tournament.Example: `Sinquefield Cup`
-func (m *BroadcastForm) SetName(value *string)() {
-    m.name = value
+func (m *BroadcastForm) SetName(value *string) {
+	m.name = value
 }
+
 // SetPlayers sets the players property value. Optional replace player names, ratings and titles.One line per player, formatted as such:```txtplayer name / FIDE ID```Example:```txtMagnus Carlsen / 1503014```Player names ignore case and punctuation, and match all possible combinations of 2 words: "Jorge Rick Vito" will match "Jorge Rick", "jorge vito", "Rick, Vito", etc.If the player is NM or WNM, you can:```txtplayer name / FIDE ID / title```Alternatively, you may set tags manually, like so:```txtplayer name / rating / title / new name```All values are optional. Example:```txtMagnus Carlsen / 2863 / GMYouGotLittUp / 1890 / / Louis Litt```
-func (m *BroadcastForm) SetPlayers(value *string)() {
-    m.players = value
+func (m *BroadcastForm) SetPlayers(value *string) {
+	m.players = value
 }
+
 // SetShowRatingDiffs sets the showRatingDiffs property value. Show player's rating diffs
-func (m *BroadcastForm) SetShowRatingDiffs(value *bool)() {
-    m.showRatingDiffs = value
+func (m *BroadcastForm) SetShowRatingDiffs(value *bool) {
+	m.showRatingDiffs = value
 }
+
 // SetShowScores sets the showScores property value. Show players scores based on game results
-func (m *BroadcastForm) SetShowScores(value *bool)() {
-    m.showScores = value
+func (m *BroadcastForm) SetShowScores(value *bool) {
+	m.showScores = value
 }
+
 // SetTeams sets the teams property value. Optional: assign players to teamsOne line per player, formatted as such:```txtTeam name; Fide Id or Player name```Example:```txtTeam Cats ; 3408230Team Dogs ; Scooby Doo```By default the PGN tags WhiteTeam and BlackTeam are used.
-func (m *BroadcastForm) SetTeams(value *string)() {
-    m.teams = value
+func (m *BroadcastForm) SetTeams(value *string) {
+	m.teams = value
 }
+
 // SetTeamTable sets the teamTable property value. Show a team leaderboard. Requires WhiteTeam and BlackTeam PGN tags.
-func (m *BroadcastForm) SetTeamTable(value *bool)() {
-    m.teamTable = value
+func (m *BroadcastForm) SetTeamTable(value *bool) {
+	m.teamTable = value
 }
+
 // SetTiebreaks sets the tiebreaks property value. The tiebreaks property
-func (m *BroadcastForm) SetTiebreaks(value []BroadcastTiebreakExtendedCode)() {
-    m.tiebreaks = value
+func (m *BroadcastForm) SetTiebreaks(value []BroadcastTiebreakExtendedCode) {
+	m.tiebreaks = value
 }
+
 // SetTier sets the tier property value. Optional, for Lichess admins only, used to feature on /broadcast.* `3` for Official: normal tier* `4` for Official: high tier* `5` for Official: best tier
-func (m *BroadcastForm) SetTier(value *int32)() {
-    m.tier = value
+func (m *BroadcastForm) SetTier(value *int32) {
+	m.tier = value
 }
+
 // SetVisibility sets the visibility property value. Who can view the broadcast.* `public`: Default. Anyone can view the broadcast* `unlisted`: Only people with the link can view the broadcast* `private`: Only the broadcast owner(s) can view the broadcast
-func (m *BroadcastForm) SetVisibility(value *BroadcastForm_visibility)() {
-    m.visibility = value
+func (m *BroadcastForm) SetVisibility(value *BroadcastForm_visibility) {
+	m.visibility = value
 }
+
 type BroadcastFormable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetGrouping()(BroadcastForm_groupingable)
-    GetInfo()(BroadcastTourInfoable)
-    GetMarkdown()(*string)
-    GetName()(*string)
-    GetPlayers()(*string)
-    GetShowRatingDiffs()(*bool)
-    GetShowScores()(*bool)
-    GetTeams()(*string)
-    GetTeamTable()(*bool)
-    GetTiebreaks()([]BroadcastTiebreakExtendedCode)
-    GetTier()(*int32)
-    GetVisibility()(*BroadcastForm_visibility)
-    SetGrouping(value BroadcastForm_groupingable)()
-    SetInfo(value BroadcastTourInfoable)()
-    SetMarkdown(value *string)()
-    SetName(value *string)()
-    SetPlayers(value *string)()
-    SetShowRatingDiffs(value *bool)()
-    SetShowScores(value *bool)()
-    SetTeams(value *string)()
-    SetTeamTable(value *bool)()
-    SetTiebreaks(value []BroadcastTiebreakExtendedCode)()
-    SetTier(value *int32)()
-    SetVisibility(value *BroadcastForm_visibility)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetGrouping() BroadcastForm_groupingable
+	GetInfo() BroadcastTourInfoable
+	GetMarkdown() *string
+	GetName() *string
+	GetPlayers() *string
+	GetShowRatingDiffs() *bool
+	GetShowScores() *bool
+	GetTeams() *string
+	GetTeamTable() *bool
+	GetTiebreaks() []BroadcastTiebreakExtendedCode
+	GetTier() *int32
+	GetVisibility() *BroadcastForm_visibility
+	SetGrouping(value BroadcastForm_groupingable)
+	SetInfo(value BroadcastTourInfoable)
+	SetMarkdown(value *string)
+	SetName(value *string)
+	SetPlayers(value *string)
+	SetShowRatingDiffs(value *bool)
+	SetShowScores(value *bool)
+	SetTeams(value *string)
+	SetTeamTable(value *bool)
+	SetTiebreaks(value []BroadcastTiebreakExtendedCode)
+	SetTier(value *int32)
+	SetVisibility(value *BroadcastForm_visibility)
 }

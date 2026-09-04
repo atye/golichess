@@ -4,109 +4,119 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type Verdict struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The condition property
-    condition *string
-    // The verdict property
-    verdict *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The condition property
+	condition *string
+	// The verdict property
+	verdict *string
 }
+
 // NewVerdict instantiates a new Verdict and sets the default values.
-func NewVerdict()(*Verdict) {
-    m := &Verdict{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewVerdict() *Verdict {
+	m := &Verdict{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateVerdictFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateVerdictFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewVerdict(), nil
+func CreateVerdictFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewVerdict(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *Verdict) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *Verdict) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetCondition gets the condition property value. The condition property
 // returns a *string when successful
-func (m *Verdict) GetCondition()(*string) {
-    return m.condition
+func (m *Verdict) GetCondition() *string {
+	return m.condition
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *Verdict) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["condition"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCondition(val)
-        }
-        return nil
-    }
-    res["verdict"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetVerdict(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *Verdict) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["condition"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCondition(val)
+		}
+		return nil
+	}
+	res["verdict"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetVerdict(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetVerdict gets the verdict property value. The verdict property
 // returns a *string when successful
-func (m *Verdict) GetVerdict()(*string) {
-    return m.verdict
+func (m *Verdict) GetVerdict() *string {
+	return m.verdict
 }
+
 // Serialize serializes information the current object
-func (m *Verdict) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("condition", m.GetCondition())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("verdict", m.GetVerdict())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *Verdict) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("condition", m.GetCondition())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("verdict", m.GetVerdict())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *Verdict) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *Verdict) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetCondition sets the condition property value. The condition property
-func (m *Verdict) SetCondition(value *string)() {
-    m.condition = value
+func (m *Verdict) SetCondition(value *string) {
+	m.condition = value
 }
+
 // SetVerdict sets the verdict property value. The verdict property
-func (m *Verdict) SetVerdict(value *string)() {
-    m.verdict = value
+func (m *Verdict) SetVerdict(value *string) {
+	m.verdict = value
 }
+
 type Verdictable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetCondition()(*string)
-    GetVerdict()(*string)
-    SetCondition(value *string)()
-    SetVerdict(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetCondition() *string
+	GetVerdict() *string
+	SetCondition(value *string)
+	SetVerdict(value *string)
 }

@@ -4,94 +4,103 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // ArenaPosition composed type wrapper for classes ArenaPositionMember1able, ArenaPositionMember2able
 type ArenaPosition struct {
-    // Composed type representation for type ArenaPositionMember1able
-    arenaPositionMember1 ArenaPositionMember1able
-    // Composed type representation for type ArenaPositionMember2able
-    arenaPositionMember2 ArenaPositionMember2able
+	// Composed type representation for type ArenaPositionMember1able
+	arenaPositionMember1 ArenaPositionMember1able
+	// Composed type representation for type ArenaPositionMember2able
+	arenaPositionMember2 ArenaPositionMember2able
 }
+
 // NewArenaPosition instantiates a new ArenaPosition and sets the default values.
-func NewArenaPosition()(*ArenaPosition) {
-    m := &ArenaPosition{
-    }
-    return m
+func NewArenaPosition() *ArenaPosition {
+	m := &ArenaPosition{}
+	return m
 }
+
 // CreateArenaPositionFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateArenaPositionFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewArenaPosition()
-    if parseNode != nil {
-        mappingValueNode, err := parseNode.GetChildNode("")
-        if err != nil {
-            return nil, err
-        }
-        if mappingValueNode != nil {
-            mappingValue, err := mappingValueNode.GetStringValue()
-            if err != nil {
-                return nil, err
-            }
-            if mappingValue != nil {
-            }
-        }
-    }
-    return result, nil
+func CreateArenaPositionFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	result := NewArenaPosition()
+	if parseNode != nil {
+		mappingValueNode, err := parseNode.GetChildNode("")
+		if err != nil {
+			return nil, err
+		}
+		if mappingValueNode != nil {
+			mappingValue, err := mappingValueNode.GetStringValue()
+			if err != nil {
+				return nil, err
+			}
+			if mappingValue != nil {
+			}
+		}
+	}
+	return result, nil
 }
+
 // GetArenaPositionMember1 gets the ArenaPositionMember1 property value. Composed type representation for type ArenaPositionMember1able
 // returns a ArenaPositionMember1able when successful
-func (m *ArenaPosition) GetArenaPositionMember1()(ArenaPositionMember1able) {
-    return m.arenaPositionMember1
+func (m *ArenaPosition) GetArenaPositionMember1() ArenaPositionMember1able {
+	return m.arenaPositionMember1
 }
+
 // GetArenaPositionMember2 gets the ArenaPositionMember2 property value. Composed type representation for type ArenaPositionMember2able
 // returns a ArenaPositionMember2able when successful
-func (m *ArenaPosition) GetArenaPositionMember2()(ArenaPositionMember2able) {
-    return m.arenaPositionMember2
+func (m *ArenaPosition) GetArenaPositionMember2() ArenaPositionMember2able {
+	return m.arenaPositionMember2
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ArenaPosition) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    if m.GetArenaPositionMember1() != nil {
-        return m.GetArenaPositionMember1().GetFieldDeserializers()
-    } else if m.GetArenaPositionMember2() != nil {
-        return m.GetArenaPositionMember2().GetFieldDeserializers()
-    }
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *ArenaPosition) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	if m.GetArenaPositionMember1() != nil {
+		return m.GetArenaPositionMember1().GetFieldDeserializers()
+	} else if m.GetArenaPositionMember2() != nil {
+		return m.GetArenaPositionMember2().GetFieldDeserializers()
+	}
+	return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
 }
+
 // GetIsComposedType determines if the current object is a wrapper around a composed type
 // returns a bool when successful
-func (m *ArenaPosition) GetIsComposedType()(bool) {
-    return true
+func (m *ArenaPosition) GetIsComposedType() bool {
+	return true
 }
+
 // Serialize serializes information the current object
-func (m *ArenaPosition) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetArenaPositionMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetArenaPositionMember1())
-        if err != nil {
-            return err
-        }
-    } else if m.GetArenaPositionMember2() != nil {
-        err := writer.WriteObjectValue("", m.GetArenaPositionMember2())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *ArenaPosition) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	if m.GetArenaPositionMember1() != nil {
+		err := writer.WriteObjectValue("", m.GetArenaPositionMember1())
+		if err != nil {
+			return err
+		}
+	} else if m.GetArenaPositionMember2() != nil {
+		err := writer.WriteObjectValue("", m.GetArenaPositionMember2())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetArenaPositionMember1 sets the ArenaPositionMember1 property value. Composed type representation for type ArenaPositionMember1able
-func (m *ArenaPosition) SetArenaPositionMember1(value ArenaPositionMember1able)() {
-    m.arenaPositionMember1 = value
+func (m *ArenaPosition) SetArenaPositionMember1(value ArenaPositionMember1able) {
+	m.arenaPositionMember1 = value
 }
+
 // SetArenaPositionMember2 sets the ArenaPositionMember2 property value. Composed type representation for type ArenaPositionMember2able
-func (m *ArenaPosition) SetArenaPositionMember2(value ArenaPositionMember2able)() {
-    m.arenaPositionMember2 = value
+func (m *ArenaPosition) SetArenaPositionMember2(value ArenaPositionMember2able) {
+	m.arenaPositionMember2 = value
 }
+
 type ArenaPositionable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetArenaPositionMember1()(ArenaPositionMember1able)
-    GetArenaPositionMember2()(ArenaPositionMember2able)
-    SetArenaPositionMember1(value ArenaPositionMember1able)()
-    SetArenaPositionMember2(value ArenaPositionMember2able)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetArenaPositionMember1() ArenaPositionMember1able
+	GetArenaPositionMember2() ArenaPositionMember2able
+	SetArenaPositionMember1(value ArenaPositionMember1able)
+	SetArenaPositionMember2(value ArenaPositionMember2able)
 }

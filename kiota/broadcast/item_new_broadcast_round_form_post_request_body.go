@@ -4,255 +4,279 @@
 package broadcast
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
-    i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type ItemNewBroadcastRoundFormPostRequestBody struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // Scoring overrides for wins or draws.
-    customScoring i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomScoringable
-    // Delay in seconds for movements to appear on the broadcast. Leave it empty if you don't need it.Example: `900` (15 min)
-    delay *int32
-    // (Only for Admins) Waiting time for each poll.
-    period *int32
-    // Whether the round is used when calculating players' rating changes.
-    rated *bool
-    // The start date is unknown, and the round will start automatically when the previous round completes.
-    startsAfterPrevious *bool
-    // Timestamp in milliseconds of broadcast round start. Leave empty to manually start the broadcast round.Example: `1356998400070`
-    startsAt *int64
-    // Scoring overrides for a team match win or draw.
-    teamCustomScoring i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomPointsPerColorable
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// Scoring overrides for wins or draws.
+	customScoring i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomScoringable
+	// Delay in seconds for movements to appear on the broadcast. Leave it empty if you don't need it.Example: `900` (15 min)
+	delay *int32
+	// (Only for Admins) Waiting time for each poll.
+	period *int32
+	// Whether the round is used when calculating players' rating changes.
+	rated *bool
+	// The start date is unknown, and the round will start automatically when the previous round completes.
+	startsAfterPrevious *bool
+	// Timestamp in milliseconds of broadcast round start. Leave empty to manually start the broadcast round.Example: `1356998400070`
+	startsAt *int64
+	// Scoring overrides for a team match win or draw.
+	teamCustomScoring i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomPointsPerColorable
 }
+
 // NewItemNewBroadcastRoundFormPostRequestBody instantiates a new ItemNewBroadcastRoundFormPostRequestBody and sets the default values.
-func NewItemNewBroadcastRoundFormPostRequestBody()(*ItemNewBroadcastRoundFormPostRequestBody) {
-    m := &ItemNewBroadcastRoundFormPostRequestBody{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewItemNewBroadcastRoundFormPostRequestBody() *ItemNewBroadcastRoundFormPostRequestBody {
+	m := &ItemNewBroadcastRoundFormPostRequestBody{}
+	m.SetAdditionalData(make(map[string]any))
+	ratedValue := true
+	m.SetRated(&ratedValue)
+	startsAfterPreviousValue := false
+	m.SetStartsAfterPrevious(&startsAfterPreviousValue)
+	return m
 }
+
 // CreateItemNewBroadcastRoundFormPostRequestBodyFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateItemNewBroadcastRoundFormPostRequestBodyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewItemNewBroadcastRoundFormPostRequestBody(), nil
+func CreateItemNewBroadcastRoundFormPostRequestBodyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewItemNewBroadcastRoundFormPostRequestBody(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *ItemNewBroadcastRoundFormPostRequestBody) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *ItemNewBroadcastRoundFormPostRequestBody) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetCustomScoring gets the customScoring property value. Scoring overrides for wins or draws.
 // returns a BroadcastCustomScoringable when successful
-func (m *ItemNewBroadcastRoundFormPostRequestBody) GetCustomScoring()(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomScoringable) {
-    return m.customScoring
+func (m *ItemNewBroadcastRoundFormPostRequestBody) GetCustomScoring() i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomScoringable {
+	return m.customScoring
 }
+
 // GetDelay gets the delay property value. Delay in seconds for movements to appear on the broadcast. Leave it empty if you don't need it.Example: `900` (15 min)
 // returns a *int32 when successful
-func (m *ItemNewBroadcastRoundFormPostRequestBody) GetDelay()(*int32) {
-    return m.delay
+func (m *ItemNewBroadcastRoundFormPostRequestBody) GetDelay() *int32 {
+	return m.delay
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ItemNewBroadcastRoundFormPostRequestBody) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["customScoring"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateBroadcastCustomScoringFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCustomScoring(val.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomScoringable))
-        }
-        return nil
-    }
-    res["delay"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDelay(val)
-        }
-        return nil
-    }
-    res["period"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPeriod(val)
-        }
-        return nil
-    }
-    res["rated"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRated(val)
-        }
-        return nil
-    }
-    res["startsAfterPrevious"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStartsAfterPrevious(val)
-        }
-        return nil
-    }
-    res["startsAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStartsAt(val)
-        }
-        return nil
-    }
-    res["teamCustomScoring"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateBroadcastCustomPointsPerColorFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTeamCustomScoring(val.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomPointsPerColorable))
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *ItemNewBroadcastRoundFormPostRequestBody) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["customScoring"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateBroadcastCustomScoringFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCustomScoring(val.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomScoringable))
+		}
+		return nil
+	}
+	res["delay"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetDelay(val)
+		}
+		return nil
+	}
+	res["period"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPeriod(val)
+		}
+		return nil
+	}
+	res["rated"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRated(val)
+		}
+		return nil
+	}
+	res["startsAfterPrevious"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStartsAfterPrevious(val)
+		}
+		return nil
+	}
+	res["startsAt"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStartsAt(val)
+		}
+		return nil
+	}
+	res["teamCustomScoring"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateBroadcastCustomPointsPerColorFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTeamCustomScoring(val.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomPointsPerColorable))
+		}
+		return nil
+	}
+	return res
 }
+
 // GetPeriod gets the period property value. (Only for Admins) Waiting time for each poll.
 // returns a *int32 when successful
-func (m *ItemNewBroadcastRoundFormPostRequestBody) GetPeriod()(*int32) {
-    return m.period
+func (m *ItemNewBroadcastRoundFormPostRequestBody) GetPeriod() *int32 {
+	return m.period
 }
+
 // GetRated gets the rated property value. Whether the round is used when calculating players' rating changes.
 // returns a *bool when successful
-func (m *ItemNewBroadcastRoundFormPostRequestBody) GetRated()(*bool) {
-    return m.rated
+func (m *ItemNewBroadcastRoundFormPostRequestBody) GetRated() *bool {
+	return m.rated
 }
+
 // GetStartsAfterPrevious gets the startsAfterPrevious property value. The start date is unknown, and the round will start automatically when the previous round completes.
 // returns a *bool when successful
-func (m *ItemNewBroadcastRoundFormPostRequestBody) GetStartsAfterPrevious()(*bool) {
-    return m.startsAfterPrevious
+func (m *ItemNewBroadcastRoundFormPostRequestBody) GetStartsAfterPrevious() *bool {
+	return m.startsAfterPrevious
 }
+
 // GetStartsAt gets the startsAt property value. Timestamp in milliseconds of broadcast round start. Leave empty to manually start the broadcast round.Example: `1356998400070`
 // returns a *int64 when successful
-func (m *ItemNewBroadcastRoundFormPostRequestBody) GetStartsAt()(*int64) {
-    return m.startsAt
+func (m *ItemNewBroadcastRoundFormPostRequestBody) GetStartsAt() *int64 {
+	return m.startsAt
 }
+
 // GetTeamCustomScoring gets the teamCustomScoring property value. Scoring overrides for a team match win or draw.
 // returns a BroadcastCustomPointsPerColorable when successful
-func (m *ItemNewBroadcastRoundFormPostRequestBody) GetTeamCustomScoring()(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomPointsPerColorable) {
-    return m.teamCustomScoring
+func (m *ItemNewBroadcastRoundFormPostRequestBody) GetTeamCustomScoring() i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomPointsPerColorable {
+	return m.teamCustomScoring
 }
+
 // Serialize serializes information the current object
-func (m *ItemNewBroadcastRoundFormPostRequestBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("customScoring", m.GetCustomScoring())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("delay", m.GetDelay())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("period", m.GetPeriod())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("rated", m.GetRated())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("startsAfterPrevious", m.GetStartsAfterPrevious())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt64Value("startsAt", m.GetStartsAt())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("teamCustomScoring", m.GetTeamCustomScoring())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *ItemNewBroadcastRoundFormPostRequestBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteObjectValue("customScoring", m.GetCustomScoring())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("delay", m.GetDelay())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("period", m.GetPeriod())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("rated", m.GetRated())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("startsAfterPrevious", m.GetStartsAfterPrevious())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt64Value("startsAt", m.GetStartsAt())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("teamCustomScoring", m.GetTeamCustomScoring())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ItemNewBroadcastRoundFormPostRequestBody) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *ItemNewBroadcastRoundFormPostRequestBody) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetCustomScoring sets the customScoring property value. Scoring overrides for wins or draws.
-func (m *ItemNewBroadcastRoundFormPostRequestBody) SetCustomScoring(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomScoringable)() {
-    m.customScoring = value
+func (m *ItemNewBroadcastRoundFormPostRequestBody) SetCustomScoring(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomScoringable) {
+	m.customScoring = value
 }
+
 // SetDelay sets the delay property value. Delay in seconds for movements to appear on the broadcast. Leave it empty if you don't need it.Example: `900` (15 min)
-func (m *ItemNewBroadcastRoundFormPostRequestBody) SetDelay(value *int32)() {
-    m.delay = value
+func (m *ItemNewBroadcastRoundFormPostRequestBody) SetDelay(value *int32) {
+	m.delay = value
 }
+
 // SetPeriod sets the period property value. (Only for Admins) Waiting time for each poll.
-func (m *ItemNewBroadcastRoundFormPostRequestBody) SetPeriod(value *int32)() {
-    m.period = value
+func (m *ItemNewBroadcastRoundFormPostRequestBody) SetPeriod(value *int32) {
+	m.period = value
 }
+
 // SetRated sets the rated property value. Whether the round is used when calculating players' rating changes.
-func (m *ItemNewBroadcastRoundFormPostRequestBody) SetRated(value *bool)() {
-    m.rated = value
+func (m *ItemNewBroadcastRoundFormPostRequestBody) SetRated(value *bool) {
+	m.rated = value
 }
+
 // SetStartsAfterPrevious sets the startsAfterPrevious property value. The start date is unknown, and the round will start automatically when the previous round completes.
-func (m *ItemNewBroadcastRoundFormPostRequestBody) SetStartsAfterPrevious(value *bool)() {
-    m.startsAfterPrevious = value
+func (m *ItemNewBroadcastRoundFormPostRequestBody) SetStartsAfterPrevious(value *bool) {
+	m.startsAfterPrevious = value
 }
+
 // SetStartsAt sets the startsAt property value. Timestamp in milliseconds of broadcast round start. Leave empty to manually start the broadcast round.Example: `1356998400070`
-func (m *ItemNewBroadcastRoundFormPostRequestBody) SetStartsAt(value *int64)() {
-    m.startsAt = value
+func (m *ItemNewBroadcastRoundFormPostRequestBody) SetStartsAt(value *int64) {
+	m.startsAt = value
 }
+
 // SetTeamCustomScoring sets the teamCustomScoring property value. Scoring overrides for a team match win or draw.
-func (m *ItemNewBroadcastRoundFormPostRequestBody) SetTeamCustomScoring(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomPointsPerColorable)() {
-    m.teamCustomScoring = value
+func (m *ItemNewBroadcastRoundFormPostRequestBody) SetTeamCustomScoring(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomPointsPerColorable) {
+	m.teamCustomScoring = value
 }
+
 type ItemNewBroadcastRoundFormPostRequestBodyable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetCustomScoring()(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomScoringable)
-    GetDelay()(*int32)
-    GetPeriod()(*int32)
-    GetRated()(*bool)
-    GetStartsAfterPrevious()(*bool)
-    GetStartsAt()(*int64)
-    GetTeamCustomScoring()(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomPointsPerColorable)
-    SetCustomScoring(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomScoringable)()
-    SetDelay(value *int32)()
-    SetPeriod(value *int32)()
-    SetRated(value *bool)()
-    SetStartsAfterPrevious(value *bool)()
-    SetStartsAt(value *int64)()
-    SetTeamCustomScoring(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomPointsPerColorable)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetCustomScoring() i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomScoringable
+	GetDelay() *int32
+	GetPeriod() *int32
+	GetRated() *bool
+	GetStartsAfterPrevious() *bool
+	GetStartsAt() *int64
+	GetTeamCustomScoring() i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomPointsPerColorable
+	SetCustomScoring(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomScoringable)
+	SetDelay(value *int32)
+	SetPeriod(value *int32)
+	SetRated(value *bool)
+	SetStartsAfterPrevious(value *bool)
+	SetStartsAt(value *int64)
+	SetTeamCustomScoring(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastCustomPointsPerColorable)
 }

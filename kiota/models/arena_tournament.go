@@ -4,834 +4,894 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type ArenaTournament struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The botsAllowed property
-    botsAllowed *bool
-    // The clock property
-    clock Clockable
-    // The createdBy property
-    createdBy *string
-    // The finishesAt property
-    finishesAt *int64
-    // The fullName property
-    fullName *string
-    // The hasMaxRating property
-    hasMaxRating *bool
-    // The id property
-    id *string
-    // The maxRating property
-    maxRating ArenaRatingObjable
-    // The minAccountAgeInDays property
-    minAccountAgeInDays *int32
-    // The minRatedGames property
-    minRatedGames ArenaTournament_minRatedGamesable
-    // The minRating property
-    minRating ArenaRatingObjable
-    // The minutes property
-    minutes *int32
-    // The nbPlayers property
-    nbPlayers *int32
-    // The onlyTitled property
-    onlyTitled *bool
-    // The perf property
-    perf ArenaPerfable
-    // The position property
-    position ArenaPositionable
-    // The private property
-    private *bool
-    // The rated property
-    rated *bool
-    // The schedule property
-    schedule ArenaTournament_scheduleable
-    // The secondsToStart property
-    secondsToStart *int32
-    // The startsAt property
-    startsAt *int64
-    // 10: created, 20: started, 30: finished
-    status *int32
-    // The system property
-    system *string
-    // The teamBattle property
-    teamBattle ArenaTournament_teamBattleable
-    // The teamMember property
-    teamMember *string
-    // The variant property
-    variant Variantable
-    // The winner property
-    winner LightUserable
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The botsAllowed property
+	botsAllowed *bool
+	// The clock property
+	clock Clockable
+	// The createdBy property
+	createdBy *string
+	// The finishesAt property
+	finishesAt *int64
+	// The fullName property
+	fullName *string
+	// The hasMaxRating property
+	hasMaxRating *bool
+	// The id property
+	id *string
+	// The maxRating property
+	maxRating ArenaRatingObjable
+	// The minAccountAgeInDays property
+	minAccountAgeInDays *int32
+	// The minRatedGames property
+	minRatedGames ArenaTournament_minRatedGamesable
+	// The minRating property
+	minRating ArenaRatingObjable
+	// The minutes property
+	minutes *int32
+	// The nbPlayers property
+	nbPlayers *int32
+	// The onlyTitled property
+	onlyTitled *bool
+	// The perf property
+	perf ArenaPerfable
+	// The position property
+	position ArenaPositionable
+	// The private property
+	private *bool
+	// The rated property
+	rated *bool
+	// The schedule property
+	schedule ArenaTournament_scheduleable
+	// The secondsToStart property
+	secondsToStart *int32
+	// The startsAt property
+	startsAt *int64
+	// 10: created, 20: started, 30: finished
+	status *int32
+	// The system property
+	system *string
+	// The teamBattle property
+	teamBattle ArenaTournament_teamBattleable
+	// The teamMember property
+	teamMember *string
+	// The variant property
+	variant Variantable
+	// The winner property
+	winner LightUserable
 }
+
 // NewArenaTournament instantiates a new ArenaTournament and sets the default values.
-func NewArenaTournament()(*ArenaTournament) {
-    m := &ArenaTournament{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewArenaTournament() *ArenaTournament {
+	m := &ArenaTournament{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateArenaTournamentFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateArenaTournamentFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewArenaTournament(), nil
+func CreateArenaTournamentFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewArenaTournament(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *ArenaTournament) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *ArenaTournament) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetBotsAllowed gets the botsAllowed property value. The botsAllowed property
 // returns a *bool when successful
-func (m *ArenaTournament) GetBotsAllowed()(*bool) {
-    return m.botsAllowed
+func (m *ArenaTournament) GetBotsAllowed() *bool {
+	return m.botsAllowed
 }
+
 // GetClock gets the clock property value. The clock property
 // returns a Clockable when successful
-func (m *ArenaTournament) GetClock()(Clockable) {
-    return m.clock
+func (m *ArenaTournament) GetClock() Clockable {
+	return m.clock
 }
+
 // GetCreatedBy gets the createdBy property value. The createdBy property
 // returns a *string when successful
-func (m *ArenaTournament) GetCreatedBy()(*string) {
-    return m.createdBy
+func (m *ArenaTournament) GetCreatedBy() *string {
+	return m.createdBy
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ArenaTournament) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["botsAllowed"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetBotsAllowed(val)
-        }
-        return nil
-    }
-    res["clock"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateClockFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetClock(val.(Clockable))
-        }
-        return nil
-    }
-    res["createdBy"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCreatedBy(val)
-        }
-        return nil
-    }
-    res["finishesAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFinishesAt(val)
-        }
-        return nil
-    }
-    res["fullName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFullName(val)
-        }
-        return nil
-    }
-    res["hasMaxRating"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetHasMaxRating(val)
-        }
-        return nil
-    }
-    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetId(val)
-        }
-        return nil
-    }
-    res["maxRating"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateArenaRatingObjFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMaxRating(val.(ArenaRatingObjable))
-        }
-        return nil
-    }
-    res["minAccountAgeInDays"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMinAccountAgeInDays(val)
-        }
-        return nil
-    }
-    res["minRatedGames"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateArenaTournament_minRatedGamesFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMinRatedGames(val.(ArenaTournament_minRatedGamesable))
-        }
-        return nil
-    }
-    res["minRating"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateArenaRatingObjFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMinRating(val.(ArenaRatingObjable))
-        }
-        return nil
-    }
-    res["minutes"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMinutes(val)
-        }
-        return nil
-    }
-    res["nbPlayers"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetNbPlayers(val)
-        }
-        return nil
-    }
-    res["onlyTitled"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetOnlyTitled(val)
-        }
-        return nil
-    }
-    res["perf"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateArenaPerfFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPerf(val.(ArenaPerfable))
-        }
-        return nil
-    }
-    res["position"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateArenaPositionFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPosition(val.(ArenaPositionable))
-        }
-        return nil
-    }
-    res["private"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPrivate(val)
-        }
-        return nil
-    }
-    res["rated"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRated(val)
-        }
-        return nil
-    }
-    res["schedule"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateArenaTournament_scheduleFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSchedule(val.(ArenaTournament_scheduleable))
-        }
-        return nil
-    }
-    res["secondsToStart"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSecondsToStart(val)
-        }
-        return nil
-    }
-    res["startsAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStartsAt(val)
-        }
-        return nil
-    }
-    res["status"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStatus(val)
-        }
-        return nil
-    }
-    res["system"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSystem(val)
-        }
-        return nil
-    }
-    res["teamBattle"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateArenaTournament_teamBattleFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTeamBattle(val.(ArenaTournament_teamBattleable))
-        }
-        return nil
-    }
-    res["teamMember"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTeamMember(val)
-        }
-        return nil
-    }
-    res["variant"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateVariantFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetVariant(val.(Variantable))
-        }
-        return nil
-    }
-    res["winner"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateLightUserFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetWinner(val.(LightUserable))
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *ArenaTournament) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["botsAllowed"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetBotsAllowed(val)
+		}
+		return nil
+	}
+	res["clock"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateClockFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetClock(val.(Clockable))
+		}
+		return nil
+	}
+	res["createdBy"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCreatedBy(val)
+		}
+		return nil
+	}
+	res["finishesAt"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFinishesAt(val)
+		}
+		return nil
+	}
+	res["fullName"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFullName(val)
+		}
+		return nil
+	}
+	res["hasMaxRating"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetHasMaxRating(val)
+		}
+		return nil
+	}
+	res["id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetId(val)
+		}
+		return nil
+	}
+	res["maxRating"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateArenaRatingObjFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMaxRating(val.(ArenaRatingObjable))
+		}
+		return nil
+	}
+	res["minAccountAgeInDays"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMinAccountAgeInDays(val)
+		}
+		return nil
+	}
+	res["minRatedGames"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateArenaTournament_minRatedGamesFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMinRatedGames(val.(ArenaTournament_minRatedGamesable))
+		}
+		return nil
+	}
+	res["minRating"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateArenaRatingObjFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMinRating(val.(ArenaRatingObjable))
+		}
+		return nil
+	}
+	res["minutes"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMinutes(val)
+		}
+		return nil
+	}
+	res["nbPlayers"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetNbPlayers(val)
+		}
+		return nil
+	}
+	res["onlyTitled"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetOnlyTitled(val)
+		}
+		return nil
+	}
+	res["perf"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateArenaPerfFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPerf(val.(ArenaPerfable))
+		}
+		return nil
+	}
+	res["position"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateArenaPositionFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPosition(val.(ArenaPositionable))
+		}
+		return nil
+	}
+	res["private"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPrivate(val)
+		}
+		return nil
+	}
+	res["rated"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRated(val)
+		}
+		return nil
+	}
+	res["schedule"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateArenaTournament_scheduleFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetSchedule(val.(ArenaTournament_scheduleable))
+		}
+		return nil
+	}
+	res["secondsToStart"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetSecondsToStart(val)
+		}
+		return nil
+	}
+	res["startsAt"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStartsAt(val)
+		}
+		return nil
+	}
+	res["status"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStatus(val)
+		}
+		return nil
+	}
+	res["system"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetSystem(val)
+		}
+		return nil
+	}
+	res["teamBattle"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateArenaTournament_teamBattleFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTeamBattle(val.(ArenaTournament_teamBattleable))
+		}
+		return nil
+	}
+	res["teamMember"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTeamMember(val)
+		}
+		return nil
+	}
+	res["variant"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateVariantFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetVariant(val.(Variantable))
+		}
+		return nil
+	}
+	res["winner"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateLightUserFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetWinner(val.(LightUserable))
+		}
+		return nil
+	}
+	return res
 }
+
 // GetFinishesAt gets the finishesAt property value. The finishesAt property
 // returns a *int64 when successful
-func (m *ArenaTournament) GetFinishesAt()(*int64) {
-    return m.finishesAt
+func (m *ArenaTournament) GetFinishesAt() *int64 {
+	return m.finishesAt
 }
+
 // GetFullName gets the fullName property value. The fullName property
 // returns a *string when successful
-func (m *ArenaTournament) GetFullName()(*string) {
-    return m.fullName
+func (m *ArenaTournament) GetFullName() *string {
+	return m.fullName
 }
+
 // GetHasMaxRating gets the hasMaxRating property value. The hasMaxRating property
 // returns a *bool when successful
-func (m *ArenaTournament) GetHasMaxRating()(*bool) {
-    return m.hasMaxRating
+func (m *ArenaTournament) GetHasMaxRating() *bool {
+	return m.hasMaxRating
 }
+
 // GetId gets the id property value. The id property
 // returns a *string when successful
-func (m *ArenaTournament) GetId()(*string) {
-    return m.id
+func (m *ArenaTournament) GetId() *string {
+	return m.id
 }
+
 // GetMaxRating gets the maxRating property value. The maxRating property
 // returns a ArenaRatingObjable when successful
-func (m *ArenaTournament) GetMaxRating()(ArenaRatingObjable) {
-    return m.maxRating
+func (m *ArenaTournament) GetMaxRating() ArenaRatingObjable {
+	return m.maxRating
 }
+
 // GetMinAccountAgeInDays gets the minAccountAgeInDays property value. The minAccountAgeInDays property
 // returns a *int32 when successful
-func (m *ArenaTournament) GetMinAccountAgeInDays()(*int32) {
-    return m.minAccountAgeInDays
+func (m *ArenaTournament) GetMinAccountAgeInDays() *int32 {
+	return m.minAccountAgeInDays
 }
+
 // GetMinRatedGames gets the minRatedGames property value. The minRatedGames property
 // returns a ArenaTournament_minRatedGamesable when successful
-func (m *ArenaTournament) GetMinRatedGames()(ArenaTournament_minRatedGamesable) {
-    return m.minRatedGames
+func (m *ArenaTournament) GetMinRatedGames() ArenaTournament_minRatedGamesable {
+	return m.minRatedGames
 }
+
 // GetMinRating gets the minRating property value. The minRating property
 // returns a ArenaRatingObjable when successful
-func (m *ArenaTournament) GetMinRating()(ArenaRatingObjable) {
-    return m.minRating
+func (m *ArenaTournament) GetMinRating() ArenaRatingObjable {
+	return m.minRating
 }
+
 // GetMinutes gets the minutes property value. The minutes property
 // returns a *int32 when successful
-func (m *ArenaTournament) GetMinutes()(*int32) {
-    return m.minutes
+func (m *ArenaTournament) GetMinutes() *int32 {
+	return m.minutes
 }
+
 // GetNbPlayers gets the nbPlayers property value. The nbPlayers property
 // returns a *int32 when successful
-func (m *ArenaTournament) GetNbPlayers()(*int32) {
-    return m.nbPlayers
+func (m *ArenaTournament) GetNbPlayers() *int32 {
+	return m.nbPlayers
 }
+
 // GetOnlyTitled gets the onlyTitled property value. The onlyTitled property
 // returns a *bool when successful
-func (m *ArenaTournament) GetOnlyTitled()(*bool) {
-    return m.onlyTitled
+func (m *ArenaTournament) GetOnlyTitled() *bool {
+	return m.onlyTitled
 }
+
 // GetPerf gets the perf property value. The perf property
 // returns a ArenaPerfable when successful
-func (m *ArenaTournament) GetPerf()(ArenaPerfable) {
-    return m.perf
+func (m *ArenaTournament) GetPerf() ArenaPerfable {
+	return m.perf
 }
+
 // GetPosition gets the position property value. The position property
 // returns a ArenaPositionable when successful
-func (m *ArenaTournament) GetPosition()(ArenaPositionable) {
-    return m.position
+func (m *ArenaTournament) GetPosition() ArenaPositionable {
+	return m.position
 }
+
 // GetPrivate gets the private property value. The private property
 // returns a *bool when successful
-func (m *ArenaTournament) GetPrivate()(*bool) {
-    return m.private
+func (m *ArenaTournament) GetPrivate() *bool {
+	return m.private
 }
+
 // GetRated gets the rated property value. The rated property
 // returns a *bool when successful
-func (m *ArenaTournament) GetRated()(*bool) {
-    return m.rated
+func (m *ArenaTournament) GetRated() *bool {
+	return m.rated
 }
+
 // GetSchedule gets the schedule property value. The schedule property
 // returns a ArenaTournament_scheduleable when successful
-func (m *ArenaTournament) GetSchedule()(ArenaTournament_scheduleable) {
-    return m.schedule
+func (m *ArenaTournament) GetSchedule() ArenaTournament_scheduleable {
+	return m.schedule
 }
+
 // GetSecondsToStart gets the secondsToStart property value. The secondsToStart property
 // returns a *int32 when successful
-func (m *ArenaTournament) GetSecondsToStart()(*int32) {
-    return m.secondsToStart
+func (m *ArenaTournament) GetSecondsToStart() *int32 {
+	return m.secondsToStart
 }
+
 // GetStartsAt gets the startsAt property value. The startsAt property
 // returns a *int64 when successful
-func (m *ArenaTournament) GetStartsAt()(*int64) {
-    return m.startsAt
+func (m *ArenaTournament) GetStartsAt() *int64 {
+	return m.startsAt
 }
+
 // GetStatus gets the status property value. 10: created, 20: started, 30: finished
 // returns a *int32 when successful
-func (m *ArenaTournament) GetStatus()(*int32) {
-    return m.status
+func (m *ArenaTournament) GetStatus() *int32 {
+	return m.status
 }
+
 // GetSystem gets the system property value. The system property
 // returns a *string when successful
-func (m *ArenaTournament) GetSystem()(*string) {
-    return m.system
+func (m *ArenaTournament) GetSystem() *string {
+	return m.system
 }
+
 // GetTeamBattle gets the teamBattle property value. The teamBattle property
 // returns a ArenaTournament_teamBattleable when successful
-func (m *ArenaTournament) GetTeamBattle()(ArenaTournament_teamBattleable) {
-    return m.teamBattle
+func (m *ArenaTournament) GetTeamBattle() ArenaTournament_teamBattleable {
+	return m.teamBattle
 }
+
 // GetTeamMember gets the teamMember property value. The teamMember property
 // returns a *string when successful
-func (m *ArenaTournament) GetTeamMember()(*string) {
-    return m.teamMember
+func (m *ArenaTournament) GetTeamMember() *string {
+	return m.teamMember
 }
+
 // GetVariant gets the variant property value. The variant property
 // returns a Variantable when successful
-func (m *ArenaTournament) GetVariant()(Variantable) {
-    return m.variant
+func (m *ArenaTournament) GetVariant() Variantable {
+	return m.variant
 }
+
 // GetWinner gets the winner property value. The winner property
 // returns a LightUserable when successful
-func (m *ArenaTournament) GetWinner()(LightUserable) {
-    return m.winner
+func (m *ArenaTournament) GetWinner() LightUserable {
+	return m.winner
 }
+
 // Serialize serializes information the current object
-func (m *ArenaTournament) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteBoolValue("botsAllowed", m.GetBotsAllowed())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("clock", m.GetClock())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("createdBy", m.GetCreatedBy())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt64Value("finishesAt", m.GetFinishesAt())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("fullName", m.GetFullName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("hasMaxRating", m.GetHasMaxRating())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("id", m.GetId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("maxRating", m.GetMaxRating())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("minAccountAgeInDays", m.GetMinAccountAgeInDays())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("minRatedGames", m.GetMinRatedGames())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("minRating", m.GetMinRating())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("minutes", m.GetMinutes())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("nbPlayers", m.GetNbPlayers())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("onlyTitled", m.GetOnlyTitled())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("perf", m.GetPerf())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("position", m.GetPosition())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("private", m.GetPrivate())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("rated", m.GetRated())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("schedule", m.GetSchedule())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("secondsToStart", m.GetSecondsToStart())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt64Value("startsAt", m.GetStartsAt())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("status", m.GetStatus())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("system", m.GetSystem())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("teamBattle", m.GetTeamBattle())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("teamMember", m.GetTeamMember())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("variant", m.GetVariant())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("winner", m.GetWinner())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *ArenaTournament) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteBoolValue("botsAllowed", m.GetBotsAllowed())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("clock", m.GetClock())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("createdBy", m.GetCreatedBy())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt64Value("finishesAt", m.GetFinishesAt())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("fullName", m.GetFullName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("hasMaxRating", m.GetHasMaxRating())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("id", m.GetId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("maxRating", m.GetMaxRating())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("minAccountAgeInDays", m.GetMinAccountAgeInDays())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("minRatedGames", m.GetMinRatedGames())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("minRating", m.GetMinRating())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("minutes", m.GetMinutes())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("nbPlayers", m.GetNbPlayers())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("onlyTitled", m.GetOnlyTitled())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("perf", m.GetPerf())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("position", m.GetPosition())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("private", m.GetPrivate())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("rated", m.GetRated())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("schedule", m.GetSchedule())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("secondsToStart", m.GetSecondsToStart())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt64Value("startsAt", m.GetStartsAt())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("status", m.GetStatus())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("system", m.GetSystem())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("teamBattle", m.GetTeamBattle())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("teamMember", m.GetTeamMember())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("variant", m.GetVariant())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("winner", m.GetWinner())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ArenaTournament) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *ArenaTournament) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetBotsAllowed sets the botsAllowed property value. The botsAllowed property
-func (m *ArenaTournament) SetBotsAllowed(value *bool)() {
-    m.botsAllowed = value
+func (m *ArenaTournament) SetBotsAllowed(value *bool) {
+	m.botsAllowed = value
 }
+
 // SetClock sets the clock property value. The clock property
-func (m *ArenaTournament) SetClock(value Clockable)() {
-    m.clock = value
+func (m *ArenaTournament) SetClock(value Clockable) {
+	m.clock = value
 }
+
 // SetCreatedBy sets the createdBy property value. The createdBy property
-func (m *ArenaTournament) SetCreatedBy(value *string)() {
-    m.createdBy = value
+func (m *ArenaTournament) SetCreatedBy(value *string) {
+	m.createdBy = value
 }
+
 // SetFinishesAt sets the finishesAt property value. The finishesAt property
-func (m *ArenaTournament) SetFinishesAt(value *int64)() {
-    m.finishesAt = value
+func (m *ArenaTournament) SetFinishesAt(value *int64) {
+	m.finishesAt = value
 }
+
 // SetFullName sets the fullName property value. The fullName property
-func (m *ArenaTournament) SetFullName(value *string)() {
-    m.fullName = value
+func (m *ArenaTournament) SetFullName(value *string) {
+	m.fullName = value
 }
+
 // SetHasMaxRating sets the hasMaxRating property value. The hasMaxRating property
-func (m *ArenaTournament) SetHasMaxRating(value *bool)() {
-    m.hasMaxRating = value
+func (m *ArenaTournament) SetHasMaxRating(value *bool) {
+	m.hasMaxRating = value
 }
+
 // SetId sets the id property value. The id property
-func (m *ArenaTournament) SetId(value *string)() {
-    m.id = value
+func (m *ArenaTournament) SetId(value *string) {
+	m.id = value
 }
+
 // SetMaxRating sets the maxRating property value. The maxRating property
-func (m *ArenaTournament) SetMaxRating(value ArenaRatingObjable)() {
-    m.maxRating = value
+func (m *ArenaTournament) SetMaxRating(value ArenaRatingObjable) {
+	m.maxRating = value
 }
+
 // SetMinAccountAgeInDays sets the minAccountAgeInDays property value. The minAccountAgeInDays property
-func (m *ArenaTournament) SetMinAccountAgeInDays(value *int32)() {
-    m.minAccountAgeInDays = value
+func (m *ArenaTournament) SetMinAccountAgeInDays(value *int32) {
+	m.minAccountAgeInDays = value
 }
+
 // SetMinRatedGames sets the minRatedGames property value. The minRatedGames property
-func (m *ArenaTournament) SetMinRatedGames(value ArenaTournament_minRatedGamesable)() {
-    m.minRatedGames = value
+func (m *ArenaTournament) SetMinRatedGames(value ArenaTournament_minRatedGamesable) {
+	m.minRatedGames = value
 }
+
 // SetMinRating sets the minRating property value. The minRating property
-func (m *ArenaTournament) SetMinRating(value ArenaRatingObjable)() {
-    m.minRating = value
+func (m *ArenaTournament) SetMinRating(value ArenaRatingObjable) {
+	m.minRating = value
 }
+
 // SetMinutes sets the minutes property value. The minutes property
-func (m *ArenaTournament) SetMinutes(value *int32)() {
-    m.minutes = value
+func (m *ArenaTournament) SetMinutes(value *int32) {
+	m.minutes = value
 }
+
 // SetNbPlayers sets the nbPlayers property value. The nbPlayers property
-func (m *ArenaTournament) SetNbPlayers(value *int32)() {
-    m.nbPlayers = value
+func (m *ArenaTournament) SetNbPlayers(value *int32) {
+	m.nbPlayers = value
 }
+
 // SetOnlyTitled sets the onlyTitled property value. The onlyTitled property
-func (m *ArenaTournament) SetOnlyTitled(value *bool)() {
-    m.onlyTitled = value
+func (m *ArenaTournament) SetOnlyTitled(value *bool) {
+	m.onlyTitled = value
 }
+
 // SetPerf sets the perf property value. The perf property
-func (m *ArenaTournament) SetPerf(value ArenaPerfable)() {
-    m.perf = value
+func (m *ArenaTournament) SetPerf(value ArenaPerfable) {
+	m.perf = value
 }
+
 // SetPosition sets the position property value. The position property
-func (m *ArenaTournament) SetPosition(value ArenaPositionable)() {
-    m.position = value
+func (m *ArenaTournament) SetPosition(value ArenaPositionable) {
+	m.position = value
 }
+
 // SetPrivate sets the private property value. The private property
-func (m *ArenaTournament) SetPrivate(value *bool)() {
-    m.private = value
+func (m *ArenaTournament) SetPrivate(value *bool) {
+	m.private = value
 }
+
 // SetRated sets the rated property value. The rated property
-func (m *ArenaTournament) SetRated(value *bool)() {
-    m.rated = value
+func (m *ArenaTournament) SetRated(value *bool) {
+	m.rated = value
 }
+
 // SetSchedule sets the schedule property value. The schedule property
-func (m *ArenaTournament) SetSchedule(value ArenaTournament_scheduleable)() {
-    m.schedule = value
+func (m *ArenaTournament) SetSchedule(value ArenaTournament_scheduleable) {
+	m.schedule = value
 }
+
 // SetSecondsToStart sets the secondsToStart property value. The secondsToStart property
-func (m *ArenaTournament) SetSecondsToStart(value *int32)() {
-    m.secondsToStart = value
+func (m *ArenaTournament) SetSecondsToStart(value *int32) {
+	m.secondsToStart = value
 }
+
 // SetStartsAt sets the startsAt property value. The startsAt property
-func (m *ArenaTournament) SetStartsAt(value *int64)() {
-    m.startsAt = value
+func (m *ArenaTournament) SetStartsAt(value *int64) {
+	m.startsAt = value
 }
+
 // SetStatus sets the status property value. 10: created, 20: started, 30: finished
-func (m *ArenaTournament) SetStatus(value *int32)() {
-    m.status = value
+func (m *ArenaTournament) SetStatus(value *int32) {
+	m.status = value
 }
+
 // SetSystem sets the system property value. The system property
-func (m *ArenaTournament) SetSystem(value *string)() {
-    m.system = value
+func (m *ArenaTournament) SetSystem(value *string) {
+	m.system = value
 }
+
 // SetTeamBattle sets the teamBattle property value. The teamBattle property
-func (m *ArenaTournament) SetTeamBattle(value ArenaTournament_teamBattleable)() {
-    m.teamBattle = value
+func (m *ArenaTournament) SetTeamBattle(value ArenaTournament_teamBattleable) {
+	m.teamBattle = value
 }
+
 // SetTeamMember sets the teamMember property value. The teamMember property
-func (m *ArenaTournament) SetTeamMember(value *string)() {
-    m.teamMember = value
+func (m *ArenaTournament) SetTeamMember(value *string) {
+	m.teamMember = value
 }
+
 // SetVariant sets the variant property value. The variant property
-func (m *ArenaTournament) SetVariant(value Variantable)() {
-    m.variant = value
+func (m *ArenaTournament) SetVariant(value Variantable) {
+	m.variant = value
 }
+
 // SetWinner sets the winner property value. The winner property
-func (m *ArenaTournament) SetWinner(value LightUserable)() {
-    m.winner = value
+func (m *ArenaTournament) SetWinner(value LightUserable) {
+	m.winner = value
 }
+
 type ArenaTournamentable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetBotsAllowed()(*bool)
-    GetClock()(Clockable)
-    GetCreatedBy()(*string)
-    GetFinishesAt()(*int64)
-    GetFullName()(*string)
-    GetHasMaxRating()(*bool)
-    GetId()(*string)
-    GetMaxRating()(ArenaRatingObjable)
-    GetMinAccountAgeInDays()(*int32)
-    GetMinRatedGames()(ArenaTournament_minRatedGamesable)
-    GetMinRating()(ArenaRatingObjable)
-    GetMinutes()(*int32)
-    GetNbPlayers()(*int32)
-    GetOnlyTitled()(*bool)
-    GetPerf()(ArenaPerfable)
-    GetPosition()(ArenaPositionable)
-    GetPrivate()(*bool)
-    GetRated()(*bool)
-    GetSchedule()(ArenaTournament_scheduleable)
-    GetSecondsToStart()(*int32)
-    GetStartsAt()(*int64)
-    GetStatus()(*int32)
-    GetSystem()(*string)
-    GetTeamBattle()(ArenaTournament_teamBattleable)
-    GetTeamMember()(*string)
-    GetVariant()(Variantable)
-    GetWinner()(LightUserable)
-    SetBotsAllowed(value *bool)()
-    SetClock(value Clockable)()
-    SetCreatedBy(value *string)()
-    SetFinishesAt(value *int64)()
-    SetFullName(value *string)()
-    SetHasMaxRating(value *bool)()
-    SetId(value *string)()
-    SetMaxRating(value ArenaRatingObjable)()
-    SetMinAccountAgeInDays(value *int32)()
-    SetMinRatedGames(value ArenaTournament_minRatedGamesable)()
-    SetMinRating(value ArenaRatingObjable)()
-    SetMinutes(value *int32)()
-    SetNbPlayers(value *int32)()
-    SetOnlyTitled(value *bool)()
-    SetPerf(value ArenaPerfable)()
-    SetPosition(value ArenaPositionable)()
-    SetPrivate(value *bool)()
-    SetRated(value *bool)()
-    SetSchedule(value ArenaTournament_scheduleable)()
-    SetSecondsToStart(value *int32)()
-    SetStartsAt(value *int64)()
-    SetStatus(value *int32)()
-    SetSystem(value *string)()
-    SetTeamBattle(value ArenaTournament_teamBattleable)()
-    SetTeamMember(value *string)()
-    SetVariant(value Variantable)()
-    SetWinner(value LightUserable)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetBotsAllowed() *bool
+	GetClock() Clockable
+	GetCreatedBy() *string
+	GetFinishesAt() *int64
+	GetFullName() *string
+	GetHasMaxRating() *bool
+	GetId() *string
+	GetMaxRating() ArenaRatingObjable
+	GetMinAccountAgeInDays() *int32
+	GetMinRatedGames() ArenaTournament_minRatedGamesable
+	GetMinRating() ArenaRatingObjable
+	GetMinutes() *int32
+	GetNbPlayers() *int32
+	GetOnlyTitled() *bool
+	GetPerf() ArenaPerfable
+	GetPosition() ArenaPositionable
+	GetPrivate() *bool
+	GetRated() *bool
+	GetSchedule() ArenaTournament_scheduleable
+	GetSecondsToStart() *int32
+	GetStartsAt() *int64
+	GetStatus() *int32
+	GetSystem() *string
+	GetTeamBattle() ArenaTournament_teamBattleable
+	GetTeamMember() *string
+	GetVariant() Variantable
+	GetWinner() LightUserable
+	SetBotsAllowed(value *bool)
+	SetClock(value Clockable)
+	SetCreatedBy(value *string)
+	SetFinishesAt(value *int64)
+	SetFullName(value *string)
+	SetHasMaxRating(value *bool)
+	SetId(value *string)
+	SetMaxRating(value ArenaRatingObjable)
+	SetMinAccountAgeInDays(value *int32)
+	SetMinRatedGames(value ArenaTournament_minRatedGamesable)
+	SetMinRating(value ArenaRatingObjable)
+	SetMinutes(value *int32)
+	SetNbPlayers(value *int32)
+	SetOnlyTitled(value *bool)
+	SetPerf(value ArenaPerfable)
+	SetPosition(value ArenaPositionable)
+	SetPrivate(value *bool)
+	SetRated(value *bool)
+	SetSchedule(value ArenaTournament_scheduleable)
+	SetSecondsToStart(value *int32)
+	SetStartsAt(value *int64)
+	SetStatus(value *int32)
+	SetSystem(value *string)
+	SetTeamBattle(value ArenaTournament_teamBattleable)
+	SetTeamMember(value *string)
+	SetVariant(value Variantable)
+	SetWinner(value LightUserable)
 }

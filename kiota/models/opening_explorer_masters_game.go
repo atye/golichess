@@ -4,318 +4,244 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type OpeningExplorerMastersGame struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The black property
-    black OpeningExplorerGamePlayerable
-    // The id property
-    id *string
-    // The month property
-    month *string
-    // The white property
-    white OpeningExplorerGamePlayerable
-    // The winner property
-    winner OpeningExplorerMastersGame_OpeningExplorerMastersGame_winnerable
-    // The year property
-    year *int32
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The black property
+	black OpeningExplorerGamePlayerable
+	// The id property
+	id *string
+	// The month property
+	month *string
+	// The white property
+	white OpeningExplorerGamePlayerable
+	// The winner property
+	winner *GameColor
+	// The year property
+	year *int32
 }
-// OpeningExplorerMastersGame_OpeningExplorerMastersGame_winner composed type wrapper for classes GameColor, OpeningExplorerMastersGame_winnerMember1able
-type OpeningExplorerMastersGame_OpeningExplorerMastersGame_winner struct {
-    // Composed type representation for type GameColor
-    gameColor *GameColor
-    // Composed type representation for type OpeningExplorerMastersGame_winnerMember1able
-    openingExplorerMastersGame_winnerMember1 OpeningExplorerMastersGame_winnerMember1able
-}
-// NewOpeningExplorerMastersGame_OpeningExplorerMastersGame_winner instantiates a new OpeningExplorerMastersGame_OpeningExplorerMastersGame_winner and sets the default values.
-func NewOpeningExplorerMastersGame_OpeningExplorerMastersGame_winner()(*OpeningExplorerMastersGame_OpeningExplorerMastersGame_winner) {
-    m := &OpeningExplorerMastersGame_OpeningExplorerMastersGame_winner{
-    }
-    return m
-}
-// CreateOpeningExplorerMastersGame_OpeningExplorerMastersGame_winnerFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateOpeningExplorerMastersGame_OpeningExplorerMastersGame_winnerFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewOpeningExplorerMastersGame_OpeningExplorerMastersGame_winner()
-    if parseNode != nil {
-        mappingValueNode, err := parseNode.GetChildNode("")
-        if err != nil {
-            return nil, err
-        }
-        if mappingValueNode != nil {
-            mappingValue, err := mappingValueNode.GetStringValue()
-            if err != nil {
-                return nil, err
-            }
-            if mappingValue != nil {
-            }
-        }
-    }
-    if val, err := parseNode.GetEnumValue(ParseGameColor); val != nil {
-        if err != nil {
-            return nil, err
-        }
-        result.SetGameColor(val)
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *OpeningExplorerMastersGame_OpeningExplorerMastersGame_winner) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    if m.GetOpeningExplorerMastersGameWinnerMember1() != nil {
-        return m.GetOpeningExplorerMastersGameWinnerMember1().GetFieldDeserializers()
-    }
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetGameColor gets the GameColor property value. Composed type representation for type GameColor
-// returns a *GameColor when successful
-func (m *OpeningExplorerMastersGame_OpeningExplorerMastersGame_winner) GetGameColor()(*GameColor) {
-    return m.gameColor
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *OpeningExplorerMastersGame_OpeningExplorerMastersGame_winner) GetIsComposedType()(bool) {
-    return true
-}
-// GetOpeningExplorerMastersGameWinnerMember1 gets the OpeningExplorerMastersGame_winnerMember1 property value. Composed type representation for type OpeningExplorerMastersGame_winnerMember1able
-// returns a OpeningExplorerMastersGame_winnerMember1able when successful
-func (m *OpeningExplorerMastersGame_OpeningExplorerMastersGame_winner) GetOpeningExplorerMastersGameWinnerMember1()(OpeningExplorerMastersGame_winnerMember1able) {
-    return m.openingExplorerMastersGame_winnerMember1
-}
-// Serialize serializes information the current object
-func (m *OpeningExplorerMastersGame_OpeningExplorerMastersGame_winner) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetGameColor() != nil {
-        cast := (*m.GetGameColor()).String()
-        err := writer.WriteStringValue("", &cast)
-        if err != nil {
-            return err
-        }
-    } else if m.GetOpeningExplorerMastersGameWinnerMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetOpeningExplorerMastersGameWinnerMember1())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetGameColor sets the GameColor property value. Composed type representation for type GameColor
-func (m *OpeningExplorerMastersGame_OpeningExplorerMastersGame_winner) SetGameColor(value *GameColor)() {
-    m.gameColor = value
-}
-// SetOpeningExplorerMastersGameWinnerMember1 sets the OpeningExplorerMastersGame_winnerMember1 property value. Composed type representation for type OpeningExplorerMastersGame_winnerMember1able
-func (m *OpeningExplorerMastersGame_OpeningExplorerMastersGame_winner) SetOpeningExplorerMastersGameWinnerMember1(value OpeningExplorerMastersGame_winnerMember1able)() {
-    m.openingExplorerMastersGame_winnerMember1 = value
-}
-type OpeningExplorerMastersGame_OpeningExplorerMastersGame_winnerable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetGameColor()(*GameColor)
-    GetOpeningExplorerMastersGameWinnerMember1()(OpeningExplorerMastersGame_winnerMember1able)
-    SetGameColor(value *GameColor)()
-    SetOpeningExplorerMastersGameWinnerMember1(value OpeningExplorerMastersGame_winnerMember1able)()
-}
+
 // NewOpeningExplorerMastersGame instantiates a new OpeningExplorerMastersGame and sets the default values.
-func NewOpeningExplorerMastersGame()(*OpeningExplorerMastersGame) {
-    m := &OpeningExplorerMastersGame{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewOpeningExplorerMastersGame() *OpeningExplorerMastersGame {
+	m := &OpeningExplorerMastersGame{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateOpeningExplorerMastersGameFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateOpeningExplorerMastersGameFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewOpeningExplorerMastersGame(), nil
+func CreateOpeningExplorerMastersGameFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewOpeningExplorerMastersGame(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *OpeningExplorerMastersGame) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *OpeningExplorerMastersGame) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetBlack gets the black property value. The black property
 // returns a OpeningExplorerGamePlayerable when successful
-func (m *OpeningExplorerMastersGame) GetBlack()(OpeningExplorerGamePlayerable) {
-    return m.black
+func (m *OpeningExplorerMastersGame) GetBlack() OpeningExplorerGamePlayerable {
+	return m.black
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *OpeningExplorerMastersGame) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["black"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateOpeningExplorerGamePlayerFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetBlack(val.(OpeningExplorerGamePlayerable))
-        }
-        return nil
-    }
-    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetId(val)
-        }
-        return nil
-    }
-    res["month"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMonth(val)
-        }
-        return nil
-    }
-    res["white"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateOpeningExplorerGamePlayerFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetWhite(val.(OpeningExplorerGamePlayerable))
-        }
-        return nil
-    }
-    res["winner"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateOpeningExplorerMastersGame_OpeningExplorerMastersGame_winnerFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetWinner(val.(OpeningExplorerMastersGame_OpeningExplorerMastersGame_winnerable))
-        }
-        return nil
-    }
-    res["year"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetYear(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *OpeningExplorerMastersGame) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["black"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateOpeningExplorerGamePlayerFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetBlack(val.(OpeningExplorerGamePlayerable))
+		}
+		return nil
+	}
+	res["id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetId(val)
+		}
+		return nil
+	}
+	res["month"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMonth(val)
+		}
+		return nil
+	}
+	res["white"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateOpeningExplorerGamePlayerFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetWhite(val.(OpeningExplorerGamePlayerable))
+		}
+		return nil
+	}
+	res["winner"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(ParseGameColor)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetWinner(val.(*GameColor))
+		}
+		return nil
+	}
+	res["year"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetYear(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetId gets the id property value. The id property
 // returns a *string when successful
-func (m *OpeningExplorerMastersGame) GetId()(*string) {
-    return m.id
+func (m *OpeningExplorerMastersGame) GetId() *string {
+	return m.id
 }
+
 // GetMonth gets the month property value. The month property
 // returns a *string when successful
-func (m *OpeningExplorerMastersGame) GetMonth()(*string) {
-    return m.month
+func (m *OpeningExplorerMastersGame) GetMonth() *string {
+	return m.month
 }
+
 // GetWhite gets the white property value. The white property
 // returns a OpeningExplorerGamePlayerable when successful
-func (m *OpeningExplorerMastersGame) GetWhite()(OpeningExplorerGamePlayerable) {
-    return m.white
+func (m *OpeningExplorerMastersGame) GetWhite() OpeningExplorerGamePlayerable {
+	return m.white
 }
+
 // GetWinner gets the winner property value. The winner property
-// returns a OpeningExplorerMastersGame_OpeningExplorerMastersGame_winnerable when successful
-func (m *OpeningExplorerMastersGame) GetWinner()(OpeningExplorerMastersGame_OpeningExplorerMastersGame_winnerable) {
-    return m.winner
+// returns a *GameColor when successful
+func (m *OpeningExplorerMastersGame) GetWinner() *GameColor {
+	return m.winner
 }
+
 // GetYear gets the year property value. The year property
 // returns a *int32 when successful
-func (m *OpeningExplorerMastersGame) GetYear()(*int32) {
-    return m.year
+func (m *OpeningExplorerMastersGame) GetYear() *int32 {
+	return m.year
 }
+
 // Serialize serializes information the current object
-func (m *OpeningExplorerMastersGame) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("black", m.GetBlack())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("id", m.GetId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("month", m.GetMonth())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("white", m.GetWhite())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("winner", m.GetWinner())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("year", m.GetYear())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *OpeningExplorerMastersGame) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteObjectValue("black", m.GetBlack())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("id", m.GetId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("month", m.GetMonth())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("white", m.GetWhite())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetWinner() != nil {
+		cast := (*m.GetWinner()).String()
+		err := writer.WriteStringValue("winner", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("year", m.GetYear())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *OpeningExplorerMastersGame) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *OpeningExplorerMastersGame) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetBlack sets the black property value. The black property
-func (m *OpeningExplorerMastersGame) SetBlack(value OpeningExplorerGamePlayerable)() {
-    m.black = value
+func (m *OpeningExplorerMastersGame) SetBlack(value OpeningExplorerGamePlayerable) {
+	m.black = value
 }
+
 // SetId sets the id property value. The id property
-func (m *OpeningExplorerMastersGame) SetId(value *string)() {
-    m.id = value
+func (m *OpeningExplorerMastersGame) SetId(value *string) {
+	m.id = value
 }
+
 // SetMonth sets the month property value. The month property
-func (m *OpeningExplorerMastersGame) SetMonth(value *string)() {
-    m.month = value
+func (m *OpeningExplorerMastersGame) SetMonth(value *string) {
+	m.month = value
 }
+
 // SetWhite sets the white property value. The white property
-func (m *OpeningExplorerMastersGame) SetWhite(value OpeningExplorerGamePlayerable)() {
-    m.white = value
+func (m *OpeningExplorerMastersGame) SetWhite(value OpeningExplorerGamePlayerable) {
+	m.white = value
 }
+
 // SetWinner sets the winner property value. The winner property
-func (m *OpeningExplorerMastersGame) SetWinner(value OpeningExplorerMastersGame_OpeningExplorerMastersGame_winnerable)() {
-    m.winner = value
+func (m *OpeningExplorerMastersGame) SetWinner(value *GameColor) {
+	m.winner = value
 }
+
 // SetYear sets the year property value. The year property
-func (m *OpeningExplorerMastersGame) SetYear(value *int32)() {
-    m.year = value
+func (m *OpeningExplorerMastersGame) SetYear(value *int32) {
+	m.year = value
 }
+
 type OpeningExplorerMastersGameable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetBlack()(OpeningExplorerGamePlayerable)
-    GetId()(*string)
-    GetMonth()(*string)
-    GetWhite()(OpeningExplorerGamePlayerable)
-    GetWinner()(OpeningExplorerMastersGame_OpeningExplorerMastersGame_winnerable)
-    GetYear()(*int32)
-    SetBlack(value OpeningExplorerGamePlayerable)()
-    SetId(value *string)()
-    SetMonth(value *string)()
-    SetWhite(value OpeningExplorerGamePlayerable)()
-    SetWinner(value OpeningExplorerMastersGame_OpeningExplorerMastersGame_winnerable)()
-    SetYear(value *int32)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetBlack() OpeningExplorerGamePlayerable
+	GetId() *string
+	GetMonth() *string
+	GetWhite() OpeningExplorerGamePlayerable
+	GetWinner() *GameColor
+	GetYear() *int32
+	SetBlack(value OpeningExplorerGamePlayerable)
+	SetId(value *string)
+	SetMonth(value *string)
+	SetWhite(value OpeningExplorerGamePlayerable)
+	SetWinner(value *GameColor)
+	SetYear(value *int32)
 }

@@ -4,76 +4,83 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	"context"
+	i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // ChallengeItemStartClocksRequestBuilder builds and executes requests for operations under \api\challenge\{challenge-id}\start-clocks
 type ChallengeItemStartClocksRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // ChallengeItemStartClocksRequestBuilderPostQueryParameters start the clocks of a game immediately, even if a player has not yet made a move.Requires the OAuth tokens of both players with `challenge:write` scope.If the clocks have already started, the call will have no effect.For AI games with only one player, omit the `token2` parameter.
 type ChallengeItemStartClocksRequestBuilderPostQueryParameters struct {
-    // OAuth token of a player
-    Token1 *string "uriparametername:\"token1\""
-    // OAuth token of the other player. Omit for AI games that have only one player.
-    Token2 *string "uriparametername:\"token2\""
+	// OAuth token of a player
+	Token1 *string "uriparametername:\"token1\""
+	// OAuth token of the other player. Omit for AI games that have only one player.
+	Token2 *string "uriparametername:\"token2\""
 }
+
 // ChallengeItemStartClocksRequestBuilderPostRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type ChallengeItemStartClocksRequestBuilderPostRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
-    // Request query parameters
-    QueryParameters *ChallengeItemStartClocksRequestBuilderPostQueryParameters
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *ChallengeItemStartClocksRequestBuilderPostQueryParameters
 }
+
 // NewChallengeItemStartClocksRequestBuilderInternal instantiates a new ChallengeItemStartClocksRequestBuilder and sets the default values.
-func NewChallengeItemStartClocksRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*ChallengeItemStartClocksRequestBuilder) {
-    m := &ChallengeItemStartClocksRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/challenge/{challenge%2Did}/start-clocks?token1={token1}{&token2*}", pathParameters),
-    }
-    return m
+func NewChallengeItemStartClocksRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *ChallengeItemStartClocksRequestBuilder {
+	m := &ChallengeItemStartClocksRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/challenge/{challenge%2Did}/start-clocks?token1={token1}{&token2*}", pathParameters),
+	}
+	return m
 }
+
 // NewChallengeItemStartClocksRequestBuilder instantiates a new ChallengeItemStartClocksRequestBuilder and sets the default values.
-func NewChallengeItemStartClocksRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*ChallengeItemStartClocksRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewChallengeItemStartClocksRequestBuilderInternal(urlParams, requestAdapter)
+func NewChallengeItemStartClocksRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *ChallengeItemStartClocksRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewChallengeItemStartClocksRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Post start the clocks of a game immediately, even if a player has not yet made a move.Requires the OAuth tokens of both players with `challenge:write` scope.If the clocks have already started, the call will have no effect.For AI games with only one player, omit the `token2` parameter.
 // returns a Okable when successful
-func (m *ChallengeItemStartClocksRequestBuilder) Post(ctx context.Context, requestConfiguration *ChallengeItemStartClocksRequestBuilderPostRequestConfiguration)(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Okable, error) {
-    requestInfo, err := m.ToPostRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateOkFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Okable), nil
+func (m *ChallengeItemStartClocksRequestBuilder) Post(ctx context.Context, requestConfiguration *ChallengeItemStartClocksRequestBuilderPostRequestConfiguration) (i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Okable, error) {
+	requestInfo, err := m.ToPostRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateOkFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Okable), nil
 }
+
 // ToPostRequestInformation start the clocks of a game immediately, even if a player has not yet made a move.Requires the OAuth tokens of both players with `challenge:write` scope.If the clocks have already started, the call will have no effect.For AI games with only one player, omit the `token2` parameter.
 // returns a *RequestInformation when successful
-func (m *ChallengeItemStartClocksRequestBuilder) ToPostRequestInformation(ctx context.Context, requestConfiguration *ChallengeItemStartClocksRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        if requestConfiguration.QueryParameters != nil {
-            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
-        }
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    return requestInfo, nil
+func (m *ChallengeItemStartClocksRequestBuilder) ToPostRequestInformation(ctx context.Context, requestConfiguration *ChallengeItemStartClocksRequestBuilderPostRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *ChallengeItemStartClocksRequestBuilder when successful
-func (m *ChallengeItemStartClocksRequestBuilder) WithUrl(rawUrl string)(*ChallengeItemStartClocksRequestBuilder) {
-    return NewChallengeItemStartClocksRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *ChallengeItemStartClocksRequestBuilder) WithUrl(rawUrl string) *ChallengeItemStartClocksRequestBuilder {
+	return NewChallengeItemStartClocksRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

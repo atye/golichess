@@ -4,196 +4,212 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type GamePlayerAi_analysis struct {
-    // The accuracy property
-    accuracy *int32
-    // The acpl property
-    acpl *int32
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The blunder property
-    blunder *int32
-    // The inaccuracy property
-    inaccuracy *int32
-    // The mistake property
-    mistake *int32
+	// The accuracy property
+	accuracy *int32
+	// The acpl property
+	acpl *int32
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The blunder property
+	blunder *int32
+	// The inaccuracy property
+	inaccuracy *int32
+	// The mistake property
+	mistake *int32
 }
+
 // NewGamePlayerAi_analysis instantiates a new GamePlayerAi_analysis and sets the default values.
-func NewGamePlayerAi_analysis()(*GamePlayerAi_analysis) {
-    m := &GamePlayerAi_analysis{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewGamePlayerAi_analysis() *GamePlayerAi_analysis {
+	m := &GamePlayerAi_analysis{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateGamePlayerAi_analysisFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateGamePlayerAi_analysisFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewGamePlayerAi_analysis(), nil
+func CreateGamePlayerAi_analysisFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewGamePlayerAi_analysis(), nil
 }
+
 // GetAccuracy gets the accuracy property value. The accuracy property
 // returns a *int32 when successful
-func (m *GamePlayerAi_analysis) GetAccuracy()(*int32) {
-    return m.accuracy
+func (m *GamePlayerAi_analysis) GetAccuracy() *int32 {
+	return m.accuracy
 }
+
 // GetAcpl gets the acpl property value. The acpl property
 // returns a *int32 when successful
-func (m *GamePlayerAi_analysis) GetAcpl()(*int32) {
-    return m.acpl
+func (m *GamePlayerAi_analysis) GetAcpl() *int32 {
+	return m.acpl
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *GamePlayerAi_analysis) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *GamePlayerAi_analysis) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetBlunder gets the blunder property value. The blunder property
 // returns a *int32 when successful
-func (m *GamePlayerAi_analysis) GetBlunder()(*int32) {
-    return m.blunder
+func (m *GamePlayerAi_analysis) GetBlunder() *int32 {
+	return m.blunder
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *GamePlayerAi_analysis) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["accuracy"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetAccuracy(val)
-        }
-        return nil
-    }
-    res["acpl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetAcpl(val)
-        }
-        return nil
-    }
-    res["blunder"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetBlunder(val)
-        }
-        return nil
-    }
-    res["inaccuracy"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetInaccuracy(val)
-        }
-        return nil
-    }
-    res["mistake"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMistake(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *GamePlayerAi_analysis) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["accuracy"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetAccuracy(val)
+		}
+		return nil
+	}
+	res["acpl"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetAcpl(val)
+		}
+		return nil
+	}
+	res["blunder"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetBlunder(val)
+		}
+		return nil
+	}
+	res["inaccuracy"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetInaccuracy(val)
+		}
+		return nil
+	}
+	res["mistake"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMistake(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetInaccuracy gets the inaccuracy property value. The inaccuracy property
 // returns a *int32 when successful
-func (m *GamePlayerAi_analysis) GetInaccuracy()(*int32) {
-    return m.inaccuracy
+func (m *GamePlayerAi_analysis) GetInaccuracy() *int32 {
+	return m.inaccuracy
 }
+
 // GetMistake gets the mistake property value. The mistake property
 // returns a *int32 when successful
-func (m *GamePlayerAi_analysis) GetMistake()(*int32) {
-    return m.mistake
+func (m *GamePlayerAi_analysis) GetMistake() *int32 {
+	return m.mistake
 }
+
 // Serialize serializes information the current object
-func (m *GamePlayerAi_analysis) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteInt32Value("accuracy", m.GetAccuracy())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("acpl", m.GetAcpl())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("blunder", m.GetBlunder())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("inaccuracy", m.GetInaccuracy())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("mistake", m.GetMistake())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *GamePlayerAi_analysis) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteInt32Value("accuracy", m.GetAccuracy())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("acpl", m.GetAcpl())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("blunder", m.GetBlunder())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("inaccuracy", m.GetInaccuracy())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("mistake", m.GetMistake())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAccuracy sets the accuracy property value. The accuracy property
-func (m *GamePlayerAi_analysis) SetAccuracy(value *int32)() {
-    m.accuracy = value
+func (m *GamePlayerAi_analysis) SetAccuracy(value *int32) {
+	m.accuracy = value
 }
+
 // SetAcpl sets the acpl property value. The acpl property
-func (m *GamePlayerAi_analysis) SetAcpl(value *int32)() {
-    m.acpl = value
+func (m *GamePlayerAi_analysis) SetAcpl(value *int32) {
+	m.acpl = value
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *GamePlayerAi_analysis) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *GamePlayerAi_analysis) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetBlunder sets the blunder property value. The blunder property
-func (m *GamePlayerAi_analysis) SetBlunder(value *int32)() {
-    m.blunder = value
+func (m *GamePlayerAi_analysis) SetBlunder(value *int32) {
+	m.blunder = value
 }
+
 // SetInaccuracy sets the inaccuracy property value. The inaccuracy property
-func (m *GamePlayerAi_analysis) SetInaccuracy(value *int32)() {
-    m.inaccuracy = value
+func (m *GamePlayerAi_analysis) SetInaccuracy(value *int32) {
+	m.inaccuracy = value
 }
+
 // SetMistake sets the mistake property value. The mistake property
-func (m *GamePlayerAi_analysis) SetMistake(value *int32)() {
-    m.mistake = value
+func (m *GamePlayerAi_analysis) SetMistake(value *int32) {
+	m.mistake = value
 }
+
 type GamePlayerAi_analysisable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetAccuracy()(*int32)
-    GetAcpl()(*int32)
-    GetBlunder()(*int32)
-    GetInaccuracy()(*int32)
-    GetMistake()(*int32)
-    SetAccuracy(value *int32)()
-    SetAcpl(value *int32)()
-    SetBlunder(value *int32)()
-    SetInaccuracy(value *int32)()
-    SetMistake(value *int32)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetAccuracy() *int32
+	GetAcpl() *int32
+	GetBlunder() *int32
+	GetInaccuracy() *int32
+	GetMistake() *int32
+	SetAccuracy(value *int32)
+	SetAcpl(value *int32)
+	SetBlunder(value *int32)
+	SetInaccuracy(value *int32)
+	SetMistake(value *int32)
 }

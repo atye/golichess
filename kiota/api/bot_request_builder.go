@@ -4,38 +4,43 @@
 package api
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // BotRequestBuilder builds and executes requests for operations under \api\bot
 type BotRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // Account the account property
 // returns a *BotAccountRequestBuilder when successful
-func (m *BotRequestBuilder) Account()(*BotAccountRequestBuilder) {
-    return NewBotAccountRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *BotRequestBuilder) Account() *BotAccountRequestBuilder {
+	return NewBotAccountRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewBotRequestBuilderInternal instantiates a new BotRequestBuilder and sets the default values.
-func NewBotRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BotRequestBuilder) {
-    m := &BotRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/bot", pathParameters),
-    }
-    return m
+func NewBotRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BotRequestBuilder {
+	m := &BotRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/bot", pathParameters),
+	}
+	return m
 }
+
 // NewBotRequestBuilder instantiates a new BotRequestBuilder and sets the default values.
-func NewBotRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BotRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewBotRequestBuilderInternal(urlParams, requestAdapter)
+func NewBotRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BotRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewBotRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Game the game property
 // returns a *BotGameRequestBuilder when successful
-func (m *BotRequestBuilder) Game()(*BotGameRequestBuilder) {
-    return NewBotGameRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *BotRequestBuilder) Game() *BotGameRequestBuilder {
+	return NewBotGameRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Online the online property
 // returns a *BotOnlineRequestBuilder when successful
-func (m *BotRequestBuilder) Online()(*BotOnlineRequestBuilder) {
-    return NewBotOnlineRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *BotRequestBuilder) Online() *BotOnlineRequestBuilder {
+	return NewBotOnlineRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

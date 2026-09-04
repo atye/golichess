@@ -4,35 +4,38 @@
 package api
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // GamesUserRequestBuilder builds and executes requests for operations under \api\games\user
 type GamesUserRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // ByUsername gets an item from the github.com/atye/golichess/kiota.api.games.user.item collection
 // returns a *GamesUserWithUsernameItemRequestBuilder when successful
-func (m *GamesUserRequestBuilder) ByUsername(username string)(*GamesUserWithUsernameItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    if username != "" {
-        urlTplParams["username"] = username
-    }
-    return NewGamesUserWithUsernameItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+func (m *GamesUserRequestBuilder) ByUsername(username string) *GamesUserWithUsernameItemRequestBuilder {
+	urlTplParams := make(map[string]string)
+	for idx, item := range m.BaseRequestBuilder.PathParameters {
+		urlTplParams[idx] = item
+	}
+	if username != "" {
+		urlTplParams["username"] = username
+	}
+	return NewGamesUserWithUsernameItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewGamesUserRequestBuilderInternal instantiates a new GamesUserRequestBuilder and sets the default values.
-func NewGamesUserRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*GamesUserRequestBuilder) {
-    m := &GamesUserRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/games/user", pathParameters),
-    }
-    return m
+func NewGamesUserRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *GamesUserRequestBuilder {
+	m := &GamesUserRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/games/user", pathParameters),
+	}
+	return m
 }
+
 // NewGamesUserRequestBuilder instantiates a new GamesUserRequestBuilder and sets the default values.
-func NewGamesUserRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*GamesUserRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewGamesUserRequestBuilderInternal(urlParams, requestAdapter)
+func NewGamesUserRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *GamesUserRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewGamesUserRequestBuilderInternal(urlParams, requestAdapter)
 }

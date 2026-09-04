@@ -2,44 +2,48 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 type ChallengeStatus int
 
 const (
-    CREATED_CHALLENGESTATUS ChallengeStatus = iota
-    OFFLINE_CHALLENGESTATUS
-    CANCELED_CHALLENGESTATUS
-    DECLINED_CHALLENGESTATUS
-    ACCEPTED_CHALLENGESTATUS
+	CREATED_CHALLENGESTATUS ChallengeStatus = iota
+	OFFLINE_CHALLENGESTATUS
+	CANCELED_CHALLENGESTATUS
+	DECLINED_CHALLENGESTATUS
+	ACCEPTED_CHALLENGESTATUS
 )
 
 func (i ChallengeStatus) String() string {
-    return []string{"created", "offline", "canceled", "declined", "accepted"}[i]
+	return []string{"created", "offline", "canceled", "declined", "accepted"}[i]
 }
+
 func ParseChallengeStatus(v string) (any, error) {
-    result := CREATED_CHALLENGESTATUS
-    switch v {
-        case "created":
-            result = CREATED_CHALLENGESTATUS
-        case "offline":
-            result = OFFLINE_CHALLENGESTATUS
-        case "canceled":
-            result = CANCELED_CHALLENGESTATUS
-        case "declined":
-            result = DECLINED_CHALLENGESTATUS
-        case "accepted":
-            result = ACCEPTED_CHALLENGESTATUS
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := CREATED_CHALLENGESTATUS
+	switch v {
+	case "created":
+		result = CREATED_CHALLENGESTATUS
+	case "offline":
+		result = OFFLINE_CHALLENGESTATUS
+	case "canceled":
+		result = CANCELED_CHALLENGESTATUS
+	case "declined":
+		result = DECLINED_CHALLENGESTATUS
+	case "accepted":
+		result = ACCEPTED_CHALLENGESTATUS
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeChallengeStatus(values []ChallengeStatus) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i ChallengeStatus) isMultiValue() bool {
-    return false
+	return false
 }

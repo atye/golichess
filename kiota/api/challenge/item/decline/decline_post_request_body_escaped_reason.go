@@ -2,63 +2,67 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package decline
+
 // Reason challenge was declined. It will be translated to the player's language. See [the full list in the translation file](https://github.com/ornicar/lila/blob/master/translation/source/challenge.xml#L14).
 type DeclinePostRequestBody_reason int
 
 const (
-    GENERIC_DECLINEPOSTREQUESTBODY_REASON DeclinePostRequestBody_reason = iota
-    LATER_DECLINEPOSTREQUESTBODY_REASON
-    TOOFAST_DECLINEPOSTREQUESTBODY_REASON
-    TOOSLOW_DECLINEPOSTREQUESTBODY_REASON
-    TIMECONTROL_DECLINEPOSTREQUESTBODY_REASON
-    RATED_DECLINEPOSTREQUESTBODY_REASON
-    CASUAL_DECLINEPOSTREQUESTBODY_REASON
-    STANDARD_DECLINEPOSTREQUESTBODY_REASON
-    VARIANT_DECLINEPOSTREQUESTBODY_REASON
-    NOBOT_DECLINEPOSTREQUESTBODY_REASON
-    ONLYBOT_DECLINEPOSTREQUESTBODY_REASON
+	GENERIC_DECLINEPOSTREQUESTBODY_REASON DeclinePostRequestBody_reason = iota
+	LATER_DECLINEPOSTREQUESTBODY_REASON
+	TOOFAST_DECLINEPOSTREQUESTBODY_REASON
+	TOOSLOW_DECLINEPOSTREQUESTBODY_REASON
+	TIMECONTROL_DECLINEPOSTREQUESTBODY_REASON
+	RATED_DECLINEPOSTREQUESTBODY_REASON
+	CASUAL_DECLINEPOSTREQUESTBODY_REASON
+	STANDARD_DECLINEPOSTREQUESTBODY_REASON
+	VARIANT_DECLINEPOSTREQUESTBODY_REASON
+	NOBOT_DECLINEPOSTREQUESTBODY_REASON
+	ONLYBOT_DECLINEPOSTREQUESTBODY_REASON
 )
 
 func (i DeclinePostRequestBody_reason) String() string {
-    return []string{"generic", "later", "tooFast", "tooSlow", "timeControl", "rated", "casual", "standard", "variant", "noBot", "onlyBot"}[i]
+	return []string{"generic", "later", "tooFast", "tooSlow", "timeControl", "rated", "casual", "standard", "variant", "noBot", "onlyBot"}[i]
 }
+
 func ParseDeclinePostRequestBody_reason(v string) (any, error) {
-    result := GENERIC_DECLINEPOSTREQUESTBODY_REASON
-    switch v {
-        case "generic":
-            result = GENERIC_DECLINEPOSTREQUESTBODY_REASON
-        case "later":
-            result = LATER_DECLINEPOSTREQUESTBODY_REASON
-        case "tooFast":
-            result = TOOFAST_DECLINEPOSTREQUESTBODY_REASON
-        case "tooSlow":
-            result = TOOSLOW_DECLINEPOSTREQUESTBODY_REASON
-        case "timeControl":
-            result = TIMECONTROL_DECLINEPOSTREQUESTBODY_REASON
-        case "rated":
-            result = RATED_DECLINEPOSTREQUESTBODY_REASON
-        case "casual":
-            result = CASUAL_DECLINEPOSTREQUESTBODY_REASON
-        case "standard":
-            result = STANDARD_DECLINEPOSTREQUESTBODY_REASON
-        case "variant":
-            result = VARIANT_DECLINEPOSTREQUESTBODY_REASON
-        case "noBot":
-            result = NOBOT_DECLINEPOSTREQUESTBODY_REASON
-        case "onlyBot":
-            result = ONLYBOT_DECLINEPOSTREQUESTBODY_REASON
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := GENERIC_DECLINEPOSTREQUESTBODY_REASON
+	switch v {
+	case "generic":
+		result = GENERIC_DECLINEPOSTREQUESTBODY_REASON
+	case "later":
+		result = LATER_DECLINEPOSTREQUESTBODY_REASON
+	case "tooFast":
+		result = TOOFAST_DECLINEPOSTREQUESTBODY_REASON
+	case "tooSlow":
+		result = TOOSLOW_DECLINEPOSTREQUESTBODY_REASON
+	case "timeControl":
+		result = TIMECONTROL_DECLINEPOSTREQUESTBODY_REASON
+	case "rated":
+		result = RATED_DECLINEPOSTREQUESTBODY_REASON
+	case "casual":
+		result = CASUAL_DECLINEPOSTREQUESTBODY_REASON
+	case "standard":
+		result = STANDARD_DECLINEPOSTREQUESTBODY_REASON
+	case "variant":
+		result = VARIANT_DECLINEPOSTREQUESTBODY_REASON
+	case "noBot":
+		result = NOBOT_DECLINEPOSTREQUESTBODY_REASON
+	case "onlyBot":
+		result = ONLYBOT_DECLINEPOSTREQUESTBODY_REASON
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeDeclinePostRequestBody_reason(values []DeclinePostRequestBody_reason) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i DeclinePostRequestBody_reason) isMultiValue() bool {
-    return false
+	return false
 }

@@ -4,73 +4,80 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	"context"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // BotOnlineRequestBuilder builds and executes requests for operations under \api\bot\online
 type BotOnlineRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // BotOnlineRequestBuilderGetQueryParameters stream the [online bot users](https://lichess.org/player/bots), as [ndjson](#description/streaming-with-nd-json).
 type BotOnlineRequestBuilderGetQueryParameters struct {
-    // How many bot users to fetch
-    Nb *int32 "uriparametername:\"nb\""
+	// How many bot users to fetch
+	Nb *int32 "uriparametername:\"nb\""
 }
+
 // BotOnlineRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type BotOnlineRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
-    // Request query parameters
-    QueryParameters *BotOnlineRequestBuilderGetQueryParameters
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *BotOnlineRequestBuilderGetQueryParameters
 }
+
 // NewBotOnlineRequestBuilderInternal instantiates a new BotOnlineRequestBuilder and sets the default values.
-func NewBotOnlineRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BotOnlineRequestBuilder) {
-    m := &BotOnlineRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/bot/online{?nb*}", pathParameters),
-    }
-    return m
+func NewBotOnlineRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BotOnlineRequestBuilder {
+	m := &BotOnlineRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/bot/online{?nb*}", pathParameters),
+	}
+	return m
 }
+
 // NewBotOnlineRequestBuilder instantiates a new BotOnlineRequestBuilder and sets the default values.
-func NewBotOnlineRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BotOnlineRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewBotOnlineRequestBuilderInternal(urlParams, requestAdapter)
+func NewBotOnlineRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BotOnlineRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewBotOnlineRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get stream the [online bot users](https://lichess.org/player/bots), as [ndjson](#description/streaming-with-nd-json).
 // returns a []byte when successful
-func (m *BotOnlineRequestBuilder) Get(ctx context.Context, requestConfiguration *BotOnlineRequestBuilderGetRequestConfiguration)([]byte, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.([]byte), nil
+func (m *BotOnlineRequestBuilder) Get(ctx context.Context, requestConfiguration *BotOnlineRequestBuilderGetRequestConfiguration) ([]byte, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.([]byte), nil
 }
+
 // ToGetRequestInformation stream the [online bot users](https://lichess.org/player/bots), as [ndjson](#description/streaming-with-nd-json).
 // returns a *RequestInformation when successful
-func (m *BotOnlineRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *BotOnlineRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        if requestConfiguration.QueryParameters != nil {
-            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
-        }
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/x-ndjson")
-    return requestInfo, nil
+func (m *BotOnlineRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *BotOnlineRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/x-ndjson")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *BotOnlineRequestBuilder when successful
-func (m *BotOnlineRequestBuilder) WithUrl(rawUrl string)(*BotOnlineRequestBuilder) {
-    return NewBotOnlineRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *BotOnlineRequestBuilder) WithUrl(rawUrl string) *BotOnlineRequestBuilder {
+	return NewBotOnlineRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

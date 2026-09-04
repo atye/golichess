@@ -4,47 +4,51 @@
 package api
 
 import (
-    i53ac87e8cb3cc9276228f74d38694a208cacb99bb8ceb705eeae99fb88d4d274 "strconv"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i53ac87e8cb3cc9276228f74d38694a208cacb99bb8ceb705eeae99fb88d4d274 "strconv"
 )
 
 // BoardGameItemDrawRequestBuilder builds and executes requests for operations under \api\board\game\{gameId}\draw
 type BoardGameItemDrawRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // ByAccept gets an item from the github.com/atye/golichess/kiota.api.board.game.item.draw.item collection
 // Deprecated: This indexer is deprecated and will be removed in the next major version. Use the one with the typed parameter instead.
 // returns a *BoardGameItemDrawWithAcceptItemRequestBuilder when successful
-func (m *BoardGameItemDrawRequestBuilder) ByAccept(accept string)(*BoardGameItemDrawWithAcceptItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    if accept != "" {
-        urlTplParams["accept"] = accept
-    }
-    return NewBoardGameItemDrawWithAcceptItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+func (m *BoardGameItemDrawRequestBuilder) ByAccept(accept string) *BoardGameItemDrawWithAcceptItemRequestBuilder {
+	urlTplParams := make(map[string]string)
+	for idx, item := range m.BaseRequestBuilder.PathParameters {
+		urlTplParams[idx] = item
+	}
+	if accept != "" {
+		urlTplParams["accept"] = accept
+	}
+	return NewBoardGameItemDrawWithAcceptItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // ByAcceptBoolean gets an item from the github.com/atye/golichess/kiota.api.board.game.item.draw.item collection
 // returns a *BoardGameItemDrawWithAcceptItemRequestBuilder when successful
-func (m *BoardGameItemDrawRequestBuilder) ByAcceptBoolean(accept bool)(*BoardGameItemDrawWithAcceptItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    urlTplParams["accept"] = i53ac87e8cb3cc9276228f74d38694a208cacb99bb8ceb705eeae99fb88d4d274.FormatBool(accept)
-    return NewBoardGameItemDrawWithAcceptItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+func (m *BoardGameItemDrawRequestBuilder) ByAcceptBoolean(accept bool) *BoardGameItemDrawWithAcceptItemRequestBuilder {
+	urlTplParams := make(map[string]string)
+	for idx, item := range m.BaseRequestBuilder.PathParameters {
+		urlTplParams[idx] = item
+	}
+	urlTplParams["accept"] = i53ac87e8cb3cc9276228f74d38694a208cacb99bb8ceb705eeae99fb88d4d274.FormatBool(accept)
+	return NewBoardGameItemDrawWithAcceptItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewBoardGameItemDrawRequestBuilderInternal instantiates a new BoardGameItemDrawRequestBuilder and sets the default values.
-func NewBoardGameItemDrawRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BoardGameItemDrawRequestBuilder) {
-    m := &BoardGameItemDrawRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/board/game/{gameId}/draw", pathParameters),
-    }
-    return m
+func NewBoardGameItemDrawRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BoardGameItemDrawRequestBuilder {
+	m := &BoardGameItemDrawRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/board/game/{gameId}/draw", pathParameters),
+	}
+	return m
 }
+
 // NewBoardGameItemDrawRequestBuilder instantiates a new BoardGameItemDrawRequestBuilder and sets the default values.
-func NewBoardGameItemDrawRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BoardGameItemDrawRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewBoardGameItemDrawRequestBuilderInternal(urlParams, requestAdapter)
+func NewBoardGameItemDrawRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BoardGameItemDrawRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewBoardGameItemDrawRequestBuilderInternal(urlParams, requestAdapter)
 }

@@ -2,35 +2,39 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package live
+
 type Live_stream_service int
 
 const (
-    TWITCH_LIVE_STREAM_SERVICE Live_stream_service = iota
-    YOUTUBE_LIVE_STREAM_SERVICE
+	TWITCH_LIVE_STREAM_SERVICE Live_stream_service = iota
+	YOUTUBE_LIVE_STREAM_SERVICE
 )
 
 func (i Live_stream_service) String() string {
-    return []string{"twitch", "youtube"}[i]
+	return []string{"twitch", "youtube"}[i]
 }
+
 func ParseLive_stream_service(v string) (any, error) {
-    result := TWITCH_LIVE_STREAM_SERVICE
-    switch v {
-        case "twitch":
-            result = TWITCH_LIVE_STREAM_SERVICE
-        case "youtube":
-            result = YOUTUBE_LIVE_STREAM_SERVICE
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := TWITCH_LIVE_STREAM_SERVICE
+	switch v {
+	case "twitch":
+		result = TWITCH_LIVE_STREAM_SERVICE
+	case "youtube":
+		result = YOUTUBE_LIVE_STREAM_SERVICE
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeLive_stream_service(values []Live_stream_service) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i Live_stream_service) isMultiValue() bool {
-    return false
+	return false
 }

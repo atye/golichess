@@ -4,121 +4,131 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type TeamUpdates struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The byTeam property
-    byTeam []Updatesable
-    // The updates property
-    updates TeamUpdatesPagerable
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The byTeam property
+	byTeam []Updatesable
+	// The updates property
+	updates TeamUpdatesPagerable
 }
+
 // NewTeamUpdates instantiates a new TeamUpdates and sets the default values.
-func NewTeamUpdates()(*TeamUpdates) {
-    m := &TeamUpdates{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewTeamUpdates() *TeamUpdates {
+	m := &TeamUpdates{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateTeamUpdatesFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateTeamUpdatesFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewTeamUpdates(), nil
+func CreateTeamUpdatesFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewTeamUpdates(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *TeamUpdates) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *TeamUpdates) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetByTeam gets the byTeam property value. The byTeam property
 // returns a []Updatesable when successful
-func (m *TeamUpdates) GetByTeam()([]Updatesable) {
-    return m.byTeam
+func (m *TeamUpdates) GetByTeam() []Updatesable {
+	return m.byTeam
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *TeamUpdates) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["byTeam"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateUpdatesFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]Updatesable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(Updatesable)
-                }
-            }
-            m.SetByTeam(res)
-        }
-        return nil
-    }
-    res["updates"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateTeamUpdatesPagerFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetUpdates(val.(TeamUpdatesPagerable))
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *TeamUpdates) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["byTeam"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateUpdatesFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]Updatesable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(Updatesable)
+				}
+			}
+			m.SetByTeam(res)
+		}
+		return nil
+	}
+	res["updates"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateTeamUpdatesPagerFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetUpdates(val.(TeamUpdatesPagerable))
+		}
+		return nil
+	}
+	return res
 }
+
 // GetUpdates gets the updates property value. The updates property
 // returns a TeamUpdatesPagerable when successful
-func (m *TeamUpdates) GetUpdates()(TeamUpdatesPagerable) {
-    return m.updates
+func (m *TeamUpdates) GetUpdates() TeamUpdatesPagerable {
+	return m.updates
 }
+
 // Serialize serializes information the current object
-func (m *TeamUpdates) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetByTeam() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetByTeam()))
-        for i, v := range m.GetByTeam() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("byTeam", cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("updates", m.GetUpdates())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *TeamUpdates) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	if m.GetByTeam() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetByTeam()))
+		for i, v := range m.GetByTeam() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("byTeam", cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("updates", m.GetUpdates())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *TeamUpdates) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *TeamUpdates) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetByTeam sets the byTeam property value. The byTeam property
-func (m *TeamUpdates) SetByTeam(value []Updatesable)() {
-    m.byTeam = value
+func (m *TeamUpdates) SetByTeam(value []Updatesable) {
+	m.byTeam = value
 }
+
 // SetUpdates sets the updates property value. The updates property
-func (m *TeamUpdates) SetUpdates(value TeamUpdatesPagerable)() {
-    m.updates = value
+func (m *TeamUpdates) SetUpdates(value TeamUpdatesPagerable) {
+	m.updates = value
 }
+
 type TeamUpdatesable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetByTeam()([]Updatesable)
-    GetUpdates()(TeamUpdatesPagerable)
-    SetByTeam(value []Updatesable)()
-    SetUpdates(value TeamUpdatesPagerable)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetByTeam() []Updatesable
+	GetUpdates() TeamUpdatesPagerable
+	SetByTeam(value []Updatesable)
+	SetUpdates(value TeamUpdatesPagerable)
 }

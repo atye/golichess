@@ -2,38 +2,42 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package standard
+
 type GetDtcQueryParameterType int
 
 const (
-    NEVER_GETDTCQUERYPARAMETERTYPE GetDtcQueryParameterType = iota
-    AUXILIARY_GETDTCQUERYPARAMETERTYPE
-    ALWAYS_GETDTCQUERYPARAMETERTYPE
+	NEVER_GETDTCQUERYPARAMETERTYPE GetDtcQueryParameterType = iota
+	AUXILIARY_GETDTCQUERYPARAMETERTYPE
+	ALWAYS_GETDTCQUERYPARAMETERTYPE
 )
 
 func (i GetDtcQueryParameterType) String() string {
-    return []string{"never", "auxiliary", "always"}[i]
+	return []string{"never", "auxiliary", "always"}[i]
 }
+
 func ParseGetDtcQueryParameterType(v string) (any, error) {
-    result := NEVER_GETDTCQUERYPARAMETERTYPE
-    switch v {
-        case "never":
-            result = NEVER_GETDTCQUERYPARAMETERTYPE
-        case "auxiliary":
-            result = AUXILIARY_GETDTCQUERYPARAMETERTYPE
-        case "always":
-            result = ALWAYS_GETDTCQUERYPARAMETERTYPE
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := NEVER_GETDTCQUERYPARAMETERTYPE
+	switch v {
+	case "never":
+		result = NEVER_GETDTCQUERYPARAMETERTYPE
+	case "auxiliary":
+		result = AUXILIARY_GETDTCQUERYPARAMETERTYPE
+	case "always":
+		result = ALWAYS_GETDTCQUERYPARAMETERTYPE
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeGetDtcQueryParameterType(values []GetDtcQueryParameterType) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i GetDtcQueryParameterType) isMultiValue() bool {
-    return false
+	return false
 }

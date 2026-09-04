@@ -4,178 +4,205 @@
 package api
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // ApiRequestBuilder builds and executes requests for operations under \api
 type ApiRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // Account the account property
 // returns a *AccountRequestBuilder when successful
-func (m *ApiRequestBuilder) Account()(*AccountRequestBuilder) {
-    return NewAccountRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *ApiRequestBuilder) Account() *AccountRequestBuilder {
+	return NewAccountRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Board the board property
 // returns a *BoardRequestBuilder when successful
-func (m *ApiRequestBuilder) Board()(*BoardRequestBuilder) {
-    return NewBoardRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *ApiRequestBuilder) Board() *BoardRequestBuilder {
+	return NewBoardRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Bot the bot property
 // returns a *BotRequestBuilder when successful
-func (m *ApiRequestBuilder) Bot()(*BotRequestBuilder) {
-    return NewBotRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *ApiRequestBuilder) Bot() *BotRequestBuilder {
+	return NewBotRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Broadcast the broadcast property
 // returns a *BroadcastRequestBuilder when successful
-func (m *ApiRequestBuilder) Broadcast()(*BroadcastRequestBuilder) {
-    return NewBroadcastRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *ApiRequestBuilder) Broadcast() *BroadcastRequestBuilder {
+	return NewBroadcastRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // BulkPairing the bulkPairing property
 // returns a *BulkPairingRequestBuilder when successful
-func (m *ApiRequestBuilder) BulkPairing()(*BulkPairingRequestBuilder) {
-    return NewBulkPairingRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *ApiRequestBuilder) BulkPairing() *BulkPairingRequestBuilder {
+	return NewBulkPairingRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Challenge the challenge property
 // returns a *ChallengeRequestBuilder when successful
-func (m *ApiRequestBuilder) Challenge()(*ChallengeRequestBuilder) {
-    return NewChallengeRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *ApiRequestBuilder) Challenge() *ChallengeRequestBuilder {
+	return NewChallengeRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // CloudEval the cloudEval property
 // returns a *CloudEvalRequestBuilder when successful
-func (m *ApiRequestBuilder) CloudEval()(*CloudEvalRequestBuilder) {
-    return NewCloudEvalRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *ApiRequestBuilder) CloudEval() *CloudEvalRequestBuilder {
+	return NewCloudEvalRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewApiRequestBuilderInternal instantiates a new ApiRequestBuilder and sets the default values.
-func NewApiRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*ApiRequestBuilder) {
-    m := &ApiRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api", pathParameters),
-    }
-    return m
+func NewApiRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *ApiRequestBuilder {
+	m := &ApiRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api", pathParameters),
+	}
+	return m
 }
+
 // NewApiRequestBuilder instantiates a new ApiRequestBuilder and sets the default values.
-func NewApiRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*ApiRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewApiRequestBuilderInternal(urlParams, requestAdapter)
+func NewApiRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *ApiRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewApiRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Crosstable the crosstable property
 // returns a *CrosstableRequestBuilder when successful
-func (m *ApiRequestBuilder) Crosstable()(*CrosstableRequestBuilder) {
-    return NewCrosstableRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *ApiRequestBuilder) Crosstable() *CrosstableRequestBuilder {
+	return NewCrosstableRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // ExternalEngine the externalEngine property
 // returns a *ExternalEngineRequestBuilder when successful
-func (m *ApiRequestBuilder) ExternalEngine()(*ExternalEngineRequestBuilder) {
-    return NewExternalEngineRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *ApiRequestBuilder) ExternalEngine() *ExternalEngineRequestBuilder {
+	return NewExternalEngineRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Fide the fide property
 // returns a *FideRequestBuilder when successful
-func (m *ApiRequestBuilder) Fide()(*FideRequestBuilder) {
-    return NewFideRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *ApiRequestBuilder) Fide() *FideRequestBuilder {
+	return NewFideRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Game the game property
 // returns a *GameRequestBuilder when successful
-func (m *ApiRequestBuilder) Game()(*GameRequestBuilder) {
-    return NewGameRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *ApiRequestBuilder) Game() *GameRequestBuilder {
+	return NewGameRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Games the games property
 // returns a *GamesRequestBuilder when successful
-func (m *ApiRequestBuilder) Games()(*GamesRequestBuilder) {
-    return NewGamesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *ApiRequestBuilder) Games() *GamesRequestBuilder {
+	return NewGamesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // ImportEscaped the import property
 // returns a *ImportRequestBuilder when successful
-func (m *ApiRequestBuilder) ImportEscaped()(*ImportRequestBuilder) {
-    return NewImportRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *ApiRequestBuilder) ImportEscaped() *ImportRequestBuilder {
+	return NewImportRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Player the player property
 // returns a *PlayerRequestBuilder when successful
-func (m *ApiRequestBuilder) Player()(*PlayerRequestBuilder) {
-    return NewPlayerRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *ApiRequestBuilder) Player() *PlayerRequestBuilder {
+	return NewPlayerRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Puzzle the puzzle property
 // returns a *PuzzleRequestBuilder when successful
-func (m *ApiRequestBuilder) Puzzle()(*PuzzleRequestBuilder) {
-    return NewPuzzleRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *ApiRequestBuilder) Puzzle() *PuzzleRequestBuilder {
+	return NewPuzzleRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Racer the racer property
 // returns a *RacerRequestBuilder when successful
-func (m *ApiRequestBuilder) Racer()(*RacerRequestBuilder) {
-    return NewRacerRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *ApiRequestBuilder) Racer() *RacerRequestBuilder {
+	return NewRacerRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Rel the rel property
 // returns a *RelRequestBuilder when successful
-func (m *ApiRequestBuilder) Rel()(*RelRequestBuilder) {
-    return NewRelRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *ApiRequestBuilder) Rel() *RelRequestBuilder {
+	return NewRelRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Round the round property
 // returns a *RoundRequestBuilder when successful
-func (m *ApiRequestBuilder) Round()(*RoundRequestBuilder) {
-    return NewRoundRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *ApiRequestBuilder) Round() *RoundRequestBuilder {
+	return NewRoundRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Simul the simul property
 // returns a *SimulRequestBuilder when successful
-func (m *ApiRequestBuilder) Simul()(*SimulRequestBuilder) {
-    return NewSimulRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *ApiRequestBuilder) Simul() *SimulRequestBuilder {
+	return NewSimulRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Storm the storm property
 // returns a *StormRequestBuilder when successful
-func (m *ApiRequestBuilder) Storm()(*StormRequestBuilder) {
-    return NewStormRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *ApiRequestBuilder) Storm() *StormRequestBuilder {
+	return NewStormRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Stream the stream property
 // returns a *StreamRequestBuilder when successful
-func (m *ApiRequestBuilder) Stream()(*StreamRequestBuilder) {
-    return NewStreamRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *ApiRequestBuilder) Stream() *StreamRequestBuilder {
+	return NewStreamRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Streamer the streamer property
 // returns a *StreamerRequestBuilder when successful
-func (m *ApiRequestBuilder) Streamer()(*StreamerRequestBuilder) {
-    return NewStreamerRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *ApiRequestBuilder) Streamer() *StreamerRequestBuilder {
+	return NewStreamerRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Study the study property
 // returns a *StudyRequestBuilder when successful
-func (m *ApiRequestBuilder) Study()(*StudyRequestBuilder) {
-    return NewStudyRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *ApiRequestBuilder) Study() *StudyRequestBuilder {
+	return NewStudyRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Swiss the swiss property
 // returns a *SwissRequestBuilder when successful
-func (m *ApiRequestBuilder) Swiss()(*SwissRequestBuilder) {
-    return NewSwissRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *ApiRequestBuilder) Swiss() *SwissRequestBuilder {
+	return NewSwissRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Team the team property
 // returns a *TeamRequestBuilder when successful
-func (m *ApiRequestBuilder) Team()(*TeamRequestBuilder) {
-    return NewTeamRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *ApiRequestBuilder) Team() *TeamRequestBuilder {
+	return NewTeamRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
-// Timeline the timeline property
-// returns a *TimelineRequestBuilder when successful
-func (m *ApiRequestBuilder) Timeline()(*TimelineRequestBuilder) {
-    return NewTimelineRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
-}
+
 // Token the token property
 // returns a *TokenRequestBuilder when successful
-func (m *ApiRequestBuilder) Token()(*TokenRequestBuilder) {
-    return NewTokenRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *ApiRequestBuilder) Token() *TokenRequestBuilder {
+	return NewTokenRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Tournament the tournament property
 // returns a *TournamentRequestBuilder when successful
-func (m *ApiRequestBuilder) Tournament()(*TournamentRequestBuilder) {
-    return NewTournamentRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *ApiRequestBuilder) Tournament() *TournamentRequestBuilder {
+	return NewTournamentRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Tv the tv property
 // returns a *TvRequestBuilder when successful
-func (m *ApiRequestBuilder) Tv()(*TvRequestBuilder) {
-    return NewTvRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *ApiRequestBuilder) Tv() *TvRequestBuilder {
+	return NewTvRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // User the user property
 // returns a *UserRequestBuilder when successful
-func (m *ApiRequestBuilder) User()(*UserRequestBuilder) {
-    return NewUserRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *ApiRequestBuilder) User() *UserRequestBuilder {
+	return NewUserRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Users the users property
 // returns a *UsersRequestBuilder when successful
-func (m *ApiRequestBuilder) Users()(*UsersRequestBuilder) {
-    return NewUsersRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *ApiRequestBuilder) Users() *UsersRequestBuilder {
+	return NewUsersRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

@@ -4,196 +4,212 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type PuzzlePerformance struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The firstWins property
-    firstWins *int32
-    // The nb property
-    nb *int32
-    // The performance property
-    performance *int32
-    // The puzzleRatingAvg property
-    puzzleRatingAvg *int32
-    // The replayWins property
-    replayWins *int32
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The firstWins property
+	firstWins *int32
+	// The nb property
+	nb *int32
+	// The performance property
+	performance *int32
+	// The puzzleRatingAvg property
+	puzzleRatingAvg *int32
+	// The replayWins property
+	replayWins *int32
 }
+
 // NewPuzzlePerformance instantiates a new PuzzlePerformance and sets the default values.
-func NewPuzzlePerformance()(*PuzzlePerformance) {
-    m := &PuzzlePerformance{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewPuzzlePerformance() *PuzzlePerformance {
+	m := &PuzzlePerformance{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreatePuzzlePerformanceFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreatePuzzlePerformanceFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewPuzzlePerformance(), nil
+func CreatePuzzlePerformanceFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewPuzzlePerformance(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *PuzzlePerformance) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *PuzzlePerformance) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *PuzzlePerformance) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["firstWins"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFirstWins(val)
-        }
-        return nil
-    }
-    res["nb"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetNb(val)
-        }
-        return nil
-    }
-    res["performance"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPerformance(val)
-        }
-        return nil
-    }
-    res["puzzleRatingAvg"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPuzzleRatingAvg(val)
-        }
-        return nil
-    }
-    res["replayWins"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetReplayWins(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *PuzzlePerformance) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["firstWins"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFirstWins(val)
+		}
+		return nil
+	}
+	res["nb"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetNb(val)
+		}
+		return nil
+	}
+	res["performance"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPerformance(val)
+		}
+		return nil
+	}
+	res["puzzleRatingAvg"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPuzzleRatingAvg(val)
+		}
+		return nil
+	}
+	res["replayWins"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetReplayWins(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetFirstWins gets the firstWins property value. The firstWins property
 // returns a *int32 when successful
-func (m *PuzzlePerformance) GetFirstWins()(*int32) {
-    return m.firstWins
+func (m *PuzzlePerformance) GetFirstWins() *int32 {
+	return m.firstWins
 }
+
 // GetNb gets the nb property value. The nb property
 // returns a *int32 when successful
-func (m *PuzzlePerformance) GetNb()(*int32) {
-    return m.nb
+func (m *PuzzlePerformance) GetNb() *int32 {
+	return m.nb
 }
+
 // GetPerformance gets the performance property value. The performance property
 // returns a *int32 when successful
-func (m *PuzzlePerformance) GetPerformance()(*int32) {
-    return m.performance
+func (m *PuzzlePerformance) GetPerformance() *int32 {
+	return m.performance
 }
+
 // GetPuzzleRatingAvg gets the puzzleRatingAvg property value. The puzzleRatingAvg property
 // returns a *int32 when successful
-func (m *PuzzlePerformance) GetPuzzleRatingAvg()(*int32) {
-    return m.puzzleRatingAvg
+func (m *PuzzlePerformance) GetPuzzleRatingAvg() *int32 {
+	return m.puzzleRatingAvg
 }
+
 // GetReplayWins gets the replayWins property value. The replayWins property
 // returns a *int32 when successful
-func (m *PuzzlePerformance) GetReplayWins()(*int32) {
-    return m.replayWins
+func (m *PuzzlePerformance) GetReplayWins() *int32 {
+	return m.replayWins
 }
+
 // Serialize serializes information the current object
-func (m *PuzzlePerformance) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteInt32Value("firstWins", m.GetFirstWins())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("nb", m.GetNb())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("performance", m.GetPerformance())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("puzzleRatingAvg", m.GetPuzzleRatingAvg())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("replayWins", m.GetReplayWins())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *PuzzlePerformance) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteInt32Value("firstWins", m.GetFirstWins())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("nb", m.GetNb())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("performance", m.GetPerformance())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("puzzleRatingAvg", m.GetPuzzleRatingAvg())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("replayWins", m.GetReplayWins())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PuzzlePerformance) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *PuzzlePerformance) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetFirstWins sets the firstWins property value. The firstWins property
-func (m *PuzzlePerformance) SetFirstWins(value *int32)() {
-    m.firstWins = value
+func (m *PuzzlePerformance) SetFirstWins(value *int32) {
+	m.firstWins = value
 }
+
 // SetNb sets the nb property value. The nb property
-func (m *PuzzlePerformance) SetNb(value *int32)() {
-    m.nb = value
+func (m *PuzzlePerformance) SetNb(value *int32) {
+	m.nb = value
 }
+
 // SetPerformance sets the performance property value. The performance property
-func (m *PuzzlePerformance) SetPerformance(value *int32)() {
-    m.performance = value
+func (m *PuzzlePerformance) SetPerformance(value *int32) {
+	m.performance = value
 }
+
 // SetPuzzleRatingAvg sets the puzzleRatingAvg property value. The puzzleRatingAvg property
-func (m *PuzzlePerformance) SetPuzzleRatingAvg(value *int32)() {
-    m.puzzleRatingAvg = value
+func (m *PuzzlePerformance) SetPuzzleRatingAvg(value *int32) {
+	m.puzzleRatingAvg = value
 }
+
 // SetReplayWins sets the replayWins property value. The replayWins property
-func (m *PuzzlePerformance) SetReplayWins(value *int32)() {
-    m.replayWins = value
+func (m *PuzzlePerformance) SetReplayWins(value *int32) {
+	m.replayWins = value
 }
+
 type PuzzlePerformanceable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetFirstWins()(*int32)
-    GetNb()(*int32)
-    GetPerformance()(*int32)
-    GetPuzzleRatingAvg()(*int32)
-    GetReplayWins()(*int32)
-    SetFirstWins(value *int32)()
-    SetNb(value *int32)()
-    SetPerformance(value *int32)()
-    SetPuzzleRatingAvg(value *int32)()
-    SetReplayWins(value *int32)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetFirstWins() *int32
+	GetNb() *int32
+	GetPerformance() *int32
+	GetPuzzleRatingAvg() *int32
+	GetReplayWins() *int32
+	SetFirstWins(value *int32)
+	SetNb(value *int32)
+	SetPerformance(value *int32)
+	SetPuzzleRatingAvg(value *int32)
+	SetReplayWins(value *int32)
 }

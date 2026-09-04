@@ -4,35 +4,38 @@
 package api
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // BotGameItemMoveRequestBuilder builds and executes requests for operations under \api\bot\game\{gameId}\move
 type BotGameItemMoveRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // ByMove gets an item from the github.com/atye/golichess/kiota.api.bot.game.item.move.item collection
 // returns a *BotGameItemMoveWithMoveItemRequestBuilder when successful
-func (m *BotGameItemMoveRequestBuilder) ByMove(move string)(*BotGameItemMoveWithMoveItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    if move != "" {
-        urlTplParams["move"] = move
-    }
-    return NewBotGameItemMoveWithMoveItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+func (m *BotGameItemMoveRequestBuilder) ByMove(move string) *BotGameItemMoveWithMoveItemRequestBuilder {
+	urlTplParams := make(map[string]string)
+	for idx, item := range m.BaseRequestBuilder.PathParameters {
+		urlTplParams[idx] = item
+	}
+	if move != "" {
+		urlTplParams["move"] = move
+	}
+	return NewBotGameItemMoveWithMoveItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewBotGameItemMoveRequestBuilderInternal instantiates a new BotGameItemMoveRequestBuilder and sets the default values.
-func NewBotGameItemMoveRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BotGameItemMoveRequestBuilder) {
-    m := &BotGameItemMoveRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/bot/game/{gameId}/move", pathParameters),
-    }
-    return m
+func NewBotGameItemMoveRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BotGameItemMoveRequestBuilder {
+	m := &BotGameItemMoveRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/bot/game/{gameId}/move", pathParameters),
+	}
+	return m
 }
+
 // NewBotGameItemMoveRequestBuilder instantiates a new BotGameItemMoveRequestBuilder and sets the default values.
-func NewBotGameItemMoveRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BotGameItemMoveRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewBotGameItemMoveRequestBuilderInternal(urlParams, requestAdapter)
+func NewBotGameItemMoveRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BotGameItemMoveRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewBotGameItemMoveRequestBuilderInternal(urlParams, requestAdapter)
 }

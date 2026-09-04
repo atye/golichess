@@ -4,65 +4,71 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	"context"
+	i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // StreamGamesItemAddRequestBuilder builds and executes requests for operations under \api\stream\games\{streamId}\add
 type StreamGamesItemAddRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // StreamGamesItemAddRequestBuilderPostRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type StreamGamesItemAddRequestBuilderPostRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+
 // NewStreamGamesItemAddRequestBuilderInternal instantiates a new StreamGamesItemAddRequestBuilder and sets the default values.
-func NewStreamGamesItemAddRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*StreamGamesItemAddRequestBuilder) {
-    m := &StreamGamesItemAddRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/stream/games/{streamId}/add", pathParameters),
-    }
-    return m
+func NewStreamGamesItemAddRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *StreamGamesItemAddRequestBuilder {
+	m := &StreamGamesItemAddRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/stream/games/{streamId}/add", pathParameters),
+	}
+	return m
 }
+
 // NewStreamGamesItemAddRequestBuilder instantiates a new StreamGamesItemAddRequestBuilder and sets the default values.
-func NewStreamGamesItemAddRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*StreamGamesItemAddRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewStreamGamesItemAddRequestBuilderInternal(urlParams, requestAdapter)
+func NewStreamGamesItemAddRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *StreamGamesItemAddRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewStreamGamesItemAddRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Post add new game IDs for [an existing stream](#tag/games/POST/api/stream/games/{streamId}) to watch.The stream will immediately outputs the games that already exists, then emit an event each time a game is started or finished.
 // returns a Okable when successful
-func (m *StreamGamesItemAddRequestBuilder) Post(ctx context.Context, body *string, requestConfiguration *StreamGamesItemAddRequestBuilderPostRequestConfiguration)(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Okable, error) {
-    requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateOkFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Okable), nil
+func (m *StreamGamesItemAddRequestBuilder) Post(ctx context.Context, body *string, requestConfiguration *StreamGamesItemAddRequestBuilderPostRequestConfiguration) (i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Okable, error) {
+	requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateOkFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Okable), nil
 }
+
 // ToPostRequestInformation add new game IDs for [an existing stream](#tag/games/POST/api/stream/games/{streamId}) to watch.The stream will immediately outputs the games that already exists, then emit an event each time a game is started or finished.
 // returns a *RequestInformation when successful
-func (m *StreamGamesItemAddRequestBuilder) ToPostRequestInformation(ctx context.Context, body *string, requestConfiguration *StreamGamesItemAddRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    requestInfo.SetContentFromScalar(ctx, m.BaseRequestBuilder.RequestAdapter, "text/plain", body)
-    return requestInfo, nil
+func (m *StreamGamesItemAddRequestBuilder) ToPostRequestInformation(ctx context.Context, body *string, requestConfiguration *StreamGamesItemAddRequestBuilderPostRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	requestInfo.SetContentFromScalar(ctx, m.BaseRequestBuilder.RequestAdapter, "text/plain", body)
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *StreamGamesItemAddRequestBuilder when successful
-func (m *StreamGamesItemAddRequestBuilder) WithUrl(rawUrl string)(*StreamGamesItemAddRequestBuilder) {
-    return NewStreamGamesItemAddRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *StreamGamesItemAddRequestBuilder) WithUrl(rawUrl string) *StreamGamesItemAddRequestBuilder {
+	return NewStreamGamesItemAddRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

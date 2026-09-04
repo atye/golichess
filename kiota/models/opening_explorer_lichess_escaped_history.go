@@ -4,167 +4,181 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type OpeningExplorerLichess_history struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The black property
-    black *int32
-    // The draws property
-    draws *int32
-    // The month property
-    month *string
-    // The white property
-    white *int32
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The black property
+	black *int32
+	// The draws property
+	draws *int32
+	// The month property
+	month *string
+	// The white property
+	white *int32
 }
+
 // NewOpeningExplorerLichess_history instantiates a new OpeningExplorerLichess_history and sets the default values.
-func NewOpeningExplorerLichess_history()(*OpeningExplorerLichess_history) {
-    m := &OpeningExplorerLichess_history{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewOpeningExplorerLichess_history() *OpeningExplorerLichess_history {
+	m := &OpeningExplorerLichess_history{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateOpeningExplorerLichess_historyFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateOpeningExplorerLichess_historyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewOpeningExplorerLichess_history(), nil
+func CreateOpeningExplorerLichess_historyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewOpeningExplorerLichess_history(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *OpeningExplorerLichess_history) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *OpeningExplorerLichess_history) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetBlack gets the black property value. The black property
 // returns a *int32 when successful
-func (m *OpeningExplorerLichess_history) GetBlack()(*int32) {
-    return m.black
+func (m *OpeningExplorerLichess_history) GetBlack() *int32 {
+	return m.black
 }
+
 // GetDraws gets the draws property value. The draws property
 // returns a *int32 when successful
-func (m *OpeningExplorerLichess_history) GetDraws()(*int32) {
-    return m.draws
+func (m *OpeningExplorerLichess_history) GetDraws() *int32 {
+	return m.draws
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *OpeningExplorerLichess_history) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["black"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetBlack(val)
-        }
-        return nil
-    }
-    res["draws"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDraws(val)
-        }
-        return nil
-    }
-    res["month"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMonth(val)
-        }
-        return nil
-    }
-    res["white"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetWhite(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *OpeningExplorerLichess_history) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["black"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetBlack(val)
+		}
+		return nil
+	}
+	res["draws"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetDraws(val)
+		}
+		return nil
+	}
+	res["month"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMonth(val)
+		}
+		return nil
+	}
+	res["white"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetWhite(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetMonth gets the month property value. The month property
 // returns a *string when successful
-func (m *OpeningExplorerLichess_history) GetMonth()(*string) {
-    return m.month
+func (m *OpeningExplorerLichess_history) GetMonth() *string {
+	return m.month
 }
+
 // GetWhite gets the white property value. The white property
 // returns a *int32 when successful
-func (m *OpeningExplorerLichess_history) GetWhite()(*int32) {
-    return m.white
+func (m *OpeningExplorerLichess_history) GetWhite() *int32 {
+	return m.white
 }
+
 // Serialize serializes information the current object
-func (m *OpeningExplorerLichess_history) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteInt32Value("black", m.GetBlack())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("draws", m.GetDraws())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("month", m.GetMonth())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("white", m.GetWhite())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *OpeningExplorerLichess_history) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteInt32Value("black", m.GetBlack())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("draws", m.GetDraws())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("month", m.GetMonth())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("white", m.GetWhite())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *OpeningExplorerLichess_history) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *OpeningExplorerLichess_history) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetBlack sets the black property value. The black property
-func (m *OpeningExplorerLichess_history) SetBlack(value *int32)() {
-    m.black = value
+func (m *OpeningExplorerLichess_history) SetBlack(value *int32) {
+	m.black = value
 }
+
 // SetDraws sets the draws property value. The draws property
-func (m *OpeningExplorerLichess_history) SetDraws(value *int32)() {
-    m.draws = value
+func (m *OpeningExplorerLichess_history) SetDraws(value *int32) {
+	m.draws = value
 }
+
 // SetMonth sets the month property value. The month property
-func (m *OpeningExplorerLichess_history) SetMonth(value *string)() {
-    m.month = value
+func (m *OpeningExplorerLichess_history) SetMonth(value *string) {
+	m.month = value
 }
+
 // SetWhite sets the white property value. The white property
-func (m *OpeningExplorerLichess_history) SetWhite(value *int32)() {
-    m.white = value
+func (m *OpeningExplorerLichess_history) SetWhite(value *int32) {
+	m.white = value
 }
+
 type OpeningExplorerLichess_historyable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetBlack()(*int32)
-    GetDraws()(*int32)
-    GetMonth()(*string)
-    GetWhite()(*int32)
-    SetBlack(value *int32)()
-    SetDraws(value *int32)()
-    SetMonth(value *string)()
-    SetWhite(value *int32)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetBlack() *int32
+	GetDraws() *int32
+	GetMonth() *string
+	GetWhite() *int32
+	SetBlack(value *int32)
+	SetDraws(value *int32)
+	SetMonth(value *string)
+	SetWhite(value *int32)
 }

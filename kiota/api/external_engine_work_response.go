@@ -4,27 +4,30 @@
 package api
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // Deprecated: This class is obsolete. Use ExternalEngineWorkPostResponseable instead.
 type ExternalEngineWorkResponse struct {
-    ExternalEngineWorkPostResponse
+	ExternalEngineWorkPostResponse
 }
+
 // NewExternalEngineWorkResponse instantiates a new ExternalEngineWorkResponse and sets the default values.
-func NewExternalEngineWorkResponse()(*ExternalEngineWorkResponse) {
-    m := &ExternalEngineWorkResponse{
-        ExternalEngineWorkPostResponse: *NewExternalEngineWorkPostResponse(),
-    }
-    return m
+func NewExternalEngineWorkResponse() *ExternalEngineWorkResponse {
+	m := &ExternalEngineWorkResponse{
+		ExternalEngineWorkPostResponse: *NewExternalEngineWorkPostResponse(),
+	}
+	return m
 }
+
 // CreateExternalEngineWorkResponseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateExternalEngineWorkResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewExternalEngineWorkResponse(), nil
+func CreateExternalEngineWorkResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewExternalEngineWorkResponse(), nil
 }
+
 // Deprecated: This class is obsolete. Use ExternalEngineWorkPostResponseable instead.
 type ExternalEngineWorkResponseable interface {
-    ExternalEngineWorkPostResponseable
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	ExternalEngineWorkPostResponseable
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
 }

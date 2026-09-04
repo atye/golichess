@@ -4,35 +4,38 @@
 package api
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // CrosstableRequestBuilder builds and executes requests for operations under \api\crosstable
 type CrosstableRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // ByUser1 gets an item from the github.com/atye/golichess/kiota.api.crosstable.item collection
 // returns a *CrosstableWithUser1ItemRequestBuilder when successful
-func (m *CrosstableRequestBuilder) ByUser1(user1 string)(*CrosstableWithUser1ItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    if user1 != "" {
-        urlTplParams["user1"] = user1
-    }
-    return NewCrosstableWithUser1ItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+func (m *CrosstableRequestBuilder) ByUser1(user1 string) *CrosstableWithUser1ItemRequestBuilder {
+	urlTplParams := make(map[string]string)
+	for idx, item := range m.BaseRequestBuilder.PathParameters {
+		urlTplParams[idx] = item
+	}
+	if user1 != "" {
+		urlTplParams["user1"] = user1
+	}
+	return NewCrosstableWithUser1ItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewCrosstableRequestBuilderInternal instantiates a new CrosstableRequestBuilder and sets the default values.
-func NewCrosstableRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*CrosstableRequestBuilder) {
-    m := &CrosstableRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/crosstable", pathParameters),
-    }
-    return m
+func NewCrosstableRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *CrosstableRequestBuilder {
+	m := &CrosstableRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/crosstable", pathParameters),
+	}
+	return m
 }
+
 // NewCrosstableRequestBuilder instantiates a new CrosstableRequestBuilder and sets the default values.
-func NewCrosstableRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*CrosstableRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewCrosstableRequestBuilderInternal(urlParams, requestAdapter)
+func NewCrosstableRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *CrosstableRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewCrosstableRequestBuilderInternal(urlParams, requestAdapter)
 }

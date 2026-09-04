@@ -4,45 +4,50 @@
 package broadcast
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // BroadcastRequestBuilder builds and executes requests for operations under \broadcast
 type BroadcastRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // ByBroadcastTournamentId gets an item from the github.com/atye/golichess/kiota.broadcast.item collection
 // returns a *WithBroadcastTournamentItemRequestBuilder when successful
-func (m *BroadcastRequestBuilder) ByBroadcastTournamentId(broadcastTournamentId string)(*WithBroadcastTournamentItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    if broadcastTournamentId != "" {
-        urlTplParams["broadcastTournamentId"] = broadcastTournamentId
-    }
-    return NewWithBroadcastTournamentItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+func (m *BroadcastRequestBuilder) ByBroadcastTournamentId(broadcastTournamentId string) *WithBroadcastTournamentItemRequestBuilder {
+	urlTplParams := make(map[string]string)
+	for idx, item := range m.BaseRequestBuilder.PathParameters {
+		urlTplParams[idx] = item
+	}
+	if broadcastTournamentId != "" {
+		urlTplParams["broadcastTournamentId"] = broadcastTournamentId
+	}
+	return NewWithBroadcastTournamentItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewBroadcastRequestBuilderInternal instantiates a new BroadcastRequestBuilder and sets the default values.
-func NewBroadcastRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BroadcastRequestBuilder) {
-    m := &BroadcastRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/broadcast", pathParameters),
-    }
-    return m
+func NewBroadcastRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BroadcastRequestBuilder {
+	m := &BroadcastRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/broadcast", pathParameters),
+	}
+	return m
 }
+
 // NewBroadcastRequestBuilder instantiates a new BroadcastRequestBuilder and sets the default values.
-func NewBroadcastRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BroadcastRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewBroadcastRequestBuilderInternal(urlParams, requestAdapter)
+func NewBroadcastRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BroadcastRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewBroadcastRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // New the new property
 // returns a *NewRequestBuilder when successful
-func (m *BroadcastRequestBuilder) New()(*NewRequestBuilder) {
-    return NewNewRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *BroadcastRequestBuilder) New() *NewRequestBuilder {
+	return NewNewRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Round the round property
 // returns a *RoundRequestBuilder when successful
-func (m *BroadcastRequestBuilder) Round()(*RoundRequestBuilder) {
-    return NewRoundRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *BroadcastRequestBuilder) Round() *RoundRequestBuilder {
+	return NewRoundRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

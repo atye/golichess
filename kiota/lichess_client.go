@@ -4,117 +4,146 @@
 package kiota
 
 import (
-    i25911dc319edd61cbac496af7eab5ef20b6069a42515e22ec6a9bc97bf598488 "github.com/microsoft/kiota-serialization-json-go"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i4bcdc892e61ac17e2afc10b5e2b536b29f4fd6c1ad30f4a5a68df47495db3347 "github.com/microsoft/kiota-serialization-form-go"
-    i56887720f41ac882814261620b1c8459c4a992a0207af547c4453dd39fabc426 "github.com/microsoft/kiota-serialization-multipart-go"
-    i7294a22093d408fdca300f11b81a887d89c47b764af06c8b803e2323973fdb83 "github.com/microsoft/kiota-serialization-text-go"
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
-    i1d35e6070e0d971eb89dc0e64e807dc85a9c0fcb0946e9be1e5f875b12a5139d "github.com/atye/golichess/kiota/atomic"
-    i2499d04281e9247f1ff03ca5e57463c8c51c8a44eaf96bc211c4caaee9c04dfc "github.com/atye/golichess/kiota/lichess"
-    i41e078eb298f4a151538d7d1cf91f62bb14d5a87f721f5d8d7bf7854e3d27d44 "github.com/atye/golichess/kiota/masters"
-    i48b0d1ebfc304b840ad15ce7b3aea6cf69f084567ec89e7e39458a9b8919b7d9 "github.com/atye/golichess/kiota/game"
-    i53f161edb347a875019760216b1570ddcdd5b86d7d21dfdc20ae79f04e22e1ed "github.com/atye/golichess/kiota/oauth"
-    i5e98ef327a9e13c3370c7b026c4562b05cb16dd8a76fb410278cb3edcc065d94 "github.com/atye/golichess/kiota/standard"
-    i6a844f06ab6c0bf1b9657f212733ffb2b0205ed1a6ac1ac8640c72e761206fe8 "github.com/atye/golichess/kiota/bookmark"
-    i753649b3dbfe9efb0f9dc972724539a1e6707f0a1a3c779fef120cbf202af330 "github.com/atye/golichess/kiota/swiss"
-    i79fc6cf537e44c9396ee94d44cc66672e02756695cab0ea6c0ba54d3197bc2ac "github.com/atye/golichess/kiota/api"
-    i8d09ab70c1cb71052b1b1af13da1315343a9580d77188296a8b677e3d6f1951a "github.com/atye/golichess/kiota/antichess"
-    i9ace3cdfa8297ea57186b70744ff7f3a27046fe652bb9f06a929efacc3361986 "github.com/atye/golichess/kiota/inbox"
-    ib0b67269e17cde938c693f458cc58f05318827c53f7004955b962a24080ad4a5 "github.com/atye/golichess/kiota/broadcast"
-    ib4949b936e06838ca995e9c037b04e317ed1c2af79729332d097b6325e75829c "github.com/atye/golichess/kiota/team"
-    ida09cfc5d3a7fe547ea64b1e56bd4ce65db6f30377b124f79e45b63264637db1 "github.com/atye/golichess/kiota/player"
+	i8d09ab70c1cb71052b1b1af13da1315343a9580d77188296a8b677e3d6f1951a "github.com/atye/golichess/kiota/antichess"
+	i79fc6cf537e44c9396ee94d44cc66672e02756695cab0ea6c0ba54d3197bc2ac "github.com/atye/golichess/kiota/api"
+	i1d35e6070e0d971eb89dc0e64e807dc85a9c0fcb0946e9be1e5f875b12a5139d "github.com/atye/golichess/kiota/atomic"
+	i6a844f06ab6c0bf1b9657f212733ffb2b0205ed1a6ac1ac8640c72e761206fe8 "github.com/atye/golichess/kiota/bookmark"
+	ib0b67269e17cde938c693f458cc58f05318827c53f7004955b962a24080ad4a5 "github.com/atye/golichess/kiota/broadcast"
+	i48b0d1ebfc304b840ad15ce7b3aea6cf69f084567ec89e7e39458a9b8919b7d9 "github.com/atye/golichess/kiota/game"
+	i9ace3cdfa8297ea57186b70744ff7f3a27046fe652bb9f06a929efacc3361986 "github.com/atye/golichess/kiota/inbox"
+	i2499d04281e9247f1ff03ca5e57463c8c51c8a44eaf96bc211c4caaee9c04dfc "github.com/atye/golichess/kiota/lichess"
+	i41e078eb298f4a151538d7d1cf91f62bb14d5a87f721f5d8d7bf7854e3d27d44 "github.com/atye/golichess/kiota/masters"
+	i53f161edb347a875019760216b1570ddcdd5b86d7d21dfdc20ae79f04e22e1ed "github.com/atye/golichess/kiota/oauth"
+	ida09cfc5d3a7fe547ea64b1e56bd4ce65db6f30377b124f79e45b63264637db1 "github.com/atye/golichess/kiota/player"
+	i5e98ef327a9e13c3370c7b026c4562b05cb16dd8a76fb410278cb3edcc065d94 "github.com/atye/golichess/kiota/standard"
+	i753649b3dbfe9efb0f9dc972724539a1e6707f0a1a3c779fef120cbf202af330 "github.com/atye/golichess/kiota/swiss"
+	ib4949b936e06838ca995e9c037b04e317ed1c2af79729332d097b6325e75829c "github.com/atye/golichess/kiota/team"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i4bcdc892e61ac17e2afc10b5e2b536b29f4fd6c1ad30f4a5a68df47495db3347 "github.com/microsoft/kiota-serialization-form-go"
+	i25911dc319edd61cbac496af7eab5ef20b6069a42515e22ec6a9bc97bf598488 "github.com/microsoft/kiota-serialization-json-go"
+	i56887720f41ac882814261620b1c8459c4a992a0207af547c4453dd39fabc426 "github.com/microsoft/kiota-serialization-multipart-go"
+	i7294a22093d408fdca300f11b81a887d89c47b764af06c8b803e2323973fdb83 "github.com/microsoft/kiota-serialization-text-go"
 )
 
 // LichessClient the main entry point of the SDK, exposes the configuration and the fluent API.
 type LichessClient struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // Antichess the antichess property
 // returns a *AntichessRequestBuilder when successful
-func (m *LichessClient) Antichess()(*i8d09ab70c1cb71052b1b1af13da1315343a9580d77188296a8b677e3d6f1951a.AntichessRequestBuilder) {
-    return i8d09ab70c1cb71052b1b1af13da1315343a9580d77188296a8b677e3d6f1951a.NewAntichessRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *LichessClient) Antichess() *i8d09ab70c1cb71052b1b1af13da1315343a9580d77188296a8b677e3d6f1951a.AntichessRequestBuilder {
+	return i8d09ab70c1cb71052b1b1af13da1315343a9580d77188296a8b677e3d6f1951a.NewAntichessRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Api the api property
 // returns a *ApiRequestBuilder when successful
-func (m *LichessClient) Api()(*i79fc6cf537e44c9396ee94d44cc66672e02756695cab0ea6c0ba54d3197bc2ac.ApiRequestBuilder) {
-    return i79fc6cf537e44c9396ee94d44cc66672e02756695cab0ea6c0ba54d3197bc2ac.NewApiRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *LichessClient) Api() *i79fc6cf537e44c9396ee94d44cc66672e02756695cab0ea6c0ba54d3197bc2ac.ApiRequestBuilder {
+	return i79fc6cf537e44c9396ee94d44cc66672e02756695cab0ea6c0ba54d3197bc2ac.NewApiRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Atomic the atomic property
 // returns a *AtomicRequestBuilder when successful
-func (m *LichessClient) Atomic()(*i1d35e6070e0d971eb89dc0e64e807dc85a9c0fcb0946e9be1e5f875b12a5139d.AtomicRequestBuilder) {
-    return i1d35e6070e0d971eb89dc0e64e807dc85a9c0fcb0946e9be1e5f875b12a5139d.NewAtomicRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *LichessClient) Atomic() *i1d35e6070e0d971eb89dc0e64e807dc85a9c0fcb0946e9be1e5f875b12a5139d.AtomicRequestBuilder {
+	return i1d35e6070e0d971eb89dc0e64e807dc85a9c0fcb0946e9be1e5f875b12a5139d.NewAtomicRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Bookmark the bookmark property
 // returns a *BookmarkRequestBuilder when successful
-func (m *LichessClient) Bookmark()(*i6a844f06ab6c0bf1b9657f212733ffb2b0205ed1a6ac1ac8640c72e761206fe8.BookmarkRequestBuilder) {
-    return i6a844f06ab6c0bf1b9657f212733ffb2b0205ed1a6ac1ac8640c72e761206fe8.NewBookmarkRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *LichessClient) Bookmark() *i6a844f06ab6c0bf1b9657f212733ffb2b0205ed1a6ac1ac8640c72e761206fe8.BookmarkRequestBuilder {
+	return i6a844f06ab6c0bf1b9657f212733ffb2b0205ed1a6ac1ac8640c72e761206fe8.NewBookmarkRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Broadcast the broadcast property
 // returns a *BroadcastRequestBuilder when successful
-func (m *LichessClient) Broadcast()(*ib0b67269e17cde938c693f458cc58f05318827c53f7004955b962a24080ad4a5.BroadcastRequestBuilder) {
-    return ib0b67269e17cde938c693f458cc58f05318827c53f7004955b962a24080ad4a5.NewBroadcastRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *LichessClient) Broadcast() *ib0b67269e17cde938c693f458cc58f05318827c53f7004955b962a24080ad4a5.BroadcastRequestBuilder {
+	return ib0b67269e17cde938c693f458cc58f05318827c53f7004955b962a24080ad4a5.NewBroadcastRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewLichessClient instantiates a new LichessClient and sets the default values.
-func NewLichessClient(requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*LichessClient) {
-    m := &LichessClient{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}", map[string]string{}),
-    }
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RegisterDefaultSerializer(func() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriterFactory { return i25911dc319edd61cbac496af7eab5ef20b6069a42515e22ec6a9bc97bf598488.NewJsonSerializationWriterFactory() })
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RegisterDefaultSerializer(func() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriterFactory { return i7294a22093d408fdca300f11b81a887d89c47b764af06c8b803e2323973fdb83.NewTextSerializationWriterFactory() })
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RegisterDefaultSerializer(func() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriterFactory { return i4bcdc892e61ac17e2afc10b5e2b536b29f4fd6c1ad30f4a5a68df47495db3347.NewFormSerializationWriterFactory() })
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RegisterDefaultSerializer(func() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriterFactory { return i56887720f41ac882814261620b1c8459c4a992a0207af547c4453dd39fabc426.NewMultipartSerializationWriterFactory() })
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RegisterDefaultDeserializer(func() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNodeFactory { return i25911dc319edd61cbac496af7eab5ef20b6069a42515e22ec6a9bc97bf598488.NewJsonParseNodeFactory() })
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RegisterDefaultDeserializer(func() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNodeFactory { return i7294a22093d408fdca300f11b81a887d89c47b764af06c8b803e2323973fdb83.NewTextParseNodeFactory() })
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RegisterDefaultDeserializer(func() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNodeFactory { return i4bcdc892e61ac17e2afc10b5e2b536b29f4fd6c1ad30f4a5a68df47495db3347.NewFormParseNodeFactory() })
-    if m.BaseRequestBuilder.RequestAdapter.GetBaseUrl() == "" {
-        m.BaseRequestBuilder.RequestAdapter.SetBaseUrl("https://lichess.org")
-    }
-    m.BaseRequestBuilder.PathParameters["baseurl"] = m.BaseRequestBuilder.RequestAdapter.GetBaseUrl()
-    return m
+func NewLichessClient(requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *LichessClient {
+	m := &LichessClient{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}", map[string]string{}),
+	}
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RegisterDefaultSerializer(func() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriterFactory {
+		return i25911dc319edd61cbac496af7eab5ef20b6069a42515e22ec6a9bc97bf598488.NewJsonSerializationWriterFactory()
+	})
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RegisterDefaultSerializer(func() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriterFactory {
+		return i7294a22093d408fdca300f11b81a887d89c47b764af06c8b803e2323973fdb83.NewTextSerializationWriterFactory()
+	})
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RegisterDefaultSerializer(func() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriterFactory {
+		return i4bcdc892e61ac17e2afc10b5e2b536b29f4fd6c1ad30f4a5a68df47495db3347.NewFormSerializationWriterFactory()
+	})
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RegisterDefaultSerializer(func() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriterFactory {
+		return i56887720f41ac882814261620b1c8459c4a992a0207af547c4453dd39fabc426.NewMultipartSerializationWriterFactory()
+	})
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RegisterDefaultDeserializer(func() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNodeFactory {
+		return i25911dc319edd61cbac496af7eab5ef20b6069a42515e22ec6a9bc97bf598488.NewJsonParseNodeFactory()
+	})
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RegisterDefaultDeserializer(func() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNodeFactory {
+		return i7294a22093d408fdca300f11b81a887d89c47b764af06c8b803e2323973fdb83.NewTextParseNodeFactory()
+	})
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RegisterDefaultDeserializer(func() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNodeFactory {
+		return i4bcdc892e61ac17e2afc10b5e2b536b29f4fd6c1ad30f4a5a68df47495db3347.NewFormParseNodeFactory()
+	})
+	if m.BaseRequestBuilder.RequestAdapter.GetBaseUrl() == "" {
+		m.BaseRequestBuilder.RequestAdapter.SetBaseUrl("https://lichess.org")
+	}
+	m.BaseRequestBuilder.PathParameters["baseurl"] = m.BaseRequestBuilder.RequestAdapter.GetBaseUrl()
+	return m
 }
+
 // Game the game property
 // returns a *GameRequestBuilder when successful
-func (m *LichessClient) Game()(*i48b0d1ebfc304b840ad15ce7b3aea6cf69f084567ec89e7e39458a9b8919b7d9.GameRequestBuilder) {
-    return i48b0d1ebfc304b840ad15ce7b3aea6cf69f084567ec89e7e39458a9b8919b7d9.NewGameRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *LichessClient) Game() *i48b0d1ebfc304b840ad15ce7b3aea6cf69f084567ec89e7e39458a9b8919b7d9.GameRequestBuilder {
+	return i48b0d1ebfc304b840ad15ce7b3aea6cf69f084567ec89e7e39458a9b8919b7d9.NewGameRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Inbox the inbox property
 // returns a *InboxRequestBuilder when successful
-func (m *LichessClient) Inbox()(*i9ace3cdfa8297ea57186b70744ff7f3a27046fe652bb9f06a929efacc3361986.InboxRequestBuilder) {
-    return i9ace3cdfa8297ea57186b70744ff7f3a27046fe652bb9f06a929efacc3361986.NewInboxRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *LichessClient) Inbox() *i9ace3cdfa8297ea57186b70744ff7f3a27046fe652bb9f06a929efacc3361986.InboxRequestBuilder {
+	return i9ace3cdfa8297ea57186b70744ff7f3a27046fe652bb9f06a929efacc3361986.NewInboxRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Lichess the lichess property
 // returns a *LichessRequestBuilder when successful
-func (m *LichessClient) Lichess()(*i2499d04281e9247f1ff03ca5e57463c8c51c8a44eaf96bc211c4caaee9c04dfc.LichessRequestBuilder) {
-    return i2499d04281e9247f1ff03ca5e57463c8c51c8a44eaf96bc211c4caaee9c04dfc.NewLichessRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *LichessClient) Lichess() *i2499d04281e9247f1ff03ca5e57463c8c51c8a44eaf96bc211c4caaee9c04dfc.LichessRequestBuilder {
+	return i2499d04281e9247f1ff03ca5e57463c8c51c8a44eaf96bc211c4caaee9c04dfc.NewLichessRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Masters the masters property
 // returns a *MastersRequestBuilder when successful
-func (m *LichessClient) Masters()(*i41e078eb298f4a151538d7d1cf91f62bb14d5a87f721f5d8d7bf7854e3d27d44.MastersRequestBuilder) {
-    return i41e078eb298f4a151538d7d1cf91f62bb14d5a87f721f5d8d7bf7854e3d27d44.NewMastersRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *LichessClient) Masters() *i41e078eb298f4a151538d7d1cf91f62bb14d5a87f721f5d8d7bf7854e3d27d44.MastersRequestBuilder {
+	return i41e078eb298f4a151538d7d1cf91f62bb14d5a87f721f5d8d7bf7854e3d27d44.NewMastersRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Oauth the oauth property
 // returns a *OauthRequestBuilder when successful
-func (m *LichessClient) Oauth()(*i53f161edb347a875019760216b1570ddcdd5b86d7d21dfdc20ae79f04e22e1ed.OauthRequestBuilder) {
-    return i53f161edb347a875019760216b1570ddcdd5b86d7d21dfdc20ae79f04e22e1ed.NewOauthRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *LichessClient) Oauth() *i53f161edb347a875019760216b1570ddcdd5b86d7d21dfdc20ae79f04e22e1ed.OauthRequestBuilder {
+	return i53f161edb347a875019760216b1570ddcdd5b86d7d21dfdc20ae79f04e22e1ed.NewOauthRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Player the player property
 // returns a *PlayerRequestBuilder when successful
-func (m *LichessClient) Player()(*ida09cfc5d3a7fe547ea64b1e56bd4ce65db6f30377b124f79e45b63264637db1.PlayerRequestBuilder) {
-    return ida09cfc5d3a7fe547ea64b1e56bd4ce65db6f30377b124f79e45b63264637db1.NewPlayerRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *LichessClient) Player() *ida09cfc5d3a7fe547ea64b1e56bd4ce65db6f30377b124f79e45b63264637db1.PlayerRequestBuilder {
+	return ida09cfc5d3a7fe547ea64b1e56bd4ce65db6f30377b124f79e45b63264637db1.NewPlayerRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Standard the standard property
 // returns a *StandardRequestBuilder when successful
-func (m *LichessClient) Standard()(*i5e98ef327a9e13c3370c7b026c4562b05cb16dd8a76fb410278cb3edcc065d94.StandardRequestBuilder) {
-    return i5e98ef327a9e13c3370c7b026c4562b05cb16dd8a76fb410278cb3edcc065d94.NewStandardRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *LichessClient) Standard() *i5e98ef327a9e13c3370c7b026c4562b05cb16dd8a76fb410278cb3edcc065d94.StandardRequestBuilder {
+	return i5e98ef327a9e13c3370c7b026c4562b05cb16dd8a76fb410278cb3edcc065d94.NewStandardRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Swiss the swiss property
 // returns a *SwissRequestBuilder when successful
-func (m *LichessClient) Swiss()(*i753649b3dbfe9efb0f9dc972724539a1e6707f0a1a3c779fef120cbf202af330.SwissRequestBuilder) {
-    return i753649b3dbfe9efb0f9dc972724539a1e6707f0a1a3c779fef120cbf202af330.NewSwissRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *LichessClient) Swiss() *i753649b3dbfe9efb0f9dc972724539a1e6707f0a1a3c779fef120cbf202af330.SwissRequestBuilder {
+	return i753649b3dbfe9efb0f9dc972724539a1e6707f0a1a3c779fef120cbf202af330.NewSwissRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Team the team property
 // returns a *TeamRequestBuilder when successful
-func (m *LichessClient) Team()(*ib4949b936e06838ca995e9c037b04e317ed1c2af79729332d097b6325e75829c.TeamRequestBuilder) {
-    return ib4949b936e06838ca995e9c037b04e317ed1c2af79729332d097b6325e75829c.NewTeamRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *LichessClient) Team() *ib4949b936e06838ca995e9c037b04e317ed1c2af79729332d097b6325e75829c.TeamRequestBuilder {
+	return ib4949b936e06838ca995e9c037b04e317ed1c2af79729332d097b6325e75829c.NewTeamRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

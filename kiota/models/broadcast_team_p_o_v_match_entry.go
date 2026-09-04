@@ -4,197 +4,213 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type BroadcastTeamPOVMatchEntry struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // Game points scored in this match
-    gp *float64
-    // Match points scored in this match
-    mp *float64
-    // The name of the opposing team
-    opponent *string
-    // The points property
-    points *BroadcastPointStr
-    // The roundId property
-    roundId *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// Game points scored in this match
+	gp *float64
+	// Match points scored in this match
+	mp *float64
+	// The name of the opposing team
+	opponent *string
+	// The points property
+	points *BroadcastPointStr
+	// The roundId property
+	roundId *string
 }
+
 // NewBroadcastTeamPOVMatchEntry instantiates a new BroadcastTeamPOVMatchEntry and sets the default values.
-func NewBroadcastTeamPOVMatchEntry()(*BroadcastTeamPOVMatchEntry) {
-    m := &BroadcastTeamPOVMatchEntry{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewBroadcastTeamPOVMatchEntry() *BroadcastTeamPOVMatchEntry {
+	m := &BroadcastTeamPOVMatchEntry{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateBroadcastTeamPOVMatchEntryFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateBroadcastTeamPOVMatchEntryFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewBroadcastTeamPOVMatchEntry(), nil
+func CreateBroadcastTeamPOVMatchEntryFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewBroadcastTeamPOVMatchEntry(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *BroadcastTeamPOVMatchEntry) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *BroadcastTeamPOVMatchEntry) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *BroadcastTeamPOVMatchEntry) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["gp"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetGp(val)
-        }
-        return nil
-    }
-    res["mp"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMp(val)
-        }
-        return nil
-    }
-    res["opponent"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetOpponent(val)
-        }
-        return nil
-    }
-    res["points"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseBroadcastPointStr)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPoints(val.(*BroadcastPointStr))
-        }
-        return nil
-    }
-    res["roundId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRoundId(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *BroadcastTeamPOVMatchEntry) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["gp"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetGp(val)
+		}
+		return nil
+	}
+	res["mp"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMp(val)
+		}
+		return nil
+	}
+	res["opponent"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetOpponent(val)
+		}
+		return nil
+	}
+	res["points"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(ParseBroadcastPointStr)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPoints(val.(*BroadcastPointStr))
+		}
+		return nil
+	}
+	res["roundId"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRoundId(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetGp gets the gp property value. Game points scored in this match
 // returns a *float64 when successful
-func (m *BroadcastTeamPOVMatchEntry) GetGp()(*float64) {
-    return m.gp
+func (m *BroadcastTeamPOVMatchEntry) GetGp() *float64 {
+	return m.gp
 }
+
 // GetMp gets the mp property value. Match points scored in this match
 // returns a *float64 when successful
-func (m *BroadcastTeamPOVMatchEntry) GetMp()(*float64) {
-    return m.mp
+func (m *BroadcastTeamPOVMatchEntry) GetMp() *float64 {
+	return m.mp
 }
+
 // GetOpponent gets the opponent property value. The name of the opposing team
 // returns a *string when successful
-func (m *BroadcastTeamPOVMatchEntry) GetOpponent()(*string) {
-    return m.opponent
+func (m *BroadcastTeamPOVMatchEntry) GetOpponent() *string {
+	return m.opponent
 }
+
 // GetPoints gets the points property value. The points property
 // returns a *BroadcastPointStr when successful
-func (m *BroadcastTeamPOVMatchEntry) GetPoints()(*BroadcastPointStr) {
-    return m.points
+func (m *BroadcastTeamPOVMatchEntry) GetPoints() *BroadcastPointStr {
+	return m.points
 }
+
 // GetRoundId gets the roundId property value. The roundId property
 // returns a *string when successful
-func (m *BroadcastTeamPOVMatchEntry) GetRoundId()(*string) {
-    return m.roundId
+func (m *BroadcastTeamPOVMatchEntry) GetRoundId() *string {
+	return m.roundId
 }
+
 // Serialize serializes information the current object
-func (m *BroadcastTeamPOVMatchEntry) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteFloat64Value("gp", m.GetGp())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteFloat64Value("mp", m.GetMp())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("opponent", m.GetOpponent())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetPoints() != nil {
-        cast := (*m.GetPoints()).String()
-        err := writer.WriteStringValue("points", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("roundId", m.GetRoundId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *BroadcastTeamPOVMatchEntry) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteFloat64Value("gp", m.GetGp())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteFloat64Value("mp", m.GetMp())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("opponent", m.GetOpponent())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetPoints() != nil {
+		cast := (*m.GetPoints()).String()
+		err := writer.WriteStringValue("points", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("roundId", m.GetRoundId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *BroadcastTeamPOVMatchEntry) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *BroadcastTeamPOVMatchEntry) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetGp sets the gp property value. Game points scored in this match
-func (m *BroadcastTeamPOVMatchEntry) SetGp(value *float64)() {
-    m.gp = value
+func (m *BroadcastTeamPOVMatchEntry) SetGp(value *float64) {
+	m.gp = value
 }
+
 // SetMp sets the mp property value. Match points scored in this match
-func (m *BroadcastTeamPOVMatchEntry) SetMp(value *float64)() {
-    m.mp = value
+func (m *BroadcastTeamPOVMatchEntry) SetMp(value *float64) {
+	m.mp = value
 }
+
 // SetOpponent sets the opponent property value. The name of the opposing team
-func (m *BroadcastTeamPOVMatchEntry) SetOpponent(value *string)() {
-    m.opponent = value
+func (m *BroadcastTeamPOVMatchEntry) SetOpponent(value *string) {
+	m.opponent = value
 }
+
 // SetPoints sets the points property value. The points property
-func (m *BroadcastTeamPOVMatchEntry) SetPoints(value *BroadcastPointStr)() {
-    m.points = value
+func (m *BroadcastTeamPOVMatchEntry) SetPoints(value *BroadcastPointStr) {
+	m.points = value
 }
+
 // SetRoundId sets the roundId property value. The roundId property
-func (m *BroadcastTeamPOVMatchEntry) SetRoundId(value *string)() {
-    m.roundId = value
+func (m *BroadcastTeamPOVMatchEntry) SetRoundId(value *string) {
+	m.roundId = value
 }
+
 type BroadcastTeamPOVMatchEntryable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetGp()(*float64)
-    GetMp()(*float64)
-    GetOpponent()(*string)
-    GetPoints()(*BroadcastPointStr)
-    GetRoundId()(*string)
-    SetGp(value *float64)()
-    SetMp(value *float64)()
-    SetOpponent(value *string)()
-    SetPoints(value *BroadcastPointStr)()
-    SetRoundId(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetGp() *float64
+	GetMp() *float64
+	GetOpponent() *string
+	GetPoints() *BroadcastPointStr
+	GetRoundId() *string
+	SetGp(value *float64)
+	SetMp(value *float64)
+	SetOpponent(value *string)
+	SetPoints(value *BroadcastPointStr)
+	SetRoundId(value *string)
 }

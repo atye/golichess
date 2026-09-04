@@ -4,64 +4,70 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	"context"
+	i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // FidePlayerItemRatingsRequestBuilder builds and executes requests for operations under \api\fide\player\{playerId}\ratings
 type FidePlayerItemRatingsRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // FidePlayerItemRatingsRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type FidePlayerItemRatingsRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+
 // NewFidePlayerItemRatingsRequestBuilderInternal instantiates a new FidePlayerItemRatingsRequestBuilder and sets the default values.
-func NewFidePlayerItemRatingsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*FidePlayerItemRatingsRequestBuilder) {
-    m := &FidePlayerItemRatingsRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/fide/player/{playerId}/ratings", pathParameters),
-    }
-    return m
+func NewFidePlayerItemRatingsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *FidePlayerItemRatingsRequestBuilder {
+	m := &FidePlayerItemRatingsRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/fide/player/{playerId}/ratings", pathParameters),
+	}
+	return m
 }
+
 // NewFidePlayerItemRatingsRequestBuilder instantiates a new FidePlayerItemRatingsRequestBuilder and sets the default values.
-func NewFidePlayerItemRatingsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*FidePlayerItemRatingsRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewFidePlayerItemRatingsRequestBuilderInternal(urlParams, requestAdapter)
+func NewFidePlayerItemRatingsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *FidePlayerItemRatingsRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewFidePlayerItemRatingsRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get historical standard, rapid and blitz ratings of a FIDE player
 // returns a FIDEPlayerRatingsable when successful
-func (m *FidePlayerItemRatingsRequestBuilder) Get(ctx context.Context, requestConfiguration *FidePlayerItemRatingsRequestBuilderGetRequestConfiguration)(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.FIDEPlayerRatingsable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateFIDEPlayerRatingsFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.FIDEPlayerRatingsable), nil
+func (m *FidePlayerItemRatingsRequestBuilder) Get(ctx context.Context, requestConfiguration *FidePlayerItemRatingsRequestBuilderGetRequestConfiguration) (i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.FIDEPlayerRatingsable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateFIDEPlayerRatingsFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.FIDEPlayerRatingsable), nil
 }
+
 // ToGetRequestInformation historical standard, rapid and blitz ratings of a FIDE player
 // returns a *RequestInformation when successful
-func (m *FidePlayerItemRatingsRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *FidePlayerItemRatingsRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    return requestInfo, nil
+func (m *FidePlayerItemRatingsRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *FidePlayerItemRatingsRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *FidePlayerItemRatingsRequestBuilder when successful
-func (m *FidePlayerItemRatingsRequestBuilder) WithUrl(rawUrl string)(*FidePlayerItemRatingsRequestBuilder) {
-    return NewFidePlayerItemRatingsRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *FidePlayerItemRatingsRequestBuilder) WithUrl(rawUrl string) *FidePlayerItemRatingsRequestBuilder {
+	return NewFidePlayerItemRatingsRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

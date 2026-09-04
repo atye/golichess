@@ -2,45 +2,49 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package edit
+
 // Where the games come from.
 type BroadcastRoundFormPostRequestBody_syncSource int
 
 const (
-    PUSH_BROADCASTROUNDFORMPOSTREQUESTBODY_SYNCSOURCE BroadcastRoundFormPostRequestBody_syncSource = iota
-    URL_BROADCASTROUNDFORMPOSTREQUESTBODY_SYNCSOURCE
-    URLS_BROADCASTROUNDFORMPOSTREQUESTBODY_SYNCSOURCE
-    IDS_BROADCASTROUNDFORMPOSTREQUESTBODY_SYNCSOURCE
-    USERS_BROADCASTROUNDFORMPOSTREQUESTBODY_SYNCSOURCE
+	PUSH_BROADCASTROUNDFORMPOSTREQUESTBODY_SYNCSOURCE BroadcastRoundFormPostRequestBody_syncSource = iota
+	URL_BROADCASTROUNDFORMPOSTREQUESTBODY_SYNCSOURCE
+	URLS_BROADCASTROUNDFORMPOSTREQUESTBODY_SYNCSOURCE
+	IDS_BROADCASTROUNDFORMPOSTREQUESTBODY_SYNCSOURCE
+	USERS_BROADCASTROUNDFORMPOSTREQUESTBODY_SYNCSOURCE
 )
 
 func (i BroadcastRoundFormPostRequestBody_syncSource) String() string {
-    return []string{"push", "url", "urls", "ids", "users"}[i]
+	return []string{"push", "url", "urls", "ids", "users"}[i]
 }
+
 func ParseBroadcastRoundFormPostRequestBody_syncSource(v string) (any, error) {
-    result := PUSH_BROADCASTROUNDFORMPOSTREQUESTBODY_SYNCSOURCE
-    switch v {
-        case "push":
-            result = PUSH_BROADCASTROUNDFORMPOSTREQUESTBODY_SYNCSOURCE
-        case "url":
-            result = URL_BROADCASTROUNDFORMPOSTREQUESTBODY_SYNCSOURCE
-        case "urls":
-            result = URLS_BROADCASTROUNDFORMPOSTREQUESTBODY_SYNCSOURCE
-        case "ids":
-            result = IDS_BROADCASTROUNDFORMPOSTREQUESTBODY_SYNCSOURCE
-        case "users":
-            result = USERS_BROADCASTROUNDFORMPOSTREQUESTBODY_SYNCSOURCE
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := PUSH_BROADCASTROUNDFORMPOSTREQUESTBODY_SYNCSOURCE
+	switch v {
+	case "push":
+		result = PUSH_BROADCASTROUNDFORMPOSTREQUESTBODY_SYNCSOURCE
+	case "url":
+		result = URL_BROADCASTROUNDFORMPOSTREQUESTBODY_SYNCSOURCE
+	case "urls":
+		result = URLS_BROADCASTROUNDFORMPOSTREQUESTBODY_SYNCSOURCE
+	case "ids":
+		result = IDS_BROADCASTROUNDFORMPOSTREQUESTBODY_SYNCSOURCE
+	case "users":
+		result = USERS_BROADCASTROUNDFORMPOSTREQUESTBODY_SYNCSOURCE
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeBroadcastRoundFormPostRequestBody_syncSource(values []BroadcastRoundFormPostRequestBody_syncSource) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i BroadcastRoundFormPostRequestBody_syncSource) isMultiValue() bool {
-    return false
+	return false
 }

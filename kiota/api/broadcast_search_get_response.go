@@ -4,209 +4,225 @@
 package api
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
-    i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type BroadcastSearchGetResponse struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The currentPage property
-    currentPage *int32
-    // The currentPageResults property
-    currentPageResults []i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastWithLastRoundable
-    // The maxPerPage property
-    maxPerPage *int32
-    // The nextPage property
-    nextPage *int32
-    // The previousPage property
-    previousPage *int32
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The currentPage property
+	currentPage *int32
+	// The currentPageResults property
+	currentPageResults []i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastWithLastRoundable
+	// The maxPerPage property
+	maxPerPage *int32
+	// The nextPage property
+	nextPage *int32
+	// The previousPage property
+	previousPage *int32
 }
+
 // NewBroadcastSearchGetResponse instantiates a new BroadcastSearchGetResponse and sets the default values.
-func NewBroadcastSearchGetResponse()(*BroadcastSearchGetResponse) {
-    m := &BroadcastSearchGetResponse{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewBroadcastSearchGetResponse() *BroadcastSearchGetResponse {
+	m := &BroadcastSearchGetResponse{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateBroadcastSearchGetResponseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateBroadcastSearchGetResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewBroadcastSearchGetResponse(), nil
+func CreateBroadcastSearchGetResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewBroadcastSearchGetResponse(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *BroadcastSearchGetResponse) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *BroadcastSearchGetResponse) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetCurrentPage gets the currentPage property value. The currentPage property
 // returns a *int32 when successful
-func (m *BroadcastSearchGetResponse) GetCurrentPage()(*int32) {
-    return m.currentPage
+func (m *BroadcastSearchGetResponse) GetCurrentPage() *int32 {
+	return m.currentPage
 }
+
 // GetCurrentPageResults gets the currentPageResults property value. The currentPageResults property
 // returns a []BroadcastWithLastRoundable when successful
-func (m *BroadcastSearchGetResponse) GetCurrentPageResults()([]i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastWithLastRoundable) {
-    return m.currentPageResults
+func (m *BroadcastSearchGetResponse) GetCurrentPageResults() []i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastWithLastRoundable {
+	return m.currentPageResults
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *BroadcastSearchGetResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["currentPage"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCurrentPage(val)
-        }
-        return nil
-    }
-    res["currentPageResults"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateBroadcastWithLastRoundFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastWithLastRoundable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastWithLastRoundable)
-                }
-            }
-            m.SetCurrentPageResults(res)
-        }
-        return nil
-    }
-    res["maxPerPage"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMaxPerPage(val)
-        }
-        return nil
-    }
-    res["nextPage"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetNextPage(val)
-        }
-        return nil
-    }
-    res["previousPage"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPreviousPage(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *BroadcastSearchGetResponse) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["currentPage"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCurrentPage(val)
+		}
+		return nil
+	}
+	res["currentPageResults"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateBroadcastWithLastRoundFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastWithLastRoundable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastWithLastRoundable)
+				}
+			}
+			m.SetCurrentPageResults(res)
+		}
+		return nil
+	}
+	res["maxPerPage"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMaxPerPage(val)
+		}
+		return nil
+	}
+	res["nextPage"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetNextPage(val)
+		}
+		return nil
+	}
+	res["previousPage"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPreviousPage(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetMaxPerPage gets the maxPerPage property value. The maxPerPage property
 // returns a *int32 when successful
-func (m *BroadcastSearchGetResponse) GetMaxPerPage()(*int32) {
-    return m.maxPerPage
+func (m *BroadcastSearchGetResponse) GetMaxPerPage() *int32 {
+	return m.maxPerPage
 }
+
 // GetNextPage gets the nextPage property value. The nextPage property
 // returns a *int32 when successful
-func (m *BroadcastSearchGetResponse) GetNextPage()(*int32) {
-    return m.nextPage
+func (m *BroadcastSearchGetResponse) GetNextPage() *int32 {
+	return m.nextPage
 }
+
 // GetPreviousPage gets the previousPage property value. The previousPage property
 // returns a *int32 when successful
-func (m *BroadcastSearchGetResponse) GetPreviousPage()(*int32) {
-    return m.previousPage
+func (m *BroadcastSearchGetResponse) GetPreviousPage() *int32 {
+	return m.previousPage
 }
+
 // Serialize serializes information the current object
-func (m *BroadcastSearchGetResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteInt32Value("currentPage", m.GetCurrentPage())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetCurrentPageResults() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetCurrentPageResults()))
-        for i, v := range m.GetCurrentPageResults() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("currentPageResults", cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("maxPerPage", m.GetMaxPerPage())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("nextPage", m.GetNextPage())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("previousPage", m.GetPreviousPage())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *BroadcastSearchGetResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteInt32Value("currentPage", m.GetCurrentPage())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetCurrentPageResults() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetCurrentPageResults()))
+		for i, v := range m.GetCurrentPageResults() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("currentPageResults", cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("maxPerPage", m.GetMaxPerPage())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("nextPage", m.GetNextPage())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("previousPage", m.GetPreviousPage())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *BroadcastSearchGetResponse) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *BroadcastSearchGetResponse) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetCurrentPage sets the currentPage property value. The currentPage property
-func (m *BroadcastSearchGetResponse) SetCurrentPage(value *int32)() {
-    m.currentPage = value
+func (m *BroadcastSearchGetResponse) SetCurrentPage(value *int32) {
+	m.currentPage = value
 }
+
 // SetCurrentPageResults sets the currentPageResults property value. The currentPageResults property
-func (m *BroadcastSearchGetResponse) SetCurrentPageResults(value []i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastWithLastRoundable)() {
-    m.currentPageResults = value
+func (m *BroadcastSearchGetResponse) SetCurrentPageResults(value []i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastWithLastRoundable) {
+	m.currentPageResults = value
 }
+
 // SetMaxPerPage sets the maxPerPage property value. The maxPerPage property
-func (m *BroadcastSearchGetResponse) SetMaxPerPage(value *int32)() {
-    m.maxPerPage = value
+func (m *BroadcastSearchGetResponse) SetMaxPerPage(value *int32) {
+	m.maxPerPage = value
 }
+
 // SetNextPage sets the nextPage property value. The nextPage property
-func (m *BroadcastSearchGetResponse) SetNextPage(value *int32)() {
-    m.nextPage = value
+func (m *BroadcastSearchGetResponse) SetNextPage(value *int32) {
+	m.nextPage = value
 }
+
 // SetPreviousPage sets the previousPage property value. The previousPage property
-func (m *BroadcastSearchGetResponse) SetPreviousPage(value *int32)() {
-    m.previousPage = value
+func (m *BroadcastSearchGetResponse) SetPreviousPage(value *int32) {
+	m.previousPage = value
 }
+
 type BroadcastSearchGetResponseable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetCurrentPage()(*int32)
-    GetCurrentPageResults()([]i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastWithLastRoundable)
-    GetMaxPerPage()(*int32)
-    GetNextPage()(*int32)
-    GetPreviousPage()(*int32)
-    SetCurrentPage(value *int32)()
-    SetCurrentPageResults(value []i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastWithLastRoundable)()
-    SetMaxPerPage(value *int32)()
-    SetNextPage(value *int32)()
-    SetPreviousPage(value *int32)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetCurrentPage() *int32
+	GetCurrentPageResults() []i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastWithLastRoundable
+	GetMaxPerPage() *int32
+	GetNextPage() *int32
+	GetPreviousPage() *int32
+	SetCurrentPage(value *int32)
+	SetCurrentPageResults(value []i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastWithLastRoundable)
+	SetMaxPerPage(value *int32)
+	SetNextPage(value *int32)
+	SetPreviousPage(value *int32)
 }

@@ -4,33 +4,37 @@
 package api
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // BroadcastRoundWithBroadcastRoundItemRequestBuilder builds and executes requests for operations under \api\broadcast\round\{broadcastRoundId}
 type BroadcastRoundWithBroadcastRoundItemRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // NewBroadcastRoundWithBroadcastRoundItemRequestBuilderInternal instantiates a new BroadcastRoundWithBroadcastRoundItemRequestBuilder and sets the default values.
-func NewBroadcastRoundWithBroadcastRoundItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BroadcastRoundWithBroadcastRoundItemRequestBuilder) {
-    m := &BroadcastRoundWithBroadcastRoundItemRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/broadcast/round/{broadcastRoundId}", pathParameters),
-    }
-    return m
+func NewBroadcastRoundWithBroadcastRoundItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BroadcastRoundWithBroadcastRoundItemRequestBuilder {
+	m := &BroadcastRoundWithBroadcastRoundItemRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/broadcast/round/{broadcastRoundId}", pathParameters),
+	}
+	return m
 }
+
 // NewBroadcastRoundWithBroadcastRoundItemRequestBuilder instantiates a new BroadcastRoundWithBroadcastRoundItemRequestBuilder and sets the default values.
-func NewBroadcastRoundWithBroadcastRoundItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BroadcastRoundWithBroadcastRoundItemRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewBroadcastRoundWithBroadcastRoundItemRequestBuilderInternal(urlParams, requestAdapter)
+func NewBroadcastRoundWithBroadcastRoundItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BroadcastRoundWithBroadcastRoundItemRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewBroadcastRoundWithBroadcastRoundItemRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Push the push property
 // returns a *BroadcastRoundItemPushRequestBuilder when successful
-func (m *BroadcastRoundWithBroadcastRoundItemRequestBuilder) Push()(*BroadcastRoundItemPushRequestBuilder) {
-    return NewBroadcastRoundItemPushRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *BroadcastRoundWithBroadcastRoundItemRequestBuilder) Push() *BroadcastRoundItemPushRequestBuilder {
+	return NewBroadcastRoundItemPushRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Reset the reset property
 // returns a *BroadcastRoundItemResetRequestBuilder when successful
-func (m *BroadcastRoundWithBroadcastRoundItemRequestBuilder) Reset()(*BroadcastRoundItemResetRequestBuilder) {
-    return NewBroadcastRoundItemResetRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *BroadcastRoundWithBroadcastRoundItemRequestBuilder) Reset() *BroadcastRoundItemResetRequestBuilder {
+	return NewBroadcastRoundItemResetRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

@@ -4,138 +4,150 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type PerfStat_stat_resultStreak_loss_max struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The from property
-    from PerfStat_stat_resultStreak_loss_max_fromable
-    // The to property
-    to PerfStat_stat_resultStreak_loss_max_toable
-    // The v property
-    v *int32
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The from property
+	from PerfStat_stat_resultStreak_loss_max_fromable
+	// The to property
+	to PerfStat_stat_resultStreak_loss_max_toable
+	// The v property
+	v *int32
 }
+
 // NewPerfStat_stat_resultStreak_loss_max instantiates a new PerfStat_stat_resultStreak_loss_max and sets the default values.
-func NewPerfStat_stat_resultStreak_loss_max()(*PerfStat_stat_resultStreak_loss_max) {
-    m := &PerfStat_stat_resultStreak_loss_max{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewPerfStat_stat_resultStreak_loss_max() *PerfStat_stat_resultStreak_loss_max {
+	m := &PerfStat_stat_resultStreak_loss_max{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreatePerfStat_stat_resultStreak_loss_maxFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreatePerfStat_stat_resultStreak_loss_maxFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewPerfStat_stat_resultStreak_loss_max(), nil
+func CreatePerfStat_stat_resultStreak_loss_maxFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewPerfStat_stat_resultStreak_loss_max(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *PerfStat_stat_resultStreak_loss_max) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *PerfStat_stat_resultStreak_loss_max) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *PerfStat_stat_resultStreak_loss_max) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["from"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreatePerfStat_stat_resultStreak_loss_max_fromFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFrom(val.(PerfStat_stat_resultStreak_loss_max_fromable))
-        }
-        return nil
-    }
-    res["to"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreatePerfStat_stat_resultStreak_loss_max_toFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTo(val.(PerfStat_stat_resultStreak_loss_max_toable))
-        }
-        return nil
-    }
-    res["v"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetV(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *PerfStat_stat_resultStreak_loss_max) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["from"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreatePerfStat_stat_resultStreak_loss_max_fromFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFrom(val.(PerfStat_stat_resultStreak_loss_max_fromable))
+		}
+		return nil
+	}
+	res["to"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreatePerfStat_stat_resultStreak_loss_max_toFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTo(val.(PerfStat_stat_resultStreak_loss_max_toable))
+		}
+		return nil
+	}
+	res["v"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetV(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetFrom gets the from property value. The from property
 // returns a PerfStat_stat_resultStreak_loss_max_fromable when successful
-func (m *PerfStat_stat_resultStreak_loss_max) GetFrom()(PerfStat_stat_resultStreak_loss_max_fromable) {
-    return m.from
+func (m *PerfStat_stat_resultStreak_loss_max) GetFrom() PerfStat_stat_resultStreak_loss_max_fromable {
+	return m.from
 }
+
 // GetTo gets the to property value. The to property
 // returns a PerfStat_stat_resultStreak_loss_max_toable when successful
-func (m *PerfStat_stat_resultStreak_loss_max) GetTo()(PerfStat_stat_resultStreak_loss_max_toable) {
-    return m.to
+func (m *PerfStat_stat_resultStreak_loss_max) GetTo() PerfStat_stat_resultStreak_loss_max_toable {
+	return m.to
 }
+
 // GetV gets the v property value. The v property
 // returns a *int32 when successful
-func (m *PerfStat_stat_resultStreak_loss_max) GetV()(*int32) {
-    return m.v
+func (m *PerfStat_stat_resultStreak_loss_max) GetV() *int32 {
+	return m.v
 }
+
 // Serialize serializes information the current object
-func (m *PerfStat_stat_resultStreak_loss_max) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("from", m.GetFrom())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("to", m.GetTo())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("v", m.GetV())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *PerfStat_stat_resultStreak_loss_max) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteObjectValue("from", m.GetFrom())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("to", m.GetTo())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("v", m.GetV())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PerfStat_stat_resultStreak_loss_max) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *PerfStat_stat_resultStreak_loss_max) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetFrom sets the from property value. The from property
-func (m *PerfStat_stat_resultStreak_loss_max) SetFrom(value PerfStat_stat_resultStreak_loss_max_fromable)() {
-    m.from = value
+func (m *PerfStat_stat_resultStreak_loss_max) SetFrom(value PerfStat_stat_resultStreak_loss_max_fromable) {
+	m.from = value
 }
+
 // SetTo sets the to property value. The to property
-func (m *PerfStat_stat_resultStreak_loss_max) SetTo(value PerfStat_stat_resultStreak_loss_max_toable)() {
-    m.to = value
+func (m *PerfStat_stat_resultStreak_loss_max) SetTo(value PerfStat_stat_resultStreak_loss_max_toable) {
+	m.to = value
 }
+
 // SetV sets the v property value. The v property
-func (m *PerfStat_stat_resultStreak_loss_max) SetV(value *int32)() {
-    m.v = value
+func (m *PerfStat_stat_resultStreak_loss_max) SetV(value *int32) {
+	m.v = value
 }
+
 type PerfStat_stat_resultStreak_loss_maxable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetFrom()(PerfStat_stat_resultStreak_loss_max_fromable)
-    GetTo()(PerfStat_stat_resultStreak_loss_max_toable)
-    GetV()(*int32)
-    SetFrom(value PerfStat_stat_resultStreak_loss_max_fromable)()
-    SetTo(value PerfStat_stat_resultStreak_loss_max_toable)()
-    SetV(value *int32)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetFrom() PerfStat_stat_resultStreak_loss_max_fromable
+	GetTo() PerfStat_stat_resultStreak_loss_max_toable
+	GetV() *int32
+	SetFrom(value PerfStat_stat_resultStreak_loss_max_fromable)
+	SetTo(value PerfStat_stat_resultStreak_loss_max_toable)
+	SetV(value *int32)
 }

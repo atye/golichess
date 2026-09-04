@@ -2,53 +2,57 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 type UciVariant int
 
 const (
-    CHESS_UCIVARIANT UciVariant = iota
-    CRAZYHOUSE_UCIVARIANT
-    ANTICHESS_UCIVARIANT
-    ATOMIC_UCIVARIANT
-    HORDE_UCIVARIANT
-    KINGOFTHEHILL_UCIVARIANT
-    RACINGKINGS_UCIVARIANT
-    THREECHECK_UCIVARIANT
+	CHESS_UCIVARIANT UciVariant = iota
+	CRAZYHOUSE_UCIVARIANT
+	ANTICHESS_UCIVARIANT
+	ATOMIC_UCIVARIANT
+	HORDE_UCIVARIANT
+	KINGOFTHEHILL_UCIVARIANT
+	RACINGKINGS_UCIVARIANT
+	THREECHECK_UCIVARIANT
 )
 
 func (i UciVariant) String() string {
-    return []string{"chess", "crazyhouse", "antichess", "atomic", "horde", "kingofthehill", "racingkings", "3check"}[i]
+	return []string{"chess", "crazyhouse", "antichess", "atomic", "horde", "kingofthehill", "racingkings", "3check"}[i]
 }
+
 func ParseUciVariant(v string) (any, error) {
-    result := CHESS_UCIVARIANT
-    switch v {
-        case "chess":
-            result = CHESS_UCIVARIANT
-        case "crazyhouse":
-            result = CRAZYHOUSE_UCIVARIANT
-        case "antichess":
-            result = ANTICHESS_UCIVARIANT
-        case "atomic":
-            result = ATOMIC_UCIVARIANT
-        case "horde":
-            result = HORDE_UCIVARIANT
-        case "kingofthehill":
-            result = KINGOFTHEHILL_UCIVARIANT
-        case "racingkings":
-            result = RACINGKINGS_UCIVARIANT
-        case "3check":
-            result = THREECHECK_UCIVARIANT
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := CHESS_UCIVARIANT
+	switch v {
+	case "chess":
+		result = CHESS_UCIVARIANT
+	case "crazyhouse":
+		result = CRAZYHOUSE_UCIVARIANT
+	case "antichess":
+		result = ANTICHESS_UCIVARIANT
+	case "atomic":
+		result = ATOMIC_UCIVARIANT
+	case "horde":
+		result = HORDE_UCIVARIANT
+	case "kingofthehill":
+		result = KINGOFTHEHILL_UCIVARIANT
+	case "racingkings":
+		result = RACINGKINGS_UCIVARIANT
+	case "3check":
+		result = THREECHECK_UCIVARIANT
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeUciVariant(values []UciVariant) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i UciVariant) isMultiValue() bool {
-    return false
+	return false
 }

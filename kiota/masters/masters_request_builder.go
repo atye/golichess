@@ -4,89 +4,97 @@
 package masters
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	"context"
+	i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // MastersRequestBuilder builds and executes requests for operations under \masters
 type MastersRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // MastersRequestBuilderGetQueryParameters **Endpoint: <https://explorer.lichess.org/masters>**Example: `curl https://explorer.lichess.org/masters?play=d2d4,d7d5,c2c4,c7c6,c4d5`
 type MastersRequestBuilderGetQueryParameters struct {
-    // X-FEN of the root position
-    Fen *string "uriparametername:\"fen\""
-    // Number of most common moves to display
-    Moves *int32 "uriparametername:\"moves\""
-    // Comma separated sequence of legal moves in UCI notation.Play additional moves starting from `fen`.Required to find an opening name, if `fen` is not an exact matchfor a named position.
-    Play *string "uriparametername:\"play\""
-    // Include only games from this year or later
-    Since *int32 "uriparametername:\"since\""
-    // Number of top games to display
-    TopGames *int32 "uriparametername:\"topGames\""
-    // Include only games from this year or earlier
-    Until *int32 "uriparametername:\"until\""
+	// X-FEN of the root position
+	Fen *string "uriparametername:\"fen\""
+	// Number of most common moves to display
+	Moves *int32 "uriparametername:\"moves\""
+	// Comma separated sequence of legal moves in UCI notation.Play additional moves starting from `fen`.Required to find an opening name, if `fen` is not an exact matchfor a named position.
+	Play *string "uriparametername:\"play\""
+	// Include only games from this year or later
+	Since *int32 "uriparametername:\"since\""
+	// Number of top games to display
+	TopGames *int32 "uriparametername:\"topGames\""
+	// Include only games from this year or earlier
+	Until *int32 "uriparametername:\"until\""
 }
+
 // MastersRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type MastersRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
-    // Request query parameters
-    QueryParameters *MastersRequestBuilderGetQueryParameters
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *MastersRequestBuilderGetQueryParameters
 }
+
 // NewMastersRequestBuilderInternal instantiates a new MastersRequestBuilder and sets the default values.
-func NewMastersRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*MastersRequestBuilder) {
-    m := &MastersRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/masters{?fen*,moves*,play*,since*,topGames*,until*}", pathParameters),
-    }
-    return m
+func NewMastersRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *MastersRequestBuilder {
+	m := &MastersRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/masters{?fen*,moves*,play*,since*,topGames*,until*}", pathParameters),
+	}
+	return m
 }
+
 // NewMastersRequestBuilder instantiates a new MastersRequestBuilder and sets the default values.
-func NewMastersRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*MastersRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewMastersRequestBuilderInternal(urlParams, requestAdapter)
+func NewMastersRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *MastersRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewMastersRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get **Endpoint: <https://explorer.lichess.org/masters>**Example: `curl https://explorer.lichess.org/masters?play=d2d4,d7d5,c2c4,c7c6,c4d5`
 // returns a OpeningExplorerMastersable when successful
-func (m *MastersRequestBuilder) Get(ctx context.Context, requestConfiguration *MastersRequestBuilderGetRequestConfiguration)(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.OpeningExplorerMastersable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateOpeningExplorerMastersFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.OpeningExplorerMastersable), nil
+func (m *MastersRequestBuilder) Get(ctx context.Context, requestConfiguration *MastersRequestBuilderGetRequestConfiguration) (i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.OpeningExplorerMastersable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateOpeningExplorerMastersFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.OpeningExplorerMastersable), nil
 }
+
 // Pgn the pgn property
 // returns a *PgnRequestBuilder when successful
-func (m *MastersRequestBuilder) Pgn()(*PgnRequestBuilder) {
-    return NewPgnRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *MastersRequestBuilder) Pgn() *PgnRequestBuilder {
+	return NewPgnRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // ToGetRequestInformation **Endpoint: <https://explorer.lichess.org/masters>**Example: `curl https://explorer.lichess.org/masters?play=d2d4,d7d5,c2c4,c7c6,c4d5`
 // returns a *RequestInformation when successful
-func (m *MastersRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *MastersRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        if requestConfiguration.QueryParameters != nil {
-            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
-        }
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    return requestInfo, nil
+func (m *MastersRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *MastersRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *MastersRequestBuilder when successful
-func (m *MastersRequestBuilder) WithUrl(rawUrl string)(*MastersRequestBuilder) {
-    return NewMastersRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *MastersRequestBuilder) WithUrl(rawUrl string) *MastersRequestBuilder {
+	return NewMastersRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

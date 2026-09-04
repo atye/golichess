@@ -4,110 +4,120 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type PuzzleAndGame_game_perf struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The key property
-    key *PerfType
-    // The name property
-    name *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The key property
+	key *PerfType
+	// The name property
+	name *string
 }
+
 // NewPuzzleAndGame_game_perf instantiates a new PuzzleAndGame_game_perf and sets the default values.
-func NewPuzzleAndGame_game_perf()(*PuzzleAndGame_game_perf) {
-    m := &PuzzleAndGame_game_perf{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewPuzzleAndGame_game_perf() *PuzzleAndGame_game_perf {
+	m := &PuzzleAndGame_game_perf{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreatePuzzleAndGame_game_perfFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreatePuzzleAndGame_game_perfFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewPuzzleAndGame_game_perf(), nil
+func CreatePuzzleAndGame_game_perfFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewPuzzleAndGame_game_perf(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *PuzzleAndGame_game_perf) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *PuzzleAndGame_game_perf) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *PuzzleAndGame_game_perf) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["key"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParsePerfType)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetKey(val.(*PerfType))
-        }
-        return nil
-    }
-    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetName(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *PuzzleAndGame_game_perf) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["key"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(ParsePerfType)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetKey(val.(*PerfType))
+		}
+		return nil
+	}
+	res["name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetName(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetKey gets the key property value. The key property
 // returns a *PerfType when successful
-func (m *PuzzleAndGame_game_perf) GetKey()(*PerfType) {
-    return m.key
+func (m *PuzzleAndGame_game_perf) GetKey() *PerfType {
+	return m.key
 }
+
 // GetName gets the name property value. The name property
 // returns a *string when successful
-func (m *PuzzleAndGame_game_perf) GetName()(*string) {
-    return m.name
+func (m *PuzzleAndGame_game_perf) GetName() *string {
+	return m.name
 }
+
 // Serialize serializes information the current object
-func (m *PuzzleAndGame_game_perf) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetKey() != nil {
-        cast := (*m.GetKey()).String()
-        err := writer.WriteStringValue("key", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("name", m.GetName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *PuzzleAndGame_game_perf) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	if m.GetKey() != nil {
+		cast := (*m.GetKey()).String()
+		err := writer.WriteStringValue("key", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("name", m.GetName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PuzzleAndGame_game_perf) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *PuzzleAndGame_game_perf) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetKey sets the key property value. The key property
-func (m *PuzzleAndGame_game_perf) SetKey(value *PerfType)() {
-    m.key = value
+func (m *PuzzleAndGame_game_perf) SetKey(value *PerfType) {
+	m.key = value
 }
+
 // SetName sets the name property value. The name property
-func (m *PuzzleAndGame_game_perf) SetName(value *string)() {
-    m.name = value
+func (m *PuzzleAndGame_game_perf) SetName(value *string) {
+	m.name = value
 }
+
 type PuzzleAndGame_game_perfable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetKey()(*PerfType)
-    GetName()(*string)
-    SetKey(value *PerfType)()
-    SetName(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetKey() *PerfType
+	GetName() *string
+	SetKey(value *PerfType)
+	SetName(value *string)
 }

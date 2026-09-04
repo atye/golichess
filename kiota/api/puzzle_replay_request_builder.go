@@ -4,47 +4,51 @@
 package api
 
 import (
-    i53ac87e8cb3cc9276228f74d38694a208cacb99bb8ceb705eeae99fb88d4d274 "strconv"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i53ac87e8cb3cc9276228f74d38694a208cacb99bb8ceb705eeae99fb88d4d274 "strconv"
 )
 
 // PuzzleReplayRequestBuilder builds and executes requests for operations under \api\puzzle\replay
 type PuzzleReplayRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // ByDays gets an item from the github.com/atye/golichess/kiota.api.puzzle.replay.item collection
 // Deprecated: This indexer is deprecated and will be removed in the next major version. Use the one with the typed parameter instead.
 // returns a *PuzzleReplayWithDaysItemRequestBuilder when successful
-func (m *PuzzleReplayRequestBuilder) ByDays(days string)(*PuzzleReplayWithDaysItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    if days != "" {
-        urlTplParams["days"] = days
-    }
-    return NewPuzzleReplayWithDaysItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+func (m *PuzzleReplayRequestBuilder) ByDays(days string) *PuzzleReplayWithDaysItemRequestBuilder {
+	urlTplParams := make(map[string]string)
+	for idx, item := range m.BaseRequestBuilder.PathParameters {
+		urlTplParams[idx] = item
+	}
+	if days != "" {
+		urlTplParams["days"] = days
+	}
+	return NewPuzzleReplayWithDaysItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // ByDaysInteger gets an item from the github.com/atye/golichess/kiota.api.puzzle.replay.item collection
 // returns a *PuzzleReplayWithDaysItemRequestBuilder when successful
-func (m *PuzzleReplayRequestBuilder) ByDaysInteger(days int32)(*PuzzleReplayWithDaysItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    urlTplParams["days"] = i53ac87e8cb3cc9276228f74d38694a208cacb99bb8ceb705eeae99fb88d4d274.FormatInt(int64(days), 10)
-    return NewPuzzleReplayWithDaysItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+func (m *PuzzleReplayRequestBuilder) ByDaysInteger(days int32) *PuzzleReplayWithDaysItemRequestBuilder {
+	urlTplParams := make(map[string]string)
+	for idx, item := range m.BaseRequestBuilder.PathParameters {
+		urlTplParams[idx] = item
+	}
+	urlTplParams["days"] = i53ac87e8cb3cc9276228f74d38694a208cacb99bb8ceb705eeae99fb88d4d274.FormatInt(int64(days), 10)
+	return NewPuzzleReplayWithDaysItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewPuzzleReplayRequestBuilderInternal instantiates a new PuzzleReplayRequestBuilder and sets the default values.
-func NewPuzzleReplayRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*PuzzleReplayRequestBuilder) {
-    m := &PuzzleReplayRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/puzzle/replay", pathParameters),
-    }
-    return m
+func NewPuzzleReplayRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *PuzzleReplayRequestBuilder {
+	m := &PuzzleReplayRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/puzzle/replay", pathParameters),
+	}
+	return m
 }
+
 // NewPuzzleReplayRequestBuilder instantiates a new PuzzleReplayRequestBuilder and sets the default values.
-func NewPuzzleReplayRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*PuzzleReplayRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewPuzzleReplayRequestBuilderInternal(urlParams, requestAdapter)
+func NewPuzzleReplayRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *PuzzleReplayRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewPuzzleReplayRequestBuilderInternal(urlParams, requestAdapter)
 }

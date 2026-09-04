@@ -4,167 +4,181 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type PuzzleRaceResults_puzzles struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // X-FEN position of the puzzle
-    fen *string
-    // Puzzle ID
-    id *string
-    // Solution moves sequence
-    line *string
-    // Puzzle Glicko2 rating
-    rating *int32
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// X-FEN position of the puzzle
+	fen *string
+	// Puzzle ID
+	id *string
+	// Solution moves sequence
+	line *string
+	// Puzzle Glicko2 rating
+	rating *int32
 }
+
 // NewPuzzleRaceResults_puzzles instantiates a new PuzzleRaceResults_puzzles and sets the default values.
-func NewPuzzleRaceResults_puzzles()(*PuzzleRaceResults_puzzles) {
-    m := &PuzzleRaceResults_puzzles{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewPuzzleRaceResults_puzzles() *PuzzleRaceResults_puzzles {
+	m := &PuzzleRaceResults_puzzles{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreatePuzzleRaceResults_puzzlesFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreatePuzzleRaceResults_puzzlesFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewPuzzleRaceResults_puzzles(), nil
+func CreatePuzzleRaceResults_puzzlesFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewPuzzleRaceResults_puzzles(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *PuzzleRaceResults_puzzles) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *PuzzleRaceResults_puzzles) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFen gets the fen property value. X-FEN position of the puzzle
 // returns a *string when successful
-func (m *PuzzleRaceResults_puzzles) GetFen()(*string) {
-    return m.fen
+func (m *PuzzleRaceResults_puzzles) GetFen() *string {
+	return m.fen
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *PuzzleRaceResults_puzzles) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["fen"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFen(val)
-        }
-        return nil
-    }
-    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetId(val)
-        }
-        return nil
-    }
-    res["line"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetLine(val)
-        }
-        return nil
-    }
-    res["rating"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRating(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *PuzzleRaceResults_puzzles) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["fen"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFen(val)
+		}
+		return nil
+	}
+	res["id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetId(val)
+		}
+		return nil
+	}
+	res["line"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetLine(val)
+		}
+		return nil
+	}
+	res["rating"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRating(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetId gets the id property value. Puzzle ID
 // returns a *string when successful
-func (m *PuzzleRaceResults_puzzles) GetId()(*string) {
-    return m.id
+func (m *PuzzleRaceResults_puzzles) GetId() *string {
+	return m.id
 }
+
 // GetLine gets the line property value. Solution moves sequence
 // returns a *string when successful
-func (m *PuzzleRaceResults_puzzles) GetLine()(*string) {
-    return m.line
+func (m *PuzzleRaceResults_puzzles) GetLine() *string {
+	return m.line
 }
+
 // GetRating gets the rating property value. Puzzle Glicko2 rating
 // returns a *int32 when successful
-func (m *PuzzleRaceResults_puzzles) GetRating()(*int32) {
-    return m.rating
+func (m *PuzzleRaceResults_puzzles) GetRating() *int32 {
+	return m.rating
 }
+
 // Serialize serializes information the current object
-func (m *PuzzleRaceResults_puzzles) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("fen", m.GetFen())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("id", m.GetId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("line", m.GetLine())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("rating", m.GetRating())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *PuzzleRaceResults_puzzles) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("fen", m.GetFen())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("id", m.GetId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("line", m.GetLine())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("rating", m.GetRating())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PuzzleRaceResults_puzzles) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *PuzzleRaceResults_puzzles) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetFen sets the fen property value. X-FEN position of the puzzle
-func (m *PuzzleRaceResults_puzzles) SetFen(value *string)() {
-    m.fen = value
+func (m *PuzzleRaceResults_puzzles) SetFen(value *string) {
+	m.fen = value
 }
+
 // SetId sets the id property value. Puzzle ID
-func (m *PuzzleRaceResults_puzzles) SetId(value *string)() {
-    m.id = value
+func (m *PuzzleRaceResults_puzzles) SetId(value *string) {
+	m.id = value
 }
+
 // SetLine sets the line property value. Solution moves sequence
-func (m *PuzzleRaceResults_puzzles) SetLine(value *string)() {
-    m.line = value
+func (m *PuzzleRaceResults_puzzles) SetLine(value *string) {
+	m.line = value
 }
+
 // SetRating sets the rating property value. Puzzle Glicko2 rating
-func (m *PuzzleRaceResults_puzzles) SetRating(value *int32)() {
-    m.rating = value
+func (m *PuzzleRaceResults_puzzles) SetRating(value *int32) {
+	m.rating = value
 }
+
 type PuzzleRaceResults_puzzlesable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetFen()(*string)
-    GetId()(*string)
-    GetLine()(*string)
-    GetRating()(*int32)
-    SetFen(value *string)()
-    SetId(value *string)()
-    SetLine(value *string)()
-    SetRating(value *int32)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetFen() *string
+	GetId() *string
+	GetLine() *string
+	GetRating() *int32
+	SetFen(value *string)
+	SetId(value *string)
+	SetLine(value *string)
+	SetRating(value *int32)
 }

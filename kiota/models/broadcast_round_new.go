@@ -4,138 +4,150 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type BroadcastRoundNew struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The round property
-    round BroadcastRoundInfoable
-    // The study property
-    study BroadcastRoundStudyInfoable
-    // The tour property
-    tour BroadcastTourable
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The round property
+	round BroadcastRoundInfoable
+	// The study property
+	study BroadcastRoundStudyInfoable
+	// The tour property
+	tour BroadcastTourable
 }
+
 // NewBroadcastRoundNew instantiates a new BroadcastRoundNew and sets the default values.
-func NewBroadcastRoundNew()(*BroadcastRoundNew) {
-    m := &BroadcastRoundNew{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewBroadcastRoundNew() *BroadcastRoundNew {
+	m := &BroadcastRoundNew{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateBroadcastRoundNewFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateBroadcastRoundNewFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewBroadcastRoundNew(), nil
+func CreateBroadcastRoundNewFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewBroadcastRoundNew(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *BroadcastRoundNew) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *BroadcastRoundNew) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *BroadcastRoundNew) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["round"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateBroadcastRoundInfoFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRound(val.(BroadcastRoundInfoable))
-        }
-        return nil
-    }
-    res["study"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateBroadcastRoundStudyInfoFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStudy(val.(BroadcastRoundStudyInfoable))
-        }
-        return nil
-    }
-    res["tour"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateBroadcastTourFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTour(val.(BroadcastTourable))
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *BroadcastRoundNew) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["round"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateBroadcastRoundInfoFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRound(val.(BroadcastRoundInfoable))
+		}
+		return nil
+	}
+	res["study"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateBroadcastRoundStudyInfoFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStudy(val.(BroadcastRoundStudyInfoable))
+		}
+		return nil
+	}
+	res["tour"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateBroadcastTourFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTour(val.(BroadcastTourable))
+		}
+		return nil
+	}
+	return res
 }
+
 // GetRound gets the round property value. The round property
 // returns a BroadcastRoundInfoable when successful
-func (m *BroadcastRoundNew) GetRound()(BroadcastRoundInfoable) {
-    return m.round
+func (m *BroadcastRoundNew) GetRound() BroadcastRoundInfoable {
+	return m.round
 }
+
 // GetStudy gets the study property value. The study property
 // returns a BroadcastRoundStudyInfoable when successful
-func (m *BroadcastRoundNew) GetStudy()(BroadcastRoundStudyInfoable) {
-    return m.study
+func (m *BroadcastRoundNew) GetStudy() BroadcastRoundStudyInfoable {
+	return m.study
 }
+
 // GetTour gets the tour property value. The tour property
 // returns a BroadcastTourable when successful
-func (m *BroadcastRoundNew) GetTour()(BroadcastTourable) {
-    return m.tour
+func (m *BroadcastRoundNew) GetTour() BroadcastTourable {
+	return m.tour
 }
+
 // Serialize serializes information the current object
-func (m *BroadcastRoundNew) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("round", m.GetRound())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("study", m.GetStudy())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("tour", m.GetTour())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *BroadcastRoundNew) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteObjectValue("round", m.GetRound())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("study", m.GetStudy())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("tour", m.GetTour())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *BroadcastRoundNew) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *BroadcastRoundNew) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetRound sets the round property value. The round property
-func (m *BroadcastRoundNew) SetRound(value BroadcastRoundInfoable)() {
-    m.round = value
+func (m *BroadcastRoundNew) SetRound(value BroadcastRoundInfoable) {
+	m.round = value
 }
+
 // SetStudy sets the study property value. The study property
-func (m *BroadcastRoundNew) SetStudy(value BroadcastRoundStudyInfoable)() {
-    m.study = value
+func (m *BroadcastRoundNew) SetStudy(value BroadcastRoundStudyInfoable) {
+	m.study = value
 }
+
 // SetTour sets the tour property value. The tour property
-func (m *BroadcastRoundNew) SetTour(value BroadcastTourable)() {
-    m.tour = value
+func (m *BroadcastRoundNew) SetTour(value BroadcastTourable) {
+	m.tour = value
 }
+
 type BroadcastRoundNewable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetRound()(BroadcastRoundInfoable)
-    GetStudy()(BroadcastRoundStudyInfoable)
-    GetTour()(BroadcastTourable)
-    SetRound(value BroadcastRoundInfoable)()
-    SetStudy(value BroadcastRoundStudyInfoable)()
-    SetTour(value BroadcastTourable)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetRound() BroadcastRoundInfoable
+	GetStudy() BroadcastRoundStudyInfoable
+	GetTour() BroadcastTourable
+	SetRound(value BroadcastRoundInfoable)
+	SetStudy(value BroadcastRoundStudyInfoable)
+	SetTour(value BroadcastTourable)
 }

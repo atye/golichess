@@ -4,90 +4,98 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type TimeControlMember2 struct {
-    // The daysPerTurn property
-    daysPerTurn *int32
-    // The type property
-    typeEscaped *string
+	// The daysPerTurn property
+	daysPerTurn *int32
+	// The type property
+	typeEscaped *string
 }
+
 // NewTimeControlMember2 instantiates a new TimeControlMember2 and sets the default values.
-func NewTimeControlMember2()(*TimeControlMember2) {
-    m := &TimeControlMember2{
-    }
-    return m
+func NewTimeControlMember2() *TimeControlMember2 {
+	m := &TimeControlMember2{}
+	return m
 }
+
 // CreateTimeControlMember2FromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateTimeControlMember2FromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewTimeControlMember2(), nil
+func CreateTimeControlMember2FromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewTimeControlMember2(), nil
 }
+
 // GetDaysPerTurn gets the daysPerTurn property value. The daysPerTurn property
 // returns a *int32 when successful
-func (m *TimeControlMember2) GetDaysPerTurn()(*int32) {
-    return m.daysPerTurn
+func (m *TimeControlMember2) GetDaysPerTurn() *int32 {
+	return m.daysPerTurn
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *TimeControlMember2) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["daysPerTurn"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDaysPerTurn(val)
-        }
-        return nil
-    }
-    res["type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTypeEscaped(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *TimeControlMember2) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["daysPerTurn"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetDaysPerTurn(val)
+		}
+		return nil
+	}
+	res["type"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTypeEscaped(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetTypeEscaped gets the type property value. The type property
 // returns a *string when successful
-func (m *TimeControlMember2) GetTypeEscaped()(*string) {
-    return m.typeEscaped
+func (m *TimeControlMember2) GetTypeEscaped() *string {
+	return m.typeEscaped
 }
+
 // Serialize serializes information the current object
-func (m *TimeControlMember2) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteInt32Value("daysPerTurn", m.GetDaysPerTurn())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("type", m.GetTypeEscaped())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *TimeControlMember2) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteInt32Value("daysPerTurn", m.GetDaysPerTurn())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("type", m.GetTypeEscaped())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetDaysPerTurn sets the daysPerTurn property value. The daysPerTurn property
-func (m *TimeControlMember2) SetDaysPerTurn(value *int32)() {
-    m.daysPerTurn = value
+func (m *TimeControlMember2) SetDaysPerTurn(value *int32) {
+	m.daysPerTurn = value
 }
+
 // SetTypeEscaped sets the type property value. The type property
-func (m *TimeControlMember2) SetTypeEscaped(value *string)() {
-    m.typeEscaped = value
+func (m *TimeControlMember2) SetTypeEscaped(value *string) {
+	m.typeEscaped = value
 }
+
 type TimeControlMember2able interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetDaysPerTurn()(*int32)
-    GetTypeEscaped()(*string)
-    SetDaysPerTurn(value *int32)()
-    SetTypeEscaped(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetDaysPerTurn() *int32
+	GetTypeEscaped() *string
+	SetDaysPerTurn(value *int32)
+	SetTypeEscaped(value *string)
 }

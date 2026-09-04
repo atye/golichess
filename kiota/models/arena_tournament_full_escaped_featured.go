@@ -4,283 +4,305 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type ArenaTournamentFull_featured struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The black property
-    black ArenaTournamentFull_featured_blackable
-    // The c property
-    c ArenaTournamentFull_featured_cable
-    // The color property
-    color *string
-    // The fen property
-    fen *string
-    // The id property
-    id *string
-    // The lastMove property
-    lastMove *string
-    // The orientation property
-    orientation *string
-    // The white property
-    white ArenaTournamentFull_featured_whiteable
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The black property
+	black ArenaTournamentFull_featured_blackable
+	// The c property
+	c ArenaTournamentFull_featured_cable
+	// The color property
+	color *string
+	// The fen property
+	fen *string
+	// The id property
+	id *string
+	// The lastMove property
+	lastMove *string
+	// The orientation property
+	orientation *string
+	// The white property
+	white ArenaTournamentFull_featured_whiteable
 }
+
 // NewArenaTournamentFull_featured instantiates a new ArenaTournamentFull_featured and sets the default values.
-func NewArenaTournamentFull_featured()(*ArenaTournamentFull_featured) {
-    m := &ArenaTournamentFull_featured{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewArenaTournamentFull_featured() *ArenaTournamentFull_featured {
+	m := &ArenaTournamentFull_featured{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateArenaTournamentFull_featuredFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateArenaTournamentFull_featuredFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewArenaTournamentFull_featured(), nil
+func CreateArenaTournamentFull_featuredFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewArenaTournamentFull_featured(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *ArenaTournamentFull_featured) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *ArenaTournamentFull_featured) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetBlack gets the black property value. The black property
 // returns a ArenaTournamentFull_featured_blackable when successful
-func (m *ArenaTournamentFull_featured) GetBlack()(ArenaTournamentFull_featured_blackable) {
-    return m.black
+func (m *ArenaTournamentFull_featured) GetBlack() ArenaTournamentFull_featured_blackable {
+	return m.black
 }
+
 // GetC gets the c property value. The c property
 // returns a ArenaTournamentFull_featured_cable when successful
-func (m *ArenaTournamentFull_featured) GetC()(ArenaTournamentFull_featured_cable) {
-    return m.c
+func (m *ArenaTournamentFull_featured) GetC() ArenaTournamentFull_featured_cable {
+	return m.c
 }
+
 // GetColor gets the color property value. The color property
 // returns a *string when successful
-func (m *ArenaTournamentFull_featured) GetColor()(*string) {
-    return m.color
+func (m *ArenaTournamentFull_featured) GetColor() *string {
+	return m.color
 }
+
 // GetFen gets the fen property value. The fen property
 // returns a *string when successful
-func (m *ArenaTournamentFull_featured) GetFen()(*string) {
-    return m.fen
+func (m *ArenaTournamentFull_featured) GetFen() *string {
+	return m.fen
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ArenaTournamentFull_featured) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["black"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateArenaTournamentFull_featured_blackFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetBlack(val.(ArenaTournamentFull_featured_blackable))
-        }
-        return nil
-    }
-    res["c"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateArenaTournamentFull_featured_cFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetC(val.(ArenaTournamentFull_featured_cable))
-        }
-        return nil
-    }
-    res["color"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetColor(val)
-        }
-        return nil
-    }
-    res["fen"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFen(val)
-        }
-        return nil
-    }
-    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetId(val)
-        }
-        return nil
-    }
-    res["lastMove"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetLastMove(val)
-        }
-        return nil
-    }
-    res["orientation"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetOrientation(val)
-        }
-        return nil
-    }
-    res["white"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateArenaTournamentFull_featured_whiteFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetWhite(val.(ArenaTournamentFull_featured_whiteable))
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *ArenaTournamentFull_featured) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["black"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateArenaTournamentFull_featured_blackFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetBlack(val.(ArenaTournamentFull_featured_blackable))
+		}
+		return nil
+	}
+	res["c"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateArenaTournamentFull_featured_cFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetC(val.(ArenaTournamentFull_featured_cable))
+		}
+		return nil
+	}
+	res["color"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetColor(val)
+		}
+		return nil
+	}
+	res["fen"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFen(val)
+		}
+		return nil
+	}
+	res["id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetId(val)
+		}
+		return nil
+	}
+	res["lastMove"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetLastMove(val)
+		}
+		return nil
+	}
+	res["orientation"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetOrientation(val)
+		}
+		return nil
+	}
+	res["white"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateArenaTournamentFull_featured_whiteFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetWhite(val.(ArenaTournamentFull_featured_whiteable))
+		}
+		return nil
+	}
+	return res
 }
+
 // GetId gets the id property value. The id property
 // returns a *string when successful
-func (m *ArenaTournamentFull_featured) GetId()(*string) {
-    return m.id
+func (m *ArenaTournamentFull_featured) GetId() *string {
+	return m.id
 }
+
 // GetLastMove gets the lastMove property value. The lastMove property
 // returns a *string when successful
-func (m *ArenaTournamentFull_featured) GetLastMove()(*string) {
-    return m.lastMove
+func (m *ArenaTournamentFull_featured) GetLastMove() *string {
+	return m.lastMove
 }
+
 // GetOrientation gets the orientation property value. The orientation property
 // returns a *string when successful
-func (m *ArenaTournamentFull_featured) GetOrientation()(*string) {
-    return m.orientation
+func (m *ArenaTournamentFull_featured) GetOrientation() *string {
+	return m.orientation
 }
+
 // GetWhite gets the white property value. The white property
 // returns a ArenaTournamentFull_featured_whiteable when successful
-func (m *ArenaTournamentFull_featured) GetWhite()(ArenaTournamentFull_featured_whiteable) {
-    return m.white
+func (m *ArenaTournamentFull_featured) GetWhite() ArenaTournamentFull_featured_whiteable {
+	return m.white
 }
+
 // Serialize serializes information the current object
-func (m *ArenaTournamentFull_featured) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("black", m.GetBlack())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("c", m.GetC())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("color", m.GetColor())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("fen", m.GetFen())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("id", m.GetId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("lastMove", m.GetLastMove())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("orientation", m.GetOrientation())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("white", m.GetWhite())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *ArenaTournamentFull_featured) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteObjectValue("black", m.GetBlack())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("c", m.GetC())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("color", m.GetColor())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("fen", m.GetFen())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("id", m.GetId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("lastMove", m.GetLastMove())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("orientation", m.GetOrientation())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("white", m.GetWhite())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ArenaTournamentFull_featured) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *ArenaTournamentFull_featured) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetBlack sets the black property value. The black property
-func (m *ArenaTournamentFull_featured) SetBlack(value ArenaTournamentFull_featured_blackable)() {
-    m.black = value
+func (m *ArenaTournamentFull_featured) SetBlack(value ArenaTournamentFull_featured_blackable) {
+	m.black = value
 }
+
 // SetC sets the c property value. The c property
-func (m *ArenaTournamentFull_featured) SetC(value ArenaTournamentFull_featured_cable)() {
-    m.c = value
+func (m *ArenaTournamentFull_featured) SetC(value ArenaTournamentFull_featured_cable) {
+	m.c = value
 }
+
 // SetColor sets the color property value. The color property
-func (m *ArenaTournamentFull_featured) SetColor(value *string)() {
-    m.color = value
+func (m *ArenaTournamentFull_featured) SetColor(value *string) {
+	m.color = value
 }
+
 // SetFen sets the fen property value. The fen property
-func (m *ArenaTournamentFull_featured) SetFen(value *string)() {
-    m.fen = value
+func (m *ArenaTournamentFull_featured) SetFen(value *string) {
+	m.fen = value
 }
+
 // SetId sets the id property value. The id property
-func (m *ArenaTournamentFull_featured) SetId(value *string)() {
-    m.id = value
+func (m *ArenaTournamentFull_featured) SetId(value *string) {
+	m.id = value
 }
+
 // SetLastMove sets the lastMove property value. The lastMove property
-func (m *ArenaTournamentFull_featured) SetLastMove(value *string)() {
-    m.lastMove = value
+func (m *ArenaTournamentFull_featured) SetLastMove(value *string) {
+	m.lastMove = value
 }
+
 // SetOrientation sets the orientation property value. The orientation property
-func (m *ArenaTournamentFull_featured) SetOrientation(value *string)() {
-    m.orientation = value
+func (m *ArenaTournamentFull_featured) SetOrientation(value *string) {
+	m.orientation = value
 }
+
 // SetWhite sets the white property value. The white property
-func (m *ArenaTournamentFull_featured) SetWhite(value ArenaTournamentFull_featured_whiteable)() {
-    m.white = value
+func (m *ArenaTournamentFull_featured) SetWhite(value ArenaTournamentFull_featured_whiteable) {
+	m.white = value
 }
+
 type ArenaTournamentFull_featuredable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetBlack()(ArenaTournamentFull_featured_blackable)
-    GetC()(ArenaTournamentFull_featured_cable)
-    GetColor()(*string)
-    GetFen()(*string)
-    GetId()(*string)
-    GetLastMove()(*string)
-    GetOrientation()(*string)
-    GetWhite()(ArenaTournamentFull_featured_whiteable)
-    SetBlack(value ArenaTournamentFull_featured_blackable)()
-    SetC(value ArenaTournamentFull_featured_cable)()
-    SetColor(value *string)()
-    SetFen(value *string)()
-    SetId(value *string)()
-    SetLastMove(value *string)()
-    SetOrientation(value *string)()
-    SetWhite(value ArenaTournamentFull_featured_whiteable)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetBlack() ArenaTournamentFull_featured_blackable
+	GetC() ArenaTournamentFull_featured_cable
+	GetColor() *string
+	GetFen() *string
+	GetId() *string
+	GetLastMove() *string
+	GetOrientation() *string
+	GetWhite() ArenaTournamentFull_featured_whiteable
+	SetBlack(value ArenaTournamentFull_featured_blackable)
+	SetC(value ArenaTournamentFull_featured_cable)
+	SetColor(value *string)
+	SetFen(value *string)
+	SetId(value *string)
+	SetLastMove(value *string)
+	SetOrientation(value *string)
+	SetWhite(value ArenaTournamentFull_featured_whiteable)
 }

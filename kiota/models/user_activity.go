@@ -4,598 +4,638 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type UserActivity struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The correspondenceEnds property
-    correspondenceEnds UserActivity_correspondenceEndsable
-    // The correspondenceMoves property
-    correspondenceMoves UserActivity_correspondenceMovesable
-    // The follows property
-    follows UserActivity_followsable
-    // The games property
-    games UserActivity_gamesable
-    // The interval property
-    interval UserActivity_intervalable
-    // The patron property
-    patron UserActivity_patronable
-    // The posts property
-    posts []UserActivity_postsable
-    // The practice property
-    practice []UserActivity_practiceable
-    // The puzzles property
-    puzzles UserActivity_puzzlesable
-    // The racer property
-    racer PuzzleModePerfable
-    // The simuls property
-    simuls []string
-    // The storm property
-    storm PuzzleModePerfable
-    // The streak property
-    streak PuzzleModePerfable
-    // The stream property
-    stream *bool
-    // The studies property
-    studies []UserActivity_studiesable
-    // The teams property
-    teams []UserActivity_teamsable
-    // The tournaments property
-    tournaments UserActivity_tournamentsable
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The correspondenceEnds property
+	correspondenceEnds UserActivity_correspondenceEndsable
+	// The correspondenceMoves property
+	correspondenceMoves UserActivity_correspondenceMovesable
+	// The follows property
+	follows UserActivity_followsable
+	// The games property
+	games UserActivity_gamesable
+	// The interval property
+	interval UserActivity_intervalable
+	// The patron property
+	patron UserActivity_patronable
+	// The posts property
+	posts []UserActivity_postsable
+	// The practice property
+	practice []UserActivity_practiceable
+	// The puzzles property
+	puzzles UserActivity_puzzlesable
+	// The racer property
+	racer PuzzleModePerfable
+	// The simuls property
+	simuls []string
+	// The storm property
+	storm PuzzleModePerfable
+	// The streak property
+	streak PuzzleModePerfable
+	// The stream property
+	stream *bool
+	// The studies property
+	studies []UserActivity_studiesable
+	// The teams property
+	teams []UserActivity_teamsable
+	// The tournaments property
+	tournaments UserActivity_tournamentsable
 }
+
 // NewUserActivity instantiates a new UserActivity and sets the default values.
-func NewUserActivity()(*UserActivity) {
-    m := &UserActivity{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewUserActivity() *UserActivity {
+	m := &UserActivity{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateUserActivityFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateUserActivityFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewUserActivity(), nil
+func CreateUserActivityFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewUserActivity(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *UserActivity) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *UserActivity) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetCorrespondenceEnds gets the correspondenceEnds property value. The correspondenceEnds property
 // returns a UserActivity_correspondenceEndsable when successful
-func (m *UserActivity) GetCorrespondenceEnds()(UserActivity_correspondenceEndsable) {
-    return m.correspondenceEnds
+func (m *UserActivity) GetCorrespondenceEnds() UserActivity_correspondenceEndsable {
+	return m.correspondenceEnds
 }
+
 // GetCorrespondenceMoves gets the correspondenceMoves property value. The correspondenceMoves property
 // returns a UserActivity_correspondenceMovesable when successful
-func (m *UserActivity) GetCorrespondenceMoves()(UserActivity_correspondenceMovesable) {
-    return m.correspondenceMoves
+func (m *UserActivity) GetCorrespondenceMoves() UserActivity_correspondenceMovesable {
+	return m.correspondenceMoves
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *UserActivity) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["correspondenceEnds"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateUserActivity_correspondenceEndsFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCorrespondenceEnds(val.(UserActivity_correspondenceEndsable))
-        }
-        return nil
-    }
-    res["correspondenceMoves"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateUserActivity_correspondenceMovesFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCorrespondenceMoves(val.(UserActivity_correspondenceMovesable))
-        }
-        return nil
-    }
-    res["follows"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateUserActivity_followsFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFollows(val.(UserActivity_followsable))
-        }
-        return nil
-    }
-    res["games"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateUserActivity_gamesFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetGames(val.(UserActivity_gamesable))
-        }
-        return nil
-    }
-    res["interval"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateUserActivity_intervalFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetInterval(val.(UserActivity_intervalable))
-        }
-        return nil
-    }
-    res["patron"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateUserActivity_patronFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPatron(val.(UserActivity_patronable))
-        }
-        return nil
-    }
-    res["posts"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateUserActivity_postsFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]UserActivity_postsable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(UserActivity_postsable)
-                }
-            }
-            m.SetPosts(res)
-        }
-        return nil
-    }
-    res["practice"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateUserActivity_practiceFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]UserActivity_practiceable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(UserActivity_practiceable)
-                }
-            }
-            m.SetPractice(res)
-        }
-        return nil
-    }
-    res["puzzles"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateUserActivity_puzzlesFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPuzzles(val.(UserActivity_puzzlesable))
-        }
-        return nil
-    }
-    res["racer"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreatePuzzleModePerfFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRacer(val.(PuzzleModePerfable))
-        }
-        return nil
-    }
-    res["simuls"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfPrimitiveValues("string")
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]string, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = *(v.(*string))
-                }
-            }
-            m.SetSimuls(res)
-        }
-        return nil
-    }
-    res["storm"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreatePuzzleModePerfFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStorm(val.(PuzzleModePerfable))
-        }
-        return nil
-    }
-    res["streak"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreatePuzzleModePerfFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStreak(val.(PuzzleModePerfable))
-        }
-        return nil
-    }
-    res["stream"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStream(val)
-        }
-        return nil
-    }
-    res["studies"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateUserActivity_studiesFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]UserActivity_studiesable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(UserActivity_studiesable)
-                }
-            }
-            m.SetStudies(res)
-        }
-        return nil
-    }
-    res["teams"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateUserActivity_teamsFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]UserActivity_teamsable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(UserActivity_teamsable)
-                }
-            }
-            m.SetTeams(res)
-        }
-        return nil
-    }
-    res["tournaments"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateUserActivity_tournamentsFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTournaments(val.(UserActivity_tournamentsable))
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *UserActivity) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["correspondenceEnds"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateUserActivity_correspondenceEndsFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCorrespondenceEnds(val.(UserActivity_correspondenceEndsable))
+		}
+		return nil
+	}
+	res["correspondenceMoves"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateUserActivity_correspondenceMovesFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCorrespondenceMoves(val.(UserActivity_correspondenceMovesable))
+		}
+		return nil
+	}
+	res["follows"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateUserActivity_followsFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFollows(val.(UserActivity_followsable))
+		}
+		return nil
+	}
+	res["games"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateUserActivity_gamesFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetGames(val.(UserActivity_gamesable))
+		}
+		return nil
+	}
+	res["interval"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateUserActivity_intervalFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetInterval(val.(UserActivity_intervalable))
+		}
+		return nil
+	}
+	res["patron"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateUserActivity_patronFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPatron(val.(UserActivity_patronable))
+		}
+		return nil
+	}
+	res["posts"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateUserActivity_postsFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]UserActivity_postsable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(UserActivity_postsable)
+				}
+			}
+			m.SetPosts(res)
+		}
+		return nil
+	}
+	res["practice"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateUserActivity_practiceFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]UserActivity_practiceable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(UserActivity_practiceable)
+				}
+			}
+			m.SetPractice(res)
+		}
+		return nil
+	}
+	res["puzzles"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateUserActivity_puzzlesFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPuzzles(val.(UserActivity_puzzlesable))
+		}
+		return nil
+	}
+	res["racer"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreatePuzzleModePerfFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRacer(val.(PuzzleModePerfable))
+		}
+		return nil
+	}
+	res["simuls"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfPrimitiveValues("string")
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]string, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = *(v.(*string))
+				}
+			}
+			m.SetSimuls(res)
+		}
+		return nil
+	}
+	res["storm"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreatePuzzleModePerfFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStorm(val.(PuzzleModePerfable))
+		}
+		return nil
+	}
+	res["streak"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreatePuzzleModePerfFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStreak(val.(PuzzleModePerfable))
+		}
+		return nil
+	}
+	res["stream"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStream(val)
+		}
+		return nil
+	}
+	res["studies"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateUserActivity_studiesFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]UserActivity_studiesable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(UserActivity_studiesable)
+				}
+			}
+			m.SetStudies(res)
+		}
+		return nil
+	}
+	res["teams"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateUserActivity_teamsFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]UserActivity_teamsable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(UserActivity_teamsable)
+				}
+			}
+			m.SetTeams(res)
+		}
+		return nil
+	}
+	res["tournaments"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateUserActivity_tournamentsFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTournaments(val.(UserActivity_tournamentsable))
+		}
+		return nil
+	}
+	return res
 }
+
 // GetFollows gets the follows property value. The follows property
 // returns a UserActivity_followsable when successful
-func (m *UserActivity) GetFollows()(UserActivity_followsable) {
-    return m.follows
+func (m *UserActivity) GetFollows() UserActivity_followsable {
+	return m.follows
 }
+
 // GetGames gets the games property value. The games property
 // returns a UserActivity_gamesable when successful
-func (m *UserActivity) GetGames()(UserActivity_gamesable) {
-    return m.games
+func (m *UserActivity) GetGames() UserActivity_gamesable {
+	return m.games
 }
+
 // GetInterval gets the interval property value. The interval property
 // returns a UserActivity_intervalable when successful
-func (m *UserActivity) GetInterval()(UserActivity_intervalable) {
-    return m.interval
+func (m *UserActivity) GetInterval() UserActivity_intervalable {
+	return m.interval
 }
+
 // GetPatron gets the patron property value. The patron property
 // returns a UserActivity_patronable when successful
-func (m *UserActivity) GetPatron()(UserActivity_patronable) {
-    return m.patron
+func (m *UserActivity) GetPatron() UserActivity_patronable {
+	return m.patron
 }
+
 // GetPosts gets the posts property value. The posts property
 // returns a []UserActivity_postsable when successful
-func (m *UserActivity) GetPosts()([]UserActivity_postsable) {
-    return m.posts
+func (m *UserActivity) GetPosts() []UserActivity_postsable {
+	return m.posts
 }
+
 // GetPractice gets the practice property value. The practice property
 // returns a []UserActivity_practiceable when successful
-func (m *UserActivity) GetPractice()([]UserActivity_practiceable) {
-    return m.practice
+func (m *UserActivity) GetPractice() []UserActivity_practiceable {
+	return m.practice
 }
+
 // GetPuzzles gets the puzzles property value. The puzzles property
 // returns a UserActivity_puzzlesable when successful
-func (m *UserActivity) GetPuzzles()(UserActivity_puzzlesable) {
-    return m.puzzles
+func (m *UserActivity) GetPuzzles() UserActivity_puzzlesable {
+	return m.puzzles
 }
+
 // GetRacer gets the racer property value. The racer property
 // returns a PuzzleModePerfable when successful
-func (m *UserActivity) GetRacer()(PuzzleModePerfable) {
-    return m.racer
+func (m *UserActivity) GetRacer() PuzzleModePerfable {
+	return m.racer
 }
+
 // GetSimuls gets the simuls property value. The simuls property
 // returns a []string when successful
-func (m *UserActivity) GetSimuls()([]string) {
-    return m.simuls
+func (m *UserActivity) GetSimuls() []string {
+	return m.simuls
 }
+
 // GetStorm gets the storm property value. The storm property
 // returns a PuzzleModePerfable when successful
-func (m *UserActivity) GetStorm()(PuzzleModePerfable) {
-    return m.storm
+func (m *UserActivity) GetStorm() PuzzleModePerfable {
+	return m.storm
 }
+
 // GetStreak gets the streak property value. The streak property
 // returns a PuzzleModePerfable when successful
-func (m *UserActivity) GetStreak()(PuzzleModePerfable) {
-    return m.streak
+func (m *UserActivity) GetStreak() PuzzleModePerfable {
+	return m.streak
 }
+
 // GetStream gets the stream property value. The stream property
 // returns a *bool when successful
-func (m *UserActivity) GetStream()(*bool) {
-    return m.stream
+func (m *UserActivity) GetStream() *bool {
+	return m.stream
 }
+
 // GetStudies gets the studies property value. The studies property
 // returns a []UserActivity_studiesable when successful
-func (m *UserActivity) GetStudies()([]UserActivity_studiesable) {
-    return m.studies
+func (m *UserActivity) GetStudies() []UserActivity_studiesable {
+	return m.studies
 }
+
 // GetTeams gets the teams property value. The teams property
 // returns a []UserActivity_teamsable when successful
-func (m *UserActivity) GetTeams()([]UserActivity_teamsable) {
-    return m.teams
+func (m *UserActivity) GetTeams() []UserActivity_teamsable {
+	return m.teams
 }
+
 // GetTournaments gets the tournaments property value. The tournaments property
 // returns a UserActivity_tournamentsable when successful
-func (m *UserActivity) GetTournaments()(UserActivity_tournamentsable) {
-    return m.tournaments
+func (m *UserActivity) GetTournaments() UserActivity_tournamentsable {
+	return m.tournaments
 }
+
 // Serialize serializes information the current object
-func (m *UserActivity) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("correspondenceEnds", m.GetCorrespondenceEnds())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("correspondenceMoves", m.GetCorrespondenceMoves())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("follows", m.GetFollows())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("games", m.GetGames())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("interval", m.GetInterval())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("patron", m.GetPatron())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetPosts() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPosts()))
-        for i, v := range m.GetPosts() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("posts", cast)
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetPractice() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPractice()))
-        for i, v := range m.GetPractice() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("practice", cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("puzzles", m.GetPuzzles())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("racer", m.GetRacer())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetSimuls() != nil {
-        err := writer.WriteCollectionOfStringValues("simuls", m.GetSimuls())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("storm", m.GetStorm())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("streak", m.GetStreak())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("stream", m.GetStream())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetStudies() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetStudies()))
-        for i, v := range m.GetStudies() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("studies", cast)
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetTeams() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetTeams()))
-        for i, v := range m.GetTeams() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("teams", cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("tournaments", m.GetTournaments())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *UserActivity) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteObjectValue("correspondenceEnds", m.GetCorrespondenceEnds())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("correspondenceMoves", m.GetCorrespondenceMoves())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("follows", m.GetFollows())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("games", m.GetGames())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("interval", m.GetInterval())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("patron", m.GetPatron())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetPosts() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPosts()))
+		for i, v := range m.GetPosts() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("posts", cast)
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetPractice() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPractice()))
+		for i, v := range m.GetPractice() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("practice", cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("puzzles", m.GetPuzzles())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("racer", m.GetRacer())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetSimuls() != nil {
+		err := writer.WriteCollectionOfStringValues("simuls", m.GetSimuls())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("storm", m.GetStorm())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("streak", m.GetStreak())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("stream", m.GetStream())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetStudies() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetStudies()))
+		for i, v := range m.GetStudies() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("studies", cast)
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetTeams() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetTeams()))
+		for i, v := range m.GetTeams() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("teams", cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("tournaments", m.GetTournaments())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *UserActivity) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *UserActivity) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetCorrespondenceEnds sets the correspondenceEnds property value. The correspondenceEnds property
-func (m *UserActivity) SetCorrespondenceEnds(value UserActivity_correspondenceEndsable)() {
-    m.correspondenceEnds = value
+func (m *UserActivity) SetCorrespondenceEnds(value UserActivity_correspondenceEndsable) {
+	m.correspondenceEnds = value
 }
+
 // SetCorrespondenceMoves sets the correspondenceMoves property value. The correspondenceMoves property
-func (m *UserActivity) SetCorrespondenceMoves(value UserActivity_correspondenceMovesable)() {
-    m.correspondenceMoves = value
+func (m *UserActivity) SetCorrespondenceMoves(value UserActivity_correspondenceMovesable) {
+	m.correspondenceMoves = value
 }
+
 // SetFollows sets the follows property value. The follows property
-func (m *UserActivity) SetFollows(value UserActivity_followsable)() {
-    m.follows = value
+func (m *UserActivity) SetFollows(value UserActivity_followsable) {
+	m.follows = value
 }
+
 // SetGames sets the games property value. The games property
-func (m *UserActivity) SetGames(value UserActivity_gamesable)() {
-    m.games = value
+func (m *UserActivity) SetGames(value UserActivity_gamesable) {
+	m.games = value
 }
+
 // SetInterval sets the interval property value. The interval property
-func (m *UserActivity) SetInterval(value UserActivity_intervalable)() {
-    m.interval = value
+func (m *UserActivity) SetInterval(value UserActivity_intervalable) {
+	m.interval = value
 }
+
 // SetPatron sets the patron property value. The patron property
-func (m *UserActivity) SetPatron(value UserActivity_patronable)() {
-    m.patron = value
+func (m *UserActivity) SetPatron(value UserActivity_patronable) {
+	m.patron = value
 }
+
 // SetPosts sets the posts property value. The posts property
-func (m *UserActivity) SetPosts(value []UserActivity_postsable)() {
-    m.posts = value
+func (m *UserActivity) SetPosts(value []UserActivity_postsable) {
+	m.posts = value
 }
+
 // SetPractice sets the practice property value. The practice property
-func (m *UserActivity) SetPractice(value []UserActivity_practiceable)() {
-    m.practice = value
+func (m *UserActivity) SetPractice(value []UserActivity_practiceable) {
+	m.practice = value
 }
+
 // SetPuzzles sets the puzzles property value. The puzzles property
-func (m *UserActivity) SetPuzzles(value UserActivity_puzzlesable)() {
-    m.puzzles = value
+func (m *UserActivity) SetPuzzles(value UserActivity_puzzlesable) {
+	m.puzzles = value
 }
+
 // SetRacer sets the racer property value. The racer property
-func (m *UserActivity) SetRacer(value PuzzleModePerfable)() {
-    m.racer = value
+func (m *UserActivity) SetRacer(value PuzzleModePerfable) {
+	m.racer = value
 }
+
 // SetSimuls sets the simuls property value. The simuls property
-func (m *UserActivity) SetSimuls(value []string)() {
-    m.simuls = value
+func (m *UserActivity) SetSimuls(value []string) {
+	m.simuls = value
 }
+
 // SetStorm sets the storm property value. The storm property
-func (m *UserActivity) SetStorm(value PuzzleModePerfable)() {
-    m.storm = value
+func (m *UserActivity) SetStorm(value PuzzleModePerfable) {
+	m.storm = value
 }
+
 // SetStreak sets the streak property value. The streak property
-func (m *UserActivity) SetStreak(value PuzzleModePerfable)() {
-    m.streak = value
+func (m *UserActivity) SetStreak(value PuzzleModePerfable) {
+	m.streak = value
 }
+
 // SetStream sets the stream property value. The stream property
-func (m *UserActivity) SetStream(value *bool)() {
-    m.stream = value
+func (m *UserActivity) SetStream(value *bool) {
+	m.stream = value
 }
+
 // SetStudies sets the studies property value. The studies property
-func (m *UserActivity) SetStudies(value []UserActivity_studiesable)() {
-    m.studies = value
+func (m *UserActivity) SetStudies(value []UserActivity_studiesable) {
+	m.studies = value
 }
+
 // SetTeams sets the teams property value. The teams property
-func (m *UserActivity) SetTeams(value []UserActivity_teamsable)() {
-    m.teams = value
+func (m *UserActivity) SetTeams(value []UserActivity_teamsable) {
+	m.teams = value
 }
+
 // SetTournaments sets the tournaments property value. The tournaments property
-func (m *UserActivity) SetTournaments(value UserActivity_tournamentsable)() {
-    m.tournaments = value
+func (m *UserActivity) SetTournaments(value UserActivity_tournamentsable) {
+	m.tournaments = value
 }
+
 type UserActivityable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetCorrespondenceEnds()(UserActivity_correspondenceEndsable)
-    GetCorrespondenceMoves()(UserActivity_correspondenceMovesable)
-    GetFollows()(UserActivity_followsable)
-    GetGames()(UserActivity_gamesable)
-    GetInterval()(UserActivity_intervalable)
-    GetPatron()(UserActivity_patronable)
-    GetPosts()([]UserActivity_postsable)
-    GetPractice()([]UserActivity_practiceable)
-    GetPuzzles()(UserActivity_puzzlesable)
-    GetRacer()(PuzzleModePerfable)
-    GetSimuls()([]string)
-    GetStorm()(PuzzleModePerfable)
-    GetStreak()(PuzzleModePerfable)
-    GetStream()(*bool)
-    GetStudies()([]UserActivity_studiesable)
-    GetTeams()([]UserActivity_teamsable)
-    GetTournaments()(UserActivity_tournamentsable)
-    SetCorrespondenceEnds(value UserActivity_correspondenceEndsable)()
-    SetCorrespondenceMoves(value UserActivity_correspondenceMovesable)()
-    SetFollows(value UserActivity_followsable)()
-    SetGames(value UserActivity_gamesable)()
-    SetInterval(value UserActivity_intervalable)()
-    SetPatron(value UserActivity_patronable)()
-    SetPosts(value []UserActivity_postsable)()
-    SetPractice(value []UserActivity_practiceable)()
-    SetPuzzles(value UserActivity_puzzlesable)()
-    SetRacer(value PuzzleModePerfable)()
-    SetSimuls(value []string)()
-    SetStorm(value PuzzleModePerfable)()
-    SetStreak(value PuzzleModePerfable)()
-    SetStream(value *bool)()
-    SetStudies(value []UserActivity_studiesable)()
-    SetTeams(value []UserActivity_teamsable)()
-    SetTournaments(value UserActivity_tournamentsable)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetCorrespondenceEnds() UserActivity_correspondenceEndsable
+	GetCorrespondenceMoves() UserActivity_correspondenceMovesable
+	GetFollows() UserActivity_followsable
+	GetGames() UserActivity_gamesable
+	GetInterval() UserActivity_intervalable
+	GetPatron() UserActivity_patronable
+	GetPosts() []UserActivity_postsable
+	GetPractice() []UserActivity_practiceable
+	GetPuzzles() UserActivity_puzzlesable
+	GetRacer() PuzzleModePerfable
+	GetSimuls() []string
+	GetStorm() PuzzleModePerfable
+	GetStreak() PuzzleModePerfable
+	GetStream() *bool
+	GetStudies() []UserActivity_studiesable
+	GetTeams() []UserActivity_teamsable
+	GetTournaments() UserActivity_tournamentsable
+	SetCorrespondenceEnds(value UserActivity_correspondenceEndsable)
+	SetCorrespondenceMoves(value UserActivity_correspondenceMovesable)
+	SetFollows(value UserActivity_followsable)
+	SetGames(value UserActivity_gamesable)
+	SetInterval(value UserActivity_intervalable)
+	SetPatron(value UserActivity_patronable)
+	SetPosts(value []UserActivity_postsable)
+	SetPractice(value []UserActivity_practiceable)
+	SetPuzzles(value UserActivity_puzzlesable)
+	SetRacer(value PuzzleModePerfable)
+	SetSimuls(value []string)
+	SetStorm(value PuzzleModePerfable)
+	SetStreak(value PuzzleModePerfable)
+	SetStream(value *bool)
+	SetStudies(value []UserActivity_studiesable)
+	SetTeams(value []UserActivity_teamsable)
+	SetTournaments(value UserActivity_tournamentsable)
 }

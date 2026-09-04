@@ -4,138 +4,150 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type PlayTime struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The human property
-    human *int32
-    // The total property
-    total *int32
-    // The tv property
-    tv *int32
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The human property
+	human *int32
+	// The total property
+	total *int32
+	// The tv property
+	tv *int32
 }
+
 // NewPlayTime instantiates a new PlayTime and sets the default values.
-func NewPlayTime()(*PlayTime) {
-    m := &PlayTime{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewPlayTime() *PlayTime {
+	m := &PlayTime{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreatePlayTimeFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreatePlayTimeFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewPlayTime(), nil
+func CreatePlayTimeFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewPlayTime(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *PlayTime) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *PlayTime) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *PlayTime) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["human"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetHuman(val)
-        }
-        return nil
-    }
-    res["total"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTotal(val)
-        }
-        return nil
-    }
-    res["tv"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTv(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *PlayTime) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["human"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetHuman(val)
+		}
+		return nil
+	}
+	res["total"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTotal(val)
+		}
+		return nil
+	}
+	res["tv"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTv(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetHuman gets the human property value. The human property
 // returns a *int32 when successful
-func (m *PlayTime) GetHuman()(*int32) {
-    return m.human
+func (m *PlayTime) GetHuman() *int32 {
+	return m.human
 }
+
 // GetTotal gets the total property value. The total property
 // returns a *int32 when successful
-func (m *PlayTime) GetTotal()(*int32) {
-    return m.total
+func (m *PlayTime) GetTotal() *int32 {
+	return m.total
 }
+
 // GetTv gets the tv property value. The tv property
 // returns a *int32 when successful
-func (m *PlayTime) GetTv()(*int32) {
-    return m.tv
+func (m *PlayTime) GetTv() *int32 {
+	return m.tv
 }
+
 // Serialize serializes information the current object
-func (m *PlayTime) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteInt32Value("human", m.GetHuman())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("total", m.GetTotal())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("tv", m.GetTv())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *PlayTime) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteInt32Value("human", m.GetHuman())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("total", m.GetTotal())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("tv", m.GetTv())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PlayTime) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *PlayTime) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetHuman sets the human property value. The human property
-func (m *PlayTime) SetHuman(value *int32)() {
-    m.human = value
+func (m *PlayTime) SetHuman(value *int32) {
+	m.human = value
 }
+
 // SetTotal sets the total property value. The total property
-func (m *PlayTime) SetTotal(value *int32)() {
-    m.total = value
+func (m *PlayTime) SetTotal(value *int32) {
+	m.total = value
 }
+
 // SetTv sets the tv property value. The tv property
-func (m *PlayTime) SetTv(value *int32)() {
-    m.tv = value
+func (m *PlayTime) SetTv(value *int32) {
+	m.tv = value
 }
+
 type PlayTimeable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetHuman()(*int32)
-    GetTotal()(*int32)
-    GetTv()(*int32)
-    SetHuman(value *int32)()
-    SetTotal(value *int32)()
-    SetTv(value *int32)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetHuman() *int32
+	GetTotal() *int32
+	GetTv() *int32
+	SetHuman(value *int32)
+	SetTotal(value *int32)
+	SetTv(value *int32)
 }

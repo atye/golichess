@@ -4,101 +4,110 @@
 package api
 
 import (
-    "context"
-    i53ac87e8cb3cc9276228f74d38694a208cacb99bb8ceb705eeae99fb88d4d274 "strconv"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	"context"
+	i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i53ac87e8cb3cc9276228f74d38694a208cacb99bb8ceb705eeae99fb88d4d274 "strconv"
 )
 
 // FidePlayerRequestBuilder builds and executes requests for operations under \api\fide\player
 type FidePlayerRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // FidePlayerRequestBuilderGetQueryParameters list of FIDE players search results for a query.
 type FidePlayerRequestBuilderGetQueryParameters struct {
-    // The search query.
-    Q *string "uriparametername:\"q\""
+	// The search query.
+	Q *string "uriparametername:\"q\""
 }
+
 // FidePlayerRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type FidePlayerRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
-    // Request query parameters
-    QueryParameters *FidePlayerRequestBuilderGetQueryParameters
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *FidePlayerRequestBuilderGetQueryParameters
 }
+
 // ByPlayerId gets an item from the github.com/atye/golichess/kiota.api.fide.player.item collection
 // Deprecated: This indexer is deprecated and will be removed in the next major version. Use the one with the typed parameter instead.
 // returns a *FidePlayerWithPlayerItemRequestBuilder when successful
-func (m *FidePlayerRequestBuilder) ByPlayerId(playerId string)(*FidePlayerWithPlayerItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    if playerId != "" {
-        urlTplParams["playerId"] = playerId
-    }
-    return NewFidePlayerWithPlayerItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+func (m *FidePlayerRequestBuilder) ByPlayerId(playerId string) *FidePlayerWithPlayerItemRequestBuilder {
+	urlTplParams := make(map[string]string)
+	for idx, item := range m.BaseRequestBuilder.PathParameters {
+		urlTplParams[idx] = item
+	}
+	if playerId != "" {
+		urlTplParams["playerId"] = playerId
+	}
+	return NewFidePlayerWithPlayerItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // ByPlayerIdInteger gets an item from the github.com/atye/golichess/kiota.api.fide.player.item collection
 // returns a *FidePlayerWithPlayerItemRequestBuilder when successful
-func (m *FidePlayerRequestBuilder) ByPlayerIdInteger(playerId int32)(*FidePlayerWithPlayerItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    urlTplParams["playerId"] = i53ac87e8cb3cc9276228f74d38694a208cacb99bb8ceb705eeae99fb88d4d274.FormatInt(int64(playerId), 10)
-    return NewFidePlayerWithPlayerItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+func (m *FidePlayerRequestBuilder) ByPlayerIdInteger(playerId int32) *FidePlayerWithPlayerItemRequestBuilder {
+	urlTplParams := make(map[string]string)
+	for idx, item := range m.BaseRequestBuilder.PathParameters {
+		urlTplParams[idx] = item
+	}
+	urlTplParams["playerId"] = i53ac87e8cb3cc9276228f74d38694a208cacb99bb8ceb705eeae99fb88d4d274.FormatInt(int64(playerId), 10)
+	return NewFidePlayerWithPlayerItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewFidePlayerRequestBuilderInternal instantiates a new FidePlayerRequestBuilder and sets the default values.
-func NewFidePlayerRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*FidePlayerRequestBuilder) {
-    m := &FidePlayerRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/fide/player?q={q}", pathParameters),
-    }
-    return m
+func NewFidePlayerRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *FidePlayerRequestBuilder {
+	m := &FidePlayerRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/fide/player?q={q}", pathParameters),
+	}
+	return m
 }
+
 // NewFidePlayerRequestBuilder instantiates a new FidePlayerRequestBuilder and sets the default values.
-func NewFidePlayerRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*FidePlayerRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewFidePlayerRequestBuilderInternal(urlParams, requestAdapter)
+func NewFidePlayerRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *FidePlayerRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewFidePlayerRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get list of FIDE players search results for a query.
 // returns a []FIDEPlayerable when successful
-func (m *FidePlayerRequestBuilder) Get(ctx context.Context, requestConfiguration *FidePlayerRequestBuilderGetRequestConfiguration)([]i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.FIDEPlayerable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateFIDEPlayerFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    val := make([]i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.FIDEPlayerable, len(res))
-    for i, v := range res {
-        if v != nil {
-            val[i] = v.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.FIDEPlayerable)
-        }
-    }
-    return val, nil
+func (m *FidePlayerRequestBuilder) Get(ctx context.Context, requestConfiguration *FidePlayerRequestBuilderGetRequestConfiguration) ([]i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.FIDEPlayerable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateFIDEPlayerFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	val := make([]i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.FIDEPlayerable, len(res))
+	for i, v := range res {
+		if v != nil {
+			val[i] = v.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.FIDEPlayerable)
+		}
+	}
+	return val, nil
 }
+
 // ToGetRequestInformation list of FIDE players search results for a query.
 // returns a *RequestInformation when successful
-func (m *FidePlayerRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *FidePlayerRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        if requestConfiguration.QueryParameters != nil {
-            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
-        }
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    return requestInfo, nil
+func (m *FidePlayerRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *FidePlayerRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *FidePlayerRequestBuilder when successful
-func (m *FidePlayerRequestBuilder) WithUrl(rawUrl string)(*FidePlayerRequestBuilder) {
-    return NewFidePlayerRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *FidePlayerRequestBuilder) WithUrl(rawUrl string) *FidePlayerRequestBuilder {
+	return NewFidePlayerRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

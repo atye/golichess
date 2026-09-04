@@ -4,38 +4,43 @@
 package api
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // StreamBroadcastRequestBuilder builds and executes requests for operations under \api\stream\broadcast
 type StreamBroadcastRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // NewStreamBroadcastRequestBuilderInternal instantiates a new StreamBroadcastRequestBuilder and sets the default values.
-func NewStreamBroadcastRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*StreamBroadcastRequestBuilder) {
-    m := &StreamBroadcastRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/stream/broadcast", pathParameters),
-    }
-    return m
+func NewStreamBroadcastRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *StreamBroadcastRequestBuilder {
+	m := &StreamBroadcastRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/stream/broadcast", pathParameters),
+	}
+	return m
 }
+
 // NewStreamBroadcastRequestBuilder instantiates a new StreamBroadcastRequestBuilder and sets the default values.
-func NewStreamBroadcastRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*StreamBroadcastRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewStreamBroadcastRequestBuilderInternal(urlParams, requestAdapter)
+func NewStreamBroadcastRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *StreamBroadcastRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewStreamBroadcastRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Group the group property
 // returns a *StreamBroadcastGroupRequestBuilder when successful
-func (m *StreamBroadcastRequestBuilder) Group()(*StreamBroadcastGroupRequestBuilder) {
-    return NewStreamBroadcastGroupRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *StreamBroadcastRequestBuilder) Group() *StreamBroadcastGroupRequestBuilder {
+	return NewStreamBroadcastGroupRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Round the round property
 // returns a *StreamBroadcastRoundRequestBuilder when successful
-func (m *StreamBroadcastRequestBuilder) Round()(*StreamBroadcastRoundRequestBuilder) {
-    return NewStreamBroadcastRoundRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *StreamBroadcastRequestBuilder) Round() *StreamBroadcastRoundRequestBuilder {
+	return NewStreamBroadcastRoundRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Tour the tour property
 // returns a *StreamBroadcastTourRequestBuilder when successful
-func (m *StreamBroadcastRequestBuilder) Tour()(*StreamBroadcastTourRequestBuilder) {
-    return NewStreamBroadcastTourRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *StreamBroadcastRequestBuilder) Tour() *StreamBroadcastTourRequestBuilder {
+	return NewStreamBroadcastTourRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

@@ -4,404 +4,434 @@
 package api
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
-    i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type ChallengeAiPostResponse struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The createdAt property
-    createdAt *int64
-    // The fen property
-    fen *string
-    // The fullId property
-    fullId *string
-    // The id property
-    id *string
-    // The perf property
-    perf *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.PerfType
-    // The player property
-    player *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameColor
-    // The rated property
-    rated *bool
-    // The source property
-    source *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameSource
-    // The speed property
-    speed *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Speed
-    // The status property
-    status i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameStatusable
-    // The turns property
-    turns *int32
-    // The variant property
-    variant i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Variantable
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The createdAt property
+	createdAt *int64
+	// The fen property
+	fen *string
+	// The fullId property
+	fullId *string
+	// The id property
+	id *string
+	// The perf property
+	perf *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.PerfType
+	// The player property
+	player *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameColor
+	// The rated property
+	rated *bool
+	// The source property
+	source *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameSource
+	// The speed property
+	speed *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Speed
+	// The status property
+	status i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameStatusable
+	// The turns property
+	turns *int32
+	// The variant property
+	variant i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Variantable
 }
+
 // NewChallengeAiPostResponse instantiates a new ChallengeAiPostResponse and sets the default values.
-func NewChallengeAiPostResponse()(*ChallengeAiPostResponse) {
-    m := &ChallengeAiPostResponse{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewChallengeAiPostResponse() *ChallengeAiPostResponse {
+	m := &ChallengeAiPostResponse{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateChallengeAiPostResponseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateChallengeAiPostResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewChallengeAiPostResponse(), nil
+func CreateChallengeAiPostResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewChallengeAiPostResponse(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *ChallengeAiPostResponse) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *ChallengeAiPostResponse) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetCreatedAt gets the createdAt property value. The createdAt property
 // returns a *int64 when successful
-func (m *ChallengeAiPostResponse) GetCreatedAt()(*int64) {
-    return m.createdAt
+func (m *ChallengeAiPostResponse) GetCreatedAt() *int64 {
+	return m.createdAt
 }
+
 // GetFen gets the fen property value. The fen property
 // returns a *string when successful
-func (m *ChallengeAiPostResponse) GetFen()(*string) {
-    return m.fen
+func (m *ChallengeAiPostResponse) GetFen() *string {
+	return m.fen
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ChallengeAiPostResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["createdAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCreatedAt(val)
-        }
-        return nil
-    }
-    res["fen"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFen(val)
-        }
-        return nil
-    }
-    res["fullId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFullId(val)
-        }
-        return nil
-    }
-    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetId(val)
-        }
-        return nil
-    }
-    res["perf"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParsePerfType)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPerf(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.PerfType))
-        }
-        return nil
-    }
-    res["player"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParseGameColor)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPlayer(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameColor))
-        }
-        return nil
-    }
-    res["rated"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRated(val)
-        }
-        return nil
-    }
-    res["source"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParseGameSource)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSource(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameSource))
-        }
-        return nil
-    }
-    res["speed"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParseSpeed)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSpeed(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Speed))
-        }
-        return nil
-    }
-    res["status"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateGameStatusFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStatus(val.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameStatusable))
-        }
-        return nil
-    }
-    res["turns"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTurns(val)
-        }
-        return nil
-    }
-    res["variant"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateVariantFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetVariant(val.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Variantable))
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *ChallengeAiPostResponse) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["createdAt"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCreatedAt(val)
+		}
+		return nil
+	}
+	res["fen"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFen(val)
+		}
+		return nil
+	}
+	res["fullId"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFullId(val)
+		}
+		return nil
+	}
+	res["id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetId(val)
+		}
+		return nil
+	}
+	res["perf"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParsePerfType)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPerf(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.PerfType))
+		}
+		return nil
+	}
+	res["player"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParseGameColor)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPlayer(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameColor))
+		}
+		return nil
+	}
+	res["rated"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRated(val)
+		}
+		return nil
+	}
+	res["source"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParseGameSource)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetSource(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameSource))
+		}
+		return nil
+	}
+	res["speed"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParseSpeed)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetSpeed(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Speed))
+		}
+		return nil
+	}
+	res["status"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateGameStatusFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStatus(val.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameStatusable))
+		}
+		return nil
+	}
+	res["turns"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTurns(val)
+		}
+		return nil
+	}
+	res["variant"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateVariantFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetVariant(val.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Variantable))
+		}
+		return nil
+	}
+	return res
 }
+
 // GetFullId gets the fullId property value. The fullId property
 // returns a *string when successful
-func (m *ChallengeAiPostResponse) GetFullId()(*string) {
-    return m.fullId
+func (m *ChallengeAiPostResponse) GetFullId() *string {
+	return m.fullId
 }
+
 // GetId gets the id property value. The id property
 // returns a *string when successful
-func (m *ChallengeAiPostResponse) GetId()(*string) {
-    return m.id
+func (m *ChallengeAiPostResponse) GetId() *string {
+	return m.id
 }
+
 // GetPerf gets the perf property value. The perf property
 // returns a *PerfType when successful
-func (m *ChallengeAiPostResponse) GetPerf()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.PerfType) {
-    return m.perf
+func (m *ChallengeAiPostResponse) GetPerf() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.PerfType {
+	return m.perf
 }
+
 // GetPlayer gets the player property value. The player property
 // returns a *GameColor when successful
-func (m *ChallengeAiPostResponse) GetPlayer()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameColor) {
-    return m.player
+func (m *ChallengeAiPostResponse) GetPlayer() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameColor {
+	return m.player
 }
+
 // GetRated gets the rated property value. The rated property
 // returns a *bool when successful
-func (m *ChallengeAiPostResponse) GetRated()(*bool) {
-    return m.rated
+func (m *ChallengeAiPostResponse) GetRated() *bool {
+	return m.rated
 }
+
 // GetSource gets the source property value. The source property
 // returns a *GameSource when successful
-func (m *ChallengeAiPostResponse) GetSource()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameSource) {
-    return m.source
+func (m *ChallengeAiPostResponse) GetSource() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameSource {
+	return m.source
 }
+
 // GetSpeed gets the speed property value. The speed property
 // returns a *Speed when successful
-func (m *ChallengeAiPostResponse) GetSpeed()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Speed) {
-    return m.speed
+func (m *ChallengeAiPostResponse) GetSpeed() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Speed {
+	return m.speed
 }
+
 // GetStatus gets the status property value. The status property
 // returns a GameStatusable when successful
-func (m *ChallengeAiPostResponse) GetStatus()(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameStatusable) {
-    return m.status
+func (m *ChallengeAiPostResponse) GetStatus() i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameStatusable {
+	return m.status
 }
+
 // GetTurns gets the turns property value. The turns property
 // returns a *int32 when successful
-func (m *ChallengeAiPostResponse) GetTurns()(*int32) {
-    return m.turns
+func (m *ChallengeAiPostResponse) GetTurns() *int32 {
+	return m.turns
 }
+
 // GetVariant gets the variant property value. The variant property
 // returns a Variantable when successful
-func (m *ChallengeAiPostResponse) GetVariant()(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Variantable) {
-    return m.variant
+func (m *ChallengeAiPostResponse) GetVariant() i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Variantable {
+	return m.variant
 }
+
 // Serialize serializes information the current object
-func (m *ChallengeAiPostResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteInt64Value("createdAt", m.GetCreatedAt())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("fen", m.GetFen())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("fullId", m.GetFullId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("id", m.GetId())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetPerf() != nil {
-        cast := (*m.GetPerf()).String()
-        err := writer.WriteStringValue("perf", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetPlayer() != nil {
-        cast := (*m.GetPlayer()).String()
-        err := writer.WriteStringValue("player", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("rated", m.GetRated())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetSource() != nil {
-        cast := (*m.GetSource()).String()
-        err := writer.WriteStringValue("source", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetSpeed() != nil {
-        cast := (*m.GetSpeed()).String()
-        err := writer.WriteStringValue("speed", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("status", m.GetStatus())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("turns", m.GetTurns())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("variant", m.GetVariant())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *ChallengeAiPostResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteInt64Value("createdAt", m.GetCreatedAt())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("fen", m.GetFen())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("fullId", m.GetFullId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("id", m.GetId())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetPerf() != nil {
+		cast := (*m.GetPerf()).String()
+		err := writer.WriteStringValue("perf", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetPlayer() != nil {
+		cast := (*m.GetPlayer()).String()
+		err := writer.WriteStringValue("player", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("rated", m.GetRated())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetSource() != nil {
+		cast := (*m.GetSource()).String()
+		err := writer.WriteStringValue("source", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetSpeed() != nil {
+		cast := (*m.GetSpeed()).String()
+		err := writer.WriteStringValue("speed", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("status", m.GetStatus())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("turns", m.GetTurns())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("variant", m.GetVariant())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ChallengeAiPostResponse) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *ChallengeAiPostResponse) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetCreatedAt sets the createdAt property value. The createdAt property
-func (m *ChallengeAiPostResponse) SetCreatedAt(value *int64)() {
-    m.createdAt = value
+func (m *ChallengeAiPostResponse) SetCreatedAt(value *int64) {
+	m.createdAt = value
 }
+
 // SetFen sets the fen property value. The fen property
-func (m *ChallengeAiPostResponse) SetFen(value *string)() {
-    m.fen = value
+func (m *ChallengeAiPostResponse) SetFen(value *string) {
+	m.fen = value
 }
+
 // SetFullId sets the fullId property value. The fullId property
-func (m *ChallengeAiPostResponse) SetFullId(value *string)() {
-    m.fullId = value
+func (m *ChallengeAiPostResponse) SetFullId(value *string) {
+	m.fullId = value
 }
+
 // SetId sets the id property value. The id property
-func (m *ChallengeAiPostResponse) SetId(value *string)() {
-    m.id = value
+func (m *ChallengeAiPostResponse) SetId(value *string) {
+	m.id = value
 }
+
 // SetPerf sets the perf property value. The perf property
-func (m *ChallengeAiPostResponse) SetPerf(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.PerfType)() {
-    m.perf = value
+func (m *ChallengeAiPostResponse) SetPerf(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.PerfType) {
+	m.perf = value
 }
+
 // SetPlayer sets the player property value. The player property
-func (m *ChallengeAiPostResponse) SetPlayer(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameColor)() {
-    m.player = value
+func (m *ChallengeAiPostResponse) SetPlayer(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameColor) {
+	m.player = value
 }
+
 // SetRated sets the rated property value. The rated property
-func (m *ChallengeAiPostResponse) SetRated(value *bool)() {
-    m.rated = value
+func (m *ChallengeAiPostResponse) SetRated(value *bool) {
+	m.rated = value
 }
+
 // SetSource sets the source property value. The source property
-func (m *ChallengeAiPostResponse) SetSource(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameSource)() {
-    m.source = value
+func (m *ChallengeAiPostResponse) SetSource(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameSource) {
+	m.source = value
 }
+
 // SetSpeed sets the speed property value. The speed property
-func (m *ChallengeAiPostResponse) SetSpeed(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Speed)() {
-    m.speed = value
+func (m *ChallengeAiPostResponse) SetSpeed(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Speed) {
+	m.speed = value
 }
+
 // SetStatus sets the status property value. The status property
-func (m *ChallengeAiPostResponse) SetStatus(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameStatusable)() {
-    m.status = value
+func (m *ChallengeAiPostResponse) SetStatus(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameStatusable) {
+	m.status = value
 }
+
 // SetTurns sets the turns property value. The turns property
-func (m *ChallengeAiPostResponse) SetTurns(value *int32)() {
-    m.turns = value
+func (m *ChallengeAiPostResponse) SetTurns(value *int32) {
+	m.turns = value
 }
+
 // SetVariant sets the variant property value. The variant property
-func (m *ChallengeAiPostResponse) SetVariant(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Variantable)() {
-    m.variant = value
+func (m *ChallengeAiPostResponse) SetVariant(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Variantable) {
+	m.variant = value
 }
+
 type ChallengeAiPostResponseable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetCreatedAt()(*int64)
-    GetFen()(*string)
-    GetFullId()(*string)
-    GetId()(*string)
-    GetPerf()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.PerfType)
-    GetPlayer()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameColor)
-    GetRated()(*bool)
-    GetSource()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameSource)
-    GetSpeed()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Speed)
-    GetStatus()(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameStatusable)
-    GetTurns()(*int32)
-    GetVariant()(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Variantable)
-    SetCreatedAt(value *int64)()
-    SetFen(value *string)()
-    SetFullId(value *string)()
-    SetId(value *string)()
-    SetPerf(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.PerfType)()
-    SetPlayer(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameColor)()
-    SetRated(value *bool)()
-    SetSource(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameSource)()
-    SetSpeed(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Speed)()
-    SetStatus(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameStatusable)()
-    SetTurns(value *int32)()
-    SetVariant(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Variantable)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetCreatedAt() *int64
+	GetFen() *string
+	GetFullId() *string
+	GetId() *string
+	GetPerf() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.PerfType
+	GetPlayer() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameColor
+	GetRated() *bool
+	GetSource() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameSource
+	GetSpeed() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Speed
+	GetStatus() i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameStatusable
+	GetTurns() *int32
+	GetVariant() i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Variantable
+	SetCreatedAt(value *int64)
+	SetFen(value *string)
+	SetFullId(value *string)
+	SetId(value *string)
+	SetPerf(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.PerfType)
+	SetPlayer(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameColor)
+	SetRated(value *bool)
+	SetSource(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameSource)
+	SetSpeed(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Speed)
+	SetStatus(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameStatusable)
+	SetTurns(value *int32)
+	SetVariant(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Variantable)
 }

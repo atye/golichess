@@ -4,75 +4,82 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	"context"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // UserItemTournamentPlayedRequestBuilder builds and executes requests for operations under \api\user\{username}\tournament\played
 type UserItemTournamentPlayedRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // UserItemTournamentPlayedRequestBuilderGetQueryParameters get all tournaments played by a given user.Tournaments are sorted by reverse chronological order of start date (last played first).Tournaments are streamed as [ndjson](#description/streaming-with-nd-json).The stream is throttled, depending on who is making the request:  - Anonymous request: 20 tournaments per second  - [OAuth2 authenticated](#description/authentication) request: 30 tournaments per second  - Authenticated, downloading your own tournaments: 50 tournaments per second
 type UserItemTournamentPlayedRequestBuilderGetQueryParameters struct {
-    // Max number of tournaments to fetch
-    Nb *int32 "uriparametername:\"nb\""
-    // Include the player performance rating in the response, at some cost for the server.
-    Performance *bool "uriparametername:\"performance\""
+	// Max number of tournaments to fetch
+	Nb *int32 "uriparametername:\"nb\""
+	// Include the player performance rating in the response, at some cost for the server.
+	Performance *bool "uriparametername:\"performance\""
 }
+
 // UserItemTournamentPlayedRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type UserItemTournamentPlayedRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
-    // Request query parameters
-    QueryParameters *UserItemTournamentPlayedRequestBuilderGetQueryParameters
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *UserItemTournamentPlayedRequestBuilderGetQueryParameters
 }
+
 // NewUserItemTournamentPlayedRequestBuilderInternal instantiates a new UserItemTournamentPlayedRequestBuilder and sets the default values.
-func NewUserItemTournamentPlayedRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*UserItemTournamentPlayedRequestBuilder) {
-    m := &UserItemTournamentPlayedRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/user/{username}/tournament/played{?nb*,performance*}", pathParameters),
-    }
-    return m
+func NewUserItemTournamentPlayedRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *UserItemTournamentPlayedRequestBuilder {
+	m := &UserItemTournamentPlayedRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/user/{username}/tournament/played{?nb*,performance*}", pathParameters),
+	}
+	return m
 }
+
 // NewUserItemTournamentPlayedRequestBuilder instantiates a new UserItemTournamentPlayedRequestBuilder and sets the default values.
-func NewUserItemTournamentPlayedRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*UserItemTournamentPlayedRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewUserItemTournamentPlayedRequestBuilderInternal(urlParams, requestAdapter)
+func NewUserItemTournamentPlayedRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *UserItemTournamentPlayedRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewUserItemTournamentPlayedRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get get all tournaments played by a given user.Tournaments are sorted by reverse chronological order of start date (last played first).Tournaments are streamed as [ndjson](#description/streaming-with-nd-json).The stream is throttled, depending on who is making the request:  - Anonymous request: 20 tournaments per second  - [OAuth2 authenticated](#description/authentication) request: 30 tournaments per second  - Authenticated, downloading your own tournaments: 50 tournaments per second
 // returns a []byte when successful
-func (m *UserItemTournamentPlayedRequestBuilder) Get(ctx context.Context, requestConfiguration *UserItemTournamentPlayedRequestBuilderGetRequestConfiguration)([]byte, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.([]byte), nil
+func (m *UserItemTournamentPlayedRequestBuilder) Get(ctx context.Context, requestConfiguration *UserItemTournamentPlayedRequestBuilderGetRequestConfiguration) ([]byte, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.([]byte), nil
 }
+
 // ToGetRequestInformation get all tournaments played by a given user.Tournaments are sorted by reverse chronological order of start date (last played first).Tournaments are streamed as [ndjson](#description/streaming-with-nd-json).The stream is throttled, depending on who is making the request:  - Anonymous request: 20 tournaments per second  - [OAuth2 authenticated](#description/authentication) request: 30 tournaments per second  - Authenticated, downloading your own tournaments: 50 tournaments per second
 // returns a *RequestInformation when successful
-func (m *UserItemTournamentPlayedRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *UserItemTournamentPlayedRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        if requestConfiguration.QueryParameters != nil {
-            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
-        }
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/x-ndjson")
-    return requestInfo, nil
+func (m *UserItemTournamentPlayedRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *UserItemTournamentPlayedRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/x-ndjson")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *UserItemTournamentPlayedRequestBuilder when successful
-func (m *UserItemTournamentPlayedRequestBuilder) WithUrl(rawUrl string)(*UserItemTournamentPlayedRequestBuilder) {
-    return NewUserItemTournamentPlayedRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *UserItemTournamentPlayedRequestBuilder) WithUrl(rawUrl string) *UserItemTournamentPlayedRequestBuilder {
+	return NewUserItemTournamentPlayedRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

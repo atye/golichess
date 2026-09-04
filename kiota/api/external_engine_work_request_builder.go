@@ -4,96 +4,104 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	"context"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // ExternalEngineWorkRequestBuilder builds and executes requests for operations under \api\external-engine\work
 type ExternalEngineWorkRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // ExternalEngineWorkRequestBuilderPostRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type ExternalEngineWorkRequestBuilderPostRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+
 // ById gets an item from the github.com/atye/golichess/kiota.api.externalEngine.work.item collection
 // returns a *ExternalEngineWorkWorkItemRequestBuilder when successful
-func (m *ExternalEngineWorkRequestBuilder) ById(id string)(*ExternalEngineWorkWorkItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    if id != "" {
-        urlTplParams["id"] = id
-    }
-    return NewExternalEngineWorkWorkItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+func (m *ExternalEngineWorkRequestBuilder) ById(id string) *ExternalEngineWorkWorkItemRequestBuilder {
+	urlTplParams := make(map[string]string)
+	for idx, item := range m.BaseRequestBuilder.PathParameters {
+		urlTplParams[idx] = item
+	}
+	if id != "" {
+		urlTplParams["id"] = id
+	}
+	return NewExternalEngineWorkWorkItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewExternalEngineWorkRequestBuilderInternal instantiates a new ExternalEngineWorkRequestBuilder and sets the default values.
-func NewExternalEngineWorkRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*ExternalEngineWorkRequestBuilder) {
-    m := &ExternalEngineWorkRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/external-engine/work", pathParameters),
-    }
-    return m
+func NewExternalEngineWorkRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *ExternalEngineWorkRequestBuilder {
+	m := &ExternalEngineWorkRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/external-engine/work", pathParameters),
+	}
+	return m
 }
+
 // NewExternalEngineWorkRequestBuilder instantiates a new ExternalEngineWorkRequestBuilder and sets the default values.
-func NewExternalEngineWorkRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*ExternalEngineWorkRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewExternalEngineWorkRequestBuilderInternal(urlParams, requestAdapter)
+func NewExternalEngineWorkRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *ExternalEngineWorkRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewExternalEngineWorkRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Post **Endpoint: `https://engine.lichess.ovh/api/external-engine/work`**Wait for an analysis requests to any of the external engines thathave been registered with the given `providerSecret`.Uses long polling.After acquiring a request, the provider should immediately[start streaming the results](#tag/external-engine/POST/api/external-engine/work/{id}).
 // Deprecated: This method is obsolete. Use PostAsWorkPostResponse instead.
 // returns a ExternalEngineWorkResponseable when successful
-func (m *ExternalEngineWorkRequestBuilder) Post(ctx context.Context, body ExternalEngineWorkPostRequestBodyable, requestConfiguration *ExternalEngineWorkRequestBuilderPostRequestConfiguration)(ExternalEngineWorkResponseable, error) {
-    requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateExternalEngineWorkResponseFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(ExternalEngineWorkResponseable), nil
+func (m *ExternalEngineWorkRequestBuilder) Post(ctx context.Context, body ExternalEngineWorkPostRequestBodyable, requestConfiguration *ExternalEngineWorkRequestBuilderPostRequestConfiguration) (ExternalEngineWorkResponseable, error) {
+	requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateExternalEngineWorkResponseFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(ExternalEngineWorkResponseable), nil
 }
+
 // PostAsWorkPostResponse **Endpoint: `https://engine.lichess.ovh/api/external-engine/work`**Wait for an analysis requests to any of the external engines thathave been registered with the given `providerSecret`.Uses long polling.After acquiring a request, the provider should immediately[start streaming the results](#tag/external-engine/POST/api/external-engine/work/{id}).
 // returns a ExternalEngineWorkPostResponseable when successful
-func (m *ExternalEngineWorkRequestBuilder) PostAsWorkPostResponse(ctx context.Context, body ExternalEngineWorkPostRequestBodyable, requestConfiguration *ExternalEngineWorkRequestBuilderPostRequestConfiguration)(ExternalEngineWorkPostResponseable, error) {
-    requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateExternalEngineWorkPostResponseFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(ExternalEngineWorkPostResponseable), nil
+func (m *ExternalEngineWorkRequestBuilder) PostAsWorkPostResponse(ctx context.Context, body ExternalEngineWorkPostRequestBodyable, requestConfiguration *ExternalEngineWorkRequestBuilderPostRequestConfiguration) (ExternalEngineWorkPostResponseable, error) {
+	requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateExternalEngineWorkPostResponseFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(ExternalEngineWorkPostResponseable), nil
 }
+
 // ToPostRequestInformation **Endpoint: `https://engine.lichess.ovh/api/external-engine/work`**Wait for an analysis requests to any of the external engines thathave been registered with the given `providerSecret`.Uses long polling.After acquiring a request, the provider should immediately[start streaming the results](#tag/external-engine/POST/api/external-engine/work/{id}).
 // returns a *RequestInformation when successful
-func (m *ExternalEngineWorkRequestBuilder) ToPostRequestInformation(ctx context.Context, body ExternalEngineWorkPostRequestBodyable, requestConfiguration *ExternalEngineWorkRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    err := requestInfo.SetContentFromParsable(ctx, m.BaseRequestBuilder.RequestAdapter, "application/json", body)
-    if err != nil {
-        return nil, err
-    }
-    return requestInfo, nil
+func (m *ExternalEngineWorkRequestBuilder) ToPostRequestInformation(ctx context.Context, body ExternalEngineWorkPostRequestBodyable, requestConfiguration *ExternalEngineWorkRequestBuilderPostRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	err := requestInfo.SetContentFromParsable(ctx, m.BaseRequestBuilder.RequestAdapter, "application/json", body)
+	if err != nil {
+		return nil, err
+	}
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *ExternalEngineWorkRequestBuilder when successful
-func (m *ExternalEngineWorkRequestBuilder) WithUrl(rawUrl string)(*ExternalEngineWorkRequestBuilder) {
-    return NewExternalEngineWorkRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *ExternalEngineWorkRequestBuilder) WithUrl(rawUrl string) *ExternalEngineWorkRequestBuilder {
+	return NewExternalEngineWorkRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

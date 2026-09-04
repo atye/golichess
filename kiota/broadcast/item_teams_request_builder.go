@@ -4,28 +4,31 @@
 package broadcast
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // ItemTeamsRequestBuilder builds and executes requests for operations under \broadcast\{broadcastTournamentId}\teams
 type ItemTeamsRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // NewItemTeamsRequestBuilderInternal instantiates a new ItemTeamsRequestBuilder and sets the default values.
-func NewItemTeamsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*ItemTeamsRequestBuilder) {
-    m := &ItemTeamsRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/broadcast/{broadcastTournamentId}/teams", pathParameters),
-    }
-    return m
+func NewItemTeamsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *ItemTeamsRequestBuilder {
+	m := &ItemTeamsRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/broadcast/{broadcastTournamentId}/teams", pathParameters),
+	}
+	return m
 }
+
 // NewItemTeamsRequestBuilder instantiates a new ItemTeamsRequestBuilder and sets the default values.
-func NewItemTeamsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*ItemTeamsRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewItemTeamsRequestBuilderInternal(urlParams, requestAdapter)
+func NewItemTeamsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *ItemTeamsRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewItemTeamsRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Standings the standings property
 // returns a *ItemTeamsStandingsRequestBuilder when successful
-func (m *ItemTeamsRequestBuilder) Standings()(*ItemTeamsStandingsRequestBuilder) {
-    return NewItemTeamsStandingsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *ItemTeamsRequestBuilder) Standings() *ItemTeamsStandingsRequestBuilder {
+	return NewItemTeamsStandingsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

@@ -4,77 +4,84 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	"context"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // PuzzleActivityRequestBuilder builds and executes requests for operations under \api\puzzle\activity
 type PuzzleActivityRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // PuzzleActivityRequestBuilderGetQueryParameters download your puzzle activity in [ndjson](#description/streaming-with-nd-json) format.Puzzle activity is sorted by reverse chronological order (most recent first)We recommend streaming the response, for it can be very long.
 type PuzzleActivityRequestBuilderGetQueryParameters struct {
-    // Download entries before this timestamp. Defaults to now. Use `before` and `max` for pagination.
-    Before *int32 "uriparametername:\"before\""
-    // How many entries to download. Leave empty to download all activity.
-    Max *int32 "uriparametername:\"max\""
-    // Download entries since this timestamp. Defaults to account creation date.
-    Since *int32 "uriparametername:\"since\""
+	// Download entries before this timestamp. Defaults to now. Use `before` and `max` for pagination.
+	Before *int32 "uriparametername:\"before\""
+	// How many entries to download. Leave empty to download all activity.
+	Max *int32 "uriparametername:\"max\""
+	// Download entries since this timestamp. Defaults to account creation date.
+	Since *int32 "uriparametername:\"since\""
 }
+
 // PuzzleActivityRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type PuzzleActivityRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
-    // Request query parameters
-    QueryParameters *PuzzleActivityRequestBuilderGetQueryParameters
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *PuzzleActivityRequestBuilderGetQueryParameters
 }
+
 // NewPuzzleActivityRequestBuilderInternal instantiates a new PuzzleActivityRequestBuilder and sets the default values.
-func NewPuzzleActivityRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*PuzzleActivityRequestBuilder) {
-    m := &PuzzleActivityRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/puzzle/activity{?before*,max*,since*}", pathParameters),
-    }
-    return m
+func NewPuzzleActivityRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *PuzzleActivityRequestBuilder {
+	m := &PuzzleActivityRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/puzzle/activity{?before*,max*,since*}", pathParameters),
+	}
+	return m
 }
+
 // NewPuzzleActivityRequestBuilder instantiates a new PuzzleActivityRequestBuilder and sets the default values.
-func NewPuzzleActivityRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*PuzzleActivityRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewPuzzleActivityRequestBuilderInternal(urlParams, requestAdapter)
+func NewPuzzleActivityRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *PuzzleActivityRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewPuzzleActivityRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get download your puzzle activity in [ndjson](#description/streaming-with-nd-json) format.Puzzle activity is sorted by reverse chronological order (most recent first)We recommend streaming the response, for it can be very long.
 // returns a []byte when successful
-func (m *PuzzleActivityRequestBuilder) Get(ctx context.Context, requestConfiguration *PuzzleActivityRequestBuilderGetRequestConfiguration)([]byte, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.([]byte), nil
+func (m *PuzzleActivityRequestBuilder) Get(ctx context.Context, requestConfiguration *PuzzleActivityRequestBuilderGetRequestConfiguration) ([]byte, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.([]byte), nil
 }
+
 // ToGetRequestInformation download your puzzle activity in [ndjson](#description/streaming-with-nd-json) format.Puzzle activity is sorted by reverse chronological order (most recent first)We recommend streaming the response, for it can be very long.
 // returns a *RequestInformation when successful
-func (m *PuzzleActivityRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *PuzzleActivityRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        if requestConfiguration.QueryParameters != nil {
-            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
-        }
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/x-ndjson")
-    return requestInfo, nil
+func (m *PuzzleActivityRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *PuzzleActivityRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/x-ndjson")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *PuzzleActivityRequestBuilder when successful
-func (m *PuzzleActivityRequestBuilder) WithUrl(rawUrl string)(*PuzzleActivityRequestBuilder) {
-    return NewPuzzleActivityRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *PuzzleActivityRequestBuilder) WithUrl(rawUrl string) *PuzzleActivityRequestBuilder {
+	return NewPuzzleActivityRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

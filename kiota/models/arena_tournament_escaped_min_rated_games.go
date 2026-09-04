@@ -4,80 +4,88 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type ArenaTournament_minRatedGames struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The nb property
-    nb *int32
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The nb property
+	nb *int32
 }
+
 // NewArenaTournament_minRatedGames instantiates a new ArenaTournament_minRatedGames and sets the default values.
-func NewArenaTournament_minRatedGames()(*ArenaTournament_minRatedGames) {
-    m := &ArenaTournament_minRatedGames{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewArenaTournament_minRatedGames() *ArenaTournament_minRatedGames {
+	m := &ArenaTournament_minRatedGames{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateArenaTournament_minRatedGamesFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateArenaTournament_minRatedGamesFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewArenaTournament_minRatedGames(), nil
+func CreateArenaTournament_minRatedGamesFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewArenaTournament_minRatedGames(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *ArenaTournament_minRatedGames) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *ArenaTournament_minRatedGames) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ArenaTournament_minRatedGames) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["nb"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetNb(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *ArenaTournament_minRatedGames) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["nb"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetNb(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetNb gets the nb property value. The nb property
 // returns a *int32 when successful
-func (m *ArenaTournament_minRatedGames) GetNb()(*int32) {
-    return m.nb
+func (m *ArenaTournament_minRatedGames) GetNb() *int32 {
+	return m.nb
 }
+
 // Serialize serializes information the current object
-func (m *ArenaTournament_minRatedGames) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteInt32Value("nb", m.GetNb())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *ArenaTournament_minRatedGames) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteInt32Value("nb", m.GetNb())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ArenaTournament_minRatedGames) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *ArenaTournament_minRatedGames) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetNb sets the nb property value. The nb property
-func (m *ArenaTournament_minRatedGames) SetNb(value *int32)() {
-    m.nb = value
+func (m *ArenaTournament_minRatedGames) SetNb(value *int32) {
+	m.nb = value
 }
+
 type ArenaTournament_minRatedGamesable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetNb()(*int32)
-    SetNb(value *int32)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetNb() *int32
+	SetNb(value *int32)
 }

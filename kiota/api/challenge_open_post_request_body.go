@@ -4,318 +4,344 @@
 package api
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
-    i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type ChallengeOpenPostRequestBody struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // Clock increment in seconds. If empty, a correspondence game is created.
-    clockIncrement *int32
-    // Clock initial time in seconds. If empty, a correspondence game is created.
-    clockLimit *int32
-    // Days per turn. For correspondence challenges.
-    days *int32
-    // Timestamp in milliseconds to expire the challenge. Defaults to 24h after creation. Can't be more than 2 weeks after creation.
-    expiresAt *int64
-    // Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated.
-    fen *string
-    // Optional name for the challenge, that players will see on the challenge page.
-    name *string
-    // Game is rated and impacts players ratings
-    rated *bool
-    // Optional pair of usernames, separated by a comma.If set, only these users will be allowed to join the game.The first username gets the white pieces.Example: `Username1,Username2`
-    users *string
-    // The variant property
-    variant *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// Clock increment in seconds. If empty, a correspondence game is created.
+	clockIncrement *int32
+	// Clock initial time in seconds. If empty, a correspondence game is created.
+	clockLimit *int32
+	// Days per turn. For correspondence challenges.
+	days *int32
+	// Timestamp in milliseconds to expire the challenge. Defaults to 24h after creation. Can't be more than 2 weeks after creation.
+	expiresAt *int64
+	// Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated.
+	fen *string
+	// Optional name for the challenge, that players will see on the challenge page.
+	name *string
+	// Game is rated and impacts players ratings
+	rated *bool
+	// Optional pair of usernames, separated by a comma.If set, only these users will be allowed to join the game.The first username gets the white pieces.Example: `Username1,Username2`
+	users *string
+	// The variant property
+	variant *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey
 }
+
 // NewChallengeOpenPostRequestBody instantiates a new ChallengeOpenPostRequestBody and sets the default values.
-func NewChallengeOpenPostRequestBody()(*ChallengeOpenPostRequestBody) {
-    m := &ChallengeOpenPostRequestBody{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    fenValue := "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
-    m.SetFen(&fenValue)
-    variantValue := STANDARD_VARIANTKEY
-    m.SetVariant(&variantValue)
-    return m
+func NewChallengeOpenPostRequestBody() *ChallengeOpenPostRequestBody {
+	m := &ChallengeOpenPostRequestBody{}
+	m.SetAdditionalData(make(map[string]any))
+	fenValue := "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+	m.SetFen(&fenValue)
+	ratedValue := false
+	m.SetRated(&ratedValue)
+	variantValue := STANDARD_VARIANTKEY
+	m.SetVariant(&variantValue)
+	return m
 }
+
 // CreateChallengeOpenPostRequestBodyFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateChallengeOpenPostRequestBodyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewChallengeOpenPostRequestBody(), nil
+func CreateChallengeOpenPostRequestBodyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewChallengeOpenPostRequestBody(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *ChallengeOpenPostRequestBody) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *ChallengeOpenPostRequestBody) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetClockIncrement gets the clock.increment property value. Clock increment in seconds. If empty, a correspondence game is created.
 // returns a *int32 when successful
-func (m *ChallengeOpenPostRequestBody) GetClockIncrement()(*int32) {
-    return m.clockIncrement
+func (m *ChallengeOpenPostRequestBody) GetClockIncrement() *int32 {
+	return m.clockIncrement
 }
+
 // GetClockLimit gets the clock.limit property value. Clock initial time in seconds. If empty, a correspondence game is created.
 // returns a *int32 when successful
-func (m *ChallengeOpenPostRequestBody) GetClockLimit()(*int32) {
-    return m.clockLimit
+func (m *ChallengeOpenPostRequestBody) GetClockLimit() *int32 {
+	return m.clockLimit
 }
+
 // GetDays gets the days property value. Days per turn. For correspondence challenges.
 // returns a *int32 when successful
-func (m *ChallengeOpenPostRequestBody) GetDays()(*int32) {
-    return m.days
+func (m *ChallengeOpenPostRequestBody) GetDays() *int32 {
+	return m.days
 }
+
 // GetExpiresAt gets the expiresAt property value. Timestamp in milliseconds to expire the challenge. Defaults to 24h after creation. Can't be more than 2 weeks after creation.
 // returns a *int64 when successful
-func (m *ChallengeOpenPostRequestBody) GetExpiresAt()(*int64) {
-    return m.expiresAt
+func (m *ChallengeOpenPostRequestBody) GetExpiresAt() *int64 {
+	return m.expiresAt
 }
+
 // GetFen gets the fen property value. Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated.
 // returns a *string when successful
-func (m *ChallengeOpenPostRequestBody) GetFen()(*string) {
-    return m.fen
+func (m *ChallengeOpenPostRequestBody) GetFen() *string {
+	return m.fen
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ChallengeOpenPostRequestBody) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["clock.increment"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetClockIncrement(val)
-        }
-        return nil
-    }
-    res["clock.limit"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetClockLimit(val)
-        }
-        return nil
-    }
-    res["days"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDays(val)
-        }
-        return nil
-    }
-    res["expiresAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetExpiresAt(val)
-        }
-        return nil
-    }
-    res["fen"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFen(val)
-        }
-        return nil
-    }
-    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetName(val)
-        }
-        return nil
-    }
-    res["rated"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRated(val)
-        }
-        return nil
-    }
-    res["users"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetUsers(val)
-        }
-        return nil
-    }
-    res["variant"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParseVariantKey)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetVariant(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey))
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *ChallengeOpenPostRequestBody) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["clock.increment"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetClockIncrement(val)
+		}
+		return nil
+	}
+	res["clock.limit"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetClockLimit(val)
+		}
+		return nil
+	}
+	res["days"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetDays(val)
+		}
+		return nil
+	}
+	res["expiresAt"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetExpiresAt(val)
+		}
+		return nil
+	}
+	res["fen"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFen(val)
+		}
+		return nil
+	}
+	res["name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetName(val)
+		}
+		return nil
+	}
+	res["rated"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRated(val)
+		}
+		return nil
+	}
+	res["users"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetUsers(val)
+		}
+		return nil
+	}
+	res["variant"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParseVariantKey)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetVariant(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey))
+		}
+		return nil
+	}
+	return res
 }
+
 // GetName gets the name property value. Optional name for the challenge, that players will see on the challenge page.
 // returns a *string when successful
-func (m *ChallengeOpenPostRequestBody) GetName()(*string) {
-    return m.name
+func (m *ChallengeOpenPostRequestBody) GetName() *string {
+	return m.name
 }
+
 // GetRated gets the rated property value. Game is rated and impacts players ratings
 // returns a *bool when successful
-func (m *ChallengeOpenPostRequestBody) GetRated()(*bool) {
-    return m.rated
+func (m *ChallengeOpenPostRequestBody) GetRated() *bool {
+	return m.rated
 }
+
 // GetUsers gets the users property value. Optional pair of usernames, separated by a comma.If set, only these users will be allowed to join the game.The first username gets the white pieces.Example: `Username1,Username2`
 // returns a *string when successful
-func (m *ChallengeOpenPostRequestBody) GetUsers()(*string) {
-    return m.users
+func (m *ChallengeOpenPostRequestBody) GetUsers() *string {
+	return m.users
 }
+
 // GetVariant gets the variant property value. The variant property
 // returns a *VariantKey when successful
-func (m *ChallengeOpenPostRequestBody) GetVariant()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey) {
-    return m.variant
+func (m *ChallengeOpenPostRequestBody) GetVariant() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey {
+	return m.variant
 }
+
 // Serialize serializes information the current object
-func (m *ChallengeOpenPostRequestBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteInt32Value("clock.increment", m.GetClockIncrement())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("clock.limit", m.GetClockLimit())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("days", m.GetDays())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt64Value("expiresAt", m.GetExpiresAt())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("fen", m.GetFen())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("name", m.GetName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("rated", m.GetRated())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("users", m.GetUsers())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetVariant() != nil {
-        cast := (*m.GetVariant()).String()
-        err := writer.WriteStringValue("variant", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *ChallengeOpenPostRequestBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteInt32Value("clock.increment", m.GetClockIncrement())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("clock.limit", m.GetClockLimit())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("days", m.GetDays())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt64Value("expiresAt", m.GetExpiresAt())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("fen", m.GetFen())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("name", m.GetName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("rated", m.GetRated())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("users", m.GetUsers())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetVariant() != nil {
+		cast := (*m.GetVariant()).String()
+		err := writer.WriteStringValue("variant", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ChallengeOpenPostRequestBody) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *ChallengeOpenPostRequestBody) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetClockIncrement sets the clock.increment property value. Clock increment in seconds. If empty, a correspondence game is created.
-func (m *ChallengeOpenPostRequestBody) SetClockIncrement(value *int32)() {
-    m.clockIncrement = value
+func (m *ChallengeOpenPostRequestBody) SetClockIncrement(value *int32) {
+	m.clockIncrement = value
 }
+
 // SetClockLimit sets the clock.limit property value. Clock initial time in seconds. If empty, a correspondence game is created.
-func (m *ChallengeOpenPostRequestBody) SetClockLimit(value *int32)() {
-    m.clockLimit = value
+func (m *ChallengeOpenPostRequestBody) SetClockLimit(value *int32) {
+	m.clockLimit = value
 }
+
 // SetDays sets the days property value. Days per turn. For correspondence challenges.
-func (m *ChallengeOpenPostRequestBody) SetDays(value *int32)() {
-    m.days = value
+func (m *ChallengeOpenPostRequestBody) SetDays(value *int32) {
+	m.days = value
 }
+
 // SetExpiresAt sets the expiresAt property value. Timestamp in milliseconds to expire the challenge. Defaults to 24h after creation. Can't be more than 2 weeks after creation.
-func (m *ChallengeOpenPostRequestBody) SetExpiresAt(value *int64)() {
-    m.expiresAt = value
+func (m *ChallengeOpenPostRequestBody) SetExpiresAt(value *int64) {
+	m.expiresAt = value
 }
+
 // SetFen sets the fen property value. Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated.
-func (m *ChallengeOpenPostRequestBody) SetFen(value *string)() {
-    m.fen = value
+func (m *ChallengeOpenPostRequestBody) SetFen(value *string) {
+	m.fen = value
 }
+
 // SetName sets the name property value. Optional name for the challenge, that players will see on the challenge page.
-func (m *ChallengeOpenPostRequestBody) SetName(value *string)() {
-    m.name = value
+func (m *ChallengeOpenPostRequestBody) SetName(value *string) {
+	m.name = value
 }
+
 // SetRated sets the rated property value. Game is rated and impacts players ratings
-func (m *ChallengeOpenPostRequestBody) SetRated(value *bool)() {
-    m.rated = value
+func (m *ChallengeOpenPostRequestBody) SetRated(value *bool) {
+	m.rated = value
 }
+
 // SetUsers sets the users property value. Optional pair of usernames, separated by a comma.If set, only these users will be allowed to join the game.The first username gets the white pieces.Example: `Username1,Username2`
-func (m *ChallengeOpenPostRequestBody) SetUsers(value *string)() {
-    m.users = value
+func (m *ChallengeOpenPostRequestBody) SetUsers(value *string) {
+	m.users = value
 }
+
 // SetVariant sets the variant property value. The variant property
-func (m *ChallengeOpenPostRequestBody) SetVariant(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey)() {
-    m.variant = value
+func (m *ChallengeOpenPostRequestBody) SetVariant(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey) {
+	m.variant = value
 }
+
 type ChallengeOpenPostRequestBodyable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetClockIncrement()(*int32)
-    GetClockLimit()(*int32)
-    GetDays()(*int32)
-    GetExpiresAt()(*int64)
-    GetFen()(*string)
-    GetName()(*string)
-    GetRated()(*bool)
-    GetUsers()(*string)
-    GetVariant()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey)
-    SetClockIncrement(value *int32)()
-    SetClockLimit(value *int32)()
-    SetDays(value *int32)()
-    SetExpiresAt(value *int64)()
-    SetFen(value *string)()
-    SetName(value *string)()
-    SetRated(value *bool)()
-    SetUsers(value *string)()
-    SetVariant(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetClockIncrement() *int32
+	GetClockLimit() *int32
+	GetDays() *int32
+	GetExpiresAt() *int64
+	GetFen() *string
+	GetName() *string
+	GetRated() *bool
+	GetUsers() *string
+	GetVariant() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey
+	SetClockIncrement(value *int32)
+	SetClockLimit(value *int32)
+	SetDays(value *int32)
+	SetExpiresAt(value *int64)
+	SetFen(value *string)
+	SetName(value *string)
+	SetRated(value *bool)
+	SetUsers(value *string)
+	SetVariant(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey)
 }

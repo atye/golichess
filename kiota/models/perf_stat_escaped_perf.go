@@ -4,138 +4,150 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type PerfStat_perf struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The glicko property
-    glicko PerfStat_perf_glickoable
-    // The nb property
-    nb *int32
-    // The progress property
-    progress *int32
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The glicko property
+	glicko PerfStat_perf_glickoable
+	// The nb property
+	nb *int32
+	// The progress property
+	progress *int32
 }
+
 // NewPerfStat_perf instantiates a new PerfStat_perf and sets the default values.
-func NewPerfStat_perf()(*PerfStat_perf) {
-    m := &PerfStat_perf{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewPerfStat_perf() *PerfStat_perf {
+	m := &PerfStat_perf{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreatePerfStat_perfFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreatePerfStat_perfFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewPerfStat_perf(), nil
+func CreatePerfStat_perfFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewPerfStat_perf(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *PerfStat_perf) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *PerfStat_perf) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *PerfStat_perf) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["glicko"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreatePerfStat_perf_glickoFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetGlicko(val.(PerfStat_perf_glickoable))
-        }
-        return nil
-    }
-    res["nb"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetNb(val)
-        }
-        return nil
-    }
-    res["progress"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetProgress(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *PerfStat_perf) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["glicko"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreatePerfStat_perf_glickoFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetGlicko(val.(PerfStat_perf_glickoable))
+		}
+		return nil
+	}
+	res["nb"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetNb(val)
+		}
+		return nil
+	}
+	res["progress"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetProgress(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetGlicko gets the glicko property value. The glicko property
 // returns a PerfStat_perf_glickoable when successful
-func (m *PerfStat_perf) GetGlicko()(PerfStat_perf_glickoable) {
-    return m.glicko
+func (m *PerfStat_perf) GetGlicko() PerfStat_perf_glickoable {
+	return m.glicko
 }
+
 // GetNb gets the nb property value. The nb property
 // returns a *int32 when successful
-func (m *PerfStat_perf) GetNb()(*int32) {
-    return m.nb
+func (m *PerfStat_perf) GetNb() *int32 {
+	return m.nb
 }
+
 // GetProgress gets the progress property value. The progress property
 // returns a *int32 when successful
-func (m *PerfStat_perf) GetProgress()(*int32) {
-    return m.progress
+func (m *PerfStat_perf) GetProgress() *int32 {
+	return m.progress
 }
+
 // Serialize serializes information the current object
-func (m *PerfStat_perf) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("glicko", m.GetGlicko())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("nb", m.GetNb())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("progress", m.GetProgress())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *PerfStat_perf) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteObjectValue("glicko", m.GetGlicko())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("nb", m.GetNb())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("progress", m.GetProgress())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PerfStat_perf) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *PerfStat_perf) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetGlicko sets the glicko property value. The glicko property
-func (m *PerfStat_perf) SetGlicko(value PerfStat_perf_glickoable)() {
-    m.glicko = value
+func (m *PerfStat_perf) SetGlicko(value PerfStat_perf_glickoable) {
+	m.glicko = value
 }
+
 // SetNb sets the nb property value. The nb property
-func (m *PerfStat_perf) SetNb(value *int32)() {
-    m.nb = value
+func (m *PerfStat_perf) SetNb(value *int32) {
+	m.nb = value
 }
+
 // SetProgress sets the progress property value. The progress property
-func (m *PerfStat_perf) SetProgress(value *int32)() {
-    m.progress = value
+func (m *PerfStat_perf) SetProgress(value *int32) {
+	m.progress = value
 }
+
 type PerfStat_perfable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetGlicko()(PerfStat_perf_glickoable)
-    GetNb()(*int32)
-    GetProgress()(*int32)
-    SetGlicko(value PerfStat_perf_glickoable)()
-    SetNb(value *int32)()
-    SetProgress(value *int32)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetGlicko() PerfStat_perf_glickoable
+	GetNb() *int32
+	GetProgress() *int32
+	SetGlicko(value PerfStat_perf_glickoable)
+	SetNb(value *int32)
+	SetProgress(value *int32)
 }

@@ -2,35 +2,39 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package chat
+
 type ChatPostRequestBody_room int
 
 const (
-    PLAYER_CHATPOSTREQUESTBODY_ROOM ChatPostRequestBody_room = iota
-    SPECTATOR_CHATPOSTREQUESTBODY_ROOM
+	PLAYER_CHATPOSTREQUESTBODY_ROOM ChatPostRequestBody_room = iota
+	SPECTATOR_CHATPOSTREQUESTBODY_ROOM
 )
 
 func (i ChatPostRequestBody_room) String() string {
-    return []string{"player", "spectator"}[i]
+	return []string{"player", "spectator"}[i]
 }
+
 func ParseChatPostRequestBody_room(v string) (any, error) {
-    result := PLAYER_CHATPOSTREQUESTBODY_ROOM
-    switch v {
-        case "player":
-            result = PLAYER_CHATPOSTREQUESTBODY_ROOM
-        case "spectator":
-            result = SPECTATOR_CHATPOSTREQUESTBODY_ROOM
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := PLAYER_CHATPOSTREQUESTBODY_ROOM
+	switch v {
+	case "player":
+		result = PLAYER_CHATPOSTREQUESTBODY_ROOM
+	case "spectator":
+		result = SPECTATOR_CHATPOSTREQUESTBODY_ROOM
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeChatPostRequestBody_room(values []ChatPostRequestBody_room) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i ChatPostRequestBody_room) isMultiValue() bool {
-    return false
+	return false
 }

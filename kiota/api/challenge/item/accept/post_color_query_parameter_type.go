@@ -2,35 +2,39 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package accept
+
 type PostColorQueryParameterType int
 
 const (
-    WHITE_POSTCOLORQUERYPARAMETERTYPE PostColorQueryParameterType = iota
-    BLACK_POSTCOLORQUERYPARAMETERTYPE
+	WHITE_POSTCOLORQUERYPARAMETERTYPE PostColorQueryParameterType = iota
+	BLACK_POSTCOLORQUERYPARAMETERTYPE
 )
 
 func (i PostColorQueryParameterType) String() string {
-    return []string{"white", "black"}[i]
+	return []string{"white", "black"}[i]
 }
+
 func ParsePostColorQueryParameterType(v string) (any, error) {
-    result := WHITE_POSTCOLORQUERYPARAMETERTYPE
-    switch v {
-        case "white":
-            result = WHITE_POSTCOLORQUERYPARAMETERTYPE
-        case "black":
-            result = BLACK_POSTCOLORQUERYPARAMETERTYPE
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := WHITE_POSTCOLORQUERYPARAMETERTYPE
+	switch v {
+	case "white":
+		result = WHITE_POSTCOLORQUERYPARAMETERTYPE
+	case "black":
+		result = BLACK_POSTCOLORQUERYPARAMETERTYPE
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializePostColorQueryParameterType(values []PostColorQueryParameterType) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i PostColorQueryParameterType) isMultiValue() bool {
-    return false
+	return false
 }

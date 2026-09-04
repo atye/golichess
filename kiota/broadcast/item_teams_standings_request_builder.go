@@ -4,67 +4,73 @@
 package broadcast
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	"context"
+	i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // ItemTeamsStandingsRequestBuilder builds and executes requests for operations under \broadcast\{broadcastTournamentId}\teams\standings
 type ItemTeamsStandingsRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // ItemTeamsStandingsRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type ItemTeamsStandingsRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+
 // NewItemTeamsStandingsRequestBuilderInternal instantiates a new ItemTeamsStandingsRequestBuilder and sets the default values.
-func NewItemTeamsStandingsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*ItemTeamsStandingsRequestBuilder) {
-    m := &ItemTeamsStandingsRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/broadcast/{broadcastTournamentId}/teams/standings", pathParameters),
-    }
-    return m
+func NewItemTeamsStandingsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *ItemTeamsStandingsRequestBuilder {
+	m := &ItemTeamsStandingsRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/broadcast/{broadcastTournamentId}/teams/standings", pathParameters),
+	}
+	return m
 }
+
 // NewItemTeamsStandingsRequestBuilder instantiates a new ItemTeamsStandingsRequestBuilder and sets the default values.
-func NewItemTeamsStandingsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*ItemTeamsStandingsRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewItemTeamsStandingsRequestBuilderInternal(urlParams, requestAdapter)
+func NewItemTeamsStandingsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *ItemTeamsStandingsRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewItemTeamsStandingsRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get get the team leaderboard of a broadcast tournament, if available.
 // returns a []BroadcastTeamLeaderboardEntryable when successful
-func (m *ItemTeamsStandingsRequestBuilder) Get(ctx context.Context, requestConfiguration *ItemTeamsStandingsRequestBuilderGetRequestConfiguration)([]i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastTeamLeaderboardEntryable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateBroadcastTeamLeaderboardEntryFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    val := make([]i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastTeamLeaderboardEntryable, len(res))
-    for i, v := range res {
-        if v != nil {
-            val[i] = v.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastTeamLeaderboardEntryable)
-        }
-    }
-    return val, nil
+func (m *ItemTeamsStandingsRequestBuilder) Get(ctx context.Context, requestConfiguration *ItemTeamsStandingsRequestBuilderGetRequestConfiguration) ([]i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastTeamLeaderboardEntryable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateBroadcastTeamLeaderboardEntryFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	val := make([]i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastTeamLeaderboardEntryable, len(res))
+	for i, v := range res {
+		if v != nil {
+			val[i] = v.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastTeamLeaderboardEntryable)
+		}
+	}
+	return val, nil
 }
+
 // ToGetRequestInformation get the team leaderboard of a broadcast tournament, if available.
 // returns a *RequestInformation when successful
-func (m *ItemTeamsStandingsRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *ItemTeamsStandingsRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    return requestInfo, nil
+func (m *ItemTeamsStandingsRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *ItemTeamsStandingsRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *ItemTeamsStandingsRequestBuilder when successful
-func (m *ItemTeamsStandingsRequestBuilder) WithUrl(rawUrl string)(*ItemTeamsStandingsRequestBuilder) {
-    return NewItemTeamsStandingsRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *ItemTeamsStandingsRequestBuilder) WithUrl(rawUrl string) *ItemTeamsStandingsRequestBuilder {
+	return NewItemTeamsStandingsRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

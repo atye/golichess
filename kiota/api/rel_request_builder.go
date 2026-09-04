@@ -4,48 +4,55 @@
 package api
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // RelRequestBuilder builds and executes requests for operations under \api\rel
 type RelRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // Block the block property
 // returns a *RelBlockRequestBuilder when successful
-func (m *RelRequestBuilder) Block()(*RelBlockRequestBuilder) {
-    return NewRelBlockRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *RelRequestBuilder) Block() *RelBlockRequestBuilder {
+	return NewRelBlockRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewRelRequestBuilderInternal instantiates a new RelRequestBuilder and sets the default values.
-func NewRelRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*RelRequestBuilder) {
-    m := &RelRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/rel", pathParameters),
-    }
-    return m
+func NewRelRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *RelRequestBuilder {
+	m := &RelRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/rel", pathParameters),
+	}
+	return m
 }
+
 // NewRelRequestBuilder instantiates a new RelRequestBuilder and sets the default values.
-func NewRelRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*RelRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewRelRequestBuilderInternal(urlParams, requestAdapter)
+func NewRelRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *RelRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewRelRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Follow the follow property
 // returns a *RelFollowRequestBuilder when successful
-func (m *RelRequestBuilder) Follow()(*RelFollowRequestBuilder) {
-    return NewRelFollowRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *RelRequestBuilder) Follow() *RelFollowRequestBuilder {
+	return NewRelFollowRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Following the following property
 // returns a *RelFollowingRequestBuilder when successful
-func (m *RelRequestBuilder) Following()(*RelFollowingRequestBuilder) {
-    return NewRelFollowingRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *RelRequestBuilder) Following() *RelFollowingRequestBuilder {
+	return NewRelFollowingRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Unblock the unblock property
 // returns a *RelUnblockRequestBuilder when successful
-func (m *RelRequestBuilder) Unblock()(*RelUnblockRequestBuilder) {
-    return NewRelUnblockRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *RelRequestBuilder) Unblock() *RelUnblockRequestBuilder {
+	return NewRelUnblockRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Unfollow the unfollow property
 // returns a *RelUnfollowRequestBuilder when successful
-func (m *RelRequestBuilder) Unfollow()(*RelUnfollowRequestBuilder) {
-    return NewRelUnfollowRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *RelRequestBuilder) Unfollow() *RelUnfollowRequestBuilder {
+	return NewRelUnfollowRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

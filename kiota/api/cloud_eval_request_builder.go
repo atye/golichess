@@ -4,85 +4,92 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	"context"
+	i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // CloudEvalRequestBuilder builds and executes requests for operations under \api\cloud-eval
 type CloudEvalRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // CloudEvalRequestBuilderGetQueryParameters get the cached evaluation of a position, if available.Opening positions have more chances of being available. There are about 320 million positions in the database.Up to 5 variations may be available. Variants are supported.Use this endpoint to fetch a few positions here and there.If you want to download a lot of positions, [get the full list](https://database.lichess.org/#evals) from our exported database.
 type CloudEvalRequestBuilderGetQueryParameters struct {
-    // X-FEN of the position
-    Fen *string "uriparametername:\"fen\""
-    // Number of variations
-    MultiPv *int32 "uriparametername:\"multiPv\""
-    // Variant
-    // Deprecated: This property is deprecated, use VariantAsVariantKey instead
-    Variant *string "uriparametername:\"variant\""
-    // Variant
-    VariantAsVariantKey *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey "uriparametername:\"variant\""
+	// X-FEN of the position
+	Fen *string "uriparametername:\"fen\""
+	// Number of variations
+	MultiPv *int32 "uriparametername:\"multiPv\""
+	// Variant
+	// Deprecated: This property is deprecated, use VariantAsVariantKey instead
+	Variant *string "uriparametername:\"variant\""
+	// Variant
+	VariantAsVariantKey *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey "uriparametername:\"variant\""
 }
+
 // CloudEvalRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type CloudEvalRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
-    // Request query parameters
-    QueryParameters *CloudEvalRequestBuilderGetQueryParameters
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *CloudEvalRequestBuilderGetQueryParameters
 }
+
 // NewCloudEvalRequestBuilderInternal instantiates a new CloudEvalRequestBuilder and sets the default values.
-func NewCloudEvalRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*CloudEvalRequestBuilder) {
-    m := &CloudEvalRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/cloud-eval?fen={fen}{&multiPv*,variant*}", pathParameters),
-    }
-    return m
+func NewCloudEvalRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *CloudEvalRequestBuilder {
+	m := &CloudEvalRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/cloud-eval?fen={fen}{&multiPv*,variant*}", pathParameters),
+	}
+	return m
 }
+
 // NewCloudEvalRequestBuilder instantiates a new CloudEvalRequestBuilder and sets the default values.
-func NewCloudEvalRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*CloudEvalRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewCloudEvalRequestBuilderInternal(urlParams, requestAdapter)
+func NewCloudEvalRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *CloudEvalRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewCloudEvalRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get get the cached evaluation of a position, if available.Opening positions have more chances of being available. There are about 320 million positions in the database.Up to 5 variations may be available. Variants are supported.Use this endpoint to fetch a few positions here and there.If you want to download a lot of positions, [get the full list](https://database.lichess.org/#evals) from our exported database.
 // returns a CloudEvalable when successful
 // returns a CloudEval404Error error when the service returns a 404 status code
-func (m *CloudEvalRequestBuilder) Get(ctx context.Context, requestConfiguration *CloudEvalRequestBuilderGetRequestConfiguration)(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CloudEvalable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "404": CreateCloudEval404ErrorFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateCloudEvalFromDiscriminatorValue, errorMapping)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CloudEvalable), nil
+func (m *CloudEvalRequestBuilder) Get(ctx context.Context, requestConfiguration *CloudEvalRequestBuilderGetRequestConfiguration) (i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CloudEvalable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
+		"404": CreateCloudEval404ErrorFromDiscriminatorValue,
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateCloudEvalFromDiscriminatorValue, errorMapping)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CloudEvalable), nil
 }
+
 // ToGetRequestInformation get the cached evaluation of a position, if available.Opening positions have more chances of being available. There are about 320 million positions in the database.Up to 5 variations may be available. Variants are supported.Use this endpoint to fetch a few positions here and there.If you want to download a lot of positions, [get the full list](https://database.lichess.org/#evals) from our exported database.
 // returns a *RequestInformation when successful
-func (m *CloudEvalRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *CloudEvalRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        if requestConfiguration.QueryParameters != nil {
-            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
-        }
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    return requestInfo, nil
+func (m *CloudEvalRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *CloudEvalRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *CloudEvalRequestBuilder when successful
-func (m *CloudEvalRequestBuilder) WithUrl(rawUrl string)(*CloudEvalRequestBuilder) {
-    return NewCloudEvalRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *CloudEvalRequestBuilder) WithUrl(rawUrl string) *CloudEvalRequestBuilder {
+	return NewCloudEvalRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

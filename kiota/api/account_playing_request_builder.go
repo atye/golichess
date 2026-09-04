@@ -4,90 +4,98 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	"context"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // AccountPlayingRequestBuilder builds and executes requests for operations under \api\account\playing
 type AccountPlayingRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // AccountPlayingRequestBuilderGetQueryParameters get the ongoing games of the current user.Real-time and correspondence games are included.The most urgent games are listed first.
 type AccountPlayingRequestBuilderGetQueryParameters struct {
-    // Max number of games to fetch
-    Nb *int32 "uriparametername:\"nb\""
+	// Max number of games to fetch
+	Nb *int32 "uriparametername:\"nb\""
 }
+
 // AccountPlayingRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type AccountPlayingRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
-    // Request query parameters
-    QueryParameters *AccountPlayingRequestBuilderGetQueryParameters
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *AccountPlayingRequestBuilderGetQueryParameters
 }
+
 // NewAccountPlayingRequestBuilderInternal instantiates a new AccountPlayingRequestBuilder and sets the default values.
-func NewAccountPlayingRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*AccountPlayingRequestBuilder) {
-    m := &AccountPlayingRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/account/playing{?nb*}", pathParameters),
-    }
-    return m
+func NewAccountPlayingRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *AccountPlayingRequestBuilder {
+	m := &AccountPlayingRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/account/playing{?nb*}", pathParameters),
+	}
+	return m
 }
+
 // NewAccountPlayingRequestBuilder instantiates a new AccountPlayingRequestBuilder and sets the default values.
-func NewAccountPlayingRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*AccountPlayingRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewAccountPlayingRequestBuilderInternal(urlParams, requestAdapter)
+func NewAccountPlayingRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *AccountPlayingRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewAccountPlayingRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get get the ongoing games of the current user.Real-time and correspondence games are included.The most urgent games are listed first.
 // Deprecated: This method is obsolete. Use GetAsPlayingGetResponse instead.
 // returns a AccountPlayingResponseable when successful
-func (m *AccountPlayingRequestBuilder) Get(ctx context.Context, requestConfiguration *AccountPlayingRequestBuilderGetRequestConfiguration)(AccountPlayingResponseable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateAccountPlayingResponseFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(AccountPlayingResponseable), nil
+func (m *AccountPlayingRequestBuilder) Get(ctx context.Context, requestConfiguration *AccountPlayingRequestBuilderGetRequestConfiguration) (AccountPlayingResponseable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateAccountPlayingResponseFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(AccountPlayingResponseable), nil
 }
+
 // GetAsPlayingGetResponse get the ongoing games of the current user.Real-time and correspondence games are included.The most urgent games are listed first.
 // returns a AccountPlayingGetResponseable when successful
-func (m *AccountPlayingRequestBuilder) GetAsPlayingGetResponse(ctx context.Context, requestConfiguration *AccountPlayingRequestBuilderGetRequestConfiguration)(AccountPlayingGetResponseable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateAccountPlayingGetResponseFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(AccountPlayingGetResponseable), nil
+func (m *AccountPlayingRequestBuilder) GetAsPlayingGetResponse(ctx context.Context, requestConfiguration *AccountPlayingRequestBuilderGetRequestConfiguration) (AccountPlayingGetResponseable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateAccountPlayingGetResponseFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(AccountPlayingGetResponseable), nil
 }
+
 // ToGetRequestInformation get the ongoing games of the current user.Real-time and correspondence games are included.The most urgent games are listed first.
 // returns a *RequestInformation when successful
-func (m *AccountPlayingRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *AccountPlayingRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        if requestConfiguration.QueryParameters != nil {
-            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
-        }
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    return requestInfo, nil
+func (m *AccountPlayingRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *AccountPlayingRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *AccountPlayingRequestBuilder when successful
-func (m *AccountPlayingRequestBuilder) WithUrl(rawUrl string)(*AccountPlayingRequestBuilder) {
-    return NewAccountPlayingRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *AccountPlayingRequestBuilder) WithUrl(rawUrl string) *AccountPlayingRequestBuilder {
+	return NewAccountPlayingRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

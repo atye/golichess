@@ -4,38 +4,43 @@
 package team
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // WithTeamItemRequestBuilder builds and executes requests for operations under \team\{teamId}
 type WithTeamItemRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // NewWithTeamItemRequestBuilderInternal instantiates a new WithTeamItemRequestBuilder and sets the default values.
-func NewWithTeamItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*WithTeamItemRequestBuilder) {
-    m := &WithTeamItemRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/team/{teamId}", pathParameters),
-    }
-    return m
+func NewWithTeamItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *WithTeamItemRequestBuilder {
+	m := &WithTeamItemRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/team/{teamId}", pathParameters),
+	}
+	return m
 }
+
 // NewWithTeamItemRequestBuilder instantiates a new WithTeamItemRequestBuilder and sets the default values.
-func NewWithTeamItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*WithTeamItemRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewWithTeamItemRequestBuilderInternal(urlParams, requestAdapter)
+func NewWithTeamItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *WithTeamItemRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewWithTeamItemRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Join the join property
 // returns a *ItemJoinRequestBuilder when successful
-func (m *WithTeamItemRequestBuilder) Join()(*ItemJoinRequestBuilder) {
-    return NewItemJoinRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *WithTeamItemRequestBuilder) Join() *ItemJoinRequestBuilder {
+	return NewItemJoinRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // PmAll the pmAll property
 // returns a *ItemPmAllRequestBuilder when successful
-func (m *WithTeamItemRequestBuilder) PmAll()(*ItemPmAllRequestBuilder) {
-    return NewItemPmAllRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *WithTeamItemRequestBuilder) PmAll() *ItemPmAllRequestBuilder {
+	return NewItemPmAllRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Quit the quit property
 // returns a *ItemQuitRequestBuilder when successful
-func (m *WithTeamItemRequestBuilder) Quit()(*ItemQuitRequestBuilder) {
-    return NewItemQuitRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *WithTeamItemRequestBuilder) Quit() *ItemQuitRequestBuilder {
+	return NewItemQuitRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

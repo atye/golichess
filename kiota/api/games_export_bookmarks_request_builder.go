@@ -4,298 +4,326 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
-    i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
-    i67b71f92f7f8d15b49e1fc0fa330c21338f20ba2a7838797924f930df009a355 "github.com/atye/golichess/kiota/api/games/export/bookmarks"
+	"context"
+	i67b71f92f7f8d15b49e1fc0fa330c21338f20ba2a7838797924f930df009a355 "github.com/atye/golichess/kiota/api/games/export/bookmarks"
+	i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // GamesExportBookmarksRequestBuilder builds and executes requests for operations under \api\games\export\bookmarks
 type GamesExportBookmarksRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // BookmarksGetResponse composed type wrapper for classes i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
 type BookmarksGetResponse struct {
-    // Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable
-    gameJson i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable
-    // Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
-    gamePgn i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
+	// Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable
+	gameJson i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable
+	// Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
+	gamePgn i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
 }
+
 // NewBookmarksGetResponse instantiates a new BookmarksGetResponse and sets the default values.
-func NewBookmarksGetResponse()(*BookmarksGetResponse) {
-    m := &BookmarksGetResponse{
-    }
-    return m
+func NewBookmarksGetResponse() *BookmarksGetResponse {
+	m := &BookmarksGetResponse{}
+	return m
 }
+
 // CreateBookmarksGetResponseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateBookmarksGetResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewBookmarksGetResponse()
-    if parseNode != nil {
-        mappingValueNode, err := parseNode.GetChildNode("")
-        if err != nil {
-            return nil, err
-        }
-        if mappingValueNode != nil {
-            mappingValue, err := mappingValueNode.GetStringValue()
-            if err != nil {
-                return nil, err
-            }
-            if mappingValue != nil {
-            }
-        }
-    }
-    return result, nil
+func CreateBookmarksGetResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	result := NewBookmarksGetResponse()
+	if parseNode != nil {
+		mappingValueNode, err := parseNode.GetChildNode("")
+		if err != nil {
+			return nil, err
+		}
+		if mappingValueNode != nil {
+			mappingValue, err := mappingValueNode.GetStringValue()
+			if err != nil {
+				return nil, err
+			}
+			if mappingValue != nil {
+			}
+		}
+	}
+	return result, nil
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *BookmarksGetResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    if m.GetGameJson() != nil {
-        return m.GetGameJson().GetFieldDeserializers()
-    } else if m.GetGamePgn() != nil {
-        return m.GetGamePgn().GetFieldDeserializers()
-    }
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *BookmarksGetResponse) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	if m.GetGameJson() != nil {
+		return m.GetGameJson().GetFieldDeserializers()
+	} else if m.GetGamePgn() != nil {
+		return m.GetGamePgn().GetFieldDeserializers()
+	}
+	return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
 }
+
 // GetGameJson gets the GameJson property value. Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable
 // returns a GameJsonable when successful
-func (m *BookmarksGetResponse) GetGameJson()(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable) {
-    return m.gameJson
+func (m *BookmarksGetResponse) GetGameJson() i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable {
+	return m.gameJson
 }
+
 // GetGamePgn gets the GamePgn property value. Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
 // returns a GamePgnable when successful
-func (m *BookmarksGetResponse) GetGamePgn()(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable) {
-    return m.gamePgn
+func (m *BookmarksGetResponse) GetGamePgn() i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable {
+	return m.gamePgn
 }
+
 // GetIsComposedType determines if the current object is a wrapper around a composed type
 // returns a bool when successful
-func (m *BookmarksGetResponse) GetIsComposedType()(bool) {
-    return true
+func (m *BookmarksGetResponse) GetIsComposedType() bool {
+	return true
 }
+
 // Serialize serializes information the current object
-func (m *BookmarksGetResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetGameJson() != nil {
-        err := writer.WriteObjectValue("", m.GetGameJson())
-        if err != nil {
-            return err
-        }
-    } else if m.GetGamePgn() != nil {
-        err := writer.WriteObjectValue("", m.GetGamePgn())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *BookmarksGetResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	if m.GetGameJson() != nil {
+		err := writer.WriteObjectValue("", m.GetGameJson())
+		if err != nil {
+			return err
+		}
+	} else if m.GetGamePgn() != nil {
+		err := writer.WriteObjectValue("", m.GetGamePgn())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetGameJson sets the GameJson property value. Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable
-func (m *BookmarksGetResponse) SetGameJson(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable)() {
-    m.gameJson = value
+func (m *BookmarksGetResponse) SetGameJson(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable) {
+	m.gameJson = value
 }
+
 // SetGamePgn sets the GamePgn property value. Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
-func (m *BookmarksGetResponse) SetGamePgn(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable)() {
-    m.gamePgn = value
+func (m *BookmarksGetResponse) SetGamePgn(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable) {
+	m.gamePgn = value
 }
+
 // BookmarksResponse composed type wrapper for classes i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
 type BookmarksResponse struct {
-    // Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable
-    gameJson i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable
-    // Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
-    gamePgn i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
+	// Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable
+	gameJson i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable
+	// Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
+	gamePgn i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
 }
+
 // NewBookmarksResponse instantiates a new BookmarksResponse and sets the default values.
-func NewBookmarksResponse()(*BookmarksResponse) {
-    m := &BookmarksResponse{
-    }
-    return m
+func NewBookmarksResponse() *BookmarksResponse {
+	m := &BookmarksResponse{}
+	return m
 }
+
 // CreateBookmarksResponseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateBookmarksResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewBookmarksResponse()
-    if parseNode != nil {
-        mappingValueNode, err := parseNode.GetChildNode("")
-        if err != nil {
-            return nil, err
-        }
-        if mappingValueNode != nil {
-            mappingValue, err := mappingValueNode.GetStringValue()
-            if err != nil {
-                return nil, err
-            }
-            if mappingValue != nil {
-            }
-        }
-    }
-    return result, nil
+func CreateBookmarksResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	result := NewBookmarksResponse()
+	if parseNode != nil {
+		mappingValueNode, err := parseNode.GetChildNode("")
+		if err != nil {
+			return nil, err
+		}
+		if mappingValueNode != nil {
+			mappingValue, err := mappingValueNode.GetStringValue()
+			if err != nil {
+				return nil, err
+			}
+			if mappingValue != nil {
+			}
+		}
+	}
+	return result, nil
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *BookmarksResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    if m.GetGameJson() != nil {
-        return m.GetGameJson().GetFieldDeserializers()
-    } else if m.GetGamePgn() != nil {
-        return m.GetGamePgn().GetFieldDeserializers()
-    }
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *BookmarksResponse) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	if m.GetGameJson() != nil {
+		return m.GetGameJson().GetFieldDeserializers()
+	} else if m.GetGamePgn() != nil {
+		return m.GetGamePgn().GetFieldDeserializers()
+	}
+	return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
 }
+
 // GetGameJson gets the GameJson property value. Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable
 // returns a GameJsonable when successful
-func (m *BookmarksResponse) GetGameJson()(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable) {
-    return m.gameJson
+func (m *BookmarksResponse) GetGameJson() i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable {
+	return m.gameJson
 }
+
 // GetGamePgn gets the GamePgn property value. Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
 // returns a GamePgnable when successful
-func (m *BookmarksResponse) GetGamePgn()(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable) {
-    return m.gamePgn
+func (m *BookmarksResponse) GetGamePgn() i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable {
+	return m.gamePgn
 }
+
 // GetIsComposedType determines if the current object is a wrapper around a composed type
 // returns a bool when successful
-func (m *BookmarksResponse) GetIsComposedType()(bool) {
-    return true
+func (m *BookmarksResponse) GetIsComposedType() bool {
+	return true
 }
+
 // Serialize serializes information the current object
-func (m *BookmarksResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetGameJson() != nil {
-        err := writer.WriteObjectValue("", m.GetGameJson())
-        if err != nil {
-            return err
-        }
-    } else if m.GetGamePgn() != nil {
-        err := writer.WriteObjectValue("", m.GetGamePgn())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *BookmarksResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	if m.GetGameJson() != nil {
+		err := writer.WriteObjectValue("", m.GetGameJson())
+		if err != nil {
+			return err
+		}
+	} else if m.GetGamePgn() != nil {
+		err := writer.WriteObjectValue("", m.GetGamePgn())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetGameJson sets the GameJson property value. Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable
-func (m *BookmarksResponse) SetGameJson(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable)() {
-    m.gameJson = value
+func (m *BookmarksResponse) SetGameJson(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable) {
+	m.gameJson = value
 }
+
 // SetGamePgn sets the GamePgn property value. Composed type representation for type i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
-func (m *BookmarksResponse) SetGamePgn(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable)() {
-    m.gamePgn = value
+func (m *BookmarksResponse) SetGamePgn(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable) {
+	m.gamePgn = value
 }
+
 // GamesExportBookmarksRequestBuilderGetQueryParameters download all games bookmarked by you, in PGN or [ndjson](#description/streaming-with-nd-json) format.Games are sorted by reverse chronological order (most recent first).We recommend streaming the response, for it can be very long.
 type GamesExportBookmarksRequestBuilderGetQueryParameters struct {
-    // Include [accuracy percent](https://lichess.org/page/accuracy) of each player, when available. Only available in JSON.
-    Accuracy *bool "uriparametername:\"accuracy\""
-    // Include clock status when available.Either as PGN comments: `2. exd5 { [%clk 1:01:27] } e5 { [%clk 1:01:28] }`Or in a `clocks` JSON field, as centisecond integers, depending on the response type.
-    Clocks *bool "uriparametername:\"clocks\""
-    // Plies which mark the beginning of the middlegame and endgame.Only available in JSON
-    Division *bool "uriparametername:\"division\""
-    // Include analysis evaluations and comments, when available.Either as PGN comments: `12. Bxf6 { [%eval 0.23] } a3 { [%eval -1.09] }`Or in an `analysis` JSON field, depending on the response type.
-    Evals *bool "uriparametername:\"evals\""
-    // Include the X-FEN notation of the last position of the game.The response type must be set to `application/x-ndjson` by the request `Accept` header.
-    LastFen *bool "uriparametername:\"lastFen\""
-    // Insert textual annotations in the PGN about the opening, analysis variations, mistakes, and game termination.Example: `5... g4? { (-0.98 → 0.60) Mistake. Best move was h6. } (5... h6 6. d4 Ne7 7. g3 d5 8. exd5 fxg3 9. hxg3 c6 10. dxc6)`
-    Literate *bool "uriparametername:\"literate\""
-    // How many bookmarked games to download. Leave empty to download all bookmarked games.
-    Max *int32 "uriparametername:\"max\""
-    // Include the PGN moves.
-    Moves *bool "uriparametername:\"moves\""
-    // Include the opening name.Example: `[Opening "King's Gambit Accepted, King's Knight Gambit"]`
-    Opening *bool "uriparametername:\"opening\""
-    // Include the full PGN within the JSON response, in a `pgn` field. The response type must be set to `application/x-ndjson` by the request `Accept` header.
-    PgnInJson *bool "uriparametername:\"pgnInJson\""
-    // Download games bookmarked since this timestamp. Defaults to account creation date.
-    Since *int32 "uriparametername:\"since\""
-    // Sort order of the bookmarks.
-    // Deprecated: This property is deprecated, use SortAsGetSortQueryParameterType instead
-    Sort *string "uriparametername:\"sort\""
-    // Sort order of the bookmarks.
-    SortAsGetSortQueryParameterType *i67b71f92f7f8d15b49e1fc0fa330c21338f20ba2a7838797924f930df009a355.GetSortQueryParameterType "uriparametername:\"sort\""
-    // Include the PGN tags.
-    Tags *bool "uriparametername:\"tags\""
-    // Download games bookmarked until this timestamp. Defaults to now.
-    Until *int32 "uriparametername:\"until\""
+	// Include [accuracy percent](https://lichess.org/page/accuracy) of each player, when available. Only available in JSON.
+	Accuracy *bool "uriparametername:\"accuracy\""
+	// Include clock status when available.Either as PGN comments: `2. exd5 { [%clk 1:01:27] } e5 { [%clk 1:01:28] }`Or in a `clocks` JSON field, as centisecond integers, depending on the response type.
+	Clocks *bool "uriparametername:\"clocks\""
+	// Plies which mark the beginning of the middlegame and endgame.Only available in JSON
+	Division *bool "uriparametername:\"division\""
+	// Include analysis evaluations and comments, when available.Either as PGN comments: `12. Bxf6 { [%eval 0.23] } a3 { [%eval -1.09] }`Or in an `analysis` JSON field, depending on the response type.
+	Evals *bool "uriparametername:\"evals\""
+	// Include the X-FEN notation of the last position of the game.The response type must be set to `application/x-ndjson` by the request `Accept` header.
+	LastFen *bool "uriparametername:\"lastFen\""
+	// Insert textual annotations in the PGN about the opening, analysis variations, mistakes, and game termination.Example: `5... g4? { (-0.98 → 0.60) Mistake. Best move was h6. } (5... h6 6. d4 Ne7 7. g3 d5 8. exd5 fxg3 9. hxg3 c6 10. dxc6)`
+	Literate *bool "uriparametername:\"literate\""
+	// How many bookmarked games to download. Leave empty to download all bookmarked games.
+	Max *int32 "uriparametername:\"max\""
+	// Include the PGN moves.
+	Moves *bool "uriparametername:\"moves\""
+	// Include the opening name.Example: `[Opening "King's Gambit Accepted, King's Knight Gambit"]`
+	Opening *bool "uriparametername:\"opening\""
+	// Include the full PGN within the JSON response, in a `pgn` field. The response type must be set to `application/x-ndjson` by the request `Accept` header.
+	PgnInJson *bool "uriparametername:\"pgnInJson\""
+	// Download games bookmarked since this timestamp. Defaults to account creation date.
+	Since *int32 "uriparametername:\"since\""
+	// Sort order of the bookmarks.
+	// Deprecated: This property is deprecated, use SortAsGetSortQueryParameterType instead
+	Sort *string "uriparametername:\"sort\""
+	// Sort order of the bookmarks.
+	SortAsGetSortQueryParameterType *i67b71f92f7f8d15b49e1fc0fa330c21338f20ba2a7838797924f930df009a355.GetSortQueryParameterType "uriparametername:\"sort\""
+	// Include the PGN tags.
+	Tags *bool "uriparametername:\"tags\""
+	// Download games bookmarked until this timestamp. Defaults to now.
+	Until *int32 "uriparametername:\"until\""
 }
+
 // GamesExportBookmarksRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type GamesExportBookmarksRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
-    // Request query parameters
-    QueryParameters *GamesExportBookmarksRequestBuilderGetQueryParameters
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *GamesExportBookmarksRequestBuilderGetQueryParameters
 }
+
 type BookmarksGetResponseable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetGameJson()(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable)
-    GetGamePgn()(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable)
-    SetGameJson(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable)()
-    SetGamePgn(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetGameJson() i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable
+	GetGamePgn() i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
+	SetGameJson(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable)
+	SetGamePgn(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable)
 }
+
 type BookmarksResponseable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetGameJson()(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable)
-    GetGamePgn()(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable)
-    SetGameJson(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable)()
-    SetGamePgn(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetGameJson() i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable
+	GetGamePgn() i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable
+	SetGameJson(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameJsonable)
+	SetGamePgn(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GamePgnable)
 }
+
 // NewGamesExportBookmarksRequestBuilderInternal instantiates a new GamesExportBookmarksRequestBuilder and sets the default values.
-func NewGamesExportBookmarksRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*GamesExportBookmarksRequestBuilder) {
-    m := &GamesExportBookmarksRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/games/export/bookmarks{?accuracy*,clocks*,division*,evals*,lastFen*,literate*,max*,moves*,opening*,pgnInJson*,since*,sort*,tags*,until*}", pathParameters),
-    }
-    return m
+func NewGamesExportBookmarksRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *GamesExportBookmarksRequestBuilder {
+	m := &GamesExportBookmarksRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/games/export/bookmarks{?accuracy*,clocks*,division*,evals*,lastFen*,literate*,max*,moves*,opening*,pgnInJson*,since*,sort*,tags*,until*}", pathParameters),
+	}
+	return m
 }
+
 // NewGamesExportBookmarksRequestBuilder instantiates a new GamesExportBookmarksRequestBuilder and sets the default values.
-func NewGamesExportBookmarksRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*GamesExportBookmarksRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewGamesExportBookmarksRequestBuilderInternal(urlParams, requestAdapter)
+func NewGamesExportBookmarksRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *GamesExportBookmarksRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewGamesExportBookmarksRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get download all games bookmarked by you, in PGN or [ndjson](#description/streaming-with-nd-json) format.Games are sorted by reverse chronological order (most recent first).We recommend streaming the response, for it can be very long.
 // Deprecated: This method is obsolete. Use GetAsBookmarksGetResponse instead.
 // returns a BookmarksResponseable when successful
-func (m *GamesExportBookmarksRequestBuilder) Get(ctx context.Context, requestConfiguration *GamesExportBookmarksRequestBuilderGetRequestConfiguration)(BookmarksResponseable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateBookmarksResponseFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(BookmarksResponseable), nil
+func (m *GamesExportBookmarksRequestBuilder) Get(ctx context.Context, requestConfiguration *GamesExportBookmarksRequestBuilderGetRequestConfiguration) (BookmarksResponseable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateBookmarksResponseFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(BookmarksResponseable), nil
 }
+
 // GetAsBookmarksGetResponse download all games bookmarked by you, in PGN or [ndjson](#description/streaming-with-nd-json) format.Games are sorted by reverse chronological order (most recent first).We recommend streaming the response, for it can be very long.
 // returns a BookmarksGetResponseable when successful
-func (m *GamesExportBookmarksRequestBuilder) GetAsBookmarksGetResponse(ctx context.Context, requestConfiguration *GamesExportBookmarksRequestBuilderGetRequestConfiguration)(BookmarksGetResponseable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateBookmarksGetResponseFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(BookmarksGetResponseable), nil
+func (m *GamesExportBookmarksRequestBuilder) GetAsBookmarksGetResponse(ctx context.Context, requestConfiguration *GamesExportBookmarksRequestBuilderGetRequestConfiguration) (BookmarksGetResponseable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateBookmarksGetResponseFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(BookmarksGetResponseable), nil
 }
+
 // ToGetRequestInformation download all games bookmarked by you, in PGN or [ndjson](#description/streaming-with-nd-json) format.Games are sorted by reverse chronological order (most recent first).We recommend streaming the response, for it can be very long.
 // returns a *RequestInformation when successful
-func (m *GamesExportBookmarksRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *GamesExportBookmarksRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        if requestConfiguration.QueryParameters != nil {
-            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
-        }
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    return requestInfo, nil
+func (m *GamesExportBookmarksRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *GamesExportBookmarksRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *GamesExportBookmarksRequestBuilder when successful
-func (m *GamesExportBookmarksRequestBuilder) WithUrl(rawUrl string)(*GamesExportBookmarksRequestBuilder) {
-    return NewGamesExportBookmarksRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *GamesExportBookmarksRequestBuilder) WithUrl(rawUrl string) *GamesExportBookmarksRequestBuilder {
+	return NewGamesExportBookmarksRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

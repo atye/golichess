@@ -4,121 +4,131 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type UserActivity_tournaments struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The best property
-    best []UserActivity_tournaments_bestable
-    // The nb property
-    nb *int32
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The best property
+	best []UserActivity_tournaments_bestable
+	// The nb property
+	nb *int32
 }
+
 // NewUserActivity_tournaments instantiates a new UserActivity_tournaments and sets the default values.
-func NewUserActivity_tournaments()(*UserActivity_tournaments) {
-    m := &UserActivity_tournaments{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewUserActivity_tournaments() *UserActivity_tournaments {
+	m := &UserActivity_tournaments{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateUserActivity_tournamentsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateUserActivity_tournamentsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewUserActivity_tournaments(), nil
+func CreateUserActivity_tournamentsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewUserActivity_tournaments(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *UserActivity_tournaments) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *UserActivity_tournaments) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetBest gets the best property value. The best property
 // returns a []UserActivity_tournaments_bestable when successful
-func (m *UserActivity_tournaments) GetBest()([]UserActivity_tournaments_bestable) {
-    return m.best
+func (m *UserActivity_tournaments) GetBest() []UserActivity_tournaments_bestable {
+	return m.best
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *UserActivity_tournaments) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["best"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateUserActivity_tournaments_bestFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]UserActivity_tournaments_bestable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(UserActivity_tournaments_bestable)
-                }
-            }
-            m.SetBest(res)
-        }
-        return nil
-    }
-    res["nb"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetNb(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *UserActivity_tournaments) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["best"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateUserActivity_tournaments_bestFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]UserActivity_tournaments_bestable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(UserActivity_tournaments_bestable)
+				}
+			}
+			m.SetBest(res)
+		}
+		return nil
+	}
+	res["nb"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetNb(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetNb gets the nb property value. The nb property
 // returns a *int32 when successful
-func (m *UserActivity_tournaments) GetNb()(*int32) {
-    return m.nb
+func (m *UserActivity_tournaments) GetNb() *int32 {
+	return m.nb
 }
+
 // Serialize serializes information the current object
-func (m *UserActivity_tournaments) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetBest() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetBest()))
-        for i, v := range m.GetBest() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("best", cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("nb", m.GetNb())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *UserActivity_tournaments) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	if m.GetBest() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetBest()))
+		for i, v := range m.GetBest() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("best", cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("nb", m.GetNb())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *UserActivity_tournaments) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *UserActivity_tournaments) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetBest sets the best property value. The best property
-func (m *UserActivity_tournaments) SetBest(value []UserActivity_tournaments_bestable)() {
-    m.best = value
+func (m *UserActivity_tournaments) SetBest(value []UserActivity_tournaments_bestable) {
+	m.best = value
 }
+
 // SetNb sets the nb property value. The nb property
-func (m *UserActivity_tournaments) SetNb(value *int32)() {
-    m.nb = value
+func (m *UserActivity_tournaments) SetNb(value *int32) {
+	m.nb = value
 }
+
 type UserActivity_tournamentsable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetBest()([]UserActivity_tournaments_bestable)
-    GetNb()(*int32)
-    SetBest(value []UserActivity_tournaments_bestable)()
-    SetNb(value *int32)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetBest() []UserActivity_tournaments_bestable
+	GetNb() *int32
+	SetBest(value []UserActivity_tournaments_bestable)
+	SetNb(value *int32)
 }

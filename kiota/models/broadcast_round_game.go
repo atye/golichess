@@ -4,297 +4,319 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type BroadcastRoundGame struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The check property
-    check *BroadcastRoundGame_check
-    // The fen property
-    fen *string
-    // The id property
-    id *string
-    // The lastMove property
-    lastMove *string
-    // The name property
-    name *string
-    // The players property
-    players []BroadcastRoundGame_playersable
-    // The result of the game
-    status *BroadcastRoundGame_status
-    // The thinkTime property
-    thinkTime *int32
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The check property
+	check *BroadcastRoundGame_check
+	// The fen property
+	fen *string
+	// The id property
+	id *string
+	// The lastMove property
+	lastMove *string
+	// The name property
+	name *string
+	// The players property
+	players []BroadcastRoundGame_playersable
+	// The result of the game
+	status *BroadcastRoundGame_status
+	// The thinkTime property
+	thinkTime *int32
 }
+
 // NewBroadcastRoundGame instantiates a new BroadcastRoundGame and sets the default values.
-func NewBroadcastRoundGame()(*BroadcastRoundGame) {
-    m := &BroadcastRoundGame{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewBroadcastRoundGame() *BroadcastRoundGame {
+	m := &BroadcastRoundGame{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateBroadcastRoundGameFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateBroadcastRoundGameFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewBroadcastRoundGame(), nil
+func CreateBroadcastRoundGameFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewBroadcastRoundGame(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *BroadcastRoundGame) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *BroadcastRoundGame) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetCheck gets the check property value. The check property
 // returns a *BroadcastRoundGame_check when successful
-func (m *BroadcastRoundGame) GetCheck()(*BroadcastRoundGame_check) {
-    return m.check
+func (m *BroadcastRoundGame) GetCheck() *BroadcastRoundGame_check {
+	return m.check
 }
+
 // GetFen gets the fen property value. The fen property
 // returns a *string when successful
-func (m *BroadcastRoundGame) GetFen()(*string) {
-    return m.fen
+func (m *BroadcastRoundGame) GetFen() *string {
+	return m.fen
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *BroadcastRoundGame) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["check"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseBroadcastRoundGame_check)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCheck(val.(*BroadcastRoundGame_check))
-        }
-        return nil
-    }
-    res["fen"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFen(val)
-        }
-        return nil
-    }
-    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetId(val)
-        }
-        return nil
-    }
-    res["lastMove"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetLastMove(val)
-        }
-        return nil
-    }
-    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetName(val)
-        }
-        return nil
-    }
-    res["players"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateBroadcastRoundGame_playersFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]BroadcastRoundGame_playersable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(BroadcastRoundGame_playersable)
-                }
-            }
-            m.SetPlayers(res)
-        }
-        return nil
-    }
-    res["status"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseBroadcastRoundGame_status)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStatus(val.(*BroadcastRoundGame_status))
-        }
-        return nil
-    }
-    res["thinkTime"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetThinkTime(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *BroadcastRoundGame) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["check"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(ParseBroadcastRoundGame_check)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCheck(val.(*BroadcastRoundGame_check))
+		}
+		return nil
+	}
+	res["fen"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFen(val)
+		}
+		return nil
+	}
+	res["id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetId(val)
+		}
+		return nil
+	}
+	res["lastMove"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetLastMove(val)
+		}
+		return nil
+	}
+	res["name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetName(val)
+		}
+		return nil
+	}
+	res["players"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateBroadcastRoundGame_playersFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]BroadcastRoundGame_playersable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(BroadcastRoundGame_playersable)
+				}
+			}
+			m.SetPlayers(res)
+		}
+		return nil
+	}
+	res["status"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(ParseBroadcastRoundGame_status)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStatus(val.(*BroadcastRoundGame_status))
+		}
+		return nil
+	}
+	res["thinkTime"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetThinkTime(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetId gets the id property value. The id property
 // returns a *string when successful
-func (m *BroadcastRoundGame) GetId()(*string) {
-    return m.id
+func (m *BroadcastRoundGame) GetId() *string {
+	return m.id
 }
+
 // GetLastMove gets the lastMove property value. The lastMove property
 // returns a *string when successful
-func (m *BroadcastRoundGame) GetLastMove()(*string) {
-    return m.lastMove
+func (m *BroadcastRoundGame) GetLastMove() *string {
+	return m.lastMove
 }
+
 // GetName gets the name property value. The name property
 // returns a *string when successful
-func (m *BroadcastRoundGame) GetName()(*string) {
-    return m.name
+func (m *BroadcastRoundGame) GetName() *string {
+	return m.name
 }
+
 // GetPlayers gets the players property value. The players property
 // returns a []BroadcastRoundGame_playersable when successful
-func (m *BroadcastRoundGame) GetPlayers()([]BroadcastRoundGame_playersable) {
-    return m.players
+func (m *BroadcastRoundGame) GetPlayers() []BroadcastRoundGame_playersable {
+	return m.players
 }
+
 // GetStatus gets the status property value. The result of the game
 // returns a *BroadcastRoundGame_status when successful
-func (m *BroadcastRoundGame) GetStatus()(*BroadcastRoundGame_status) {
-    return m.status
+func (m *BroadcastRoundGame) GetStatus() *BroadcastRoundGame_status {
+	return m.status
 }
+
 // GetThinkTime gets the thinkTime property value. The thinkTime property
 // returns a *int32 when successful
-func (m *BroadcastRoundGame) GetThinkTime()(*int32) {
-    return m.thinkTime
+func (m *BroadcastRoundGame) GetThinkTime() *int32 {
+	return m.thinkTime
 }
+
 // Serialize serializes information the current object
-func (m *BroadcastRoundGame) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetCheck() != nil {
-        cast := (*m.GetCheck()).String()
-        err := writer.WriteStringValue("check", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("fen", m.GetFen())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("id", m.GetId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("lastMove", m.GetLastMove())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("name", m.GetName())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetPlayers() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPlayers()))
-        for i, v := range m.GetPlayers() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("players", cast)
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetStatus() != nil {
-        cast := (*m.GetStatus()).String()
-        err := writer.WriteStringValue("status", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("thinkTime", m.GetThinkTime())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *BroadcastRoundGame) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	if m.GetCheck() != nil {
+		cast := (*m.GetCheck()).String()
+		err := writer.WriteStringValue("check", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("fen", m.GetFen())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("id", m.GetId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("lastMove", m.GetLastMove())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("name", m.GetName())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetPlayers() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPlayers()))
+		for i, v := range m.GetPlayers() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("players", cast)
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetStatus() != nil {
+		cast := (*m.GetStatus()).String()
+		err := writer.WriteStringValue("status", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("thinkTime", m.GetThinkTime())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *BroadcastRoundGame) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *BroadcastRoundGame) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetCheck sets the check property value. The check property
-func (m *BroadcastRoundGame) SetCheck(value *BroadcastRoundGame_check)() {
-    m.check = value
+func (m *BroadcastRoundGame) SetCheck(value *BroadcastRoundGame_check) {
+	m.check = value
 }
+
 // SetFen sets the fen property value. The fen property
-func (m *BroadcastRoundGame) SetFen(value *string)() {
-    m.fen = value
+func (m *BroadcastRoundGame) SetFen(value *string) {
+	m.fen = value
 }
+
 // SetId sets the id property value. The id property
-func (m *BroadcastRoundGame) SetId(value *string)() {
-    m.id = value
+func (m *BroadcastRoundGame) SetId(value *string) {
+	m.id = value
 }
+
 // SetLastMove sets the lastMove property value. The lastMove property
-func (m *BroadcastRoundGame) SetLastMove(value *string)() {
-    m.lastMove = value
+func (m *BroadcastRoundGame) SetLastMove(value *string) {
+	m.lastMove = value
 }
+
 // SetName sets the name property value. The name property
-func (m *BroadcastRoundGame) SetName(value *string)() {
-    m.name = value
+func (m *BroadcastRoundGame) SetName(value *string) {
+	m.name = value
 }
+
 // SetPlayers sets the players property value. The players property
-func (m *BroadcastRoundGame) SetPlayers(value []BroadcastRoundGame_playersable)() {
-    m.players = value
+func (m *BroadcastRoundGame) SetPlayers(value []BroadcastRoundGame_playersable) {
+	m.players = value
 }
+
 // SetStatus sets the status property value. The result of the game
-func (m *BroadcastRoundGame) SetStatus(value *BroadcastRoundGame_status)() {
-    m.status = value
+func (m *BroadcastRoundGame) SetStatus(value *BroadcastRoundGame_status) {
+	m.status = value
 }
+
 // SetThinkTime sets the thinkTime property value. The thinkTime property
-func (m *BroadcastRoundGame) SetThinkTime(value *int32)() {
-    m.thinkTime = value
+func (m *BroadcastRoundGame) SetThinkTime(value *int32) {
+	m.thinkTime = value
 }
+
 type BroadcastRoundGameable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetCheck()(*BroadcastRoundGame_check)
-    GetFen()(*string)
-    GetId()(*string)
-    GetLastMove()(*string)
-    GetName()(*string)
-    GetPlayers()([]BroadcastRoundGame_playersable)
-    GetStatus()(*BroadcastRoundGame_status)
-    GetThinkTime()(*int32)
-    SetCheck(value *BroadcastRoundGame_check)()
-    SetFen(value *string)()
-    SetId(value *string)()
-    SetLastMove(value *string)()
-    SetName(value *string)()
-    SetPlayers(value []BroadcastRoundGame_playersable)()
-    SetStatus(value *BroadcastRoundGame_status)()
-    SetThinkTime(value *int32)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetCheck() *BroadcastRoundGame_check
+	GetFen() *string
+	GetId() *string
+	GetLastMove() *string
+	GetName() *string
+	GetPlayers() []BroadcastRoundGame_playersable
+	GetStatus() *BroadcastRoundGame_status
+	GetThinkTime() *int32
+	SetCheck(value *BroadcastRoundGame_check)
+	SetFen(value *string)
+	SetId(value *string)
+	SetLastMove(value *string)
+	SetName(value *string)
+	SetPlayers(value []BroadcastRoundGame_playersable)
+	SetStatus(value *BroadcastRoundGame_status)
+	SetThinkTime(value *int32)
 }

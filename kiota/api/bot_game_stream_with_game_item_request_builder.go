@@ -4,68 +4,74 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	"context"
+	i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // BotGameStreamWithGameItemRequestBuilder builds and executes requests for operations under \api\bot\game\stream\{gameId}
 type BotGameStreamWithGameItemRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // BotGameStreamWithGameItemRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type BotGameStreamWithGameItemRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+
 // NewBotGameStreamWithGameItemRequestBuilderInternal instantiates a new BotGameStreamWithGameItemRequestBuilder and sets the default values.
-func NewBotGameStreamWithGameItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BotGameStreamWithGameItemRequestBuilder) {
-    m := &BotGameStreamWithGameItemRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/bot/game/stream/{gameId}", pathParameters),
-    }
-    return m
+func NewBotGameStreamWithGameItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BotGameStreamWithGameItemRequestBuilder {
+	m := &BotGameStreamWithGameItemRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/bot/game/stream/{gameId}", pathParameters),
+	}
+	return m
 }
+
 // NewBotGameStreamWithGameItemRequestBuilder instantiates a new BotGameStreamWithGameItemRequestBuilder and sets the default values.
-func NewBotGameStreamWithGameItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BotGameStreamWithGameItemRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewBotGameStreamWithGameItemRequestBuilderInternal(urlParams, requestAdapter)
+func NewBotGameStreamWithGameItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BotGameStreamWithGameItemRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewBotGameStreamWithGameItemRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get stream the state of a game being played with the Bot API, as [ndjson](#description/streaming-with-nd-json).Use this endpoint to get updates about the game in real-time, with a single request.Each line is a JSON object containing a `type` field. Possible values are:- `gameFull` Full game data. All values are immutable, except for the `state` field.- `gameState` Current state of the game. Immutable values not included.- `chatLine` Chat message sent by a user (or the bot itself) in the `room` "player" or "spectator".- `opponentGone` Whether the opponent has left the game, and how long before you can claim a win or draw.The first line is always of type `gameFull`.
 // returns a []byte when successful
 // returns a NotFound error when the service returns a 404 status code
-func (m *BotGameStreamWithGameItemRequestBuilder) Get(ctx context.Context, requestConfiguration *BotGameStreamWithGameItemRequestBuilderGetRequestConfiguration)([]byte, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "404": i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateNotFoundFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", errorMapping)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.([]byte), nil
+func (m *BotGameStreamWithGameItemRequestBuilder) Get(ctx context.Context, requestConfiguration *BotGameStreamWithGameItemRequestBuilderGetRequestConfiguration) ([]byte, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
+		"404": i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateNotFoundFromDiscriminatorValue,
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", errorMapping)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.([]byte), nil
 }
+
 // ToGetRequestInformation stream the state of a game being played with the Bot API, as [ndjson](#description/streaming-with-nd-json).Use this endpoint to get updates about the game in real-time, with a single request.Each line is a JSON object containing a `type` field. Possible values are:- `gameFull` Full game data. All values are immutable, except for the `state` field.- `gameState` Current state of the game. Immutable values not included.- `chatLine` Chat message sent by a user (or the bot itself) in the `room` "player" or "spectator".- `opponentGone` Whether the opponent has left the game, and how long before you can claim a win or draw.The first line is always of type `gameFull`.
 // returns a *RequestInformation when successful
-func (m *BotGameStreamWithGameItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *BotGameStreamWithGameItemRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/x-ndjson, application/json")
-    return requestInfo, nil
+func (m *BotGameStreamWithGameItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *BotGameStreamWithGameItemRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/x-ndjson, application/json")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *BotGameStreamWithGameItemRequestBuilder when successful
-func (m *BotGameStreamWithGameItemRequestBuilder) WithUrl(rawUrl string)(*BotGameStreamWithGameItemRequestBuilder) {
-    return NewBotGameStreamWithGameItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *BotGameStreamWithGameItemRequestBuilder) WithUrl(rawUrl string) *BotGameStreamWithGameItemRequestBuilder {
+	return NewBotGameStreamWithGameItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

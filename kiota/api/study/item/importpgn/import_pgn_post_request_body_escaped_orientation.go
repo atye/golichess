@@ -2,36 +2,40 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package importpgn
+
 // Board orientation.If not specified, the orientation is automatically determined.
 type ImportPgnPostRequestBody_orientation int
 
 const (
-    WHITE_IMPORTPGNPOSTREQUESTBODY_ORIENTATION ImportPgnPostRequestBody_orientation = iota
-    BLACK_IMPORTPGNPOSTREQUESTBODY_ORIENTATION
+	WHITE_IMPORTPGNPOSTREQUESTBODY_ORIENTATION ImportPgnPostRequestBody_orientation = iota
+	BLACK_IMPORTPGNPOSTREQUESTBODY_ORIENTATION
 )
 
 func (i ImportPgnPostRequestBody_orientation) String() string {
-    return []string{"white", "black"}[i]
+	return []string{"white", "black"}[i]
 }
+
 func ParseImportPgnPostRequestBody_orientation(v string) (any, error) {
-    result := WHITE_IMPORTPGNPOSTREQUESTBODY_ORIENTATION
-    switch v {
-        case "white":
-            result = WHITE_IMPORTPGNPOSTREQUESTBODY_ORIENTATION
-        case "black":
-            result = BLACK_IMPORTPGNPOSTREQUESTBODY_ORIENTATION
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := WHITE_IMPORTPGNPOSTREQUESTBODY_ORIENTATION
+	switch v {
+	case "white":
+		result = WHITE_IMPORTPGNPOSTREQUESTBODY_ORIENTATION
+	case "black":
+		result = BLACK_IMPORTPGNPOSTREQUESTBODY_ORIENTATION
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeImportPgnPostRequestBody_orientation(values []ImportPgnPostRequestBody_orientation) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i ImportPgnPostRequestBody_orientation) isMultiValue() bool {
-    return false
+	return false
 }

@@ -4,345 +4,371 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type ArenaTournamentFull_podium struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
-    flair *string
-    // The name property
-    name *string
-    // The nb property
-    nb ArenaTournamentFull_podium_nbable
-    // Use patronColor value instead to determine if player is a patron.
-    // Deprecated: 
-    patron *bool
-    // Players can choose a color for their Patron wings.See [here for the color mappings](https://github.com/lichess-org/lila/blob/master/ui/lib/css/abstract/_patron-colors.scss).The presence of this field indicates the player is an active Patron.
-    patronColor *int32
-    // The performance property
-    performance *int32
-    // The rank property
-    rank *int32
-    // The rating property
-    rating *int32
-    // The score property
-    score *int32
-    // only appears if the user is a titled player or a bot user
-    title *Title
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
+	flair *string
+	// The name property
+	name *string
+	// The nb property
+	nb ArenaTournamentFull_podium_nbable
+	// Use patronColor value instead to determine if player is a patron.
+	// Deprecated:
+	patron *bool
+	// Players can choose a color for their Patron wings.See [here for the color mappings](https://github.com/lichess-org/lila/blob/master/ui/lib/css/abstract/_patron-colors.scss).The presence of this field indicates the player is an active Patron.
+	patronColor *int32
+	// The performance property
+	performance *int32
+	// The rank property
+	rank *int32
+	// The rating property
+	rating *int32
+	// The score property
+	score *int32
+	// only appears if the user is a titled player or a bot user
+	title *Title
 }
+
 // NewArenaTournamentFull_podium instantiates a new ArenaTournamentFull_podium and sets the default values.
-func NewArenaTournamentFull_podium()(*ArenaTournamentFull_podium) {
-    m := &ArenaTournamentFull_podium{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewArenaTournamentFull_podium() *ArenaTournamentFull_podium {
+	m := &ArenaTournamentFull_podium{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateArenaTournamentFull_podiumFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateArenaTournamentFull_podiumFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewArenaTournamentFull_podium(), nil
+func CreateArenaTournamentFull_podiumFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewArenaTournamentFull_podium(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *ArenaTournamentFull_podium) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *ArenaTournamentFull_podium) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ArenaTournamentFull_podium) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["flair"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFlair(val)
-        }
-        return nil
-    }
-    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetName(val)
-        }
-        return nil
-    }
-    res["nb"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateArenaTournamentFull_podium_nbFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetNb(val.(ArenaTournamentFull_podium_nbable))
-        }
-        return nil
-    }
-    res["patron"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPatron(val)
-        }
-        return nil
-    }
-    res["patronColor"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPatronColor(val)
-        }
-        return nil
-    }
-    res["performance"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPerformance(val)
-        }
-        return nil
-    }
-    res["rank"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRank(val)
-        }
-        return nil
-    }
-    res["rating"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRating(val)
-        }
-        return nil
-    }
-    res["score"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetScore(val)
-        }
-        return nil
-    }
-    res["title"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseTitle)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTitle(val.(*Title))
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *ArenaTournamentFull_podium) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["flair"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFlair(val)
+		}
+		return nil
+	}
+	res["name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetName(val)
+		}
+		return nil
+	}
+	res["nb"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateArenaTournamentFull_podium_nbFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetNb(val.(ArenaTournamentFull_podium_nbable))
+		}
+		return nil
+	}
+	res["patron"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPatron(val)
+		}
+		return nil
+	}
+	res["patronColor"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPatronColor(val)
+		}
+		return nil
+	}
+	res["performance"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPerformance(val)
+		}
+		return nil
+	}
+	res["rank"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRank(val)
+		}
+		return nil
+	}
+	res["rating"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRating(val)
+		}
+		return nil
+	}
+	res["score"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetScore(val)
+		}
+		return nil
+	}
+	res["title"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(ParseTitle)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTitle(val.(*Title))
+		}
+		return nil
+	}
+	return res
 }
+
 // GetFlair gets the flair property value. See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
 // returns a *string when successful
-func (m *ArenaTournamentFull_podium) GetFlair()(*string) {
-    return m.flair
+func (m *ArenaTournamentFull_podium) GetFlair() *string {
+	return m.flair
 }
+
 // GetName gets the name property value. The name property
 // returns a *string when successful
-func (m *ArenaTournamentFull_podium) GetName()(*string) {
-    return m.name
+func (m *ArenaTournamentFull_podium) GetName() *string {
+	return m.name
 }
+
 // GetNb gets the nb property value. The nb property
 // returns a ArenaTournamentFull_podium_nbable when successful
-func (m *ArenaTournamentFull_podium) GetNb()(ArenaTournamentFull_podium_nbable) {
-    return m.nb
+func (m *ArenaTournamentFull_podium) GetNb() ArenaTournamentFull_podium_nbable {
+	return m.nb
 }
+
 // GetPatron gets the patron property value. Use patronColor value instead to determine if player is a patron.
-// Deprecated: 
+// Deprecated:
 // returns a *bool when successful
-func (m *ArenaTournamentFull_podium) GetPatron()(*bool) {
-    return m.patron
+func (m *ArenaTournamentFull_podium) GetPatron() *bool {
+	return m.patron
 }
+
 // GetPatronColor gets the patronColor property value. Players can choose a color for their Patron wings.See [here for the color mappings](https://github.com/lichess-org/lila/blob/master/ui/lib/css/abstract/_patron-colors.scss).The presence of this field indicates the player is an active Patron.
 // returns a *int32 when successful
-func (m *ArenaTournamentFull_podium) GetPatronColor()(*int32) {
-    return m.patronColor
+func (m *ArenaTournamentFull_podium) GetPatronColor() *int32 {
+	return m.patronColor
 }
+
 // GetPerformance gets the performance property value. The performance property
 // returns a *int32 when successful
-func (m *ArenaTournamentFull_podium) GetPerformance()(*int32) {
-    return m.performance
+func (m *ArenaTournamentFull_podium) GetPerformance() *int32 {
+	return m.performance
 }
+
 // GetRank gets the rank property value. The rank property
 // returns a *int32 when successful
-func (m *ArenaTournamentFull_podium) GetRank()(*int32) {
-    return m.rank
+func (m *ArenaTournamentFull_podium) GetRank() *int32 {
+	return m.rank
 }
+
 // GetRating gets the rating property value. The rating property
 // returns a *int32 when successful
-func (m *ArenaTournamentFull_podium) GetRating()(*int32) {
-    return m.rating
+func (m *ArenaTournamentFull_podium) GetRating() *int32 {
+	return m.rating
 }
+
 // GetScore gets the score property value. The score property
 // returns a *int32 when successful
-func (m *ArenaTournamentFull_podium) GetScore()(*int32) {
-    return m.score
+func (m *ArenaTournamentFull_podium) GetScore() *int32 {
+	return m.score
 }
+
 // GetTitle gets the title property value. only appears if the user is a titled player or a bot user
 // returns a *Title when successful
-func (m *ArenaTournamentFull_podium) GetTitle()(*Title) {
-    return m.title
+func (m *ArenaTournamentFull_podium) GetTitle() *Title {
+	return m.title
 }
+
 // Serialize serializes information the current object
-func (m *ArenaTournamentFull_podium) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("flair", m.GetFlair())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("name", m.GetName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("nb", m.GetNb())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("patron", m.GetPatron())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("patronColor", m.GetPatronColor())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("performance", m.GetPerformance())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("rank", m.GetRank())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("rating", m.GetRating())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("score", m.GetScore())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetTitle() != nil {
-        cast := (*m.GetTitle()).String()
-        err := writer.WriteStringValue("title", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *ArenaTournamentFull_podium) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("flair", m.GetFlair())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("name", m.GetName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("nb", m.GetNb())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("patron", m.GetPatron())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("patronColor", m.GetPatronColor())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("performance", m.GetPerformance())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("rank", m.GetRank())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("rating", m.GetRating())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("score", m.GetScore())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetTitle() != nil {
+		cast := (*m.GetTitle()).String()
+		err := writer.WriteStringValue("title", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ArenaTournamentFull_podium) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *ArenaTournamentFull_podium) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetFlair sets the flair property value. See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
-func (m *ArenaTournamentFull_podium) SetFlair(value *string)() {
-    m.flair = value
+func (m *ArenaTournamentFull_podium) SetFlair(value *string) {
+	m.flair = value
 }
+
 // SetName sets the name property value. The name property
-func (m *ArenaTournamentFull_podium) SetName(value *string)() {
-    m.name = value
+func (m *ArenaTournamentFull_podium) SetName(value *string) {
+	m.name = value
 }
+
 // SetNb sets the nb property value. The nb property
-func (m *ArenaTournamentFull_podium) SetNb(value ArenaTournamentFull_podium_nbable)() {
-    m.nb = value
+func (m *ArenaTournamentFull_podium) SetNb(value ArenaTournamentFull_podium_nbable) {
+	m.nb = value
 }
+
 // SetPatron sets the patron property value. Use patronColor value instead to determine if player is a patron.
-// Deprecated: 
-func (m *ArenaTournamentFull_podium) SetPatron(value *bool)() {
-    m.patron = value
+// Deprecated:
+func (m *ArenaTournamentFull_podium) SetPatron(value *bool) {
+	m.patron = value
 }
+
 // SetPatronColor sets the patronColor property value. Players can choose a color for their Patron wings.See [here for the color mappings](https://github.com/lichess-org/lila/blob/master/ui/lib/css/abstract/_patron-colors.scss).The presence of this field indicates the player is an active Patron.
-func (m *ArenaTournamentFull_podium) SetPatronColor(value *int32)() {
-    m.patronColor = value
+func (m *ArenaTournamentFull_podium) SetPatronColor(value *int32) {
+	m.patronColor = value
 }
+
 // SetPerformance sets the performance property value. The performance property
-func (m *ArenaTournamentFull_podium) SetPerformance(value *int32)() {
-    m.performance = value
+func (m *ArenaTournamentFull_podium) SetPerformance(value *int32) {
+	m.performance = value
 }
+
 // SetRank sets the rank property value. The rank property
-func (m *ArenaTournamentFull_podium) SetRank(value *int32)() {
-    m.rank = value
+func (m *ArenaTournamentFull_podium) SetRank(value *int32) {
+	m.rank = value
 }
+
 // SetRating sets the rating property value. The rating property
-func (m *ArenaTournamentFull_podium) SetRating(value *int32)() {
-    m.rating = value
+func (m *ArenaTournamentFull_podium) SetRating(value *int32) {
+	m.rating = value
 }
+
 // SetScore sets the score property value. The score property
-func (m *ArenaTournamentFull_podium) SetScore(value *int32)() {
-    m.score = value
+func (m *ArenaTournamentFull_podium) SetScore(value *int32) {
+	m.score = value
 }
+
 // SetTitle sets the title property value. only appears if the user is a titled player or a bot user
-func (m *ArenaTournamentFull_podium) SetTitle(value *Title)() {
-    m.title = value
+func (m *ArenaTournamentFull_podium) SetTitle(value *Title) {
+	m.title = value
 }
+
 type ArenaTournamentFull_podiumable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetFlair()(*string)
-    GetName()(*string)
-    GetNb()(ArenaTournamentFull_podium_nbable)
-    GetPatron()(*bool)
-    GetPatronColor()(*int32)
-    GetPerformance()(*int32)
-    GetRank()(*int32)
-    GetRating()(*int32)
-    GetScore()(*int32)
-    GetTitle()(*Title)
-    SetFlair(value *string)()
-    SetName(value *string)()
-    SetNb(value ArenaTournamentFull_podium_nbable)()
-    SetPatron(value *bool)()
-    SetPatronColor(value *int32)()
-    SetPerformance(value *int32)()
-    SetRank(value *int32)()
-    SetRating(value *int32)()
-    SetScore(value *int32)()
-    SetTitle(value *Title)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetFlair() *string
+	GetName() *string
+	GetNb() ArenaTournamentFull_podium_nbable
+	GetPatron() *bool
+	GetPatronColor() *int32
+	GetPerformance() *int32
+	GetRank() *int32
+	GetRating() *int32
+	GetScore() *int32
+	GetTitle() *Title
+	SetFlair(value *string)
+	SetName(value *string)
+	SetNb(value ArenaTournamentFull_podium_nbable)
+	SetPatron(value *bool)
+	SetPatronColor(value *int32)
+	SetPerformance(value *int32)
+	SetRank(value *int32)
+	SetRating(value *int32)
+	SetScore(value *int32)
+	SetTitle(value *Title)
 }

@@ -4,148 +4,160 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type ArenaPositionMember1 struct {
-    // The eco property
-    eco *string
-    // The fen property
-    fen *string
-    // The name property
-    name *string
-    // The url property
-    url *string
+	// The eco property
+	eco *string
+	// The fen property
+	fen *string
+	// The name property
+	name *string
+	// The url property
+	url *string
 }
+
 // NewArenaPositionMember1 instantiates a new ArenaPositionMember1 and sets the default values.
-func NewArenaPositionMember1()(*ArenaPositionMember1) {
-    m := &ArenaPositionMember1{
-    }
-    return m
+func NewArenaPositionMember1() *ArenaPositionMember1 {
+	m := &ArenaPositionMember1{}
+	return m
 }
+
 // CreateArenaPositionMember1FromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateArenaPositionMember1FromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewArenaPositionMember1(), nil
+func CreateArenaPositionMember1FromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewArenaPositionMember1(), nil
 }
+
 // GetEco gets the eco property value. The eco property
 // returns a *string when successful
-func (m *ArenaPositionMember1) GetEco()(*string) {
-    return m.eco
+func (m *ArenaPositionMember1) GetEco() *string {
+	return m.eco
 }
+
 // GetFen gets the fen property value. The fen property
 // returns a *string when successful
-func (m *ArenaPositionMember1) GetFen()(*string) {
-    return m.fen
+func (m *ArenaPositionMember1) GetFen() *string {
+	return m.fen
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ArenaPositionMember1) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["eco"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetEco(val)
-        }
-        return nil
-    }
-    res["fen"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFen(val)
-        }
-        return nil
-    }
-    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetName(val)
-        }
-        return nil
-    }
-    res["url"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetUrl(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *ArenaPositionMember1) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["eco"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetEco(val)
+		}
+		return nil
+	}
+	res["fen"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFen(val)
+		}
+		return nil
+	}
+	res["name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetName(val)
+		}
+		return nil
+	}
+	res["url"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetUrl(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetName gets the name property value. The name property
 // returns a *string when successful
-func (m *ArenaPositionMember1) GetName()(*string) {
-    return m.name
+func (m *ArenaPositionMember1) GetName() *string {
+	return m.name
 }
+
 // GetUrl gets the url property value. The url property
 // returns a *string when successful
-func (m *ArenaPositionMember1) GetUrl()(*string) {
-    return m.url
+func (m *ArenaPositionMember1) GetUrl() *string {
+	return m.url
 }
+
 // Serialize serializes information the current object
-func (m *ArenaPositionMember1) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("eco", m.GetEco())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("fen", m.GetFen())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("name", m.GetName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("url", m.GetUrl())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *ArenaPositionMember1) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("eco", m.GetEco())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("fen", m.GetFen())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("name", m.GetName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("url", m.GetUrl())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetEco sets the eco property value. The eco property
-func (m *ArenaPositionMember1) SetEco(value *string)() {
-    m.eco = value
+func (m *ArenaPositionMember1) SetEco(value *string) {
+	m.eco = value
 }
+
 // SetFen sets the fen property value. The fen property
-func (m *ArenaPositionMember1) SetFen(value *string)() {
-    m.fen = value
+func (m *ArenaPositionMember1) SetFen(value *string) {
+	m.fen = value
 }
+
 // SetName sets the name property value. The name property
-func (m *ArenaPositionMember1) SetName(value *string)() {
-    m.name = value
+func (m *ArenaPositionMember1) SetName(value *string) {
+	m.name = value
 }
+
 // SetUrl sets the url property value. The url property
-func (m *ArenaPositionMember1) SetUrl(value *string)() {
-    m.url = value
+func (m *ArenaPositionMember1) SetUrl(value *string) {
+	m.url = value
 }
+
 type ArenaPositionMember1able interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetEco()(*string)
-    GetFen()(*string)
-    GetName()(*string)
-    GetUrl()(*string)
-    SetEco(value *string)()
-    SetFen(value *string)()
-    SetName(value *string)()
-    SetUrl(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetEco() *string
+	GetFen() *string
+	GetName() *string
+	GetUrl() *string
+	SetEco(value *string)
+	SetFen(value *string)
+	SetName(value *string)
+	SetUrl(value *string)
 }

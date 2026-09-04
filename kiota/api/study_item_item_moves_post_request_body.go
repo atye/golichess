@@ -4,80 +4,88 @@
 package api
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type StudyItemItemMovesPostRequestBody struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // PGN text containing the moves that will replace the chapter's existing moves.Any provided tags are ignored.
-    pgn *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// PGN text containing the moves that will replace the chapter's existing moves.Any provided tags are ignored.
+	pgn *string
 }
+
 // NewStudyItemItemMovesPostRequestBody instantiates a new StudyItemItemMovesPostRequestBody and sets the default values.
-func NewStudyItemItemMovesPostRequestBody()(*StudyItemItemMovesPostRequestBody) {
-    m := &StudyItemItemMovesPostRequestBody{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewStudyItemItemMovesPostRequestBody() *StudyItemItemMovesPostRequestBody {
+	m := &StudyItemItemMovesPostRequestBody{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateStudyItemItemMovesPostRequestBodyFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateStudyItemItemMovesPostRequestBodyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewStudyItemItemMovesPostRequestBody(), nil
+func CreateStudyItemItemMovesPostRequestBodyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewStudyItemItemMovesPostRequestBody(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *StudyItemItemMovesPostRequestBody) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *StudyItemItemMovesPostRequestBody) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *StudyItemItemMovesPostRequestBody) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["pgn"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPgn(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *StudyItemItemMovesPostRequestBody) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["pgn"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPgn(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetPgn gets the pgn property value. PGN text containing the moves that will replace the chapter's existing moves.Any provided tags are ignored.
 // returns a *string when successful
-func (m *StudyItemItemMovesPostRequestBody) GetPgn()(*string) {
-    return m.pgn
+func (m *StudyItemItemMovesPostRequestBody) GetPgn() *string {
+	return m.pgn
 }
+
 // Serialize serializes information the current object
-func (m *StudyItemItemMovesPostRequestBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("pgn", m.GetPgn())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *StudyItemItemMovesPostRequestBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("pgn", m.GetPgn())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *StudyItemItemMovesPostRequestBody) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *StudyItemItemMovesPostRequestBody) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetPgn sets the pgn property value. PGN text containing the moves that will replace the chapter's existing moves.Any provided tags are ignored.
-func (m *StudyItemItemMovesPostRequestBody) SetPgn(value *string)() {
-    m.pgn = value
+func (m *StudyItemItemMovesPostRequestBody) SetPgn(value *string) {
+	m.pgn = value
 }
+
 type StudyItemItemMovesPostRequestBodyable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetPgn()(*string)
-    SetPgn(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetPgn() *string
+	SetPgn(value *string)
 }

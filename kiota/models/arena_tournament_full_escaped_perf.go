@@ -4,138 +4,150 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type ArenaTournamentFull_perf struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The icon property
-    icon *string
-    // The key property
-    key *string
-    // The name property
-    name *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The icon property
+	icon *string
+	// The key property
+	key *string
+	// The name property
+	name *string
 }
+
 // NewArenaTournamentFull_perf instantiates a new ArenaTournamentFull_perf and sets the default values.
-func NewArenaTournamentFull_perf()(*ArenaTournamentFull_perf) {
-    m := &ArenaTournamentFull_perf{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewArenaTournamentFull_perf() *ArenaTournamentFull_perf {
+	m := &ArenaTournamentFull_perf{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateArenaTournamentFull_perfFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateArenaTournamentFull_perfFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewArenaTournamentFull_perf(), nil
+func CreateArenaTournamentFull_perfFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewArenaTournamentFull_perf(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *ArenaTournamentFull_perf) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *ArenaTournamentFull_perf) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ArenaTournamentFull_perf) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["icon"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetIcon(val)
-        }
-        return nil
-    }
-    res["key"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetKey(val)
-        }
-        return nil
-    }
-    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetName(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *ArenaTournamentFull_perf) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["icon"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetIcon(val)
+		}
+		return nil
+	}
+	res["key"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetKey(val)
+		}
+		return nil
+	}
+	res["name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetName(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetIcon gets the icon property value. The icon property
 // returns a *string when successful
-func (m *ArenaTournamentFull_perf) GetIcon()(*string) {
-    return m.icon
+func (m *ArenaTournamentFull_perf) GetIcon() *string {
+	return m.icon
 }
+
 // GetKey gets the key property value. The key property
 // returns a *string when successful
-func (m *ArenaTournamentFull_perf) GetKey()(*string) {
-    return m.key
+func (m *ArenaTournamentFull_perf) GetKey() *string {
+	return m.key
 }
+
 // GetName gets the name property value. The name property
 // returns a *string when successful
-func (m *ArenaTournamentFull_perf) GetName()(*string) {
-    return m.name
+func (m *ArenaTournamentFull_perf) GetName() *string {
+	return m.name
 }
+
 // Serialize serializes information the current object
-func (m *ArenaTournamentFull_perf) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("icon", m.GetIcon())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("key", m.GetKey())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("name", m.GetName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *ArenaTournamentFull_perf) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("icon", m.GetIcon())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("key", m.GetKey())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("name", m.GetName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ArenaTournamentFull_perf) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *ArenaTournamentFull_perf) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetIcon sets the icon property value. The icon property
-func (m *ArenaTournamentFull_perf) SetIcon(value *string)() {
-    m.icon = value
+func (m *ArenaTournamentFull_perf) SetIcon(value *string) {
+	m.icon = value
 }
+
 // SetKey sets the key property value. The key property
-func (m *ArenaTournamentFull_perf) SetKey(value *string)() {
-    m.key = value
+func (m *ArenaTournamentFull_perf) SetKey(value *string) {
+	m.key = value
 }
+
 // SetName sets the name property value. The name property
-func (m *ArenaTournamentFull_perf) SetName(value *string)() {
-    m.name = value
+func (m *ArenaTournamentFull_perf) SetName(value *string) {
+	m.name = value
 }
+
 type ArenaTournamentFull_perfable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetIcon()(*string)
-    GetKey()(*string)
-    GetName()(*string)
-    SetIcon(value *string)()
-    SetKey(value *string)()
-    SetName(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetIcon() *string
+	GetKey() *string
+	GetName() *string
+	SetIcon(value *string)
+	SetKey(value *string)
+	SetName(value *string)
 }

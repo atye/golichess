@@ -2,39 +2,43 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package importpgn
+
 // Analysis mode.If not specified, Normal analysis.* practice - Practise with Computer* conceal - Hide next moves* gamebook - Interactive lesson
 type ImportPgnPostRequestBody_mode int
 
 const (
-    PRACTICE_IMPORTPGNPOSTREQUESTBODY_MODE ImportPgnPostRequestBody_mode = iota
-    CONCEAL_IMPORTPGNPOSTREQUESTBODY_MODE
-    GAMEBOOK_IMPORTPGNPOSTREQUESTBODY_MODE
+	PRACTICE_IMPORTPGNPOSTREQUESTBODY_MODE ImportPgnPostRequestBody_mode = iota
+	CONCEAL_IMPORTPGNPOSTREQUESTBODY_MODE
+	GAMEBOOK_IMPORTPGNPOSTREQUESTBODY_MODE
 )
 
 func (i ImportPgnPostRequestBody_mode) String() string {
-    return []string{"practice", "conceal", "gamebook"}[i]
+	return []string{"practice", "conceal", "gamebook"}[i]
 }
+
 func ParseImportPgnPostRequestBody_mode(v string) (any, error) {
-    result := PRACTICE_IMPORTPGNPOSTREQUESTBODY_MODE
-    switch v {
-        case "practice":
-            result = PRACTICE_IMPORTPGNPOSTREQUESTBODY_MODE
-        case "conceal":
-            result = CONCEAL_IMPORTPGNPOSTREQUESTBODY_MODE
-        case "gamebook":
-            result = GAMEBOOK_IMPORTPGNPOSTREQUESTBODY_MODE
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := PRACTICE_IMPORTPGNPOSTREQUESTBODY_MODE
+	switch v {
+	case "practice":
+		result = PRACTICE_IMPORTPGNPOSTREQUESTBODY_MODE
+	case "conceal":
+		result = CONCEAL_IMPORTPGNPOSTREQUESTBODY_MODE
+	case "gamebook":
+		result = GAMEBOOK_IMPORTPGNPOSTREQUESTBODY_MODE
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeImportPgnPostRequestBody_mode(values []ImportPgnPostRequestBody_mode) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i ImportPgnPostRequestBody_mode) isMultiValue() bool {
-    return false
+	return false
 }

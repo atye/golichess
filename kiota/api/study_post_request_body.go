@@ -4,318 +4,346 @@
 package api
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
-    i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type StudyPostRequestBody struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The chat property
-    chat *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection
-    // The cloneable property
-    cloneable *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection
-    // The computer property
-    computer *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection
-    // Add pinned study comment right under the board.
-    description *bool
-    // The explorer property
-    explorer *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection
-    // See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
-    flair *string
-    // The study name.
-    name *string
-    // The shareable property
-    shareable *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection
-    // Keep everyone on the same chapter and position.
-    sticky *bool
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The chat property
+	chat *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection
+	// The cloneable property
+	cloneable *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection
+	// The computer property
+	computer *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection
+	// Add pinned study comment right under the board.
+	description *bool
+	// The explorer property
+	explorer *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection
+	// See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
+	flair *string
+	// The study name.
+	name *string
+	// The shareable property
+	shareable *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection
+	// Keep everyone on the same chapter and position.
+	sticky *bool
 }
+
 // NewStudyPostRequestBody instantiates a new StudyPostRequestBody and sets the default values.
-func NewStudyPostRequestBody()(*StudyPostRequestBody) {
-    m := &StudyPostRequestBody{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewStudyPostRequestBody() *StudyPostRequestBody {
+	m := &StudyPostRequestBody{}
+	m.SetAdditionalData(make(map[string]any))
+	descriptionValue := false
+	m.SetDescription(&descriptionValue)
+	stickyValue := true
+	m.SetSticky(&stickyValue)
+	return m
 }
+
 // CreateStudyPostRequestBodyFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateStudyPostRequestBodyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewStudyPostRequestBody(), nil
+func CreateStudyPostRequestBodyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewStudyPostRequestBody(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *StudyPostRequestBody) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *StudyPostRequestBody) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetChat gets the chat property value. The chat property
 // returns a *StudyUserSelection when successful
-func (m *StudyPostRequestBody) GetChat()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection) {
-    return m.chat
+func (m *StudyPostRequestBody) GetChat() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection {
+	return m.chat
 }
+
 // GetCloneable gets the cloneable property value. The cloneable property
 // returns a *StudyUserSelection when successful
-func (m *StudyPostRequestBody) GetCloneable()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection) {
-    return m.cloneable
+func (m *StudyPostRequestBody) GetCloneable() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection {
+	return m.cloneable
 }
+
 // GetComputer gets the computer property value. The computer property
 // returns a *StudyUserSelection when successful
-func (m *StudyPostRequestBody) GetComputer()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection) {
-    return m.computer
+func (m *StudyPostRequestBody) GetComputer() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection {
+	return m.computer
 }
+
 // GetDescription gets the description property value. Add pinned study comment right under the board.
 // returns a *bool when successful
-func (m *StudyPostRequestBody) GetDescription()(*bool) {
-    return m.description
+func (m *StudyPostRequestBody) GetDescription() *bool {
+	return m.description
 }
+
 // GetExplorer gets the explorer property value. The explorer property
 // returns a *StudyUserSelection when successful
-func (m *StudyPostRequestBody) GetExplorer()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection) {
-    return m.explorer
+func (m *StudyPostRequestBody) GetExplorer() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection {
+	return m.explorer
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *StudyPostRequestBody) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["chat"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParseStudyUserSelection)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetChat(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection))
-        }
-        return nil
-    }
-    res["cloneable"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParseStudyUserSelection)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCloneable(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection))
-        }
-        return nil
-    }
-    res["computer"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParseStudyUserSelection)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetComputer(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection))
-        }
-        return nil
-    }
-    res["description"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDescription(val)
-        }
-        return nil
-    }
-    res["explorer"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParseStudyUserSelection)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetExplorer(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection))
-        }
-        return nil
-    }
-    res["flair"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFlair(val)
-        }
-        return nil
-    }
-    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetName(val)
-        }
-        return nil
-    }
-    res["shareable"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParseStudyUserSelection)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetShareable(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection))
-        }
-        return nil
-    }
-    res["sticky"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSticky(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *StudyPostRequestBody) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["chat"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParseStudyUserSelection)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetChat(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection))
+		}
+		return nil
+	}
+	res["cloneable"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParseStudyUserSelection)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCloneable(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection))
+		}
+		return nil
+	}
+	res["computer"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParseStudyUserSelection)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetComputer(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection))
+		}
+		return nil
+	}
+	res["description"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetDescription(val)
+		}
+		return nil
+	}
+	res["explorer"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParseStudyUserSelection)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetExplorer(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection))
+		}
+		return nil
+	}
+	res["flair"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFlair(val)
+		}
+		return nil
+	}
+	res["name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetName(val)
+		}
+		return nil
+	}
+	res["shareable"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParseStudyUserSelection)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetShareable(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection))
+		}
+		return nil
+	}
+	res["sticky"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetSticky(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetFlair gets the flair property value. See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
 // returns a *string when successful
-func (m *StudyPostRequestBody) GetFlair()(*string) {
-    return m.flair
+func (m *StudyPostRequestBody) GetFlair() *string {
+	return m.flair
 }
+
 // GetName gets the name property value. The study name.
 // returns a *string when successful
-func (m *StudyPostRequestBody) GetName()(*string) {
-    return m.name
+func (m *StudyPostRequestBody) GetName() *string {
+	return m.name
 }
+
 // GetShareable gets the shareable property value. The shareable property
 // returns a *StudyUserSelection when successful
-func (m *StudyPostRequestBody) GetShareable()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection) {
-    return m.shareable
+func (m *StudyPostRequestBody) GetShareable() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection {
+	return m.shareable
 }
+
 // GetSticky gets the sticky property value. Keep everyone on the same chapter and position.
 // returns a *bool when successful
-func (m *StudyPostRequestBody) GetSticky()(*bool) {
-    return m.sticky
+func (m *StudyPostRequestBody) GetSticky() *bool {
+	return m.sticky
 }
+
 // Serialize serializes information the current object
-func (m *StudyPostRequestBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetChat() != nil {
-        cast := (*m.GetChat()).String()
-        err := writer.WriteStringValue("chat", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetCloneable() != nil {
-        cast := (*m.GetCloneable()).String()
-        err := writer.WriteStringValue("cloneable", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetComputer() != nil {
-        cast := (*m.GetComputer()).String()
-        err := writer.WriteStringValue("computer", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("description", m.GetDescription())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetExplorer() != nil {
-        cast := (*m.GetExplorer()).String()
-        err := writer.WriteStringValue("explorer", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("flair", m.GetFlair())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("name", m.GetName())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetShareable() != nil {
-        cast := (*m.GetShareable()).String()
-        err := writer.WriteStringValue("shareable", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("sticky", m.GetSticky())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *StudyPostRequestBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	if m.GetChat() != nil {
+		cast := (*m.GetChat()).String()
+		err := writer.WriteStringValue("chat", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetCloneable() != nil {
+		cast := (*m.GetCloneable()).String()
+		err := writer.WriteStringValue("cloneable", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetComputer() != nil {
+		cast := (*m.GetComputer()).String()
+		err := writer.WriteStringValue("computer", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("description", m.GetDescription())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetExplorer() != nil {
+		cast := (*m.GetExplorer()).String()
+		err := writer.WriteStringValue("explorer", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("flair", m.GetFlair())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("name", m.GetName())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetShareable() != nil {
+		cast := (*m.GetShareable()).String()
+		err := writer.WriteStringValue("shareable", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("sticky", m.GetSticky())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *StudyPostRequestBody) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *StudyPostRequestBody) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetChat sets the chat property value. The chat property
-func (m *StudyPostRequestBody) SetChat(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection)() {
-    m.chat = value
+func (m *StudyPostRequestBody) SetChat(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection) {
+	m.chat = value
 }
+
 // SetCloneable sets the cloneable property value. The cloneable property
-func (m *StudyPostRequestBody) SetCloneable(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection)() {
-    m.cloneable = value
+func (m *StudyPostRequestBody) SetCloneable(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection) {
+	m.cloneable = value
 }
+
 // SetComputer sets the computer property value. The computer property
-func (m *StudyPostRequestBody) SetComputer(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection)() {
-    m.computer = value
+func (m *StudyPostRequestBody) SetComputer(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection) {
+	m.computer = value
 }
+
 // SetDescription sets the description property value. Add pinned study comment right under the board.
-func (m *StudyPostRequestBody) SetDescription(value *bool)() {
-    m.description = value
+func (m *StudyPostRequestBody) SetDescription(value *bool) {
+	m.description = value
 }
+
 // SetExplorer sets the explorer property value. The explorer property
-func (m *StudyPostRequestBody) SetExplorer(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection)() {
-    m.explorer = value
+func (m *StudyPostRequestBody) SetExplorer(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection) {
+	m.explorer = value
 }
+
 // SetFlair sets the flair property value. See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
-func (m *StudyPostRequestBody) SetFlair(value *string)() {
-    m.flair = value
+func (m *StudyPostRequestBody) SetFlair(value *string) {
+	m.flair = value
 }
+
 // SetName sets the name property value. The study name.
-func (m *StudyPostRequestBody) SetName(value *string)() {
-    m.name = value
+func (m *StudyPostRequestBody) SetName(value *string) {
+	m.name = value
 }
+
 // SetShareable sets the shareable property value. The shareable property
-func (m *StudyPostRequestBody) SetShareable(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection)() {
-    m.shareable = value
+func (m *StudyPostRequestBody) SetShareable(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection) {
+	m.shareable = value
 }
+
 // SetSticky sets the sticky property value. Keep everyone on the same chapter and position.
-func (m *StudyPostRequestBody) SetSticky(value *bool)() {
-    m.sticky = value
+func (m *StudyPostRequestBody) SetSticky(value *bool) {
+	m.sticky = value
 }
+
 type StudyPostRequestBodyable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetChat()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection)
-    GetCloneable()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection)
-    GetComputer()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection)
-    GetDescription()(*bool)
-    GetExplorer()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection)
-    GetFlair()(*string)
-    GetName()(*string)
-    GetShareable()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection)
-    GetSticky()(*bool)
-    SetChat(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection)()
-    SetCloneable(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection)()
-    SetComputer(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection)()
-    SetDescription(value *bool)()
-    SetExplorer(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection)()
-    SetFlair(value *string)()
-    SetName(value *string)()
-    SetShareable(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection)()
-    SetSticky(value *bool)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetChat() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection
+	GetCloneable() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection
+	GetComputer() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection
+	GetDescription() *bool
+	GetExplorer() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection
+	GetFlair() *string
+	GetName() *string
+	GetShareable() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection
+	GetSticky() *bool
+	SetChat(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection)
+	SetCloneable(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection)
+	SetComputer(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection)
+	SetDescription(value *bool)
+	SetExplorer(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection)
+	SetFlair(value *string)
+	SetName(value *string)
+	SetShareable(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.StudyUserSelection)
+	SetSticky(value *bool)
 }

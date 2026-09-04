@@ -4,82 +4,89 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	"context"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // StudyItemWithChapterIdPgnRequestBuilder builds and executes requests for operations under \api\study\{studyId}\{chapterId}.pgn
 type StudyItemWithChapterIdPgnRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // StudyItemWithChapterIdPgnRequestBuilderGetQueryParameters download one study chapter in PGN format.If authenticated, then all public, unlisted, and private study chapters are read.If not, only public (non-unlisted) study chapters are read.
 type StudyItemWithChapterIdPgnRequestBuilderGetQueryParameters struct {
-    // Include clock comments in the PGN moves, when available.Example: `2. exd5 { [%clk 1:01:27] } e5 { [%clk 1:01:28] }`
-    Clocks *bool "uriparametername:\"clocks\""
-    // Include analysis and annotator comments in the PGN moves, when available.Example: `12. Bxf6 { [%eval 0.23] } a3 { White is in a pickle. }`
-    Comments *bool "uriparametername:\"comments\""
-    // Add a `Orientation` PGN tag with the chapter predefined orientation.Example: `[Orientation "white"]`
-    Orientation *bool "uriparametername:\"orientation\""
-    // Include non-mainline moves, when available.Example: `4. d4 Bb4+ (4... Nc6 5. Nf3 Bb4+ 6. Bd2 (6. Nbd2 O-O 7. O-O) 6... Bd6) 5. Nd2`
-    Variations *bool "uriparametername:\"variations\""
+	// Include clock comments in the PGN moves, when available.Example: `2. exd5 { [%clk 1:01:27] } e5 { [%clk 1:01:28] }`
+	Clocks *bool "uriparametername:\"clocks\""
+	// Include analysis and annotator comments in the PGN moves, when available.Example: `12. Bxf6 { [%eval 0.23] } a3 { White is in a pickle. }`
+	Comments *bool "uriparametername:\"comments\""
+	// Add a `Orientation` PGN tag with the chapter predefined orientation.Example: `[Orientation "white"]`
+	Orientation *bool "uriparametername:\"orientation\""
+	// Include non-mainline moves, when available.Example: `4. d4 Bb4+ (4... Nc6 5. Nf3 Bb4+ 6. Bd2 (6. Nbd2 O-O 7. O-O) 6... Bd6) 5. Nd2`
+	Variations *bool "uriparametername:\"variations\""
 }
+
 // StudyItemWithChapterIdPgnRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type StudyItemWithChapterIdPgnRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
-    // Request query parameters
-    QueryParameters *StudyItemWithChapterIdPgnRequestBuilderGetQueryParameters
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *StudyItemWithChapterIdPgnRequestBuilderGetQueryParameters
 }
+
 // NewStudyItemWithChapterIdPgnRequestBuilderInternal instantiates a new StudyItemWithChapterIdPgnRequestBuilder and sets the default values.
-func NewStudyItemWithChapterIdPgnRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter, chapterId *string)(*StudyItemWithChapterIdPgnRequestBuilder) {
-    m := &StudyItemWithChapterIdPgnRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/study/{studyId}/{chapterId}.pgn{?clocks*,comments*,orientation*,variations*}", pathParameters),
-    }
-    if chapterId != nil {
-        m.BaseRequestBuilder.PathParameters["chapterId"] = *chapterId
-    }
-    return m
+func NewStudyItemWithChapterIdPgnRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter, chapterId *string) *StudyItemWithChapterIdPgnRequestBuilder {
+	m := &StudyItemWithChapterIdPgnRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/study/{studyId}/{chapterId}.pgn{?clocks*,comments*,orientation*,variations*}", pathParameters),
+	}
+	if chapterId != nil {
+		m.BaseRequestBuilder.PathParameters["chapterId"] = *chapterId
+	}
+	return m
 }
+
 // NewStudyItemWithChapterIdPgnRequestBuilder instantiates a new StudyItemWithChapterIdPgnRequestBuilder and sets the default values.
-func NewStudyItemWithChapterIdPgnRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*StudyItemWithChapterIdPgnRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewStudyItemWithChapterIdPgnRequestBuilderInternal(urlParams, requestAdapter, nil)
+func NewStudyItemWithChapterIdPgnRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *StudyItemWithChapterIdPgnRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewStudyItemWithChapterIdPgnRequestBuilderInternal(urlParams, requestAdapter, nil)
 }
+
 // Get download one study chapter in PGN format.If authenticated, then all public, unlisted, and private study chapters are read.If not, only public (non-unlisted) study chapters are read.
 // returns a []byte when successful
-func (m *StudyItemWithChapterIdPgnRequestBuilder) Get(ctx context.Context, requestConfiguration *StudyItemWithChapterIdPgnRequestBuilderGetRequestConfiguration)([]byte, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.([]byte), nil
+func (m *StudyItemWithChapterIdPgnRequestBuilder) Get(ctx context.Context, requestConfiguration *StudyItemWithChapterIdPgnRequestBuilderGetRequestConfiguration) ([]byte, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.([]byte), nil
 }
+
 // ToGetRequestInformation download one study chapter in PGN format.If authenticated, then all public, unlisted, and private study chapters are read.If not, only public (non-unlisted) study chapters are read.
 // returns a *RequestInformation when successful
-func (m *StudyItemWithChapterIdPgnRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *StudyItemWithChapterIdPgnRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        if requestConfiguration.QueryParameters != nil {
-            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
-        }
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/x-chess-pgn")
-    return requestInfo, nil
+func (m *StudyItemWithChapterIdPgnRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *StudyItemWithChapterIdPgnRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/x-chess-pgn")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *StudyItemWithChapterIdPgnRequestBuilder when successful
-func (m *StudyItemWithChapterIdPgnRequestBuilder) WithUrl(rawUrl string)(*StudyItemWithChapterIdPgnRequestBuilder) {
-    return NewStudyItemWithChapterIdPgnRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *StudyItemWithChapterIdPgnRequestBuilder) WithUrl(rawUrl string) *StudyItemWithChapterIdPgnRequestBuilder {
+	return NewStudyItemWithChapterIdPgnRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

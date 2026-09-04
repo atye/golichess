@@ -4,43 +4,49 @@
 package broadcast
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // WithBroadcastTournamentItemRequestBuilder builds and executes requests for operations under \broadcast\{broadcastTournamentId}
 type WithBroadcastTournamentItemRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // NewWithBroadcastTournamentItemRequestBuilderInternal instantiates a new WithBroadcastTournamentItemRequestBuilder and sets the default values.
-func NewWithBroadcastTournamentItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*WithBroadcastTournamentItemRequestBuilder) {
-    m := &WithBroadcastTournamentItemRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/broadcast/{broadcastTournamentId}", pathParameters),
-    }
-    return m
+func NewWithBroadcastTournamentItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *WithBroadcastTournamentItemRequestBuilder {
+	m := &WithBroadcastTournamentItemRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/broadcast/{broadcastTournamentId}", pathParameters),
+	}
+	return m
 }
+
 // NewWithBroadcastTournamentItemRequestBuilder instantiates a new WithBroadcastTournamentItemRequestBuilder and sets the default values.
-func NewWithBroadcastTournamentItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*WithBroadcastTournamentItemRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewWithBroadcastTournamentItemRequestBuilderInternal(urlParams, requestAdapter)
+func NewWithBroadcastTournamentItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *WithBroadcastTournamentItemRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewWithBroadcastTournamentItemRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Edit the edit property
 // returns a *ItemEditRequestBuilder when successful
-func (m *WithBroadcastTournamentItemRequestBuilder) Edit()(*ItemEditRequestBuilder) {
-    return NewItemEditRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *WithBroadcastTournamentItemRequestBuilder) Edit() *ItemEditRequestBuilder {
+	return NewItemEditRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // New the new property
 // returns a *ItemNewRequestBuilder when successful
-func (m *WithBroadcastTournamentItemRequestBuilder) New()(*ItemNewRequestBuilder) {
-    return NewItemNewRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *WithBroadcastTournamentItemRequestBuilder) New() *ItemNewRequestBuilder {
+	return NewItemNewRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Players the players property
 // returns a *ItemPlayersRequestBuilder when successful
-func (m *WithBroadcastTournamentItemRequestBuilder) Players()(*ItemPlayersRequestBuilder) {
-    return NewItemPlayersRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *WithBroadcastTournamentItemRequestBuilder) Players() *ItemPlayersRequestBuilder {
+	return NewItemPlayersRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Teams the teams property
 // returns a *ItemTeamsRequestBuilder when successful
-func (m *WithBroadcastTournamentItemRequestBuilder) Teams()(*ItemTeamsRequestBuilder) {
-    return NewItemTeamsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *WithBroadcastTournamentItemRequestBuilder) Teams() *ItemTeamsRequestBuilder {
+	return NewItemTeamsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

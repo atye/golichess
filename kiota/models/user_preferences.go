@@ -4,1129 +4,1209 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type UserPreferences struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // 0 = None, 1 = Fast, 2 = Normal, 3 = Slow
-    animation *int32
-    // 1 = Never, 2 = When premoving, 3 = Always
-    autoQueen *int32
-    // 0 = Never, 2 = When time remaining < 30 seconds,  3 = Always
-    autoThreefold *int32
-    // The bgImg property
-    bgImg *string
-    // The blindfold property
-    blindfold *int32
-    // The captured property
-    captured *bool
-    // The challenge property
-    challenge *int32
-    // The clockBar property
-    clockBar *bool
-    // The clockSound property
-    clockSound *bool
-    // 0 = Never, 1 = When remaining time less than 10 seconds, 2 = Always
-    clockTenths *int32
-    // 1 = Confirm resignation and draw offers, 0 = Do not confirm
-    confirmResign *int32
-    // 0 = No, 1 = Inside the board, 2 = Outside the board, 3 = All squares
-    coords *int32
-    // The destination property
-    destination *bool
-    // Show player flairs
-    flairs *bool
-    // The follow property
-    follow *bool
-    // The highlight property
-    highlight *bool
-    // The insightShare property
-    insightShare *int32
-    // The is3d property
-    is3d *bool
-    // 1 = input moves with the keyboard
-    keyboardMove *int32
-    // The message property
-    message *int32
-    // 1 = Never, 2 = In casual games only, 3 = Always
-    moretime *int32
-    // The moveEvent property
-    moveEvent *int32
-    // 0 = Chess piece symbol, 1 = KQRBN Letter
-    pieceNotation *int32
-    // The pieceSet property
-    pieceSet *UserPreferences_pieceSet
-    // The pieceSet3d property
-    pieceSet3d *UserPreferences_pieceSet3d
-    // The premove property
-    premove *bool
-    // 0 = Hide ratings, 1 = Show ratings, 2 = Show ratings except in-game
-    ratings *int32
-    // The replay property
-    replay *int32
-    // 0 = Move king two squares, 1 = Move king onto rook
-    rookCastle *int32
-    // 0 = No, 1 = When losing, 2 = When losing or drawing
-    sayGG *int32
-    // The soundSet property
-    soundSet *UserPreferences_soundSet
-    // The submitMove property
-    submitMove *int32
-    // 1 = Never, 2 = In casual games only, 3 = Always
-    takeback *int32
-    // The theme property
-    theme *UserPreferences_theme
-    // The theme3d property
-    theme3d *UserPreferences_theme3d
-    // The voiceMove property
-    voiceMove *bool
-    // 0 = No, 1 = yes, 2 = in-game only
-    zen *int32
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// 0 = None, 1 = Fast, 2 = Normal, 3 = Slow
+	animation *int32
+	// 1 = Never, 2 = When premoving, 3 = Always
+	autoQueen *int32
+	// 0 = Never, 2 = When time remaining < 30 seconds,  3 = Always
+	autoThreefold *int32
+	// The bgImg property
+	bgImg *string
+	// The blindfold property
+	blindfold *int32
+	// The captured property
+	captured *bool
+	// The challenge property
+	challenge *int32
+	// The clockBar property
+	clockBar *bool
+	// The clockSound property
+	clockSound *bool
+	// 0 = Never, 1 = When remaining time less than 10 seconds, 2 = Always
+	clockTenths *int32
+	// 1 = Confirm resignation and draw offers, 0 = Do not confirm
+	confirmResign *int32
+	// 0 = No, 1 = Inside the board, 2 = Outside the board, 3 = All squares
+	coords *int32
+	// The destination property
+	destination *bool
+	// Show player flairs
+	flairs *bool
+	// The follow property
+	follow *bool
+	// The highlight property
+	highlight *bool
+	// The insightShare property
+	insightShare *int32
+	// The is3d property
+	is3d *bool
+	// 1 = input moves with the keyboard
+	keyboardMove *int32
+	// The message property
+	message *int32
+	// 1 = Never, 2 = In casual games only, 3 = Always
+	moretime *int32
+	// The moveEvent property
+	moveEvent *int32
+	// 0 = Chess piece symbol, 1 = KQRBN Letter
+	pieceNotation *int32
+	// The pieceSet property
+	pieceSet *UserPreferences_pieceSet
+	// The pieceSet3d property
+	pieceSet3d *UserPreferences_pieceSet3d
+	// The premove property
+	premove *bool
+	// 0 = Hide ratings, 1 = Show ratings, 2 = Show ratings except in-game
+	ratings *int32
+	// The replay property
+	replay *int32
+	// 0 = Move king two squares, 1 = Move king onto rook
+	rookCastle *int32
+	// 0 = No, 1 = When losing, 2 = When losing or drawing
+	sayGG *int32
+	// The soundSet property
+	soundSet *UserPreferences_soundSet
+	// The submitMove property
+	submitMove *int32
+	// 1 = Never, 2 = In casual games only, 3 = Always
+	takeback *int32
+	// The theme property
+	theme *UserPreferences_theme
+	// The theme3d property
+	theme3d *UserPreferences_theme3d
+	// The voiceMove property
+	voiceMove *bool
+	// 0 = No, 1 = yes, 2 = in-game only
+	zen *int32
 }
+
 // NewUserPreferences instantiates a new UserPreferences and sets the default values.
-func NewUserPreferences()(*UserPreferences) {
-    m := &UserPreferences{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewUserPreferences() *UserPreferences {
+	m := &UserPreferences{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateUserPreferencesFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateUserPreferencesFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewUserPreferences(), nil
+func CreateUserPreferencesFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewUserPreferences(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *UserPreferences) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *UserPreferences) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetAnimation gets the animation property value. 0 = None, 1 = Fast, 2 = Normal, 3 = Slow
 // returns a *int32 when successful
-func (m *UserPreferences) GetAnimation()(*int32) {
-    return m.animation
+func (m *UserPreferences) GetAnimation() *int32 {
+	return m.animation
 }
+
 // GetAutoQueen gets the autoQueen property value. 1 = Never, 2 = When premoving, 3 = Always
 // returns a *int32 when successful
-func (m *UserPreferences) GetAutoQueen()(*int32) {
-    return m.autoQueen
+func (m *UserPreferences) GetAutoQueen() *int32 {
+	return m.autoQueen
 }
+
 // GetAutoThreefold gets the autoThreefold property value. 0 = Never, 2 = When time remaining < 30 seconds,  3 = Always
 // returns a *int32 when successful
-func (m *UserPreferences) GetAutoThreefold()(*int32) {
-    return m.autoThreefold
+func (m *UserPreferences) GetAutoThreefold() *int32 {
+	return m.autoThreefold
 }
+
 // GetBgImg gets the bgImg property value. The bgImg property
 // returns a *string when successful
-func (m *UserPreferences) GetBgImg()(*string) {
-    return m.bgImg
+func (m *UserPreferences) GetBgImg() *string {
+	return m.bgImg
 }
+
 // GetBlindfold gets the blindfold property value. The blindfold property
 // returns a *int32 when successful
-func (m *UserPreferences) GetBlindfold()(*int32) {
-    return m.blindfold
+func (m *UserPreferences) GetBlindfold() *int32 {
+	return m.blindfold
 }
+
 // GetCaptured gets the captured property value. The captured property
 // returns a *bool when successful
-func (m *UserPreferences) GetCaptured()(*bool) {
-    return m.captured
+func (m *UserPreferences) GetCaptured() *bool {
+	return m.captured
 }
+
 // GetChallenge gets the challenge property value. The challenge property
 // returns a *int32 when successful
-func (m *UserPreferences) GetChallenge()(*int32) {
-    return m.challenge
+func (m *UserPreferences) GetChallenge() *int32 {
+	return m.challenge
 }
+
 // GetClockBar gets the clockBar property value. The clockBar property
 // returns a *bool when successful
-func (m *UserPreferences) GetClockBar()(*bool) {
-    return m.clockBar
+func (m *UserPreferences) GetClockBar() *bool {
+	return m.clockBar
 }
+
 // GetClockSound gets the clockSound property value. The clockSound property
 // returns a *bool when successful
-func (m *UserPreferences) GetClockSound()(*bool) {
-    return m.clockSound
+func (m *UserPreferences) GetClockSound() *bool {
+	return m.clockSound
 }
+
 // GetClockTenths gets the clockTenths property value. 0 = Never, 1 = When remaining time less than 10 seconds, 2 = Always
 // returns a *int32 when successful
-func (m *UserPreferences) GetClockTenths()(*int32) {
-    return m.clockTenths
+func (m *UserPreferences) GetClockTenths() *int32 {
+	return m.clockTenths
 }
+
 // GetConfirmResign gets the confirmResign property value. 1 = Confirm resignation and draw offers, 0 = Do not confirm
 // returns a *int32 when successful
-func (m *UserPreferences) GetConfirmResign()(*int32) {
-    return m.confirmResign
+func (m *UserPreferences) GetConfirmResign() *int32 {
+	return m.confirmResign
 }
+
 // GetCoords gets the coords property value. 0 = No, 1 = Inside the board, 2 = Outside the board, 3 = All squares
 // returns a *int32 when successful
-func (m *UserPreferences) GetCoords()(*int32) {
-    return m.coords
+func (m *UserPreferences) GetCoords() *int32 {
+	return m.coords
 }
+
 // GetDestination gets the destination property value. The destination property
 // returns a *bool when successful
-func (m *UserPreferences) GetDestination()(*bool) {
-    return m.destination
+func (m *UserPreferences) GetDestination() *bool {
+	return m.destination
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *UserPreferences) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["animation"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetAnimation(val)
-        }
-        return nil
-    }
-    res["autoQueen"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetAutoQueen(val)
-        }
-        return nil
-    }
-    res["autoThreefold"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetAutoThreefold(val)
-        }
-        return nil
-    }
-    res["bgImg"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetBgImg(val)
-        }
-        return nil
-    }
-    res["blindfold"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetBlindfold(val)
-        }
-        return nil
-    }
-    res["captured"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCaptured(val)
-        }
-        return nil
-    }
-    res["challenge"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetChallenge(val)
-        }
-        return nil
-    }
-    res["clockBar"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetClockBar(val)
-        }
-        return nil
-    }
-    res["clockSound"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetClockSound(val)
-        }
-        return nil
-    }
-    res["clockTenths"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetClockTenths(val)
-        }
-        return nil
-    }
-    res["confirmResign"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetConfirmResign(val)
-        }
-        return nil
-    }
-    res["coords"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCoords(val)
-        }
-        return nil
-    }
-    res["destination"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDestination(val)
-        }
-        return nil
-    }
-    res["flairs"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFlairs(val)
-        }
-        return nil
-    }
-    res["follow"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFollow(val)
-        }
-        return nil
-    }
-    res["highlight"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetHighlight(val)
-        }
-        return nil
-    }
-    res["insightShare"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetInsightShare(val)
-        }
-        return nil
-    }
-    res["is3d"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetIs3d(val)
-        }
-        return nil
-    }
-    res["keyboardMove"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetKeyboardMove(val)
-        }
-        return nil
-    }
-    res["message"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMessage(val)
-        }
-        return nil
-    }
-    res["moretime"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMoretime(val)
-        }
-        return nil
-    }
-    res["moveEvent"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMoveEvent(val)
-        }
-        return nil
-    }
-    res["pieceNotation"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPieceNotation(val)
-        }
-        return nil
-    }
-    res["pieceSet"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseUserPreferences_pieceSet)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPieceSet(val.(*UserPreferences_pieceSet))
-        }
-        return nil
-    }
-    res["pieceSet3d"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseUserPreferences_pieceSet3d)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPieceSet3d(val.(*UserPreferences_pieceSet3d))
-        }
-        return nil
-    }
-    res["premove"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPremove(val)
-        }
-        return nil
-    }
-    res["ratings"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRatings(val)
-        }
-        return nil
-    }
-    res["replay"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetReplay(val)
-        }
-        return nil
-    }
-    res["rookCastle"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRookCastle(val)
-        }
-        return nil
-    }
-    res["sayGG"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSayGG(val)
-        }
-        return nil
-    }
-    res["soundSet"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseUserPreferences_soundSet)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSoundSet(val.(*UserPreferences_soundSet))
-        }
-        return nil
-    }
-    res["submitMove"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSubmitMove(val)
-        }
-        return nil
-    }
-    res["takeback"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTakeback(val)
-        }
-        return nil
-    }
-    res["theme"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseUserPreferences_theme)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTheme(val.(*UserPreferences_theme))
-        }
-        return nil
-    }
-    res["theme3d"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseUserPreferences_theme3d)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTheme3d(val.(*UserPreferences_theme3d))
-        }
-        return nil
-    }
-    res["voiceMove"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetVoiceMove(val)
-        }
-        return nil
-    }
-    res["zen"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetZen(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *UserPreferences) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["animation"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetAnimation(val)
+		}
+		return nil
+	}
+	res["autoQueen"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetAutoQueen(val)
+		}
+		return nil
+	}
+	res["autoThreefold"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetAutoThreefold(val)
+		}
+		return nil
+	}
+	res["bgImg"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetBgImg(val)
+		}
+		return nil
+	}
+	res["blindfold"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetBlindfold(val)
+		}
+		return nil
+	}
+	res["captured"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCaptured(val)
+		}
+		return nil
+	}
+	res["challenge"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetChallenge(val)
+		}
+		return nil
+	}
+	res["clockBar"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetClockBar(val)
+		}
+		return nil
+	}
+	res["clockSound"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetClockSound(val)
+		}
+		return nil
+	}
+	res["clockTenths"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetClockTenths(val)
+		}
+		return nil
+	}
+	res["confirmResign"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetConfirmResign(val)
+		}
+		return nil
+	}
+	res["coords"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCoords(val)
+		}
+		return nil
+	}
+	res["destination"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetDestination(val)
+		}
+		return nil
+	}
+	res["flairs"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFlairs(val)
+		}
+		return nil
+	}
+	res["follow"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFollow(val)
+		}
+		return nil
+	}
+	res["highlight"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetHighlight(val)
+		}
+		return nil
+	}
+	res["insightShare"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetInsightShare(val)
+		}
+		return nil
+	}
+	res["is3d"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetIs3d(val)
+		}
+		return nil
+	}
+	res["keyboardMove"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetKeyboardMove(val)
+		}
+		return nil
+	}
+	res["message"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMessage(val)
+		}
+		return nil
+	}
+	res["moretime"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMoretime(val)
+		}
+		return nil
+	}
+	res["moveEvent"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMoveEvent(val)
+		}
+		return nil
+	}
+	res["pieceNotation"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPieceNotation(val)
+		}
+		return nil
+	}
+	res["pieceSet"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(ParseUserPreferences_pieceSet)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPieceSet(val.(*UserPreferences_pieceSet))
+		}
+		return nil
+	}
+	res["pieceSet3d"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(ParseUserPreferences_pieceSet3d)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPieceSet3d(val.(*UserPreferences_pieceSet3d))
+		}
+		return nil
+	}
+	res["premove"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPremove(val)
+		}
+		return nil
+	}
+	res["ratings"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRatings(val)
+		}
+		return nil
+	}
+	res["replay"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetReplay(val)
+		}
+		return nil
+	}
+	res["rookCastle"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRookCastle(val)
+		}
+		return nil
+	}
+	res["sayGG"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetSayGG(val)
+		}
+		return nil
+	}
+	res["soundSet"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(ParseUserPreferences_soundSet)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetSoundSet(val.(*UserPreferences_soundSet))
+		}
+		return nil
+	}
+	res["submitMove"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetSubmitMove(val)
+		}
+		return nil
+	}
+	res["takeback"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTakeback(val)
+		}
+		return nil
+	}
+	res["theme"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(ParseUserPreferences_theme)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTheme(val.(*UserPreferences_theme))
+		}
+		return nil
+	}
+	res["theme3d"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(ParseUserPreferences_theme3d)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTheme3d(val.(*UserPreferences_theme3d))
+		}
+		return nil
+	}
+	res["voiceMove"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetVoiceMove(val)
+		}
+		return nil
+	}
+	res["zen"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetZen(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetFlairs gets the flairs property value. Show player flairs
 // returns a *bool when successful
-func (m *UserPreferences) GetFlairs()(*bool) {
-    return m.flairs
+func (m *UserPreferences) GetFlairs() *bool {
+	return m.flairs
 }
+
 // GetFollow gets the follow property value. The follow property
 // returns a *bool when successful
-func (m *UserPreferences) GetFollow()(*bool) {
-    return m.follow
+func (m *UserPreferences) GetFollow() *bool {
+	return m.follow
 }
+
 // GetHighlight gets the highlight property value. The highlight property
 // returns a *bool when successful
-func (m *UserPreferences) GetHighlight()(*bool) {
-    return m.highlight
+func (m *UserPreferences) GetHighlight() *bool {
+	return m.highlight
 }
+
 // GetInsightShare gets the insightShare property value. The insightShare property
 // returns a *int32 when successful
-func (m *UserPreferences) GetInsightShare()(*int32) {
-    return m.insightShare
+func (m *UserPreferences) GetInsightShare() *int32 {
+	return m.insightShare
 }
+
 // GetIs3d gets the is3d property value. The is3d property
 // returns a *bool when successful
-func (m *UserPreferences) GetIs3d()(*bool) {
-    return m.is3d
+func (m *UserPreferences) GetIs3d() *bool {
+	return m.is3d
 }
+
 // GetKeyboardMove gets the keyboardMove property value. 1 = input moves with the keyboard
 // returns a *int32 when successful
-func (m *UserPreferences) GetKeyboardMove()(*int32) {
-    return m.keyboardMove
+func (m *UserPreferences) GetKeyboardMove() *int32 {
+	return m.keyboardMove
 }
+
 // GetMessage gets the message property value. The message property
 // returns a *int32 when successful
-func (m *UserPreferences) GetMessage()(*int32) {
-    return m.message
+func (m *UserPreferences) GetMessage() *int32 {
+	return m.message
 }
+
 // GetMoretime gets the moretime property value. 1 = Never, 2 = In casual games only, 3 = Always
 // returns a *int32 when successful
-func (m *UserPreferences) GetMoretime()(*int32) {
-    return m.moretime
+func (m *UserPreferences) GetMoretime() *int32 {
+	return m.moretime
 }
+
 // GetMoveEvent gets the moveEvent property value. The moveEvent property
 // returns a *int32 when successful
-func (m *UserPreferences) GetMoveEvent()(*int32) {
-    return m.moveEvent
+func (m *UserPreferences) GetMoveEvent() *int32 {
+	return m.moveEvent
 }
+
 // GetPieceNotation gets the pieceNotation property value. 0 = Chess piece symbol, 1 = KQRBN Letter
 // returns a *int32 when successful
-func (m *UserPreferences) GetPieceNotation()(*int32) {
-    return m.pieceNotation
+func (m *UserPreferences) GetPieceNotation() *int32 {
+	return m.pieceNotation
 }
+
 // GetPieceSet gets the pieceSet property value. The pieceSet property
 // returns a *UserPreferences_pieceSet when successful
-func (m *UserPreferences) GetPieceSet()(*UserPreferences_pieceSet) {
-    return m.pieceSet
+func (m *UserPreferences) GetPieceSet() *UserPreferences_pieceSet {
+	return m.pieceSet
 }
+
 // GetPieceSet3d gets the pieceSet3d property value. The pieceSet3d property
 // returns a *UserPreferences_pieceSet3d when successful
-func (m *UserPreferences) GetPieceSet3d()(*UserPreferences_pieceSet3d) {
-    return m.pieceSet3d
+func (m *UserPreferences) GetPieceSet3d() *UserPreferences_pieceSet3d {
+	return m.pieceSet3d
 }
+
 // GetPremove gets the premove property value. The premove property
 // returns a *bool when successful
-func (m *UserPreferences) GetPremove()(*bool) {
-    return m.premove
+func (m *UserPreferences) GetPremove() *bool {
+	return m.premove
 }
+
 // GetRatings gets the ratings property value. 0 = Hide ratings, 1 = Show ratings, 2 = Show ratings except in-game
 // returns a *int32 when successful
-func (m *UserPreferences) GetRatings()(*int32) {
-    return m.ratings
+func (m *UserPreferences) GetRatings() *int32 {
+	return m.ratings
 }
+
 // GetReplay gets the replay property value. The replay property
 // returns a *int32 when successful
-func (m *UserPreferences) GetReplay()(*int32) {
-    return m.replay
+func (m *UserPreferences) GetReplay() *int32 {
+	return m.replay
 }
+
 // GetRookCastle gets the rookCastle property value. 0 = Move king two squares, 1 = Move king onto rook
 // returns a *int32 when successful
-func (m *UserPreferences) GetRookCastle()(*int32) {
-    return m.rookCastle
+func (m *UserPreferences) GetRookCastle() *int32 {
+	return m.rookCastle
 }
+
 // GetSayGG gets the sayGG property value. 0 = No, 1 = When losing, 2 = When losing or drawing
 // returns a *int32 when successful
-func (m *UserPreferences) GetSayGG()(*int32) {
-    return m.sayGG
+func (m *UserPreferences) GetSayGG() *int32 {
+	return m.sayGG
 }
+
 // GetSoundSet gets the soundSet property value. The soundSet property
 // returns a *UserPreferences_soundSet when successful
-func (m *UserPreferences) GetSoundSet()(*UserPreferences_soundSet) {
-    return m.soundSet
+func (m *UserPreferences) GetSoundSet() *UserPreferences_soundSet {
+	return m.soundSet
 }
+
 // GetSubmitMove gets the submitMove property value. The submitMove property
 // returns a *int32 when successful
-func (m *UserPreferences) GetSubmitMove()(*int32) {
-    return m.submitMove
+func (m *UserPreferences) GetSubmitMove() *int32 {
+	return m.submitMove
 }
+
 // GetTakeback gets the takeback property value. 1 = Never, 2 = In casual games only, 3 = Always
 // returns a *int32 when successful
-func (m *UserPreferences) GetTakeback()(*int32) {
-    return m.takeback
+func (m *UserPreferences) GetTakeback() *int32 {
+	return m.takeback
 }
+
 // GetTheme gets the theme property value. The theme property
 // returns a *UserPreferences_theme when successful
-func (m *UserPreferences) GetTheme()(*UserPreferences_theme) {
-    return m.theme
+func (m *UserPreferences) GetTheme() *UserPreferences_theme {
+	return m.theme
 }
+
 // GetTheme3d gets the theme3d property value. The theme3d property
 // returns a *UserPreferences_theme3d when successful
-func (m *UserPreferences) GetTheme3d()(*UserPreferences_theme3d) {
-    return m.theme3d
+func (m *UserPreferences) GetTheme3d() *UserPreferences_theme3d {
+	return m.theme3d
 }
+
 // GetVoiceMove gets the voiceMove property value. The voiceMove property
 // returns a *bool when successful
-func (m *UserPreferences) GetVoiceMove()(*bool) {
-    return m.voiceMove
+func (m *UserPreferences) GetVoiceMove() *bool {
+	return m.voiceMove
 }
+
 // GetZen gets the zen property value. 0 = No, 1 = yes, 2 = in-game only
 // returns a *int32 when successful
-func (m *UserPreferences) GetZen()(*int32) {
-    return m.zen
+func (m *UserPreferences) GetZen() *int32 {
+	return m.zen
 }
+
 // Serialize serializes information the current object
-func (m *UserPreferences) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteInt32Value("animation", m.GetAnimation())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("autoQueen", m.GetAutoQueen())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("autoThreefold", m.GetAutoThreefold())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("bgImg", m.GetBgImg())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("blindfold", m.GetBlindfold())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("captured", m.GetCaptured())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("challenge", m.GetChallenge())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("clockBar", m.GetClockBar())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("clockSound", m.GetClockSound())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("clockTenths", m.GetClockTenths())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("confirmResign", m.GetConfirmResign())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("coords", m.GetCoords())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("destination", m.GetDestination())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("flairs", m.GetFlairs())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("follow", m.GetFollow())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("highlight", m.GetHighlight())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("insightShare", m.GetInsightShare())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("is3d", m.GetIs3d())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("keyboardMove", m.GetKeyboardMove())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("message", m.GetMessage())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("moretime", m.GetMoretime())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("moveEvent", m.GetMoveEvent())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("pieceNotation", m.GetPieceNotation())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetPieceSet() != nil {
-        cast := (*m.GetPieceSet()).String()
-        err := writer.WriteStringValue("pieceSet", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetPieceSet3d() != nil {
-        cast := (*m.GetPieceSet3d()).String()
-        err := writer.WriteStringValue("pieceSet3d", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("premove", m.GetPremove())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("ratings", m.GetRatings())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("replay", m.GetReplay())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("rookCastle", m.GetRookCastle())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("sayGG", m.GetSayGG())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetSoundSet() != nil {
-        cast := (*m.GetSoundSet()).String()
-        err := writer.WriteStringValue("soundSet", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("submitMove", m.GetSubmitMove())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("takeback", m.GetTakeback())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetTheme() != nil {
-        cast := (*m.GetTheme()).String()
-        err := writer.WriteStringValue("theme", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetTheme3d() != nil {
-        cast := (*m.GetTheme3d()).String()
-        err := writer.WriteStringValue("theme3d", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("voiceMove", m.GetVoiceMove())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("zen", m.GetZen())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *UserPreferences) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteInt32Value("animation", m.GetAnimation())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("autoQueen", m.GetAutoQueen())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("autoThreefold", m.GetAutoThreefold())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("bgImg", m.GetBgImg())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("blindfold", m.GetBlindfold())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("captured", m.GetCaptured())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("challenge", m.GetChallenge())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("clockBar", m.GetClockBar())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("clockSound", m.GetClockSound())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("clockTenths", m.GetClockTenths())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("confirmResign", m.GetConfirmResign())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("coords", m.GetCoords())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("destination", m.GetDestination())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("flairs", m.GetFlairs())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("follow", m.GetFollow())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("highlight", m.GetHighlight())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("insightShare", m.GetInsightShare())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("is3d", m.GetIs3d())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("keyboardMove", m.GetKeyboardMove())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("message", m.GetMessage())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("moretime", m.GetMoretime())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("moveEvent", m.GetMoveEvent())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("pieceNotation", m.GetPieceNotation())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetPieceSet() != nil {
+		cast := (*m.GetPieceSet()).String()
+		err := writer.WriteStringValue("pieceSet", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetPieceSet3d() != nil {
+		cast := (*m.GetPieceSet3d()).String()
+		err := writer.WriteStringValue("pieceSet3d", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("premove", m.GetPremove())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("ratings", m.GetRatings())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("replay", m.GetReplay())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("rookCastle", m.GetRookCastle())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("sayGG", m.GetSayGG())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetSoundSet() != nil {
+		cast := (*m.GetSoundSet()).String()
+		err := writer.WriteStringValue("soundSet", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("submitMove", m.GetSubmitMove())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("takeback", m.GetTakeback())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetTheme() != nil {
+		cast := (*m.GetTheme()).String()
+		err := writer.WriteStringValue("theme", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetTheme3d() != nil {
+		cast := (*m.GetTheme3d()).String()
+		err := writer.WriteStringValue("theme3d", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("voiceMove", m.GetVoiceMove())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("zen", m.GetZen())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *UserPreferences) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *UserPreferences) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetAnimation sets the animation property value. 0 = None, 1 = Fast, 2 = Normal, 3 = Slow
-func (m *UserPreferences) SetAnimation(value *int32)() {
-    m.animation = value
+func (m *UserPreferences) SetAnimation(value *int32) {
+	m.animation = value
 }
+
 // SetAutoQueen sets the autoQueen property value. 1 = Never, 2 = When premoving, 3 = Always
-func (m *UserPreferences) SetAutoQueen(value *int32)() {
-    m.autoQueen = value
+func (m *UserPreferences) SetAutoQueen(value *int32) {
+	m.autoQueen = value
 }
+
 // SetAutoThreefold sets the autoThreefold property value. 0 = Never, 2 = When time remaining < 30 seconds,  3 = Always
-func (m *UserPreferences) SetAutoThreefold(value *int32)() {
-    m.autoThreefold = value
+func (m *UserPreferences) SetAutoThreefold(value *int32) {
+	m.autoThreefold = value
 }
+
 // SetBgImg sets the bgImg property value. The bgImg property
-func (m *UserPreferences) SetBgImg(value *string)() {
-    m.bgImg = value
+func (m *UserPreferences) SetBgImg(value *string) {
+	m.bgImg = value
 }
+
 // SetBlindfold sets the blindfold property value. The blindfold property
-func (m *UserPreferences) SetBlindfold(value *int32)() {
-    m.blindfold = value
+func (m *UserPreferences) SetBlindfold(value *int32) {
+	m.blindfold = value
 }
+
 // SetCaptured sets the captured property value. The captured property
-func (m *UserPreferences) SetCaptured(value *bool)() {
-    m.captured = value
+func (m *UserPreferences) SetCaptured(value *bool) {
+	m.captured = value
 }
+
 // SetChallenge sets the challenge property value. The challenge property
-func (m *UserPreferences) SetChallenge(value *int32)() {
-    m.challenge = value
+func (m *UserPreferences) SetChallenge(value *int32) {
+	m.challenge = value
 }
+
 // SetClockBar sets the clockBar property value. The clockBar property
-func (m *UserPreferences) SetClockBar(value *bool)() {
-    m.clockBar = value
+func (m *UserPreferences) SetClockBar(value *bool) {
+	m.clockBar = value
 }
+
 // SetClockSound sets the clockSound property value. The clockSound property
-func (m *UserPreferences) SetClockSound(value *bool)() {
-    m.clockSound = value
+func (m *UserPreferences) SetClockSound(value *bool) {
+	m.clockSound = value
 }
+
 // SetClockTenths sets the clockTenths property value. 0 = Never, 1 = When remaining time less than 10 seconds, 2 = Always
-func (m *UserPreferences) SetClockTenths(value *int32)() {
-    m.clockTenths = value
+func (m *UserPreferences) SetClockTenths(value *int32) {
+	m.clockTenths = value
 }
+
 // SetConfirmResign sets the confirmResign property value. 1 = Confirm resignation and draw offers, 0 = Do not confirm
-func (m *UserPreferences) SetConfirmResign(value *int32)() {
-    m.confirmResign = value
+func (m *UserPreferences) SetConfirmResign(value *int32) {
+	m.confirmResign = value
 }
+
 // SetCoords sets the coords property value. 0 = No, 1 = Inside the board, 2 = Outside the board, 3 = All squares
-func (m *UserPreferences) SetCoords(value *int32)() {
-    m.coords = value
+func (m *UserPreferences) SetCoords(value *int32) {
+	m.coords = value
 }
+
 // SetDestination sets the destination property value. The destination property
-func (m *UserPreferences) SetDestination(value *bool)() {
-    m.destination = value
+func (m *UserPreferences) SetDestination(value *bool) {
+	m.destination = value
 }
+
 // SetFlairs sets the flairs property value. Show player flairs
-func (m *UserPreferences) SetFlairs(value *bool)() {
-    m.flairs = value
+func (m *UserPreferences) SetFlairs(value *bool) {
+	m.flairs = value
 }
+
 // SetFollow sets the follow property value. The follow property
-func (m *UserPreferences) SetFollow(value *bool)() {
-    m.follow = value
+func (m *UserPreferences) SetFollow(value *bool) {
+	m.follow = value
 }
+
 // SetHighlight sets the highlight property value. The highlight property
-func (m *UserPreferences) SetHighlight(value *bool)() {
-    m.highlight = value
+func (m *UserPreferences) SetHighlight(value *bool) {
+	m.highlight = value
 }
+
 // SetInsightShare sets the insightShare property value. The insightShare property
-func (m *UserPreferences) SetInsightShare(value *int32)() {
-    m.insightShare = value
+func (m *UserPreferences) SetInsightShare(value *int32) {
+	m.insightShare = value
 }
+
 // SetIs3d sets the is3d property value. The is3d property
-func (m *UserPreferences) SetIs3d(value *bool)() {
-    m.is3d = value
+func (m *UserPreferences) SetIs3d(value *bool) {
+	m.is3d = value
 }
+
 // SetKeyboardMove sets the keyboardMove property value. 1 = input moves with the keyboard
-func (m *UserPreferences) SetKeyboardMove(value *int32)() {
-    m.keyboardMove = value
+func (m *UserPreferences) SetKeyboardMove(value *int32) {
+	m.keyboardMove = value
 }
+
 // SetMessage sets the message property value. The message property
-func (m *UserPreferences) SetMessage(value *int32)() {
-    m.message = value
+func (m *UserPreferences) SetMessage(value *int32) {
+	m.message = value
 }
+
 // SetMoretime sets the moretime property value. 1 = Never, 2 = In casual games only, 3 = Always
-func (m *UserPreferences) SetMoretime(value *int32)() {
-    m.moretime = value
+func (m *UserPreferences) SetMoretime(value *int32) {
+	m.moretime = value
 }
+
 // SetMoveEvent sets the moveEvent property value. The moveEvent property
-func (m *UserPreferences) SetMoveEvent(value *int32)() {
-    m.moveEvent = value
+func (m *UserPreferences) SetMoveEvent(value *int32) {
+	m.moveEvent = value
 }
+
 // SetPieceNotation sets the pieceNotation property value. 0 = Chess piece symbol, 1 = KQRBN Letter
-func (m *UserPreferences) SetPieceNotation(value *int32)() {
-    m.pieceNotation = value
+func (m *UserPreferences) SetPieceNotation(value *int32) {
+	m.pieceNotation = value
 }
+
 // SetPieceSet sets the pieceSet property value. The pieceSet property
-func (m *UserPreferences) SetPieceSet(value *UserPreferences_pieceSet)() {
-    m.pieceSet = value
+func (m *UserPreferences) SetPieceSet(value *UserPreferences_pieceSet) {
+	m.pieceSet = value
 }
+
 // SetPieceSet3d sets the pieceSet3d property value. The pieceSet3d property
-func (m *UserPreferences) SetPieceSet3d(value *UserPreferences_pieceSet3d)() {
-    m.pieceSet3d = value
+func (m *UserPreferences) SetPieceSet3d(value *UserPreferences_pieceSet3d) {
+	m.pieceSet3d = value
 }
+
 // SetPremove sets the premove property value. The premove property
-func (m *UserPreferences) SetPremove(value *bool)() {
-    m.premove = value
+func (m *UserPreferences) SetPremove(value *bool) {
+	m.premove = value
 }
+
 // SetRatings sets the ratings property value. 0 = Hide ratings, 1 = Show ratings, 2 = Show ratings except in-game
-func (m *UserPreferences) SetRatings(value *int32)() {
-    m.ratings = value
+func (m *UserPreferences) SetRatings(value *int32) {
+	m.ratings = value
 }
+
 // SetReplay sets the replay property value. The replay property
-func (m *UserPreferences) SetReplay(value *int32)() {
-    m.replay = value
+func (m *UserPreferences) SetReplay(value *int32) {
+	m.replay = value
 }
+
 // SetRookCastle sets the rookCastle property value. 0 = Move king two squares, 1 = Move king onto rook
-func (m *UserPreferences) SetRookCastle(value *int32)() {
-    m.rookCastle = value
+func (m *UserPreferences) SetRookCastle(value *int32) {
+	m.rookCastle = value
 }
+
 // SetSayGG sets the sayGG property value. 0 = No, 1 = When losing, 2 = When losing or drawing
-func (m *UserPreferences) SetSayGG(value *int32)() {
-    m.sayGG = value
+func (m *UserPreferences) SetSayGG(value *int32) {
+	m.sayGG = value
 }
+
 // SetSoundSet sets the soundSet property value. The soundSet property
-func (m *UserPreferences) SetSoundSet(value *UserPreferences_soundSet)() {
-    m.soundSet = value
+func (m *UserPreferences) SetSoundSet(value *UserPreferences_soundSet) {
+	m.soundSet = value
 }
+
 // SetSubmitMove sets the submitMove property value. The submitMove property
-func (m *UserPreferences) SetSubmitMove(value *int32)() {
-    m.submitMove = value
+func (m *UserPreferences) SetSubmitMove(value *int32) {
+	m.submitMove = value
 }
+
 // SetTakeback sets the takeback property value. 1 = Never, 2 = In casual games only, 3 = Always
-func (m *UserPreferences) SetTakeback(value *int32)() {
-    m.takeback = value
+func (m *UserPreferences) SetTakeback(value *int32) {
+	m.takeback = value
 }
+
 // SetTheme sets the theme property value. The theme property
-func (m *UserPreferences) SetTheme(value *UserPreferences_theme)() {
-    m.theme = value
+func (m *UserPreferences) SetTheme(value *UserPreferences_theme) {
+	m.theme = value
 }
+
 // SetTheme3d sets the theme3d property value. The theme3d property
-func (m *UserPreferences) SetTheme3d(value *UserPreferences_theme3d)() {
-    m.theme3d = value
+func (m *UserPreferences) SetTheme3d(value *UserPreferences_theme3d) {
+	m.theme3d = value
 }
+
 // SetVoiceMove sets the voiceMove property value. The voiceMove property
-func (m *UserPreferences) SetVoiceMove(value *bool)() {
-    m.voiceMove = value
+func (m *UserPreferences) SetVoiceMove(value *bool) {
+	m.voiceMove = value
 }
+
 // SetZen sets the zen property value. 0 = No, 1 = yes, 2 = in-game only
-func (m *UserPreferences) SetZen(value *int32)() {
-    m.zen = value
+func (m *UserPreferences) SetZen(value *int32) {
+	m.zen = value
 }
+
 type UserPreferencesable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetAnimation()(*int32)
-    GetAutoQueen()(*int32)
-    GetAutoThreefold()(*int32)
-    GetBgImg()(*string)
-    GetBlindfold()(*int32)
-    GetCaptured()(*bool)
-    GetChallenge()(*int32)
-    GetClockBar()(*bool)
-    GetClockSound()(*bool)
-    GetClockTenths()(*int32)
-    GetConfirmResign()(*int32)
-    GetCoords()(*int32)
-    GetDestination()(*bool)
-    GetFlairs()(*bool)
-    GetFollow()(*bool)
-    GetHighlight()(*bool)
-    GetInsightShare()(*int32)
-    GetIs3d()(*bool)
-    GetKeyboardMove()(*int32)
-    GetMessage()(*int32)
-    GetMoretime()(*int32)
-    GetMoveEvent()(*int32)
-    GetPieceNotation()(*int32)
-    GetPieceSet()(*UserPreferences_pieceSet)
-    GetPieceSet3d()(*UserPreferences_pieceSet3d)
-    GetPremove()(*bool)
-    GetRatings()(*int32)
-    GetReplay()(*int32)
-    GetRookCastle()(*int32)
-    GetSayGG()(*int32)
-    GetSoundSet()(*UserPreferences_soundSet)
-    GetSubmitMove()(*int32)
-    GetTakeback()(*int32)
-    GetTheme()(*UserPreferences_theme)
-    GetTheme3d()(*UserPreferences_theme3d)
-    GetVoiceMove()(*bool)
-    GetZen()(*int32)
-    SetAnimation(value *int32)()
-    SetAutoQueen(value *int32)()
-    SetAutoThreefold(value *int32)()
-    SetBgImg(value *string)()
-    SetBlindfold(value *int32)()
-    SetCaptured(value *bool)()
-    SetChallenge(value *int32)()
-    SetClockBar(value *bool)()
-    SetClockSound(value *bool)()
-    SetClockTenths(value *int32)()
-    SetConfirmResign(value *int32)()
-    SetCoords(value *int32)()
-    SetDestination(value *bool)()
-    SetFlairs(value *bool)()
-    SetFollow(value *bool)()
-    SetHighlight(value *bool)()
-    SetInsightShare(value *int32)()
-    SetIs3d(value *bool)()
-    SetKeyboardMove(value *int32)()
-    SetMessage(value *int32)()
-    SetMoretime(value *int32)()
-    SetMoveEvent(value *int32)()
-    SetPieceNotation(value *int32)()
-    SetPieceSet(value *UserPreferences_pieceSet)()
-    SetPieceSet3d(value *UserPreferences_pieceSet3d)()
-    SetPremove(value *bool)()
-    SetRatings(value *int32)()
-    SetReplay(value *int32)()
-    SetRookCastle(value *int32)()
-    SetSayGG(value *int32)()
-    SetSoundSet(value *UserPreferences_soundSet)()
-    SetSubmitMove(value *int32)()
-    SetTakeback(value *int32)()
-    SetTheme(value *UserPreferences_theme)()
-    SetTheme3d(value *UserPreferences_theme3d)()
-    SetVoiceMove(value *bool)()
-    SetZen(value *int32)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetAnimation() *int32
+	GetAutoQueen() *int32
+	GetAutoThreefold() *int32
+	GetBgImg() *string
+	GetBlindfold() *int32
+	GetCaptured() *bool
+	GetChallenge() *int32
+	GetClockBar() *bool
+	GetClockSound() *bool
+	GetClockTenths() *int32
+	GetConfirmResign() *int32
+	GetCoords() *int32
+	GetDestination() *bool
+	GetFlairs() *bool
+	GetFollow() *bool
+	GetHighlight() *bool
+	GetInsightShare() *int32
+	GetIs3d() *bool
+	GetKeyboardMove() *int32
+	GetMessage() *int32
+	GetMoretime() *int32
+	GetMoveEvent() *int32
+	GetPieceNotation() *int32
+	GetPieceSet() *UserPreferences_pieceSet
+	GetPieceSet3d() *UserPreferences_pieceSet3d
+	GetPremove() *bool
+	GetRatings() *int32
+	GetReplay() *int32
+	GetRookCastle() *int32
+	GetSayGG() *int32
+	GetSoundSet() *UserPreferences_soundSet
+	GetSubmitMove() *int32
+	GetTakeback() *int32
+	GetTheme() *UserPreferences_theme
+	GetTheme3d() *UserPreferences_theme3d
+	GetVoiceMove() *bool
+	GetZen() *int32
+	SetAnimation(value *int32)
+	SetAutoQueen(value *int32)
+	SetAutoThreefold(value *int32)
+	SetBgImg(value *string)
+	SetBlindfold(value *int32)
+	SetCaptured(value *bool)
+	SetChallenge(value *int32)
+	SetClockBar(value *bool)
+	SetClockSound(value *bool)
+	SetClockTenths(value *int32)
+	SetConfirmResign(value *int32)
+	SetCoords(value *int32)
+	SetDestination(value *bool)
+	SetFlairs(value *bool)
+	SetFollow(value *bool)
+	SetHighlight(value *bool)
+	SetInsightShare(value *int32)
+	SetIs3d(value *bool)
+	SetKeyboardMove(value *int32)
+	SetMessage(value *int32)
+	SetMoretime(value *int32)
+	SetMoveEvent(value *int32)
+	SetPieceNotation(value *int32)
+	SetPieceSet(value *UserPreferences_pieceSet)
+	SetPieceSet3d(value *UserPreferences_pieceSet3d)
+	SetPremove(value *bool)
+	SetRatings(value *int32)
+	SetReplay(value *int32)
+	SetRookCastle(value *int32)
+	SetSayGG(value *int32)
+	SetSoundSet(value *UserPreferences_soundSet)
+	SetSubmitMove(value *int32)
+	SetTakeback(value *int32)
+	SetTheme(value *UserPreferences_theme)
+	SetTheme3d(value *UserPreferences_theme3d)
+	SetVoiceMove(value *bool)
+	SetZen(value *int32)
 }

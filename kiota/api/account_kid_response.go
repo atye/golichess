@@ -4,27 +4,30 @@
 package api
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // Deprecated: This class is obsolete. Use AccountKidGetResponseable instead.
 type AccountKidResponse struct {
-    AccountKidGetResponse
+	AccountKidGetResponse
 }
+
 // NewAccountKidResponse instantiates a new AccountKidResponse and sets the default values.
-func NewAccountKidResponse()(*AccountKidResponse) {
-    m := &AccountKidResponse{
-        AccountKidGetResponse: *NewAccountKidGetResponse(),
-    }
-    return m
+func NewAccountKidResponse() *AccountKidResponse {
+	m := &AccountKidResponse{
+		AccountKidGetResponse: *NewAccountKidGetResponse(),
+	}
+	return m
 }
+
 // CreateAccountKidResponseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateAccountKidResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewAccountKidResponse(), nil
+func CreateAccountKidResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewAccountKidResponse(), nil
 }
+
 // Deprecated: This class is obsolete. Use AccountKidGetResponseable instead.
 type AccountKidResponseable interface {
-    AccountKidGetResponseable
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	AccountKidGetResponseable
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
 }

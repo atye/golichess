@@ -4,519 +4,557 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type ChallengeOpenJson struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The challenger property
-    challenger i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
-    // The color property
-    color *ChallengeColor
-    // The destUser property
-    destUser i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
-    // The finalColor property
-    finalColor *GameColor
-    // The id property
-    id *string
-    // The initialFen property
-    initialFen *string
-    // The open property
-    open ChallengeOpenJson_openable
-    // The perf property
-    perf ChallengeOpenJson_perfable
-    // The rated property
-    rated *bool
-    // The speed property
-    speed *Speed
-    // The status property
-    status *ChallengeStatus
-    // The timeControl property
-    timeControl TimeControlable
-    // The url property
-    url *string
-    // The urlBlack property
-    urlBlack *string
-    // The urlWhite property
-    urlWhite *string
-    // The variant property
-    variant Variantable
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The challenger property
+	challenger i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
+	// The color property
+	color *ChallengeColor
+	// The destUser property
+	destUser i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
+	// The finalColor property
+	finalColor *GameColor
+	// The id property
+	id *string
+	// The initialFen property
+	initialFen *string
+	// The open property
+	open ChallengeOpenJson_openable
+	// The perf property
+	perf ChallengeOpenJson_perfable
+	// The rated property
+	rated *bool
+	// The speed property
+	speed *Speed
+	// The status property
+	status *ChallengeStatus
+	// The timeControl property
+	timeControl TimeControlable
+	// The url property
+	url *string
+	// The urlBlack property
+	urlBlack *string
+	// The urlWhite property
+	urlWhite *string
+	// The variant property
+	variant Variantable
 }
+
 // NewChallengeOpenJson instantiates a new ChallengeOpenJson and sets the default values.
-func NewChallengeOpenJson()(*ChallengeOpenJson) {
-    m := &ChallengeOpenJson{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewChallengeOpenJson() *ChallengeOpenJson {
+	m := &ChallengeOpenJson{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateChallengeOpenJsonFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateChallengeOpenJsonFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewChallengeOpenJson(), nil
+func CreateChallengeOpenJsonFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewChallengeOpenJson(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *ChallengeOpenJson) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *ChallengeOpenJson) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetChallenger gets the challenger property value. The challenger property
 // returns a UntypedNodeable when successful
-func (m *ChallengeOpenJson) GetChallenger()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
-    return m.challenger
+func (m *ChallengeOpenJson) GetChallenger() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable {
+	return m.challenger
 }
+
 // GetColor gets the color property value. The color property
 // returns a *ChallengeColor when successful
-func (m *ChallengeOpenJson) GetColor()(*ChallengeColor) {
-    return m.color
+func (m *ChallengeOpenJson) GetColor() *ChallengeColor {
+	return m.color
 }
+
 // GetDestUser gets the destUser property value. The destUser property
 // returns a UntypedNodeable when successful
-func (m *ChallengeOpenJson) GetDestUser()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
-    return m.destUser
+func (m *ChallengeOpenJson) GetDestUser() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable {
+	return m.destUser
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ChallengeOpenJson) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["challenger"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetChallenger(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
-        }
-        return nil
-    }
-    res["color"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseChallengeColor)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetColor(val.(*ChallengeColor))
-        }
-        return nil
-    }
-    res["destUser"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDestUser(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
-        }
-        return nil
-    }
-    res["finalColor"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseGameColor)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFinalColor(val.(*GameColor))
-        }
-        return nil
-    }
-    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetId(val)
-        }
-        return nil
-    }
-    res["initialFen"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetInitialFen(val)
-        }
-        return nil
-    }
-    res["open"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateChallengeOpenJson_openFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetOpen(val.(ChallengeOpenJson_openable))
-        }
-        return nil
-    }
-    res["perf"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateChallengeOpenJson_perfFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPerf(val.(ChallengeOpenJson_perfable))
-        }
-        return nil
-    }
-    res["rated"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRated(val)
-        }
-        return nil
-    }
-    res["speed"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseSpeed)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSpeed(val.(*Speed))
-        }
-        return nil
-    }
-    res["status"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseChallengeStatus)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStatus(val.(*ChallengeStatus))
-        }
-        return nil
-    }
-    res["timeControl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateTimeControlFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTimeControl(val.(TimeControlable))
-        }
-        return nil
-    }
-    res["url"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetUrl(val)
-        }
-        return nil
-    }
-    res["urlBlack"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetUrlBlack(val)
-        }
-        return nil
-    }
-    res["urlWhite"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetUrlWhite(val)
-        }
-        return nil
-    }
-    res["variant"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateVariantFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetVariant(val.(Variantable))
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *ChallengeOpenJson) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["challenger"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetChallenger(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
+		}
+		return nil
+	}
+	res["color"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(ParseChallengeColor)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetColor(val.(*ChallengeColor))
+		}
+		return nil
+	}
+	res["destUser"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.CreateUntypedNodeFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetDestUser(val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable))
+		}
+		return nil
+	}
+	res["finalColor"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(ParseGameColor)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFinalColor(val.(*GameColor))
+		}
+		return nil
+	}
+	res["id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetId(val)
+		}
+		return nil
+	}
+	res["initialFen"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetInitialFen(val)
+		}
+		return nil
+	}
+	res["open"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateChallengeOpenJson_openFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetOpen(val.(ChallengeOpenJson_openable))
+		}
+		return nil
+	}
+	res["perf"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateChallengeOpenJson_perfFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPerf(val.(ChallengeOpenJson_perfable))
+		}
+		return nil
+	}
+	res["rated"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRated(val)
+		}
+		return nil
+	}
+	res["speed"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(ParseSpeed)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetSpeed(val.(*Speed))
+		}
+		return nil
+	}
+	res["status"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(ParseChallengeStatus)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStatus(val.(*ChallengeStatus))
+		}
+		return nil
+	}
+	res["timeControl"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateTimeControlFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTimeControl(val.(TimeControlable))
+		}
+		return nil
+	}
+	res["url"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetUrl(val)
+		}
+		return nil
+	}
+	res["urlBlack"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetUrlBlack(val)
+		}
+		return nil
+	}
+	res["urlWhite"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetUrlWhite(val)
+		}
+		return nil
+	}
+	res["variant"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateVariantFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetVariant(val.(Variantable))
+		}
+		return nil
+	}
+	return res
 }
+
 // GetFinalColor gets the finalColor property value. The finalColor property
 // returns a *GameColor when successful
-func (m *ChallengeOpenJson) GetFinalColor()(*GameColor) {
-    return m.finalColor
+func (m *ChallengeOpenJson) GetFinalColor() *GameColor {
+	return m.finalColor
 }
+
 // GetId gets the id property value. The id property
 // returns a *string when successful
-func (m *ChallengeOpenJson) GetId()(*string) {
-    return m.id
+func (m *ChallengeOpenJson) GetId() *string {
+	return m.id
 }
+
 // GetInitialFen gets the initialFen property value. The initialFen property
 // returns a *string when successful
-func (m *ChallengeOpenJson) GetInitialFen()(*string) {
-    return m.initialFen
+func (m *ChallengeOpenJson) GetInitialFen() *string {
+	return m.initialFen
 }
+
 // GetOpen gets the open property value. The open property
 // returns a ChallengeOpenJson_openable when successful
-func (m *ChallengeOpenJson) GetOpen()(ChallengeOpenJson_openable) {
-    return m.open
+func (m *ChallengeOpenJson) GetOpen() ChallengeOpenJson_openable {
+	return m.open
 }
+
 // GetPerf gets the perf property value. The perf property
 // returns a ChallengeOpenJson_perfable when successful
-func (m *ChallengeOpenJson) GetPerf()(ChallengeOpenJson_perfable) {
-    return m.perf
+func (m *ChallengeOpenJson) GetPerf() ChallengeOpenJson_perfable {
+	return m.perf
 }
+
 // GetRated gets the rated property value. The rated property
 // returns a *bool when successful
-func (m *ChallengeOpenJson) GetRated()(*bool) {
-    return m.rated
+func (m *ChallengeOpenJson) GetRated() *bool {
+	return m.rated
 }
+
 // GetSpeed gets the speed property value. The speed property
 // returns a *Speed when successful
-func (m *ChallengeOpenJson) GetSpeed()(*Speed) {
-    return m.speed
+func (m *ChallengeOpenJson) GetSpeed() *Speed {
+	return m.speed
 }
+
 // GetStatus gets the status property value. The status property
 // returns a *ChallengeStatus when successful
-func (m *ChallengeOpenJson) GetStatus()(*ChallengeStatus) {
-    return m.status
+func (m *ChallengeOpenJson) GetStatus() *ChallengeStatus {
+	return m.status
 }
+
 // GetTimeControl gets the timeControl property value. The timeControl property
 // returns a TimeControlable when successful
-func (m *ChallengeOpenJson) GetTimeControl()(TimeControlable) {
-    return m.timeControl
+func (m *ChallengeOpenJson) GetTimeControl() TimeControlable {
+	return m.timeControl
 }
+
 // GetUrl gets the url property value. The url property
 // returns a *string when successful
-func (m *ChallengeOpenJson) GetUrl()(*string) {
-    return m.url
+func (m *ChallengeOpenJson) GetUrl() *string {
+	return m.url
 }
+
 // GetUrlBlack gets the urlBlack property value. The urlBlack property
 // returns a *string when successful
-func (m *ChallengeOpenJson) GetUrlBlack()(*string) {
-    return m.urlBlack
+func (m *ChallengeOpenJson) GetUrlBlack() *string {
+	return m.urlBlack
 }
+
 // GetUrlWhite gets the urlWhite property value. The urlWhite property
 // returns a *string when successful
-func (m *ChallengeOpenJson) GetUrlWhite()(*string) {
-    return m.urlWhite
+func (m *ChallengeOpenJson) GetUrlWhite() *string {
+	return m.urlWhite
 }
+
 // GetVariant gets the variant property value. The variant property
 // returns a Variantable when successful
-func (m *ChallengeOpenJson) GetVariant()(Variantable) {
-    return m.variant
+func (m *ChallengeOpenJson) GetVariant() Variantable {
+	return m.variant
 }
+
 // Serialize serializes information the current object
-func (m *ChallengeOpenJson) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("challenger", m.GetChallenger())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetColor() != nil {
-        cast := (*m.GetColor()).String()
-        err := writer.WriteStringValue("color", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("destUser", m.GetDestUser())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetFinalColor() != nil {
-        cast := (*m.GetFinalColor()).String()
-        err := writer.WriteStringValue("finalColor", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("id", m.GetId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("initialFen", m.GetInitialFen())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("open", m.GetOpen())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("perf", m.GetPerf())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("rated", m.GetRated())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetSpeed() != nil {
-        cast := (*m.GetSpeed()).String()
-        err := writer.WriteStringValue("speed", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetStatus() != nil {
-        cast := (*m.GetStatus()).String()
-        err := writer.WriteStringValue("status", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("timeControl", m.GetTimeControl())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("url", m.GetUrl())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("urlBlack", m.GetUrlBlack())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("urlWhite", m.GetUrlWhite())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("variant", m.GetVariant())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *ChallengeOpenJson) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteObjectValue("challenger", m.GetChallenger())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetColor() != nil {
+		cast := (*m.GetColor()).String()
+		err := writer.WriteStringValue("color", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("destUser", m.GetDestUser())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetFinalColor() != nil {
+		cast := (*m.GetFinalColor()).String()
+		err := writer.WriteStringValue("finalColor", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("id", m.GetId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("initialFen", m.GetInitialFen())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("open", m.GetOpen())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("perf", m.GetPerf())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("rated", m.GetRated())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetSpeed() != nil {
+		cast := (*m.GetSpeed()).String()
+		err := writer.WriteStringValue("speed", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetStatus() != nil {
+		cast := (*m.GetStatus()).String()
+		err := writer.WriteStringValue("status", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("timeControl", m.GetTimeControl())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("url", m.GetUrl())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("urlBlack", m.GetUrlBlack())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("urlWhite", m.GetUrlWhite())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("variant", m.GetVariant())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ChallengeOpenJson) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *ChallengeOpenJson) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetChallenger sets the challenger property value. The challenger property
-func (m *ChallengeOpenJson) SetChallenger(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
-    m.challenger = value
+func (m *ChallengeOpenJson) SetChallenger(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
+	m.challenger = value
 }
+
 // SetColor sets the color property value. The color property
-func (m *ChallengeOpenJson) SetColor(value *ChallengeColor)() {
-    m.color = value
+func (m *ChallengeOpenJson) SetColor(value *ChallengeColor) {
+	m.color = value
 }
+
 // SetDestUser sets the destUser property value. The destUser property
-func (m *ChallengeOpenJson) SetDestUser(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
-    m.destUser = value
+func (m *ChallengeOpenJson) SetDestUser(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
+	m.destUser = value
 }
+
 // SetFinalColor sets the finalColor property value. The finalColor property
-func (m *ChallengeOpenJson) SetFinalColor(value *GameColor)() {
-    m.finalColor = value
+func (m *ChallengeOpenJson) SetFinalColor(value *GameColor) {
+	m.finalColor = value
 }
+
 // SetId sets the id property value. The id property
-func (m *ChallengeOpenJson) SetId(value *string)() {
-    m.id = value
+func (m *ChallengeOpenJson) SetId(value *string) {
+	m.id = value
 }
+
 // SetInitialFen sets the initialFen property value. The initialFen property
-func (m *ChallengeOpenJson) SetInitialFen(value *string)() {
-    m.initialFen = value
+func (m *ChallengeOpenJson) SetInitialFen(value *string) {
+	m.initialFen = value
 }
+
 // SetOpen sets the open property value. The open property
-func (m *ChallengeOpenJson) SetOpen(value ChallengeOpenJson_openable)() {
-    m.open = value
+func (m *ChallengeOpenJson) SetOpen(value ChallengeOpenJson_openable) {
+	m.open = value
 }
+
 // SetPerf sets the perf property value. The perf property
-func (m *ChallengeOpenJson) SetPerf(value ChallengeOpenJson_perfable)() {
-    m.perf = value
+func (m *ChallengeOpenJson) SetPerf(value ChallengeOpenJson_perfable) {
+	m.perf = value
 }
+
 // SetRated sets the rated property value. The rated property
-func (m *ChallengeOpenJson) SetRated(value *bool)() {
-    m.rated = value
+func (m *ChallengeOpenJson) SetRated(value *bool) {
+	m.rated = value
 }
+
 // SetSpeed sets the speed property value. The speed property
-func (m *ChallengeOpenJson) SetSpeed(value *Speed)() {
-    m.speed = value
+func (m *ChallengeOpenJson) SetSpeed(value *Speed) {
+	m.speed = value
 }
+
 // SetStatus sets the status property value. The status property
-func (m *ChallengeOpenJson) SetStatus(value *ChallengeStatus)() {
-    m.status = value
+func (m *ChallengeOpenJson) SetStatus(value *ChallengeStatus) {
+	m.status = value
 }
+
 // SetTimeControl sets the timeControl property value. The timeControl property
-func (m *ChallengeOpenJson) SetTimeControl(value TimeControlable)() {
-    m.timeControl = value
+func (m *ChallengeOpenJson) SetTimeControl(value TimeControlable) {
+	m.timeControl = value
 }
+
 // SetUrl sets the url property value. The url property
-func (m *ChallengeOpenJson) SetUrl(value *string)() {
-    m.url = value
+func (m *ChallengeOpenJson) SetUrl(value *string) {
+	m.url = value
 }
+
 // SetUrlBlack sets the urlBlack property value. The urlBlack property
-func (m *ChallengeOpenJson) SetUrlBlack(value *string)() {
-    m.urlBlack = value
+func (m *ChallengeOpenJson) SetUrlBlack(value *string) {
+	m.urlBlack = value
 }
+
 // SetUrlWhite sets the urlWhite property value. The urlWhite property
-func (m *ChallengeOpenJson) SetUrlWhite(value *string)() {
-    m.urlWhite = value
+func (m *ChallengeOpenJson) SetUrlWhite(value *string) {
+	m.urlWhite = value
 }
+
 // SetVariant sets the variant property value. The variant property
-func (m *ChallengeOpenJson) SetVariant(value Variantable)() {
-    m.variant = value
+func (m *ChallengeOpenJson) SetVariant(value Variantable) {
+	m.variant = value
 }
+
 type ChallengeOpenJsonable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetChallenger()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
-    GetColor()(*ChallengeColor)
-    GetDestUser()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
-    GetFinalColor()(*GameColor)
-    GetId()(*string)
-    GetInitialFen()(*string)
-    GetOpen()(ChallengeOpenJson_openable)
-    GetPerf()(ChallengeOpenJson_perfable)
-    GetRated()(*bool)
-    GetSpeed()(*Speed)
-    GetStatus()(*ChallengeStatus)
-    GetTimeControl()(TimeControlable)
-    GetUrl()(*string)
-    GetUrlBlack()(*string)
-    GetUrlWhite()(*string)
-    GetVariant()(Variantable)
-    SetChallenger(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)()
-    SetColor(value *ChallengeColor)()
-    SetDestUser(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)()
-    SetFinalColor(value *GameColor)()
-    SetId(value *string)()
-    SetInitialFen(value *string)()
-    SetOpen(value ChallengeOpenJson_openable)()
-    SetPerf(value ChallengeOpenJson_perfable)()
-    SetRated(value *bool)()
-    SetSpeed(value *Speed)()
-    SetStatus(value *ChallengeStatus)()
-    SetTimeControl(value TimeControlable)()
-    SetUrl(value *string)()
-    SetUrlBlack(value *string)()
-    SetUrlWhite(value *string)()
-    SetVariant(value Variantable)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetChallenger() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
+	GetColor() *ChallengeColor
+	GetDestUser() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
+	GetFinalColor() *GameColor
+	GetId() *string
+	GetInitialFen() *string
+	GetOpen() ChallengeOpenJson_openable
+	GetPerf() ChallengeOpenJson_perfable
+	GetRated() *bool
+	GetSpeed() *Speed
+	GetStatus() *ChallengeStatus
+	GetTimeControl() TimeControlable
+	GetUrl() *string
+	GetUrlBlack() *string
+	GetUrlWhite() *string
+	GetVariant() Variantable
+	SetChallenger(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
+	SetColor(value *ChallengeColor)
+	SetDestUser(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
+	SetFinalColor(value *GameColor)
+	SetId(value *string)
+	SetInitialFen(value *string)
+	SetOpen(value ChallengeOpenJson_openable)
+	SetPerf(value ChallengeOpenJson_perfable)
+	SetRated(value *bool)
+	SetSpeed(value *Speed)
+	SetStatus(value *ChallengeStatus)
+	SetTimeControl(value TimeControlable)
+	SetUrl(value *string)
+	SetUrlBlack(value *string)
+	SetUrlWhite(value *string)
+	SetVariant(value Variantable)
 }

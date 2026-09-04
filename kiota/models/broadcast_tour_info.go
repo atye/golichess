@@ -4,314 +4,338 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // BroadcastTourInfo additional display information about the tournament
 type BroadcastTourInfo struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // FIDE rating category
-    fideTC *FideTimeControl
-    // Tournament format.Example: `"8-player round-robin" or "5-round Swiss"`
-    format *string
-    // Tournament location
-    location *string
-    // Mentioning up to 4 of the best players participating.
-    players *string
-    // External URL to the official tournament regulations.
-    regulations *string
-    // Official standings website. External website URL, e.g. chess-results.com, info64.org
-    standings *string
-    // Time control.Example: `"Classical" or "Rapid" or "Rapid & Blitz"`
-    tc *string
-    // Timezone of the tournament. Example: `America/New_York`.See [list of possible timezone identifiers](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for more.
-    timeZone *string
-    // Official website. External website URL
-    website *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// FIDE rating category
+	fideTC *FideTimeControl
+	// Tournament format.Example: `"8-player round-robin" or "5-round Swiss"`
+	format *string
+	// Tournament location
+	location *string
+	// Mentioning up to 4 of the best players participating.
+	players *string
+	// External URL to the official tournament regulations.
+	regulations *string
+	// Official standings website. External website URL, e.g. chess-results.com, info64.org
+	standings *string
+	// Time control.Example: `"Classical" or "Rapid" or "Rapid & Blitz"`
+	tc *string
+	// Timezone of the tournament. Example: `America/New_York`.See [list of possible timezone identifiers](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for more.
+	timeZone *string
+	// Official website. External website URL
+	website *string
 }
+
 // NewBroadcastTourInfo instantiates a new BroadcastTourInfo and sets the default values.
-func NewBroadcastTourInfo()(*BroadcastTourInfo) {
-    m := &BroadcastTourInfo{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewBroadcastTourInfo() *BroadcastTourInfo {
+	m := &BroadcastTourInfo{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateBroadcastTourInfoFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateBroadcastTourInfoFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewBroadcastTourInfo(), nil
+func CreateBroadcastTourInfoFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewBroadcastTourInfo(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *BroadcastTourInfo) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *BroadcastTourInfo) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFideTC gets the fideTC property value. FIDE rating category
 // returns a *FideTimeControl when successful
-func (m *BroadcastTourInfo) GetFideTC()(*FideTimeControl) {
-    return m.fideTC
+func (m *BroadcastTourInfo) GetFideTC() *FideTimeControl {
+	return m.fideTC
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *BroadcastTourInfo) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["fideTC"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseFideTimeControl)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFideTC(val.(*FideTimeControl))
-        }
-        return nil
-    }
-    res["format"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFormat(val)
-        }
-        return nil
-    }
-    res["location"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetLocation(val)
-        }
-        return nil
-    }
-    res["players"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPlayers(val)
-        }
-        return nil
-    }
-    res["regulations"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRegulations(val)
-        }
-        return nil
-    }
-    res["standings"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStandings(val)
-        }
-        return nil
-    }
-    res["tc"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTc(val)
-        }
-        return nil
-    }
-    res["timeZone"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTimeZone(val)
-        }
-        return nil
-    }
-    res["website"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetWebsite(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *BroadcastTourInfo) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["fideTC"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(ParseFideTimeControl)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFideTC(val.(*FideTimeControl))
+		}
+		return nil
+	}
+	res["format"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFormat(val)
+		}
+		return nil
+	}
+	res["location"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetLocation(val)
+		}
+		return nil
+	}
+	res["players"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPlayers(val)
+		}
+		return nil
+	}
+	res["regulations"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRegulations(val)
+		}
+		return nil
+	}
+	res["standings"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStandings(val)
+		}
+		return nil
+	}
+	res["tc"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTc(val)
+		}
+		return nil
+	}
+	res["timeZone"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTimeZone(val)
+		}
+		return nil
+	}
+	res["website"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetWebsite(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetFormat gets the format property value. Tournament format.Example: `"8-player round-robin" or "5-round Swiss"`
 // returns a *string when successful
-func (m *BroadcastTourInfo) GetFormat()(*string) {
-    return m.format
+func (m *BroadcastTourInfo) GetFormat() *string {
+	return m.format
 }
+
 // GetLocation gets the location property value. Tournament location
 // returns a *string when successful
-func (m *BroadcastTourInfo) GetLocation()(*string) {
-    return m.location
+func (m *BroadcastTourInfo) GetLocation() *string {
+	return m.location
 }
+
 // GetPlayers gets the players property value. Mentioning up to 4 of the best players participating.
 // returns a *string when successful
-func (m *BroadcastTourInfo) GetPlayers()(*string) {
-    return m.players
+func (m *BroadcastTourInfo) GetPlayers() *string {
+	return m.players
 }
+
 // GetRegulations gets the regulations property value. External URL to the official tournament regulations.
 // returns a *string when successful
-func (m *BroadcastTourInfo) GetRegulations()(*string) {
-    return m.regulations
+func (m *BroadcastTourInfo) GetRegulations() *string {
+	return m.regulations
 }
+
 // GetStandings gets the standings property value. Official standings website. External website URL, e.g. chess-results.com, info64.org
 // returns a *string when successful
-func (m *BroadcastTourInfo) GetStandings()(*string) {
-    return m.standings
+func (m *BroadcastTourInfo) GetStandings() *string {
+	return m.standings
 }
+
 // GetTc gets the tc property value. Time control.Example: `"Classical" or "Rapid" or "Rapid & Blitz"`
 // returns a *string when successful
-func (m *BroadcastTourInfo) GetTc()(*string) {
-    return m.tc
+func (m *BroadcastTourInfo) GetTc() *string {
+	return m.tc
 }
+
 // GetTimeZone gets the timeZone property value. Timezone of the tournament. Example: `America/New_York`.See [list of possible timezone identifiers](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for more.
 // returns a *string when successful
-func (m *BroadcastTourInfo) GetTimeZone()(*string) {
-    return m.timeZone
+func (m *BroadcastTourInfo) GetTimeZone() *string {
+	return m.timeZone
 }
+
 // GetWebsite gets the website property value. Official website. External website URL
 // returns a *string when successful
-func (m *BroadcastTourInfo) GetWebsite()(*string) {
-    return m.website
+func (m *BroadcastTourInfo) GetWebsite() *string {
+	return m.website
 }
+
 // Serialize serializes information the current object
-func (m *BroadcastTourInfo) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetFideTC() != nil {
-        cast := (*m.GetFideTC()).String()
-        err := writer.WriteStringValue("fideTC", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("format", m.GetFormat())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("location", m.GetLocation())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("players", m.GetPlayers())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("regulations", m.GetRegulations())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("standings", m.GetStandings())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("tc", m.GetTc())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("timeZone", m.GetTimeZone())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("website", m.GetWebsite())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *BroadcastTourInfo) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	if m.GetFideTC() != nil {
+		cast := (*m.GetFideTC()).String()
+		err := writer.WriteStringValue("fideTC", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("format", m.GetFormat())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("location", m.GetLocation())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("players", m.GetPlayers())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("regulations", m.GetRegulations())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("standings", m.GetStandings())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("tc", m.GetTc())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("timeZone", m.GetTimeZone())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("website", m.GetWebsite())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *BroadcastTourInfo) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *BroadcastTourInfo) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetFideTC sets the fideTC property value. FIDE rating category
-func (m *BroadcastTourInfo) SetFideTC(value *FideTimeControl)() {
-    m.fideTC = value
+func (m *BroadcastTourInfo) SetFideTC(value *FideTimeControl) {
+	m.fideTC = value
 }
+
 // SetFormat sets the format property value. Tournament format.Example: `"8-player round-robin" or "5-round Swiss"`
-func (m *BroadcastTourInfo) SetFormat(value *string)() {
-    m.format = value
+func (m *BroadcastTourInfo) SetFormat(value *string) {
+	m.format = value
 }
+
 // SetLocation sets the location property value. Tournament location
-func (m *BroadcastTourInfo) SetLocation(value *string)() {
-    m.location = value
+func (m *BroadcastTourInfo) SetLocation(value *string) {
+	m.location = value
 }
+
 // SetPlayers sets the players property value. Mentioning up to 4 of the best players participating.
-func (m *BroadcastTourInfo) SetPlayers(value *string)() {
-    m.players = value
+func (m *BroadcastTourInfo) SetPlayers(value *string) {
+	m.players = value
 }
+
 // SetRegulations sets the regulations property value. External URL to the official tournament regulations.
-func (m *BroadcastTourInfo) SetRegulations(value *string)() {
-    m.regulations = value
+func (m *BroadcastTourInfo) SetRegulations(value *string) {
+	m.regulations = value
 }
+
 // SetStandings sets the standings property value. Official standings website. External website URL, e.g. chess-results.com, info64.org
-func (m *BroadcastTourInfo) SetStandings(value *string)() {
-    m.standings = value
+func (m *BroadcastTourInfo) SetStandings(value *string) {
+	m.standings = value
 }
+
 // SetTc sets the tc property value. Time control.Example: `"Classical" or "Rapid" or "Rapid & Blitz"`
-func (m *BroadcastTourInfo) SetTc(value *string)() {
-    m.tc = value
+func (m *BroadcastTourInfo) SetTc(value *string) {
+	m.tc = value
 }
+
 // SetTimeZone sets the timeZone property value. Timezone of the tournament. Example: `America/New_York`.See [list of possible timezone identifiers](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for more.
-func (m *BroadcastTourInfo) SetTimeZone(value *string)() {
-    m.timeZone = value
+func (m *BroadcastTourInfo) SetTimeZone(value *string) {
+	m.timeZone = value
 }
+
 // SetWebsite sets the website property value. Official website. External website URL
-func (m *BroadcastTourInfo) SetWebsite(value *string)() {
-    m.website = value
+func (m *BroadcastTourInfo) SetWebsite(value *string) {
+	m.website = value
 }
+
 type BroadcastTourInfoable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetFideTC()(*FideTimeControl)
-    GetFormat()(*string)
-    GetLocation()(*string)
-    GetPlayers()(*string)
-    GetRegulations()(*string)
-    GetStandings()(*string)
-    GetTc()(*string)
-    GetTimeZone()(*string)
-    GetWebsite()(*string)
-    SetFideTC(value *FideTimeControl)()
-    SetFormat(value *string)()
-    SetLocation(value *string)()
-    SetPlayers(value *string)()
-    SetRegulations(value *string)()
-    SetStandings(value *string)()
-    SetTc(value *string)()
-    SetTimeZone(value *string)()
-    SetWebsite(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetFideTC() *FideTimeControl
+	GetFormat() *string
+	GetLocation() *string
+	GetPlayers() *string
+	GetRegulations() *string
+	GetStandings() *string
+	GetTc() *string
+	GetTimeZone() *string
+	GetWebsite() *string
+	SetFideTC(value *FideTimeControl)
+	SetFormat(value *string)
+	SetLocation(value *string)
+	SetPlayers(value *string)
+	SetRegulations(value *string)
+	SetStandings(value *string)
+	SetTc(value *string)
+	SetTimeZone(value *string)
+	SetWebsite(value *string)
 }

@@ -4,167 +4,181 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type ArenaTournamentFull_featured_white struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The id property
-    id *string
-    // The name property
-    name *string
-    // The rank property
-    rank *int32
-    // The rating property
-    rating *int32
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The id property
+	id *string
+	// The name property
+	name *string
+	// The rank property
+	rank *int32
+	// The rating property
+	rating *int32
 }
+
 // NewArenaTournamentFull_featured_white instantiates a new ArenaTournamentFull_featured_white and sets the default values.
-func NewArenaTournamentFull_featured_white()(*ArenaTournamentFull_featured_white) {
-    m := &ArenaTournamentFull_featured_white{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewArenaTournamentFull_featured_white() *ArenaTournamentFull_featured_white {
+	m := &ArenaTournamentFull_featured_white{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateArenaTournamentFull_featured_whiteFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateArenaTournamentFull_featured_whiteFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewArenaTournamentFull_featured_white(), nil
+func CreateArenaTournamentFull_featured_whiteFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewArenaTournamentFull_featured_white(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *ArenaTournamentFull_featured_white) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *ArenaTournamentFull_featured_white) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ArenaTournamentFull_featured_white) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetId(val)
-        }
-        return nil
-    }
-    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetName(val)
-        }
-        return nil
-    }
-    res["rank"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRank(val)
-        }
-        return nil
-    }
-    res["rating"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRating(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *ArenaTournamentFull_featured_white) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetId(val)
+		}
+		return nil
+	}
+	res["name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetName(val)
+		}
+		return nil
+	}
+	res["rank"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRank(val)
+		}
+		return nil
+	}
+	res["rating"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRating(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetId gets the id property value. The id property
 // returns a *string when successful
-func (m *ArenaTournamentFull_featured_white) GetId()(*string) {
-    return m.id
+func (m *ArenaTournamentFull_featured_white) GetId() *string {
+	return m.id
 }
+
 // GetName gets the name property value. The name property
 // returns a *string when successful
-func (m *ArenaTournamentFull_featured_white) GetName()(*string) {
-    return m.name
+func (m *ArenaTournamentFull_featured_white) GetName() *string {
+	return m.name
 }
+
 // GetRank gets the rank property value. The rank property
 // returns a *int32 when successful
-func (m *ArenaTournamentFull_featured_white) GetRank()(*int32) {
-    return m.rank
+func (m *ArenaTournamentFull_featured_white) GetRank() *int32 {
+	return m.rank
 }
+
 // GetRating gets the rating property value. The rating property
 // returns a *int32 when successful
-func (m *ArenaTournamentFull_featured_white) GetRating()(*int32) {
-    return m.rating
+func (m *ArenaTournamentFull_featured_white) GetRating() *int32 {
+	return m.rating
 }
+
 // Serialize serializes information the current object
-func (m *ArenaTournamentFull_featured_white) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("id", m.GetId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("name", m.GetName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("rank", m.GetRank())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("rating", m.GetRating())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *ArenaTournamentFull_featured_white) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("id", m.GetId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("name", m.GetName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("rank", m.GetRank())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("rating", m.GetRating())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ArenaTournamentFull_featured_white) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *ArenaTournamentFull_featured_white) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetId sets the id property value. The id property
-func (m *ArenaTournamentFull_featured_white) SetId(value *string)() {
-    m.id = value
+func (m *ArenaTournamentFull_featured_white) SetId(value *string) {
+	m.id = value
 }
+
 // SetName sets the name property value. The name property
-func (m *ArenaTournamentFull_featured_white) SetName(value *string)() {
-    m.name = value
+func (m *ArenaTournamentFull_featured_white) SetName(value *string) {
+	m.name = value
 }
+
 // SetRank sets the rank property value. The rank property
-func (m *ArenaTournamentFull_featured_white) SetRank(value *int32)() {
-    m.rank = value
+func (m *ArenaTournamentFull_featured_white) SetRank(value *int32) {
+	m.rank = value
 }
+
 // SetRating sets the rating property value. The rating property
-func (m *ArenaTournamentFull_featured_white) SetRating(value *int32)() {
-    m.rating = value
+func (m *ArenaTournamentFull_featured_white) SetRating(value *int32) {
+	m.rating = value
 }
+
 type ArenaTournamentFull_featured_whiteable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetId()(*string)
-    GetName()(*string)
-    GetRank()(*int32)
-    GetRating()(*int32)
-    SetId(value *string)()
-    SetName(value *string)()
-    SetRank(value *int32)()
-    SetRating(value *int32)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetId() *string
+	GetName() *string
+	GetRank() *int32
+	GetRating() *int32
+	SetId(value *string)
+	SetName(value *string)
+	SetRank(value *int32)
+	SetRating(value *int32)
 }

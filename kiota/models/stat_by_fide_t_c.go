@@ -4,138 +4,150 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type StatByFideTC struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The blitz property
-    blitz *int32
-    // The rapid property
-    rapid *int32
-    // The standard property
-    standard *int32
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The blitz property
+	blitz *int32
+	// The rapid property
+	rapid *int32
+	// The standard property
+	standard *int32
 }
+
 // NewStatByFideTC instantiates a new StatByFideTC and sets the default values.
-func NewStatByFideTC()(*StatByFideTC) {
-    m := &StatByFideTC{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewStatByFideTC() *StatByFideTC {
+	m := &StatByFideTC{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateStatByFideTCFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateStatByFideTCFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewStatByFideTC(), nil
+func CreateStatByFideTCFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewStatByFideTC(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *StatByFideTC) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *StatByFideTC) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetBlitz gets the blitz property value. The blitz property
 // returns a *int32 when successful
-func (m *StatByFideTC) GetBlitz()(*int32) {
-    return m.blitz
+func (m *StatByFideTC) GetBlitz() *int32 {
+	return m.blitz
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *StatByFideTC) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["blitz"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetBlitz(val)
-        }
-        return nil
-    }
-    res["rapid"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRapid(val)
-        }
-        return nil
-    }
-    res["standard"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStandard(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *StatByFideTC) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["blitz"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetBlitz(val)
+		}
+		return nil
+	}
+	res["rapid"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRapid(val)
+		}
+		return nil
+	}
+	res["standard"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStandard(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetRapid gets the rapid property value. The rapid property
 // returns a *int32 when successful
-func (m *StatByFideTC) GetRapid()(*int32) {
-    return m.rapid
+func (m *StatByFideTC) GetRapid() *int32 {
+	return m.rapid
 }
+
 // GetStandard gets the standard property value. The standard property
 // returns a *int32 when successful
-func (m *StatByFideTC) GetStandard()(*int32) {
-    return m.standard
+func (m *StatByFideTC) GetStandard() *int32 {
+	return m.standard
 }
+
 // Serialize serializes information the current object
-func (m *StatByFideTC) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteInt32Value("blitz", m.GetBlitz())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("rapid", m.GetRapid())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("standard", m.GetStandard())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *StatByFideTC) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteInt32Value("blitz", m.GetBlitz())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("rapid", m.GetRapid())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("standard", m.GetStandard())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *StatByFideTC) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *StatByFideTC) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetBlitz sets the blitz property value. The blitz property
-func (m *StatByFideTC) SetBlitz(value *int32)() {
-    m.blitz = value
+func (m *StatByFideTC) SetBlitz(value *int32) {
+	m.blitz = value
 }
+
 // SetRapid sets the rapid property value. The rapid property
-func (m *StatByFideTC) SetRapid(value *int32)() {
-    m.rapid = value
+func (m *StatByFideTC) SetRapid(value *int32) {
+	m.rapid = value
 }
+
 // SetStandard sets the standard property value. The standard property
-func (m *StatByFideTC) SetStandard(value *int32)() {
-    m.standard = value
+func (m *StatByFideTC) SetStandard(value *int32) {
+	m.standard = value
 }
+
 type StatByFideTCable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetBlitz()(*int32)
-    GetRapid()(*int32)
-    GetStandard()(*int32)
-    SetBlitz(value *int32)()
-    SetRapid(value *int32)()
-    SetStandard(value *int32)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetBlitz() *int32
+	GetRapid() *int32
+	GetStandard() *int32
+	SetBlitz(value *int32)
+	SetRapid(value *int32)
+	SetStandard(value *int32)
 }

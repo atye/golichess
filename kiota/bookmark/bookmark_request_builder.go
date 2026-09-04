@@ -4,35 +4,38 @@
 package bookmark
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // BookmarkRequestBuilder builds and executes requests for operations under \bookmark
 type BookmarkRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // ByGameId gets an item from the github.com/atye/golichess/kiota.bookmark.item collection
 // returns a *WithGameItemRequestBuilder when successful
-func (m *BookmarkRequestBuilder) ByGameId(gameId string)(*WithGameItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    if gameId != "" {
-        urlTplParams["gameId"] = gameId
-    }
-    return NewWithGameItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+func (m *BookmarkRequestBuilder) ByGameId(gameId string) *WithGameItemRequestBuilder {
+	urlTplParams := make(map[string]string)
+	for idx, item := range m.BaseRequestBuilder.PathParameters {
+		urlTplParams[idx] = item
+	}
+	if gameId != "" {
+		urlTplParams["gameId"] = gameId
+	}
+	return NewWithGameItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewBookmarkRequestBuilderInternal instantiates a new BookmarkRequestBuilder and sets the default values.
-func NewBookmarkRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BookmarkRequestBuilder) {
-    m := &BookmarkRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/bookmark", pathParameters),
-    }
-    return m
+func NewBookmarkRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BookmarkRequestBuilder {
+	m := &BookmarkRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/bookmark", pathParameters),
+	}
+	return m
 }
+
 // NewBookmarkRequestBuilder instantiates a new BookmarkRequestBuilder and sets the default values.
-func NewBookmarkRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BookmarkRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewBookmarkRequestBuilderInternal(urlParams, requestAdapter)
+func NewBookmarkRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BookmarkRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewBookmarkRequestBuilderInternal(urlParams, requestAdapter)
 }

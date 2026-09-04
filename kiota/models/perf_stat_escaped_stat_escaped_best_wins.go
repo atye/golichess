@@ -4,92 +4,100 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type PerfStat_stat_bestWins struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The results property
-    results []PerfStat_stat_bestWins_resultsable
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The results property
+	results []PerfStat_stat_bestWins_resultsable
 }
+
 // NewPerfStat_stat_bestWins instantiates a new PerfStat_stat_bestWins and sets the default values.
-func NewPerfStat_stat_bestWins()(*PerfStat_stat_bestWins) {
-    m := &PerfStat_stat_bestWins{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewPerfStat_stat_bestWins() *PerfStat_stat_bestWins {
+	m := &PerfStat_stat_bestWins{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreatePerfStat_stat_bestWinsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreatePerfStat_stat_bestWinsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewPerfStat_stat_bestWins(), nil
+func CreatePerfStat_stat_bestWinsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewPerfStat_stat_bestWins(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *PerfStat_stat_bestWins) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *PerfStat_stat_bestWins) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *PerfStat_stat_bestWins) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["results"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreatePerfStat_stat_bestWins_resultsFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]PerfStat_stat_bestWins_resultsable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(PerfStat_stat_bestWins_resultsable)
-                }
-            }
-            m.SetResults(res)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *PerfStat_stat_bestWins) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["results"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreatePerfStat_stat_bestWins_resultsFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]PerfStat_stat_bestWins_resultsable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(PerfStat_stat_bestWins_resultsable)
+				}
+			}
+			m.SetResults(res)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetResults gets the results property value. The results property
 // returns a []PerfStat_stat_bestWins_resultsable when successful
-func (m *PerfStat_stat_bestWins) GetResults()([]PerfStat_stat_bestWins_resultsable) {
-    return m.results
+func (m *PerfStat_stat_bestWins) GetResults() []PerfStat_stat_bestWins_resultsable {
+	return m.results
 }
+
 // Serialize serializes information the current object
-func (m *PerfStat_stat_bestWins) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetResults() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetResults()))
-        for i, v := range m.GetResults() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("results", cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *PerfStat_stat_bestWins) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	if m.GetResults() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetResults()))
+		for i, v := range m.GetResults() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("results", cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PerfStat_stat_bestWins) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *PerfStat_stat_bestWins) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetResults sets the results property value. The results property
-func (m *PerfStat_stat_bestWins) SetResults(value []PerfStat_stat_bestWins_resultsable)() {
-    m.results = value
+func (m *PerfStat_stat_bestWins) SetResults(value []PerfStat_stat_bestWins_resultsable) {
+	m.results = value
 }
+
 type PerfStat_stat_bestWinsable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetResults()([]PerfStat_stat_bestWins_resultsable)
-    SetResults(value []PerfStat_stat_bestWins_resultsable)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetResults() []PerfStat_stat_bestWins_resultsable
+	SetResults(value []PerfStat_stat_bestWins_resultsable)
 }

@@ -4,64 +4,70 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	"context"
+	i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // PuzzlePuzzleItemRequestBuilder builds and executes requests for operations under \api\puzzle\{id}
 type PuzzlePuzzleItemRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // PuzzlePuzzleItemRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type PuzzlePuzzleItemRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+
 // NewPuzzlePuzzleItemRequestBuilderInternal instantiates a new PuzzlePuzzleItemRequestBuilder and sets the default values.
-func NewPuzzlePuzzleItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*PuzzlePuzzleItemRequestBuilder) {
-    m := &PuzzlePuzzleItemRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/puzzle/{id}", pathParameters),
-    }
-    return m
+func NewPuzzlePuzzleItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *PuzzlePuzzleItemRequestBuilder {
+	m := &PuzzlePuzzleItemRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/puzzle/{id}", pathParameters),
+	}
+	return m
 }
+
 // NewPuzzlePuzzleItemRequestBuilder instantiates a new PuzzlePuzzleItemRequestBuilder and sets the default values.
-func NewPuzzlePuzzleItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*PuzzlePuzzleItemRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewPuzzlePuzzleItemRequestBuilderInternal(urlParams, requestAdapter)
+func NewPuzzlePuzzleItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *PuzzlePuzzleItemRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewPuzzlePuzzleItemRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get get a single Lichess puzzle in JSON format.
 // returns a PuzzleAndGameable when successful
-func (m *PuzzlePuzzleItemRequestBuilder) Get(ctx context.Context, requestConfiguration *PuzzlePuzzleItemRequestBuilderGetRequestConfiguration)(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.PuzzleAndGameable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreatePuzzleAndGameFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.PuzzleAndGameable), nil
+func (m *PuzzlePuzzleItemRequestBuilder) Get(ctx context.Context, requestConfiguration *PuzzlePuzzleItemRequestBuilderGetRequestConfiguration) (i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.PuzzleAndGameable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreatePuzzleAndGameFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.PuzzleAndGameable), nil
 }
+
 // ToGetRequestInformation get a single Lichess puzzle in JSON format.
 // returns a *RequestInformation when successful
-func (m *PuzzlePuzzleItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *PuzzlePuzzleItemRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    return requestInfo, nil
+func (m *PuzzlePuzzleItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *PuzzlePuzzleItemRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *PuzzlePuzzleItemRequestBuilder when successful
-func (m *PuzzlePuzzleItemRequestBuilder) WithUrl(rawUrl string)(*PuzzlePuzzleItemRequestBuilder) {
-    return NewPuzzlePuzzleItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *PuzzlePuzzleItemRequestBuilder) WithUrl(rawUrl string) *PuzzlePuzzleItemRequestBuilder {
+	return NewPuzzlePuzzleItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

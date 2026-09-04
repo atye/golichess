@@ -4,109 +4,119 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type UserActivity_interval struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The end property
-    end *int32
-    // The start property
-    start *int32
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The end property
+	end *int32
+	// The start property
+	start *int32
 }
+
 // NewUserActivity_interval instantiates a new UserActivity_interval and sets the default values.
-func NewUserActivity_interval()(*UserActivity_interval) {
-    m := &UserActivity_interval{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewUserActivity_interval() *UserActivity_interval {
+	m := &UserActivity_interval{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateUserActivity_intervalFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateUserActivity_intervalFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewUserActivity_interval(), nil
+func CreateUserActivity_intervalFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewUserActivity_interval(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *UserActivity_interval) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *UserActivity_interval) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetEnd gets the end property value. The end property
 // returns a *int32 when successful
-func (m *UserActivity_interval) GetEnd()(*int32) {
-    return m.end
+func (m *UserActivity_interval) GetEnd() *int32 {
+	return m.end
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *UserActivity_interval) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["end"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetEnd(val)
-        }
-        return nil
-    }
-    res["start"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStart(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *UserActivity_interval) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["end"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetEnd(val)
+		}
+		return nil
+	}
+	res["start"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStart(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetStart gets the start property value. The start property
 // returns a *int32 when successful
-func (m *UserActivity_interval) GetStart()(*int32) {
-    return m.start
+func (m *UserActivity_interval) GetStart() *int32 {
+	return m.start
 }
+
 // Serialize serializes information the current object
-func (m *UserActivity_interval) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteInt32Value("end", m.GetEnd())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("start", m.GetStart())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *UserActivity_interval) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteInt32Value("end", m.GetEnd())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("start", m.GetStart())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *UserActivity_interval) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *UserActivity_interval) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetEnd sets the end property value. The end property
-func (m *UserActivity_interval) SetEnd(value *int32)() {
-    m.end = value
+func (m *UserActivity_interval) SetEnd(value *int32) {
+	m.end = value
 }
+
 // SetStart sets the start property value. The start property
-func (m *UserActivity_interval) SetStart(value *int32)() {
-    m.start = value
+func (m *UserActivity_interval) SetStart(value *int32) {
+	m.start = value
 }
+
 type UserActivity_intervalable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetEnd()(*int32)
-    GetStart()(*int32)
-    SetEnd(value *int32)()
-    SetStart(value *int32)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetEnd() *int32
+	GetStart() *int32
+	SetEnd(value *int32)
+	SetStart(value *int32)
 }

@@ -4,50 +4,56 @@
 package api
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // TeamRequestBuilder builds and executes requests for operations under \api\team
 type TeamRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // All the all property
 // returns a *TeamAllRequestBuilder when successful
-func (m *TeamRequestBuilder) All()(*TeamAllRequestBuilder) {
-    return NewTeamAllRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *TeamRequestBuilder) All() *TeamAllRequestBuilder {
+	return NewTeamAllRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // ByTeamId gets an item from the github.com/atye/golichess/kiota.api.team.item collection
 // returns a *TeamWithTeamItemRequestBuilder when successful
-func (m *TeamRequestBuilder) ByTeamId(teamId string)(*TeamWithTeamItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    if teamId != "" {
-        urlTplParams["teamId"] = teamId
-    }
-    return NewTeamWithTeamItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+func (m *TeamRequestBuilder) ByTeamId(teamId string) *TeamWithTeamItemRequestBuilder {
+	urlTplParams := make(map[string]string)
+	for idx, item := range m.BaseRequestBuilder.PathParameters {
+		urlTplParams[idx] = item
+	}
+	if teamId != "" {
+		urlTplParams["teamId"] = teamId
+	}
+	return NewTeamWithTeamItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewTeamRequestBuilderInternal instantiates a new TeamRequestBuilder and sets the default values.
-func NewTeamRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*TeamRequestBuilder) {
-    m := &TeamRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/team", pathParameters),
-    }
-    return m
+func NewTeamRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *TeamRequestBuilder {
+	m := &TeamRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/team", pathParameters),
+	}
+	return m
 }
+
 // NewTeamRequestBuilder instantiates a new TeamRequestBuilder and sets the default values.
-func NewTeamRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*TeamRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewTeamRequestBuilderInternal(urlParams, requestAdapter)
+func NewTeamRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *TeamRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewTeamRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Of the of property
 // returns a *TeamOfRequestBuilder when successful
-func (m *TeamRequestBuilder) Of()(*TeamOfRequestBuilder) {
-    return NewTeamOfRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *TeamRequestBuilder) Of() *TeamOfRequestBuilder {
+	return NewTeamOfRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Search the search property
 // returns a *TeamSearchRequestBuilder when successful
-func (m *TeamRequestBuilder) Search()(*TeamSearchRequestBuilder) {
-    return NewTeamSearchRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *TeamRequestBuilder) Search() *TeamSearchRequestBuilder {
+	return NewTeamSearchRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

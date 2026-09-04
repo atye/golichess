@@ -2,45 +2,49 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package bulkpairing
+
 // Extra game rules separated by commas.Example: `noAbort,noRematch`
 type BulkPairingPostRequestBody_rules int
 
 const (
-    NOABORT_BULKPAIRINGPOSTREQUESTBODY_RULES BulkPairingPostRequestBody_rules = iota
-    NOREMATCH_BULKPAIRINGPOSTREQUESTBODY_RULES
-    NOGIVETIME_BULKPAIRINGPOSTREQUESTBODY_RULES
-    NOCLAIMWIN_BULKPAIRINGPOSTREQUESTBODY_RULES
-    NOEARLYDRAW_BULKPAIRINGPOSTREQUESTBODY_RULES
+	NOABORT_BULKPAIRINGPOSTREQUESTBODY_RULES BulkPairingPostRequestBody_rules = iota
+	NOREMATCH_BULKPAIRINGPOSTREQUESTBODY_RULES
+	NOGIVETIME_BULKPAIRINGPOSTREQUESTBODY_RULES
+	NOCLAIMWIN_BULKPAIRINGPOSTREQUESTBODY_RULES
+	NOEARLYDRAW_BULKPAIRINGPOSTREQUESTBODY_RULES
 )
 
 func (i BulkPairingPostRequestBody_rules) String() string {
-    return []string{"noAbort", "noRematch", "noGiveTime", "noClaimWin", "noEarlyDraw"}[i]
+	return []string{"noAbort", "noRematch", "noGiveTime", "noClaimWin", "noEarlyDraw"}[i]
 }
+
 func ParseBulkPairingPostRequestBody_rules(v string) (any, error) {
-    result := NOABORT_BULKPAIRINGPOSTREQUESTBODY_RULES
-    switch v {
-        case "noAbort":
-            result = NOABORT_BULKPAIRINGPOSTREQUESTBODY_RULES
-        case "noRematch":
-            result = NOREMATCH_BULKPAIRINGPOSTREQUESTBODY_RULES
-        case "noGiveTime":
-            result = NOGIVETIME_BULKPAIRINGPOSTREQUESTBODY_RULES
-        case "noClaimWin":
-            result = NOCLAIMWIN_BULKPAIRINGPOSTREQUESTBODY_RULES
-        case "noEarlyDraw":
-            result = NOEARLYDRAW_BULKPAIRINGPOSTREQUESTBODY_RULES
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := NOABORT_BULKPAIRINGPOSTREQUESTBODY_RULES
+	switch v {
+	case "noAbort":
+		result = NOABORT_BULKPAIRINGPOSTREQUESTBODY_RULES
+	case "noRematch":
+		result = NOREMATCH_BULKPAIRINGPOSTREQUESTBODY_RULES
+	case "noGiveTime":
+		result = NOGIVETIME_BULKPAIRINGPOSTREQUESTBODY_RULES
+	case "noClaimWin":
+		result = NOCLAIMWIN_BULKPAIRINGPOSTREQUESTBODY_RULES
+	case "noEarlyDraw":
+		result = NOEARLYDRAW_BULKPAIRINGPOSTREQUESTBODY_RULES
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeBulkPairingPostRequestBody_rules(values []BulkPairingPostRequestBody_rules) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i BulkPairingPostRequestBody_rules) isMultiValue() bool {
-    return false
+	return false
 }

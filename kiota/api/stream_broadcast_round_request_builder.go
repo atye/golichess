@@ -4,28 +4,31 @@
 package api
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // StreamBroadcastRoundRequestBuilder builds and executes requests for operations under \api\stream\broadcast\round
 type StreamBroadcastRoundRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // NewStreamBroadcastRoundRequestBuilderInternal instantiates a new StreamBroadcastRoundRequestBuilder and sets the default values.
-func NewStreamBroadcastRoundRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*StreamBroadcastRoundRequestBuilder) {
-    m := &StreamBroadcastRoundRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/stream/broadcast/round", pathParameters),
-    }
-    return m
+func NewStreamBroadcastRoundRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *StreamBroadcastRoundRequestBuilder {
+	m := &StreamBroadcastRoundRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/stream/broadcast/round", pathParameters),
+	}
+	return m
 }
+
 // NewStreamBroadcastRoundRequestBuilder instantiates a new StreamBroadcastRoundRequestBuilder and sets the default values.
-func NewStreamBroadcastRoundRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*StreamBroadcastRoundRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewStreamBroadcastRoundRequestBuilderInternal(urlParams, requestAdapter)
+func NewStreamBroadcastRoundRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *StreamBroadcastRoundRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewStreamBroadcastRoundRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // WithBroadcastRoundIdPgn builds and executes requests for operations under \api\stream\broadcast\round\{broadcastRoundId}.pgn
 // returns a *StreamBroadcastRoundWithBroadcastRoundIdPgnRequestBuilder when successful
-func (m *StreamBroadcastRoundRequestBuilder) WithBroadcastRoundIdPgn(broadcastRoundId *string)(*StreamBroadcastRoundWithBroadcastRoundIdPgnRequestBuilder) {
-    return NewStreamBroadcastRoundWithBroadcastRoundIdPgnRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter, broadcastRoundId)
+func (m *StreamBroadcastRoundRequestBuilder) WithBroadcastRoundIdPgn(broadcastRoundId *string) *StreamBroadcastRoundWithBroadcastRoundIdPgnRequestBuilder {
+	return NewStreamBroadcastRoundWithBroadcastRoundIdPgnRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter, broadcastRoundId)
 }

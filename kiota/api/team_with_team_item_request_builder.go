@@ -4,94 +4,106 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	"context"
+	i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // TeamWithTeamItemRequestBuilder builds and executes requests for operations under \api\team\{teamId}
 type TeamWithTeamItemRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // TeamWithTeamItemRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type TeamWithTeamItemRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+
 // Arena the arena property
 // returns a *TeamItemArenaRequestBuilder when successful
-func (m *TeamWithTeamItemRequestBuilder) Arena()(*TeamItemArenaRequestBuilder) {
-    return NewTeamItemArenaRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *TeamWithTeamItemRequestBuilder) Arena() *TeamItemArenaRequestBuilder {
+	return NewTeamItemArenaRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewTeamWithTeamItemRequestBuilderInternal instantiates a new TeamWithTeamItemRequestBuilder and sets the default values.
-func NewTeamWithTeamItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*TeamWithTeamItemRequestBuilder) {
-    m := &TeamWithTeamItemRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/team/{teamId}", pathParameters),
-    }
-    return m
+func NewTeamWithTeamItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *TeamWithTeamItemRequestBuilder {
+	m := &TeamWithTeamItemRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/team/{teamId}", pathParameters),
+	}
+	return m
 }
+
 // NewTeamWithTeamItemRequestBuilder instantiates a new TeamWithTeamItemRequestBuilder and sets the default values.
-func NewTeamWithTeamItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*TeamWithTeamItemRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewTeamWithTeamItemRequestBuilderInternal(urlParams, requestAdapter)
+func NewTeamWithTeamItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *TeamWithTeamItemRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewTeamWithTeamItemRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get public info about a team. Includes the list of publicly visible leaders.
 // returns a Teamable when successful
-func (m *TeamWithTeamItemRequestBuilder) Get(ctx context.Context, requestConfiguration *TeamWithTeamItemRequestBuilderGetRequestConfiguration)(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Teamable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateTeamFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Teamable), nil
+func (m *TeamWithTeamItemRequestBuilder) Get(ctx context.Context, requestConfiguration *TeamWithTeamItemRequestBuilderGetRequestConfiguration) (i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Teamable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateTeamFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Teamable), nil
 }
+
 // Kick the kick property
 // returns a *TeamItemKickRequestBuilder when successful
-func (m *TeamWithTeamItemRequestBuilder) Kick()(*TeamItemKickRequestBuilder) {
-    return NewTeamItemKickRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *TeamWithTeamItemRequestBuilder) Kick() *TeamItemKickRequestBuilder {
+	return NewTeamItemKickRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Request the request property
 // returns a *TeamItemRequestRequestBuilder when successful
-func (m *TeamWithTeamItemRequestBuilder) Request()(*TeamItemRequestRequestBuilder) {
-    return NewTeamItemRequestRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *TeamWithTeamItemRequestBuilder) Request() *TeamItemRequestRequestBuilder {
+	return NewTeamItemRequestRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Requests the requests property
 // returns a *TeamItemRequestsRequestBuilder when successful
-func (m *TeamWithTeamItemRequestBuilder) Requests()(*TeamItemRequestsRequestBuilder) {
-    return NewTeamItemRequestsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *TeamWithTeamItemRequestBuilder) Requests() *TeamItemRequestsRequestBuilder {
+	return NewTeamItemRequestsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Swiss the swiss property
 // returns a *TeamItemSwissRequestBuilder when successful
-func (m *TeamWithTeamItemRequestBuilder) Swiss()(*TeamItemSwissRequestBuilder) {
-    return NewTeamItemSwissRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *TeamWithTeamItemRequestBuilder) Swiss() *TeamItemSwissRequestBuilder {
+	return NewTeamItemSwissRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // ToGetRequestInformation public info about a team. Includes the list of publicly visible leaders.
 // returns a *RequestInformation when successful
-func (m *TeamWithTeamItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *TeamWithTeamItemRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    return requestInfo, nil
+func (m *TeamWithTeamItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *TeamWithTeamItemRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	return requestInfo, nil
 }
+
 // Users the users property
 // returns a *TeamItemUsersRequestBuilder when successful
-func (m *TeamWithTeamItemRequestBuilder) Users()(*TeamItemUsersRequestBuilder) {
-    return NewTeamItemUsersRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *TeamWithTeamItemRequestBuilder) Users() *TeamItemUsersRequestBuilder {
+	return NewTeamItemUsersRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *TeamWithTeamItemRequestBuilder when successful
-func (m *TeamWithTeamItemRequestBuilder) WithUrl(rawUrl string)(*TeamWithTeamItemRequestBuilder) {
-    return NewTeamWithTeamItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *TeamWithTeamItemRequestBuilder) WithUrl(rawUrl string) *TeamWithTeamItemRequestBuilder {
+	return NewTeamWithTeamItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

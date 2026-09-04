@@ -4,168 +4,182 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type TvGame struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The color property
-    color *GameColor
-    // The gameId property
-    gameId *string
-    // The rating property
-    rating *int32
-    // The user property
-    user LightUserable
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The color property
+	color *GameColor
+	// The gameId property
+	gameId *string
+	// The rating property
+	rating *int32
+	// The user property
+	user LightUserable
 }
+
 // NewTvGame instantiates a new TvGame and sets the default values.
-func NewTvGame()(*TvGame) {
-    m := &TvGame{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewTvGame() *TvGame {
+	m := &TvGame{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateTvGameFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateTvGameFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewTvGame(), nil
+func CreateTvGameFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewTvGame(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *TvGame) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *TvGame) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetColor gets the color property value. The color property
 // returns a *GameColor when successful
-func (m *TvGame) GetColor()(*GameColor) {
-    return m.color
+func (m *TvGame) GetColor() *GameColor {
+	return m.color
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *TvGame) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["color"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseGameColor)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetColor(val.(*GameColor))
-        }
-        return nil
-    }
-    res["gameId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetGameId(val)
-        }
-        return nil
-    }
-    res["rating"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRating(val)
-        }
-        return nil
-    }
-    res["user"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateLightUserFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetUser(val.(LightUserable))
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *TvGame) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["color"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(ParseGameColor)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetColor(val.(*GameColor))
+		}
+		return nil
+	}
+	res["gameId"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetGameId(val)
+		}
+		return nil
+	}
+	res["rating"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRating(val)
+		}
+		return nil
+	}
+	res["user"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateLightUserFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetUser(val.(LightUserable))
+		}
+		return nil
+	}
+	return res
 }
+
 // GetGameId gets the gameId property value. The gameId property
 // returns a *string when successful
-func (m *TvGame) GetGameId()(*string) {
-    return m.gameId
+func (m *TvGame) GetGameId() *string {
+	return m.gameId
 }
+
 // GetRating gets the rating property value. The rating property
 // returns a *int32 when successful
-func (m *TvGame) GetRating()(*int32) {
-    return m.rating
+func (m *TvGame) GetRating() *int32 {
+	return m.rating
 }
+
 // GetUser gets the user property value. The user property
 // returns a LightUserable when successful
-func (m *TvGame) GetUser()(LightUserable) {
-    return m.user
+func (m *TvGame) GetUser() LightUserable {
+	return m.user
 }
+
 // Serialize serializes information the current object
-func (m *TvGame) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetColor() != nil {
-        cast := (*m.GetColor()).String()
-        err := writer.WriteStringValue("color", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("gameId", m.GetGameId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("rating", m.GetRating())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("user", m.GetUser())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *TvGame) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	if m.GetColor() != nil {
+		cast := (*m.GetColor()).String()
+		err := writer.WriteStringValue("color", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("gameId", m.GetGameId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("rating", m.GetRating())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("user", m.GetUser())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *TvGame) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *TvGame) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetColor sets the color property value. The color property
-func (m *TvGame) SetColor(value *GameColor)() {
-    m.color = value
+func (m *TvGame) SetColor(value *GameColor) {
+	m.color = value
 }
+
 // SetGameId sets the gameId property value. The gameId property
-func (m *TvGame) SetGameId(value *string)() {
-    m.gameId = value
+func (m *TvGame) SetGameId(value *string) {
+	m.gameId = value
 }
+
 // SetRating sets the rating property value. The rating property
-func (m *TvGame) SetRating(value *int32)() {
-    m.rating = value
+func (m *TvGame) SetRating(value *int32) {
+	m.rating = value
 }
+
 // SetUser sets the user property value. The user property
-func (m *TvGame) SetUser(value LightUserable)() {
-    m.user = value
+func (m *TvGame) SetUser(value LightUserable) {
+	m.user = value
 }
+
 type TvGameable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetColor()(*GameColor)
-    GetGameId()(*string)
-    GetRating()(*int32)
-    GetUser()(LightUserable)
-    SetColor(value *GameColor)()
-    SetGameId(value *string)()
-    SetRating(value *int32)()
-    SetUser(value LightUserable)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetColor() *GameColor
+	GetGameId() *string
+	GetRating() *int32
+	GetUser() LightUserable
+	SetColor(value *GameColor)
+	SetGameId(value *string)
+	SetRating(value *int32)
+	SetUser(value LightUserable)
 }

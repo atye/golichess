@@ -4,109 +4,119 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type SwissTournament_clock struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The increment property
-    increment *float64
-    // The limit property
-    limit *float64
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The increment property
+	increment *float64
+	// The limit property
+	limit *float64
 }
+
 // NewSwissTournament_clock instantiates a new SwissTournament_clock and sets the default values.
-func NewSwissTournament_clock()(*SwissTournament_clock) {
-    m := &SwissTournament_clock{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewSwissTournament_clock() *SwissTournament_clock {
+	m := &SwissTournament_clock{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateSwissTournament_clockFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateSwissTournament_clockFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewSwissTournament_clock(), nil
+func CreateSwissTournament_clockFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewSwissTournament_clock(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *SwissTournament_clock) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *SwissTournament_clock) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *SwissTournament_clock) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["increment"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetIncrement(val)
-        }
-        return nil
-    }
-    res["limit"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetLimit(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *SwissTournament_clock) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["increment"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetIncrement(val)
+		}
+		return nil
+	}
+	res["limit"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetLimit(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetIncrement gets the increment property value. The increment property
 // returns a *float64 when successful
-func (m *SwissTournament_clock) GetIncrement()(*float64) {
-    return m.increment
+func (m *SwissTournament_clock) GetIncrement() *float64 {
+	return m.increment
 }
+
 // GetLimit gets the limit property value. The limit property
 // returns a *float64 when successful
-func (m *SwissTournament_clock) GetLimit()(*float64) {
-    return m.limit
+func (m *SwissTournament_clock) GetLimit() *float64 {
+	return m.limit
 }
+
 // Serialize serializes information the current object
-func (m *SwissTournament_clock) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteFloat64Value("increment", m.GetIncrement())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteFloat64Value("limit", m.GetLimit())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *SwissTournament_clock) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteFloat64Value("increment", m.GetIncrement())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteFloat64Value("limit", m.GetLimit())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *SwissTournament_clock) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *SwissTournament_clock) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetIncrement sets the increment property value. The increment property
-func (m *SwissTournament_clock) SetIncrement(value *float64)() {
-    m.increment = value
+func (m *SwissTournament_clock) SetIncrement(value *float64) {
+	m.increment = value
 }
+
 // SetLimit sets the limit property value. The limit property
-func (m *SwissTournament_clock) SetLimit(value *float64)() {
-    m.limit = value
+func (m *SwissTournament_clock) SetLimit(value *float64) {
+	m.limit = value
 }
+
 type SwissTournament_clockable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetIncrement()(*float64)
-    GetLimit()(*float64)
-    SetIncrement(value *float64)()
-    SetLimit(value *float64)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetIncrement() *float64
+	GetLimit() *float64
+	SetIncrement(value *float64)
+	SetLimit(value *float64)
 }

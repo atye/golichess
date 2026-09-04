@@ -2,39 +2,43 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 // The current state of the arena tournament
 type ArenaStatusName int
 
 const (
-    CREATED_ARENASTATUSNAME ArenaStatusName = iota
-    STARTED_ARENASTATUSNAME
-    FINISHED_ARENASTATUSNAME
+	CREATED_ARENASTATUSNAME ArenaStatusName = iota
+	STARTED_ARENASTATUSNAME
+	FINISHED_ARENASTATUSNAME
 )
 
 func (i ArenaStatusName) String() string {
-    return []string{"created", "started", "finished"}[i]
+	return []string{"created", "started", "finished"}[i]
 }
+
 func ParseArenaStatusName(v string) (any, error) {
-    result := CREATED_ARENASTATUSNAME
-    switch v {
-        case "created":
-            result = CREATED_ARENASTATUSNAME
-        case "started":
-            result = STARTED_ARENASTATUSNAME
-        case "finished":
-            result = FINISHED_ARENASTATUSNAME
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := CREATED_ARENASTATUSNAME
+	switch v {
+	case "created":
+		result = CREATED_ARENASTATUSNAME
+	case "started":
+		result = STARTED_ARENASTATUSNAME
+	case "finished":
+		result = FINISHED_ARENASTATUSNAME
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeArenaStatusName(values []ArenaStatusName) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i ArenaStatusName) isMultiValue() bool {
-    return false
+	return false
 }

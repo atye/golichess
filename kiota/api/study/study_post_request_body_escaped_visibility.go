@@ -2,39 +2,43 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package study
+
 // Who can view the study.* `public`: Default. Anyone can view the study, it appears on public listings* `unlisted`: Only people with the link can view the study, it doesn't appear on public listings* `private`: Only the study members can view the study
 type StudyPostRequestBody_visibility int
 
 const (
-    PUBLIC_STUDYPOSTREQUESTBODY_VISIBILITY StudyPostRequestBody_visibility = iota
-    UNLISTED_STUDYPOSTREQUESTBODY_VISIBILITY
-    PRIVATE_STUDYPOSTREQUESTBODY_VISIBILITY
+	PUBLIC_STUDYPOSTREQUESTBODY_VISIBILITY StudyPostRequestBody_visibility = iota
+	UNLISTED_STUDYPOSTREQUESTBODY_VISIBILITY
+	PRIVATE_STUDYPOSTREQUESTBODY_VISIBILITY
 )
 
 func (i StudyPostRequestBody_visibility) String() string {
-    return []string{"public", "unlisted", "private"}[i]
+	return []string{"public", "unlisted", "private"}[i]
 }
+
 func ParseStudyPostRequestBody_visibility(v string) (any, error) {
-    result := PUBLIC_STUDYPOSTREQUESTBODY_VISIBILITY
-    switch v {
-        case "public":
-            result = PUBLIC_STUDYPOSTREQUESTBODY_VISIBILITY
-        case "unlisted":
-            result = UNLISTED_STUDYPOSTREQUESTBODY_VISIBILITY
-        case "private":
-            result = PRIVATE_STUDYPOSTREQUESTBODY_VISIBILITY
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := PUBLIC_STUDYPOSTREQUESTBODY_VISIBILITY
+	switch v {
+	case "public":
+		result = PUBLIC_STUDYPOSTREQUESTBODY_VISIBILITY
+	case "unlisted":
+		result = UNLISTED_STUDYPOSTREQUESTBODY_VISIBILITY
+	case "private":
+		result = PRIVATE_STUDYPOSTREQUESTBODY_VISIBILITY
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeStudyPostRequestBody_visibility(values []StudyPostRequestBody_visibility) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i StudyPostRequestBody_visibility) isMultiValue() bool {
-    return false
+	return false
 }

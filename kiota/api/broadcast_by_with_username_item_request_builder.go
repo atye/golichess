@@ -4,91 +4,99 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	"context"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // BroadcastByWithUsernameItemRequestBuilder builds and executes requests for operations under \api\broadcast\by\{username}
 type BroadcastByWithUsernameItemRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // BroadcastByWithUsernameItemRequestBuilderGetQueryParameters get all incoming, ongoing, and finished official broadcasts.The broadcasts are sorted by created date, most recent first.If you are authenticated as the user whose broadcasts you are requesting, you will also see your private and unlisted broadcasts.
 type BroadcastByWithUsernameItemRequestBuilderGetQueryParameters struct {
-    // Convert the "description" field from markdown to HTML
-    Html *bool "uriparametername:\"html\""
-    Page *int32 "uriparametername:\"page\""
+	// Convert the "description" field from markdown to HTML
+	Html *bool  "uriparametername:\"html\""
+	Page *int32 "uriparametername:\"page\""
 }
+
 // BroadcastByWithUsernameItemRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type BroadcastByWithUsernameItemRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
-    // Request query parameters
-    QueryParameters *BroadcastByWithUsernameItemRequestBuilderGetQueryParameters
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *BroadcastByWithUsernameItemRequestBuilderGetQueryParameters
 }
+
 // NewBroadcastByWithUsernameItemRequestBuilderInternal instantiates a new BroadcastByWithUsernameItemRequestBuilder and sets the default values.
-func NewBroadcastByWithUsernameItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BroadcastByWithUsernameItemRequestBuilder) {
-    m := &BroadcastByWithUsernameItemRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/broadcast/by/{username}{?html*,page*}", pathParameters),
-    }
-    return m
+func NewBroadcastByWithUsernameItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BroadcastByWithUsernameItemRequestBuilder {
+	m := &BroadcastByWithUsernameItemRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/broadcast/by/{username}{?html*,page*}", pathParameters),
+	}
+	return m
 }
+
 // NewBroadcastByWithUsernameItemRequestBuilder instantiates a new BroadcastByWithUsernameItemRequestBuilder and sets the default values.
-func NewBroadcastByWithUsernameItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BroadcastByWithUsernameItemRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewBroadcastByWithUsernameItemRequestBuilderInternal(urlParams, requestAdapter)
+func NewBroadcastByWithUsernameItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BroadcastByWithUsernameItemRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewBroadcastByWithUsernameItemRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get get all incoming, ongoing, and finished official broadcasts.The broadcasts are sorted by created date, most recent first.If you are authenticated as the user whose broadcasts you are requesting, you will also see your private and unlisted broadcasts.
 // Deprecated: This method is obsolete. Use GetAsWithUsernameGetResponse instead.
 // returns a BroadcastByItemWithUsernameResponseable when successful
-func (m *BroadcastByWithUsernameItemRequestBuilder) Get(ctx context.Context, requestConfiguration *BroadcastByWithUsernameItemRequestBuilderGetRequestConfiguration)(BroadcastByItemWithUsernameResponseable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateBroadcastByItemWithUsernameResponseFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(BroadcastByItemWithUsernameResponseable), nil
+func (m *BroadcastByWithUsernameItemRequestBuilder) Get(ctx context.Context, requestConfiguration *BroadcastByWithUsernameItemRequestBuilderGetRequestConfiguration) (BroadcastByItemWithUsernameResponseable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateBroadcastByItemWithUsernameResponseFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(BroadcastByItemWithUsernameResponseable), nil
 }
+
 // GetAsWithUsernameGetResponse get all incoming, ongoing, and finished official broadcasts.The broadcasts are sorted by created date, most recent first.If you are authenticated as the user whose broadcasts you are requesting, you will also see your private and unlisted broadcasts.
 // returns a BroadcastByItemWithUsernameGetResponseable when successful
-func (m *BroadcastByWithUsernameItemRequestBuilder) GetAsWithUsernameGetResponse(ctx context.Context, requestConfiguration *BroadcastByWithUsernameItemRequestBuilderGetRequestConfiguration)(BroadcastByItemWithUsernameGetResponseable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateBroadcastByItemWithUsernameGetResponseFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(BroadcastByItemWithUsernameGetResponseable), nil
+func (m *BroadcastByWithUsernameItemRequestBuilder) GetAsWithUsernameGetResponse(ctx context.Context, requestConfiguration *BroadcastByWithUsernameItemRequestBuilderGetRequestConfiguration) (BroadcastByItemWithUsernameGetResponseable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateBroadcastByItemWithUsernameGetResponseFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(BroadcastByItemWithUsernameGetResponseable), nil
 }
+
 // ToGetRequestInformation get all incoming, ongoing, and finished official broadcasts.The broadcasts are sorted by created date, most recent first.If you are authenticated as the user whose broadcasts you are requesting, you will also see your private and unlisted broadcasts.
 // returns a *RequestInformation when successful
-func (m *BroadcastByWithUsernameItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *BroadcastByWithUsernameItemRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        if requestConfiguration.QueryParameters != nil {
-            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
-        }
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    return requestInfo, nil
+func (m *BroadcastByWithUsernameItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *BroadcastByWithUsernameItemRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *BroadcastByWithUsernameItemRequestBuilder when successful
-func (m *BroadcastByWithUsernameItemRequestBuilder) WithUrl(rawUrl string)(*BroadcastByWithUsernameItemRequestBuilder) {
-    return NewBroadcastByWithUsernameItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *BroadcastByWithUsernameItemRequestBuilder) WithUrl(rawUrl string) *BroadcastByWithUsernameItemRequestBuilder {
+	return NewBroadcastByWithUsernameItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

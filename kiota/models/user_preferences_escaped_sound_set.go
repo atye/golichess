@@ -2,56 +2,60 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 type UserPreferences_soundSet int
 
 const (
-    SILENT_USERPREFERENCES_SOUNDSET UserPreferences_soundSet = iota
-    STANDARD_USERPREFERENCES_SOUNDSET
-    PIANO_USERPREFERENCES_SOUNDSET
-    NES_USERPREFERENCES_SOUNDSET
-    SFX_USERPREFERENCES_SOUNDSET
-    FUTURISTIC_USERPREFERENCES_SOUNDSET
-    ROBOT_USERPREFERENCES_SOUNDSET
-    MUSIC_USERPREFERENCES_SOUNDSET
-    SPEECH_USERPREFERENCES_SOUNDSET
+	SILENT_USERPREFERENCES_SOUNDSET UserPreferences_soundSet = iota
+	STANDARD_USERPREFERENCES_SOUNDSET
+	PIANO_USERPREFERENCES_SOUNDSET
+	NES_USERPREFERENCES_SOUNDSET
+	SFX_USERPREFERENCES_SOUNDSET
+	FUTURISTIC_USERPREFERENCES_SOUNDSET
+	ROBOT_USERPREFERENCES_SOUNDSET
+	MUSIC_USERPREFERENCES_SOUNDSET
+	SPEECH_USERPREFERENCES_SOUNDSET
 )
 
 func (i UserPreferences_soundSet) String() string {
-    return []string{"silent", "standard", "piano", "nes", "sfx", "futuristic", "robot", "music", "speech"}[i]
+	return []string{"silent", "standard", "piano", "nes", "sfx", "futuristic", "robot", "music", "speech"}[i]
 }
+
 func ParseUserPreferences_soundSet(v string) (any, error) {
-    result := SILENT_USERPREFERENCES_SOUNDSET
-    switch v {
-        case "silent":
-            result = SILENT_USERPREFERENCES_SOUNDSET
-        case "standard":
-            result = STANDARD_USERPREFERENCES_SOUNDSET
-        case "piano":
-            result = PIANO_USERPREFERENCES_SOUNDSET
-        case "nes":
-            result = NES_USERPREFERENCES_SOUNDSET
-        case "sfx":
-            result = SFX_USERPREFERENCES_SOUNDSET
-        case "futuristic":
-            result = FUTURISTIC_USERPREFERENCES_SOUNDSET
-        case "robot":
-            result = ROBOT_USERPREFERENCES_SOUNDSET
-        case "music":
-            result = MUSIC_USERPREFERENCES_SOUNDSET
-        case "speech":
-            result = SPEECH_USERPREFERENCES_SOUNDSET
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := SILENT_USERPREFERENCES_SOUNDSET
+	switch v {
+	case "silent":
+		result = SILENT_USERPREFERENCES_SOUNDSET
+	case "standard":
+		result = STANDARD_USERPREFERENCES_SOUNDSET
+	case "piano":
+		result = PIANO_USERPREFERENCES_SOUNDSET
+	case "nes":
+		result = NES_USERPREFERENCES_SOUNDSET
+	case "sfx":
+		result = SFX_USERPREFERENCES_SOUNDSET
+	case "futuristic":
+		result = FUTURISTIC_USERPREFERENCES_SOUNDSET
+	case "robot":
+		result = ROBOT_USERPREFERENCES_SOUNDSET
+	case "music":
+		result = MUSIC_USERPREFERENCES_SOUNDSET
+	case "speech":
+		result = SPEECH_USERPREFERENCES_SOUNDSET
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeUserPreferences_soundSet(values []UserPreferences_soundSet) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i UserPreferences_soundSet) isMultiValue() bool {
-    return false
+	return false
 }

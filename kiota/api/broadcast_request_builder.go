@@ -4,119 +4,133 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	"context"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // BroadcastRequestBuilder builds and executes requests for operations under \api\broadcast
 type BroadcastRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // BroadcastRequestBuilderGetQueryParameters returns active (a round is scheduled or ongoing) official broadcasts sorted by tier. After that, returns finished broadcasts sorted by most recent sync time.Broadcasts are streamed as [ndjson](#description/streaming-with-nd-json).
 type BroadcastRequestBuilderGetQueryParameters struct {
-    // Convert the "description" field from markdown to HTML
-    Html *bool "uriparametername:\"html\""
-    // [Filter] only broadcasts where a round is ongoing, i.e. started and not finished
-    Live *bool "uriparametername:\"live\""
-    // Max number of broadcasts to fetch
-    Nb *int32 "uriparametername:\"nb\""
+	// Convert the "description" field from markdown to HTML
+	Html *bool "uriparametername:\"html\""
+	// [Filter] only broadcasts where a round is ongoing, i.e. started and not finished
+	Live *bool "uriparametername:\"live\""
+	// Max number of broadcasts to fetch
+	Nb *int32 "uriparametername:\"nb\""
 }
+
 // BroadcastRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type BroadcastRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
-    // Request query parameters
-    QueryParameters *BroadcastRequestBuilderGetQueryParameters
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *BroadcastRequestBuilderGetQueryParameters
 }
+
 // By the by property
 // returns a *BroadcastByRequestBuilder when successful
-func (m *BroadcastRequestBuilder) By()(*BroadcastByRequestBuilder) {
-    return NewBroadcastByRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *BroadcastRequestBuilder) By() *BroadcastByRequestBuilder {
+	return NewBroadcastByRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // ByBroadcastTournamentId gets an item from the github.com/atye/golichess/kiota.api.broadcast.item collection
 // returns a *BroadcastBroadcastTournamentItemRequestBuilder when successful
-func (m *BroadcastRequestBuilder) ByBroadcastTournamentId(broadcastTournamentId string)(*BroadcastBroadcastTournamentItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    if broadcastTournamentId != "" {
-        urlTplParams["broadcastTournament%2Did"] = broadcastTournamentId
-    }
-    return NewBroadcastBroadcastTournamentItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+func (m *BroadcastRequestBuilder) ByBroadcastTournamentId(broadcastTournamentId string) *BroadcastBroadcastTournamentItemRequestBuilder {
+	urlTplParams := make(map[string]string)
+	for idx, item := range m.BaseRequestBuilder.PathParameters {
+		urlTplParams[idx] = item
+	}
+	if broadcastTournamentId != "" {
+		urlTplParams["broadcastTournament%2Did"] = broadcastTournamentId
+	}
+	return NewBroadcastBroadcastTournamentItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewBroadcastRequestBuilderInternal instantiates a new BroadcastRequestBuilder and sets the default values.
-func NewBroadcastRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BroadcastRequestBuilder) {
-    m := &BroadcastRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/broadcast{?html*,live*,nb*}", pathParameters),
-    }
-    return m
+func NewBroadcastRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BroadcastRequestBuilder {
+	m := &BroadcastRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/broadcast{?html*,live*,nb*}", pathParameters),
+	}
+	return m
 }
+
 // NewBroadcastRequestBuilder instantiates a new BroadcastRequestBuilder and sets the default values.
-func NewBroadcastRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BroadcastRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewBroadcastRequestBuilderInternal(urlParams, requestAdapter)
+func NewBroadcastRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BroadcastRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewBroadcastRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get returns active (a round is scheduled or ongoing) official broadcasts sorted by tier. After that, returns finished broadcasts sorted by most recent sync time.Broadcasts are streamed as [ndjson](#description/streaming-with-nd-json).
 // returns a []byte when successful
-func (m *BroadcastRequestBuilder) Get(ctx context.Context, requestConfiguration *BroadcastRequestBuilderGetRequestConfiguration)([]byte, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.([]byte), nil
+func (m *BroadcastRequestBuilder) Get(ctx context.Context, requestConfiguration *BroadcastRequestBuilderGetRequestConfiguration) ([]byte, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.([]byte), nil
 }
+
 // MyRounds the myRounds property
 // returns a *BroadcastMyRoundsRequestBuilder when successful
-func (m *BroadcastRequestBuilder) MyRounds()(*BroadcastMyRoundsRequestBuilder) {
-    return NewBroadcastMyRoundsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *BroadcastRequestBuilder) MyRounds() *BroadcastMyRoundsRequestBuilder {
+	return NewBroadcastMyRoundsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Round the round property
 // returns a *BroadcastRoundRequestBuilder when successful
-func (m *BroadcastRequestBuilder) Round()(*BroadcastRoundRequestBuilder) {
-    return NewBroadcastRoundRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *BroadcastRequestBuilder) Round() *BroadcastRoundRequestBuilder {
+	return NewBroadcastRoundRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Search the search property
 // returns a *BroadcastSearchRequestBuilder when successful
-func (m *BroadcastRequestBuilder) Search()(*BroadcastSearchRequestBuilder) {
-    return NewBroadcastSearchRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *BroadcastRequestBuilder) Search() *BroadcastSearchRequestBuilder {
+	return NewBroadcastSearchRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // ToGetRequestInformation returns active (a round is scheduled or ongoing) official broadcasts sorted by tier. After that, returns finished broadcasts sorted by most recent sync time.Broadcasts are streamed as [ndjson](#description/streaming-with-nd-json).
 // returns a *RequestInformation when successful
-func (m *BroadcastRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *BroadcastRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        if requestConfiguration.QueryParameters != nil {
-            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
-        }
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/x-ndjson")
-    return requestInfo, nil
+func (m *BroadcastRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *BroadcastRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/x-ndjson")
+	return requestInfo, nil
 }
+
 // Top the top property
 // returns a *BroadcastTopRequestBuilder when successful
-func (m *BroadcastRequestBuilder) Top()(*BroadcastTopRequestBuilder) {
-    return NewBroadcastTopRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *BroadcastRequestBuilder) Top() *BroadcastTopRequestBuilder {
+	return NewBroadcastTopRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // WithBroadcastTournamentIdPgn builds and executes requests for operations under \api\broadcast\{broadcastTournamentId}.pgn
 // returns a *BroadcastWithBroadcastTournamentIdPgnRequestBuilder when successful
-func (m *BroadcastRequestBuilder) WithBroadcastTournamentIdPgn(broadcastTournamentId *string)(*BroadcastWithBroadcastTournamentIdPgnRequestBuilder) {
-    return NewBroadcastWithBroadcastTournamentIdPgnRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter, broadcastTournamentId)
+func (m *BroadcastRequestBuilder) WithBroadcastTournamentIdPgn(broadcastTournamentId *string) *BroadcastWithBroadcastTournamentIdPgnRequestBuilder {
+	return NewBroadcastWithBroadcastTournamentIdPgnRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter, broadcastTournamentId)
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *BroadcastRequestBuilder when successful
-func (m *BroadcastRequestBuilder) WithUrl(rawUrl string)(*BroadcastRequestBuilder) {
-    return NewBroadcastRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *BroadcastRequestBuilder) WithUrl(rawUrl string) *BroadcastRequestBuilder {
+	return NewBroadcastRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

@@ -2,35 +2,39 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 type GameColor int
 
 const (
-    WHITE_GAMECOLOR GameColor = iota
-    BLACK_GAMECOLOR
+	WHITE_GAMECOLOR GameColor = iota
+	BLACK_GAMECOLOR
 )
 
 func (i GameColor) String() string {
-    return []string{"white", "black"}[i]
+	return []string{"white", "black"}[i]
 }
+
 func ParseGameColor(v string) (any, error) {
-    result := WHITE_GAMECOLOR
-    switch v {
-        case "white":
-            result = WHITE_GAMECOLOR
-        case "black":
-            result = BLACK_GAMECOLOR
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := WHITE_GAMECOLOR
+	switch v {
+	case "white":
+		result = WHITE_GAMECOLOR
+	case "black":
+		result = BLACK_GAMECOLOR
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeGameColor(values []GameColor) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i GameColor) isMultiValue() bool {
-    return false
+	return false
 }

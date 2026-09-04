@@ -2,68 +2,72 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 type GameSource int
 
 const (
-    LOBBY_GAMESOURCE GameSource = iota
-    FRIEND_GAMESOURCE
-    AI_GAMESOURCE
-    API_GAMESOURCE
-    TOURNAMENT_GAMESOURCE
-    POSITION_GAMESOURCE
-    IMPORT_GAMESOURCE
-    IMPORTLIVE_GAMESOURCE
-    SIMUL_GAMESOURCE
-    RELAY_GAMESOURCE
-    POOL_GAMESOURCE
-    ARENA_GAMESOURCE
-    SWISS_GAMESOURCE
+	LOBBY_GAMESOURCE GameSource = iota
+	FRIEND_GAMESOURCE
+	AI_GAMESOURCE
+	API_GAMESOURCE
+	TOURNAMENT_GAMESOURCE
+	POSITION_GAMESOURCE
+	IMPORT_GAMESOURCE
+	IMPORTLIVE_GAMESOURCE
+	SIMUL_GAMESOURCE
+	RELAY_GAMESOURCE
+	POOL_GAMESOURCE
+	ARENA_GAMESOURCE
+	SWISS_GAMESOURCE
 )
 
 func (i GameSource) String() string {
-    return []string{"lobby", "friend", "ai", "api", "tournament", "position", "import", "importlive", "simul", "relay", "pool", "arena", "swiss"}[i]
+	return []string{"lobby", "friend", "ai", "api", "tournament", "position", "import", "importlive", "simul", "relay", "pool", "arena", "swiss"}[i]
 }
+
 func ParseGameSource(v string) (any, error) {
-    result := LOBBY_GAMESOURCE
-    switch v {
-        case "lobby":
-            result = LOBBY_GAMESOURCE
-        case "friend":
-            result = FRIEND_GAMESOURCE
-        case "ai":
-            result = AI_GAMESOURCE
-        case "api":
-            result = API_GAMESOURCE
-        case "tournament":
-            result = TOURNAMENT_GAMESOURCE
-        case "position":
-            result = POSITION_GAMESOURCE
-        case "import":
-            result = IMPORT_GAMESOURCE
-        case "importlive":
-            result = IMPORTLIVE_GAMESOURCE
-        case "simul":
-            result = SIMUL_GAMESOURCE
-        case "relay":
-            result = RELAY_GAMESOURCE
-        case "pool":
-            result = POOL_GAMESOURCE
-        case "arena":
-            result = ARENA_GAMESOURCE
-        case "swiss":
-            result = SWISS_GAMESOURCE
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := LOBBY_GAMESOURCE
+	switch v {
+	case "lobby":
+		result = LOBBY_GAMESOURCE
+	case "friend":
+		result = FRIEND_GAMESOURCE
+	case "ai":
+		result = AI_GAMESOURCE
+	case "api":
+		result = API_GAMESOURCE
+	case "tournament":
+		result = TOURNAMENT_GAMESOURCE
+	case "position":
+		result = POSITION_GAMESOURCE
+	case "import":
+		result = IMPORT_GAMESOURCE
+	case "importlive":
+		result = IMPORTLIVE_GAMESOURCE
+	case "simul":
+		result = SIMUL_GAMESOURCE
+	case "relay":
+		result = RELAY_GAMESOURCE
+	case "pool":
+		result = POOL_GAMESOURCE
+	case "arena":
+		result = ARENA_GAMESOURCE
+	case "swiss":
+		result = SWISS_GAMESOURCE
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeGameSource(values []GameSource) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i GameSource) isMultiValue() bool {
-    return false
+	return false
 }

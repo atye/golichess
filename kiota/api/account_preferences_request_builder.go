@@ -4,80 +4,87 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	"context"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // AccountPreferencesRequestBuilder builds and executes requests for operations under \api\account\preferences
 type AccountPreferencesRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // AccountPreferencesRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type AccountPreferencesRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+
 // NewAccountPreferencesRequestBuilderInternal instantiates a new AccountPreferencesRequestBuilder and sets the default values.
-func NewAccountPreferencesRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*AccountPreferencesRequestBuilder) {
-    m := &AccountPreferencesRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/account/preferences", pathParameters),
-    }
-    return m
+func NewAccountPreferencesRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *AccountPreferencesRequestBuilder {
+	m := &AccountPreferencesRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/account/preferences", pathParameters),
+	}
+	return m
 }
+
 // NewAccountPreferencesRequestBuilder instantiates a new AccountPreferencesRequestBuilder and sets the default values.
-func NewAccountPreferencesRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*AccountPreferencesRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewAccountPreferencesRequestBuilderInternal(urlParams, requestAdapter)
+func NewAccountPreferencesRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *AccountPreferencesRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewAccountPreferencesRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get read the preferences of the logged in user.- <https://lichess.org/account/preferences/game-display>- <https://github.com/ornicar/lila/blob/master/modules/pref/src/main/Pref.scala>
 // Deprecated: This method is obsolete. Use GetAsPreferencesGetResponse instead.
 // returns a AccountPreferencesResponseable when successful
-func (m *AccountPreferencesRequestBuilder) Get(ctx context.Context, requestConfiguration *AccountPreferencesRequestBuilderGetRequestConfiguration)(AccountPreferencesResponseable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateAccountPreferencesResponseFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(AccountPreferencesResponseable), nil
+func (m *AccountPreferencesRequestBuilder) Get(ctx context.Context, requestConfiguration *AccountPreferencesRequestBuilderGetRequestConfiguration) (AccountPreferencesResponseable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateAccountPreferencesResponseFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(AccountPreferencesResponseable), nil
 }
+
 // GetAsPreferencesGetResponse read the preferences of the logged in user.- <https://lichess.org/account/preferences/game-display>- <https://github.com/ornicar/lila/blob/master/modules/pref/src/main/Pref.scala>
 // returns a AccountPreferencesGetResponseable when successful
-func (m *AccountPreferencesRequestBuilder) GetAsPreferencesGetResponse(ctx context.Context, requestConfiguration *AccountPreferencesRequestBuilderGetRequestConfiguration)(AccountPreferencesGetResponseable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateAccountPreferencesGetResponseFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(AccountPreferencesGetResponseable), nil
+func (m *AccountPreferencesRequestBuilder) GetAsPreferencesGetResponse(ctx context.Context, requestConfiguration *AccountPreferencesRequestBuilderGetRequestConfiguration) (AccountPreferencesGetResponseable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateAccountPreferencesGetResponseFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(AccountPreferencesGetResponseable), nil
 }
+
 // ToGetRequestInformation read the preferences of the logged in user.- <https://lichess.org/account/preferences/game-display>- <https://github.com/ornicar/lila/blob/master/modules/pref/src/main/Pref.scala>
 // returns a *RequestInformation when successful
-func (m *AccountPreferencesRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *AccountPreferencesRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    return requestInfo, nil
+func (m *AccountPreferencesRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *AccountPreferencesRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *AccountPreferencesRequestBuilder when successful
-func (m *AccountPreferencesRequestBuilder) WithUrl(rawUrl string)(*AccountPreferencesRequestBuilder) {
-    return NewAccountPreferencesRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *AccountPreferencesRequestBuilder) WithUrl(rawUrl string) *AccountPreferencesRequestBuilder {
+	return NewAccountPreferencesRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

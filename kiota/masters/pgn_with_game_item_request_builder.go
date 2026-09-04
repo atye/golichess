@@ -4,63 +4,69 @@
 package masters
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	"context"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // PgnWithGameItemRequestBuilder builds and executes requests for operations under \masters\pgn\{gameId}
 type PgnWithGameItemRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // PgnWithGameItemRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type PgnWithGameItemRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+
 // NewPgnWithGameItemRequestBuilderInternal instantiates a new PgnWithGameItemRequestBuilder and sets the default values.
-func NewPgnWithGameItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*PgnWithGameItemRequestBuilder) {
-    m := &PgnWithGameItemRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/masters/pgn/{gameId}", pathParameters),
-    }
-    return m
+func NewPgnWithGameItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *PgnWithGameItemRequestBuilder {
+	m := &PgnWithGameItemRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/masters/pgn/{gameId}", pathParameters),
+	}
+	return m
 }
+
 // NewPgnWithGameItemRequestBuilder instantiates a new PgnWithGameItemRequestBuilder and sets the default values.
-func NewPgnWithGameItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*PgnWithGameItemRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewPgnWithGameItemRequestBuilderInternal(urlParams, requestAdapter)
+func NewPgnWithGameItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *PgnWithGameItemRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewPgnWithGameItemRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get **Endpoint: `https://explorer.lichess.org/masters/pgn/{gameId}`**Example: `curl https://explorer.lichess.org/masters/pgn/aAbqI4ey`
 // returns a []byte when successful
-func (m *PgnWithGameItemRequestBuilder) Get(ctx context.Context, requestConfiguration *PgnWithGameItemRequestBuilderGetRequestConfiguration)([]byte, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.([]byte), nil
+func (m *PgnWithGameItemRequestBuilder) Get(ctx context.Context, requestConfiguration *PgnWithGameItemRequestBuilderGetRequestConfiguration) ([]byte, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.([]byte), nil
 }
+
 // ToGetRequestInformation **Endpoint: `https://explorer.lichess.org/masters/pgn/{gameId}`**Example: `curl https://explorer.lichess.org/masters/pgn/aAbqI4ey`
 // returns a *RequestInformation when successful
-func (m *PgnWithGameItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *PgnWithGameItemRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/x-chess-pgn")
-    return requestInfo, nil
+func (m *PgnWithGameItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *PgnWithGameItemRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/x-chess-pgn")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *PgnWithGameItemRequestBuilder when successful
-func (m *PgnWithGameItemRequestBuilder) WithUrl(rawUrl string)(*PgnWithGameItemRequestBuilder) {
-    return NewPgnWithGameItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *PgnWithGameItemRequestBuilder) WithUrl(rawUrl string) *PgnWithGameItemRequestBuilder {
+	return NewPgnWithGameItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

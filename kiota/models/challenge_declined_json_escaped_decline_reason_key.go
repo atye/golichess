@@ -2,63 +2,67 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 // Untranslated, computer-matchable reason why the challenge was declined.
 type ChallengeDeclinedJson_declineReasonKey int
 
 const (
-    GENERIC_CHALLENGEDECLINEDJSON_DECLINEREASONKEY ChallengeDeclinedJson_declineReasonKey = iota
-    LATER_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
-    TOOFAST_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
-    TOOSLOW_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
-    TIMECONTROL_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
-    RATED_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
-    CASUAL_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
-    STANDARD_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
-    VARIANT_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
-    NOBOT_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
-    ONLYBOT_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
+	GENERIC_CHALLENGEDECLINEDJSON_DECLINEREASONKEY ChallengeDeclinedJson_declineReasonKey = iota
+	LATER_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
+	TOOFAST_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
+	TOOSLOW_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
+	TIMECONTROL_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
+	RATED_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
+	CASUAL_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
+	STANDARD_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
+	VARIANT_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
+	NOBOT_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
+	ONLYBOT_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
 )
 
 func (i ChallengeDeclinedJson_declineReasonKey) String() string {
-    return []string{"generic", "later", "toofast", "tooslow", "timecontrol", "rated", "casual", "standard", "variant", "nobot", "onlybot"}[i]
+	return []string{"generic", "later", "toofast", "tooslow", "timecontrol", "rated", "casual", "standard", "variant", "nobot", "onlybot"}[i]
 }
+
 func ParseChallengeDeclinedJson_declineReasonKey(v string) (any, error) {
-    result := GENERIC_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
-    switch v {
-        case "generic":
-            result = GENERIC_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
-        case "later":
-            result = LATER_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
-        case "toofast":
-            result = TOOFAST_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
-        case "tooslow":
-            result = TOOSLOW_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
-        case "timecontrol":
-            result = TIMECONTROL_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
-        case "rated":
-            result = RATED_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
-        case "casual":
-            result = CASUAL_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
-        case "standard":
-            result = STANDARD_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
-        case "variant":
-            result = VARIANT_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
-        case "nobot":
-            result = NOBOT_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
-        case "onlybot":
-            result = ONLYBOT_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := GENERIC_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
+	switch v {
+	case "generic":
+		result = GENERIC_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
+	case "later":
+		result = LATER_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
+	case "toofast":
+		result = TOOFAST_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
+	case "tooslow":
+		result = TOOSLOW_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
+	case "timecontrol":
+		result = TIMECONTROL_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
+	case "rated":
+		result = RATED_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
+	case "casual":
+		result = CASUAL_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
+	case "standard":
+		result = STANDARD_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
+	case "variant":
+		result = VARIANT_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
+	case "nobot":
+		result = NOBOT_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
+	case "onlybot":
+		result = ONLYBOT_CHALLENGEDECLINEDJSON_DECLINEREASONKEY
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeChallengeDeclinedJson_declineReasonKey(values []ChallengeDeclinedJson_declineReasonKey) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i ChallengeDeclinedJson_declineReasonKey) isMultiValue() bool {
-    return false
+	return false
 }

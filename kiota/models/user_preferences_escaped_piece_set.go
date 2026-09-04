@@ -2,107 +2,111 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 type UserPreferences_pieceSet int
 
 const (
-    CBURNETT_USERPREFERENCES_PIECESET UserPreferences_pieceSet = iota
-    MERIDA_USERPREFERENCES_PIECESET
-    ALPHA_USERPREFERENCES_PIECESET
-    PIROUETTI_USERPREFERENCES_PIECESET
-    CHESSNUT_USERPREFERENCES_PIECESET
-    CHESS7_USERPREFERENCES_PIECESET
-    REILLYCRAIG_USERPREFERENCES_PIECESET
-    COMPANION_USERPREFERENCES_PIECESET
-    RIOHACHA_USERPREFERENCES_PIECESET
-    KOSAL_USERPREFERENCES_PIECESET
-    LEIPZIG_USERPREFERENCES_PIECESET
-    FANTASY_USERPREFERENCES_PIECESET
-    SPATIAL_USERPREFERENCES_PIECESET
-    CALIFORNIA_USERPREFERENCES_PIECESET
-    PIXEL_USERPREFERENCES_PIECESET
-    MAESTRO_USERPREFERENCES_PIECESET
-    FRESCA_USERPREFERENCES_PIECESET
-    CARDINAL_USERPREFERENCES_PIECESET
-    GIOCO_USERPREFERENCES_PIECESET
-    TATIANA_USERPREFERENCES_PIECESET
-    STAUNTY_USERPREFERENCES_PIECESET
-    GOVERNOR_USERPREFERENCES_PIECESET
-    DUBROVNY_USERPREFERENCES_PIECESET
-    ICPIECES_USERPREFERENCES_PIECESET
-    SHAPES_USERPREFERENCES_PIECESET
-    LETTER_USERPREFERENCES_PIECESET
+	CBURNETT_USERPREFERENCES_PIECESET UserPreferences_pieceSet = iota
+	MERIDA_USERPREFERENCES_PIECESET
+	ALPHA_USERPREFERENCES_PIECESET
+	PIROUETTI_USERPREFERENCES_PIECESET
+	CHESSNUT_USERPREFERENCES_PIECESET
+	CHESS7_USERPREFERENCES_PIECESET
+	REILLYCRAIG_USERPREFERENCES_PIECESET
+	COMPANION_USERPREFERENCES_PIECESET
+	RIOHACHA_USERPREFERENCES_PIECESET
+	KOSAL_USERPREFERENCES_PIECESET
+	LEIPZIG_USERPREFERENCES_PIECESET
+	FANTASY_USERPREFERENCES_PIECESET
+	SPATIAL_USERPREFERENCES_PIECESET
+	CALIFORNIA_USERPREFERENCES_PIECESET
+	PIXEL_USERPREFERENCES_PIECESET
+	MAESTRO_USERPREFERENCES_PIECESET
+	FRESCA_USERPREFERENCES_PIECESET
+	CARDINAL_USERPREFERENCES_PIECESET
+	GIOCO_USERPREFERENCES_PIECESET
+	TATIANA_USERPREFERENCES_PIECESET
+	STAUNTY_USERPREFERENCES_PIECESET
+	GOVERNOR_USERPREFERENCES_PIECESET
+	DUBROVNY_USERPREFERENCES_PIECESET
+	ICPIECES_USERPREFERENCES_PIECESET
+	SHAPES_USERPREFERENCES_PIECESET
+	LETTER_USERPREFERENCES_PIECESET
 )
 
 func (i UserPreferences_pieceSet) String() string {
-    return []string{"cburnett", "merida", "alpha", "pirouetti", "chessnut", "chess7", "reillycraig", "companion", "riohacha", "kosal", "leipzig", "fantasy", "spatial", "california", "pixel", "maestro", "fresca", "cardinal", "gioco", "tatiana", "staunty", "governor", "dubrovny", "icpieces", "shapes", "letter"}[i]
+	return []string{"cburnett", "merida", "alpha", "pirouetti", "chessnut", "chess7", "reillycraig", "companion", "riohacha", "kosal", "leipzig", "fantasy", "spatial", "california", "pixel", "maestro", "fresca", "cardinal", "gioco", "tatiana", "staunty", "governor", "dubrovny", "icpieces", "shapes", "letter"}[i]
 }
+
 func ParseUserPreferences_pieceSet(v string) (any, error) {
-    result := CBURNETT_USERPREFERENCES_PIECESET
-    switch v {
-        case "cburnett":
-            result = CBURNETT_USERPREFERENCES_PIECESET
-        case "merida":
-            result = MERIDA_USERPREFERENCES_PIECESET
-        case "alpha":
-            result = ALPHA_USERPREFERENCES_PIECESET
-        case "pirouetti":
-            result = PIROUETTI_USERPREFERENCES_PIECESET
-        case "chessnut":
-            result = CHESSNUT_USERPREFERENCES_PIECESET
-        case "chess7":
-            result = CHESS7_USERPREFERENCES_PIECESET
-        case "reillycraig":
-            result = REILLYCRAIG_USERPREFERENCES_PIECESET
-        case "companion":
-            result = COMPANION_USERPREFERENCES_PIECESET
-        case "riohacha":
-            result = RIOHACHA_USERPREFERENCES_PIECESET
-        case "kosal":
-            result = KOSAL_USERPREFERENCES_PIECESET
-        case "leipzig":
-            result = LEIPZIG_USERPREFERENCES_PIECESET
-        case "fantasy":
-            result = FANTASY_USERPREFERENCES_PIECESET
-        case "spatial":
-            result = SPATIAL_USERPREFERENCES_PIECESET
-        case "california":
-            result = CALIFORNIA_USERPREFERENCES_PIECESET
-        case "pixel":
-            result = PIXEL_USERPREFERENCES_PIECESET
-        case "maestro":
-            result = MAESTRO_USERPREFERENCES_PIECESET
-        case "fresca":
-            result = FRESCA_USERPREFERENCES_PIECESET
-        case "cardinal":
-            result = CARDINAL_USERPREFERENCES_PIECESET
-        case "gioco":
-            result = GIOCO_USERPREFERENCES_PIECESET
-        case "tatiana":
-            result = TATIANA_USERPREFERENCES_PIECESET
-        case "staunty":
-            result = STAUNTY_USERPREFERENCES_PIECESET
-        case "governor":
-            result = GOVERNOR_USERPREFERENCES_PIECESET
-        case "dubrovny":
-            result = DUBROVNY_USERPREFERENCES_PIECESET
-        case "icpieces":
-            result = ICPIECES_USERPREFERENCES_PIECESET
-        case "shapes":
-            result = SHAPES_USERPREFERENCES_PIECESET
-        case "letter":
-            result = LETTER_USERPREFERENCES_PIECESET
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := CBURNETT_USERPREFERENCES_PIECESET
+	switch v {
+	case "cburnett":
+		result = CBURNETT_USERPREFERENCES_PIECESET
+	case "merida":
+		result = MERIDA_USERPREFERENCES_PIECESET
+	case "alpha":
+		result = ALPHA_USERPREFERENCES_PIECESET
+	case "pirouetti":
+		result = PIROUETTI_USERPREFERENCES_PIECESET
+	case "chessnut":
+		result = CHESSNUT_USERPREFERENCES_PIECESET
+	case "chess7":
+		result = CHESS7_USERPREFERENCES_PIECESET
+	case "reillycraig":
+		result = REILLYCRAIG_USERPREFERENCES_PIECESET
+	case "companion":
+		result = COMPANION_USERPREFERENCES_PIECESET
+	case "riohacha":
+		result = RIOHACHA_USERPREFERENCES_PIECESET
+	case "kosal":
+		result = KOSAL_USERPREFERENCES_PIECESET
+	case "leipzig":
+		result = LEIPZIG_USERPREFERENCES_PIECESET
+	case "fantasy":
+		result = FANTASY_USERPREFERENCES_PIECESET
+	case "spatial":
+		result = SPATIAL_USERPREFERENCES_PIECESET
+	case "california":
+		result = CALIFORNIA_USERPREFERENCES_PIECESET
+	case "pixel":
+		result = PIXEL_USERPREFERENCES_PIECESET
+	case "maestro":
+		result = MAESTRO_USERPREFERENCES_PIECESET
+	case "fresca":
+		result = FRESCA_USERPREFERENCES_PIECESET
+	case "cardinal":
+		result = CARDINAL_USERPREFERENCES_PIECESET
+	case "gioco":
+		result = GIOCO_USERPREFERENCES_PIECESET
+	case "tatiana":
+		result = TATIANA_USERPREFERENCES_PIECESET
+	case "staunty":
+		result = STAUNTY_USERPREFERENCES_PIECESET
+	case "governor":
+		result = GOVERNOR_USERPREFERENCES_PIECESET
+	case "dubrovny":
+		result = DUBROVNY_USERPREFERENCES_PIECESET
+	case "icpieces":
+		result = ICPIECES_USERPREFERENCES_PIECESET
+	case "shapes":
+		result = SHAPES_USERPREFERENCES_PIECESET
+	case "letter":
+		result = LETTER_USERPREFERENCES_PIECESET
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeUserPreferences_pieceSet(values []UserPreferences_pieceSet) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i UserPreferences_pieceSet) isMultiValue() bool {
-    return false
+	return false
 }

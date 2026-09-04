@@ -4,138 +4,150 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type UserActivity_teams struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
-    flair *string
-    // The name property
-    name *string
-    // The url property
-    url *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
+	flair *string
+	// The name property
+	name *string
+	// The url property
+	url *string
 }
+
 // NewUserActivity_teams instantiates a new UserActivity_teams and sets the default values.
-func NewUserActivity_teams()(*UserActivity_teams) {
-    m := &UserActivity_teams{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewUserActivity_teams() *UserActivity_teams {
+	m := &UserActivity_teams{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateUserActivity_teamsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateUserActivity_teamsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewUserActivity_teams(), nil
+func CreateUserActivity_teamsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewUserActivity_teams(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *UserActivity_teams) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *UserActivity_teams) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *UserActivity_teams) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["flair"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFlair(val)
-        }
-        return nil
-    }
-    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetName(val)
-        }
-        return nil
-    }
-    res["url"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetUrl(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *UserActivity_teams) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["flair"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFlair(val)
+		}
+		return nil
+	}
+	res["name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetName(val)
+		}
+		return nil
+	}
+	res["url"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetUrl(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetFlair gets the flair property value. See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
 // returns a *string when successful
-func (m *UserActivity_teams) GetFlair()(*string) {
-    return m.flair
+func (m *UserActivity_teams) GetFlair() *string {
+	return m.flair
 }
+
 // GetName gets the name property value. The name property
 // returns a *string when successful
-func (m *UserActivity_teams) GetName()(*string) {
-    return m.name
+func (m *UserActivity_teams) GetName() *string {
+	return m.name
 }
+
 // GetUrl gets the url property value. The url property
 // returns a *string when successful
-func (m *UserActivity_teams) GetUrl()(*string) {
-    return m.url
+func (m *UserActivity_teams) GetUrl() *string {
+	return m.url
 }
+
 // Serialize serializes information the current object
-func (m *UserActivity_teams) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("flair", m.GetFlair())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("name", m.GetName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("url", m.GetUrl())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *UserActivity_teams) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("flair", m.GetFlair())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("name", m.GetName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("url", m.GetUrl())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *UserActivity_teams) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *UserActivity_teams) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetFlair sets the flair property value. See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
-func (m *UserActivity_teams) SetFlair(value *string)() {
-    m.flair = value
+func (m *UserActivity_teams) SetFlair(value *string) {
+	m.flair = value
 }
+
 // SetName sets the name property value. The name property
-func (m *UserActivity_teams) SetName(value *string)() {
-    m.name = value
+func (m *UserActivity_teams) SetName(value *string) {
+	m.name = value
 }
+
 // SetUrl sets the url property value. The url property
-func (m *UserActivity_teams) SetUrl(value *string)() {
-    m.url = value
+func (m *UserActivity_teams) SetUrl(value *string) {
+	m.url = value
 }
+
 type UserActivity_teamsable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetFlair()(*string)
-    GetName()(*string)
-    GetUrl()(*string)
-    SetFlair(value *string)()
-    SetName(value *string)()
-    SetUrl(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetFlair() *string
+	GetName() *string
+	GetUrl() *string
+	SetFlair(value *string)
+	SetName(value *string)
+	SetUrl(value *string)
 }

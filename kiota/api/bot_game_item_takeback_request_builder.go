@@ -4,47 +4,51 @@
 package api
 
 import (
-    i53ac87e8cb3cc9276228f74d38694a208cacb99bb8ceb705eeae99fb88d4d274 "strconv"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i53ac87e8cb3cc9276228f74d38694a208cacb99bb8ceb705eeae99fb88d4d274 "strconv"
 )
 
 // BotGameItemTakebackRequestBuilder builds and executes requests for operations under \api\bot\game\{gameId}\takeback
 type BotGameItemTakebackRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // ByAccept gets an item from the github.com/atye/golichess/kiota.api.bot.game.item.takeback.item collection
 // Deprecated: This indexer is deprecated and will be removed in the next major version. Use the one with the typed parameter instead.
 // returns a *BotGameItemTakebackWithAcceptItemRequestBuilder when successful
-func (m *BotGameItemTakebackRequestBuilder) ByAccept(accept string)(*BotGameItemTakebackWithAcceptItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    if accept != "" {
-        urlTplParams["accept"] = accept
-    }
-    return NewBotGameItemTakebackWithAcceptItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+func (m *BotGameItemTakebackRequestBuilder) ByAccept(accept string) *BotGameItemTakebackWithAcceptItemRequestBuilder {
+	urlTplParams := make(map[string]string)
+	for idx, item := range m.BaseRequestBuilder.PathParameters {
+		urlTplParams[idx] = item
+	}
+	if accept != "" {
+		urlTplParams["accept"] = accept
+	}
+	return NewBotGameItemTakebackWithAcceptItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // ByAcceptBoolean gets an item from the github.com/atye/golichess/kiota.api.bot.game.item.takeback.item collection
 // returns a *BotGameItemTakebackWithAcceptItemRequestBuilder when successful
-func (m *BotGameItemTakebackRequestBuilder) ByAcceptBoolean(accept bool)(*BotGameItemTakebackWithAcceptItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    urlTplParams["accept"] = i53ac87e8cb3cc9276228f74d38694a208cacb99bb8ceb705eeae99fb88d4d274.FormatBool(accept)
-    return NewBotGameItemTakebackWithAcceptItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+func (m *BotGameItemTakebackRequestBuilder) ByAcceptBoolean(accept bool) *BotGameItemTakebackWithAcceptItemRequestBuilder {
+	urlTplParams := make(map[string]string)
+	for idx, item := range m.BaseRequestBuilder.PathParameters {
+		urlTplParams[idx] = item
+	}
+	urlTplParams["accept"] = i53ac87e8cb3cc9276228f74d38694a208cacb99bb8ceb705eeae99fb88d4d274.FormatBool(accept)
+	return NewBotGameItemTakebackWithAcceptItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewBotGameItemTakebackRequestBuilderInternal instantiates a new BotGameItemTakebackRequestBuilder and sets the default values.
-func NewBotGameItemTakebackRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BotGameItemTakebackRequestBuilder) {
-    m := &BotGameItemTakebackRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/bot/game/{gameId}/takeback", pathParameters),
-    }
-    return m
+func NewBotGameItemTakebackRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BotGameItemTakebackRequestBuilder {
+	m := &BotGameItemTakebackRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/bot/game/{gameId}/takeback", pathParameters),
+	}
+	return m
 }
+
 // NewBotGameItemTakebackRequestBuilder instantiates a new BotGameItemTakebackRequestBuilder and sets the default values.
-func NewBotGameItemTakebackRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BotGameItemTakebackRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewBotGameItemTakebackRequestBuilderInternal(urlParams, requestAdapter)
+func NewBotGameItemTakebackRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BotGameItemTakebackRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewBotGameItemTakebackRequestBuilderInternal(urlParams, requestAdapter)
 }

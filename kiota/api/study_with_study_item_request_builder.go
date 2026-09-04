@@ -4,45 +4,50 @@
 package api
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // StudyWithStudyItemRequestBuilder builds and executes requests for operations under \api\study\{studyId}
 type StudyWithStudyItemRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // ByChapterId gets an item from the github.com/atye/golichess/kiota.api.study.item.item collection
 // returns a *StudyItemWithChapterItemRequestBuilder when successful
-func (m *StudyWithStudyItemRequestBuilder) ByChapterId(chapterId string)(*StudyItemWithChapterItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    if chapterId != "" {
-        urlTplParams["chapterId"] = chapterId
-    }
-    return NewStudyItemWithChapterItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+func (m *StudyWithStudyItemRequestBuilder) ByChapterId(chapterId string) *StudyItemWithChapterItemRequestBuilder {
+	urlTplParams := make(map[string]string)
+	for idx, item := range m.BaseRequestBuilder.PathParameters {
+		urlTplParams[idx] = item
+	}
+	if chapterId != "" {
+		urlTplParams["chapterId"] = chapterId
+	}
+	return NewStudyItemWithChapterItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewStudyWithStudyItemRequestBuilderInternal instantiates a new StudyWithStudyItemRequestBuilder and sets the default values.
-func NewStudyWithStudyItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*StudyWithStudyItemRequestBuilder) {
-    m := &StudyWithStudyItemRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/study/{studyId}", pathParameters),
-    }
-    return m
+func NewStudyWithStudyItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *StudyWithStudyItemRequestBuilder {
+	m := &StudyWithStudyItemRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/study/{studyId}", pathParameters),
+	}
+	return m
 }
+
 // NewStudyWithStudyItemRequestBuilder instantiates a new StudyWithStudyItemRequestBuilder and sets the default values.
-func NewStudyWithStudyItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*StudyWithStudyItemRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewStudyWithStudyItemRequestBuilderInternal(urlParams, requestAdapter)
+func NewStudyWithStudyItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *StudyWithStudyItemRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewStudyWithStudyItemRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // ImportPgn the importPgn property
 // returns a *StudyItemImportPgnRequestBuilder when successful
-func (m *StudyWithStudyItemRequestBuilder) ImportPgn()(*StudyItemImportPgnRequestBuilder) {
-    return NewStudyItemImportPgnRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *StudyWithStudyItemRequestBuilder) ImportPgn() *StudyItemImportPgnRequestBuilder {
+	return NewStudyItemImportPgnRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // WithChapterIdPgn builds and executes requests for operations under \api\study\{studyId}\{chapterId}.pgn
 // returns a *StudyItemWithChapterIdPgnRequestBuilder when successful
-func (m *StudyWithStudyItemRequestBuilder) WithChapterIdPgn(chapterId *string)(*StudyItemWithChapterIdPgnRequestBuilder) {
-    return NewStudyItemWithChapterIdPgnRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter, chapterId)
+func (m *StudyWithStudyItemRequestBuilder) WithChapterIdPgn(chapterId *string) *StudyItemWithChapterIdPgnRequestBuilder {
+	return NewStudyItemWithChapterIdPgnRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter, chapterId)
 }

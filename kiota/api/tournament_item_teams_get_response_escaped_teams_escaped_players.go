@@ -4,110 +4,120 @@
 package api
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
-    i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type TournamentItemTeamsGetResponse_teams_players struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The score property
-    score *int32
-    // The user property
-    user i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.LightUserable
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The score property
+	score *int32
+	// The user property
+	user i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.LightUserable
 }
+
 // NewTournamentItemTeamsGetResponse_teams_players instantiates a new TournamentItemTeamsGetResponse_teams_players and sets the default values.
-func NewTournamentItemTeamsGetResponse_teams_players()(*TournamentItemTeamsGetResponse_teams_players) {
-    m := &TournamentItemTeamsGetResponse_teams_players{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewTournamentItemTeamsGetResponse_teams_players() *TournamentItemTeamsGetResponse_teams_players {
+	m := &TournamentItemTeamsGetResponse_teams_players{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateTournamentItemTeamsGetResponse_teams_playersFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateTournamentItemTeamsGetResponse_teams_playersFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewTournamentItemTeamsGetResponse_teams_players(), nil
+func CreateTournamentItemTeamsGetResponse_teams_playersFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewTournamentItemTeamsGetResponse_teams_players(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *TournamentItemTeamsGetResponse_teams_players) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *TournamentItemTeamsGetResponse_teams_players) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *TournamentItemTeamsGetResponse_teams_players) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["score"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetScore(val)
-        }
-        return nil
-    }
-    res["user"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateLightUserFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetUser(val.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.LightUserable))
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *TournamentItemTeamsGetResponse_teams_players) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["score"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetScore(val)
+		}
+		return nil
+	}
+	res["user"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateLightUserFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetUser(val.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.LightUserable))
+		}
+		return nil
+	}
+	return res
 }
+
 // GetScore gets the score property value. The score property
 // returns a *int32 when successful
-func (m *TournamentItemTeamsGetResponse_teams_players) GetScore()(*int32) {
-    return m.score
+func (m *TournamentItemTeamsGetResponse_teams_players) GetScore() *int32 {
+	return m.score
 }
+
 // GetUser gets the user property value. The user property
 // returns a LightUserable when successful
-func (m *TournamentItemTeamsGetResponse_teams_players) GetUser()(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.LightUserable) {
-    return m.user
+func (m *TournamentItemTeamsGetResponse_teams_players) GetUser() i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.LightUserable {
+	return m.user
 }
+
 // Serialize serializes information the current object
-func (m *TournamentItemTeamsGetResponse_teams_players) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteInt32Value("score", m.GetScore())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("user", m.GetUser())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *TournamentItemTeamsGetResponse_teams_players) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteInt32Value("score", m.GetScore())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("user", m.GetUser())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *TournamentItemTeamsGetResponse_teams_players) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *TournamentItemTeamsGetResponse_teams_players) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetScore sets the score property value. The score property
-func (m *TournamentItemTeamsGetResponse_teams_players) SetScore(value *int32)() {
-    m.score = value
+func (m *TournamentItemTeamsGetResponse_teams_players) SetScore(value *int32) {
+	m.score = value
 }
+
 // SetUser sets the user property value. The user property
-func (m *TournamentItemTeamsGetResponse_teams_players) SetUser(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.LightUserable)() {
-    m.user = value
+func (m *TournamentItemTeamsGetResponse_teams_players) SetUser(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.LightUserable) {
+	m.user = value
 }
+
 type TournamentItemTeamsGetResponse_teams_playersable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetScore()(*int32)
-    GetUser()(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.LightUserable)
-    SetScore(value *int32)()
-    SetUser(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.LightUserable)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetScore() *int32
+	GetUser() i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.LightUserable
+	SetScore(value *int32)
+	SetUser(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.LightUserable)
 }

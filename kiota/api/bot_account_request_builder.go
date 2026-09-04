@@ -4,28 +4,31 @@
 package api
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // BotAccountRequestBuilder builds and executes requests for operations under \api\bot\account
 type BotAccountRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // NewBotAccountRequestBuilderInternal instantiates a new BotAccountRequestBuilder and sets the default values.
-func NewBotAccountRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BotAccountRequestBuilder) {
-    m := &BotAccountRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/bot/account", pathParameters),
-    }
-    return m
+func NewBotAccountRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BotAccountRequestBuilder {
+	m := &BotAccountRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/bot/account", pathParameters),
+	}
+	return m
 }
+
 // NewBotAccountRequestBuilder instantiates a new BotAccountRequestBuilder and sets the default values.
-func NewBotAccountRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BotAccountRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewBotAccountRequestBuilderInternal(urlParams, requestAdapter)
+func NewBotAccountRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BotAccountRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewBotAccountRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Upgrade the upgrade property
 // returns a *BotAccountUpgradeRequestBuilder when successful
-func (m *BotAccountRequestBuilder) Upgrade()(*BotAccountUpgradeRequestBuilder) {
-    return NewBotAccountUpgradeRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *BotAccountRequestBuilder) Upgrade() *BotAccountUpgradeRequestBuilder {
+	return NewBotAccountUpgradeRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

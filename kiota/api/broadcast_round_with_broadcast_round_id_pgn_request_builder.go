@@ -4,78 +4,85 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	"context"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // BroadcastRoundWithBroadcastRoundIdPgnRequestBuilder builds and executes requests for operations under \api\broadcast\round\{broadcastRoundId}.pgn
 type BroadcastRoundWithBroadcastRoundIdPgnRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // BroadcastRoundWithBroadcastRoundIdPgnRequestBuilderGetQueryParameters download all games of a single round of a broadcast tournament in PGN format.You *could* poll this endpoint to get updates about a tournament, but it would be slow,and very inefficient.Instead, consider [streaming the round](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn) to geta new PGN every time a game is updated, in real-time.
 type BroadcastRoundWithBroadcastRoundIdPgnRequestBuilderGetQueryParameters struct {
-    // Include clock comments in the PGN moves, when available.Example: `2. exd5 { [%clk 1:01:27] } e5 { [%clk 1:01:28] }`
-    Clocks *bool "uriparametername:\"clocks\""
-    // Include analysis comments in the PGN moves, when available.Example: `12. Bxf6 { [%eval 0.23] }`
-    Comments *bool "uriparametername:\"comments\""
+	// Include clock comments in the PGN moves, when available.Example: `2. exd5 { [%clk 1:01:27] } e5 { [%clk 1:01:28] }`
+	Clocks *bool "uriparametername:\"clocks\""
+	// Include analysis comments in the PGN moves, when available.Example: `12. Bxf6 { [%eval 0.23] }`
+	Comments *bool "uriparametername:\"comments\""
 }
+
 // BroadcastRoundWithBroadcastRoundIdPgnRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type BroadcastRoundWithBroadcastRoundIdPgnRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
-    // Request query parameters
-    QueryParameters *BroadcastRoundWithBroadcastRoundIdPgnRequestBuilderGetQueryParameters
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *BroadcastRoundWithBroadcastRoundIdPgnRequestBuilderGetQueryParameters
 }
+
 // NewBroadcastRoundWithBroadcastRoundIdPgnRequestBuilderInternal instantiates a new BroadcastRoundWithBroadcastRoundIdPgnRequestBuilder and sets the default values.
-func NewBroadcastRoundWithBroadcastRoundIdPgnRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter, broadcastRoundId *string)(*BroadcastRoundWithBroadcastRoundIdPgnRequestBuilder) {
-    m := &BroadcastRoundWithBroadcastRoundIdPgnRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/broadcast/round/{broadcastRoundId}.pgn{?clocks*,comments*}", pathParameters),
-    }
-    if broadcastRoundId != nil {
-        m.BaseRequestBuilder.PathParameters["broadcastRoundId"] = *broadcastRoundId
-    }
-    return m
+func NewBroadcastRoundWithBroadcastRoundIdPgnRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter, broadcastRoundId *string) *BroadcastRoundWithBroadcastRoundIdPgnRequestBuilder {
+	m := &BroadcastRoundWithBroadcastRoundIdPgnRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/broadcast/round/{broadcastRoundId}.pgn{?clocks*,comments*}", pathParameters),
+	}
+	if broadcastRoundId != nil {
+		m.BaseRequestBuilder.PathParameters["broadcastRoundId"] = *broadcastRoundId
+	}
+	return m
 }
+
 // NewBroadcastRoundWithBroadcastRoundIdPgnRequestBuilder instantiates a new BroadcastRoundWithBroadcastRoundIdPgnRequestBuilder and sets the default values.
-func NewBroadcastRoundWithBroadcastRoundIdPgnRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BroadcastRoundWithBroadcastRoundIdPgnRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewBroadcastRoundWithBroadcastRoundIdPgnRequestBuilderInternal(urlParams, requestAdapter, nil)
+func NewBroadcastRoundWithBroadcastRoundIdPgnRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BroadcastRoundWithBroadcastRoundIdPgnRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewBroadcastRoundWithBroadcastRoundIdPgnRequestBuilderInternal(urlParams, requestAdapter, nil)
 }
+
 // Get download all games of a single round of a broadcast tournament in PGN format.You *could* poll this endpoint to get updates about a tournament, but it would be slow,and very inefficient.Instead, consider [streaming the round](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn) to geta new PGN every time a game is updated, in real-time.
 // returns a []byte when successful
-func (m *BroadcastRoundWithBroadcastRoundIdPgnRequestBuilder) Get(ctx context.Context, requestConfiguration *BroadcastRoundWithBroadcastRoundIdPgnRequestBuilderGetRequestConfiguration)([]byte, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.([]byte), nil
+func (m *BroadcastRoundWithBroadcastRoundIdPgnRequestBuilder) Get(ctx context.Context, requestConfiguration *BroadcastRoundWithBroadcastRoundIdPgnRequestBuilderGetRequestConfiguration) ([]byte, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.([]byte), nil
 }
+
 // ToGetRequestInformation download all games of a single round of a broadcast tournament in PGN format.You *could* poll this endpoint to get updates about a tournament, but it would be slow,and very inefficient.Instead, consider [streaming the round](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn) to geta new PGN every time a game is updated, in real-time.
 // returns a *RequestInformation when successful
-func (m *BroadcastRoundWithBroadcastRoundIdPgnRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *BroadcastRoundWithBroadcastRoundIdPgnRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        if requestConfiguration.QueryParameters != nil {
-            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
-        }
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/x-chess-pgn")
-    return requestInfo, nil
+func (m *BroadcastRoundWithBroadcastRoundIdPgnRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *BroadcastRoundWithBroadcastRoundIdPgnRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/x-chess-pgn")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *BroadcastRoundWithBroadcastRoundIdPgnRequestBuilder when successful
-func (m *BroadcastRoundWithBroadcastRoundIdPgnRequestBuilder) WithUrl(rawUrl string)(*BroadcastRoundWithBroadcastRoundIdPgnRequestBuilder) {
-    return NewBroadcastRoundWithBroadcastRoundIdPgnRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *BroadcastRoundWithBroadcastRoundIdPgnRequestBuilder) WithUrl(rawUrl string) *BroadcastRoundWithBroadcastRoundIdPgnRequestBuilder {
+	return NewBroadcastRoundWithBroadcastRoundIdPgnRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

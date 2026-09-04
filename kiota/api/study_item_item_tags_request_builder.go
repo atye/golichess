@@ -4,68 +4,74 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	"context"
+	i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // StudyItemItemTagsRequestBuilder builds and executes requests for operations under \api\study\{studyId}\{chapterId}\tags
 type StudyItemItemTagsRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // StudyItemItemTagsRequestBuilderPostRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type StudyItemItemTagsRequestBuilderPostRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+
 // NewStudyItemItemTagsRequestBuilderInternal instantiates a new StudyItemItemTagsRequestBuilder and sets the default values.
-func NewStudyItemItemTagsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*StudyItemItemTagsRequestBuilder) {
-    m := &StudyItemItemTagsRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/study/{studyId}/{chapterId}/tags", pathParameters),
-    }
-    return m
+func NewStudyItemItemTagsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *StudyItemItemTagsRequestBuilder {
+	m := &StudyItemItemTagsRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/study/{studyId}/{chapterId}/tags", pathParameters),
+	}
+	return m
 }
+
 // NewStudyItemItemTagsRequestBuilder instantiates a new StudyItemItemTagsRequestBuilder and sets the default values.
-func NewStudyItemItemTagsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*StudyItemItemTagsRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewStudyItemItemTagsRequestBuilderInternal(urlParams, requestAdapter)
+func NewStudyItemItemTagsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *StudyItemItemTagsRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewStudyItemItemTagsRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Post add, update and delete the PGN tags of a study.By providing a list of PGN tags in the usual PGN format, you can:- Add new tags if the chapter doesn't have them yet- Update existing chapter tags- Delete existing chapter tags, by providing a tag with an empty value.The chapter keeps the tags that you don't provide.
 // returns a ErrorEscaped error when the service returns a 400 status code
-func (m *StudyItemItemTagsRequestBuilder) Post(ctx context.Context, body StudyItemItemTagsPostRequestBodyable, requestConfiguration *StudyItemItemTagsRequestBuilderPostRequestConfiguration)(error) {
-    requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration);
-    if err != nil {
-        return err
-    }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "400": i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateErrorEscapedFromDiscriminatorValue,
-    }
-    err = m.BaseRequestBuilder.RequestAdapter.SendNoContent(ctx, requestInfo, errorMapping)
-    if err != nil {
-        return err
-    }
-    return nil
+func (m *StudyItemItemTagsRequestBuilder) Post(ctx context.Context, body StudyItemItemTagsPostRequestBodyable, requestConfiguration *StudyItemItemTagsRequestBuilderPostRequestConfiguration) error {
+	requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration)
+	if err != nil {
+		return err
+	}
+	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
+		"400": i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateErrorEscapedFromDiscriminatorValue,
+	}
+	err = m.BaseRequestBuilder.RequestAdapter.SendNoContent(ctx, requestInfo, errorMapping)
+	if err != nil {
+		return err
+	}
+	return nil
 }
+
 // ToPostRequestInformation add, update and delete the PGN tags of a study.By providing a list of PGN tags in the usual PGN format, you can:- Add new tags if the chapter doesn't have them yet- Update existing chapter tags- Delete existing chapter tags, by providing a tag with an empty value.The chapter keeps the tags that you don't provide.
 // returns a *RequestInformation when successful
-func (m *StudyItemItemTagsRequestBuilder) ToPostRequestInformation(ctx context.Context, body StudyItemItemTagsPostRequestBodyable, requestConfiguration *StudyItemItemTagsRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    err := requestInfo.SetContentFromParsable(ctx, m.BaseRequestBuilder.RequestAdapter, "application/x-www-form-urlencoded", body)
-    if err != nil {
-        return nil, err
-    }
-    return requestInfo, nil
+func (m *StudyItemItemTagsRequestBuilder) ToPostRequestInformation(ctx context.Context, body StudyItemItemTagsPostRequestBodyable, requestConfiguration *StudyItemItemTagsRequestBuilderPostRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	err := requestInfo.SetContentFromParsable(ctx, m.BaseRequestBuilder.RequestAdapter, "application/x-www-form-urlencoded", body)
+	if err != nil {
+		return nil, err
+	}
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *StudyItemItemTagsRequestBuilder when successful
-func (m *StudyItemItemTagsRequestBuilder) WithUrl(rawUrl string)(*StudyItemItemTagsRequestBuilder) {
-    return NewStudyItemItemTagsRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *StudyItemItemTagsRequestBuilder) WithUrl(rawUrl string) *StudyItemItemTagsRequestBuilder {
+	return NewStudyItemItemTagsRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

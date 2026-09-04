@@ -4,109 +4,119 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type ArenaTournament_schedule struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The freq property
-    freq *string
-    // The speed property
-    speed *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The freq property
+	freq *string
+	// The speed property
+	speed *string
 }
+
 // NewArenaTournament_schedule instantiates a new ArenaTournament_schedule and sets the default values.
-func NewArenaTournament_schedule()(*ArenaTournament_schedule) {
-    m := &ArenaTournament_schedule{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewArenaTournament_schedule() *ArenaTournament_schedule {
+	m := &ArenaTournament_schedule{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateArenaTournament_scheduleFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateArenaTournament_scheduleFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewArenaTournament_schedule(), nil
+func CreateArenaTournament_scheduleFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewArenaTournament_schedule(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *ArenaTournament_schedule) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *ArenaTournament_schedule) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ArenaTournament_schedule) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["freq"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFreq(val)
-        }
-        return nil
-    }
-    res["speed"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSpeed(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *ArenaTournament_schedule) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["freq"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFreq(val)
+		}
+		return nil
+	}
+	res["speed"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetSpeed(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetFreq gets the freq property value. The freq property
 // returns a *string when successful
-func (m *ArenaTournament_schedule) GetFreq()(*string) {
-    return m.freq
+func (m *ArenaTournament_schedule) GetFreq() *string {
+	return m.freq
 }
+
 // GetSpeed gets the speed property value. The speed property
 // returns a *string when successful
-func (m *ArenaTournament_schedule) GetSpeed()(*string) {
-    return m.speed
+func (m *ArenaTournament_schedule) GetSpeed() *string {
+	return m.speed
 }
+
 // Serialize serializes information the current object
-func (m *ArenaTournament_schedule) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("freq", m.GetFreq())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("speed", m.GetSpeed())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *ArenaTournament_schedule) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("freq", m.GetFreq())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("speed", m.GetSpeed())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ArenaTournament_schedule) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *ArenaTournament_schedule) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetFreq sets the freq property value. The freq property
-func (m *ArenaTournament_schedule) SetFreq(value *string)() {
-    m.freq = value
+func (m *ArenaTournament_schedule) SetFreq(value *string) {
+	m.freq = value
 }
+
 // SetSpeed sets the speed property value. The speed property
-func (m *ArenaTournament_schedule) SetSpeed(value *string)() {
-    m.speed = value
+func (m *ArenaTournament_schedule) SetSpeed(value *string) {
+	m.speed = value
 }
+
 type ArenaTournament_scheduleable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetFreq()(*string)
-    GetSpeed()(*string)
-    SetFreq(value *string)()
-    SetSpeed(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetFreq() *string
+	GetSpeed() *string
+	SetFreq(value *string)
+	SetSpeed(value *string)
 }

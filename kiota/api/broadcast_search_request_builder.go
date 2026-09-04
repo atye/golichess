@@ -4,92 +4,100 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	"context"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // BroadcastSearchRequestBuilder builds and executes requests for operations under \api\broadcast\search
 type BroadcastSearchRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // BroadcastSearchRequestBuilderGetQueryParameters search across recent official broadcasts.
 type BroadcastSearchRequestBuilderGetQueryParameters struct {
-    // Which page to fetch.
-    Page *int32 "uriparametername:\"page\""
-    // Search term
-    Q *string "uriparametername:\"q\""
+	// Which page to fetch.
+	Page *int32 "uriparametername:\"page\""
+	// Search term
+	Q *string "uriparametername:\"q\""
 }
+
 // BroadcastSearchRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type BroadcastSearchRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
-    // Request query parameters
-    QueryParameters *BroadcastSearchRequestBuilderGetQueryParameters
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *BroadcastSearchRequestBuilderGetQueryParameters
 }
+
 // NewBroadcastSearchRequestBuilderInternal instantiates a new BroadcastSearchRequestBuilder and sets the default values.
-func NewBroadcastSearchRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BroadcastSearchRequestBuilder) {
-    m := &BroadcastSearchRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/broadcast/search{?page*,q*}", pathParameters),
-    }
-    return m
+func NewBroadcastSearchRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BroadcastSearchRequestBuilder {
+	m := &BroadcastSearchRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/broadcast/search{?page*,q*}", pathParameters),
+	}
+	return m
 }
+
 // NewBroadcastSearchRequestBuilder instantiates a new BroadcastSearchRequestBuilder and sets the default values.
-func NewBroadcastSearchRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BroadcastSearchRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewBroadcastSearchRequestBuilderInternal(urlParams, requestAdapter)
+func NewBroadcastSearchRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BroadcastSearchRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewBroadcastSearchRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get search across recent official broadcasts.
 // Deprecated: This method is obsolete. Use GetAsSearchGetResponse instead.
 // returns a BroadcastSearchResponseable when successful
-func (m *BroadcastSearchRequestBuilder) Get(ctx context.Context, requestConfiguration *BroadcastSearchRequestBuilderGetRequestConfiguration)(BroadcastSearchResponseable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateBroadcastSearchResponseFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(BroadcastSearchResponseable), nil
+func (m *BroadcastSearchRequestBuilder) Get(ctx context.Context, requestConfiguration *BroadcastSearchRequestBuilderGetRequestConfiguration) (BroadcastSearchResponseable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateBroadcastSearchResponseFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(BroadcastSearchResponseable), nil
 }
+
 // GetAsSearchGetResponse search across recent official broadcasts.
 // returns a BroadcastSearchGetResponseable when successful
-func (m *BroadcastSearchRequestBuilder) GetAsSearchGetResponse(ctx context.Context, requestConfiguration *BroadcastSearchRequestBuilderGetRequestConfiguration)(BroadcastSearchGetResponseable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateBroadcastSearchGetResponseFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(BroadcastSearchGetResponseable), nil
+func (m *BroadcastSearchRequestBuilder) GetAsSearchGetResponse(ctx context.Context, requestConfiguration *BroadcastSearchRequestBuilderGetRequestConfiguration) (BroadcastSearchGetResponseable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateBroadcastSearchGetResponseFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(BroadcastSearchGetResponseable), nil
 }
+
 // ToGetRequestInformation search across recent official broadcasts.
 // returns a *RequestInformation when successful
-func (m *BroadcastSearchRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *BroadcastSearchRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        if requestConfiguration.QueryParameters != nil {
-            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
-        }
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    return requestInfo, nil
+func (m *BroadcastSearchRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *BroadcastSearchRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *BroadcastSearchRequestBuilder when successful
-func (m *BroadcastSearchRequestBuilder) WithUrl(rawUrl string)(*BroadcastSearchRequestBuilder) {
-    return NewBroadcastSearchRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *BroadcastSearchRequestBuilder) WithUrl(rawUrl string) *BroadcastSearchRequestBuilder {
+	return NewBroadcastSearchRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

@@ -4,28 +4,31 @@
 package swiss
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // SwissRequestBuilder builds and executes requests for operations under \swiss
 type SwissRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // NewSwissRequestBuilderInternal instantiates a new SwissRequestBuilder and sets the default values.
-func NewSwissRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*SwissRequestBuilder) {
-    m := &SwissRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/swiss", pathParameters),
-    }
-    return m
+func NewSwissRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *SwissRequestBuilder {
+	m := &SwissRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/swiss", pathParameters),
+	}
+	return m
 }
+
 // NewSwissRequestBuilder instantiates a new SwissRequestBuilder and sets the default values.
-func NewSwissRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*SwissRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewSwissRequestBuilderInternal(urlParams, requestAdapter)
+func NewSwissRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *SwissRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewSwissRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // WithIdTrf builds and executes requests for operations under \swiss\{id}.trf
 // returns a *WithIdTrfRequestBuilder when successful
-func (m *SwissRequestBuilder) WithIdTrf(id *string)(*WithIdTrfRequestBuilder) {
-    return NewWithIdTrfRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter, id)
+func (m *SwissRequestBuilder) WithIdTrf(id *string) *WithIdTrfRequestBuilder {
+	return NewWithIdTrfRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter, id)
 }

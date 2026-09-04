@@ -4,208 +4,224 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type BroadcastWithRoundsAndFullGroup struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The defaultRoundId property
-    defaultRoundId *string
-    // The group property
-    group BroadcastGroupable
-    // Photos of players, when available. The object keys are FIDE IDs
-    photos BroadcastPhotosable
-    // The rounds property
-    rounds []BroadcastRoundInfoable
-    // The tour property
-    tour BroadcastTourable
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The defaultRoundId property
+	defaultRoundId *string
+	// The group property
+	group BroadcastGroupable
+	// Photos of players, when available. The object keys are FIDE IDs
+	photos BroadcastPhotosable
+	// The rounds property
+	rounds []BroadcastRoundInfoable
+	// The tour property
+	tour BroadcastTourable
 }
+
 // NewBroadcastWithRoundsAndFullGroup instantiates a new BroadcastWithRoundsAndFullGroup and sets the default values.
-func NewBroadcastWithRoundsAndFullGroup()(*BroadcastWithRoundsAndFullGroup) {
-    m := &BroadcastWithRoundsAndFullGroup{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewBroadcastWithRoundsAndFullGroup() *BroadcastWithRoundsAndFullGroup {
+	m := &BroadcastWithRoundsAndFullGroup{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateBroadcastWithRoundsAndFullGroupFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateBroadcastWithRoundsAndFullGroupFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewBroadcastWithRoundsAndFullGroup(), nil
+func CreateBroadcastWithRoundsAndFullGroupFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewBroadcastWithRoundsAndFullGroup(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *BroadcastWithRoundsAndFullGroup) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *BroadcastWithRoundsAndFullGroup) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetDefaultRoundId gets the defaultRoundId property value. The defaultRoundId property
 // returns a *string when successful
-func (m *BroadcastWithRoundsAndFullGroup) GetDefaultRoundId()(*string) {
-    return m.defaultRoundId
+func (m *BroadcastWithRoundsAndFullGroup) GetDefaultRoundId() *string {
+	return m.defaultRoundId
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *BroadcastWithRoundsAndFullGroup) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["defaultRoundId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDefaultRoundId(val)
-        }
-        return nil
-    }
-    res["group"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateBroadcastGroupFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetGroup(val.(BroadcastGroupable))
-        }
-        return nil
-    }
-    res["photos"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateBroadcastPhotosFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPhotos(val.(BroadcastPhotosable))
-        }
-        return nil
-    }
-    res["rounds"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateBroadcastRoundInfoFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]BroadcastRoundInfoable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(BroadcastRoundInfoable)
-                }
-            }
-            m.SetRounds(res)
-        }
-        return nil
-    }
-    res["tour"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateBroadcastTourFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTour(val.(BroadcastTourable))
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *BroadcastWithRoundsAndFullGroup) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["defaultRoundId"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetDefaultRoundId(val)
+		}
+		return nil
+	}
+	res["group"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateBroadcastGroupFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetGroup(val.(BroadcastGroupable))
+		}
+		return nil
+	}
+	res["photos"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateBroadcastPhotosFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPhotos(val.(BroadcastPhotosable))
+		}
+		return nil
+	}
+	res["rounds"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateBroadcastRoundInfoFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]BroadcastRoundInfoable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(BroadcastRoundInfoable)
+				}
+			}
+			m.SetRounds(res)
+		}
+		return nil
+	}
+	res["tour"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateBroadcastTourFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTour(val.(BroadcastTourable))
+		}
+		return nil
+	}
+	return res
 }
+
 // GetGroup gets the group property value. The group property
 // returns a BroadcastGroupable when successful
-func (m *BroadcastWithRoundsAndFullGroup) GetGroup()(BroadcastGroupable) {
-    return m.group
+func (m *BroadcastWithRoundsAndFullGroup) GetGroup() BroadcastGroupable {
+	return m.group
 }
+
 // GetPhotos gets the photos property value. Photos of players, when available. The object keys are FIDE IDs
 // returns a BroadcastPhotosable when successful
-func (m *BroadcastWithRoundsAndFullGroup) GetPhotos()(BroadcastPhotosable) {
-    return m.photos
+func (m *BroadcastWithRoundsAndFullGroup) GetPhotos() BroadcastPhotosable {
+	return m.photos
 }
+
 // GetRounds gets the rounds property value. The rounds property
 // returns a []BroadcastRoundInfoable when successful
-func (m *BroadcastWithRoundsAndFullGroup) GetRounds()([]BroadcastRoundInfoable) {
-    return m.rounds
+func (m *BroadcastWithRoundsAndFullGroup) GetRounds() []BroadcastRoundInfoable {
+	return m.rounds
 }
+
 // GetTour gets the tour property value. The tour property
 // returns a BroadcastTourable when successful
-func (m *BroadcastWithRoundsAndFullGroup) GetTour()(BroadcastTourable) {
-    return m.tour
+func (m *BroadcastWithRoundsAndFullGroup) GetTour() BroadcastTourable {
+	return m.tour
 }
+
 // Serialize serializes information the current object
-func (m *BroadcastWithRoundsAndFullGroup) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("defaultRoundId", m.GetDefaultRoundId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("group", m.GetGroup())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("photos", m.GetPhotos())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetRounds() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetRounds()))
-        for i, v := range m.GetRounds() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("rounds", cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("tour", m.GetTour())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *BroadcastWithRoundsAndFullGroup) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("defaultRoundId", m.GetDefaultRoundId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("group", m.GetGroup())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("photos", m.GetPhotos())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetRounds() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetRounds()))
+		for i, v := range m.GetRounds() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("rounds", cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("tour", m.GetTour())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *BroadcastWithRoundsAndFullGroup) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *BroadcastWithRoundsAndFullGroup) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetDefaultRoundId sets the defaultRoundId property value. The defaultRoundId property
-func (m *BroadcastWithRoundsAndFullGroup) SetDefaultRoundId(value *string)() {
-    m.defaultRoundId = value
+func (m *BroadcastWithRoundsAndFullGroup) SetDefaultRoundId(value *string) {
+	m.defaultRoundId = value
 }
+
 // SetGroup sets the group property value. The group property
-func (m *BroadcastWithRoundsAndFullGroup) SetGroup(value BroadcastGroupable)() {
-    m.group = value
+func (m *BroadcastWithRoundsAndFullGroup) SetGroup(value BroadcastGroupable) {
+	m.group = value
 }
+
 // SetPhotos sets the photos property value. Photos of players, when available. The object keys are FIDE IDs
-func (m *BroadcastWithRoundsAndFullGroup) SetPhotos(value BroadcastPhotosable)() {
-    m.photos = value
+func (m *BroadcastWithRoundsAndFullGroup) SetPhotos(value BroadcastPhotosable) {
+	m.photos = value
 }
+
 // SetRounds sets the rounds property value. The rounds property
-func (m *BroadcastWithRoundsAndFullGroup) SetRounds(value []BroadcastRoundInfoable)() {
-    m.rounds = value
+func (m *BroadcastWithRoundsAndFullGroup) SetRounds(value []BroadcastRoundInfoable) {
+	m.rounds = value
 }
+
 // SetTour sets the tour property value. The tour property
-func (m *BroadcastWithRoundsAndFullGroup) SetTour(value BroadcastTourable)() {
-    m.tour = value
+func (m *BroadcastWithRoundsAndFullGroup) SetTour(value BroadcastTourable) {
+	m.tour = value
 }
+
 type BroadcastWithRoundsAndFullGroupable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetDefaultRoundId()(*string)
-    GetGroup()(BroadcastGroupable)
-    GetPhotos()(BroadcastPhotosable)
-    GetRounds()([]BroadcastRoundInfoable)
-    GetTour()(BroadcastTourable)
-    SetDefaultRoundId(value *string)()
-    SetGroup(value BroadcastGroupable)()
-    SetPhotos(value BroadcastPhotosable)()
-    SetRounds(value []BroadcastRoundInfoable)()
-    SetTour(value BroadcastTourable)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetDefaultRoundId() *string
+	GetGroup() BroadcastGroupable
+	GetPhotos() BroadcastPhotosable
+	GetRounds() []BroadcastRoundInfoable
+	GetTour() BroadcastTourable
+	SetDefaultRoundId(value *string)
+	SetGroup(value BroadcastGroupable)
+	SetPhotos(value BroadcastPhotosable)
+	SetRounds(value []BroadcastRoundInfoable)
+	SetTour(value BroadcastTourable)
 }

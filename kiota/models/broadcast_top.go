@@ -4,165 +4,177 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type BroadcastTop struct {
-    // The active property
-    active []BroadcastWithLastRoundable
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The past property
-    past BroadcastTop_pastable
-    // The upcoming property
-    // Deprecated: 
-    upcoming []BroadcastWithLastRoundable
+	// The active property
+	active []BroadcastWithLastRoundable
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The past property
+	past BroadcastTop_pastable
+	// The upcoming property
+	// Deprecated:
+	upcoming []BroadcastWithLastRoundable
 }
+
 // NewBroadcastTop instantiates a new BroadcastTop and sets the default values.
-func NewBroadcastTop()(*BroadcastTop) {
-    m := &BroadcastTop{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewBroadcastTop() *BroadcastTop {
+	m := &BroadcastTop{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateBroadcastTopFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateBroadcastTopFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewBroadcastTop(), nil
+func CreateBroadcastTopFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewBroadcastTop(), nil
 }
+
 // GetActive gets the active property value. The active property
 // returns a []BroadcastWithLastRoundable when successful
-func (m *BroadcastTop) GetActive()([]BroadcastWithLastRoundable) {
-    return m.active
+func (m *BroadcastTop) GetActive() []BroadcastWithLastRoundable {
+	return m.active
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *BroadcastTop) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *BroadcastTop) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *BroadcastTop) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["active"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateBroadcastWithLastRoundFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]BroadcastWithLastRoundable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(BroadcastWithLastRoundable)
-                }
-            }
-            m.SetActive(res)
-        }
-        return nil
-    }
-    res["past"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateBroadcastTop_pastFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPast(val.(BroadcastTop_pastable))
-        }
-        return nil
-    }
-    res["upcoming"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateBroadcastWithLastRoundFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]BroadcastWithLastRoundable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(BroadcastWithLastRoundable)
-                }
-            }
-            m.SetUpcoming(res)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *BroadcastTop) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["active"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateBroadcastWithLastRoundFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]BroadcastWithLastRoundable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(BroadcastWithLastRoundable)
+				}
+			}
+			m.SetActive(res)
+		}
+		return nil
+	}
+	res["past"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateBroadcastTop_pastFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPast(val.(BroadcastTop_pastable))
+		}
+		return nil
+	}
+	res["upcoming"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateBroadcastWithLastRoundFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]BroadcastWithLastRoundable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(BroadcastWithLastRoundable)
+				}
+			}
+			m.SetUpcoming(res)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetPast gets the past property value. The past property
 // returns a BroadcastTop_pastable when successful
-func (m *BroadcastTop) GetPast()(BroadcastTop_pastable) {
-    return m.past
+func (m *BroadcastTop) GetPast() BroadcastTop_pastable {
+	return m.past
 }
+
 // GetUpcoming gets the upcoming property value. The upcoming property
-// Deprecated: 
+// Deprecated:
 // returns a []BroadcastWithLastRoundable when successful
-func (m *BroadcastTop) GetUpcoming()([]BroadcastWithLastRoundable) {
-    return m.upcoming
+func (m *BroadcastTop) GetUpcoming() []BroadcastWithLastRoundable {
+	return m.upcoming
 }
+
 // Serialize serializes information the current object
-func (m *BroadcastTop) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetActive() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetActive()))
-        for i, v := range m.GetActive() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("active", cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("past", m.GetPast())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetUpcoming() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetUpcoming()))
-        for i, v := range m.GetUpcoming() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("upcoming", cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *BroadcastTop) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	if m.GetActive() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetActive()))
+		for i, v := range m.GetActive() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("active", cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("past", m.GetPast())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetUpcoming() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetUpcoming()))
+		for i, v := range m.GetUpcoming() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("upcoming", cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetActive sets the active property value. The active property
-func (m *BroadcastTop) SetActive(value []BroadcastWithLastRoundable)() {
-    m.active = value
+func (m *BroadcastTop) SetActive(value []BroadcastWithLastRoundable) {
+	m.active = value
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *BroadcastTop) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *BroadcastTop) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetPast sets the past property value. The past property
-func (m *BroadcastTop) SetPast(value BroadcastTop_pastable)() {
-    m.past = value
+func (m *BroadcastTop) SetPast(value BroadcastTop_pastable) {
+	m.past = value
 }
+
 // SetUpcoming sets the upcoming property value. The upcoming property
-// Deprecated: 
-func (m *BroadcastTop) SetUpcoming(value []BroadcastWithLastRoundable)() {
-    m.upcoming = value
+// Deprecated:
+func (m *BroadcastTop) SetUpcoming(value []BroadcastWithLastRoundable) {
+	m.upcoming = value
 }
+
 type BroadcastTopable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetActive()([]BroadcastWithLastRoundable)
-    GetPast()(BroadcastTop_pastable)
-    GetUpcoming()([]BroadcastWithLastRoundable)
-    SetActive(value []BroadcastWithLastRoundable)()
-    SetPast(value BroadcastTop_pastable)()
-    SetUpcoming(value []BroadcastWithLastRoundable)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetActive() []BroadcastWithLastRoundable
+	GetPast() BroadcastTop_pastable
+	GetUpcoming() []BroadcastWithLastRoundable
+	SetActive(value []BroadcastWithLastRoundable)
+	SetPast(value BroadcastTop_pastable)
+	SetUpcoming(value []BroadcastWithLastRoundable)
 }

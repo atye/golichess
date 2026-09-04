@@ -4,713 +4,763 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type GameJson struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The analysis property
-    analysis []GameMoveAnalysisable
-    // The arena tournament the game is from
-    arenaTour GameJson_arenaTourable
-    // The clock property
-    clock GameJson_clockable
-    // The clocks property
-    clocks []int32
-    // The createdAt property
-    createdAt *int64
-    // The daysPerTurn property
-    daysPerTurn *int32
-    // The division property
-    division GameJson_divisionable
-    // The id property
-    id *string
-    // The initialFen property
-    initialFen *string
-    // The lastMoveAt property
-    lastMoveAt *int64
-    // The moves property
-    moves *string
-    // The opening property
-    opening GameOpeningable
-    // The perf property
-    perf *string
-    // The pgn property
-    pgn *string
-    // The players property
-    players GamePlayersable
-    // The rated property
-    rated *bool
-    // The source property
-    source *string
-    // The speed property
-    speed *Speed
-    // The status property
-    status *GameStatusName
-    // The swiss tournament the game is from
-    swissTour GameJson_swissTourable
-    // The variant property
-    variant *VariantKey
-    // The winner property
-    winner *GameColor
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The analysis property
+	analysis []GameMoveAnalysisable
+	// The arena tournament the game is from
+	arenaTour GameJson_arenaTourable
+	// The clock property
+	clock GameJson_clockable
+	// The clocks property
+	clocks []int32
+	// The createdAt property
+	createdAt *int64
+	// The daysPerTurn property
+	daysPerTurn *int32
+	// The division property
+	division GameJson_divisionable
+	// The id property
+	id *string
+	// The initialFen property
+	initialFen *string
+	// The lastMoveAt property
+	lastMoveAt *int64
+	// The moves property
+	moves *string
+	// The opening property
+	opening GameOpeningable
+	// The perf property
+	perf *string
+	// The pgn property
+	pgn *string
+	// The players property
+	players GamePlayersable
+	// The rated property
+	rated *bool
+	// The source property
+	source *string
+	// The speed property
+	speed *Speed
+	// The status property
+	status *GameStatusName
+	// The swiss tournament the game is from
+	swissTour GameJson_swissTourable
+	// The variant property
+	variant *VariantKey
+	// The winner property
+	winner *GameColor
 }
+
 // NewGameJson instantiates a new GameJson and sets the default values.
-func NewGameJson()(*GameJson) {
-    m := &GameJson{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    variantValue := STANDARD_VARIANTKEY
-    m.SetVariant(&variantValue)
-    return m
+func NewGameJson() *GameJson {
+	m := &GameJson{}
+	m.SetAdditionalData(make(map[string]any))
+	variantValue := STANDARD_VARIANTKEY
+	m.SetVariant(&variantValue)
+	return m
 }
+
 // CreateGameJsonFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateGameJsonFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewGameJson(), nil
+func CreateGameJsonFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewGameJson(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *GameJson) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *GameJson) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetAnalysis gets the analysis property value. The analysis property
 // returns a []GameMoveAnalysisable when successful
-func (m *GameJson) GetAnalysis()([]GameMoveAnalysisable) {
-    return m.analysis
+func (m *GameJson) GetAnalysis() []GameMoveAnalysisable {
+	return m.analysis
 }
+
 // GetArenaTour gets the arenaTour property value. The arena tournament the game is from
 // returns a GameJson_arenaTourable when successful
-func (m *GameJson) GetArenaTour()(GameJson_arenaTourable) {
-    return m.arenaTour
+func (m *GameJson) GetArenaTour() GameJson_arenaTourable {
+	return m.arenaTour
 }
+
 // GetClock gets the clock property value. The clock property
 // returns a GameJson_clockable when successful
-func (m *GameJson) GetClock()(GameJson_clockable) {
-    return m.clock
+func (m *GameJson) GetClock() GameJson_clockable {
+	return m.clock
 }
+
 // GetClocks gets the clocks property value. The clocks property
 // returns a []int32 when successful
-func (m *GameJson) GetClocks()([]int32) {
-    return m.clocks
+func (m *GameJson) GetClocks() []int32 {
+	return m.clocks
 }
+
 // GetCreatedAt gets the createdAt property value. The createdAt property
 // returns a *int64 when successful
-func (m *GameJson) GetCreatedAt()(*int64) {
-    return m.createdAt
+func (m *GameJson) GetCreatedAt() *int64 {
+	return m.createdAt
 }
+
 // GetDaysPerTurn gets the daysPerTurn property value. The daysPerTurn property
 // returns a *int32 when successful
-func (m *GameJson) GetDaysPerTurn()(*int32) {
-    return m.daysPerTurn
+func (m *GameJson) GetDaysPerTurn() *int32 {
+	return m.daysPerTurn
 }
+
 // GetDivision gets the division property value. The division property
 // returns a GameJson_divisionable when successful
-func (m *GameJson) GetDivision()(GameJson_divisionable) {
-    return m.division
+func (m *GameJson) GetDivision() GameJson_divisionable {
+	return m.division
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *GameJson) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["analysis"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateGameMoveAnalysisFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]GameMoveAnalysisable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(GameMoveAnalysisable)
-                }
-            }
-            m.SetAnalysis(res)
-        }
-        return nil
-    }
-    res["arenaTour"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateGameJson_arenaTourFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetArenaTour(val.(GameJson_arenaTourable))
-        }
-        return nil
-    }
-    res["clock"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateGameJson_clockFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetClock(val.(GameJson_clockable))
-        }
-        return nil
-    }
-    res["clocks"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfPrimitiveValues("int32")
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]int32, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = *(v.(*int32))
-                }
-            }
-            m.SetClocks(res)
-        }
-        return nil
-    }
-    res["createdAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCreatedAt(val)
-        }
-        return nil
-    }
-    res["daysPerTurn"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDaysPerTurn(val)
-        }
-        return nil
-    }
-    res["division"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateGameJson_divisionFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDivision(val.(GameJson_divisionable))
-        }
-        return nil
-    }
-    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetId(val)
-        }
-        return nil
-    }
-    res["initialFen"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetInitialFen(val)
-        }
-        return nil
-    }
-    res["lastMoveAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetLastMoveAt(val)
-        }
-        return nil
-    }
-    res["moves"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMoves(val)
-        }
-        return nil
-    }
-    res["opening"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateGameOpeningFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetOpening(val.(GameOpeningable))
-        }
-        return nil
-    }
-    res["perf"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPerf(val)
-        }
-        return nil
-    }
-    res["pgn"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPgn(val)
-        }
-        return nil
-    }
-    res["players"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateGamePlayersFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPlayers(val.(GamePlayersable))
-        }
-        return nil
-    }
-    res["rated"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRated(val)
-        }
-        return nil
-    }
-    res["source"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSource(val)
-        }
-        return nil
-    }
-    res["speed"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseSpeed)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSpeed(val.(*Speed))
-        }
-        return nil
-    }
-    res["status"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseGameStatusName)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStatus(val.(*GameStatusName))
-        }
-        return nil
-    }
-    res["swissTour"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateGameJson_swissTourFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSwissTour(val.(GameJson_swissTourable))
-        }
-        return nil
-    }
-    res["variant"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseVariantKey)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetVariant(val.(*VariantKey))
-        }
-        return nil
-    }
-    res["winner"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseGameColor)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetWinner(val.(*GameColor))
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *GameJson) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["analysis"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateGameMoveAnalysisFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]GameMoveAnalysisable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(GameMoveAnalysisable)
+				}
+			}
+			m.SetAnalysis(res)
+		}
+		return nil
+	}
+	res["arenaTour"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateGameJson_arenaTourFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetArenaTour(val.(GameJson_arenaTourable))
+		}
+		return nil
+	}
+	res["clock"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateGameJson_clockFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetClock(val.(GameJson_clockable))
+		}
+		return nil
+	}
+	res["clocks"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfPrimitiveValues("int32")
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]int32, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = *(v.(*int32))
+				}
+			}
+			m.SetClocks(res)
+		}
+		return nil
+	}
+	res["createdAt"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCreatedAt(val)
+		}
+		return nil
+	}
+	res["daysPerTurn"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetDaysPerTurn(val)
+		}
+		return nil
+	}
+	res["division"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateGameJson_divisionFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetDivision(val.(GameJson_divisionable))
+		}
+		return nil
+	}
+	res["id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetId(val)
+		}
+		return nil
+	}
+	res["initialFen"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetInitialFen(val)
+		}
+		return nil
+	}
+	res["lastMoveAt"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetLastMoveAt(val)
+		}
+		return nil
+	}
+	res["moves"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMoves(val)
+		}
+		return nil
+	}
+	res["opening"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateGameOpeningFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetOpening(val.(GameOpeningable))
+		}
+		return nil
+	}
+	res["perf"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPerf(val)
+		}
+		return nil
+	}
+	res["pgn"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPgn(val)
+		}
+		return nil
+	}
+	res["players"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateGamePlayersFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPlayers(val.(GamePlayersable))
+		}
+		return nil
+	}
+	res["rated"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRated(val)
+		}
+		return nil
+	}
+	res["source"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetSource(val)
+		}
+		return nil
+	}
+	res["speed"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(ParseSpeed)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetSpeed(val.(*Speed))
+		}
+		return nil
+	}
+	res["status"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(ParseGameStatusName)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStatus(val.(*GameStatusName))
+		}
+		return nil
+	}
+	res["swissTour"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateGameJson_swissTourFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetSwissTour(val.(GameJson_swissTourable))
+		}
+		return nil
+	}
+	res["variant"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(ParseVariantKey)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetVariant(val.(*VariantKey))
+		}
+		return nil
+	}
+	res["winner"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(ParseGameColor)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetWinner(val.(*GameColor))
+		}
+		return nil
+	}
+	return res
 }
+
 // GetId gets the id property value. The id property
 // returns a *string when successful
-func (m *GameJson) GetId()(*string) {
-    return m.id
+func (m *GameJson) GetId() *string {
+	return m.id
 }
+
 // GetInitialFen gets the initialFen property value. The initialFen property
 // returns a *string when successful
-func (m *GameJson) GetInitialFen()(*string) {
-    return m.initialFen
+func (m *GameJson) GetInitialFen() *string {
+	return m.initialFen
 }
+
 // GetLastMoveAt gets the lastMoveAt property value. The lastMoveAt property
 // returns a *int64 when successful
-func (m *GameJson) GetLastMoveAt()(*int64) {
-    return m.lastMoveAt
+func (m *GameJson) GetLastMoveAt() *int64 {
+	return m.lastMoveAt
 }
+
 // GetMoves gets the moves property value. The moves property
 // returns a *string when successful
-func (m *GameJson) GetMoves()(*string) {
-    return m.moves
+func (m *GameJson) GetMoves() *string {
+	return m.moves
 }
+
 // GetOpening gets the opening property value. The opening property
 // returns a GameOpeningable when successful
-func (m *GameJson) GetOpening()(GameOpeningable) {
-    return m.opening
+func (m *GameJson) GetOpening() GameOpeningable {
+	return m.opening
 }
+
 // GetPerf gets the perf property value. The perf property
 // returns a *string when successful
-func (m *GameJson) GetPerf()(*string) {
-    return m.perf
+func (m *GameJson) GetPerf() *string {
+	return m.perf
 }
+
 // GetPgn gets the pgn property value. The pgn property
 // returns a *string when successful
-func (m *GameJson) GetPgn()(*string) {
-    return m.pgn
+func (m *GameJson) GetPgn() *string {
+	return m.pgn
 }
+
 // GetPlayers gets the players property value. The players property
 // returns a GamePlayersable when successful
-func (m *GameJson) GetPlayers()(GamePlayersable) {
-    return m.players
+func (m *GameJson) GetPlayers() GamePlayersable {
+	return m.players
 }
+
 // GetRated gets the rated property value. The rated property
 // returns a *bool when successful
-func (m *GameJson) GetRated()(*bool) {
-    return m.rated
+func (m *GameJson) GetRated() *bool {
+	return m.rated
 }
+
 // GetSource gets the source property value. The source property
 // returns a *string when successful
-func (m *GameJson) GetSource()(*string) {
-    return m.source
+func (m *GameJson) GetSource() *string {
+	return m.source
 }
+
 // GetSpeed gets the speed property value. The speed property
 // returns a *Speed when successful
-func (m *GameJson) GetSpeed()(*Speed) {
-    return m.speed
+func (m *GameJson) GetSpeed() *Speed {
+	return m.speed
 }
+
 // GetStatus gets the status property value. The status property
 // returns a *GameStatusName when successful
-func (m *GameJson) GetStatus()(*GameStatusName) {
-    return m.status
+func (m *GameJson) GetStatus() *GameStatusName {
+	return m.status
 }
+
 // GetSwissTour gets the swissTour property value. The swiss tournament the game is from
 // returns a GameJson_swissTourable when successful
-func (m *GameJson) GetSwissTour()(GameJson_swissTourable) {
-    return m.swissTour
+func (m *GameJson) GetSwissTour() GameJson_swissTourable {
+	return m.swissTour
 }
+
 // GetVariant gets the variant property value. The variant property
 // returns a *VariantKey when successful
-func (m *GameJson) GetVariant()(*VariantKey) {
-    return m.variant
+func (m *GameJson) GetVariant() *VariantKey {
+	return m.variant
 }
+
 // GetWinner gets the winner property value. The winner property
 // returns a *GameColor when successful
-func (m *GameJson) GetWinner()(*GameColor) {
-    return m.winner
+func (m *GameJson) GetWinner() *GameColor {
+	return m.winner
 }
+
 // Serialize serializes information the current object
-func (m *GameJson) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetAnalysis() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAnalysis()))
-        for i, v := range m.GetAnalysis() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("analysis", cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("arenaTour", m.GetArenaTour())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("clock", m.GetClock())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetClocks() != nil {
-        err := writer.WriteCollectionOfInt32Values("clocks", m.GetClocks())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt64Value("createdAt", m.GetCreatedAt())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("daysPerTurn", m.GetDaysPerTurn())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("division", m.GetDivision())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("id", m.GetId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("initialFen", m.GetInitialFen())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt64Value("lastMoveAt", m.GetLastMoveAt())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("moves", m.GetMoves())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("opening", m.GetOpening())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("perf", m.GetPerf())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("pgn", m.GetPgn())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("players", m.GetPlayers())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("rated", m.GetRated())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("source", m.GetSource())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetSpeed() != nil {
-        cast := (*m.GetSpeed()).String()
-        err := writer.WriteStringValue("speed", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetStatus() != nil {
-        cast := (*m.GetStatus()).String()
-        err := writer.WriteStringValue("status", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("swissTour", m.GetSwissTour())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetVariant() != nil {
-        cast := (*m.GetVariant()).String()
-        err := writer.WriteStringValue("variant", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetWinner() != nil {
-        cast := (*m.GetWinner()).String()
-        err := writer.WriteStringValue("winner", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *GameJson) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	if m.GetAnalysis() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAnalysis()))
+		for i, v := range m.GetAnalysis() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("analysis", cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("arenaTour", m.GetArenaTour())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("clock", m.GetClock())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetClocks() != nil {
+		err := writer.WriteCollectionOfInt32Values("clocks", m.GetClocks())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt64Value("createdAt", m.GetCreatedAt())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("daysPerTurn", m.GetDaysPerTurn())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("division", m.GetDivision())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("id", m.GetId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("initialFen", m.GetInitialFen())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt64Value("lastMoveAt", m.GetLastMoveAt())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("moves", m.GetMoves())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("opening", m.GetOpening())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("perf", m.GetPerf())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("pgn", m.GetPgn())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("players", m.GetPlayers())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("rated", m.GetRated())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("source", m.GetSource())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetSpeed() != nil {
+		cast := (*m.GetSpeed()).String()
+		err := writer.WriteStringValue("speed", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetStatus() != nil {
+		cast := (*m.GetStatus()).String()
+		err := writer.WriteStringValue("status", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("swissTour", m.GetSwissTour())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetVariant() != nil {
+		cast := (*m.GetVariant()).String()
+		err := writer.WriteStringValue("variant", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetWinner() != nil {
+		cast := (*m.GetWinner()).String()
+		err := writer.WriteStringValue("winner", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *GameJson) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *GameJson) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetAnalysis sets the analysis property value. The analysis property
-func (m *GameJson) SetAnalysis(value []GameMoveAnalysisable)() {
-    m.analysis = value
+func (m *GameJson) SetAnalysis(value []GameMoveAnalysisable) {
+	m.analysis = value
 }
+
 // SetArenaTour sets the arenaTour property value. The arena tournament the game is from
-func (m *GameJson) SetArenaTour(value GameJson_arenaTourable)() {
-    m.arenaTour = value
+func (m *GameJson) SetArenaTour(value GameJson_arenaTourable) {
+	m.arenaTour = value
 }
+
 // SetClock sets the clock property value. The clock property
-func (m *GameJson) SetClock(value GameJson_clockable)() {
-    m.clock = value
+func (m *GameJson) SetClock(value GameJson_clockable) {
+	m.clock = value
 }
+
 // SetClocks sets the clocks property value. The clocks property
-func (m *GameJson) SetClocks(value []int32)() {
-    m.clocks = value
+func (m *GameJson) SetClocks(value []int32) {
+	m.clocks = value
 }
+
 // SetCreatedAt sets the createdAt property value. The createdAt property
-func (m *GameJson) SetCreatedAt(value *int64)() {
-    m.createdAt = value
+func (m *GameJson) SetCreatedAt(value *int64) {
+	m.createdAt = value
 }
+
 // SetDaysPerTurn sets the daysPerTurn property value. The daysPerTurn property
-func (m *GameJson) SetDaysPerTurn(value *int32)() {
-    m.daysPerTurn = value
+func (m *GameJson) SetDaysPerTurn(value *int32) {
+	m.daysPerTurn = value
 }
+
 // SetDivision sets the division property value. The division property
-func (m *GameJson) SetDivision(value GameJson_divisionable)() {
-    m.division = value
+func (m *GameJson) SetDivision(value GameJson_divisionable) {
+	m.division = value
 }
+
 // SetId sets the id property value. The id property
-func (m *GameJson) SetId(value *string)() {
-    m.id = value
+func (m *GameJson) SetId(value *string) {
+	m.id = value
 }
+
 // SetInitialFen sets the initialFen property value. The initialFen property
-func (m *GameJson) SetInitialFen(value *string)() {
-    m.initialFen = value
+func (m *GameJson) SetInitialFen(value *string) {
+	m.initialFen = value
 }
+
 // SetLastMoveAt sets the lastMoveAt property value. The lastMoveAt property
-func (m *GameJson) SetLastMoveAt(value *int64)() {
-    m.lastMoveAt = value
+func (m *GameJson) SetLastMoveAt(value *int64) {
+	m.lastMoveAt = value
 }
+
 // SetMoves sets the moves property value. The moves property
-func (m *GameJson) SetMoves(value *string)() {
-    m.moves = value
+func (m *GameJson) SetMoves(value *string) {
+	m.moves = value
 }
+
 // SetOpening sets the opening property value. The opening property
-func (m *GameJson) SetOpening(value GameOpeningable)() {
-    m.opening = value
+func (m *GameJson) SetOpening(value GameOpeningable) {
+	m.opening = value
 }
+
 // SetPerf sets the perf property value. The perf property
-func (m *GameJson) SetPerf(value *string)() {
-    m.perf = value
+func (m *GameJson) SetPerf(value *string) {
+	m.perf = value
 }
+
 // SetPgn sets the pgn property value. The pgn property
-func (m *GameJson) SetPgn(value *string)() {
-    m.pgn = value
+func (m *GameJson) SetPgn(value *string) {
+	m.pgn = value
 }
+
 // SetPlayers sets the players property value. The players property
-func (m *GameJson) SetPlayers(value GamePlayersable)() {
-    m.players = value
+func (m *GameJson) SetPlayers(value GamePlayersable) {
+	m.players = value
 }
+
 // SetRated sets the rated property value. The rated property
-func (m *GameJson) SetRated(value *bool)() {
-    m.rated = value
+func (m *GameJson) SetRated(value *bool) {
+	m.rated = value
 }
+
 // SetSource sets the source property value. The source property
-func (m *GameJson) SetSource(value *string)() {
-    m.source = value
+func (m *GameJson) SetSource(value *string) {
+	m.source = value
 }
+
 // SetSpeed sets the speed property value. The speed property
-func (m *GameJson) SetSpeed(value *Speed)() {
-    m.speed = value
+func (m *GameJson) SetSpeed(value *Speed) {
+	m.speed = value
 }
+
 // SetStatus sets the status property value. The status property
-func (m *GameJson) SetStatus(value *GameStatusName)() {
-    m.status = value
+func (m *GameJson) SetStatus(value *GameStatusName) {
+	m.status = value
 }
+
 // SetSwissTour sets the swissTour property value. The swiss tournament the game is from
-func (m *GameJson) SetSwissTour(value GameJson_swissTourable)() {
-    m.swissTour = value
+func (m *GameJson) SetSwissTour(value GameJson_swissTourable) {
+	m.swissTour = value
 }
+
 // SetVariant sets the variant property value. The variant property
-func (m *GameJson) SetVariant(value *VariantKey)() {
-    m.variant = value
+func (m *GameJson) SetVariant(value *VariantKey) {
+	m.variant = value
 }
+
 // SetWinner sets the winner property value. The winner property
-func (m *GameJson) SetWinner(value *GameColor)() {
-    m.winner = value
+func (m *GameJson) SetWinner(value *GameColor) {
+	m.winner = value
 }
+
 type GameJsonable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetAnalysis()([]GameMoveAnalysisable)
-    GetArenaTour()(GameJson_arenaTourable)
-    GetClock()(GameJson_clockable)
-    GetClocks()([]int32)
-    GetCreatedAt()(*int64)
-    GetDaysPerTurn()(*int32)
-    GetDivision()(GameJson_divisionable)
-    GetId()(*string)
-    GetInitialFen()(*string)
-    GetLastMoveAt()(*int64)
-    GetMoves()(*string)
-    GetOpening()(GameOpeningable)
-    GetPerf()(*string)
-    GetPgn()(*string)
-    GetPlayers()(GamePlayersable)
-    GetRated()(*bool)
-    GetSource()(*string)
-    GetSpeed()(*Speed)
-    GetStatus()(*GameStatusName)
-    GetSwissTour()(GameJson_swissTourable)
-    GetVariant()(*VariantKey)
-    GetWinner()(*GameColor)
-    SetAnalysis(value []GameMoveAnalysisable)()
-    SetArenaTour(value GameJson_arenaTourable)()
-    SetClock(value GameJson_clockable)()
-    SetClocks(value []int32)()
-    SetCreatedAt(value *int64)()
-    SetDaysPerTurn(value *int32)()
-    SetDivision(value GameJson_divisionable)()
-    SetId(value *string)()
-    SetInitialFen(value *string)()
-    SetLastMoveAt(value *int64)()
-    SetMoves(value *string)()
-    SetOpening(value GameOpeningable)()
-    SetPerf(value *string)()
-    SetPgn(value *string)()
-    SetPlayers(value GamePlayersable)()
-    SetRated(value *bool)()
-    SetSource(value *string)()
-    SetSpeed(value *Speed)()
-    SetStatus(value *GameStatusName)()
-    SetSwissTour(value GameJson_swissTourable)()
-    SetVariant(value *VariantKey)()
-    SetWinner(value *GameColor)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetAnalysis() []GameMoveAnalysisable
+	GetArenaTour() GameJson_arenaTourable
+	GetClock() GameJson_clockable
+	GetClocks() []int32
+	GetCreatedAt() *int64
+	GetDaysPerTurn() *int32
+	GetDivision() GameJson_divisionable
+	GetId() *string
+	GetInitialFen() *string
+	GetLastMoveAt() *int64
+	GetMoves() *string
+	GetOpening() GameOpeningable
+	GetPerf() *string
+	GetPgn() *string
+	GetPlayers() GamePlayersable
+	GetRated() *bool
+	GetSource() *string
+	GetSpeed() *Speed
+	GetStatus() *GameStatusName
+	GetSwissTour() GameJson_swissTourable
+	GetVariant() *VariantKey
+	GetWinner() *GameColor
+	SetAnalysis(value []GameMoveAnalysisable)
+	SetArenaTour(value GameJson_arenaTourable)
+	SetClock(value GameJson_clockable)
+	SetClocks(value []int32)
+	SetCreatedAt(value *int64)
+	SetDaysPerTurn(value *int32)
+	SetDivision(value GameJson_divisionable)
+	SetId(value *string)
+	SetInitialFen(value *string)
+	SetLastMoveAt(value *int64)
+	SetMoves(value *string)
+	SetOpening(value GameOpeningable)
+	SetPerf(value *string)
+	SetPgn(value *string)
+	SetPlayers(value GamePlayersable)
+	SetRated(value *bool)
+	SetSource(value *string)
+	SetSpeed(value *Speed)
+	SetStatus(value *GameStatusName)
+	SetSwissTour(value GameJson_swissTourable)
+	SetVariant(value *VariantKey)
+	SetWinner(value *GameColor)
 }

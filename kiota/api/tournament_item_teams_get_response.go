@@ -4,121 +4,131 @@
 package api
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type TournamentItemTeamsGetResponse struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The id property
-    id *string
-    // The teams property
-    teams []TournamentItemTeamsGetResponse_teamsable
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The id property
+	id *string
+	// The teams property
+	teams []TournamentItemTeamsGetResponse_teamsable
 }
+
 // NewTournamentItemTeamsGetResponse instantiates a new TournamentItemTeamsGetResponse and sets the default values.
-func NewTournamentItemTeamsGetResponse()(*TournamentItemTeamsGetResponse) {
-    m := &TournamentItemTeamsGetResponse{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewTournamentItemTeamsGetResponse() *TournamentItemTeamsGetResponse {
+	m := &TournamentItemTeamsGetResponse{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateTournamentItemTeamsGetResponseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateTournamentItemTeamsGetResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewTournamentItemTeamsGetResponse(), nil
+func CreateTournamentItemTeamsGetResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewTournamentItemTeamsGetResponse(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *TournamentItemTeamsGetResponse) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *TournamentItemTeamsGetResponse) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *TournamentItemTeamsGetResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetId(val)
-        }
-        return nil
-    }
-    res["teams"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateTournamentItemTeamsGetResponse_teamsFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]TournamentItemTeamsGetResponse_teamsable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(TournamentItemTeamsGetResponse_teamsable)
-                }
-            }
-            m.SetTeams(res)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *TournamentItemTeamsGetResponse) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetId(val)
+		}
+		return nil
+	}
+	res["teams"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateTournamentItemTeamsGetResponse_teamsFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]TournamentItemTeamsGetResponse_teamsable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(TournamentItemTeamsGetResponse_teamsable)
+				}
+			}
+			m.SetTeams(res)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetId gets the id property value. The id property
 // returns a *string when successful
-func (m *TournamentItemTeamsGetResponse) GetId()(*string) {
-    return m.id
+func (m *TournamentItemTeamsGetResponse) GetId() *string {
+	return m.id
 }
+
 // GetTeams gets the teams property value. The teams property
 // returns a []TournamentItemTeamsGetResponse_teamsable when successful
-func (m *TournamentItemTeamsGetResponse) GetTeams()([]TournamentItemTeamsGetResponse_teamsable) {
-    return m.teams
+func (m *TournamentItemTeamsGetResponse) GetTeams() []TournamentItemTeamsGetResponse_teamsable {
+	return m.teams
 }
+
 // Serialize serializes information the current object
-func (m *TournamentItemTeamsGetResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("id", m.GetId())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetTeams() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetTeams()))
-        for i, v := range m.GetTeams() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("teams", cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *TournamentItemTeamsGetResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("id", m.GetId())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetTeams() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetTeams()))
+		for i, v := range m.GetTeams() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("teams", cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *TournamentItemTeamsGetResponse) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *TournamentItemTeamsGetResponse) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetId sets the id property value. The id property
-func (m *TournamentItemTeamsGetResponse) SetId(value *string)() {
-    m.id = value
+func (m *TournamentItemTeamsGetResponse) SetId(value *string) {
+	m.id = value
 }
+
 // SetTeams sets the teams property value. The teams property
-func (m *TournamentItemTeamsGetResponse) SetTeams(value []TournamentItemTeamsGetResponse_teamsable)() {
-    m.teams = value
+func (m *TournamentItemTeamsGetResponse) SetTeams(value []TournamentItemTeamsGetResponse_teamsable) {
+	m.teams = value
 }
+
 type TournamentItemTeamsGetResponseable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetId()(*string)
-    GetTeams()([]TournamentItemTeamsGetResponse_teamsable)
-    SetId(value *string)()
-    SetTeams(value []TournamentItemTeamsGetResponse_teamsable)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetId() *string
+	GetTeams() []TournamentItemTeamsGetResponse_teamsable
+	SetId(value *string)
+	SetTeams(value []TournamentItemTeamsGetResponse_teamsable)
 }

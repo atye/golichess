@@ -4,85 +4,92 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
-    if5c71560f21e92cdd02d2d5a3c6e048c11755b51946226b7262fcc5ae071e8cf "github.com/atye/golichess/kiota/api/puzzle/next"
+	"context"
+	if5c71560f21e92cdd02d2d5a3c6e048c11755b51946226b7262fcc5ae071e8cf "github.com/atye/golichess/kiota/api/puzzle/next"
+	i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // PuzzleNextRequestBuilder builds and executes requests for operations under \api\puzzle\next
 type PuzzleNextRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // PuzzleNextRequestBuilderGetQueryParameters get a random Lichess puzzle in JSON format.If authenticated, only returns puzzles that the user has never seen before.**DO NOT** use this endpoint to enumerate puzzles for mass download. Instead, download the [full public puzzle database](https://database.lichess.org/#puzzles).
 type PuzzleNextRequestBuilderGetQueryParameters struct {
-    // The theme or opening to filter puzzles with.Available themes are listed in [the lichess source code](https://github.com/ornicar/lila/blob/master/translation/source/puzzleTheme.xml) and [the lichess training themes hyperlinks](https://lichess.org/training/themes).
-    Angle *string "uriparametername:\"angle\""
-    // The color to play. Better left empty to automatically get 50% white.
-    // Deprecated: This property is deprecated, use ColorAsGetColorQueryParameterType instead
-    Color *string "uriparametername:\"color\""
-    // The color to play. Better left empty to automatically get 50% white.
-    ColorAsGetColorQueryParameterType *if5c71560f21e92cdd02d2d5a3c6e048c11755b51946226b7262fcc5ae071e8cf.GetColorQueryParameterType "uriparametername:\"color\""
-    // The desired puzzle difficulty, relative to the authenticated user puzzle rating, or 1500 if anonymous.
-    // Deprecated: This property is deprecated, use DifficultyAsGetDifficultyQueryParameterType instead
-    Difficulty *string "uriparametername:\"difficulty\""
-    // The desired puzzle difficulty, relative to the authenticated user puzzle rating, or 1500 if anonymous.
-    DifficultyAsGetDifficultyQueryParameterType *if5c71560f21e92cdd02d2d5a3c6e048c11755b51946226b7262fcc5ae071e8cf.GetDifficultyQueryParameterType "uriparametername:\"difficulty\""
+	// The theme or opening to filter puzzles with.Available themes are listed in [the lichess source code](https://github.com/ornicar/lila/blob/master/translation/source/puzzleTheme.xml) and [the lichess training themes hyperlinks](https://lichess.org/training/themes).
+	Angle *string "uriparametername:\"angle\""
+	// The color to play. Better left empty to automatically get 50% white.
+	// Deprecated: This property is deprecated, use ColorAsGetColorQueryParameterType instead
+	Color *string "uriparametername:\"color\""
+	// The color to play. Better left empty to automatically get 50% white.
+	ColorAsGetColorQueryParameterType *if5c71560f21e92cdd02d2d5a3c6e048c11755b51946226b7262fcc5ae071e8cf.GetColorQueryParameterType "uriparametername:\"color\""
+	// The desired puzzle difficulty, relative to the authenticated user puzzle rating, or 1500 if anonymous.
+	// Deprecated: This property is deprecated, use DifficultyAsGetDifficultyQueryParameterType instead
+	Difficulty *string "uriparametername:\"difficulty\""
+	// The desired puzzle difficulty, relative to the authenticated user puzzle rating, or 1500 if anonymous.
+	DifficultyAsGetDifficultyQueryParameterType *if5c71560f21e92cdd02d2d5a3c6e048c11755b51946226b7262fcc5ae071e8cf.GetDifficultyQueryParameterType "uriparametername:\"difficulty\""
 }
+
 // PuzzleNextRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type PuzzleNextRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
-    // Request query parameters
-    QueryParameters *PuzzleNextRequestBuilderGetQueryParameters
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *PuzzleNextRequestBuilderGetQueryParameters
 }
+
 // NewPuzzleNextRequestBuilderInternal instantiates a new PuzzleNextRequestBuilder and sets the default values.
-func NewPuzzleNextRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*PuzzleNextRequestBuilder) {
-    m := &PuzzleNextRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/puzzle/next{?angle*,color*,difficulty*}", pathParameters),
-    }
-    return m
+func NewPuzzleNextRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *PuzzleNextRequestBuilder {
+	m := &PuzzleNextRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/puzzle/next{?angle*,color*,difficulty*}", pathParameters),
+	}
+	return m
 }
+
 // NewPuzzleNextRequestBuilder instantiates a new PuzzleNextRequestBuilder and sets the default values.
-func NewPuzzleNextRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*PuzzleNextRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewPuzzleNextRequestBuilderInternal(urlParams, requestAdapter)
+func NewPuzzleNextRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *PuzzleNextRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewPuzzleNextRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get get a random Lichess puzzle in JSON format.If authenticated, only returns puzzles that the user has never seen before.**DO NOT** use this endpoint to enumerate puzzles for mass download. Instead, download the [full public puzzle database](https://database.lichess.org/#puzzles).
 // returns a PuzzleAndGameable when successful
-func (m *PuzzleNextRequestBuilder) Get(ctx context.Context, requestConfiguration *PuzzleNextRequestBuilderGetRequestConfiguration)(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.PuzzleAndGameable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreatePuzzleAndGameFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.PuzzleAndGameable), nil
+func (m *PuzzleNextRequestBuilder) Get(ctx context.Context, requestConfiguration *PuzzleNextRequestBuilderGetRequestConfiguration) (i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.PuzzleAndGameable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreatePuzzleAndGameFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.PuzzleAndGameable), nil
 }
+
 // ToGetRequestInformation get a random Lichess puzzle in JSON format.If authenticated, only returns puzzles that the user has never seen before.**DO NOT** use this endpoint to enumerate puzzles for mass download. Instead, download the [full public puzzle database](https://database.lichess.org/#puzzles).
 // returns a *RequestInformation when successful
-func (m *PuzzleNextRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *PuzzleNextRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        if requestConfiguration.QueryParameters != nil {
-            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
-        }
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    return requestInfo, nil
+func (m *PuzzleNextRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *PuzzleNextRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *PuzzleNextRequestBuilder when successful
-func (m *PuzzleNextRequestBuilder) WithUrl(rawUrl string)(*PuzzleNextRequestBuilder) {
-    return NewPuzzleNextRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *PuzzleNextRequestBuilder) WithUrl(rawUrl string) *PuzzleNextRequestBuilder {
+	return NewPuzzleNextRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

@@ -4,315 +4,339 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type BroadcastGameEntry struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The color property
-    color *GameColor
-    // The customPoints property
-    customPoints *float64
-    // FIDE rating category
-    fideTC *FideTimeControl
-    // The game ID. Analogous to chapterId.
-    id *string
-    // The ongoing property
-    ongoing *bool
-    // The opponent property
-    opponent BroadcastPlayerWithFedable
-    // The points property
-    points *BroadcastPointStr
-    // The change in rating for the player as a result of this game
-    ratingDiff *int32
-    // ID of the round
-    round *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The color property
+	color *GameColor
+	// The customPoints property
+	customPoints *float64
+	// FIDE rating category
+	fideTC *FideTimeControl
+	// The game ID. Analogous to chapterId.
+	id *string
+	// The ongoing property
+	ongoing *bool
+	// The opponent property
+	opponent BroadcastPlayerWithFedable
+	// The points property
+	points *BroadcastPointStr
+	// The change in rating for the player as a result of this game
+	ratingDiff *int32
+	// ID of the round
+	round *string
 }
+
 // NewBroadcastGameEntry instantiates a new BroadcastGameEntry and sets the default values.
-func NewBroadcastGameEntry()(*BroadcastGameEntry) {
-    m := &BroadcastGameEntry{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewBroadcastGameEntry() *BroadcastGameEntry {
+	m := &BroadcastGameEntry{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateBroadcastGameEntryFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateBroadcastGameEntryFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewBroadcastGameEntry(), nil
+func CreateBroadcastGameEntryFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewBroadcastGameEntry(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *BroadcastGameEntry) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *BroadcastGameEntry) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetColor gets the color property value. The color property
 // returns a *GameColor when successful
-func (m *BroadcastGameEntry) GetColor()(*GameColor) {
-    return m.color
+func (m *BroadcastGameEntry) GetColor() *GameColor {
+	return m.color
 }
+
 // GetCustomPoints gets the customPoints property value. The customPoints property
 // returns a *float64 when successful
-func (m *BroadcastGameEntry) GetCustomPoints()(*float64) {
-    return m.customPoints
+func (m *BroadcastGameEntry) GetCustomPoints() *float64 {
+	return m.customPoints
 }
+
 // GetFideTC gets the fideTC property value. FIDE rating category
 // returns a *FideTimeControl when successful
-func (m *BroadcastGameEntry) GetFideTC()(*FideTimeControl) {
-    return m.fideTC
+func (m *BroadcastGameEntry) GetFideTC() *FideTimeControl {
+	return m.fideTC
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *BroadcastGameEntry) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["color"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseGameColor)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetColor(val.(*GameColor))
-        }
-        return nil
-    }
-    res["customPoints"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCustomPoints(val)
-        }
-        return nil
-    }
-    res["fideTC"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseFideTimeControl)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFideTC(val.(*FideTimeControl))
-        }
-        return nil
-    }
-    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetId(val)
-        }
-        return nil
-    }
-    res["ongoing"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetOngoing(val)
-        }
-        return nil
-    }
-    res["opponent"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateBroadcastPlayerWithFedFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetOpponent(val.(BroadcastPlayerWithFedable))
-        }
-        return nil
-    }
-    res["points"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseBroadcastPointStr)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPoints(val.(*BroadcastPointStr))
-        }
-        return nil
-    }
-    res["ratingDiff"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRatingDiff(val)
-        }
-        return nil
-    }
-    res["round"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRound(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *BroadcastGameEntry) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["color"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(ParseGameColor)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetColor(val.(*GameColor))
+		}
+		return nil
+	}
+	res["customPoints"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCustomPoints(val)
+		}
+		return nil
+	}
+	res["fideTC"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(ParseFideTimeControl)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFideTC(val.(*FideTimeControl))
+		}
+		return nil
+	}
+	res["id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetId(val)
+		}
+		return nil
+	}
+	res["ongoing"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetOngoing(val)
+		}
+		return nil
+	}
+	res["opponent"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateBroadcastPlayerWithFedFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetOpponent(val.(BroadcastPlayerWithFedable))
+		}
+		return nil
+	}
+	res["points"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(ParseBroadcastPointStr)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPoints(val.(*BroadcastPointStr))
+		}
+		return nil
+	}
+	res["ratingDiff"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRatingDiff(val)
+		}
+		return nil
+	}
+	res["round"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRound(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetId gets the id property value. The game ID. Analogous to chapterId.
 // returns a *string when successful
-func (m *BroadcastGameEntry) GetId()(*string) {
-    return m.id
+func (m *BroadcastGameEntry) GetId() *string {
+	return m.id
 }
+
 // GetOngoing gets the ongoing property value. The ongoing property
 // returns a *bool when successful
-func (m *BroadcastGameEntry) GetOngoing()(*bool) {
-    return m.ongoing
+func (m *BroadcastGameEntry) GetOngoing() *bool {
+	return m.ongoing
 }
+
 // GetOpponent gets the opponent property value. The opponent property
 // returns a BroadcastPlayerWithFedable when successful
-func (m *BroadcastGameEntry) GetOpponent()(BroadcastPlayerWithFedable) {
-    return m.opponent
+func (m *BroadcastGameEntry) GetOpponent() BroadcastPlayerWithFedable {
+	return m.opponent
 }
+
 // GetPoints gets the points property value. The points property
 // returns a *BroadcastPointStr when successful
-func (m *BroadcastGameEntry) GetPoints()(*BroadcastPointStr) {
-    return m.points
+func (m *BroadcastGameEntry) GetPoints() *BroadcastPointStr {
+	return m.points
 }
+
 // GetRatingDiff gets the ratingDiff property value. The change in rating for the player as a result of this game
 // returns a *int32 when successful
-func (m *BroadcastGameEntry) GetRatingDiff()(*int32) {
-    return m.ratingDiff
+func (m *BroadcastGameEntry) GetRatingDiff() *int32 {
+	return m.ratingDiff
 }
+
 // GetRound gets the round property value. ID of the round
 // returns a *string when successful
-func (m *BroadcastGameEntry) GetRound()(*string) {
-    return m.round
+func (m *BroadcastGameEntry) GetRound() *string {
+	return m.round
 }
+
 // Serialize serializes information the current object
-func (m *BroadcastGameEntry) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetColor() != nil {
-        cast := (*m.GetColor()).String()
-        err := writer.WriteStringValue("color", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteFloat64Value("customPoints", m.GetCustomPoints())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetFideTC() != nil {
-        cast := (*m.GetFideTC()).String()
-        err := writer.WriteStringValue("fideTC", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("id", m.GetId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("ongoing", m.GetOngoing())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("opponent", m.GetOpponent())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetPoints() != nil {
-        cast := (*m.GetPoints()).String()
-        err := writer.WriteStringValue("points", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("ratingDiff", m.GetRatingDiff())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("round", m.GetRound())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *BroadcastGameEntry) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	if m.GetColor() != nil {
+		cast := (*m.GetColor()).String()
+		err := writer.WriteStringValue("color", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteFloat64Value("customPoints", m.GetCustomPoints())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetFideTC() != nil {
+		cast := (*m.GetFideTC()).String()
+		err := writer.WriteStringValue("fideTC", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("id", m.GetId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("ongoing", m.GetOngoing())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("opponent", m.GetOpponent())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetPoints() != nil {
+		cast := (*m.GetPoints()).String()
+		err := writer.WriteStringValue("points", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("ratingDiff", m.GetRatingDiff())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("round", m.GetRound())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *BroadcastGameEntry) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *BroadcastGameEntry) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetColor sets the color property value. The color property
-func (m *BroadcastGameEntry) SetColor(value *GameColor)() {
-    m.color = value
+func (m *BroadcastGameEntry) SetColor(value *GameColor) {
+	m.color = value
 }
+
 // SetCustomPoints sets the customPoints property value. The customPoints property
-func (m *BroadcastGameEntry) SetCustomPoints(value *float64)() {
-    m.customPoints = value
+func (m *BroadcastGameEntry) SetCustomPoints(value *float64) {
+	m.customPoints = value
 }
+
 // SetFideTC sets the fideTC property value. FIDE rating category
-func (m *BroadcastGameEntry) SetFideTC(value *FideTimeControl)() {
-    m.fideTC = value
+func (m *BroadcastGameEntry) SetFideTC(value *FideTimeControl) {
+	m.fideTC = value
 }
+
 // SetId sets the id property value. The game ID. Analogous to chapterId.
-func (m *BroadcastGameEntry) SetId(value *string)() {
-    m.id = value
+func (m *BroadcastGameEntry) SetId(value *string) {
+	m.id = value
 }
+
 // SetOngoing sets the ongoing property value. The ongoing property
-func (m *BroadcastGameEntry) SetOngoing(value *bool)() {
-    m.ongoing = value
+func (m *BroadcastGameEntry) SetOngoing(value *bool) {
+	m.ongoing = value
 }
+
 // SetOpponent sets the opponent property value. The opponent property
-func (m *BroadcastGameEntry) SetOpponent(value BroadcastPlayerWithFedable)() {
-    m.opponent = value
+func (m *BroadcastGameEntry) SetOpponent(value BroadcastPlayerWithFedable) {
+	m.opponent = value
 }
+
 // SetPoints sets the points property value. The points property
-func (m *BroadcastGameEntry) SetPoints(value *BroadcastPointStr)() {
-    m.points = value
+func (m *BroadcastGameEntry) SetPoints(value *BroadcastPointStr) {
+	m.points = value
 }
+
 // SetRatingDiff sets the ratingDiff property value. The change in rating for the player as a result of this game
-func (m *BroadcastGameEntry) SetRatingDiff(value *int32)() {
-    m.ratingDiff = value
+func (m *BroadcastGameEntry) SetRatingDiff(value *int32) {
+	m.ratingDiff = value
 }
+
 // SetRound sets the round property value. ID of the round
-func (m *BroadcastGameEntry) SetRound(value *string)() {
-    m.round = value
+func (m *BroadcastGameEntry) SetRound(value *string) {
+	m.round = value
 }
+
 type BroadcastGameEntryable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetColor()(*GameColor)
-    GetCustomPoints()(*float64)
-    GetFideTC()(*FideTimeControl)
-    GetId()(*string)
-    GetOngoing()(*bool)
-    GetOpponent()(BroadcastPlayerWithFedable)
-    GetPoints()(*BroadcastPointStr)
-    GetRatingDiff()(*int32)
-    GetRound()(*string)
-    SetColor(value *GameColor)()
-    SetCustomPoints(value *float64)()
-    SetFideTC(value *FideTimeControl)()
-    SetId(value *string)()
-    SetOngoing(value *bool)()
-    SetOpponent(value BroadcastPlayerWithFedable)()
-    SetPoints(value *BroadcastPointStr)()
-    SetRatingDiff(value *int32)()
-    SetRound(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetColor() *GameColor
+	GetCustomPoints() *float64
+	GetFideTC() *FideTimeControl
+	GetId() *string
+	GetOngoing() *bool
+	GetOpponent() BroadcastPlayerWithFedable
+	GetPoints() *BroadcastPointStr
+	GetRatingDiff() *int32
+	GetRound() *string
+	SetColor(value *GameColor)
+	SetCustomPoints(value *float64)
+	SetFideTC(value *FideTimeControl)
+	SetId(value *string)
+	SetOngoing(value *bool)
+	SetOpponent(value BroadcastPlayerWithFedable)
+	SetPoints(value *BroadcastPointStr)
+	SetRatingDiff(value *int32)
+	SetRound(value *string)
 }

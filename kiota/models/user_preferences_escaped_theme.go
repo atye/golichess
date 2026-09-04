@@ -2,101 +2,105 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 type UserPreferences_theme int
 
 const (
-    BLUE_USERPREFERENCES_THEME UserPreferences_theme = iota
-    BLUE2_USERPREFERENCES_THEME
-    BLUE3_USERPREFERENCES_THEME
-    BLUEMARBLE_USERPREFERENCES_THEME
-    CANVAS_USERPREFERENCES_THEME
-    WOOD_USERPREFERENCES_THEME
-    WOOD2_USERPREFERENCES_THEME
-    WOOD3_USERPREFERENCES_THEME
-    WOOD4_USERPREFERENCES_THEME
-    MAPLE_USERPREFERENCES_THEME
-    MAPLE2_USERPREFERENCES_THEME
-    BROWN_USERPREFERENCES_THEME
-    LEATHER_USERPREFERENCES_THEME
-    GREEN_USERPREFERENCES_THEME
-    MARBLE_USERPREFERENCES_THEME
-    GREENPLASTIC_USERPREFERENCES_THEME
-    GREY_USERPREFERENCES_THEME
-    METAL_USERPREFERENCES_THEME
-    OLIVE_USERPREFERENCES_THEME
-    NEWSPAPER_USERPREFERENCES_THEME
-    PURPLE_USERPREFERENCES_THEME
-    PURPLEDIAG_USERPREFERENCES_THEME
-    PINK_USERPREFERENCES_THEME
-    IC_USERPREFERENCES_THEME
+	BLUE_USERPREFERENCES_THEME UserPreferences_theme = iota
+	BLUE2_USERPREFERENCES_THEME
+	BLUE3_USERPREFERENCES_THEME
+	BLUEMARBLE_USERPREFERENCES_THEME
+	CANVAS_USERPREFERENCES_THEME
+	WOOD_USERPREFERENCES_THEME
+	WOOD2_USERPREFERENCES_THEME
+	WOOD3_USERPREFERENCES_THEME
+	WOOD4_USERPREFERENCES_THEME
+	MAPLE_USERPREFERENCES_THEME
+	MAPLE2_USERPREFERENCES_THEME
+	BROWN_USERPREFERENCES_THEME
+	LEATHER_USERPREFERENCES_THEME
+	GREEN_USERPREFERENCES_THEME
+	MARBLE_USERPREFERENCES_THEME
+	GREENPLASTIC_USERPREFERENCES_THEME
+	GREY_USERPREFERENCES_THEME
+	METAL_USERPREFERENCES_THEME
+	OLIVE_USERPREFERENCES_THEME
+	NEWSPAPER_USERPREFERENCES_THEME
+	PURPLE_USERPREFERENCES_THEME
+	PURPLEDIAG_USERPREFERENCES_THEME
+	PINK_USERPREFERENCES_THEME
+	IC_USERPREFERENCES_THEME
 )
 
 func (i UserPreferences_theme) String() string {
-    return []string{"blue", "blue2", "blue3", "blue-marble", "canvas", "wood", "wood2", "wood3", "wood4", "maple", "maple2", "brown", "leather", "green", "marble", "green-plastic", "grey", "metal", "olive", "newspaper", "purple", "purple-diag", "pink", "ic"}[i]
+	return []string{"blue", "blue2", "blue3", "blue-marble", "canvas", "wood", "wood2", "wood3", "wood4", "maple", "maple2", "brown", "leather", "green", "marble", "green-plastic", "grey", "metal", "olive", "newspaper", "purple", "purple-diag", "pink", "ic"}[i]
 }
+
 func ParseUserPreferences_theme(v string) (any, error) {
-    result := BLUE_USERPREFERENCES_THEME
-    switch v {
-        case "blue":
-            result = BLUE_USERPREFERENCES_THEME
-        case "blue2":
-            result = BLUE2_USERPREFERENCES_THEME
-        case "blue3":
-            result = BLUE3_USERPREFERENCES_THEME
-        case "blue-marble":
-            result = BLUEMARBLE_USERPREFERENCES_THEME
-        case "canvas":
-            result = CANVAS_USERPREFERENCES_THEME
-        case "wood":
-            result = WOOD_USERPREFERENCES_THEME
-        case "wood2":
-            result = WOOD2_USERPREFERENCES_THEME
-        case "wood3":
-            result = WOOD3_USERPREFERENCES_THEME
-        case "wood4":
-            result = WOOD4_USERPREFERENCES_THEME
-        case "maple":
-            result = MAPLE_USERPREFERENCES_THEME
-        case "maple2":
-            result = MAPLE2_USERPREFERENCES_THEME
-        case "brown":
-            result = BROWN_USERPREFERENCES_THEME
-        case "leather":
-            result = LEATHER_USERPREFERENCES_THEME
-        case "green":
-            result = GREEN_USERPREFERENCES_THEME
-        case "marble":
-            result = MARBLE_USERPREFERENCES_THEME
-        case "green-plastic":
-            result = GREENPLASTIC_USERPREFERENCES_THEME
-        case "grey":
-            result = GREY_USERPREFERENCES_THEME
-        case "metal":
-            result = METAL_USERPREFERENCES_THEME
-        case "olive":
-            result = OLIVE_USERPREFERENCES_THEME
-        case "newspaper":
-            result = NEWSPAPER_USERPREFERENCES_THEME
-        case "purple":
-            result = PURPLE_USERPREFERENCES_THEME
-        case "purple-diag":
-            result = PURPLEDIAG_USERPREFERENCES_THEME
-        case "pink":
-            result = PINK_USERPREFERENCES_THEME
-        case "ic":
-            result = IC_USERPREFERENCES_THEME
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := BLUE_USERPREFERENCES_THEME
+	switch v {
+	case "blue":
+		result = BLUE_USERPREFERENCES_THEME
+	case "blue2":
+		result = BLUE2_USERPREFERENCES_THEME
+	case "blue3":
+		result = BLUE3_USERPREFERENCES_THEME
+	case "blue-marble":
+		result = BLUEMARBLE_USERPREFERENCES_THEME
+	case "canvas":
+		result = CANVAS_USERPREFERENCES_THEME
+	case "wood":
+		result = WOOD_USERPREFERENCES_THEME
+	case "wood2":
+		result = WOOD2_USERPREFERENCES_THEME
+	case "wood3":
+		result = WOOD3_USERPREFERENCES_THEME
+	case "wood4":
+		result = WOOD4_USERPREFERENCES_THEME
+	case "maple":
+		result = MAPLE_USERPREFERENCES_THEME
+	case "maple2":
+		result = MAPLE2_USERPREFERENCES_THEME
+	case "brown":
+		result = BROWN_USERPREFERENCES_THEME
+	case "leather":
+		result = LEATHER_USERPREFERENCES_THEME
+	case "green":
+		result = GREEN_USERPREFERENCES_THEME
+	case "marble":
+		result = MARBLE_USERPREFERENCES_THEME
+	case "green-plastic":
+		result = GREENPLASTIC_USERPREFERENCES_THEME
+	case "grey":
+		result = GREY_USERPREFERENCES_THEME
+	case "metal":
+		result = METAL_USERPREFERENCES_THEME
+	case "olive":
+		result = OLIVE_USERPREFERENCES_THEME
+	case "newspaper":
+		result = NEWSPAPER_USERPREFERENCES_THEME
+	case "purple":
+		result = PURPLE_USERPREFERENCES_THEME
+	case "purple-diag":
+		result = PURPLEDIAG_USERPREFERENCES_THEME
+	case "pink":
+		result = PINK_USERPREFERENCES_THEME
+	case "ic":
+		result = IC_USERPREFERENCES_THEME
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeUserPreferences_theme(values []UserPreferences_theme) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i UserPreferences_theme) isMultiValue() bool {
-    return false
+	return false
 }

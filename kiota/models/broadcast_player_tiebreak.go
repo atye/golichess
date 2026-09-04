@@ -4,139 +4,151 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type BroadcastPlayerTiebreak struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The description property
-    description *string
-    // Extended tiebreak code
-    extendedCode *BroadcastTiebreakExtendedCode
-    // The points property
-    points *float64
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The description property
+	description *string
+	// Extended tiebreak code
+	extendedCode *BroadcastTiebreakExtendedCode
+	// The points property
+	points *float64
 }
+
 // NewBroadcastPlayerTiebreak instantiates a new BroadcastPlayerTiebreak and sets the default values.
-func NewBroadcastPlayerTiebreak()(*BroadcastPlayerTiebreak) {
-    m := &BroadcastPlayerTiebreak{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewBroadcastPlayerTiebreak() *BroadcastPlayerTiebreak {
+	m := &BroadcastPlayerTiebreak{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateBroadcastPlayerTiebreakFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateBroadcastPlayerTiebreakFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewBroadcastPlayerTiebreak(), nil
+func CreateBroadcastPlayerTiebreakFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewBroadcastPlayerTiebreak(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *BroadcastPlayerTiebreak) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *BroadcastPlayerTiebreak) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetDescription gets the description property value. The description property
 // returns a *string when successful
-func (m *BroadcastPlayerTiebreak) GetDescription()(*string) {
-    return m.description
+func (m *BroadcastPlayerTiebreak) GetDescription() *string {
+	return m.description
 }
+
 // GetExtendedCode gets the extendedCode property value. Extended tiebreak code
 // returns a *BroadcastTiebreakExtendedCode when successful
-func (m *BroadcastPlayerTiebreak) GetExtendedCode()(*BroadcastTiebreakExtendedCode) {
-    return m.extendedCode
+func (m *BroadcastPlayerTiebreak) GetExtendedCode() *BroadcastTiebreakExtendedCode {
+	return m.extendedCode
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *BroadcastPlayerTiebreak) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["description"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDescription(val)
-        }
-        return nil
-    }
-    res["extendedCode"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseBroadcastTiebreakExtendedCode)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetExtendedCode(val.(*BroadcastTiebreakExtendedCode))
-        }
-        return nil
-    }
-    res["points"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPoints(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *BroadcastPlayerTiebreak) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["description"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetDescription(val)
+		}
+		return nil
+	}
+	res["extendedCode"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(ParseBroadcastTiebreakExtendedCode)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetExtendedCode(val.(*BroadcastTiebreakExtendedCode))
+		}
+		return nil
+	}
+	res["points"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPoints(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetPoints gets the points property value. The points property
 // returns a *float64 when successful
-func (m *BroadcastPlayerTiebreak) GetPoints()(*float64) {
-    return m.points
+func (m *BroadcastPlayerTiebreak) GetPoints() *float64 {
+	return m.points
 }
+
 // Serialize serializes information the current object
-func (m *BroadcastPlayerTiebreak) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("description", m.GetDescription())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetExtendedCode() != nil {
-        cast := (*m.GetExtendedCode()).String()
-        err := writer.WriteStringValue("extendedCode", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteFloat64Value("points", m.GetPoints())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *BroadcastPlayerTiebreak) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("description", m.GetDescription())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetExtendedCode() != nil {
+		cast := (*m.GetExtendedCode()).String()
+		err := writer.WriteStringValue("extendedCode", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteFloat64Value("points", m.GetPoints())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *BroadcastPlayerTiebreak) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *BroadcastPlayerTiebreak) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetDescription sets the description property value. The description property
-func (m *BroadcastPlayerTiebreak) SetDescription(value *string)() {
-    m.description = value
+func (m *BroadcastPlayerTiebreak) SetDescription(value *string) {
+	m.description = value
 }
+
 // SetExtendedCode sets the extendedCode property value. Extended tiebreak code
-func (m *BroadcastPlayerTiebreak) SetExtendedCode(value *BroadcastTiebreakExtendedCode)() {
-    m.extendedCode = value
+func (m *BroadcastPlayerTiebreak) SetExtendedCode(value *BroadcastTiebreakExtendedCode) {
+	m.extendedCode = value
 }
+
 // SetPoints sets the points property value. The points property
-func (m *BroadcastPlayerTiebreak) SetPoints(value *float64)() {
-    m.points = value
+func (m *BroadcastPlayerTiebreak) SetPoints(value *float64) {
+	m.points = value
 }
+
 type BroadcastPlayerTiebreakable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetDescription()(*string)
-    GetExtendedCode()(*BroadcastTiebreakExtendedCode)
-    GetPoints()(*float64)
-    SetDescription(value *string)()
-    SetExtendedCode(value *BroadcastTiebreakExtendedCode)()
-    SetPoints(value *float64)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetDescription() *string
+	GetExtendedCode() *BroadcastTiebreakExtendedCode
+	GetPoints() *float64
+	SetDescription(value *string)
+	SetExtendedCode(value *BroadcastTiebreakExtendedCode)
+	SetPoints(value *float64)
 }

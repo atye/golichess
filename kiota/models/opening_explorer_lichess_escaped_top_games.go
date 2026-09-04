@@ -4,68 +4,75 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type OpeningExplorerLichess_topGames struct {
-    OpeningExplorerLichessGame
-    // The uci property
-    uci *string
+	OpeningExplorerLichessGame
+	// The uci property
+	uci *string
 }
+
 // NewOpeningExplorerLichess_topGames instantiates a new OpeningExplorerLichess_topGames and sets the default values.
-func NewOpeningExplorerLichess_topGames()(*OpeningExplorerLichess_topGames) {
-    m := &OpeningExplorerLichess_topGames{
-        OpeningExplorerLichessGame: *NewOpeningExplorerLichessGame(),
-    }
-    return m
+func NewOpeningExplorerLichess_topGames() *OpeningExplorerLichess_topGames {
+	m := &OpeningExplorerLichess_topGames{
+		OpeningExplorerLichessGame: *NewOpeningExplorerLichessGame(),
+	}
+	return m
 }
+
 // CreateOpeningExplorerLichess_topGamesFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateOpeningExplorerLichess_topGamesFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewOpeningExplorerLichess_topGames(), nil
+func CreateOpeningExplorerLichess_topGamesFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewOpeningExplorerLichess_topGames(), nil
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *OpeningExplorerLichess_topGames) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := m.OpeningExplorerLichessGame.GetFieldDeserializers()
-    res["uci"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetUci(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *OpeningExplorerLichess_topGames) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := m.OpeningExplorerLichessGame.GetFieldDeserializers()
+	res["uci"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetUci(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetUci gets the uci property value. The uci property
 // returns a *string when successful
-func (m *OpeningExplorerLichess_topGames) GetUci()(*string) {
-    return m.uci
+func (m *OpeningExplorerLichess_topGames) GetUci() *string {
+	return m.uci
 }
+
 // Serialize serializes information the current object
-func (m *OpeningExplorerLichess_topGames) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    err := m.OpeningExplorerLichessGame.Serialize(writer)
-    if err != nil {
-        return err
-    }
-    {
-        err = writer.WriteStringValue("uci", m.GetUci())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *OpeningExplorerLichess_topGames) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	err := m.OpeningExplorerLichessGame.Serialize(writer)
+	if err != nil {
+		return err
+	}
+	{
+		err = writer.WriteStringValue("uci", m.GetUci())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetUci sets the uci property value. The uci property
-func (m *OpeningExplorerLichess_topGames) SetUci(value *string)() {
-    m.uci = value
+func (m *OpeningExplorerLichess_topGames) SetUci(value *string) {
+	m.uci = value
 }
+
 type OpeningExplorerLichess_topGamesable interface {
-    OpeningExplorerLichessGameable
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetUci()(*string)
-    SetUci(value *string)()
+	OpeningExplorerLichessGameable
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetUci() *string
+	SetUci(value *string)
 }

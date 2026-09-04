@@ -4,266 +4,286 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type BroadcastRound struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The games property
-    games []BroadcastRoundGameable
-    // The group property
-    group BroadcastGroupable
-    // Indicates if the user making the request is subscribed to the broadcast
-    isSubscribed *bool
-    // Photos of players, when available. The object keys are FIDE IDs
-    photos BroadcastPhotosable
-    // The round property
-    round BroadcastRoundInfoable
-    // The study property
-    study BroadcastRoundStudyInfoable
-    // The tour property
-    tour BroadcastTourable
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The games property
+	games []BroadcastRoundGameable
+	// The group property
+	group BroadcastGroupable
+	// Indicates if the user making the request is subscribed to the broadcast
+	isSubscribed *bool
+	// Photos of players, when available. The object keys are FIDE IDs
+	photos BroadcastPhotosable
+	// The round property
+	round BroadcastRoundInfoable
+	// The study property
+	study BroadcastRoundStudyInfoable
+	// The tour property
+	tour BroadcastTourable
 }
+
 // NewBroadcastRound instantiates a new BroadcastRound and sets the default values.
-func NewBroadcastRound()(*BroadcastRound) {
-    m := &BroadcastRound{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewBroadcastRound() *BroadcastRound {
+	m := &BroadcastRound{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateBroadcastRoundFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateBroadcastRoundFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewBroadcastRound(), nil
+func CreateBroadcastRoundFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewBroadcastRound(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *BroadcastRound) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *BroadcastRound) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *BroadcastRound) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["games"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateBroadcastRoundGameFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]BroadcastRoundGameable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(BroadcastRoundGameable)
-                }
-            }
-            m.SetGames(res)
-        }
-        return nil
-    }
-    res["group"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateBroadcastGroupFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetGroup(val.(BroadcastGroupable))
-        }
-        return nil
-    }
-    res["isSubscribed"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetIsSubscribed(val)
-        }
-        return nil
-    }
-    res["photos"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateBroadcastPhotosFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPhotos(val.(BroadcastPhotosable))
-        }
-        return nil
-    }
-    res["round"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateBroadcastRoundInfoFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRound(val.(BroadcastRoundInfoable))
-        }
-        return nil
-    }
-    res["study"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateBroadcastRoundStudyInfoFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStudy(val.(BroadcastRoundStudyInfoable))
-        }
-        return nil
-    }
-    res["tour"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateBroadcastTourFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTour(val.(BroadcastTourable))
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *BroadcastRound) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["games"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateBroadcastRoundGameFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]BroadcastRoundGameable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(BroadcastRoundGameable)
+				}
+			}
+			m.SetGames(res)
+		}
+		return nil
+	}
+	res["group"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateBroadcastGroupFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetGroup(val.(BroadcastGroupable))
+		}
+		return nil
+	}
+	res["isSubscribed"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetIsSubscribed(val)
+		}
+		return nil
+	}
+	res["photos"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateBroadcastPhotosFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPhotos(val.(BroadcastPhotosable))
+		}
+		return nil
+	}
+	res["round"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateBroadcastRoundInfoFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRound(val.(BroadcastRoundInfoable))
+		}
+		return nil
+	}
+	res["study"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateBroadcastRoundStudyInfoFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStudy(val.(BroadcastRoundStudyInfoable))
+		}
+		return nil
+	}
+	res["tour"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateBroadcastTourFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTour(val.(BroadcastTourable))
+		}
+		return nil
+	}
+	return res
 }
+
 // GetGames gets the games property value. The games property
 // returns a []BroadcastRoundGameable when successful
-func (m *BroadcastRound) GetGames()([]BroadcastRoundGameable) {
-    return m.games
+func (m *BroadcastRound) GetGames() []BroadcastRoundGameable {
+	return m.games
 }
+
 // GetGroup gets the group property value. The group property
 // returns a BroadcastGroupable when successful
-func (m *BroadcastRound) GetGroup()(BroadcastGroupable) {
-    return m.group
+func (m *BroadcastRound) GetGroup() BroadcastGroupable {
+	return m.group
 }
+
 // GetIsSubscribed gets the isSubscribed property value. Indicates if the user making the request is subscribed to the broadcast
 // returns a *bool when successful
-func (m *BroadcastRound) GetIsSubscribed()(*bool) {
-    return m.isSubscribed
+func (m *BroadcastRound) GetIsSubscribed() *bool {
+	return m.isSubscribed
 }
+
 // GetPhotos gets the photos property value. Photos of players, when available. The object keys are FIDE IDs
 // returns a BroadcastPhotosable when successful
-func (m *BroadcastRound) GetPhotos()(BroadcastPhotosable) {
-    return m.photos
+func (m *BroadcastRound) GetPhotos() BroadcastPhotosable {
+	return m.photos
 }
+
 // GetRound gets the round property value. The round property
 // returns a BroadcastRoundInfoable when successful
-func (m *BroadcastRound) GetRound()(BroadcastRoundInfoable) {
-    return m.round
+func (m *BroadcastRound) GetRound() BroadcastRoundInfoable {
+	return m.round
 }
+
 // GetStudy gets the study property value. The study property
 // returns a BroadcastRoundStudyInfoable when successful
-func (m *BroadcastRound) GetStudy()(BroadcastRoundStudyInfoable) {
-    return m.study
+func (m *BroadcastRound) GetStudy() BroadcastRoundStudyInfoable {
+	return m.study
 }
+
 // GetTour gets the tour property value. The tour property
 // returns a BroadcastTourable when successful
-func (m *BroadcastRound) GetTour()(BroadcastTourable) {
-    return m.tour
+func (m *BroadcastRound) GetTour() BroadcastTourable {
+	return m.tour
 }
+
 // Serialize serializes information the current object
-func (m *BroadcastRound) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetGames() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetGames()))
-        for i, v := range m.GetGames() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("games", cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("group", m.GetGroup())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("isSubscribed", m.GetIsSubscribed())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("photos", m.GetPhotos())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("round", m.GetRound())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("study", m.GetStudy())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("tour", m.GetTour())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *BroadcastRound) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	if m.GetGames() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetGames()))
+		for i, v := range m.GetGames() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("games", cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("group", m.GetGroup())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("isSubscribed", m.GetIsSubscribed())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("photos", m.GetPhotos())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("round", m.GetRound())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("study", m.GetStudy())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("tour", m.GetTour())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *BroadcastRound) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *BroadcastRound) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetGames sets the games property value. The games property
-func (m *BroadcastRound) SetGames(value []BroadcastRoundGameable)() {
-    m.games = value
+func (m *BroadcastRound) SetGames(value []BroadcastRoundGameable) {
+	m.games = value
 }
+
 // SetGroup sets the group property value. The group property
-func (m *BroadcastRound) SetGroup(value BroadcastGroupable)() {
-    m.group = value
+func (m *BroadcastRound) SetGroup(value BroadcastGroupable) {
+	m.group = value
 }
+
 // SetIsSubscribed sets the isSubscribed property value. Indicates if the user making the request is subscribed to the broadcast
-func (m *BroadcastRound) SetIsSubscribed(value *bool)() {
-    m.isSubscribed = value
+func (m *BroadcastRound) SetIsSubscribed(value *bool) {
+	m.isSubscribed = value
 }
+
 // SetPhotos sets the photos property value. Photos of players, when available. The object keys are FIDE IDs
-func (m *BroadcastRound) SetPhotos(value BroadcastPhotosable)() {
-    m.photos = value
+func (m *BroadcastRound) SetPhotos(value BroadcastPhotosable) {
+	m.photos = value
 }
+
 // SetRound sets the round property value. The round property
-func (m *BroadcastRound) SetRound(value BroadcastRoundInfoable)() {
-    m.round = value
+func (m *BroadcastRound) SetRound(value BroadcastRoundInfoable) {
+	m.round = value
 }
+
 // SetStudy sets the study property value. The study property
-func (m *BroadcastRound) SetStudy(value BroadcastRoundStudyInfoable)() {
-    m.study = value
+func (m *BroadcastRound) SetStudy(value BroadcastRoundStudyInfoable) {
+	m.study = value
 }
+
 // SetTour sets the tour property value. The tour property
-func (m *BroadcastRound) SetTour(value BroadcastTourable)() {
-    m.tour = value
+func (m *BroadcastRound) SetTour(value BroadcastTourable) {
+	m.tour = value
 }
+
 type BroadcastRoundable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetGames()([]BroadcastRoundGameable)
-    GetGroup()(BroadcastGroupable)
-    GetIsSubscribed()(*bool)
-    GetPhotos()(BroadcastPhotosable)
-    GetRound()(BroadcastRoundInfoable)
-    GetStudy()(BroadcastRoundStudyInfoable)
-    GetTour()(BroadcastTourable)
-    SetGames(value []BroadcastRoundGameable)()
-    SetGroup(value BroadcastGroupable)()
-    SetIsSubscribed(value *bool)()
-    SetPhotos(value BroadcastPhotosable)()
-    SetRound(value BroadcastRoundInfoable)()
-    SetStudy(value BroadcastRoundStudyInfoable)()
-    SetTour(value BroadcastTourable)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetGames() []BroadcastRoundGameable
+	GetGroup() BroadcastGroupable
+	GetIsSubscribed() *bool
+	GetPhotos() BroadcastPhotosable
+	GetRound() BroadcastRoundInfoable
+	GetStudy() BroadcastRoundStudyInfoable
+	GetTour() BroadcastTourable
+	SetGames(value []BroadcastRoundGameable)
+	SetGroup(value BroadcastGroupable)
+	SetIsSubscribed(value *bool)
+	SetPhotos(value BroadcastPhotosable)
+	SetRound(value BroadcastRoundInfoable)
+	SetStudy(value BroadcastRoundStudyInfoable)
+	SetTour(value BroadcastTourable)
 }

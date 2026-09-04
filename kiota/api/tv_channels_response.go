@@ -4,27 +4,30 @@
 package api
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // Deprecated: This class is obsolete. Use TvChannelsGetResponseable instead.
 type TvChannelsResponse struct {
-    TvChannelsGetResponse
+	TvChannelsGetResponse
 }
+
 // NewTvChannelsResponse instantiates a new TvChannelsResponse and sets the default values.
-func NewTvChannelsResponse()(*TvChannelsResponse) {
-    m := &TvChannelsResponse{
-        TvChannelsGetResponse: *NewTvChannelsGetResponse(),
-    }
-    return m
+func NewTvChannelsResponse() *TvChannelsResponse {
+	m := &TvChannelsResponse{
+		TvChannelsGetResponse: *NewTvChannelsGetResponse(),
+	}
+	return m
 }
+
 // CreateTvChannelsResponseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateTvChannelsResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewTvChannelsResponse(), nil
+func CreateTvChannelsResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewTvChannelsResponse(), nil
 }
+
 // Deprecated: This class is obsolete. Use TvChannelsGetResponseable instead.
 type TvChannelsResponseable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    TvChannelsGetResponseable
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	TvChannelsGetResponseable
 }

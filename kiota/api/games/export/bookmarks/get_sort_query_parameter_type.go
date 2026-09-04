@@ -2,35 +2,39 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package bookmarks
+
 type GetSortQueryParameterType int
 
 const (
-    DATEASC_GETSORTQUERYPARAMETERTYPE GetSortQueryParameterType = iota
-    DATEDESC_GETSORTQUERYPARAMETERTYPE
+	DATEASC_GETSORTQUERYPARAMETERTYPE GetSortQueryParameterType = iota
+	DATEDESC_GETSORTQUERYPARAMETERTYPE
 )
 
 func (i GetSortQueryParameterType) String() string {
-    return []string{"dateAsc", "dateDesc"}[i]
+	return []string{"dateAsc", "dateDesc"}[i]
 }
+
 func ParseGetSortQueryParameterType(v string) (any, error) {
-    result := DATEASC_GETSORTQUERYPARAMETERTYPE
-    switch v {
-        case "dateAsc":
-            result = DATEASC_GETSORTQUERYPARAMETERTYPE
-        case "dateDesc":
-            result = DATEDESC_GETSORTQUERYPARAMETERTYPE
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := DATEASC_GETSORTQUERYPARAMETERTYPE
+	switch v {
+	case "dateAsc":
+		result = DATEASC_GETSORTQUERYPARAMETERTYPE
+	case "dateDesc":
+		result = DATEDESC_GETSORTQUERYPARAMETERTYPE
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeGetSortQueryParameterType(values []GetSortQueryParameterType) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i GetSortQueryParameterType) isMultiValue() bool {
-    return false
+	return false
 }

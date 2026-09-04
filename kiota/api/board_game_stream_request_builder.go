@@ -4,35 +4,38 @@
 package api
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // BoardGameStreamRequestBuilder builds and executes requests for operations under \api\board\game\stream
 type BoardGameStreamRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // ByGameId gets an item from the github.com/atye/golichess/kiota.api.board.game.stream.item collection
 // returns a *BoardGameStreamWithGameItemRequestBuilder when successful
-func (m *BoardGameStreamRequestBuilder) ByGameId(gameId string)(*BoardGameStreamWithGameItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    if gameId != "" {
-        urlTplParams["gameId"] = gameId
-    }
-    return NewBoardGameStreamWithGameItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+func (m *BoardGameStreamRequestBuilder) ByGameId(gameId string) *BoardGameStreamWithGameItemRequestBuilder {
+	urlTplParams := make(map[string]string)
+	for idx, item := range m.BaseRequestBuilder.PathParameters {
+		urlTplParams[idx] = item
+	}
+	if gameId != "" {
+		urlTplParams["gameId"] = gameId
+	}
+	return NewBoardGameStreamWithGameItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewBoardGameStreamRequestBuilderInternal instantiates a new BoardGameStreamRequestBuilder and sets the default values.
-func NewBoardGameStreamRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BoardGameStreamRequestBuilder) {
-    m := &BoardGameStreamRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/board/game/stream", pathParameters),
-    }
-    return m
+func NewBoardGameStreamRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BoardGameStreamRequestBuilder {
+	m := &BoardGameStreamRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/board/game/stream", pathParameters),
+	}
+	return m
 }
+
 // NewBoardGameStreamRequestBuilder instantiates a new BoardGameStreamRequestBuilder and sets the default values.
-func NewBoardGameStreamRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BoardGameStreamRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewBoardGameStreamRequestBuilderInternal(urlParams, requestAdapter)
+func NewBoardGameStreamRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BoardGameStreamRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewBoardGameStreamRequestBuilderInternal(urlParams, requestAdapter)
 }

@@ -4,121 +4,131 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type PuzzleBatchSelect struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The glicko property
-    glicko PuzzleGlickoable
-    // The puzzles property
-    puzzles []PuzzleAndGameable
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The glicko property
+	glicko PuzzleGlickoable
+	// The puzzles property
+	puzzles []PuzzleAndGameable
 }
+
 // NewPuzzleBatchSelect instantiates a new PuzzleBatchSelect and sets the default values.
-func NewPuzzleBatchSelect()(*PuzzleBatchSelect) {
-    m := &PuzzleBatchSelect{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewPuzzleBatchSelect() *PuzzleBatchSelect {
+	m := &PuzzleBatchSelect{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreatePuzzleBatchSelectFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreatePuzzleBatchSelectFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewPuzzleBatchSelect(), nil
+func CreatePuzzleBatchSelectFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewPuzzleBatchSelect(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *PuzzleBatchSelect) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *PuzzleBatchSelect) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *PuzzleBatchSelect) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["glicko"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreatePuzzleGlickoFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetGlicko(val.(PuzzleGlickoable))
-        }
-        return nil
-    }
-    res["puzzles"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreatePuzzleAndGameFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]PuzzleAndGameable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(PuzzleAndGameable)
-                }
-            }
-            m.SetPuzzles(res)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *PuzzleBatchSelect) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["glicko"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreatePuzzleGlickoFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetGlicko(val.(PuzzleGlickoable))
+		}
+		return nil
+	}
+	res["puzzles"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreatePuzzleAndGameFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]PuzzleAndGameable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(PuzzleAndGameable)
+				}
+			}
+			m.SetPuzzles(res)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetGlicko gets the glicko property value. The glicko property
 // returns a PuzzleGlickoable when successful
-func (m *PuzzleBatchSelect) GetGlicko()(PuzzleGlickoable) {
-    return m.glicko
+func (m *PuzzleBatchSelect) GetGlicko() PuzzleGlickoable {
+	return m.glicko
 }
+
 // GetPuzzles gets the puzzles property value. The puzzles property
 // returns a []PuzzleAndGameable when successful
-func (m *PuzzleBatchSelect) GetPuzzles()([]PuzzleAndGameable) {
-    return m.puzzles
+func (m *PuzzleBatchSelect) GetPuzzles() []PuzzleAndGameable {
+	return m.puzzles
 }
+
 // Serialize serializes information the current object
-func (m *PuzzleBatchSelect) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("glicko", m.GetGlicko())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetPuzzles() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPuzzles()))
-        for i, v := range m.GetPuzzles() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("puzzles", cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *PuzzleBatchSelect) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteObjectValue("glicko", m.GetGlicko())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetPuzzles() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPuzzles()))
+		for i, v := range m.GetPuzzles() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("puzzles", cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PuzzleBatchSelect) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *PuzzleBatchSelect) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetGlicko sets the glicko property value. The glicko property
-func (m *PuzzleBatchSelect) SetGlicko(value PuzzleGlickoable)() {
-    m.glicko = value
+func (m *PuzzleBatchSelect) SetGlicko(value PuzzleGlickoable) {
+	m.glicko = value
 }
+
 // SetPuzzles sets the puzzles property value. The puzzles property
-func (m *PuzzleBatchSelect) SetPuzzles(value []PuzzleAndGameable)() {
-    m.puzzles = value
+func (m *PuzzleBatchSelect) SetPuzzles(value []PuzzleAndGameable) {
+	m.puzzles = value
 }
+
 type PuzzleBatchSelectable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetGlicko()(PuzzleGlickoable)
-    GetPuzzles()([]PuzzleAndGameable)
-    SetGlicko(value PuzzleGlickoable)()
-    SetPuzzles(value []PuzzleAndGameable)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetGlicko() PuzzleGlickoable
+	GetPuzzles() []PuzzleAndGameable
+	SetGlicko(value PuzzleGlickoable)
+	SetPuzzles(value []PuzzleAndGameable)
 }

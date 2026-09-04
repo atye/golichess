@@ -4,110 +4,123 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	"context"
+	i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // UserWithUsernameItemRequestBuilder builds and executes requests for operations under \api\user\{username}
 type UserWithUsernameItemRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // UserWithUsernameItemRequestBuilderGetQueryParameters read public data of a user.
 type UserWithUsernameItemRequestBuilderGetQueryParameters struct {
-    // Include public FIDE ID if any
-    FideId *bool "uriparametername:\"fideId\""
-    // Include user profile data
-    Profile *bool "uriparametername:\"profile\""
-    // Include global lichess ranking for each perf
-    Rank *bool "uriparametername:\"rank\""
-    // Include user trophies
-    Trophies *bool "uriparametername:\"trophies\""
+	// Include public FIDE ID if any
+	FideId *bool "uriparametername:\"fideId\""
+	// Include user profile data
+	Profile *bool "uriparametername:\"profile\""
+	// Include global lichess ranking for each perf
+	Rank *bool "uriparametername:\"rank\""
+	// Include user trophies
+	Trophies *bool "uriparametername:\"trophies\""
 }
+
 // UserWithUsernameItemRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type UserWithUsernameItemRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
-    // Request query parameters
-    QueryParameters *UserWithUsernameItemRequestBuilderGetQueryParameters
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *UserWithUsernameItemRequestBuilderGetQueryParameters
 }
+
 // Activity the activity property
 // returns a *UserItemActivityRequestBuilder when successful
-func (m *UserWithUsernameItemRequestBuilder) Activity()(*UserItemActivityRequestBuilder) {
-    return NewUserItemActivityRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *UserWithUsernameItemRequestBuilder) Activity() *UserItemActivityRequestBuilder {
+	return NewUserItemActivityRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewUserWithUsernameItemRequestBuilderInternal instantiates a new UserWithUsernameItemRequestBuilder and sets the default values.
-func NewUserWithUsernameItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*UserWithUsernameItemRequestBuilder) {
-    m := &UserWithUsernameItemRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/user/{username}{?fideId*,profile*,rank*,trophies*}", pathParameters),
-    }
-    return m
+func NewUserWithUsernameItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *UserWithUsernameItemRequestBuilder {
+	m := &UserWithUsernameItemRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/user/{username}{?fideId*,profile*,rank*,trophies*}", pathParameters),
+	}
+	return m
 }
+
 // NewUserWithUsernameItemRequestBuilder instantiates a new UserWithUsernameItemRequestBuilder and sets the default values.
-func NewUserWithUsernameItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*UserWithUsernameItemRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewUserWithUsernameItemRequestBuilderInternal(urlParams, requestAdapter)
+func NewUserWithUsernameItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *UserWithUsernameItemRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewUserWithUsernameItemRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // CurrentGame the currentGame property
 // returns a *UserItemCurrentGameRequestBuilder when successful
-func (m *UserWithUsernameItemRequestBuilder) CurrentGame()(*UserItemCurrentGameRequestBuilder) {
-    return NewUserItemCurrentGameRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *UserWithUsernameItemRequestBuilder) CurrentGame() *UserItemCurrentGameRequestBuilder {
+	return NewUserItemCurrentGameRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Get read public data of a user.
 // returns a UserExtendedable when successful
-func (m *UserWithUsernameItemRequestBuilder) Get(ctx context.Context, requestConfiguration *UserWithUsernameItemRequestBuilderGetRequestConfiguration)(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.UserExtendedable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateUserExtendedFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.UserExtendedable), nil
+func (m *UserWithUsernameItemRequestBuilder) Get(ctx context.Context, requestConfiguration *UserWithUsernameItemRequestBuilderGetRequestConfiguration) (i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.UserExtendedable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateUserExtendedFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.UserExtendedable), nil
 }
+
 // Note the note property
 // returns a *UserItemNoteRequestBuilder when successful
-func (m *UserWithUsernameItemRequestBuilder) Note()(*UserItemNoteRequestBuilder) {
-    return NewUserItemNoteRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *UserWithUsernameItemRequestBuilder) Note() *UserItemNoteRequestBuilder {
+	return NewUserItemNoteRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Perf the perf property
 // returns a *UserItemPerfRequestBuilder when successful
-func (m *UserWithUsernameItemRequestBuilder) Perf()(*UserItemPerfRequestBuilder) {
-    return NewUserItemPerfRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *UserWithUsernameItemRequestBuilder) Perf() *UserItemPerfRequestBuilder {
+	return NewUserItemPerfRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // RatingHistory the ratingHistory property
 // returns a *UserItemRatingHistoryRequestBuilder when successful
-func (m *UserWithUsernameItemRequestBuilder) RatingHistory()(*UserItemRatingHistoryRequestBuilder) {
-    return NewUserItemRatingHistoryRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *UserWithUsernameItemRequestBuilder) RatingHistory() *UserItemRatingHistoryRequestBuilder {
+	return NewUserItemRatingHistoryRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // ToGetRequestInformation read public data of a user.
 // returns a *RequestInformation when successful
-func (m *UserWithUsernameItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *UserWithUsernameItemRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        if requestConfiguration.QueryParameters != nil {
-            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
-        }
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    return requestInfo, nil
+func (m *UserWithUsernameItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *UserWithUsernameItemRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	return requestInfo, nil
 }
+
 // Tournament the tournament property
 // returns a *UserItemTournamentRequestBuilder when successful
-func (m *UserWithUsernameItemRequestBuilder) Tournament()(*UserItemTournamentRequestBuilder) {
-    return NewUserItemTournamentRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *UserWithUsernameItemRequestBuilder) Tournament() *UserItemTournamentRequestBuilder {
+	return NewUserItemTournamentRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *UserWithUsernameItemRequestBuilder when successful
-func (m *UserWithUsernameItemRequestBuilder) WithUrl(rawUrl string)(*UserWithUsernameItemRequestBuilder) {
-    return NewUserWithUsernameItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *UserWithUsernameItemRequestBuilder) WithUrl(rawUrl string) *UserWithUsernameItemRequestBuilder {
+	return NewUserWithUsernameItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

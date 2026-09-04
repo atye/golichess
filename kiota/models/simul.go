@@ -4,469 +4,503 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type Simul struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The estimatedStartAt property
-    estimatedStartAt *int32
-    // The finishedAt property
-    finishedAt *int32
-    // The fullName property
-    fullName *string
-    // The host property
-    host Simul_hostable
-    // The id property
-    id *string
-    // The isCreated property
-    isCreated *bool
-    // The isFinished property
-    isFinished *bool
-    // The isRunning property
-    isRunning *bool
-    // The name property
-    name *string
-    // The nbApplicants property
-    nbApplicants *int32
-    // The nbPairings property
-    nbPairings *int32
-    // The startedAt property
-    startedAt *int32
-    // The text property
-    text *string
-    // The variants property
-    variants []Simul_variantsable
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The estimatedStartAt property
+	estimatedStartAt *int32
+	// The finishedAt property
+	finishedAt *int32
+	// The fullName property
+	fullName *string
+	// The host property
+	host Simul_hostable
+	// The id property
+	id *string
+	// The isCreated property
+	isCreated *bool
+	// The isFinished property
+	isFinished *bool
+	// The isRunning property
+	isRunning *bool
+	// The name property
+	name *string
+	// The nbApplicants property
+	nbApplicants *int32
+	// The nbPairings property
+	nbPairings *int32
+	// The startedAt property
+	startedAt *int32
+	// The text property
+	text *string
+	// The variants property
+	variants []Simul_variantsable
 }
+
 // NewSimul instantiates a new Simul and sets the default values.
-func NewSimul()(*Simul) {
-    m := &Simul{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewSimul() *Simul {
+	m := &Simul{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateSimulFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateSimulFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewSimul(), nil
+func CreateSimulFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewSimul(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *Simul) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *Simul) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetEstimatedStartAt gets the estimatedStartAt property value. The estimatedStartAt property
 // returns a *int32 when successful
-func (m *Simul) GetEstimatedStartAt()(*int32) {
-    return m.estimatedStartAt
+func (m *Simul) GetEstimatedStartAt() *int32 {
+	return m.estimatedStartAt
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *Simul) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["estimatedStartAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetEstimatedStartAt(val)
-        }
-        return nil
-    }
-    res["finishedAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFinishedAt(val)
-        }
-        return nil
-    }
-    res["fullName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFullName(val)
-        }
-        return nil
-    }
-    res["host"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateSimul_hostFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetHost(val.(Simul_hostable))
-        }
-        return nil
-    }
-    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetId(val)
-        }
-        return nil
-    }
-    res["isCreated"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetIsCreated(val)
-        }
-        return nil
-    }
-    res["isFinished"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetIsFinished(val)
-        }
-        return nil
-    }
-    res["isRunning"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetIsRunning(val)
-        }
-        return nil
-    }
-    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetName(val)
-        }
-        return nil
-    }
-    res["nbApplicants"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetNbApplicants(val)
-        }
-        return nil
-    }
-    res["nbPairings"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetNbPairings(val)
-        }
-        return nil
-    }
-    res["startedAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStartedAt(val)
-        }
-        return nil
-    }
-    res["text"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetText(val)
-        }
-        return nil
-    }
-    res["variants"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateSimul_variantsFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]Simul_variantsable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(Simul_variantsable)
-                }
-            }
-            m.SetVariants(res)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *Simul) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["estimatedStartAt"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetEstimatedStartAt(val)
+		}
+		return nil
+	}
+	res["finishedAt"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFinishedAt(val)
+		}
+		return nil
+	}
+	res["fullName"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFullName(val)
+		}
+		return nil
+	}
+	res["host"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateSimul_hostFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetHost(val.(Simul_hostable))
+		}
+		return nil
+	}
+	res["id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetId(val)
+		}
+		return nil
+	}
+	res["isCreated"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetIsCreated(val)
+		}
+		return nil
+	}
+	res["isFinished"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetIsFinished(val)
+		}
+		return nil
+	}
+	res["isRunning"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetIsRunning(val)
+		}
+		return nil
+	}
+	res["name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetName(val)
+		}
+		return nil
+	}
+	res["nbApplicants"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetNbApplicants(val)
+		}
+		return nil
+	}
+	res["nbPairings"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetNbPairings(val)
+		}
+		return nil
+	}
+	res["startedAt"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStartedAt(val)
+		}
+		return nil
+	}
+	res["text"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetText(val)
+		}
+		return nil
+	}
+	res["variants"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateSimul_variantsFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]Simul_variantsable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(Simul_variantsable)
+				}
+			}
+			m.SetVariants(res)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetFinishedAt gets the finishedAt property value. The finishedAt property
 // returns a *int32 when successful
-func (m *Simul) GetFinishedAt()(*int32) {
-    return m.finishedAt
+func (m *Simul) GetFinishedAt() *int32 {
+	return m.finishedAt
 }
+
 // GetFullName gets the fullName property value. The fullName property
 // returns a *string when successful
-func (m *Simul) GetFullName()(*string) {
-    return m.fullName
+func (m *Simul) GetFullName() *string {
+	return m.fullName
 }
+
 // GetHost gets the host property value. The host property
 // returns a Simul_hostable when successful
-func (m *Simul) GetHost()(Simul_hostable) {
-    return m.host
+func (m *Simul) GetHost() Simul_hostable {
+	return m.host
 }
+
 // GetId gets the id property value. The id property
 // returns a *string when successful
-func (m *Simul) GetId()(*string) {
-    return m.id
+func (m *Simul) GetId() *string {
+	return m.id
 }
+
 // GetIsCreated gets the isCreated property value. The isCreated property
 // returns a *bool when successful
-func (m *Simul) GetIsCreated()(*bool) {
-    return m.isCreated
+func (m *Simul) GetIsCreated() *bool {
+	return m.isCreated
 }
+
 // GetIsFinished gets the isFinished property value. The isFinished property
 // returns a *bool when successful
-func (m *Simul) GetIsFinished()(*bool) {
-    return m.isFinished
+func (m *Simul) GetIsFinished() *bool {
+	return m.isFinished
 }
+
 // GetIsRunning gets the isRunning property value. The isRunning property
 // returns a *bool when successful
-func (m *Simul) GetIsRunning()(*bool) {
-    return m.isRunning
+func (m *Simul) GetIsRunning() *bool {
+	return m.isRunning
 }
+
 // GetName gets the name property value. The name property
 // returns a *string when successful
-func (m *Simul) GetName()(*string) {
-    return m.name
+func (m *Simul) GetName() *string {
+	return m.name
 }
+
 // GetNbApplicants gets the nbApplicants property value. The nbApplicants property
 // returns a *int32 when successful
-func (m *Simul) GetNbApplicants()(*int32) {
-    return m.nbApplicants
+func (m *Simul) GetNbApplicants() *int32 {
+	return m.nbApplicants
 }
+
 // GetNbPairings gets the nbPairings property value. The nbPairings property
 // returns a *int32 when successful
-func (m *Simul) GetNbPairings()(*int32) {
-    return m.nbPairings
+func (m *Simul) GetNbPairings() *int32 {
+	return m.nbPairings
 }
+
 // GetStartedAt gets the startedAt property value. The startedAt property
 // returns a *int32 when successful
-func (m *Simul) GetStartedAt()(*int32) {
-    return m.startedAt
+func (m *Simul) GetStartedAt() *int32 {
+	return m.startedAt
 }
+
 // GetText gets the text property value. The text property
 // returns a *string when successful
-func (m *Simul) GetText()(*string) {
-    return m.text
+func (m *Simul) GetText() *string {
+	return m.text
 }
+
 // GetVariants gets the variants property value. The variants property
 // returns a []Simul_variantsable when successful
-func (m *Simul) GetVariants()([]Simul_variantsable) {
-    return m.variants
+func (m *Simul) GetVariants() []Simul_variantsable {
+	return m.variants
 }
+
 // Serialize serializes information the current object
-func (m *Simul) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteInt32Value("estimatedStartAt", m.GetEstimatedStartAt())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("finishedAt", m.GetFinishedAt())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("fullName", m.GetFullName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("host", m.GetHost())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("id", m.GetId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("isCreated", m.GetIsCreated())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("isFinished", m.GetIsFinished())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("isRunning", m.GetIsRunning())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("name", m.GetName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("nbApplicants", m.GetNbApplicants())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("nbPairings", m.GetNbPairings())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("startedAt", m.GetStartedAt())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("text", m.GetText())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetVariants() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetVariants()))
-        for i, v := range m.GetVariants() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("variants", cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *Simul) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteInt32Value("estimatedStartAt", m.GetEstimatedStartAt())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("finishedAt", m.GetFinishedAt())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("fullName", m.GetFullName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("host", m.GetHost())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("id", m.GetId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("isCreated", m.GetIsCreated())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("isFinished", m.GetIsFinished())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("isRunning", m.GetIsRunning())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("name", m.GetName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("nbApplicants", m.GetNbApplicants())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("nbPairings", m.GetNbPairings())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("startedAt", m.GetStartedAt())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("text", m.GetText())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetVariants() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetVariants()))
+		for i, v := range m.GetVariants() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("variants", cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *Simul) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *Simul) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetEstimatedStartAt sets the estimatedStartAt property value. The estimatedStartAt property
-func (m *Simul) SetEstimatedStartAt(value *int32)() {
-    m.estimatedStartAt = value
+func (m *Simul) SetEstimatedStartAt(value *int32) {
+	m.estimatedStartAt = value
 }
+
 // SetFinishedAt sets the finishedAt property value. The finishedAt property
-func (m *Simul) SetFinishedAt(value *int32)() {
-    m.finishedAt = value
+func (m *Simul) SetFinishedAt(value *int32) {
+	m.finishedAt = value
 }
+
 // SetFullName sets the fullName property value. The fullName property
-func (m *Simul) SetFullName(value *string)() {
-    m.fullName = value
+func (m *Simul) SetFullName(value *string) {
+	m.fullName = value
 }
+
 // SetHost sets the host property value. The host property
-func (m *Simul) SetHost(value Simul_hostable)() {
-    m.host = value
+func (m *Simul) SetHost(value Simul_hostable) {
+	m.host = value
 }
+
 // SetId sets the id property value. The id property
-func (m *Simul) SetId(value *string)() {
-    m.id = value
+func (m *Simul) SetId(value *string) {
+	m.id = value
 }
+
 // SetIsCreated sets the isCreated property value. The isCreated property
-func (m *Simul) SetIsCreated(value *bool)() {
-    m.isCreated = value
+func (m *Simul) SetIsCreated(value *bool) {
+	m.isCreated = value
 }
+
 // SetIsFinished sets the isFinished property value. The isFinished property
-func (m *Simul) SetIsFinished(value *bool)() {
-    m.isFinished = value
+func (m *Simul) SetIsFinished(value *bool) {
+	m.isFinished = value
 }
+
 // SetIsRunning sets the isRunning property value. The isRunning property
-func (m *Simul) SetIsRunning(value *bool)() {
-    m.isRunning = value
+func (m *Simul) SetIsRunning(value *bool) {
+	m.isRunning = value
 }
+
 // SetName sets the name property value. The name property
-func (m *Simul) SetName(value *string)() {
-    m.name = value
+func (m *Simul) SetName(value *string) {
+	m.name = value
 }
+
 // SetNbApplicants sets the nbApplicants property value. The nbApplicants property
-func (m *Simul) SetNbApplicants(value *int32)() {
-    m.nbApplicants = value
+func (m *Simul) SetNbApplicants(value *int32) {
+	m.nbApplicants = value
 }
+
 // SetNbPairings sets the nbPairings property value. The nbPairings property
-func (m *Simul) SetNbPairings(value *int32)() {
-    m.nbPairings = value
+func (m *Simul) SetNbPairings(value *int32) {
+	m.nbPairings = value
 }
+
 // SetStartedAt sets the startedAt property value. The startedAt property
-func (m *Simul) SetStartedAt(value *int32)() {
-    m.startedAt = value
+func (m *Simul) SetStartedAt(value *int32) {
+	m.startedAt = value
 }
+
 // SetText sets the text property value. The text property
-func (m *Simul) SetText(value *string)() {
-    m.text = value
+func (m *Simul) SetText(value *string) {
+	m.text = value
 }
+
 // SetVariants sets the variants property value. The variants property
-func (m *Simul) SetVariants(value []Simul_variantsable)() {
-    m.variants = value
+func (m *Simul) SetVariants(value []Simul_variantsable) {
+	m.variants = value
 }
+
 type Simulable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetEstimatedStartAt()(*int32)
-    GetFinishedAt()(*int32)
-    GetFullName()(*string)
-    GetHost()(Simul_hostable)
-    GetId()(*string)
-    GetIsCreated()(*bool)
-    GetIsFinished()(*bool)
-    GetIsRunning()(*bool)
-    GetName()(*string)
-    GetNbApplicants()(*int32)
-    GetNbPairings()(*int32)
-    GetStartedAt()(*int32)
-    GetText()(*string)
-    GetVariants()([]Simul_variantsable)
-    SetEstimatedStartAt(value *int32)()
-    SetFinishedAt(value *int32)()
-    SetFullName(value *string)()
-    SetHost(value Simul_hostable)()
-    SetId(value *string)()
-    SetIsCreated(value *bool)()
-    SetIsFinished(value *bool)()
-    SetIsRunning(value *bool)()
-    SetName(value *string)()
-    SetNbApplicants(value *int32)()
-    SetNbPairings(value *int32)()
-    SetStartedAt(value *int32)()
-    SetText(value *string)()
-    SetVariants(value []Simul_variantsable)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetEstimatedStartAt() *int32
+	GetFinishedAt() *int32
+	GetFullName() *string
+	GetHost() Simul_hostable
+	GetId() *string
+	GetIsCreated() *bool
+	GetIsFinished() *bool
+	GetIsRunning() *bool
+	GetName() *string
+	GetNbApplicants() *int32
+	GetNbPairings() *int32
+	GetStartedAt() *int32
+	GetText() *string
+	GetVariants() []Simul_variantsable
+	SetEstimatedStartAt(value *int32)
+	SetFinishedAt(value *int32)
+	SetFullName(value *string)
+	SetHost(value Simul_hostable)
+	SetId(value *string)
+	SetIsCreated(value *bool)
+	SetIsFinished(value *bool)
+	SetIsRunning(value *bool)
+	SetName(value *string)
+	SetNbApplicants(value *int32)
+	SetNbPairings(value *int32)
+	SetStartedAt(value *int32)
+	SetText(value *string)
+	SetVariants(value []Simul_variantsable)
 }

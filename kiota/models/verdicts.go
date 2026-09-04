@@ -4,121 +4,131 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type Verdicts struct {
-    // The accepted property
-    accepted *bool
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The list property
-    list []Verdictable
+	// The accepted property
+	accepted *bool
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The list property
+	list []Verdictable
 }
+
 // NewVerdicts instantiates a new Verdicts and sets the default values.
-func NewVerdicts()(*Verdicts) {
-    m := &Verdicts{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewVerdicts() *Verdicts {
+	m := &Verdicts{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateVerdictsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateVerdictsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewVerdicts(), nil
+func CreateVerdictsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewVerdicts(), nil
 }
+
 // GetAccepted gets the accepted property value. The accepted property
 // returns a *bool when successful
-func (m *Verdicts) GetAccepted()(*bool) {
-    return m.accepted
+func (m *Verdicts) GetAccepted() *bool {
+	return m.accepted
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *Verdicts) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *Verdicts) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *Verdicts) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["accepted"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetAccepted(val)
-        }
-        return nil
-    }
-    res["list"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateVerdictFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]Verdictable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(Verdictable)
-                }
-            }
-            m.SetList(res)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *Verdicts) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["accepted"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetAccepted(val)
+		}
+		return nil
+	}
+	res["list"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateVerdictFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]Verdictable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(Verdictable)
+				}
+			}
+			m.SetList(res)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetList gets the list property value. The list property
 // returns a []Verdictable when successful
-func (m *Verdicts) GetList()([]Verdictable) {
-    return m.list
+func (m *Verdicts) GetList() []Verdictable {
+	return m.list
 }
+
 // Serialize serializes information the current object
-func (m *Verdicts) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteBoolValue("accepted", m.GetAccepted())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetList() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetList()))
-        for i, v := range m.GetList() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("list", cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *Verdicts) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteBoolValue("accepted", m.GetAccepted())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetList() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetList()))
+		for i, v := range m.GetList() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("list", cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAccepted sets the accepted property value. The accepted property
-func (m *Verdicts) SetAccepted(value *bool)() {
-    m.accepted = value
+func (m *Verdicts) SetAccepted(value *bool) {
+	m.accepted = value
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *Verdicts) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *Verdicts) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetList sets the list property value. The list property
-func (m *Verdicts) SetList(value []Verdictable)() {
-    m.list = value
+func (m *Verdicts) SetList(value []Verdictable) {
+	m.list = value
 }
+
 type Verdictsable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetAccepted()(*bool)
-    GetList()([]Verdictable)
-    SetAccepted(value *bool)()
-    SetList(value []Verdictable)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetAccepted() *bool
+	GetList() []Verdictable
+	SetAccepted(value *bool)
+	SetList(value []Verdictable)
 }

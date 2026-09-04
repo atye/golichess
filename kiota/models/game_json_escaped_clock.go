@@ -4,138 +4,150 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type GameJson_clock struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The increment property
-    increment *int32
-    // The initial property
-    initial *int32
-    // The totalTime property
-    totalTime *int32
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The increment property
+	increment *int32
+	// The initial property
+	initial *int32
+	// The totalTime property
+	totalTime *int32
 }
+
 // NewGameJson_clock instantiates a new GameJson_clock and sets the default values.
-func NewGameJson_clock()(*GameJson_clock) {
-    m := &GameJson_clock{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewGameJson_clock() *GameJson_clock {
+	m := &GameJson_clock{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateGameJson_clockFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateGameJson_clockFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewGameJson_clock(), nil
+func CreateGameJson_clockFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewGameJson_clock(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *GameJson_clock) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *GameJson_clock) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *GameJson_clock) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["increment"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetIncrement(val)
-        }
-        return nil
-    }
-    res["initial"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetInitial(val)
-        }
-        return nil
-    }
-    res["totalTime"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTotalTime(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *GameJson_clock) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["increment"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetIncrement(val)
+		}
+		return nil
+	}
+	res["initial"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetInitial(val)
+		}
+		return nil
+	}
+	res["totalTime"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTotalTime(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetIncrement gets the increment property value. The increment property
 // returns a *int32 when successful
-func (m *GameJson_clock) GetIncrement()(*int32) {
-    return m.increment
+func (m *GameJson_clock) GetIncrement() *int32 {
+	return m.increment
 }
+
 // GetInitial gets the initial property value. The initial property
 // returns a *int32 when successful
-func (m *GameJson_clock) GetInitial()(*int32) {
-    return m.initial
+func (m *GameJson_clock) GetInitial() *int32 {
+	return m.initial
 }
+
 // GetTotalTime gets the totalTime property value. The totalTime property
 // returns a *int32 when successful
-func (m *GameJson_clock) GetTotalTime()(*int32) {
-    return m.totalTime
+func (m *GameJson_clock) GetTotalTime() *int32 {
+	return m.totalTime
 }
+
 // Serialize serializes information the current object
-func (m *GameJson_clock) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteInt32Value("increment", m.GetIncrement())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("initial", m.GetInitial())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("totalTime", m.GetTotalTime())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *GameJson_clock) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteInt32Value("increment", m.GetIncrement())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("initial", m.GetInitial())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("totalTime", m.GetTotalTime())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *GameJson_clock) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *GameJson_clock) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetIncrement sets the increment property value. The increment property
-func (m *GameJson_clock) SetIncrement(value *int32)() {
-    m.increment = value
+func (m *GameJson_clock) SetIncrement(value *int32) {
+	m.increment = value
 }
+
 // SetInitial sets the initial property value. The initial property
-func (m *GameJson_clock) SetInitial(value *int32)() {
-    m.initial = value
+func (m *GameJson_clock) SetInitial(value *int32) {
+	m.initial = value
 }
+
 // SetTotalTime sets the totalTime property value. The totalTime property
-func (m *GameJson_clock) SetTotalTime(value *int32)() {
-    m.totalTime = value
+func (m *GameJson_clock) SetTotalTime(value *int32) {
+	m.totalTime = value
 }
+
 type GameJson_clockable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetIncrement()(*int32)
-    GetInitial()(*int32)
-    GetTotalTime()(*int32)
-    SetIncrement(value *int32)()
-    SetInitial(value *int32)()
-    SetTotalTime(value *int32)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetIncrement() *int32
+	GetInitial() *int32
+	GetTotalTime() *int32
+	SetIncrement(value *int32)
+	SetInitial(value *int32)
+	SetTotalTime(value *int32)
 }

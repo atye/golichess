@@ -4,142 +4,154 @@
 package api
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
-    i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type StudyItemImportPgnPostRequestBody struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // Name of the new chapter.If not specified, or if multiple chapters are created, the names will be inferred from the PGN tags.
-    name *string
-    // PGN to import. Can contain multiple games separated by 2 or more newlines.
-    pgn *string
-    // The variant property
-    variant *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// Name of the new chapter.If not specified, or if multiple chapters are created, the names will be inferred from the PGN tags.
+	name *string
+	// PGN to import. Can contain multiple games separated by 2 or more newlines.
+	pgn *string
+	// The variant property
+	variant *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey
 }
+
 // NewStudyItemImportPgnPostRequestBody instantiates a new StudyItemImportPgnPostRequestBody and sets the default values.
-func NewStudyItemImportPgnPostRequestBody()(*StudyItemImportPgnPostRequestBody) {
-    m := &StudyItemImportPgnPostRequestBody{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    variantValue := STANDARD_VARIANTKEY
-    m.SetVariant(&variantValue)
-    return m
+func NewStudyItemImportPgnPostRequestBody() *StudyItemImportPgnPostRequestBody {
+	m := &StudyItemImportPgnPostRequestBody{}
+	m.SetAdditionalData(make(map[string]any))
+	variantValue := STANDARD_VARIANTKEY
+	m.SetVariant(&variantValue)
+	return m
 }
+
 // CreateStudyItemImportPgnPostRequestBodyFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateStudyItemImportPgnPostRequestBodyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewStudyItemImportPgnPostRequestBody(), nil
+func CreateStudyItemImportPgnPostRequestBodyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewStudyItemImportPgnPostRequestBody(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *StudyItemImportPgnPostRequestBody) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *StudyItemImportPgnPostRequestBody) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *StudyItemImportPgnPostRequestBody) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetName(val)
-        }
-        return nil
-    }
-    res["pgn"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPgn(val)
-        }
-        return nil
-    }
-    res["variant"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParseVariantKey)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetVariant(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey))
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *StudyItemImportPgnPostRequestBody) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetName(val)
+		}
+		return nil
+	}
+	res["pgn"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPgn(val)
+		}
+		return nil
+	}
+	res["variant"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParseVariantKey)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetVariant(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey))
+		}
+		return nil
+	}
+	return res
 }
+
 // GetName gets the name property value. Name of the new chapter.If not specified, or if multiple chapters are created, the names will be inferred from the PGN tags.
 // returns a *string when successful
-func (m *StudyItemImportPgnPostRequestBody) GetName()(*string) {
-    return m.name
+func (m *StudyItemImportPgnPostRequestBody) GetName() *string {
+	return m.name
 }
+
 // GetPgn gets the pgn property value. PGN to import. Can contain multiple games separated by 2 or more newlines.
 // returns a *string when successful
-func (m *StudyItemImportPgnPostRequestBody) GetPgn()(*string) {
-    return m.pgn
+func (m *StudyItemImportPgnPostRequestBody) GetPgn() *string {
+	return m.pgn
 }
+
 // GetVariant gets the variant property value. The variant property
 // returns a *VariantKey when successful
-func (m *StudyItemImportPgnPostRequestBody) GetVariant()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey) {
-    return m.variant
+func (m *StudyItemImportPgnPostRequestBody) GetVariant() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey {
+	return m.variant
 }
+
 // Serialize serializes information the current object
-func (m *StudyItemImportPgnPostRequestBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("name", m.GetName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("pgn", m.GetPgn())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetVariant() != nil {
-        cast := (*m.GetVariant()).String()
-        err := writer.WriteStringValue("variant", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *StudyItemImportPgnPostRequestBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("name", m.GetName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("pgn", m.GetPgn())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetVariant() != nil {
+		cast := (*m.GetVariant()).String()
+		err := writer.WriteStringValue("variant", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *StudyItemImportPgnPostRequestBody) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *StudyItemImportPgnPostRequestBody) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetName sets the name property value. Name of the new chapter.If not specified, or if multiple chapters are created, the names will be inferred from the PGN tags.
-func (m *StudyItemImportPgnPostRequestBody) SetName(value *string)() {
-    m.name = value
+func (m *StudyItemImportPgnPostRequestBody) SetName(value *string) {
+	m.name = value
 }
+
 // SetPgn sets the pgn property value. PGN to import. Can contain multiple games separated by 2 or more newlines.
-func (m *StudyItemImportPgnPostRequestBody) SetPgn(value *string)() {
-    m.pgn = value
+func (m *StudyItemImportPgnPostRequestBody) SetPgn(value *string) {
+	m.pgn = value
 }
+
 // SetVariant sets the variant property value. The variant property
-func (m *StudyItemImportPgnPostRequestBody) SetVariant(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey)() {
-    m.variant = value
+func (m *StudyItemImportPgnPostRequestBody) SetVariant(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey) {
+	m.variant = value
 }
+
 type StudyItemImportPgnPostRequestBodyable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetName()(*string)
-    GetPgn()(*string)
-    GetVariant()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey)
-    SetName(value *string)()
-    SetPgn(value *string)()
-    SetVariant(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetName() *string
+	GetPgn() *string
+	GetVariant() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey
+	SetName(value *string)
+	SetPgn(value *string)
+	SetVariant(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey)
 }

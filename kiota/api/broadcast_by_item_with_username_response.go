@@ -4,27 +4,30 @@
 package api
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // Deprecated: This class is obsolete. Use BroadcastByItemWithUsernameGetResponseable instead.
 type BroadcastByItemWithUsernameResponse struct {
-    BroadcastByItemWithUsernameGetResponse
+	BroadcastByItemWithUsernameGetResponse
 }
+
 // NewBroadcastByItemWithUsernameResponse instantiates a new BroadcastByItemWithUsernameResponse and sets the default values.
-func NewBroadcastByItemWithUsernameResponse()(*BroadcastByItemWithUsernameResponse) {
-    m := &BroadcastByItemWithUsernameResponse{
-        BroadcastByItemWithUsernameGetResponse: *NewBroadcastByItemWithUsernameGetResponse(),
-    }
-    return m
+func NewBroadcastByItemWithUsernameResponse() *BroadcastByItemWithUsernameResponse {
+	m := &BroadcastByItemWithUsernameResponse{
+		BroadcastByItemWithUsernameGetResponse: *NewBroadcastByItemWithUsernameGetResponse(),
+	}
+	return m
 }
+
 // CreateBroadcastByItemWithUsernameResponseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateBroadcastByItemWithUsernameResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewBroadcastByItemWithUsernameResponse(), nil
+func CreateBroadcastByItemWithUsernameResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewBroadcastByItemWithUsernameResponse(), nil
 }
+
 // Deprecated: This class is obsolete. Use BroadcastByItemWithUsernameGetResponseable instead.
 type BroadcastByItemWithUsernameResponseable interface {
-    BroadcastByItemWithUsernameGetResponseable
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	BroadcastByItemWithUsernameGetResponseable
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
 }

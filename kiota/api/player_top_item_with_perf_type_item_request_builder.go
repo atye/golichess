@@ -4,64 +4,70 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	"context"
+	i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // PlayerTopItemWithPerfTypeItemRequestBuilder builds and executes requests for operations under \api\player\top\{nb}\{perfType}
 type PlayerTopItemWithPerfTypeItemRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // PlayerTopItemWithPerfTypeItemRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type PlayerTopItemWithPerfTypeItemRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+
 // NewPlayerTopItemWithPerfTypeItemRequestBuilderInternal instantiates a new PlayerTopItemWithPerfTypeItemRequestBuilder and sets the default values.
-func NewPlayerTopItemWithPerfTypeItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*PlayerTopItemWithPerfTypeItemRequestBuilder) {
-    m := &PlayerTopItemWithPerfTypeItemRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/player/top/{nb}/{perfType}", pathParameters),
-    }
-    return m
+func NewPlayerTopItemWithPerfTypeItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *PlayerTopItemWithPerfTypeItemRequestBuilder {
+	m := &PlayerTopItemWithPerfTypeItemRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/player/top/{nb}/{perfType}", pathParameters),
+	}
+	return m
 }
+
 // NewPlayerTopItemWithPerfTypeItemRequestBuilder instantiates a new PlayerTopItemWithPerfTypeItemRequestBuilder and sets the default values.
-func NewPlayerTopItemWithPerfTypeItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*PlayerTopItemWithPerfTypeItemRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewPlayerTopItemWithPerfTypeItemRequestBuilderInternal(urlParams, requestAdapter)
+func NewPlayerTopItemWithPerfTypeItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *PlayerTopItemWithPerfTypeItemRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewPlayerTopItemWithPerfTypeItemRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get get the leaderboard for a single speed or variant (a.k.a. `perfType`).There is no leaderboard for correspondence or puzzles.See <https://lichess.org/player/top/bullet>.
 // returns a Leaderboardable when successful
-func (m *PlayerTopItemWithPerfTypeItemRequestBuilder) Get(ctx context.Context, requestConfiguration *PlayerTopItemWithPerfTypeItemRequestBuilderGetRequestConfiguration)(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Leaderboardable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateLeaderboardFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Leaderboardable), nil
+func (m *PlayerTopItemWithPerfTypeItemRequestBuilder) Get(ctx context.Context, requestConfiguration *PlayerTopItemWithPerfTypeItemRequestBuilderGetRequestConfiguration) (i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Leaderboardable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateLeaderboardFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Leaderboardable), nil
 }
+
 // ToGetRequestInformation get the leaderboard for a single speed or variant (a.k.a. `perfType`).There is no leaderboard for correspondence or puzzles.See <https://lichess.org/player/top/bullet>.
 // returns a *RequestInformation when successful
-func (m *PlayerTopItemWithPerfTypeItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *PlayerTopItemWithPerfTypeItemRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/vnd.lichess.v3+json")
-    return requestInfo, nil
+func (m *PlayerTopItemWithPerfTypeItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *PlayerTopItemWithPerfTypeItemRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/vnd.lichess.v3+json")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *PlayerTopItemWithPerfTypeItemRequestBuilder when successful
-func (m *PlayerTopItemWithPerfTypeItemRequestBuilder) WithUrl(rawUrl string)(*PlayerTopItemWithPerfTypeItemRequestBuilder) {
-    return NewPlayerTopItemWithPerfTypeItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *PlayerTopItemWithPerfTypeItemRequestBuilder) WithUrl(rawUrl string) *PlayerTopItemWithPerfTypeItemRequestBuilder {
+	return NewPlayerTopItemWithPerfTypeItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

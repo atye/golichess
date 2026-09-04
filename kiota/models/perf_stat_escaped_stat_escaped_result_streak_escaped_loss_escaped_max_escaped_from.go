@@ -4,109 +4,119 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type PerfStat_stat_resultStreak_loss_max_from struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The at property
-    at *string
-    // The gameId property
-    gameId *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The at property
+	at *string
+	// The gameId property
+	gameId *string
 }
+
 // NewPerfStat_stat_resultStreak_loss_max_from instantiates a new PerfStat_stat_resultStreak_loss_max_from and sets the default values.
-func NewPerfStat_stat_resultStreak_loss_max_from()(*PerfStat_stat_resultStreak_loss_max_from) {
-    m := &PerfStat_stat_resultStreak_loss_max_from{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewPerfStat_stat_resultStreak_loss_max_from() *PerfStat_stat_resultStreak_loss_max_from {
+	m := &PerfStat_stat_resultStreak_loss_max_from{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreatePerfStat_stat_resultStreak_loss_max_fromFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreatePerfStat_stat_resultStreak_loss_max_fromFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewPerfStat_stat_resultStreak_loss_max_from(), nil
+func CreatePerfStat_stat_resultStreak_loss_max_fromFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewPerfStat_stat_resultStreak_loss_max_from(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *PerfStat_stat_resultStreak_loss_max_from) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *PerfStat_stat_resultStreak_loss_max_from) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetAt gets the at property value. The at property
 // returns a *string when successful
-func (m *PerfStat_stat_resultStreak_loss_max_from) GetAt()(*string) {
-    return m.at
+func (m *PerfStat_stat_resultStreak_loss_max_from) GetAt() *string {
+	return m.at
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *PerfStat_stat_resultStreak_loss_max_from) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["at"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetAt(val)
-        }
-        return nil
-    }
-    res["gameId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetGameId(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *PerfStat_stat_resultStreak_loss_max_from) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["at"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetAt(val)
+		}
+		return nil
+	}
+	res["gameId"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetGameId(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetGameId gets the gameId property value. The gameId property
 // returns a *string when successful
-func (m *PerfStat_stat_resultStreak_loss_max_from) GetGameId()(*string) {
-    return m.gameId
+func (m *PerfStat_stat_resultStreak_loss_max_from) GetGameId() *string {
+	return m.gameId
 }
+
 // Serialize serializes information the current object
-func (m *PerfStat_stat_resultStreak_loss_max_from) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("at", m.GetAt())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("gameId", m.GetGameId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *PerfStat_stat_resultStreak_loss_max_from) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("at", m.GetAt())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("gameId", m.GetGameId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PerfStat_stat_resultStreak_loss_max_from) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *PerfStat_stat_resultStreak_loss_max_from) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetAt sets the at property value. The at property
-func (m *PerfStat_stat_resultStreak_loss_max_from) SetAt(value *string)() {
-    m.at = value
+func (m *PerfStat_stat_resultStreak_loss_max_from) SetAt(value *string) {
+	m.at = value
 }
+
 // SetGameId sets the gameId property value. The gameId property
-func (m *PerfStat_stat_resultStreak_loss_max_from) SetGameId(value *string)() {
-    m.gameId = value
+func (m *PerfStat_stat_resultStreak_loss_max_from) SetGameId(value *string) {
+	m.gameId = value
 }
+
 type PerfStat_stat_resultStreak_loss_max_fromable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetAt()(*string)
-    GetGameId()(*string)
-    SetAt(value *string)()
-    SetGameId(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetAt() *string
+	GetGameId() *string
+	SetAt(value *string)
+	SetGameId(value *string)
 }

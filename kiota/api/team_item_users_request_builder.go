@@ -4,73 +4,80 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	"context"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // TeamItemUsersRequestBuilder builds and executes requests for operations under \api\team\{teamId}\users
 type TeamItemUsersRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // TeamItemUsersRequestBuilderGetQueryParameters members are sorted by reverse chronological order of joining the team (most recent first).OAuth is only required if the list of members is private.Up to 5,000 users are streamed as [ndjson](#description/streaming-with-nd-json).
 type TeamItemUsersRequestBuilderGetQueryParameters struct {
-    // Full user documents with performance ratings.This limits the response to 1,000 users.
-    Full *bool "uriparametername:\"full\""
+	// Full user documents with performance ratings.This limits the response to 1,000 users.
+	Full *bool "uriparametername:\"full\""
 }
+
 // TeamItemUsersRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type TeamItemUsersRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
-    // Request query parameters
-    QueryParameters *TeamItemUsersRequestBuilderGetQueryParameters
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *TeamItemUsersRequestBuilderGetQueryParameters
 }
+
 // NewTeamItemUsersRequestBuilderInternal instantiates a new TeamItemUsersRequestBuilder and sets the default values.
-func NewTeamItemUsersRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*TeamItemUsersRequestBuilder) {
-    m := &TeamItemUsersRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/team/{teamId}/users{?full*}", pathParameters),
-    }
-    return m
+func NewTeamItemUsersRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *TeamItemUsersRequestBuilder {
+	m := &TeamItemUsersRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/team/{teamId}/users{?full*}", pathParameters),
+	}
+	return m
 }
+
 // NewTeamItemUsersRequestBuilder instantiates a new TeamItemUsersRequestBuilder and sets the default values.
-func NewTeamItemUsersRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*TeamItemUsersRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewTeamItemUsersRequestBuilderInternal(urlParams, requestAdapter)
+func NewTeamItemUsersRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *TeamItemUsersRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewTeamItemUsersRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get members are sorted by reverse chronological order of joining the team (most recent first).OAuth is only required if the list of members is private.Up to 5,000 users are streamed as [ndjson](#description/streaming-with-nd-json).
 // returns a []byte when successful
-func (m *TeamItemUsersRequestBuilder) Get(ctx context.Context, requestConfiguration *TeamItemUsersRequestBuilderGetRequestConfiguration)([]byte, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.([]byte), nil
+func (m *TeamItemUsersRequestBuilder) Get(ctx context.Context, requestConfiguration *TeamItemUsersRequestBuilderGetRequestConfiguration) ([]byte, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.([]byte), nil
 }
+
 // ToGetRequestInformation members are sorted by reverse chronological order of joining the team (most recent first).OAuth is only required if the list of members is private.Up to 5,000 users are streamed as [ndjson](#description/streaming-with-nd-json).
 // returns a *RequestInformation when successful
-func (m *TeamItemUsersRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *TeamItemUsersRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        if requestConfiguration.QueryParameters != nil {
-            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
-        }
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/x-ndjson")
-    return requestInfo, nil
+func (m *TeamItemUsersRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *TeamItemUsersRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/x-ndjson")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *TeamItemUsersRequestBuilder when successful
-func (m *TeamItemUsersRequestBuilder) WithUrl(rawUrl string)(*TeamItemUsersRequestBuilder) {
-    return NewTeamItemUsersRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *TeamItemUsersRequestBuilder) WithUrl(rawUrl string) *TeamItemUsersRequestBuilder {
+	return NewTeamItemUsersRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

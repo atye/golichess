@@ -4,35 +4,38 @@
 package api
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // PlayerTopWithNbItemRequestBuilder builds and executes requests for operations under \api\player\top\{nb}
 type PlayerTopWithNbItemRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // ByPerfType gets an item from the github.com/atye/golichess/kiota.api.player.top.item.item collection
 // returns a *PlayerTopItemWithPerfTypeItemRequestBuilder when successful
-func (m *PlayerTopWithNbItemRequestBuilder) ByPerfType(perfType string)(*PlayerTopItemWithPerfTypeItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    if perfType != "" {
-        urlTplParams["perfType"] = perfType
-    }
-    return NewPlayerTopItemWithPerfTypeItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+func (m *PlayerTopWithNbItemRequestBuilder) ByPerfType(perfType string) *PlayerTopItemWithPerfTypeItemRequestBuilder {
+	urlTplParams := make(map[string]string)
+	for idx, item := range m.BaseRequestBuilder.PathParameters {
+		urlTplParams[idx] = item
+	}
+	if perfType != "" {
+		urlTplParams["perfType"] = perfType
+	}
+	return NewPlayerTopItemWithPerfTypeItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewPlayerTopWithNbItemRequestBuilderInternal instantiates a new PlayerTopWithNbItemRequestBuilder and sets the default values.
-func NewPlayerTopWithNbItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*PlayerTopWithNbItemRequestBuilder) {
-    m := &PlayerTopWithNbItemRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/player/top/{nb}", pathParameters),
-    }
-    return m
+func NewPlayerTopWithNbItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *PlayerTopWithNbItemRequestBuilder {
+	m := &PlayerTopWithNbItemRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/player/top/{nb}", pathParameters),
+	}
+	return m
 }
+
 // NewPlayerTopWithNbItemRequestBuilder instantiates a new PlayerTopWithNbItemRequestBuilder and sets the default values.
-func NewPlayerTopWithNbItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*PlayerTopWithNbItemRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewPlayerTopWithNbItemRequestBuilderInternal(urlParams, requestAdapter)
+func NewPlayerTopWithNbItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *PlayerTopWithNbItemRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewPlayerTopWithNbItemRequestBuilderInternal(urlParams, requestAdapter)
 }

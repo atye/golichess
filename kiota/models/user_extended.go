@@ -4,300 +4,323 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type UserExtended struct {
-    User
-    // only appears if the request is [authenticated with OAuth2](#description/authentication)
-    blocking *bool
-    // The count property
-    count Countable
-    // The fideId property
-    fideId *float64
-    // only appears if the request is [authenticated with OAuth2](#description/authentication)
-    followable *bool
-    // only appears if the request is [authenticated with OAuth2](#description/authentication)
-    following *bool
-    // The playing property
-    playing *string
-    // The streamer property
-    streamer UserStreamerable
-    // The streaming property
-    streaming *bool
-    // The url property
-    url *string
+	User
+	// only appears if the request is [authenticated with OAuth2](#description/authentication)
+	blocking *bool
+	// The count property
+	count Countable
+	// The fideId property
+	fideId *float64
+	// only appears if the request is [authenticated with OAuth2](#description/authentication)
+	followable *bool
+	// only appears if the request is [authenticated with OAuth2](#description/authentication)
+	following *bool
+	// The playing property
+	playing *string
+	// The streamer property
+	streamer UserStreamerable
+	// The streaming property
+	streaming *bool
+	// The url property
+	url *string
 }
+
 // NewUserExtended instantiates a new UserExtended and sets the default values.
-func NewUserExtended()(*UserExtended) {
-    m := &UserExtended{
-        User: *NewUser(),
-    }
-    return m
+func NewUserExtended() *UserExtended {
+	m := &UserExtended{
+		User: *NewUser(),
+	}
+	return m
 }
+
 // CreateUserExtendedFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateUserExtendedFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewUserExtended(), nil
+func CreateUserExtendedFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewUserExtended(), nil
 }
+
 // GetBlocking gets the blocking property value. only appears if the request is [authenticated with OAuth2](#description/authentication)
 // returns a *bool when successful
-func (m *UserExtended) GetBlocking()(*bool) {
-    return m.blocking
+func (m *UserExtended) GetBlocking() *bool {
+	return m.blocking
 }
+
 // GetCount gets the count property value. The count property
 // returns a Countable when successful
-func (m *UserExtended) GetCount()(Countable) {
-    return m.count
+func (m *UserExtended) GetCount() Countable {
+	return m.count
 }
+
 // GetFideId gets the fideId property value. The fideId property
 // returns a *float64 when successful
-func (m *UserExtended) GetFideId()(*float64) {
-    return m.fideId
+func (m *UserExtended) GetFideId() *float64 {
+	return m.fideId
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *UserExtended) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := m.User.GetFieldDeserializers()
-    res["blocking"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetBlocking(val)
-        }
-        return nil
-    }
-    res["count"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateCountFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCount(val.(Countable))
-        }
-        return nil
-    }
-    res["fideId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFideId(val)
-        }
-        return nil
-    }
-    res["followable"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFollowable(val)
-        }
-        return nil
-    }
-    res["following"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFollowing(val)
-        }
-        return nil
-    }
-    res["playing"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPlaying(val)
-        }
-        return nil
-    }
-    res["streamer"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateUserStreamerFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStreamer(val.(UserStreamerable))
-        }
-        return nil
-    }
-    res["streaming"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStreaming(val)
-        }
-        return nil
-    }
-    res["url"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetUrl(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *UserExtended) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := m.User.GetFieldDeserializers()
+	res["blocking"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetBlocking(val)
+		}
+		return nil
+	}
+	res["count"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateCountFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCount(val.(Countable))
+		}
+		return nil
+	}
+	res["fideId"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFideId(val)
+		}
+		return nil
+	}
+	res["followable"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFollowable(val)
+		}
+		return nil
+	}
+	res["following"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFollowing(val)
+		}
+		return nil
+	}
+	res["playing"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPlaying(val)
+		}
+		return nil
+	}
+	res["streamer"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateUserStreamerFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStreamer(val.(UserStreamerable))
+		}
+		return nil
+	}
+	res["streaming"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStreaming(val)
+		}
+		return nil
+	}
+	res["url"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetUrl(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetFollowable gets the followable property value. only appears if the request is [authenticated with OAuth2](#description/authentication)
 // returns a *bool when successful
-func (m *UserExtended) GetFollowable()(*bool) {
-    return m.followable
+func (m *UserExtended) GetFollowable() *bool {
+	return m.followable
 }
+
 // GetFollowing gets the following property value. only appears if the request is [authenticated with OAuth2](#description/authentication)
 // returns a *bool when successful
-func (m *UserExtended) GetFollowing()(*bool) {
-    return m.following
+func (m *UserExtended) GetFollowing() *bool {
+	return m.following
 }
+
 // GetPlaying gets the playing property value. The playing property
 // returns a *string when successful
-func (m *UserExtended) GetPlaying()(*string) {
-    return m.playing
+func (m *UserExtended) GetPlaying() *string {
+	return m.playing
 }
+
 // GetStreamer gets the streamer property value. The streamer property
 // returns a UserStreamerable when successful
-func (m *UserExtended) GetStreamer()(UserStreamerable) {
-    return m.streamer
+func (m *UserExtended) GetStreamer() UserStreamerable {
+	return m.streamer
 }
+
 // GetStreaming gets the streaming property value. The streaming property
 // returns a *bool when successful
-func (m *UserExtended) GetStreaming()(*bool) {
-    return m.streaming
+func (m *UserExtended) GetStreaming() *bool {
+	return m.streaming
 }
+
 // GetUrl gets the url property value. The url property
 // returns a *string when successful
-func (m *UserExtended) GetUrl()(*string) {
-    return m.url
+func (m *UserExtended) GetUrl() *string {
+	return m.url
 }
+
 // Serialize serializes information the current object
-func (m *UserExtended) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    err := m.User.Serialize(writer)
-    if err != nil {
-        return err
-    }
-    {
-        err = writer.WriteBoolValue("blocking", m.GetBlocking())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err = writer.WriteObjectValue("count", m.GetCount())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err = writer.WriteFloat64Value("fideId", m.GetFideId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err = writer.WriteBoolValue("followable", m.GetFollowable())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err = writer.WriteBoolValue("following", m.GetFollowing())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err = writer.WriteStringValue("playing", m.GetPlaying())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err = writer.WriteObjectValue("streamer", m.GetStreamer())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err = writer.WriteBoolValue("streaming", m.GetStreaming())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err = writer.WriteStringValue("url", m.GetUrl())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *UserExtended) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	err := m.User.Serialize(writer)
+	if err != nil {
+		return err
+	}
+	{
+		err = writer.WriteBoolValue("blocking", m.GetBlocking())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err = writer.WriteObjectValue("count", m.GetCount())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err = writer.WriteFloat64Value("fideId", m.GetFideId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err = writer.WriteBoolValue("followable", m.GetFollowable())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err = writer.WriteBoolValue("following", m.GetFollowing())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err = writer.WriteStringValue("playing", m.GetPlaying())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err = writer.WriteObjectValue("streamer", m.GetStreamer())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err = writer.WriteBoolValue("streaming", m.GetStreaming())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err = writer.WriteStringValue("url", m.GetUrl())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetBlocking sets the blocking property value. only appears if the request is [authenticated with OAuth2](#description/authentication)
-func (m *UserExtended) SetBlocking(value *bool)() {
-    m.blocking = value
+func (m *UserExtended) SetBlocking(value *bool) {
+	m.blocking = value
 }
+
 // SetCount sets the count property value. The count property
-func (m *UserExtended) SetCount(value Countable)() {
-    m.count = value
+func (m *UserExtended) SetCount(value Countable) {
+	m.count = value
 }
+
 // SetFideId sets the fideId property value. The fideId property
-func (m *UserExtended) SetFideId(value *float64)() {
-    m.fideId = value
+func (m *UserExtended) SetFideId(value *float64) {
+	m.fideId = value
 }
+
 // SetFollowable sets the followable property value. only appears if the request is [authenticated with OAuth2](#description/authentication)
-func (m *UserExtended) SetFollowable(value *bool)() {
-    m.followable = value
+func (m *UserExtended) SetFollowable(value *bool) {
+	m.followable = value
 }
+
 // SetFollowing sets the following property value. only appears if the request is [authenticated with OAuth2](#description/authentication)
-func (m *UserExtended) SetFollowing(value *bool)() {
-    m.following = value
+func (m *UserExtended) SetFollowing(value *bool) {
+	m.following = value
 }
+
 // SetPlaying sets the playing property value. The playing property
-func (m *UserExtended) SetPlaying(value *string)() {
-    m.playing = value
+func (m *UserExtended) SetPlaying(value *string) {
+	m.playing = value
 }
+
 // SetStreamer sets the streamer property value. The streamer property
-func (m *UserExtended) SetStreamer(value UserStreamerable)() {
-    m.streamer = value
+func (m *UserExtended) SetStreamer(value UserStreamerable) {
+	m.streamer = value
 }
+
 // SetStreaming sets the streaming property value. The streaming property
-func (m *UserExtended) SetStreaming(value *bool)() {
-    m.streaming = value
+func (m *UserExtended) SetStreaming(value *bool) {
+	m.streaming = value
 }
+
 // SetUrl sets the url property value. The url property
-func (m *UserExtended) SetUrl(value *string)() {
-    m.url = value
+func (m *UserExtended) SetUrl(value *string) {
+	m.url = value
 }
+
 type UserExtendedable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    Userable
-    GetBlocking()(*bool)
-    GetCount()(Countable)
-    GetFideId()(*float64)
-    GetFollowable()(*bool)
-    GetFollowing()(*bool)
-    GetPlaying()(*string)
-    GetStreamer()(UserStreamerable)
-    GetStreaming()(*bool)
-    GetUrl()(*string)
-    SetBlocking(value *bool)()
-    SetCount(value Countable)()
-    SetFideId(value *float64)()
-    SetFollowable(value *bool)()
-    SetFollowing(value *bool)()
-    SetPlaying(value *string)()
-    SetStreamer(value UserStreamerable)()
-    SetStreaming(value *bool)()
-    SetUrl(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	Userable
+	GetBlocking() *bool
+	GetCount() Countable
+	GetFideId() *float64
+	GetFollowable() *bool
+	GetFollowing() *bool
+	GetPlaying() *string
+	GetStreamer() UserStreamerable
+	GetStreaming() *bool
+	GetUrl() *string
+	SetBlocking(value *bool)
+	SetCount(value Countable)
+	SetFideId(value *float64)
+	SetFollowable(value *bool)
+	SetFollowing(value *bool)
+	SetPlaying(value *string)
+	SetStreamer(value UserStreamerable)
+	SetStreaming(value *bool)
+	SetUrl(value *string)
 }

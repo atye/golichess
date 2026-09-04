@@ -4,263 +4,283 @@
 package api
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
-    i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type ChallengeAiPostRequestBody struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // Clock increment in seconds. If empty, a correspondence game is created.
-    clockIncrement *int32
-    // Clock initial time in seconds. If empty, a correspondence game is created.
-    clockLimit *int32
-    // Which color you get to play
-    color *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ChallengeColor
-    // Days per move, for correspondence games. Clock settings must be omitted.
-    days *int32
-    // Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated.
-    fen *string
-    // AI strength
-    level *int32
-    // The variant property
-    variant *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// Clock increment in seconds. If empty, a correspondence game is created.
+	clockIncrement *int32
+	// Clock initial time in seconds. If empty, a correspondence game is created.
+	clockLimit *int32
+	// Which color you get to play
+	color *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ChallengeColor
+	// Days per move, for correspondence games. Clock settings must be omitted.
+	days *int32
+	// Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated.
+	fen *string
+	// AI strength
+	level *int32
+	// The variant property
+	variant *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey
 }
+
 // NewChallengeAiPostRequestBody instantiates a new ChallengeAiPostRequestBody and sets the default values.
-func NewChallengeAiPostRequestBody()(*ChallengeAiPostRequestBody) {
-    m := &ChallengeAiPostRequestBody{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    colorValue := RANDOM_CHALLENGECOLOR
-    m.SetColor(&colorValue)
-    fenValue := "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
-    m.SetFen(&fenValue)
-    variantValue := STANDARD_VARIANTKEY
-    m.SetVariant(&variantValue)
-    return m
+func NewChallengeAiPostRequestBody() *ChallengeAiPostRequestBody {
+	m := &ChallengeAiPostRequestBody{}
+	m.SetAdditionalData(make(map[string]any))
+	colorValue := RANDOM_CHALLENGECOLOR
+	m.SetColor(&colorValue)
+	fenValue := "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+	m.SetFen(&fenValue)
+	variantValue := STANDARD_VARIANTKEY
+	m.SetVariant(&variantValue)
+	return m
 }
+
 // CreateChallengeAiPostRequestBodyFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateChallengeAiPostRequestBodyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewChallengeAiPostRequestBody(), nil
+func CreateChallengeAiPostRequestBodyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewChallengeAiPostRequestBody(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *ChallengeAiPostRequestBody) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *ChallengeAiPostRequestBody) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetClockIncrement gets the clock.increment property value. Clock increment in seconds. If empty, a correspondence game is created.
 // returns a *int32 when successful
-func (m *ChallengeAiPostRequestBody) GetClockIncrement()(*int32) {
-    return m.clockIncrement
+func (m *ChallengeAiPostRequestBody) GetClockIncrement() *int32 {
+	return m.clockIncrement
 }
+
 // GetClockLimit gets the clock.limit property value. Clock initial time in seconds. If empty, a correspondence game is created.
 // returns a *int32 when successful
-func (m *ChallengeAiPostRequestBody) GetClockLimit()(*int32) {
-    return m.clockLimit
+func (m *ChallengeAiPostRequestBody) GetClockLimit() *int32 {
+	return m.clockLimit
 }
+
 // GetColor gets the color property value. Which color you get to play
 // returns a *ChallengeColor when successful
-func (m *ChallengeAiPostRequestBody) GetColor()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ChallengeColor) {
-    return m.color
+func (m *ChallengeAiPostRequestBody) GetColor() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ChallengeColor {
+	return m.color
 }
+
 // GetDays gets the days property value. Days per move, for correspondence games. Clock settings must be omitted.
 // returns a *int32 when successful
-func (m *ChallengeAiPostRequestBody) GetDays()(*int32) {
-    return m.days
+func (m *ChallengeAiPostRequestBody) GetDays() *int32 {
+	return m.days
 }
+
 // GetFen gets the fen property value. Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated.
 // returns a *string when successful
-func (m *ChallengeAiPostRequestBody) GetFen()(*string) {
-    return m.fen
+func (m *ChallengeAiPostRequestBody) GetFen() *string {
+	return m.fen
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ChallengeAiPostRequestBody) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["clock.increment"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetClockIncrement(val)
-        }
-        return nil
-    }
-    res["clock.limit"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetClockLimit(val)
-        }
-        return nil
-    }
-    res["color"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParseChallengeColor)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetColor(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ChallengeColor))
-        }
-        return nil
-    }
-    res["days"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDays(val)
-        }
-        return nil
-    }
-    res["fen"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFen(val)
-        }
-        return nil
-    }
-    res["level"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetLevel(val)
-        }
-        return nil
-    }
-    res["variant"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParseVariantKey)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetVariant(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey))
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *ChallengeAiPostRequestBody) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["clock.increment"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetClockIncrement(val)
+		}
+		return nil
+	}
+	res["clock.limit"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetClockLimit(val)
+		}
+		return nil
+	}
+	res["color"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParseChallengeColor)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetColor(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ChallengeColor))
+		}
+		return nil
+	}
+	res["days"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetDays(val)
+		}
+		return nil
+	}
+	res["fen"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFen(val)
+		}
+		return nil
+	}
+	res["level"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetLevel(val)
+		}
+		return nil
+	}
+	res["variant"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParseVariantKey)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetVariant(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey))
+		}
+		return nil
+	}
+	return res
 }
+
 // GetLevel gets the level property value. AI strength
 // returns a *int32 when successful
-func (m *ChallengeAiPostRequestBody) GetLevel()(*int32) {
-    return m.level
+func (m *ChallengeAiPostRequestBody) GetLevel() *int32 {
+	return m.level
 }
+
 // GetVariant gets the variant property value. The variant property
 // returns a *VariantKey when successful
-func (m *ChallengeAiPostRequestBody) GetVariant()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey) {
-    return m.variant
+func (m *ChallengeAiPostRequestBody) GetVariant() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey {
+	return m.variant
 }
+
 // Serialize serializes information the current object
-func (m *ChallengeAiPostRequestBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteInt32Value("clock.increment", m.GetClockIncrement())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("clock.limit", m.GetClockLimit())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetColor() != nil {
-        cast := (*m.GetColor()).String()
-        err := writer.WriteStringValue("color", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("days", m.GetDays())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("fen", m.GetFen())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("level", m.GetLevel())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetVariant() != nil {
-        cast := (*m.GetVariant()).String()
-        err := writer.WriteStringValue("variant", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *ChallengeAiPostRequestBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteInt32Value("clock.increment", m.GetClockIncrement())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("clock.limit", m.GetClockLimit())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetColor() != nil {
+		cast := (*m.GetColor()).String()
+		err := writer.WriteStringValue("color", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("days", m.GetDays())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("fen", m.GetFen())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("level", m.GetLevel())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetVariant() != nil {
+		cast := (*m.GetVariant()).String()
+		err := writer.WriteStringValue("variant", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ChallengeAiPostRequestBody) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *ChallengeAiPostRequestBody) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetClockIncrement sets the clock.increment property value. Clock increment in seconds. If empty, a correspondence game is created.
-func (m *ChallengeAiPostRequestBody) SetClockIncrement(value *int32)() {
-    m.clockIncrement = value
+func (m *ChallengeAiPostRequestBody) SetClockIncrement(value *int32) {
+	m.clockIncrement = value
 }
+
 // SetClockLimit sets the clock.limit property value. Clock initial time in seconds. If empty, a correspondence game is created.
-func (m *ChallengeAiPostRequestBody) SetClockLimit(value *int32)() {
-    m.clockLimit = value
+func (m *ChallengeAiPostRequestBody) SetClockLimit(value *int32) {
+	m.clockLimit = value
 }
+
 // SetColor sets the color property value. Which color you get to play
-func (m *ChallengeAiPostRequestBody) SetColor(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ChallengeColor)() {
-    m.color = value
+func (m *ChallengeAiPostRequestBody) SetColor(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ChallengeColor) {
+	m.color = value
 }
+
 // SetDays sets the days property value. Days per move, for correspondence games. Clock settings must be omitted.
-func (m *ChallengeAiPostRequestBody) SetDays(value *int32)() {
-    m.days = value
+func (m *ChallengeAiPostRequestBody) SetDays(value *int32) {
+	m.days = value
 }
+
 // SetFen sets the fen property value. Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated.
-func (m *ChallengeAiPostRequestBody) SetFen(value *string)() {
-    m.fen = value
+func (m *ChallengeAiPostRequestBody) SetFen(value *string) {
+	m.fen = value
 }
+
 // SetLevel sets the level property value. AI strength
-func (m *ChallengeAiPostRequestBody) SetLevel(value *int32)() {
-    m.level = value
+func (m *ChallengeAiPostRequestBody) SetLevel(value *int32) {
+	m.level = value
 }
+
 // SetVariant sets the variant property value. The variant property
-func (m *ChallengeAiPostRequestBody) SetVariant(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey)() {
-    m.variant = value
+func (m *ChallengeAiPostRequestBody) SetVariant(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey) {
+	m.variant = value
 }
+
 type ChallengeAiPostRequestBodyable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetClockIncrement()(*int32)
-    GetClockLimit()(*int32)
-    GetColor()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ChallengeColor)
-    GetDays()(*int32)
-    GetFen()(*string)
-    GetLevel()(*int32)
-    GetVariant()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey)
-    SetClockIncrement(value *int32)()
-    SetClockLimit(value *int32)()
-    SetColor(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ChallengeColor)()
-    SetDays(value *int32)()
-    SetFen(value *string)()
-    SetLevel(value *int32)()
-    SetVariant(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetClockIncrement() *int32
+	GetClockLimit() *int32
+	GetColor() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ChallengeColor
+	GetDays() *int32
+	GetFen() *string
+	GetLevel() *int32
+	GetVariant() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey
+	SetClockIncrement(value *int32)
+	SetClockLimit(value *int32)
+	SetColor(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ChallengeColor)
+	SetDays(value *int32)
+	SetFen(value *string)
+	SetLevel(value *int32)
+	SetVariant(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey)
 }

@@ -4,68 +4,76 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	"context"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // StudyItemWithChapterItemRequestBuilder builds and executes requests for operations under \api\study\{studyId}\{chapterId}
 type StudyItemWithChapterItemRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // StudyItemWithChapterItemRequestBuilderDeleteRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type StudyItemWithChapterItemRequestBuilderDeleteRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+
 // NewStudyItemWithChapterItemRequestBuilderInternal instantiates a new StudyItemWithChapterItemRequestBuilder and sets the default values.
-func NewStudyItemWithChapterItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*StudyItemWithChapterItemRequestBuilder) {
-    m := &StudyItemWithChapterItemRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/study/{studyId}/{chapterId}", pathParameters),
-    }
-    return m
+func NewStudyItemWithChapterItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *StudyItemWithChapterItemRequestBuilder {
+	m := &StudyItemWithChapterItemRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/study/{studyId}/{chapterId}", pathParameters),
+	}
+	return m
 }
+
 // NewStudyItemWithChapterItemRequestBuilder instantiates a new StudyItemWithChapterItemRequestBuilder and sets the default values.
-func NewStudyItemWithChapterItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*StudyItemWithChapterItemRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewStudyItemWithChapterItemRequestBuilderInternal(urlParams, requestAdapter)
+func NewStudyItemWithChapterItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *StudyItemWithChapterItemRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewStudyItemWithChapterItemRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Delete delete a chapter of a study you own. This is definitive.A study must have at least one chapter; so if you delete the last chapter,an empty one will be automatically created to replace it.
-func (m *StudyItemWithChapterItemRequestBuilder) Delete(ctx context.Context, requestConfiguration *StudyItemWithChapterItemRequestBuilderDeleteRequestConfiguration)(error) {
-    requestInfo, err := m.ToDeleteRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return err
-    }
-    err = m.BaseRequestBuilder.RequestAdapter.SendNoContent(ctx, requestInfo, nil)
-    if err != nil {
-        return err
-    }
-    return nil
+func (m *StudyItemWithChapterItemRequestBuilder) Delete(ctx context.Context, requestConfiguration *StudyItemWithChapterItemRequestBuilderDeleteRequestConfiguration) error {
+	requestInfo, err := m.ToDeleteRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return err
+	}
+	err = m.BaseRequestBuilder.RequestAdapter.SendNoContent(ctx, requestInfo, nil)
+	if err != nil {
+		return err
+	}
+	return nil
 }
+
 // Moves the moves property
 // returns a *StudyItemItemMovesRequestBuilder when successful
-func (m *StudyItemWithChapterItemRequestBuilder) Moves()(*StudyItemItemMovesRequestBuilder) {
-    return NewStudyItemItemMovesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *StudyItemWithChapterItemRequestBuilder) Moves() *StudyItemItemMovesRequestBuilder {
+	return NewStudyItemItemMovesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Tags the tags property
 // returns a *StudyItemItemTagsRequestBuilder when successful
-func (m *StudyItemWithChapterItemRequestBuilder) Tags()(*StudyItemItemTagsRequestBuilder) {
-    return NewStudyItemItemTagsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *StudyItemWithChapterItemRequestBuilder) Tags() *StudyItemItemTagsRequestBuilder {
+	return NewStudyItemItemTagsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // ToDeleteRequestInformation delete a chapter of a study you own. This is definitive.A study must have at least one chapter; so if you delete the last chapter,an empty one will be automatically created to replace it.
 // returns a *RequestInformation when successful
-func (m *StudyItemWithChapterItemRequestBuilder) ToDeleteRequestInformation(ctx context.Context, requestConfiguration *StudyItemWithChapterItemRequestBuilderDeleteRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DELETE, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    return requestInfo, nil
+func (m *StudyItemWithChapterItemRequestBuilder) ToDeleteRequestInformation(ctx context.Context, requestConfiguration *StudyItemWithChapterItemRequestBuilderDeleteRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DELETE, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *StudyItemWithChapterItemRequestBuilder when successful
-func (m *StudyItemWithChapterItemRequestBuilder) WithUrl(rawUrl string)(*StudyItemWithChapterItemRequestBuilder) {
-    return NewStudyItemWithChapterItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *StudyItemWithChapterItemRequestBuilder) WithUrl(rawUrl string) *StudyItemWithChapterItemRequestBuilder {
+	return NewStudyItemWithChapterItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

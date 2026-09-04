@@ -2,39 +2,43 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 // FIDE rating category
 type FideTimeControl int
 
 const (
-    STANDARD_FIDETIMECONTROL FideTimeControl = iota
-    RAPID_FIDETIMECONTROL
-    BLITZ_FIDETIMECONTROL
+	STANDARD_FIDETIMECONTROL FideTimeControl = iota
+	RAPID_FIDETIMECONTROL
+	BLITZ_FIDETIMECONTROL
 )
 
 func (i FideTimeControl) String() string {
-    return []string{"standard", "rapid", "blitz"}[i]
+	return []string{"standard", "rapid", "blitz"}[i]
 }
+
 func ParseFideTimeControl(v string) (any, error) {
-    result := STANDARD_FIDETIMECONTROL
-    switch v {
-        case "standard":
-            result = STANDARD_FIDETIMECONTROL
-        case "rapid":
-            result = RAPID_FIDETIMECONTROL
-        case "blitz":
-            result = BLITZ_FIDETIMECONTROL
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := STANDARD_FIDETIMECONTROL
+	switch v {
+	case "standard":
+		result = STANDARD_FIDETIMECONTROL
+	case "rapid":
+		result = RAPID_FIDETIMECONTROL
+	case "blitz":
+		result = BLITZ_FIDETIMECONTROL
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeFideTimeControl(values []FideTimeControl) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i FideTimeControl) isMultiValue() bool {
-    return false
+	return false
 }

@@ -2,59 +2,63 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 type VariantKey int
 
 const (
-    STANDARD_VARIANTKEY VariantKey = iota
-    CHESS960_VARIANTKEY
-    CRAZYHOUSE_VARIANTKEY
-    ANTICHESS_VARIANTKEY
-    ATOMIC_VARIANTKEY
-    HORDE_VARIANTKEY
-    KINGOFTHEHILL_VARIANTKEY
-    RACINGKINGS_VARIANTKEY
-    THREECHECK_VARIANTKEY
-    FROMPOSITION_VARIANTKEY
+	STANDARD_VARIANTKEY VariantKey = iota
+	CHESS960_VARIANTKEY
+	CRAZYHOUSE_VARIANTKEY
+	ANTICHESS_VARIANTKEY
+	ATOMIC_VARIANTKEY
+	HORDE_VARIANTKEY
+	KINGOFTHEHILL_VARIANTKEY
+	RACINGKINGS_VARIANTKEY
+	THREECHECK_VARIANTKEY
+	FROMPOSITION_VARIANTKEY
 )
 
 func (i VariantKey) String() string {
-    return []string{"standard", "chess960", "crazyhouse", "antichess", "atomic", "horde", "kingOfTheHill", "racingKings", "threeCheck", "fromPosition"}[i]
+	return []string{"standard", "chess960", "crazyhouse", "antichess", "atomic", "horde", "kingOfTheHill", "racingKings", "threeCheck", "fromPosition"}[i]
 }
+
 func ParseVariantKey(v string) (any, error) {
-    result := STANDARD_VARIANTKEY
-    switch v {
-        case "standard":
-            result = STANDARD_VARIANTKEY
-        case "chess960":
-            result = CHESS960_VARIANTKEY
-        case "crazyhouse":
-            result = CRAZYHOUSE_VARIANTKEY
-        case "antichess":
-            result = ANTICHESS_VARIANTKEY
-        case "atomic":
-            result = ATOMIC_VARIANTKEY
-        case "horde":
-            result = HORDE_VARIANTKEY
-        case "kingOfTheHill":
-            result = KINGOFTHEHILL_VARIANTKEY
-        case "racingKings":
-            result = RACINGKINGS_VARIANTKEY
-        case "threeCheck":
-            result = THREECHECK_VARIANTKEY
-        case "fromPosition":
-            result = FROMPOSITION_VARIANTKEY
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := STANDARD_VARIANTKEY
+	switch v {
+	case "standard":
+		result = STANDARD_VARIANTKEY
+	case "chess960":
+		result = CHESS960_VARIANTKEY
+	case "crazyhouse":
+		result = CRAZYHOUSE_VARIANTKEY
+	case "antichess":
+		result = ANTICHESS_VARIANTKEY
+	case "atomic":
+		result = ATOMIC_VARIANTKEY
+	case "horde":
+		result = HORDE_VARIANTKEY
+	case "kingOfTheHill":
+		result = KINGOFTHEHILL_VARIANTKEY
+	case "racingKings":
+		result = RACINGKINGS_VARIANTKEY
+	case "threeCheck":
+		result = THREECHECK_VARIANTKEY
+	case "fromPosition":
+		result = FROMPOSITION_VARIANTKEY
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeVariantKey(values []VariantKey) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i VariantKey) isMultiValue() bool {
-    return false
+	return false
 }

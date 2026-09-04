@@ -4,584 +4,616 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type Top10s struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The antichess property
-    antichess []TopUserable
-    // The atomic property
-    atomic []TopUserable
-    // The blitz property
-    blitz []TopUserable
-    // The bullet property
-    bullet []TopUserable
-    // The chess960 property
-    chess960 []TopUserable
-    // The classical property
-    classical []TopUserable
-    // The crazyhouse property
-    crazyhouse []TopUserable
-    // The horde property
-    horde []TopUserable
-    // The kingOfTheHill property
-    kingOfTheHill []TopUserable
-    // The racingKings property
-    racingKings []TopUserable
-    // The rapid property
-    rapid []TopUserable
-    // The threeCheck property
-    threeCheck []TopUserable
-    // The ultraBullet property
-    ultraBullet []TopUserable
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The antichess property
+	antichess []TopUserable
+	// The atomic property
+	atomic []TopUserable
+	// The blitz property
+	blitz []TopUserable
+	// The bullet property
+	bullet []TopUserable
+	// The chess960 property
+	chess960 []TopUserable
+	// The classical property
+	classical []TopUserable
+	// The crazyhouse property
+	crazyhouse []TopUserable
+	// The horde property
+	horde []TopUserable
+	// The kingOfTheHill property
+	kingOfTheHill []TopUserable
+	// The racingKings property
+	racingKings []TopUserable
+	// The rapid property
+	rapid []TopUserable
+	// The threeCheck property
+	threeCheck []TopUserable
+	// The ultraBullet property
+	ultraBullet []TopUserable
 }
+
 // NewTop10s instantiates a new Top10s and sets the default values.
-func NewTop10s()(*Top10s) {
-    m := &Top10s{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewTop10s() *Top10s {
+	m := &Top10s{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateTop10sFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateTop10sFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewTop10s(), nil
+func CreateTop10sFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewTop10s(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *Top10s) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *Top10s) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetAntichess gets the antichess property value. The antichess property
 // returns a []TopUserable when successful
-func (m *Top10s) GetAntichess()([]TopUserable) {
-    return m.antichess
+func (m *Top10s) GetAntichess() []TopUserable {
+	return m.antichess
 }
+
 // GetAtomic gets the atomic property value. The atomic property
 // returns a []TopUserable when successful
-func (m *Top10s) GetAtomic()([]TopUserable) {
-    return m.atomic
+func (m *Top10s) GetAtomic() []TopUserable {
+	return m.atomic
 }
+
 // GetBlitz gets the blitz property value. The blitz property
 // returns a []TopUserable when successful
-func (m *Top10s) GetBlitz()([]TopUserable) {
-    return m.blitz
+func (m *Top10s) GetBlitz() []TopUserable {
+	return m.blitz
 }
+
 // GetBullet gets the bullet property value. The bullet property
 // returns a []TopUserable when successful
-func (m *Top10s) GetBullet()([]TopUserable) {
-    return m.bullet
+func (m *Top10s) GetBullet() []TopUserable {
+	return m.bullet
 }
+
 // GetChess960 gets the chess960 property value. The chess960 property
 // returns a []TopUserable when successful
-func (m *Top10s) GetChess960()([]TopUserable) {
-    return m.chess960
+func (m *Top10s) GetChess960() []TopUserable {
+	return m.chess960
 }
+
 // GetClassical gets the classical property value. The classical property
 // returns a []TopUserable when successful
-func (m *Top10s) GetClassical()([]TopUserable) {
-    return m.classical
+func (m *Top10s) GetClassical() []TopUserable {
+	return m.classical
 }
+
 // GetCrazyhouse gets the crazyhouse property value. The crazyhouse property
 // returns a []TopUserable when successful
-func (m *Top10s) GetCrazyhouse()([]TopUserable) {
-    return m.crazyhouse
+func (m *Top10s) GetCrazyhouse() []TopUserable {
+	return m.crazyhouse
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *Top10s) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["antichess"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateTopUserFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]TopUserable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(TopUserable)
-                }
-            }
-            m.SetAntichess(res)
-        }
-        return nil
-    }
-    res["atomic"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateTopUserFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]TopUserable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(TopUserable)
-                }
-            }
-            m.SetAtomic(res)
-        }
-        return nil
-    }
-    res["blitz"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateTopUserFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]TopUserable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(TopUserable)
-                }
-            }
-            m.SetBlitz(res)
-        }
-        return nil
-    }
-    res["bullet"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateTopUserFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]TopUserable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(TopUserable)
-                }
-            }
-            m.SetBullet(res)
-        }
-        return nil
-    }
-    res["chess960"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateTopUserFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]TopUserable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(TopUserable)
-                }
-            }
-            m.SetChess960(res)
-        }
-        return nil
-    }
-    res["classical"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateTopUserFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]TopUserable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(TopUserable)
-                }
-            }
-            m.SetClassical(res)
-        }
-        return nil
-    }
-    res["crazyhouse"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateTopUserFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]TopUserable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(TopUserable)
-                }
-            }
-            m.SetCrazyhouse(res)
-        }
-        return nil
-    }
-    res["horde"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateTopUserFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]TopUserable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(TopUserable)
-                }
-            }
-            m.SetHorde(res)
-        }
-        return nil
-    }
-    res["kingOfTheHill"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateTopUserFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]TopUserable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(TopUserable)
-                }
-            }
-            m.SetKingOfTheHill(res)
-        }
-        return nil
-    }
-    res["racingKings"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateTopUserFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]TopUserable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(TopUserable)
-                }
-            }
-            m.SetRacingKings(res)
-        }
-        return nil
-    }
-    res["rapid"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateTopUserFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]TopUserable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(TopUserable)
-                }
-            }
-            m.SetRapid(res)
-        }
-        return nil
-    }
-    res["threeCheck"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateTopUserFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]TopUserable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(TopUserable)
-                }
-            }
-            m.SetThreeCheck(res)
-        }
-        return nil
-    }
-    res["ultraBullet"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateTopUserFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]TopUserable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(TopUserable)
-                }
-            }
-            m.SetUltraBullet(res)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *Top10s) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["antichess"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateTopUserFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]TopUserable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(TopUserable)
+				}
+			}
+			m.SetAntichess(res)
+		}
+		return nil
+	}
+	res["atomic"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateTopUserFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]TopUserable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(TopUserable)
+				}
+			}
+			m.SetAtomic(res)
+		}
+		return nil
+	}
+	res["blitz"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateTopUserFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]TopUserable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(TopUserable)
+				}
+			}
+			m.SetBlitz(res)
+		}
+		return nil
+	}
+	res["bullet"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateTopUserFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]TopUserable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(TopUserable)
+				}
+			}
+			m.SetBullet(res)
+		}
+		return nil
+	}
+	res["chess960"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateTopUserFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]TopUserable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(TopUserable)
+				}
+			}
+			m.SetChess960(res)
+		}
+		return nil
+	}
+	res["classical"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateTopUserFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]TopUserable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(TopUserable)
+				}
+			}
+			m.SetClassical(res)
+		}
+		return nil
+	}
+	res["crazyhouse"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateTopUserFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]TopUserable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(TopUserable)
+				}
+			}
+			m.SetCrazyhouse(res)
+		}
+		return nil
+	}
+	res["horde"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateTopUserFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]TopUserable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(TopUserable)
+				}
+			}
+			m.SetHorde(res)
+		}
+		return nil
+	}
+	res["kingOfTheHill"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateTopUserFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]TopUserable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(TopUserable)
+				}
+			}
+			m.SetKingOfTheHill(res)
+		}
+		return nil
+	}
+	res["racingKings"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateTopUserFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]TopUserable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(TopUserable)
+				}
+			}
+			m.SetRacingKings(res)
+		}
+		return nil
+	}
+	res["rapid"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateTopUserFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]TopUserable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(TopUserable)
+				}
+			}
+			m.SetRapid(res)
+		}
+		return nil
+	}
+	res["threeCheck"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateTopUserFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]TopUserable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(TopUserable)
+				}
+			}
+			m.SetThreeCheck(res)
+		}
+		return nil
+	}
+	res["ultraBullet"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateTopUserFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]TopUserable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(TopUserable)
+				}
+			}
+			m.SetUltraBullet(res)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetHorde gets the horde property value. The horde property
 // returns a []TopUserable when successful
-func (m *Top10s) GetHorde()([]TopUserable) {
-    return m.horde
+func (m *Top10s) GetHorde() []TopUserable {
+	return m.horde
 }
+
 // GetKingOfTheHill gets the kingOfTheHill property value. The kingOfTheHill property
 // returns a []TopUserable when successful
-func (m *Top10s) GetKingOfTheHill()([]TopUserable) {
-    return m.kingOfTheHill
+func (m *Top10s) GetKingOfTheHill() []TopUserable {
+	return m.kingOfTheHill
 }
+
 // GetRacingKings gets the racingKings property value. The racingKings property
 // returns a []TopUserable when successful
-func (m *Top10s) GetRacingKings()([]TopUserable) {
-    return m.racingKings
+func (m *Top10s) GetRacingKings() []TopUserable {
+	return m.racingKings
 }
+
 // GetRapid gets the rapid property value. The rapid property
 // returns a []TopUserable when successful
-func (m *Top10s) GetRapid()([]TopUserable) {
-    return m.rapid
+func (m *Top10s) GetRapid() []TopUserable {
+	return m.rapid
 }
+
 // GetThreeCheck gets the threeCheck property value. The threeCheck property
 // returns a []TopUserable when successful
-func (m *Top10s) GetThreeCheck()([]TopUserable) {
-    return m.threeCheck
+func (m *Top10s) GetThreeCheck() []TopUserable {
+	return m.threeCheck
 }
+
 // GetUltraBullet gets the ultraBullet property value. The ultraBullet property
 // returns a []TopUserable when successful
-func (m *Top10s) GetUltraBullet()([]TopUserable) {
-    return m.ultraBullet
+func (m *Top10s) GetUltraBullet() []TopUserable {
+	return m.ultraBullet
 }
+
 // Serialize serializes information the current object
-func (m *Top10s) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetAntichess() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAntichess()))
-        for i, v := range m.GetAntichess() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("antichess", cast)
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetAtomic() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAtomic()))
-        for i, v := range m.GetAtomic() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("atomic", cast)
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetBlitz() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetBlitz()))
-        for i, v := range m.GetBlitz() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("blitz", cast)
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetBullet() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetBullet()))
-        for i, v := range m.GetBullet() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("bullet", cast)
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetChess960() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetChess960()))
-        for i, v := range m.GetChess960() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("chess960", cast)
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetClassical() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetClassical()))
-        for i, v := range m.GetClassical() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("classical", cast)
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetCrazyhouse() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetCrazyhouse()))
-        for i, v := range m.GetCrazyhouse() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("crazyhouse", cast)
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetHorde() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetHorde()))
-        for i, v := range m.GetHorde() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("horde", cast)
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetKingOfTheHill() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetKingOfTheHill()))
-        for i, v := range m.GetKingOfTheHill() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("kingOfTheHill", cast)
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetRacingKings() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetRacingKings()))
-        for i, v := range m.GetRacingKings() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("racingKings", cast)
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetRapid() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetRapid()))
-        for i, v := range m.GetRapid() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("rapid", cast)
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetThreeCheck() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetThreeCheck()))
-        for i, v := range m.GetThreeCheck() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("threeCheck", cast)
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetUltraBullet() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetUltraBullet()))
-        for i, v := range m.GetUltraBullet() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("ultraBullet", cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *Top10s) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	if m.GetAntichess() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAntichess()))
+		for i, v := range m.GetAntichess() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("antichess", cast)
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetAtomic() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAtomic()))
+		for i, v := range m.GetAtomic() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("atomic", cast)
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetBlitz() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetBlitz()))
+		for i, v := range m.GetBlitz() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("blitz", cast)
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetBullet() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetBullet()))
+		for i, v := range m.GetBullet() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("bullet", cast)
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetChess960() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetChess960()))
+		for i, v := range m.GetChess960() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("chess960", cast)
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetClassical() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetClassical()))
+		for i, v := range m.GetClassical() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("classical", cast)
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetCrazyhouse() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetCrazyhouse()))
+		for i, v := range m.GetCrazyhouse() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("crazyhouse", cast)
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetHorde() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetHorde()))
+		for i, v := range m.GetHorde() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("horde", cast)
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetKingOfTheHill() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetKingOfTheHill()))
+		for i, v := range m.GetKingOfTheHill() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("kingOfTheHill", cast)
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetRacingKings() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetRacingKings()))
+		for i, v := range m.GetRacingKings() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("racingKings", cast)
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetRapid() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetRapid()))
+		for i, v := range m.GetRapid() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("rapid", cast)
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetThreeCheck() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetThreeCheck()))
+		for i, v := range m.GetThreeCheck() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("threeCheck", cast)
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetUltraBullet() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetUltraBullet()))
+		for i, v := range m.GetUltraBullet() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("ultraBullet", cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *Top10s) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *Top10s) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetAntichess sets the antichess property value. The antichess property
-func (m *Top10s) SetAntichess(value []TopUserable)() {
-    m.antichess = value
+func (m *Top10s) SetAntichess(value []TopUserable) {
+	m.antichess = value
 }
+
 // SetAtomic sets the atomic property value. The atomic property
-func (m *Top10s) SetAtomic(value []TopUserable)() {
-    m.atomic = value
+func (m *Top10s) SetAtomic(value []TopUserable) {
+	m.atomic = value
 }
+
 // SetBlitz sets the blitz property value. The blitz property
-func (m *Top10s) SetBlitz(value []TopUserable)() {
-    m.blitz = value
+func (m *Top10s) SetBlitz(value []TopUserable) {
+	m.blitz = value
 }
+
 // SetBullet sets the bullet property value. The bullet property
-func (m *Top10s) SetBullet(value []TopUserable)() {
-    m.bullet = value
+func (m *Top10s) SetBullet(value []TopUserable) {
+	m.bullet = value
 }
+
 // SetChess960 sets the chess960 property value. The chess960 property
-func (m *Top10s) SetChess960(value []TopUserable)() {
-    m.chess960 = value
+func (m *Top10s) SetChess960(value []TopUserable) {
+	m.chess960 = value
 }
+
 // SetClassical sets the classical property value. The classical property
-func (m *Top10s) SetClassical(value []TopUserable)() {
-    m.classical = value
+func (m *Top10s) SetClassical(value []TopUserable) {
+	m.classical = value
 }
+
 // SetCrazyhouse sets the crazyhouse property value. The crazyhouse property
-func (m *Top10s) SetCrazyhouse(value []TopUserable)() {
-    m.crazyhouse = value
+func (m *Top10s) SetCrazyhouse(value []TopUserable) {
+	m.crazyhouse = value
 }
+
 // SetHorde sets the horde property value. The horde property
-func (m *Top10s) SetHorde(value []TopUserable)() {
-    m.horde = value
+func (m *Top10s) SetHorde(value []TopUserable) {
+	m.horde = value
 }
+
 // SetKingOfTheHill sets the kingOfTheHill property value. The kingOfTheHill property
-func (m *Top10s) SetKingOfTheHill(value []TopUserable)() {
-    m.kingOfTheHill = value
+func (m *Top10s) SetKingOfTheHill(value []TopUserable) {
+	m.kingOfTheHill = value
 }
+
 // SetRacingKings sets the racingKings property value. The racingKings property
-func (m *Top10s) SetRacingKings(value []TopUserable)() {
-    m.racingKings = value
+func (m *Top10s) SetRacingKings(value []TopUserable) {
+	m.racingKings = value
 }
+
 // SetRapid sets the rapid property value. The rapid property
-func (m *Top10s) SetRapid(value []TopUserable)() {
-    m.rapid = value
+func (m *Top10s) SetRapid(value []TopUserable) {
+	m.rapid = value
 }
+
 // SetThreeCheck sets the threeCheck property value. The threeCheck property
-func (m *Top10s) SetThreeCheck(value []TopUserable)() {
-    m.threeCheck = value
+func (m *Top10s) SetThreeCheck(value []TopUserable) {
+	m.threeCheck = value
 }
+
 // SetUltraBullet sets the ultraBullet property value. The ultraBullet property
-func (m *Top10s) SetUltraBullet(value []TopUserable)() {
-    m.ultraBullet = value
+func (m *Top10s) SetUltraBullet(value []TopUserable) {
+	m.ultraBullet = value
 }
+
 type Top10sable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetAntichess()([]TopUserable)
-    GetAtomic()([]TopUserable)
-    GetBlitz()([]TopUserable)
-    GetBullet()([]TopUserable)
-    GetChess960()([]TopUserable)
-    GetClassical()([]TopUserable)
-    GetCrazyhouse()([]TopUserable)
-    GetHorde()([]TopUserable)
-    GetKingOfTheHill()([]TopUserable)
-    GetRacingKings()([]TopUserable)
-    GetRapid()([]TopUserable)
-    GetThreeCheck()([]TopUserable)
-    GetUltraBullet()([]TopUserable)
-    SetAntichess(value []TopUserable)()
-    SetAtomic(value []TopUserable)()
-    SetBlitz(value []TopUserable)()
-    SetBullet(value []TopUserable)()
-    SetChess960(value []TopUserable)()
-    SetClassical(value []TopUserable)()
-    SetCrazyhouse(value []TopUserable)()
-    SetHorde(value []TopUserable)()
-    SetKingOfTheHill(value []TopUserable)()
-    SetRacingKings(value []TopUserable)()
-    SetRapid(value []TopUserable)()
-    SetThreeCheck(value []TopUserable)()
-    SetUltraBullet(value []TopUserable)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetAntichess() []TopUserable
+	GetAtomic() []TopUserable
+	GetBlitz() []TopUserable
+	GetBullet() []TopUserable
+	GetChess960() []TopUserable
+	GetClassical() []TopUserable
+	GetCrazyhouse() []TopUserable
+	GetHorde() []TopUserable
+	GetKingOfTheHill() []TopUserable
+	GetRacingKings() []TopUserable
+	GetRapid() []TopUserable
+	GetThreeCheck() []TopUserable
+	GetUltraBullet() []TopUserable
+	SetAntichess(value []TopUserable)
+	SetAtomic(value []TopUserable)
+	SetBlitz(value []TopUserable)
+	SetBullet(value []TopUserable)
+	SetChess960(value []TopUserable)
+	SetClassical(value []TopUserable)
+	SetCrazyhouse(value []TopUserable)
+	SetHorde(value []TopUserable)
+	SetKingOfTheHill(value []TopUserable)
+	SetRacingKings(value []TopUserable)
+	SetRapid(value []TopUserable)
+	SetThreeCheck(value []TopUserable)
+	SetUltraBullet(value []TopUserable)
 }

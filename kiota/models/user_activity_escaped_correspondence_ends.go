@@ -4,80 +4,88 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type UserActivity_correspondenceEnds struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The correspondence property
-    correspondence UserActivity_correspondenceEnds_correspondenceable
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The correspondence property
+	correspondence UserActivity_correspondenceEnds_correspondenceable
 }
+
 // NewUserActivity_correspondenceEnds instantiates a new UserActivity_correspondenceEnds and sets the default values.
-func NewUserActivity_correspondenceEnds()(*UserActivity_correspondenceEnds) {
-    m := &UserActivity_correspondenceEnds{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewUserActivity_correspondenceEnds() *UserActivity_correspondenceEnds {
+	m := &UserActivity_correspondenceEnds{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateUserActivity_correspondenceEndsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateUserActivity_correspondenceEndsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewUserActivity_correspondenceEnds(), nil
+func CreateUserActivity_correspondenceEndsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewUserActivity_correspondenceEnds(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *UserActivity_correspondenceEnds) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *UserActivity_correspondenceEnds) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetCorrespondence gets the correspondence property value. The correspondence property
 // returns a UserActivity_correspondenceEnds_correspondenceable when successful
-func (m *UserActivity_correspondenceEnds) GetCorrespondence()(UserActivity_correspondenceEnds_correspondenceable) {
-    return m.correspondence
+func (m *UserActivity_correspondenceEnds) GetCorrespondence() UserActivity_correspondenceEnds_correspondenceable {
+	return m.correspondence
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *UserActivity_correspondenceEnds) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["correspondence"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateUserActivity_correspondenceEnds_correspondenceFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCorrespondence(val.(UserActivity_correspondenceEnds_correspondenceable))
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *UserActivity_correspondenceEnds) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["correspondence"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateUserActivity_correspondenceEnds_correspondenceFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCorrespondence(val.(UserActivity_correspondenceEnds_correspondenceable))
+		}
+		return nil
+	}
+	return res
 }
+
 // Serialize serializes information the current object
-func (m *UserActivity_correspondenceEnds) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("correspondence", m.GetCorrespondence())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *UserActivity_correspondenceEnds) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteObjectValue("correspondence", m.GetCorrespondence())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *UserActivity_correspondenceEnds) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *UserActivity_correspondenceEnds) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetCorrespondence sets the correspondence property value. The correspondence property
-func (m *UserActivity_correspondenceEnds) SetCorrespondence(value UserActivity_correspondenceEnds_correspondenceable)() {
-    m.correspondence = value
+func (m *UserActivity_correspondenceEnds) SetCorrespondence(value UserActivity_correspondenceEnds_correspondenceable) {
+	m.correspondence = value
 }
+
 type UserActivity_correspondenceEndsable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetCorrespondence()(UserActivity_correspondenceEnds_correspondenceable)
-    SetCorrespondence(value UserActivity_correspondenceEnds_correspondenceable)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetCorrespondence() UserActivity_correspondenceEnds_correspondenceable
+	SetCorrespondence(value UserActivity_correspondenceEnds_correspondenceable)
 }

@@ -4,33 +4,37 @@
 package api
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // GamesRequestBuilder builds and executes requests for operations under \api\games
 type GamesRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // NewGamesRequestBuilderInternal instantiates a new GamesRequestBuilder and sets the default values.
-func NewGamesRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*GamesRequestBuilder) {
-    m := &GamesRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/games", pathParameters),
-    }
-    return m
+func NewGamesRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *GamesRequestBuilder {
+	m := &GamesRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/games", pathParameters),
+	}
+	return m
 }
+
 // NewGamesRequestBuilder instantiates a new GamesRequestBuilder and sets the default values.
-func NewGamesRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*GamesRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewGamesRequestBuilderInternal(urlParams, requestAdapter)
+func NewGamesRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *GamesRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewGamesRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Export the export property
 // returns a *GamesExportRequestBuilder when successful
-func (m *GamesRequestBuilder) Export()(*GamesExportRequestBuilder) {
-    return NewGamesExportRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *GamesRequestBuilder) Export() *GamesExportRequestBuilder {
+	return NewGamesExportRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // User the user property
 // returns a *GamesUserRequestBuilder when successful
-func (m *GamesRequestBuilder) User()(*GamesUserRequestBuilder) {
-    return NewGamesUserRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *GamesRequestBuilder) User() *GamesUserRequestBuilder {
+	return NewGamesUserRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

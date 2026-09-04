@@ -4,428 +4,460 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type Count struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The ai property
-    ai *int32
-    // The all property
-    all *int32
-    // The bookmark property
-    bookmark *int32
-    // The draw property
-    draw *int32
-    // The drawH property
-    drawH *int32
-    // The import property
-    importEscaped *int32
-    // The loss property
-    loss *int32
-    // The lossH property
-    lossH *int32
-    // The me property
-    me *int32
-    // The playing property
-    playing *int32
-    // The rated property
-    rated *int32
-    // The win property
-    win *int32
-    // The winH property
-    winH *int32
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The ai property
+	ai *int32
+	// The all property
+	all *int32
+	// The bookmark property
+	bookmark *int32
+	// The draw property
+	draw *int32
+	// The drawH property
+	drawH *int32
+	// The import property
+	importEscaped *int32
+	// The loss property
+	loss *int32
+	// The lossH property
+	lossH *int32
+	// The me property
+	me *int32
+	// The playing property
+	playing *int32
+	// The rated property
+	rated *int32
+	// The win property
+	win *int32
+	// The winH property
+	winH *int32
 }
+
 // NewCount instantiates a new Count and sets the default values.
-func NewCount()(*Count) {
-    m := &Count{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewCount() *Count {
+	m := &Count{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateCountFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateCountFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewCount(), nil
+func CreateCountFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewCount(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *Count) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *Count) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetAi gets the ai property value. The ai property
 // returns a *int32 when successful
-func (m *Count) GetAi()(*int32) {
-    return m.ai
+func (m *Count) GetAi() *int32 {
+	return m.ai
 }
+
 // GetAll gets the all property value. The all property
 // returns a *int32 when successful
-func (m *Count) GetAll()(*int32) {
-    return m.all
+func (m *Count) GetAll() *int32 {
+	return m.all
 }
+
 // GetBookmark gets the bookmark property value. The bookmark property
 // returns a *int32 when successful
-func (m *Count) GetBookmark()(*int32) {
-    return m.bookmark
+func (m *Count) GetBookmark() *int32 {
+	return m.bookmark
 }
+
 // GetDraw gets the draw property value. The draw property
 // returns a *int32 when successful
-func (m *Count) GetDraw()(*int32) {
-    return m.draw
+func (m *Count) GetDraw() *int32 {
+	return m.draw
 }
+
 // GetDrawH gets the drawH property value. The drawH property
 // returns a *int32 when successful
-func (m *Count) GetDrawH()(*int32) {
-    return m.drawH
+func (m *Count) GetDrawH() *int32 {
+	return m.drawH
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *Count) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["ai"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetAi(val)
-        }
-        return nil
-    }
-    res["all"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetAll(val)
-        }
-        return nil
-    }
-    res["bookmark"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetBookmark(val)
-        }
-        return nil
-    }
-    res["draw"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDraw(val)
-        }
-        return nil
-    }
-    res["drawH"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDrawH(val)
-        }
-        return nil
-    }
-    res["import"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetImportEscaped(val)
-        }
-        return nil
-    }
-    res["loss"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetLoss(val)
-        }
-        return nil
-    }
-    res["lossH"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetLossH(val)
-        }
-        return nil
-    }
-    res["me"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMe(val)
-        }
-        return nil
-    }
-    res["playing"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPlaying(val)
-        }
-        return nil
-    }
-    res["rated"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRated(val)
-        }
-        return nil
-    }
-    res["win"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetWin(val)
-        }
-        return nil
-    }
-    res["winH"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetWinH(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *Count) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["ai"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetAi(val)
+		}
+		return nil
+	}
+	res["all"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetAll(val)
+		}
+		return nil
+	}
+	res["bookmark"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetBookmark(val)
+		}
+		return nil
+	}
+	res["draw"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetDraw(val)
+		}
+		return nil
+	}
+	res["drawH"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetDrawH(val)
+		}
+		return nil
+	}
+	res["import"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetImportEscaped(val)
+		}
+		return nil
+	}
+	res["loss"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetLoss(val)
+		}
+		return nil
+	}
+	res["lossH"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetLossH(val)
+		}
+		return nil
+	}
+	res["me"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMe(val)
+		}
+		return nil
+	}
+	res["playing"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPlaying(val)
+		}
+		return nil
+	}
+	res["rated"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRated(val)
+		}
+		return nil
+	}
+	res["win"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetWin(val)
+		}
+		return nil
+	}
+	res["winH"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetWinH(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetImportEscaped gets the import property value. The import property
 // returns a *int32 when successful
-func (m *Count) GetImportEscaped()(*int32) {
-    return m.importEscaped
+func (m *Count) GetImportEscaped() *int32 {
+	return m.importEscaped
 }
+
 // GetLoss gets the loss property value. The loss property
 // returns a *int32 when successful
-func (m *Count) GetLoss()(*int32) {
-    return m.loss
+func (m *Count) GetLoss() *int32 {
+	return m.loss
 }
+
 // GetLossH gets the lossH property value. The lossH property
 // returns a *int32 when successful
-func (m *Count) GetLossH()(*int32) {
-    return m.lossH
+func (m *Count) GetLossH() *int32 {
+	return m.lossH
 }
+
 // GetMe gets the me property value. The me property
 // returns a *int32 when successful
-func (m *Count) GetMe()(*int32) {
-    return m.me
+func (m *Count) GetMe() *int32 {
+	return m.me
 }
+
 // GetPlaying gets the playing property value. The playing property
 // returns a *int32 when successful
-func (m *Count) GetPlaying()(*int32) {
-    return m.playing
+func (m *Count) GetPlaying() *int32 {
+	return m.playing
 }
+
 // GetRated gets the rated property value. The rated property
 // returns a *int32 when successful
-func (m *Count) GetRated()(*int32) {
-    return m.rated
+func (m *Count) GetRated() *int32 {
+	return m.rated
 }
+
 // GetWin gets the win property value. The win property
 // returns a *int32 when successful
-func (m *Count) GetWin()(*int32) {
-    return m.win
+func (m *Count) GetWin() *int32 {
+	return m.win
 }
+
 // GetWinH gets the winH property value. The winH property
 // returns a *int32 when successful
-func (m *Count) GetWinH()(*int32) {
-    return m.winH
+func (m *Count) GetWinH() *int32 {
+	return m.winH
 }
+
 // Serialize serializes information the current object
-func (m *Count) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteInt32Value("ai", m.GetAi())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("all", m.GetAll())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("bookmark", m.GetBookmark())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("draw", m.GetDraw())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("drawH", m.GetDrawH())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("import", m.GetImportEscaped())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("loss", m.GetLoss())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("lossH", m.GetLossH())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("me", m.GetMe())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("playing", m.GetPlaying())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("rated", m.GetRated())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("win", m.GetWin())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("winH", m.GetWinH())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *Count) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteInt32Value("ai", m.GetAi())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("all", m.GetAll())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("bookmark", m.GetBookmark())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("draw", m.GetDraw())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("drawH", m.GetDrawH())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("import", m.GetImportEscaped())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("loss", m.GetLoss())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("lossH", m.GetLossH())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("me", m.GetMe())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("playing", m.GetPlaying())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("rated", m.GetRated())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("win", m.GetWin())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("winH", m.GetWinH())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *Count) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *Count) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetAi sets the ai property value. The ai property
-func (m *Count) SetAi(value *int32)() {
-    m.ai = value
+func (m *Count) SetAi(value *int32) {
+	m.ai = value
 }
+
 // SetAll sets the all property value. The all property
-func (m *Count) SetAll(value *int32)() {
-    m.all = value
+func (m *Count) SetAll(value *int32) {
+	m.all = value
 }
+
 // SetBookmark sets the bookmark property value. The bookmark property
-func (m *Count) SetBookmark(value *int32)() {
-    m.bookmark = value
+func (m *Count) SetBookmark(value *int32) {
+	m.bookmark = value
 }
+
 // SetDraw sets the draw property value. The draw property
-func (m *Count) SetDraw(value *int32)() {
-    m.draw = value
+func (m *Count) SetDraw(value *int32) {
+	m.draw = value
 }
+
 // SetDrawH sets the drawH property value. The drawH property
-func (m *Count) SetDrawH(value *int32)() {
-    m.drawH = value
+func (m *Count) SetDrawH(value *int32) {
+	m.drawH = value
 }
+
 // SetImportEscaped sets the import property value. The import property
-func (m *Count) SetImportEscaped(value *int32)() {
-    m.importEscaped = value
+func (m *Count) SetImportEscaped(value *int32) {
+	m.importEscaped = value
 }
+
 // SetLoss sets the loss property value. The loss property
-func (m *Count) SetLoss(value *int32)() {
-    m.loss = value
+func (m *Count) SetLoss(value *int32) {
+	m.loss = value
 }
+
 // SetLossH sets the lossH property value. The lossH property
-func (m *Count) SetLossH(value *int32)() {
-    m.lossH = value
+func (m *Count) SetLossH(value *int32) {
+	m.lossH = value
 }
+
 // SetMe sets the me property value. The me property
-func (m *Count) SetMe(value *int32)() {
-    m.me = value
+func (m *Count) SetMe(value *int32) {
+	m.me = value
 }
+
 // SetPlaying sets the playing property value. The playing property
-func (m *Count) SetPlaying(value *int32)() {
-    m.playing = value
+func (m *Count) SetPlaying(value *int32) {
+	m.playing = value
 }
+
 // SetRated sets the rated property value. The rated property
-func (m *Count) SetRated(value *int32)() {
-    m.rated = value
+func (m *Count) SetRated(value *int32) {
+	m.rated = value
 }
+
 // SetWin sets the win property value. The win property
-func (m *Count) SetWin(value *int32)() {
-    m.win = value
+func (m *Count) SetWin(value *int32) {
+	m.win = value
 }
+
 // SetWinH sets the winH property value. The winH property
-func (m *Count) SetWinH(value *int32)() {
-    m.winH = value
+func (m *Count) SetWinH(value *int32) {
+	m.winH = value
 }
+
 type Countable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetAi()(*int32)
-    GetAll()(*int32)
-    GetBookmark()(*int32)
-    GetDraw()(*int32)
-    GetDrawH()(*int32)
-    GetImportEscaped()(*int32)
-    GetLoss()(*int32)
-    GetLossH()(*int32)
-    GetMe()(*int32)
-    GetPlaying()(*int32)
-    GetRated()(*int32)
-    GetWin()(*int32)
-    GetWinH()(*int32)
-    SetAi(value *int32)()
-    SetAll(value *int32)()
-    SetBookmark(value *int32)()
-    SetDraw(value *int32)()
-    SetDrawH(value *int32)()
-    SetImportEscaped(value *int32)()
-    SetLoss(value *int32)()
-    SetLossH(value *int32)()
-    SetMe(value *int32)()
-    SetPlaying(value *int32)()
-    SetRated(value *int32)()
-    SetWin(value *int32)()
-    SetWinH(value *int32)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetAi() *int32
+	GetAll() *int32
+	GetBookmark() *int32
+	GetDraw() *int32
+	GetDrawH() *int32
+	GetImportEscaped() *int32
+	GetLoss() *int32
+	GetLossH() *int32
+	GetMe() *int32
+	GetPlaying() *int32
+	GetRated() *int32
+	GetWin() *int32
+	GetWinH() *int32
+	SetAi(value *int32)
+	SetAll(value *int32)
+	SetBookmark(value *int32)
+	SetDraw(value *int32)
+	SetDrawH(value *int32)
+	SetImportEscaped(value *int32)
+	SetLoss(value *int32)
+	SetLossH(value *int32)
+	SetMe(value *int32)
+	SetPlaying(value *int32)
+	SetRated(value *int32)
+	SetWin(value *int32)
+	SetWinH(value *int32)
 }

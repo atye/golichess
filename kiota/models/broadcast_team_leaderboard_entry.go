@@ -4,249 +4,267 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type BroadcastTeamLeaderboardEntry struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The average rating of the team's players
-    averageRating *int32
-    // Total game points scored
-    gp *float64
-    // The matches property
-    matches []BroadcastTeamPOVMatchEntryable
-    // Total match points scored
-    mp *float64
-    // The name of the team
-    name *string
-    // Players who have played for the team and their overall score
-    players []BroadcastPlayerEntryable
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The average rating of the team's players
+	averageRating *int32
+	// Total game points scored
+	gp *float64
+	// The matches property
+	matches []BroadcastTeamPOVMatchEntryable
+	// Total match points scored
+	mp *float64
+	// The name of the team
+	name *string
+	// Players who have played for the team and their overall score
+	players []BroadcastPlayerEntryable
 }
+
 // NewBroadcastTeamLeaderboardEntry instantiates a new BroadcastTeamLeaderboardEntry and sets the default values.
-func NewBroadcastTeamLeaderboardEntry()(*BroadcastTeamLeaderboardEntry) {
-    m := &BroadcastTeamLeaderboardEntry{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewBroadcastTeamLeaderboardEntry() *BroadcastTeamLeaderboardEntry {
+	m := &BroadcastTeamLeaderboardEntry{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateBroadcastTeamLeaderboardEntryFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateBroadcastTeamLeaderboardEntryFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewBroadcastTeamLeaderboardEntry(), nil
+func CreateBroadcastTeamLeaderboardEntryFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewBroadcastTeamLeaderboardEntry(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *BroadcastTeamLeaderboardEntry) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *BroadcastTeamLeaderboardEntry) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetAverageRating gets the averageRating property value. The average rating of the team's players
 // returns a *int32 when successful
-func (m *BroadcastTeamLeaderboardEntry) GetAverageRating()(*int32) {
-    return m.averageRating
+func (m *BroadcastTeamLeaderboardEntry) GetAverageRating() *int32 {
+	return m.averageRating
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *BroadcastTeamLeaderboardEntry) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["averageRating"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetAverageRating(val)
-        }
-        return nil
-    }
-    res["gp"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetGp(val)
-        }
-        return nil
-    }
-    res["matches"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateBroadcastTeamPOVMatchEntryFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]BroadcastTeamPOVMatchEntryable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(BroadcastTeamPOVMatchEntryable)
-                }
-            }
-            m.SetMatches(res)
-        }
-        return nil
-    }
-    res["mp"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMp(val)
-        }
-        return nil
-    }
-    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetName(val)
-        }
-        return nil
-    }
-    res["players"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateBroadcastPlayerEntryFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]BroadcastPlayerEntryable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(BroadcastPlayerEntryable)
-                }
-            }
-            m.SetPlayers(res)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *BroadcastTeamLeaderboardEntry) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["averageRating"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetAverageRating(val)
+		}
+		return nil
+	}
+	res["gp"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetGp(val)
+		}
+		return nil
+	}
+	res["matches"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateBroadcastTeamPOVMatchEntryFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]BroadcastTeamPOVMatchEntryable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(BroadcastTeamPOVMatchEntryable)
+				}
+			}
+			m.SetMatches(res)
+		}
+		return nil
+	}
+	res["mp"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMp(val)
+		}
+		return nil
+	}
+	res["name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetName(val)
+		}
+		return nil
+	}
+	res["players"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateBroadcastPlayerEntryFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]BroadcastPlayerEntryable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(BroadcastPlayerEntryable)
+				}
+			}
+			m.SetPlayers(res)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetGp gets the gp property value. Total game points scored
 // returns a *float64 when successful
-func (m *BroadcastTeamLeaderboardEntry) GetGp()(*float64) {
-    return m.gp
+func (m *BroadcastTeamLeaderboardEntry) GetGp() *float64 {
+	return m.gp
 }
+
 // GetMatches gets the matches property value. The matches property
 // returns a []BroadcastTeamPOVMatchEntryable when successful
-func (m *BroadcastTeamLeaderboardEntry) GetMatches()([]BroadcastTeamPOVMatchEntryable) {
-    return m.matches
+func (m *BroadcastTeamLeaderboardEntry) GetMatches() []BroadcastTeamPOVMatchEntryable {
+	return m.matches
 }
+
 // GetMp gets the mp property value. Total match points scored
 // returns a *float64 when successful
-func (m *BroadcastTeamLeaderboardEntry) GetMp()(*float64) {
-    return m.mp
+func (m *BroadcastTeamLeaderboardEntry) GetMp() *float64 {
+	return m.mp
 }
+
 // GetName gets the name property value. The name of the team
 // returns a *string when successful
-func (m *BroadcastTeamLeaderboardEntry) GetName()(*string) {
-    return m.name
+func (m *BroadcastTeamLeaderboardEntry) GetName() *string {
+	return m.name
 }
+
 // GetPlayers gets the players property value. Players who have played for the team and their overall score
 // returns a []BroadcastPlayerEntryable when successful
-func (m *BroadcastTeamLeaderboardEntry) GetPlayers()([]BroadcastPlayerEntryable) {
-    return m.players
+func (m *BroadcastTeamLeaderboardEntry) GetPlayers() []BroadcastPlayerEntryable {
+	return m.players
 }
+
 // Serialize serializes information the current object
-func (m *BroadcastTeamLeaderboardEntry) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteInt32Value("averageRating", m.GetAverageRating())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteFloat64Value("gp", m.GetGp())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetMatches() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetMatches()))
-        for i, v := range m.GetMatches() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("matches", cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteFloat64Value("mp", m.GetMp())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("name", m.GetName())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetPlayers() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPlayers()))
-        for i, v := range m.GetPlayers() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("players", cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *BroadcastTeamLeaderboardEntry) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteInt32Value("averageRating", m.GetAverageRating())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteFloat64Value("gp", m.GetGp())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetMatches() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetMatches()))
+		for i, v := range m.GetMatches() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("matches", cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteFloat64Value("mp", m.GetMp())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("name", m.GetName())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetPlayers() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPlayers()))
+		for i, v := range m.GetPlayers() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("players", cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *BroadcastTeamLeaderboardEntry) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *BroadcastTeamLeaderboardEntry) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetAverageRating sets the averageRating property value. The average rating of the team's players
-func (m *BroadcastTeamLeaderboardEntry) SetAverageRating(value *int32)() {
-    m.averageRating = value
+func (m *BroadcastTeamLeaderboardEntry) SetAverageRating(value *int32) {
+	m.averageRating = value
 }
+
 // SetGp sets the gp property value. Total game points scored
-func (m *BroadcastTeamLeaderboardEntry) SetGp(value *float64)() {
-    m.gp = value
+func (m *BroadcastTeamLeaderboardEntry) SetGp(value *float64) {
+	m.gp = value
 }
+
 // SetMatches sets the matches property value. The matches property
-func (m *BroadcastTeamLeaderboardEntry) SetMatches(value []BroadcastTeamPOVMatchEntryable)() {
-    m.matches = value
+func (m *BroadcastTeamLeaderboardEntry) SetMatches(value []BroadcastTeamPOVMatchEntryable) {
+	m.matches = value
 }
+
 // SetMp sets the mp property value. Total match points scored
-func (m *BroadcastTeamLeaderboardEntry) SetMp(value *float64)() {
-    m.mp = value
+func (m *BroadcastTeamLeaderboardEntry) SetMp(value *float64) {
+	m.mp = value
 }
+
 // SetName sets the name property value. The name of the team
-func (m *BroadcastTeamLeaderboardEntry) SetName(value *string)() {
-    m.name = value
+func (m *BroadcastTeamLeaderboardEntry) SetName(value *string) {
+	m.name = value
 }
+
 // SetPlayers sets the players property value. Players who have played for the team and their overall score
-func (m *BroadcastTeamLeaderboardEntry) SetPlayers(value []BroadcastPlayerEntryable)() {
-    m.players = value
+func (m *BroadcastTeamLeaderboardEntry) SetPlayers(value []BroadcastPlayerEntryable) {
+	m.players = value
 }
+
 type BroadcastTeamLeaderboardEntryable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetAverageRating()(*int32)
-    GetGp()(*float64)
-    GetMatches()([]BroadcastTeamPOVMatchEntryable)
-    GetMp()(*float64)
-    GetName()(*string)
-    GetPlayers()([]BroadcastPlayerEntryable)
-    SetAverageRating(value *int32)()
-    SetGp(value *float64)()
-    SetMatches(value []BroadcastTeamPOVMatchEntryable)()
-    SetMp(value *float64)()
-    SetName(value *string)()
-    SetPlayers(value []BroadcastPlayerEntryable)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetAverageRating() *int32
+	GetGp() *float64
+	GetMatches() []BroadcastTeamPOVMatchEntryable
+	GetMp() *float64
+	GetName() *string
+	GetPlayers() []BroadcastPlayerEntryable
+	SetAverageRating(value *int32)
+	SetGp(value *float64)
+	SetMatches(value []BroadcastTeamPOVMatchEntryable)
+	SetMp(value *float64)
+	SetName(value *string)
+	SetPlayers(value []BroadcastPlayerEntryable)
 }

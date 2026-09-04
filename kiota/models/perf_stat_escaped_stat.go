@@ -4,254 +4,274 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type PerfStat_stat struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The bestWins property
-    bestWins PerfStat_stat_bestWinsable
-    // The count property
-    count PerfStat_stat_countable
-    // The highest property
-    highest PerfStat_stat_highestable
-    // The lowest property
-    lowest PerfStat_stat_lowestable
-    // The playStreak property
-    playStreak PerfStat_stat_playStreakable
-    // The resultStreak property
-    resultStreak PerfStat_stat_resultStreakable
-    // The worstLosses property
-    worstLosses PerfStat_stat_worstLossesable
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The bestWins property
+	bestWins PerfStat_stat_bestWinsable
+	// The count property
+	count PerfStat_stat_countable
+	// The highest property
+	highest PerfStat_stat_highestable
+	// The lowest property
+	lowest PerfStat_stat_lowestable
+	// The playStreak property
+	playStreak PerfStat_stat_playStreakable
+	// The resultStreak property
+	resultStreak PerfStat_stat_resultStreakable
+	// The worstLosses property
+	worstLosses PerfStat_stat_worstLossesable
 }
+
 // NewPerfStat_stat instantiates a new PerfStat_stat and sets the default values.
-func NewPerfStat_stat()(*PerfStat_stat) {
-    m := &PerfStat_stat{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewPerfStat_stat() *PerfStat_stat {
+	m := &PerfStat_stat{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreatePerfStat_statFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreatePerfStat_statFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewPerfStat_stat(), nil
+func CreatePerfStat_statFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewPerfStat_stat(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *PerfStat_stat) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *PerfStat_stat) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetBestWins gets the bestWins property value. The bestWins property
 // returns a PerfStat_stat_bestWinsable when successful
-func (m *PerfStat_stat) GetBestWins()(PerfStat_stat_bestWinsable) {
-    return m.bestWins
+func (m *PerfStat_stat) GetBestWins() PerfStat_stat_bestWinsable {
+	return m.bestWins
 }
+
 // GetCount gets the count property value. The count property
 // returns a PerfStat_stat_countable when successful
-func (m *PerfStat_stat) GetCount()(PerfStat_stat_countable) {
-    return m.count
+func (m *PerfStat_stat) GetCount() PerfStat_stat_countable {
+	return m.count
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *PerfStat_stat) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["bestWins"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreatePerfStat_stat_bestWinsFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetBestWins(val.(PerfStat_stat_bestWinsable))
-        }
-        return nil
-    }
-    res["count"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreatePerfStat_stat_countFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCount(val.(PerfStat_stat_countable))
-        }
-        return nil
-    }
-    res["highest"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreatePerfStat_stat_highestFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetHighest(val.(PerfStat_stat_highestable))
-        }
-        return nil
-    }
-    res["lowest"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreatePerfStat_stat_lowestFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetLowest(val.(PerfStat_stat_lowestable))
-        }
-        return nil
-    }
-    res["playStreak"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreatePerfStat_stat_playStreakFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPlayStreak(val.(PerfStat_stat_playStreakable))
-        }
-        return nil
-    }
-    res["resultStreak"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreatePerfStat_stat_resultStreakFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetResultStreak(val.(PerfStat_stat_resultStreakable))
-        }
-        return nil
-    }
-    res["worstLosses"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreatePerfStat_stat_worstLossesFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetWorstLosses(val.(PerfStat_stat_worstLossesable))
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *PerfStat_stat) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["bestWins"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreatePerfStat_stat_bestWinsFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetBestWins(val.(PerfStat_stat_bestWinsable))
+		}
+		return nil
+	}
+	res["count"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreatePerfStat_stat_countFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCount(val.(PerfStat_stat_countable))
+		}
+		return nil
+	}
+	res["highest"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreatePerfStat_stat_highestFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetHighest(val.(PerfStat_stat_highestable))
+		}
+		return nil
+	}
+	res["lowest"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreatePerfStat_stat_lowestFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetLowest(val.(PerfStat_stat_lowestable))
+		}
+		return nil
+	}
+	res["playStreak"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreatePerfStat_stat_playStreakFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPlayStreak(val.(PerfStat_stat_playStreakable))
+		}
+		return nil
+	}
+	res["resultStreak"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreatePerfStat_stat_resultStreakFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetResultStreak(val.(PerfStat_stat_resultStreakable))
+		}
+		return nil
+	}
+	res["worstLosses"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreatePerfStat_stat_worstLossesFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetWorstLosses(val.(PerfStat_stat_worstLossesable))
+		}
+		return nil
+	}
+	return res
 }
+
 // GetHighest gets the highest property value. The highest property
 // returns a PerfStat_stat_highestable when successful
-func (m *PerfStat_stat) GetHighest()(PerfStat_stat_highestable) {
-    return m.highest
+func (m *PerfStat_stat) GetHighest() PerfStat_stat_highestable {
+	return m.highest
 }
+
 // GetLowest gets the lowest property value. The lowest property
 // returns a PerfStat_stat_lowestable when successful
-func (m *PerfStat_stat) GetLowest()(PerfStat_stat_lowestable) {
-    return m.lowest
+func (m *PerfStat_stat) GetLowest() PerfStat_stat_lowestable {
+	return m.lowest
 }
+
 // GetPlayStreak gets the playStreak property value. The playStreak property
 // returns a PerfStat_stat_playStreakable when successful
-func (m *PerfStat_stat) GetPlayStreak()(PerfStat_stat_playStreakable) {
-    return m.playStreak
+func (m *PerfStat_stat) GetPlayStreak() PerfStat_stat_playStreakable {
+	return m.playStreak
 }
+
 // GetResultStreak gets the resultStreak property value. The resultStreak property
 // returns a PerfStat_stat_resultStreakable when successful
-func (m *PerfStat_stat) GetResultStreak()(PerfStat_stat_resultStreakable) {
-    return m.resultStreak
+func (m *PerfStat_stat) GetResultStreak() PerfStat_stat_resultStreakable {
+	return m.resultStreak
 }
+
 // GetWorstLosses gets the worstLosses property value. The worstLosses property
 // returns a PerfStat_stat_worstLossesable when successful
-func (m *PerfStat_stat) GetWorstLosses()(PerfStat_stat_worstLossesable) {
-    return m.worstLosses
+func (m *PerfStat_stat) GetWorstLosses() PerfStat_stat_worstLossesable {
+	return m.worstLosses
 }
+
 // Serialize serializes information the current object
-func (m *PerfStat_stat) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("bestWins", m.GetBestWins())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("count", m.GetCount())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("highest", m.GetHighest())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("lowest", m.GetLowest())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("playStreak", m.GetPlayStreak())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("resultStreak", m.GetResultStreak())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("worstLosses", m.GetWorstLosses())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *PerfStat_stat) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteObjectValue("bestWins", m.GetBestWins())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("count", m.GetCount())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("highest", m.GetHighest())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("lowest", m.GetLowest())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("playStreak", m.GetPlayStreak())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("resultStreak", m.GetResultStreak())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("worstLosses", m.GetWorstLosses())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PerfStat_stat) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *PerfStat_stat) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetBestWins sets the bestWins property value. The bestWins property
-func (m *PerfStat_stat) SetBestWins(value PerfStat_stat_bestWinsable)() {
-    m.bestWins = value
+func (m *PerfStat_stat) SetBestWins(value PerfStat_stat_bestWinsable) {
+	m.bestWins = value
 }
+
 // SetCount sets the count property value. The count property
-func (m *PerfStat_stat) SetCount(value PerfStat_stat_countable)() {
-    m.count = value
+func (m *PerfStat_stat) SetCount(value PerfStat_stat_countable) {
+	m.count = value
 }
+
 // SetHighest sets the highest property value. The highest property
-func (m *PerfStat_stat) SetHighest(value PerfStat_stat_highestable)() {
-    m.highest = value
+func (m *PerfStat_stat) SetHighest(value PerfStat_stat_highestable) {
+	m.highest = value
 }
+
 // SetLowest sets the lowest property value. The lowest property
-func (m *PerfStat_stat) SetLowest(value PerfStat_stat_lowestable)() {
-    m.lowest = value
+func (m *PerfStat_stat) SetLowest(value PerfStat_stat_lowestable) {
+	m.lowest = value
 }
+
 // SetPlayStreak sets the playStreak property value. The playStreak property
-func (m *PerfStat_stat) SetPlayStreak(value PerfStat_stat_playStreakable)() {
-    m.playStreak = value
+func (m *PerfStat_stat) SetPlayStreak(value PerfStat_stat_playStreakable) {
+	m.playStreak = value
 }
+
 // SetResultStreak sets the resultStreak property value. The resultStreak property
-func (m *PerfStat_stat) SetResultStreak(value PerfStat_stat_resultStreakable)() {
-    m.resultStreak = value
+func (m *PerfStat_stat) SetResultStreak(value PerfStat_stat_resultStreakable) {
+	m.resultStreak = value
 }
+
 // SetWorstLosses sets the worstLosses property value. The worstLosses property
-func (m *PerfStat_stat) SetWorstLosses(value PerfStat_stat_worstLossesable)() {
-    m.worstLosses = value
+func (m *PerfStat_stat) SetWorstLosses(value PerfStat_stat_worstLossesable) {
+	m.worstLosses = value
 }
+
 type PerfStat_statable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetBestWins()(PerfStat_stat_bestWinsable)
-    GetCount()(PerfStat_stat_countable)
-    GetHighest()(PerfStat_stat_highestable)
-    GetLowest()(PerfStat_stat_lowestable)
-    GetPlayStreak()(PerfStat_stat_playStreakable)
-    GetResultStreak()(PerfStat_stat_resultStreakable)
-    GetWorstLosses()(PerfStat_stat_worstLossesable)
-    SetBestWins(value PerfStat_stat_bestWinsable)()
-    SetCount(value PerfStat_stat_countable)()
-    SetHighest(value PerfStat_stat_highestable)()
-    SetLowest(value PerfStat_stat_lowestable)()
-    SetPlayStreak(value PerfStat_stat_playStreakable)()
-    SetResultStreak(value PerfStat_stat_resultStreakable)()
-    SetWorstLosses(value PerfStat_stat_worstLossesable)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetBestWins() PerfStat_stat_bestWinsable
+	GetCount() PerfStat_stat_countable
+	GetHighest() PerfStat_stat_highestable
+	GetLowest() PerfStat_stat_lowestable
+	GetPlayStreak() PerfStat_stat_playStreakable
+	GetResultStreak() PerfStat_stat_resultStreakable
+	GetWorstLosses() PerfStat_stat_worstLossesable
+	SetBestWins(value PerfStat_stat_bestWinsable)
+	SetCount(value PerfStat_stat_countable)
+	SetHighest(value PerfStat_stat_highestable)
+	SetLowest(value PerfStat_stat_lowestable)
+	SetPlayStreak(value PerfStat_stat_playStreakable)
+	SetResultStreak(value PerfStat_stat_resultStreakable)
+	SetWorstLosses(value PerfStat_stat_worstLossesable)
 }

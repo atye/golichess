@@ -4,80 +4,87 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	"context"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // AccountEmailRequestBuilder builds and executes requests for operations under \api\account\email
 type AccountEmailRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // AccountEmailRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type AccountEmailRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+
 // NewAccountEmailRequestBuilderInternal instantiates a new AccountEmailRequestBuilder and sets the default values.
-func NewAccountEmailRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*AccountEmailRequestBuilder) {
-    m := &AccountEmailRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/account/email", pathParameters),
-    }
-    return m
+func NewAccountEmailRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *AccountEmailRequestBuilder {
+	m := &AccountEmailRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/account/email", pathParameters),
+	}
+	return m
 }
+
 // NewAccountEmailRequestBuilder instantiates a new AccountEmailRequestBuilder and sets the default values.
-func NewAccountEmailRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*AccountEmailRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewAccountEmailRequestBuilderInternal(urlParams, requestAdapter)
+func NewAccountEmailRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *AccountEmailRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewAccountEmailRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get read the email address of the logged in user.
 // Deprecated: This method is obsolete. Use GetAsEmailGetResponse instead.
 // returns a AccountEmailResponseable when successful
-func (m *AccountEmailRequestBuilder) Get(ctx context.Context, requestConfiguration *AccountEmailRequestBuilderGetRequestConfiguration)(AccountEmailResponseable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateAccountEmailResponseFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(AccountEmailResponseable), nil
+func (m *AccountEmailRequestBuilder) Get(ctx context.Context, requestConfiguration *AccountEmailRequestBuilderGetRequestConfiguration) (AccountEmailResponseable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateAccountEmailResponseFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(AccountEmailResponseable), nil
 }
+
 // GetAsEmailGetResponse read the email address of the logged in user.
 // returns a AccountEmailGetResponseable when successful
-func (m *AccountEmailRequestBuilder) GetAsEmailGetResponse(ctx context.Context, requestConfiguration *AccountEmailRequestBuilderGetRequestConfiguration)(AccountEmailGetResponseable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateAccountEmailGetResponseFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(AccountEmailGetResponseable), nil
+func (m *AccountEmailRequestBuilder) GetAsEmailGetResponse(ctx context.Context, requestConfiguration *AccountEmailRequestBuilderGetRequestConfiguration) (AccountEmailGetResponseable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateAccountEmailGetResponseFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(AccountEmailGetResponseable), nil
 }
+
 // ToGetRequestInformation read the email address of the logged in user.
 // returns a *RequestInformation when successful
-func (m *AccountEmailRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *AccountEmailRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    return requestInfo, nil
+func (m *AccountEmailRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *AccountEmailRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *AccountEmailRequestBuilder when successful
-func (m *AccountEmailRequestBuilder) WithUrl(rawUrl string)(*AccountEmailRequestBuilder) {
-    return NewAccountEmailRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *AccountEmailRequestBuilder) WithUrl(rawUrl string) *AccountEmailRequestBuilder {
+	return NewAccountEmailRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

@@ -4,73 +4,80 @@
 package team
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	"context"
+	i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // UpdatesWithTeamItemRequestBuilder builds and executes requests for operations under \team\updates\{teamId}
 type UpdatesWithTeamItemRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // UpdatesWithTeamItemRequestBuilderGetQueryParameters paginator of the most recent updates posted by team leaders of a team you have joined.
 type UpdatesWithTeamItemRequestBuilderGetQueryParameters struct {
-    Page *int32 "uriparametername:\"page\""
+	Page *int32 "uriparametername:\"page\""
 }
+
 // UpdatesWithTeamItemRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type UpdatesWithTeamItemRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
-    // Request query parameters
-    QueryParameters *UpdatesWithTeamItemRequestBuilderGetQueryParameters
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *UpdatesWithTeamItemRequestBuilderGetQueryParameters
 }
+
 // NewUpdatesWithTeamItemRequestBuilderInternal instantiates a new UpdatesWithTeamItemRequestBuilder and sets the default values.
-func NewUpdatesWithTeamItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*UpdatesWithTeamItemRequestBuilder) {
-    m := &UpdatesWithTeamItemRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/team/updates/{teamId}{?page*}", pathParameters),
-    }
-    return m
+func NewUpdatesWithTeamItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *UpdatesWithTeamItemRequestBuilder {
+	m := &UpdatesWithTeamItemRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/team/updates/{teamId}{?page*}", pathParameters),
+	}
+	return m
 }
+
 // NewUpdatesWithTeamItemRequestBuilder instantiates a new UpdatesWithTeamItemRequestBuilder and sets the default values.
-func NewUpdatesWithTeamItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*UpdatesWithTeamItemRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewUpdatesWithTeamItemRequestBuilderInternal(urlParams, requestAdapter)
+func NewUpdatesWithTeamItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *UpdatesWithTeamItemRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewUpdatesWithTeamItemRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get paginator of the most recent updates posted by team leaders of a team you have joined.
 // returns a TeamUpdatesOfTeamable when successful
-func (m *UpdatesWithTeamItemRequestBuilder) Get(ctx context.Context, requestConfiguration *UpdatesWithTeamItemRequestBuilderGetRequestConfiguration)(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.TeamUpdatesOfTeamable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateTeamUpdatesOfTeamFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.TeamUpdatesOfTeamable), nil
+func (m *UpdatesWithTeamItemRequestBuilder) Get(ctx context.Context, requestConfiguration *UpdatesWithTeamItemRequestBuilderGetRequestConfiguration) (i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.TeamUpdatesOfTeamable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateTeamUpdatesOfTeamFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.TeamUpdatesOfTeamable), nil
 }
+
 // ToGetRequestInformation paginator of the most recent updates posted by team leaders of a team you have joined.
 // returns a *RequestInformation when successful
-func (m *UpdatesWithTeamItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *UpdatesWithTeamItemRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        if requestConfiguration.QueryParameters != nil {
-            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
-        }
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    return requestInfo, nil
+func (m *UpdatesWithTeamItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *UpdatesWithTeamItemRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *UpdatesWithTeamItemRequestBuilder when successful
-func (m *UpdatesWithTeamItemRequestBuilder) WithUrl(rawUrl string)(*UpdatesWithTeamItemRequestBuilder) {
-    return NewUpdatesWithTeamItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *UpdatesWithTeamItemRequestBuilder) WithUrl(rawUrl string) *UpdatesWithTeamItemRequestBuilder {
+	return NewUpdatesWithTeamItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

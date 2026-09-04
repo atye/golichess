@@ -2,71 +2,75 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 type GameStatusName int
 
 const (
-    CREATED_GAMESTATUSNAME GameStatusName = iota
-    STARTED_GAMESTATUSNAME
-    ABORTED_GAMESTATUSNAME
-    MATE_GAMESTATUSNAME
-    RESIGN_GAMESTATUSNAME
-    STALEMATE_GAMESTATUSNAME
-    TIMEOUT_GAMESTATUSNAME
-    DRAW_GAMESTATUSNAME
-    OUTOFTIME_GAMESTATUSNAME
-    CHEAT_GAMESTATUSNAME
-    NOSTART_GAMESTATUSNAME
-    UNKNOWNFINISH_GAMESTATUSNAME
-    INSUFFICIENTMATERIALCLAIM_GAMESTATUSNAME
-    VARIANTEND_GAMESTATUSNAME
+	CREATED_GAMESTATUSNAME GameStatusName = iota
+	STARTED_GAMESTATUSNAME
+	ABORTED_GAMESTATUSNAME
+	MATE_GAMESTATUSNAME
+	RESIGN_GAMESTATUSNAME
+	STALEMATE_GAMESTATUSNAME
+	TIMEOUT_GAMESTATUSNAME
+	DRAW_GAMESTATUSNAME
+	OUTOFTIME_GAMESTATUSNAME
+	CHEAT_GAMESTATUSNAME
+	NOSTART_GAMESTATUSNAME
+	UNKNOWNFINISH_GAMESTATUSNAME
+	INSUFFICIENTMATERIALCLAIM_GAMESTATUSNAME
+	VARIANTEND_GAMESTATUSNAME
 )
 
 func (i GameStatusName) String() string {
-    return []string{"created", "started", "aborted", "mate", "resign", "stalemate", "timeout", "draw", "outoftime", "cheat", "noStart", "unknownFinish", "insufficientMaterialClaim", "variantEnd"}[i]
+	return []string{"created", "started", "aborted", "mate", "resign", "stalemate", "timeout", "draw", "outoftime", "cheat", "noStart", "unknownFinish", "insufficientMaterialClaim", "variantEnd"}[i]
 }
+
 func ParseGameStatusName(v string) (any, error) {
-    result := CREATED_GAMESTATUSNAME
-    switch v {
-        case "created":
-            result = CREATED_GAMESTATUSNAME
-        case "started":
-            result = STARTED_GAMESTATUSNAME
-        case "aborted":
-            result = ABORTED_GAMESTATUSNAME
-        case "mate":
-            result = MATE_GAMESTATUSNAME
-        case "resign":
-            result = RESIGN_GAMESTATUSNAME
-        case "stalemate":
-            result = STALEMATE_GAMESTATUSNAME
-        case "timeout":
-            result = TIMEOUT_GAMESTATUSNAME
-        case "draw":
-            result = DRAW_GAMESTATUSNAME
-        case "outoftime":
-            result = OUTOFTIME_GAMESTATUSNAME
-        case "cheat":
-            result = CHEAT_GAMESTATUSNAME
-        case "noStart":
-            result = NOSTART_GAMESTATUSNAME
-        case "unknownFinish":
-            result = UNKNOWNFINISH_GAMESTATUSNAME
-        case "insufficientMaterialClaim":
-            result = INSUFFICIENTMATERIALCLAIM_GAMESTATUSNAME
-        case "variantEnd":
-            result = VARIANTEND_GAMESTATUSNAME
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := CREATED_GAMESTATUSNAME
+	switch v {
+	case "created":
+		result = CREATED_GAMESTATUSNAME
+	case "started":
+		result = STARTED_GAMESTATUSNAME
+	case "aborted":
+		result = ABORTED_GAMESTATUSNAME
+	case "mate":
+		result = MATE_GAMESTATUSNAME
+	case "resign":
+		result = RESIGN_GAMESTATUSNAME
+	case "stalemate":
+		result = STALEMATE_GAMESTATUSNAME
+	case "timeout":
+		result = TIMEOUT_GAMESTATUSNAME
+	case "draw":
+		result = DRAW_GAMESTATUSNAME
+	case "outoftime":
+		result = OUTOFTIME_GAMESTATUSNAME
+	case "cheat":
+		result = CHEAT_GAMESTATUSNAME
+	case "noStart":
+		result = NOSTART_GAMESTATUSNAME
+	case "unknownFinish":
+		result = UNKNOWNFINISH_GAMESTATUSNAME
+	case "insufficientMaterialClaim":
+		result = INSUFFICIENTMATERIALCLAIM_GAMESTATUSNAME
+	case "variantEnd":
+		result = VARIANTEND_GAMESTATUSNAME
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeGameStatusName(values []GameStatusName) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i GameStatusName) isMultiValue() bool {
-    return false
+	return false
 }

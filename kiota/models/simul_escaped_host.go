@@ -4,155 +4,168 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type Simul_host struct {
-    LightUser
-    // The gameId property
-    gameId *string
-    // The online property
-    online *bool
-    // The provisional property
-    provisional *bool
-    // The rating property
-    rating *int32
+	LightUser
+	// The gameId property
+	gameId *string
+	// The online property
+	online *bool
+	// The provisional property
+	provisional *bool
+	// The rating property
+	rating *int32
 }
+
 // NewSimul_host instantiates a new Simul_host and sets the default values.
-func NewSimul_host()(*Simul_host) {
-    m := &Simul_host{
-        LightUser: *NewLightUser(),
-    }
-    return m
+func NewSimul_host() *Simul_host {
+	m := &Simul_host{
+		LightUser: *NewLightUser(),
+	}
+	return m
 }
+
 // CreateSimul_hostFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateSimul_hostFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewSimul_host(), nil
+func CreateSimul_hostFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewSimul_host(), nil
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *Simul_host) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := m.LightUser.GetFieldDeserializers()
-    res["gameId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetGameId(val)
-        }
-        return nil
-    }
-    res["online"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetOnline(val)
-        }
-        return nil
-    }
-    res["provisional"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetProvisional(val)
-        }
-        return nil
-    }
-    res["rating"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRating(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *Simul_host) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := m.LightUser.GetFieldDeserializers()
+	res["gameId"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetGameId(val)
+		}
+		return nil
+	}
+	res["online"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetOnline(val)
+		}
+		return nil
+	}
+	res["provisional"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetProvisional(val)
+		}
+		return nil
+	}
+	res["rating"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRating(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetGameId gets the gameId property value. The gameId property
 // returns a *string when successful
-func (m *Simul_host) GetGameId()(*string) {
-    return m.gameId
+func (m *Simul_host) GetGameId() *string {
+	return m.gameId
 }
+
 // GetOnline gets the online property value. The online property
 // returns a *bool when successful
-func (m *Simul_host) GetOnline()(*bool) {
-    return m.online
+func (m *Simul_host) GetOnline() *bool {
+	return m.online
 }
+
 // GetProvisional gets the provisional property value. The provisional property
 // returns a *bool when successful
-func (m *Simul_host) GetProvisional()(*bool) {
-    return m.provisional
+func (m *Simul_host) GetProvisional() *bool {
+	return m.provisional
 }
+
 // GetRating gets the rating property value. The rating property
 // returns a *int32 when successful
-func (m *Simul_host) GetRating()(*int32) {
-    return m.rating
+func (m *Simul_host) GetRating() *int32 {
+	return m.rating
 }
+
 // Serialize serializes information the current object
-func (m *Simul_host) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    err := m.LightUser.Serialize(writer)
-    if err != nil {
-        return err
-    }
-    {
-        err = writer.WriteStringValue("gameId", m.GetGameId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err = writer.WriteBoolValue("online", m.GetOnline())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err = writer.WriteBoolValue("provisional", m.GetProvisional())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err = writer.WriteInt32Value("rating", m.GetRating())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *Simul_host) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	err := m.LightUser.Serialize(writer)
+	if err != nil {
+		return err
+	}
+	{
+		err = writer.WriteStringValue("gameId", m.GetGameId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err = writer.WriteBoolValue("online", m.GetOnline())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err = writer.WriteBoolValue("provisional", m.GetProvisional())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err = writer.WriteInt32Value("rating", m.GetRating())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetGameId sets the gameId property value. The gameId property
-func (m *Simul_host) SetGameId(value *string)() {
-    m.gameId = value
+func (m *Simul_host) SetGameId(value *string) {
+	m.gameId = value
 }
+
 // SetOnline sets the online property value. The online property
-func (m *Simul_host) SetOnline(value *bool)() {
-    m.online = value
+func (m *Simul_host) SetOnline(value *bool) {
+	m.online = value
 }
+
 // SetProvisional sets the provisional property value. The provisional property
-func (m *Simul_host) SetProvisional(value *bool)() {
-    m.provisional = value
+func (m *Simul_host) SetProvisional(value *bool) {
+	m.provisional = value
 }
+
 // SetRating sets the rating property value. The rating property
-func (m *Simul_host) SetRating(value *int32)() {
-    m.rating = value
+func (m *Simul_host) SetRating(value *int32) {
+	m.rating = value
 }
+
 type Simul_hostable interface {
-    LightUserable
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetGameId()(*string)
-    GetOnline()(*bool)
-    GetProvisional()(*bool)
-    GetRating()(*int32)
-    SetGameId(value *string)()
-    SetOnline(value *bool)()
-    SetProvisional(value *bool)()
-    SetRating(value *int32)()
+	LightUserable
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetGameId() *string
+	GetOnline() *bool
+	GetProvisional() *bool
+	GetRating() *int32
+	SetGameId(value *string)
+	SetOnline(value *bool)
+	SetProvisional(value *bool)
+	SetRating(value *int32)
 }

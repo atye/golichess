@@ -4,121 +4,131 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type ArenaTournamentFull_standing struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The page property
-    page *int32
-    // The players property
-    players []ArenaTournamentFull_standing_playersable
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The page property
+	page *int32
+	// The players property
+	players []ArenaTournamentFull_standing_playersable
 }
+
 // NewArenaTournamentFull_standing instantiates a new ArenaTournamentFull_standing and sets the default values.
-func NewArenaTournamentFull_standing()(*ArenaTournamentFull_standing) {
-    m := &ArenaTournamentFull_standing{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewArenaTournamentFull_standing() *ArenaTournamentFull_standing {
+	m := &ArenaTournamentFull_standing{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateArenaTournamentFull_standingFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateArenaTournamentFull_standingFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewArenaTournamentFull_standing(), nil
+func CreateArenaTournamentFull_standingFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewArenaTournamentFull_standing(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *ArenaTournamentFull_standing) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *ArenaTournamentFull_standing) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ArenaTournamentFull_standing) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["page"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPage(val)
-        }
-        return nil
-    }
-    res["players"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateArenaTournamentFull_standing_playersFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]ArenaTournamentFull_standing_playersable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(ArenaTournamentFull_standing_playersable)
-                }
-            }
-            m.SetPlayers(res)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *ArenaTournamentFull_standing) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["page"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPage(val)
+		}
+		return nil
+	}
+	res["players"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateArenaTournamentFull_standing_playersFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]ArenaTournamentFull_standing_playersable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(ArenaTournamentFull_standing_playersable)
+				}
+			}
+			m.SetPlayers(res)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetPage gets the page property value. The page property
 // returns a *int32 when successful
-func (m *ArenaTournamentFull_standing) GetPage()(*int32) {
-    return m.page
+func (m *ArenaTournamentFull_standing) GetPage() *int32 {
+	return m.page
 }
+
 // GetPlayers gets the players property value. The players property
 // returns a []ArenaTournamentFull_standing_playersable when successful
-func (m *ArenaTournamentFull_standing) GetPlayers()([]ArenaTournamentFull_standing_playersable) {
-    return m.players
+func (m *ArenaTournamentFull_standing) GetPlayers() []ArenaTournamentFull_standing_playersable {
+	return m.players
 }
+
 // Serialize serializes information the current object
-func (m *ArenaTournamentFull_standing) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteInt32Value("page", m.GetPage())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetPlayers() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPlayers()))
-        for i, v := range m.GetPlayers() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("players", cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *ArenaTournamentFull_standing) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteInt32Value("page", m.GetPage())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetPlayers() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPlayers()))
+		for i, v := range m.GetPlayers() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("players", cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ArenaTournamentFull_standing) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *ArenaTournamentFull_standing) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetPage sets the page property value. The page property
-func (m *ArenaTournamentFull_standing) SetPage(value *int32)() {
-    m.page = value
+func (m *ArenaTournamentFull_standing) SetPage(value *int32) {
+	m.page = value
 }
+
 // SetPlayers sets the players property value. The players property
-func (m *ArenaTournamentFull_standing) SetPlayers(value []ArenaTournamentFull_standing_playersable)() {
-    m.players = value
+func (m *ArenaTournamentFull_standing) SetPlayers(value []ArenaTournamentFull_standing_playersable) {
+	m.players = value
 }
+
 type ArenaTournamentFull_standingable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetPage()(*int32)
-    GetPlayers()([]ArenaTournamentFull_standing_playersable)
-    SetPage(value *int32)()
-    SetPlayers(value []ArenaTournamentFull_standing_playersable)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetPage() *int32
+	GetPlayers() []ArenaTournamentFull_standing_playersable
+	SetPage(value *int32)
+	SetPlayers(value []ArenaTournamentFull_standing_playersable)
 }

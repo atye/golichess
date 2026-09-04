@@ -4,109 +4,119 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type PuzzleReplay struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The angle property
-    angle PuzzleReplay_angleable
-    // The replay property
-    replay PuzzleReplay_replayable
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The angle property
+	angle PuzzleReplay_angleable
+	// The replay property
+	replay PuzzleReplay_replayable
 }
+
 // NewPuzzleReplay instantiates a new PuzzleReplay and sets the default values.
-func NewPuzzleReplay()(*PuzzleReplay) {
-    m := &PuzzleReplay{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewPuzzleReplay() *PuzzleReplay {
+	m := &PuzzleReplay{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreatePuzzleReplayFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreatePuzzleReplayFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewPuzzleReplay(), nil
+func CreatePuzzleReplayFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewPuzzleReplay(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *PuzzleReplay) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *PuzzleReplay) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetAngle gets the angle property value. The angle property
 // returns a PuzzleReplay_angleable when successful
-func (m *PuzzleReplay) GetAngle()(PuzzleReplay_angleable) {
-    return m.angle
+func (m *PuzzleReplay) GetAngle() PuzzleReplay_angleable {
+	return m.angle
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *PuzzleReplay) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["angle"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreatePuzzleReplay_angleFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetAngle(val.(PuzzleReplay_angleable))
-        }
-        return nil
-    }
-    res["replay"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreatePuzzleReplay_replayFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetReplay(val.(PuzzleReplay_replayable))
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *PuzzleReplay) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["angle"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreatePuzzleReplay_angleFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetAngle(val.(PuzzleReplay_angleable))
+		}
+		return nil
+	}
+	res["replay"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreatePuzzleReplay_replayFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetReplay(val.(PuzzleReplay_replayable))
+		}
+		return nil
+	}
+	return res
 }
+
 // GetReplay gets the replay property value. The replay property
 // returns a PuzzleReplay_replayable when successful
-func (m *PuzzleReplay) GetReplay()(PuzzleReplay_replayable) {
-    return m.replay
+func (m *PuzzleReplay) GetReplay() PuzzleReplay_replayable {
+	return m.replay
 }
+
 // Serialize serializes information the current object
-func (m *PuzzleReplay) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("angle", m.GetAngle())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("replay", m.GetReplay())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *PuzzleReplay) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteObjectValue("angle", m.GetAngle())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("replay", m.GetReplay())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PuzzleReplay) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *PuzzleReplay) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetAngle sets the angle property value. The angle property
-func (m *PuzzleReplay) SetAngle(value PuzzleReplay_angleable)() {
-    m.angle = value
+func (m *PuzzleReplay) SetAngle(value PuzzleReplay_angleable) {
+	m.angle = value
 }
+
 // SetReplay sets the replay property value. The replay property
-func (m *PuzzleReplay) SetReplay(value PuzzleReplay_replayable)() {
-    m.replay = value
+func (m *PuzzleReplay) SetReplay(value PuzzleReplay_replayable) {
+	m.replay = value
 }
+
 type PuzzleReplayable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetAngle()(PuzzleReplay_angleable)
-    GetReplay()(PuzzleReplay_replayable)
-    SetAngle(value PuzzleReplay_angleable)()
-    SetReplay(value PuzzleReplay_replayable)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetAngle() PuzzleReplay_angleable
+	GetReplay() PuzzleReplay_replayable
+	SetAngle(value PuzzleReplay_angleable)
+	SetReplay(value PuzzleReplay_replayable)
 }

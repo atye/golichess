@@ -4,283 +4,305 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type PuzzleStormDashboard_days struct {
-    // The _id property
-    _id *string
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The combo property
-    combo *int32
-    // The errors property
-    errors *int32
-    // The highest property
-    highest *int32
-    // The moves property
-    moves *int32
-    // The runs property
-    runs *int32
-    // The score property
-    score *int32
-    // The time property
-    time *int32
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The combo property
+	combo *int32
+	// The errors property
+	errors *int32
+	// The highest property
+	highest *int32
+	// The id property
+	id *string
+	// The moves property
+	moves *int32
+	// The runs property
+	runs *int32
+	// The score property
+	score *int32
+	// The time property
+	time *int32
 }
+
 // NewPuzzleStormDashboard_days instantiates a new PuzzleStormDashboard_days and sets the default values.
-func NewPuzzleStormDashboard_days()(*PuzzleStormDashboard_days) {
-    m := &PuzzleStormDashboard_days{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewPuzzleStormDashboard_days() *PuzzleStormDashboard_days {
+	m := &PuzzleStormDashboard_days{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreatePuzzleStormDashboard_daysFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreatePuzzleStormDashboard_daysFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewPuzzleStormDashboard_days(), nil
+func CreatePuzzleStormDashboard_daysFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewPuzzleStormDashboard_days(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *PuzzleStormDashboard_days) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *PuzzleStormDashboard_days) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetCombo gets the combo property value. The combo property
 // returns a *int32 when successful
-func (m *PuzzleStormDashboard_days) GetCombo()(*int32) {
-    return m.combo
+func (m *PuzzleStormDashboard_days) GetCombo() *int32 {
+	return m.combo
 }
+
 // GetErrors gets the errors property value. The errors property
 // returns a *int32 when successful
-func (m *PuzzleStormDashboard_days) GetErrors()(*int32) {
-    return m.errors
+func (m *PuzzleStormDashboard_days) GetErrors() *int32 {
+	return m.errors
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *PuzzleStormDashboard_days) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["_id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetId(val)
-        }
-        return nil
-    }
-    res["combo"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCombo(val)
-        }
-        return nil
-    }
-    res["errors"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetErrors(val)
-        }
-        return nil
-    }
-    res["highest"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetHighest(val)
-        }
-        return nil
-    }
-    res["moves"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMoves(val)
-        }
-        return nil
-    }
-    res["runs"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRuns(val)
-        }
-        return nil
-    }
-    res["score"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetScore(val)
-        }
-        return nil
-    }
-    res["time"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTime(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *PuzzleStormDashboard_days) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["combo"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCombo(val)
+		}
+		return nil
+	}
+	res["errors"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetErrors(val)
+		}
+		return nil
+	}
+	res["highest"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetHighest(val)
+		}
+		return nil
+	}
+	res["_id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetId(val)
+		}
+		return nil
+	}
+	res["moves"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMoves(val)
+		}
+		return nil
+	}
+	res["runs"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRuns(val)
+		}
+		return nil
+	}
+	res["score"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetScore(val)
+		}
+		return nil
+	}
+	res["time"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTime(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetHighest gets the highest property value. The highest property
 // returns a *int32 when successful
-func (m *PuzzleStormDashboard_days) GetHighest()(*int32) {
-    return m.highest
+func (m *PuzzleStormDashboard_days) GetHighest() *int32 {
+	return m.highest
 }
-// GetId gets the _id property value. The _id property
+
+// GetId gets the _id property value. The id property
 // returns a *string when successful
-func (m *PuzzleStormDashboard_days) GetId()(*string) {
-    return m._id
+func (m *PuzzleStormDashboard_days) GetId() *string {
+	return m.id
 }
+
 // GetMoves gets the moves property value. The moves property
 // returns a *int32 when successful
-func (m *PuzzleStormDashboard_days) GetMoves()(*int32) {
-    return m.moves
+func (m *PuzzleStormDashboard_days) GetMoves() *int32 {
+	return m.moves
 }
+
 // GetRuns gets the runs property value. The runs property
 // returns a *int32 when successful
-func (m *PuzzleStormDashboard_days) GetRuns()(*int32) {
-    return m.runs
+func (m *PuzzleStormDashboard_days) GetRuns() *int32 {
+	return m.runs
 }
+
 // GetScore gets the score property value. The score property
 // returns a *int32 when successful
-func (m *PuzzleStormDashboard_days) GetScore()(*int32) {
-    return m.score
+func (m *PuzzleStormDashboard_days) GetScore() *int32 {
+	return m.score
 }
+
 // GetTime gets the time property value. The time property
 // returns a *int32 when successful
-func (m *PuzzleStormDashboard_days) GetTime()(*int32) {
-    return m.time
+func (m *PuzzleStormDashboard_days) GetTime() *int32 {
+	return m.time
 }
+
 // Serialize serializes information the current object
-func (m *PuzzleStormDashboard_days) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteInt32Value("combo", m.GetCombo())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("errors", m.GetErrors())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("highest", m.GetHighest())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("moves", m.GetMoves())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("runs", m.GetRuns())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("score", m.GetScore())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("time", m.GetTime())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("_id", m.GetId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *PuzzleStormDashboard_days) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteInt32Value("combo", m.GetCombo())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("errors", m.GetErrors())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("highest", m.GetHighest())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("_id", m.GetId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("moves", m.GetMoves())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("runs", m.GetRuns())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("score", m.GetScore())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("time", m.GetTime())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PuzzleStormDashboard_days) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *PuzzleStormDashboard_days) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetCombo sets the combo property value. The combo property
-func (m *PuzzleStormDashboard_days) SetCombo(value *int32)() {
-    m.combo = value
+func (m *PuzzleStormDashboard_days) SetCombo(value *int32) {
+	m.combo = value
 }
+
 // SetErrors sets the errors property value. The errors property
-func (m *PuzzleStormDashboard_days) SetErrors(value *int32)() {
-    m.errors = value
+func (m *PuzzleStormDashboard_days) SetErrors(value *int32) {
+	m.errors = value
 }
+
 // SetHighest sets the highest property value. The highest property
-func (m *PuzzleStormDashboard_days) SetHighest(value *int32)() {
-    m.highest = value
+func (m *PuzzleStormDashboard_days) SetHighest(value *int32) {
+	m.highest = value
 }
-// SetId sets the _id property value. The _id property
-func (m *PuzzleStormDashboard_days) SetId(value *string)() {
-    m._id = value
+
+// SetId sets the _id property value. The id property
+func (m *PuzzleStormDashboard_days) SetId(value *string) {
+	m.id = value
 }
+
 // SetMoves sets the moves property value. The moves property
-func (m *PuzzleStormDashboard_days) SetMoves(value *int32)() {
-    m.moves = value
+func (m *PuzzleStormDashboard_days) SetMoves(value *int32) {
+	m.moves = value
 }
+
 // SetRuns sets the runs property value. The runs property
-func (m *PuzzleStormDashboard_days) SetRuns(value *int32)() {
-    m.runs = value
+func (m *PuzzleStormDashboard_days) SetRuns(value *int32) {
+	m.runs = value
 }
+
 // SetScore sets the score property value. The score property
-func (m *PuzzleStormDashboard_days) SetScore(value *int32)() {
-    m.score = value
+func (m *PuzzleStormDashboard_days) SetScore(value *int32) {
+	m.score = value
 }
+
 // SetTime sets the time property value. The time property
-func (m *PuzzleStormDashboard_days) SetTime(value *int32)() {
-    m.time = value
+func (m *PuzzleStormDashboard_days) SetTime(value *int32) {
+	m.time = value
 }
+
 type PuzzleStormDashboard_daysable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetCombo()(*int32)
-    GetErrors()(*int32)
-    GetHighest()(*int32)
-    GetId()(*string)
-    GetMoves()(*int32)
-    GetRuns()(*int32)
-    GetScore()(*int32)
-    GetTime()(*int32)
-    SetCombo(value *int32)()
-    SetErrors(value *int32)()
-    SetHighest(value *int32)()
-    SetId(value *string)()
-    SetMoves(value *int32)()
-    SetRuns(value *int32)()
-    SetScore(value *int32)()
-    SetTime(value *int32)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetCombo() *int32
+	GetErrors() *int32
+	GetHighest() *int32
+	GetId() *string
+	GetMoves() *int32
+	GetRuns() *int32
+	GetScore() *int32
+	GetTime() *int32
+	SetCombo(value *int32)
+	SetErrors(value *int32)
+	SetHighest(value *int32)
+	SetId(value *string)
+	SetMoves(value *int32)
+	SetRuns(value *int32)
+	SetScore(value *int32)
+	SetTime(value *int32)
 }

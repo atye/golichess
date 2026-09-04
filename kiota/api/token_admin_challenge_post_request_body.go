@@ -4,109 +4,119 @@
 package api
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type TokenAdminChallengePostRequestBody struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // User visible description of the token
-    description *string
-    // Usernames separated with commas
-    users *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// User visible description of the token
+	description *string
+	// Usernames separated with commas
+	users *string
 }
+
 // NewTokenAdminChallengePostRequestBody instantiates a new TokenAdminChallengePostRequestBody and sets the default values.
-func NewTokenAdminChallengePostRequestBody()(*TokenAdminChallengePostRequestBody) {
-    m := &TokenAdminChallengePostRequestBody{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewTokenAdminChallengePostRequestBody() *TokenAdminChallengePostRequestBody {
+	m := &TokenAdminChallengePostRequestBody{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateTokenAdminChallengePostRequestBodyFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateTokenAdminChallengePostRequestBodyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewTokenAdminChallengePostRequestBody(), nil
+func CreateTokenAdminChallengePostRequestBodyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewTokenAdminChallengePostRequestBody(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *TokenAdminChallengePostRequestBody) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *TokenAdminChallengePostRequestBody) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetDescription gets the description property value. User visible description of the token
 // returns a *string when successful
-func (m *TokenAdminChallengePostRequestBody) GetDescription()(*string) {
-    return m.description
+func (m *TokenAdminChallengePostRequestBody) GetDescription() *string {
+	return m.description
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *TokenAdminChallengePostRequestBody) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["description"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDescription(val)
-        }
-        return nil
-    }
-    res["users"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetUsers(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *TokenAdminChallengePostRequestBody) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["description"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetDescription(val)
+		}
+		return nil
+	}
+	res["users"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetUsers(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetUsers gets the users property value. Usernames separated with commas
 // returns a *string when successful
-func (m *TokenAdminChallengePostRequestBody) GetUsers()(*string) {
-    return m.users
+func (m *TokenAdminChallengePostRequestBody) GetUsers() *string {
+	return m.users
 }
+
 // Serialize serializes information the current object
-func (m *TokenAdminChallengePostRequestBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("description", m.GetDescription())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("users", m.GetUsers())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *TokenAdminChallengePostRequestBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("description", m.GetDescription())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("users", m.GetUsers())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *TokenAdminChallengePostRequestBody) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *TokenAdminChallengePostRequestBody) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetDescription sets the description property value. User visible description of the token
-func (m *TokenAdminChallengePostRequestBody) SetDescription(value *string)() {
-    m.description = value
+func (m *TokenAdminChallengePostRequestBody) SetDescription(value *string) {
+	m.description = value
 }
+
 // SetUsers sets the users property value. Usernames separated with commas
-func (m *TokenAdminChallengePostRequestBody) SetUsers(value *string)() {
-    m.users = value
+func (m *TokenAdminChallengePostRequestBody) SetUsers(value *string) {
+	m.users = value
 }
+
 type TokenAdminChallengePostRequestBodyable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetDescription()(*string)
-    GetUsers()(*string)
-    SetDescription(value *string)()
-    SetUsers(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetDescription() *string
+	GetUsers() *string
+	SetDescription(value *string)
+	SetUsers(value *string)
 }

@@ -4,167 +4,181 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type PuzzleStormDashboard_high struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The allTime property
-    allTime *int32
-    // The day property
-    day *int32
-    // The month property
-    month *int32
-    // The week property
-    week *int32
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The allTime property
+	allTime *int32
+	// The day property
+	day *int32
+	// The month property
+	month *int32
+	// The week property
+	week *int32
 }
+
 // NewPuzzleStormDashboard_high instantiates a new PuzzleStormDashboard_high and sets the default values.
-func NewPuzzleStormDashboard_high()(*PuzzleStormDashboard_high) {
-    m := &PuzzleStormDashboard_high{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewPuzzleStormDashboard_high() *PuzzleStormDashboard_high {
+	m := &PuzzleStormDashboard_high{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreatePuzzleStormDashboard_highFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreatePuzzleStormDashboard_highFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewPuzzleStormDashboard_high(), nil
+func CreatePuzzleStormDashboard_highFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewPuzzleStormDashboard_high(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *PuzzleStormDashboard_high) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *PuzzleStormDashboard_high) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetAllTime gets the allTime property value. The allTime property
 // returns a *int32 when successful
-func (m *PuzzleStormDashboard_high) GetAllTime()(*int32) {
-    return m.allTime
+func (m *PuzzleStormDashboard_high) GetAllTime() *int32 {
+	return m.allTime
 }
+
 // GetDay gets the day property value. The day property
 // returns a *int32 when successful
-func (m *PuzzleStormDashboard_high) GetDay()(*int32) {
-    return m.day
+func (m *PuzzleStormDashboard_high) GetDay() *int32 {
+	return m.day
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *PuzzleStormDashboard_high) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["allTime"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetAllTime(val)
-        }
-        return nil
-    }
-    res["day"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDay(val)
-        }
-        return nil
-    }
-    res["month"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMonth(val)
-        }
-        return nil
-    }
-    res["week"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetWeek(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *PuzzleStormDashboard_high) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["allTime"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetAllTime(val)
+		}
+		return nil
+	}
+	res["day"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetDay(val)
+		}
+		return nil
+	}
+	res["month"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMonth(val)
+		}
+		return nil
+	}
+	res["week"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetWeek(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetMonth gets the month property value. The month property
 // returns a *int32 when successful
-func (m *PuzzleStormDashboard_high) GetMonth()(*int32) {
-    return m.month
+func (m *PuzzleStormDashboard_high) GetMonth() *int32 {
+	return m.month
 }
+
 // GetWeek gets the week property value. The week property
 // returns a *int32 when successful
-func (m *PuzzleStormDashboard_high) GetWeek()(*int32) {
-    return m.week
+func (m *PuzzleStormDashboard_high) GetWeek() *int32 {
+	return m.week
 }
+
 // Serialize serializes information the current object
-func (m *PuzzleStormDashboard_high) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteInt32Value("allTime", m.GetAllTime())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("day", m.GetDay())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("month", m.GetMonth())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("week", m.GetWeek())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *PuzzleStormDashboard_high) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteInt32Value("allTime", m.GetAllTime())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("day", m.GetDay())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("month", m.GetMonth())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("week", m.GetWeek())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PuzzleStormDashboard_high) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *PuzzleStormDashboard_high) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetAllTime sets the allTime property value. The allTime property
-func (m *PuzzleStormDashboard_high) SetAllTime(value *int32)() {
-    m.allTime = value
+func (m *PuzzleStormDashboard_high) SetAllTime(value *int32) {
+	m.allTime = value
 }
+
 // SetDay sets the day property value. The day property
-func (m *PuzzleStormDashboard_high) SetDay(value *int32)() {
-    m.day = value
+func (m *PuzzleStormDashboard_high) SetDay(value *int32) {
+	m.day = value
 }
+
 // SetMonth sets the month property value. The month property
-func (m *PuzzleStormDashboard_high) SetMonth(value *int32)() {
-    m.month = value
+func (m *PuzzleStormDashboard_high) SetMonth(value *int32) {
+	m.month = value
 }
+
 // SetWeek sets the week property value. The week property
-func (m *PuzzleStormDashboard_high) SetWeek(value *int32)() {
-    m.week = value
+func (m *PuzzleStormDashboard_high) SetWeek(value *int32) {
+	m.week = value
 }
+
 type PuzzleStormDashboard_highable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetAllTime()(*int32)
-    GetDay()(*int32)
-    GetMonth()(*int32)
-    GetWeek()(*int32)
-    SetAllTime(value *int32)()
-    SetDay(value *int32)()
-    SetMonth(value *int32)()
-    SetWeek(value *int32)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetAllTime() *int32
+	GetDay() *int32
+	GetMonth() *int32
+	GetWeek() *int32
+	SetAllTime(value *int32)
+	SetDay(value *int32)
+	SetMonth(value *int32)
+	SetWeek(value *int32)
 }

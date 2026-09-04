@@ -4,28 +4,31 @@
 package api
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // GameWithGameItemRequestBuilder builds and executes requests for operations under \api\game\{gameId}
 type GameWithGameItemRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // Chat the chat property
 // returns a *GameItemChatRequestBuilder when successful
-func (m *GameWithGameItemRequestBuilder) Chat()(*GameItemChatRequestBuilder) {
-    return NewGameItemChatRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *GameWithGameItemRequestBuilder) Chat() *GameItemChatRequestBuilder {
+	return NewGameItemChatRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewGameWithGameItemRequestBuilderInternal instantiates a new GameWithGameItemRequestBuilder and sets the default values.
-func NewGameWithGameItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*GameWithGameItemRequestBuilder) {
-    m := &GameWithGameItemRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/game/{gameId}", pathParameters),
-    }
-    return m
+func NewGameWithGameItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *GameWithGameItemRequestBuilder {
+	m := &GameWithGameItemRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/game/{gameId}", pathParameters),
+	}
+	return m
 }
+
 // NewGameWithGameItemRequestBuilder instantiates a new GameWithGameItemRequestBuilder and sets the default values.
-func NewGameWithGameItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*GameWithGameItemRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewGameWithGameItemRequestBuilderInternal(urlParams, requestAdapter)
+func NewGameWithGameItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *GameWithGameItemRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewGameWithGameItemRequestBuilderInternal(urlParams, requestAdapter)
 }

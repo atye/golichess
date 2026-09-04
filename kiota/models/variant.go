@@ -4,141 +4,153 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type Variant struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The key property
-    key *VariantKey
-    // The name property
-    name *string
-    // The short property
-    short *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The key property
+	key *VariantKey
+	// The name property
+	name *string
+	// The short property
+	short *string
 }
+
 // NewVariant instantiates a new Variant and sets the default values.
-func NewVariant()(*Variant) {
-    m := &Variant{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    keyValue := STANDARD_VARIANTKEY
-    m.SetKey(&keyValue)
-    return m
+func NewVariant() *Variant {
+	m := &Variant{}
+	m.SetAdditionalData(make(map[string]any))
+	keyValue := STANDARD_VARIANTKEY
+	m.SetKey(&keyValue)
+	return m
 }
+
 // CreateVariantFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateVariantFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewVariant(), nil
+func CreateVariantFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewVariant(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *Variant) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *Variant) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *Variant) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["key"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseVariantKey)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetKey(val.(*VariantKey))
-        }
-        return nil
-    }
-    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetName(val)
-        }
-        return nil
-    }
-    res["short"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetShort(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *Variant) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["key"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(ParseVariantKey)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetKey(val.(*VariantKey))
+		}
+		return nil
+	}
+	res["name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetName(val)
+		}
+		return nil
+	}
+	res["short"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetShort(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetKey gets the key property value. The key property
 // returns a *VariantKey when successful
-func (m *Variant) GetKey()(*VariantKey) {
-    return m.key
+func (m *Variant) GetKey() *VariantKey {
+	return m.key
 }
+
 // GetName gets the name property value. The name property
 // returns a *string when successful
-func (m *Variant) GetName()(*string) {
-    return m.name
+func (m *Variant) GetName() *string {
+	return m.name
 }
+
 // GetShort gets the short property value. The short property
 // returns a *string when successful
-func (m *Variant) GetShort()(*string) {
-    return m.short
+func (m *Variant) GetShort() *string {
+	return m.short
 }
+
 // Serialize serializes information the current object
-func (m *Variant) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetKey() != nil {
-        cast := (*m.GetKey()).String()
-        err := writer.WriteStringValue("key", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("name", m.GetName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("short", m.GetShort())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *Variant) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	if m.GetKey() != nil {
+		cast := (*m.GetKey()).String()
+		err := writer.WriteStringValue("key", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("name", m.GetName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("short", m.GetShort())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *Variant) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *Variant) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetKey sets the key property value. The key property
-func (m *Variant) SetKey(value *VariantKey)() {
-    m.key = value
+func (m *Variant) SetKey(value *VariantKey) {
+	m.key = value
 }
+
 // SetName sets the name property value. The name property
-func (m *Variant) SetName(value *string)() {
-    m.name = value
+func (m *Variant) SetName(value *string) {
+	m.name = value
 }
+
 // SetShort sets the short property value. The short property
-func (m *Variant) SetShort(value *string)() {
-    m.short = value
+func (m *Variant) SetShort(value *string) {
+	m.short = value
 }
+
 type Variantable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetKey()(*VariantKey)
-    GetName()(*string)
-    GetShort()(*string)
-    SetKey(value *VariantKey)()
-    SetName(value *string)()
-    SetShort(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetKey() *VariantKey
+	GetName() *string
+	GetShort() *string
+	SetKey(value *VariantKey)
+	SetName(value *string)
+	SetShort(value *string)
 }

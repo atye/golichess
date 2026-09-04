@@ -4,35 +4,38 @@
 package api
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // TeamItemRequestRequestBuilder builds and executes requests for operations under \api\team\{teamId}\request
 type TeamItemRequestRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // ByUserId gets an item from the github.com/atye/golichess/kiota.api.team.item.request.item collection
 // returns a *TeamItemRequestWithUserItemRequestBuilder when successful
-func (m *TeamItemRequestRequestBuilder) ByUserId(userId string)(*TeamItemRequestWithUserItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    if userId != "" {
-        urlTplParams["userId"] = userId
-    }
-    return NewTeamItemRequestWithUserItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+func (m *TeamItemRequestRequestBuilder) ByUserId(userId string) *TeamItemRequestWithUserItemRequestBuilder {
+	urlTplParams := make(map[string]string)
+	for idx, item := range m.BaseRequestBuilder.PathParameters {
+		urlTplParams[idx] = item
+	}
+	if userId != "" {
+		urlTplParams["userId"] = userId
+	}
+	return NewTeamItemRequestWithUserItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewTeamItemRequestRequestBuilderInternal instantiates a new TeamItemRequestRequestBuilder and sets the default values.
-func NewTeamItemRequestRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*TeamItemRequestRequestBuilder) {
-    m := &TeamItemRequestRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/team/{teamId}/request", pathParameters),
-    }
-    return m
+func NewTeamItemRequestRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *TeamItemRequestRequestBuilder {
+	m := &TeamItemRequestRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/team/{teamId}/request", pathParameters),
+	}
+	return m
 }
+
 // NewTeamItemRequestRequestBuilder instantiates a new TeamItemRequestRequestBuilder and sets the default values.
-func NewTeamItemRequestRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*TeamItemRequestRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewTeamItemRequestRequestBuilderInternal(urlParams, requestAdapter)
+func NewTeamItemRequestRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *TeamItemRequestRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewTeamItemRequestRequestBuilderInternal(urlParams, requestAdapter)
 }

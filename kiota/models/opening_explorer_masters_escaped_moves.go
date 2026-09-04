@@ -4,459 +4,305 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type OpeningExplorerMasters_moves struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The averageRating property
-    averageRating *int32
-    // The black property
-    black *int32
-    // The draws property
-    draws *int32
-    // The game property
-    game OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_gameable
-    // The opening property
-    opening OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_openingable
-    // The san property
-    san *string
-    // The uci property
-    uci *string
-    // The white property
-    white *int32
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The averageRating property
+	averageRating *int32
+	// The black property
+	black *int32
+	// The draws property
+	draws *int32
+	// The game property
+	game OpeningExplorerMastersGameable
+	// The opening property
+	opening OpeningExplorerOpeningable
+	// The san property
+	san *string
+	// The uci property
+	uci *string
+	// The white property
+	white *int32
 }
-// OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_game composed type wrapper for classes OpeningExplorerMastersGameable, OpeningExplorerMasters_moves_gameMember1able
-type OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_game struct {
-    // Composed type representation for type OpeningExplorerMasters_moves_gameMember1able
-    openingExplorerMasters_moves_gameMember1 OpeningExplorerMasters_moves_gameMember1able
-    // Composed type representation for type OpeningExplorerMastersGameable
-    openingExplorerMastersGame OpeningExplorerMastersGameable
-}
-// NewOpeningExplorerMasters_moves_OpeningExplorerMasters_moves_game instantiates a new OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_game and sets the default values.
-func NewOpeningExplorerMasters_moves_OpeningExplorerMasters_moves_game()(*OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_game) {
-    m := &OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_game{
-    }
-    return m
-}
-// CreateOpeningExplorerMasters_moves_OpeningExplorerMasters_moves_gameFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateOpeningExplorerMasters_moves_OpeningExplorerMasters_moves_gameFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewOpeningExplorerMasters_moves_OpeningExplorerMasters_moves_game()
-    if parseNode != nil {
-        mappingValueNode, err := parseNode.GetChildNode("")
-        if err != nil {
-            return nil, err
-        }
-        if mappingValueNode != nil {
-            mappingValue, err := mappingValueNode.GetStringValue()
-            if err != nil {
-                return nil, err
-            }
-            if mappingValue != nil {
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_game) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    if m.GetOpeningExplorerMastersMovesGameMember1() != nil {
-        return m.GetOpeningExplorerMastersMovesGameMember1().GetFieldDeserializers()
-    } else if m.GetOpeningExplorerMastersGame() != nil {
-        return m.GetOpeningExplorerMastersGame().GetFieldDeserializers()
-    }
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_game) GetIsComposedType()(bool) {
-    return true
-}
-// GetOpeningExplorerMastersGame gets the OpeningExplorerMastersGame property value. Composed type representation for type OpeningExplorerMastersGameable
-// returns a OpeningExplorerMastersGameable when successful
-func (m *OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_game) GetOpeningExplorerMastersGame()(OpeningExplorerMastersGameable) {
-    return m.openingExplorerMastersGame
-}
-// GetOpeningExplorerMastersMovesGameMember1 gets the OpeningExplorerMasters_moves_gameMember1 property value. Composed type representation for type OpeningExplorerMasters_moves_gameMember1able
-// returns a OpeningExplorerMasters_moves_gameMember1able when successful
-func (m *OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_game) GetOpeningExplorerMastersMovesGameMember1()(OpeningExplorerMasters_moves_gameMember1able) {
-    return m.openingExplorerMasters_moves_gameMember1
-}
-// Serialize serializes information the current object
-func (m *OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_game) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetOpeningExplorerMastersMovesGameMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetOpeningExplorerMastersMovesGameMember1())
-        if err != nil {
-            return err
-        }
-    } else if m.GetOpeningExplorerMastersGame() != nil {
-        err := writer.WriteObjectValue("", m.GetOpeningExplorerMastersGame())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetOpeningExplorerMastersGame sets the OpeningExplorerMastersGame property value. Composed type representation for type OpeningExplorerMastersGameable
-func (m *OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_game) SetOpeningExplorerMastersGame(value OpeningExplorerMastersGameable)() {
-    m.openingExplorerMastersGame = value
-}
-// SetOpeningExplorerMastersMovesGameMember1 sets the OpeningExplorerMasters_moves_gameMember1 property value. Composed type representation for type OpeningExplorerMasters_moves_gameMember1able
-func (m *OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_game) SetOpeningExplorerMastersMovesGameMember1(value OpeningExplorerMasters_moves_gameMember1able)() {
-    m.openingExplorerMasters_moves_gameMember1 = value
-}
-// OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_opening composed type wrapper for classes OpeningExplorerMasters_moves_openingMember1able, OpeningExplorerOpeningable
-type OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_opening struct {
-    // Composed type representation for type OpeningExplorerMasters_moves_openingMember1able
-    openingExplorerMasters_moves_openingMember1 OpeningExplorerMasters_moves_openingMember1able
-    // Composed type representation for type OpeningExplorerOpeningable
-    openingExplorerOpening OpeningExplorerOpeningable
-}
-// NewOpeningExplorerMasters_moves_OpeningExplorerMasters_moves_opening instantiates a new OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_opening and sets the default values.
-func NewOpeningExplorerMasters_moves_OpeningExplorerMasters_moves_opening()(*OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_opening) {
-    m := &OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_opening{
-    }
-    return m
-}
-// CreateOpeningExplorerMasters_moves_OpeningExplorerMasters_moves_openingFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-// returns a Parsable when successful
-func CreateOpeningExplorerMasters_moves_OpeningExplorerMasters_moves_openingFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewOpeningExplorerMasters_moves_OpeningExplorerMasters_moves_opening()
-    if parseNode != nil {
-        mappingValueNode, err := parseNode.GetChildNode("")
-        if err != nil {
-            return nil, err
-        }
-        if mappingValueNode != nil {
-            mappingValue, err := mappingValueNode.GetStringValue()
-            if err != nil {
-                return nil, err
-            }
-            if mappingValue != nil {
-            }
-        }
-    }
-    return result, nil
-}
-// GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_opening) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    if m.GetOpeningExplorerMastersMovesOpeningMember1() != nil {
-        return m.GetOpeningExplorerMastersMovesOpeningMember1().GetFieldDeserializers()
-    } else if m.GetOpeningExplorerOpening() != nil {
-        return m.GetOpeningExplorerOpening().GetFieldDeserializers()
-    }
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-}
-// GetIsComposedType determines if the current object is a wrapper around a composed type
-// returns a bool when successful
-func (m *OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_opening) GetIsComposedType()(bool) {
-    return true
-}
-// GetOpeningExplorerMastersMovesOpeningMember1 gets the OpeningExplorerMasters_moves_openingMember1 property value. Composed type representation for type OpeningExplorerMasters_moves_openingMember1able
-// returns a OpeningExplorerMasters_moves_openingMember1able when successful
-func (m *OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_opening) GetOpeningExplorerMastersMovesOpeningMember1()(OpeningExplorerMasters_moves_openingMember1able) {
-    return m.openingExplorerMasters_moves_openingMember1
-}
-// GetOpeningExplorerOpening gets the OpeningExplorerOpening property value. Composed type representation for type OpeningExplorerOpeningable
-// returns a OpeningExplorerOpeningable when successful
-func (m *OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_opening) GetOpeningExplorerOpening()(OpeningExplorerOpeningable) {
-    return m.openingExplorerOpening
-}
-// Serialize serializes information the current object
-func (m *OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_opening) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetOpeningExplorerMastersMovesOpeningMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetOpeningExplorerMastersMovesOpeningMember1())
-        if err != nil {
-            return err
-        }
-    } else if m.GetOpeningExplorerOpening() != nil {
-        err := writer.WriteObjectValue("", m.GetOpeningExplorerOpening())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetOpeningExplorerMastersMovesOpeningMember1 sets the OpeningExplorerMasters_moves_openingMember1 property value. Composed type representation for type OpeningExplorerMasters_moves_openingMember1able
-func (m *OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_opening) SetOpeningExplorerMastersMovesOpeningMember1(value OpeningExplorerMasters_moves_openingMember1able)() {
-    m.openingExplorerMasters_moves_openingMember1 = value
-}
-// SetOpeningExplorerOpening sets the OpeningExplorerOpening property value. Composed type representation for type OpeningExplorerOpeningable
-func (m *OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_opening) SetOpeningExplorerOpening(value OpeningExplorerOpeningable)() {
-    m.openingExplorerOpening = value
-}
-type OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_gameable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetOpeningExplorerMastersGame()(OpeningExplorerMastersGameable)
-    GetOpeningExplorerMastersMovesGameMember1()(OpeningExplorerMasters_moves_gameMember1able)
-    SetOpeningExplorerMastersGame(value OpeningExplorerMastersGameable)()
-    SetOpeningExplorerMastersMovesGameMember1(value OpeningExplorerMasters_moves_gameMember1able)()
-}
-type OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_openingable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetOpeningExplorerMastersMovesOpeningMember1()(OpeningExplorerMasters_moves_openingMember1able)
-    GetOpeningExplorerOpening()(OpeningExplorerOpeningable)
-    SetOpeningExplorerMastersMovesOpeningMember1(value OpeningExplorerMasters_moves_openingMember1able)()
-    SetOpeningExplorerOpening(value OpeningExplorerOpeningable)()
-}
+
 // NewOpeningExplorerMasters_moves instantiates a new OpeningExplorerMasters_moves and sets the default values.
-func NewOpeningExplorerMasters_moves()(*OpeningExplorerMasters_moves) {
-    m := &OpeningExplorerMasters_moves{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewOpeningExplorerMasters_moves() *OpeningExplorerMasters_moves {
+	m := &OpeningExplorerMasters_moves{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateOpeningExplorerMasters_movesFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateOpeningExplorerMasters_movesFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewOpeningExplorerMasters_moves(), nil
+func CreateOpeningExplorerMasters_movesFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewOpeningExplorerMasters_moves(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *OpeningExplorerMasters_moves) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *OpeningExplorerMasters_moves) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetAverageRating gets the averageRating property value. The averageRating property
 // returns a *int32 when successful
-func (m *OpeningExplorerMasters_moves) GetAverageRating()(*int32) {
-    return m.averageRating
+func (m *OpeningExplorerMasters_moves) GetAverageRating() *int32 {
+	return m.averageRating
 }
+
 // GetBlack gets the black property value. The black property
 // returns a *int32 when successful
-func (m *OpeningExplorerMasters_moves) GetBlack()(*int32) {
-    return m.black
+func (m *OpeningExplorerMasters_moves) GetBlack() *int32 {
+	return m.black
 }
+
 // GetDraws gets the draws property value. The draws property
 // returns a *int32 when successful
-func (m *OpeningExplorerMasters_moves) GetDraws()(*int32) {
-    return m.draws
+func (m *OpeningExplorerMasters_moves) GetDraws() *int32 {
+	return m.draws
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *OpeningExplorerMasters_moves) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["averageRating"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetAverageRating(val)
-        }
-        return nil
-    }
-    res["black"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetBlack(val)
-        }
-        return nil
-    }
-    res["draws"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDraws(val)
-        }
-        return nil
-    }
-    res["game"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateOpeningExplorerMasters_moves_OpeningExplorerMasters_moves_gameFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetGame(val.(OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_gameable))
-        }
-        return nil
-    }
-    res["opening"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateOpeningExplorerMasters_moves_OpeningExplorerMasters_moves_openingFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetOpening(val.(OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_openingable))
-        }
-        return nil
-    }
-    res["san"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSan(val)
-        }
-        return nil
-    }
-    res["uci"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetUci(val)
-        }
-        return nil
-    }
-    res["white"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetWhite(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *OpeningExplorerMasters_moves) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["averageRating"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetAverageRating(val)
+		}
+		return nil
+	}
+	res["black"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetBlack(val)
+		}
+		return nil
+	}
+	res["draws"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetDraws(val)
+		}
+		return nil
+	}
+	res["game"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateOpeningExplorerMastersGameFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetGame(val.(OpeningExplorerMastersGameable))
+		}
+		return nil
+	}
+	res["opening"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateOpeningExplorerOpeningFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetOpening(val.(OpeningExplorerOpeningable))
+		}
+		return nil
+	}
+	res["san"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetSan(val)
+		}
+		return nil
+	}
+	res["uci"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetUci(val)
+		}
+		return nil
+	}
+	res["white"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetWhite(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetGame gets the game property value. The game property
-// returns a OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_gameable when successful
-func (m *OpeningExplorerMasters_moves) GetGame()(OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_gameable) {
-    return m.game
+// returns a OpeningExplorerMastersGameable when successful
+func (m *OpeningExplorerMasters_moves) GetGame() OpeningExplorerMastersGameable {
+	return m.game
 }
+
 // GetOpening gets the opening property value. The opening property
-// returns a OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_openingable when successful
-func (m *OpeningExplorerMasters_moves) GetOpening()(OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_openingable) {
-    return m.opening
+// returns a OpeningExplorerOpeningable when successful
+func (m *OpeningExplorerMasters_moves) GetOpening() OpeningExplorerOpeningable {
+	return m.opening
 }
+
 // GetSan gets the san property value. The san property
 // returns a *string when successful
-func (m *OpeningExplorerMasters_moves) GetSan()(*string) {
-    return m.san
+func (m *OpeningExplorerMasters_moves) GetSan() *string {
+	return m.san
 }
+
 // GetUci gets the uci property value. The uci property
 // returns a *string when successful
-func (m *OpeningExplorerMasters_moves) GetUci()(*string) {
-    return m.uci
+func (m *OpeningExplorerMasters_moves) GetUci() *string {
+	return m.uci
 }
+
 // GetWhite gets the white property value. The white property
 // returns a *int32 when successful
-func (m *OpeningExplorerMasters_moves) GetWhite()(*int32) {
-    return m.white
+func (m *OpeningExplorerMasters_moves) GetWhite() *int32 {
+	return m.white
 }
+
 // Serialize serializes information the current object
-func (m *OpeningExplorerMasters_moves) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteInt32Value("averageRating", m.GetAverageRating())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("black", m.GetBlack())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("draws", m.GetDraws())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("game", m.GetGame())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("opening", m.GetOpening())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("san", m.GetSan())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("uci", m.GetUci())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("white", m.GetWhite())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *OpeningExplorerMasters_moves) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteInt32Value("averageRating", m.GetAverageRating())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("black", m.GetBlack())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("draws", m.GetDraws())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("game", m.GetGame())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("opening", m.GetOpening())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("san", m.GetSan())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("uci", m.GetUci())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("white", m.GetWhite())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *OpeningExplorerMasters_moves) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *OpeningExplorerMasters_moves) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetAverageRating sets the averageRating property value. The averageRating property
-func (m *OpeningExplorerMasters_moves) SetAverageRating(value *int32)() {
-    m.averageRating = value
+func (m *OpeningExplorerMasters_moves) SetAverageRating(value *int32) {
+	m.averageRating = value
 }
+
 // SetBlack sets the black property value. The black property
-func (m *OpeningExplorerMasters_moves) SetBlack(value *int32)() {
-    m.black = value
+func (m *OpeningExplorerMasters_moves) SetBlack(value *int32) {
+	m.black = value
 }
+
 // SetDraws sets the draws property value. The draws property
-func (m *OpeningExplorerMasters_moves) SetDraws(value *int32)() {
-    m.draws = value
+func (m *OpeningExplorerMasters_moves) SetDraws(value *int32) {
+	m.draws = value
 }
+
 // SetGame sets the game property value. The game property
-func (m *OpeningExplorerMasters_moves) SetGame(value OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_gameable)() {
-    m.game = value
+func (m *OpeningExplorerMasters_moves) SetGame(value OpeningExplorerMastersGameable) {
+	m.game = value
 }
+
 // SetOpening sets the opening property value. The opening property
-func (m *OpeningExplorerMasters_moves) SetOpening(value OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_openingable)() {
-    m.opening = value
+func (m *OpeningExplorerMasters_moves) SetOpening(value OpeningExplorerOpeningable) {
+	m.opening = value
 }
+
 // SetSan sets the san property value. The san property
-func (m *OpeningExplorerMasters_moves) SetSan(value *string)() {
-    m.san = value
+func (m *OpeningExplorerMasters_moves) SetSan(value *string) {
+	m.san = value
 }
+
 // SetUci sets the uci property value. The uci property
-func (m *OpeningExplorerMasters_moves) SetUci(value *string)() {
-    m.uci = value
+func (m *OpeningExplorerMasters_moves) SetUci(value *string) {
+	m.uci = value
 }
+
 // SetWhite sets the white property value. The white property
-func (m *OpeningExplorerMasters_moves) SetWhite(value *int32)() {
-    m.white = value
+func (m *OpeningExplorerMasters_moves) SetWhite(value *int32) {
+	m.white = value
 }
+
 type OpeningExplorerMasters_movesable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetAverageRating()(*int32)
-    GetBlack()(*int32)
-    GetDraws()(*int32)
-    GetGame()(OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_gameable)
-    GetOpening()(OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_openingable)
-    GetSan()(*string)
-    GetUci()(*string)
-    GetWhite()(*int32)
-    SetAverageRating(value *int32)()
-    SetBlack(value *int32)()
-    SetDraws(value *int32)()
-    SetGame(value OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_gameable)()
-    SetOpening(value OpeningExplorerMasters_moves_OpeningExplorerMasters_moves_openingable)()
-    SetSan(value *string)()
-    SetUci(value *string)()
-    SetWhite(value *int32)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetAverageRating() *int32
+	GetBlack() *int32
+	GetDraws() *int32
+	GetGame() OpeningExplorerMastersGameable
+	GetOpening() OpeningExplorerOpeningable
+	GetSan() *string
+	GetUci() *string
+	GetWhite() *int32
+	SetAverageRating(value *int32)
+	SetBlack(value *int32)
+	SetDraws(value *int32)
+	SetGame(value OpeningExplorerMastersGameable)
+	SetOpening(value OpeningExplorerOpeningable)
+	SetSan(value *string)
+	SetUci(value *string)
+	SetWhite(value *int32)
 }

@@ -4,254 +4,274 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type ArenaTournamentFull_stats struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The averageRating property
-    averageRating *int32
-    // The berserks property
-    berserks *int32
-    // The blackWins property
-    blackWins *int32
-    // The draws property
-    draws *int32
-    // The games property
-    games *int32
-    // The moves property
-    moves *int32
-    // The whiteWins property
-    whiteWins *int32
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The averageRating property
+	averageRating *int32
+	// The berserks property
+	berserks *int32
+	// The blackWins property
+	blackWins *int32
+	// The draws property
+	draws *int32
+	// The games property
+	games *int32
+	// The moves property
+	moves *int32
+	// The whiteWins property
+	whiteWins *int32
 }
+
 // NewArenaTournamentFull_stats instantiates a new ArenaTournamentFull_stats and sets the default values.
-func NewArenaTournamentFull_stats()(*ArenaTournamentFull_stats) {
-    m := &ArenaTournamentFull_stats{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewArenaTournamentFull_stats() *ArenaTournamentFull_stats {
+	m := &ArenaTournamentFull_stats{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateArenaTournamentFull_statsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateArenaTournamentFull_statsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewArenaTournamentFull_stats(), nil
+func CreateArenaTournamentFull_statsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewArenaTournamentFull_stats(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *ArenaTournamentFull_stats) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *ArenaTournamentFull_stats) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetAverageRating gets the averageRating property value. The averageRating property
 // returns a *int32 when successful
-func (m *ArenaTournamentFull_stats) GetAverageRating()(*int32) {
-    return m.averageRating
+func (m *ArenaTournamentFull_stats) GetAverageRating() *int32 {
+	return m.averageRating
 }
+
 // GetBerserks gets the berserks property value. The berserks property
 // returns a *int32 when successful
-func (m *ArenaTournamentFull_stats) GetBerserks()(*int32) {
-    return m.berserks
+func (m *ArenaTournamentFull_stats) GetBerserks() *int32 {
+	return m.berserks
 }
+
 // GetBlackWins gets the blackWins property value. The blackWins property
 // returns a *int32 when successful
-func (m *ArenaTournamentFull_stats) GetBlackWins()(*int32) {
-    return m.blackWins
+func (m *ArenaTournamentFull_stats) GetBlackWins() *int32 {
+	return m.blackWins
 }
+
 // GetDraws gets the draws property value. The draws property
 // returns a *int32 when successful
-func (m *ArenaTournamentFull_stats) GetDraws()(*int32) {
-    return m.draws
+func (m *ArenaTournamentFull_stats) GetDraws() *int32 {
+	return m.draws
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ArenaTournamentFull_stats) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["averageRating"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetAverageRating(val)
-        }
-        return nil
-    }
-    res["berserks"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetBerserks(val)
-        }
-        return nil
-    }
-    res["blackWins"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetBlackWins(val)
-        }
-        return nil
-    }
-    res["draws"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDraws(val)
-        }
-        return nil
-    }
-    res["games"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetGames(val)
-        }
-        return nil
-    }
-    res["moves"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMoves(val)
-        }
-        return nil
-    }
-    res["whiteWins"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetWhiteWins(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *ArenaTournamentFull_stats) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["averageRating"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetAverageRating(val)
+		}
+		return nil
+	}
+	res["berserks"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetBerserks(val)
+		}
+		return nil
+	}
+	res["blackWins"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetBlackWins(val)
+		}
+		return nil
+	}
+	res["draws"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetDraws(val)
+		}
+		return nil
+	}
+	res["games"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetGames(val)
+		}
+		return nil
+	}
+	res["moves"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMoves(val)
+		}
+		return nil
+	}
+	res["whiteWins"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetWhiteWins(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetGames gets the games property value. The games property
 // returns a *int32 when successful
-func (m *ArenaTournamentFull_stats) GetGames()(*int32) {
-    return m.games
+func (m *ArenaTournamentFull_stats) GetGames() *int32 {
+	return m.games
 }
+
 // GetMoves gets the moves property value. The moves property
 // returns a *int32 when successful
-func (m *ArenaTournamentFull_stats) GetMoves()(*int32) {
-    return m.moves
+func (m *ArenaTournamentFull_stats) GetMoves() *int32 {
+	return m.moves
 }
+
 // GetWhiteWins gets the whiteWins property value. The whiteWins property
 // returns a *int32 when successful
-func (m *ArenaTournamentFull_stats) GetWhiteWins()(*int32) {
-    return m.whiteWins
+func (m *ArenaTournamentFull_stats) GetWhiteWins() *int32 {
+	return m.whiteWins
 }
+
 // Serialize serializes information the current object
-func (m *ArenaTournamentFull_stats) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteInt32Value("averageRating", m.GetAverageRating())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("berserks", m.GetBerserks())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("blackWins", m.GetBlackWins())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("draws", m.GetDraws())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("games", m.GetGames())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("moves", m.GetMoves())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("whiteWins", m.GetWhiteWins())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *ArenaTournamentFull_stats) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteInt32Value("averageRating", m.GetAverageRating())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("berserks", m.GetBerserks())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("blackWins", m.GetBlackWins())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("draws", m.GetDraws())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("games", m.GetGames())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("moves", m.GetMoves())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("whiteWins", m.GetWhiteWins())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ArenaTournamentFull_stats) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *ArenaTournamentFull_stats) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetAverageRating sets the averageRating property value. The averageRating property
-func (m *ArenaTournamentFull_stats) SetAverageRating(value *int32)() {
-    m.averageRating = value
+func (m *ArenaTournamentFull_stats) SetAverageRating(value *int32) {
+	m.averageRating = value
 }
+
 // SetBerserks sets the berserks property value. The berserks property
-func (m *ArenaTournamentFull_stats) SetBerserks(value *int32)() {
-    m.berserks = value
+func (m *ArenaTournamentFull_stats) SetBerserks(value *int32) {
+	m.berserks = value
 }
+
 // SetBlackWins sets the blackWins property value. The blackWins property
-func (m *ArenaTournamentFull_stats) SetBlackWins(value *int32)() {
-    m.blackWins = value
+func (m *ArenaTournamentFull_stats) SetBlackWins(value *int32) {
+	m.blackWins = value
 }
+
 // SetDraws sets the draws property value. The draws property
-func (m *ArenaTournamentFull_stats) SetDraws(value *int32)() {
-    m.draws = value
+func (m *ArenaTournamentFull_stats) SetDraws(value *int32) {
+	m.draws = value
 }
+
 // SetGames sets the games property value. The games property
-func (m *ArenaTournamentFull_stats) SetGames(value *int32)() {
-    m.games = value
+func (m *ArenaTournamentFull_stats) SetGames(value *int32) {
+	m.games = value
 }
+
 // SetMoves sets the moves property value. The moves property
-func (m *ArenaTournamentFull_stats) SetMoves(value *int32)() {
-    m.moves = value
+func (m *ArenaTournamentFull_stats) SetMoves(value *int32) {
+	m.moves = value
 }
+
 // SetWhiteWins sets the whiteWins property value. The whiteWins property
-func (m *ArenaTournamentFull_stats) SetWhiteWins(value *int32)() {
-    m.whiteWins = value
+func (m *ArenaTournamentFull_stats) SetWhiteWins(value *int32) {
+	m.whiteWins = value
 }
+
 type ArenaTournamentFull_statsable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetAverageRating()(*int32)
-    GetBerserks()(*int32)
-    GetBlackWins()(*int32)
-    GetDraws()(*int32)
-    GetGames()(*int32)
-    GetMoves()(*int32)
-    GetWhiteWins()(*int32)
-    SetAverageRating(value *int32)()
-    SetBerserks(value *int32)()
-    SetBlackWins(value *int32)()
-    SetDraws(value *int32)()
-    SetGames(value *int32)()
-    SetMoves(value *int32)()
-    SetWhiteWins(value *int32)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetAverageRating() *int32
+	GetBerserks() *int32
+	GetBlackWins() *int32
+	GetDraws() *int32
+	GetGames() *int32
+	GetMoves() *int32
+	GetWhiteWins() *int32
+	SetAverageRating(value *int32)
+	SetBerserks(value *int32)
+	SetBlackWins(value *int32)
+	SetDraws(value *int32)
+	SetGames(value *int32)
+	SetMoves(value *int32)
+	SetWhiteWins(value *int32)
 }

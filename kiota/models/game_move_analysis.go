@@ -4,196 +4,212 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type GameMoveAnalysis struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // Best move in UCI notation (only if played move was inaccurate)
-    best *string
-    // Evaluation in centipawns
-    eval *int32
-    // Judgment annotation (only if played move was inaccurate)
-    judgment GameMoveAnalysis_judgmentable
-    // Number of moves until forced mate
-    mate *int32
-    // Best variation in SAN notation (only if played move was inaccurate)
-    variation *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// Best move in UCI notation (only if played move was inaccurate)
+	best *string
+	// Evaluation in centipawns
+	eval *int32
+	// Judgment annotation (only if played move was inaccurate)
+	judgment GameMoveAnalysis_judgmentable
+	// Number of moves until forced mate
+	mate *int32
+	// Best variation in SAN notation (only if played move was inaccurate)
+	variation *string
 }
+
 // NewGameMoveAnalysis instantiates a new GameMoveAnalysis and sets the default values.
-func NewGameMoveAnalysis()(*GameMoveAnalysis) {
-    m := &GameMoveAnalysis{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewGameMoveAnalysis() *GameMoveAnalysis {
+	m := &GameMoveAnalysis{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateGameMoveAnalysisFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateGameMoveAnalysisFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewGameMoveAnalysis(), nil
+func CreateGameMoveAnalysisFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewGameMoveAnalysis(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *GameMoveAnalysis) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *GameMoveAnalysis) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetBest gets the best property value. Best move in UCI notation (only if played move was inaccurate)
 // returns a *string when successful
-func (m *GameMoveAnalysis) GetBest()(*string) {
-    return m.best
+func (m *GameMoveAnalysis) GetBest() *string {
+	return m.best
 }
+
 // GetEval gets the eval property value. Evaluation in centipawns
 // returns a *int32 when successful
-func (m *GameMoveAnalysis) GetEval()(*int32) {
-    return m.eval
+func (m *GameMoveAnalysis) GetEval() *int32 {
+	return m.eval
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *GameMoveAnalysis) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["best"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetBest(val)
-        }
-        return nil
-    }
-    res["eval"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetEval(val)
-        }
-        return nil
-    }
-    res["judgment"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateGameMoveAnalysis_judgmentFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetJudgment(val.(GameMoveAnalysis_judgmentable))
-        }
-        return nil
-    }
-    res["mate"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMate(val)
-        }
-        return nil
-    }
-    res["variation"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetVariation(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *GameMoveAnalysis) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["best"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetBest(val)
+		}
+		return nil
+	}
+	res["eval"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetEval(val)
+		}
+		return nil
+	}
+	res["judgment"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateGameMoveAnalysis_judgmentFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetJudgment(val.(GameMoveAnalysis_judgmentable))
+		}
+		return nil
+	}
+	res["mate"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMate(val)
+		}
+		return nil
+	}
+	res["variation"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetVariation(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetJudgment gets the judgment property value. Judgment annotation (only if played move was inaccurate)
 // returns a GameMoveAnalysis_judgmentable when successful
-func (m *GameMoveAnalysis) GetJudgment()(GameMoveAnalysis_judgmentable) {
-    return m.judgment
+func (m *GameMoveAnalysis) GetJudgment() GameMoveAnalysis_judgmentable {
+	return m.judgment
 }
+
 // GetMate gets the mate property value. Number of moves until forced mate
 // returns a *int32 when successful
-func (m *GameMoveAnalysis) GetMate()(*int32) {
-    return m.mate
+func (m *GameMoveAnalysis) GetMate() *int32 {
+	return m.mate
 }
+
 // GetVariation gets the variation property value. Best variation in SAN notation (only if played move was inaccurate)
 // returns a *string when successful
-func (m *GameMoveAnalysis) GetVariation()(*string) {
-    return m.variation
+func (m *GameMoveAnalysis) GetVariation() *string {
+	return m.variation
 }
+
 // Serialize serializes information the current object
-func (m *GameMoveAnalysis) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("best", m.GetBest())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("eval", m.GetEval())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("judgment", m.GetJudgment())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("mate", m.GetMate())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("variation", m.GetVariation())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *GameMoveAnalysis) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("best", m.GetBest())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("eval", m.GetEval())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("judgment", m.GetJudgment())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("mate", m.GetMate())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("variation", m.GetVariation())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *GameMoveAnalysis) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *GameMoveAnalysis) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetBest sets the best property value. Best move in UCI notation (only if played move was inaccurate)
-func (m *GameMoveAnalysis) SetBest(value *string)() {
-    m.best = value
+func (m *GameMoveAnalysis) SetBest(value *string) {
+	m.best = value
 }
+
 // SetEval sets the eval property value. Evaluation in centipawns
-func (m *GameMoveAnalysis) SetEval(value *int32)() {
-    m.eval = value
+func (m *GameMoveAnalysis) SetEval(value *int32) {
+	m.eval = value
 }
+
 // SetJudgment sets the judgment property value. Judgment annotation (only if played move was inaccurate)
-func (m *GameMoveAnalysis) SetJudgment(value GameMoveAnalysis_judgmentable)() {
-    m.judgment = value
+func (m *GameMoveAnalysis) SetJudgment(value GameMoveAnalysis_judgmentable) {
+	m.judgment = value
 }
+
 // SetMate sets the mate property value. Number of moves until forced mate
-func (m *GameMoveAnalysis) SetMate(value *int32)() {
-    m.mate = value
+func (m *GameMoveAnalysis) SetMate(value *int32) {
+	m.mate = value
 }
+
 // SetVariation sets the variation property value. Best variation in SAN notation (only if played move was inaccurate)
-func (m *GameMoveAnalysis) SetVariation(value *string)() {
-    m.variation = value
+func (m *GameMoveAnalysis) SetVariation(value *string) {
+	m.variation = value
 }
+
 type GameMoveAnalysisable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetBest()(*string)
-    GetEval()(*int32)
-    GetJudgment()(GameMoveAnalysis_judgmentable)
-    GetMate()(*int32)
-    GetVariation()(*string)
-    SetBest(value *string)()
-    SetEval(value *int32)()
-    SetJudgment(value GameMoveAnalysis_judgmentable)()
-    SetMate(value *int32)()
-    SetVariation(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetBest() *string
+	GetEval() *int32
+	GetJudgment() GameMoveAnalysis_judgmentable
+	GetMate() *int32
+	GetVariation() *string
+	SetBest(value *string)
+	SetEval(value *int32)
+	SetJudgment(value GameMoveAnalysis_judgmentable)
+	SetMate(value *int32)
+	SetVariation(value *string)
 }

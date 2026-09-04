@@ -4,695 +4,757 @@
 package api
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
-    i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type TournamentPostRequestBody struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // Whether the players can use berserk. Only allowed if clockIncrement <= clockTime * 2
-    berserkable *bool
-    // Clock increment in seconds
-    clockIncrement *int32
-    // Clock initial time in minutes
-    clockTime *float64
-    // Minium account age in days required to join.
-    conditionsAccountAge *int32
-    // Predefined list of usernames that are allowed to join, separated by commas.If this list is non-empty, then usernames absent from this list will be forbidden to join.Adding `%titled` to the list additionally allows any titled player to join.Example: `thibault,german11,%titled`
-    conditionsAllowList *string
-    // Whether bots are allowed to join the tournament.
-    conditionsBots *bool
-    // Maximum rating to join. Based on best rating reached in the last 7 days. Leave empty to let everyone join the tournament.
-    conditionsMaxRatingRating *int32
-    // Minimum rating to join. Leave empty to let everyone join the tournament.
-    conditionsMinRatingRating *int32
-    // Minimum number of rated games required to join.
-    conditionsNbRatedGameNb *int32
-    // Restrict entry to members of a team.The teamId is the last part of a team URL, e.g. `https://lichess.org/team/coders` has teamId = `coders`.Leave empty to let everyone join the tournament.Do not use this to create team battles, use `teamBattleByTeam` instead.
-    conditionsTeamMemberTeamId *string
-    // Anything you want to tell players about the tournament
-    description *string
-    // Whether the players can discuss in a chat
-    hasChat *bool
-    // How long the tournament lasts, in minutes
-    minutes *int32
-    // The tournament name. Leave empty to get a random Grandmaster name
-    name *string
-    // Make the tournament private, and restrict access with a password.You can also [generate user-specific entry codes](https://github.com/lichess-org/api/tree/master/example/tournament-entry-code)based on this password.
-    password *string
-    // Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated.
-    position *string
-    // Games are rated and impact players ratings
-    rated *bool
-    // Timestamp (in milliseconds) to start the tournament at a given date and time. Overrides the `waitMinutes` setting
-    startDate *int64
-    // After 2 wins, consecutive wins grant 4 points instead of 2.
-    streakable *bool
-    // Set the ID of a team you lead to create a team battle.The other teams can be added using the [team battle edit endpoint](#tag/arena-tournaments/POST/api/tournament/team-battle/{id}).
-    teamBattleByTeam *string
-    // The variant property
-    variant *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey
-    // How long to wait before starting the tournament, from now, in minutes
-    waitMinutes *int32
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// Whether the players can use berserk. Only allowed if clockIncrement <= clockTime * 2
+	berserkable *bool
+	// Clock increment in seconds
+	clockIncrement *int32
+	// Clock initial time in minutes
+	clockTime *float64
+	// Minium account age in days required to join.
+	conditionsAccountAge *int32
+	// Predefined list of usernames that are allowed to join, separated by commas.If this list is non-empty, then usernames absent from this list will be forbidden to join.Adding `%titled` to the list additionally allows any titled player to join.Example: `thibault,german11,%titled`
+	conditionsAllowList *string
+	// Whether bots are allowed to join the tournament.
+	conditionsBots *bool
+	// Maximum rating to join. Based on best rating reached in the last 7 days. Leave empty to let everyone join the tournament.
+	conditionsMaxRatingRating *int32
+	// Minimum rating to join. Leave empty to let everyone join the tournament.
+	conditionsMinRatingRating *int32
+	// Minimum number of rated games required to join.
+	conditionsNbRatedGameNb *int32
+	// Restrict entry to members of a team.The teamId is the last part of a team URL, e.g. `https://lichess.org/team/coders` has teamId = `coders`.Leave empty to let everyone join the tournament.Do not use this to create team battles, use `teamBattleByTeam` instead.
+	conditionsTeamMemberTeamId *string
+	// Anything you want to tell players about the tournament
+	description *string
+	// Whether the players can discuss in a chat
+	hasChat *bool
+	// How long the tournament lasts, in minutes
+	minutes *int32
+	// The tournament name. Leave empty to get a random Grandmaster name
+	name *string
+	// Make the tournament private, and restrict access with a password.You can also [generate user-specific entry codes](https://github.com/lichess-org/api/tree/master/example/tournament-entry-code)based on this password.
+	password *string
+	// Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated.
+	position *string
+	// Games are rated and impact players ratings
+	rated *bool
+	// Timestamp (in milliseconds) to start the tournament at a given date and time. Overrides the `waitMinutes` setting
+	startDate *int64
+	// After 2 wins, consecutive wins grant 4 points instead of 2.
+	streakable *bool
+	// Set the ID of a team you lead to create a team battle.The other teams can be added using the [team battle edit endpoint](#tag/arena-tournaments/POST/api/tournament/team-battle/{id}).
+	teamBattleByTeam *string
+	// The variant property
+	variant *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey
+	// How long to wait before starting the tournament, from now, in minutes
+	waitMinutes *int32
 }
+
 // NewTournamentPostRequestBody instantiates a new TournamentPostRequestBody and sets the default values.
-func NewTournamentPostRequestBody()(*TournamentPostRequestBody) {
-    m := &TournamentPostRequestBody{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    positionValue := "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
-    m.SetPosition(&positionValue)
-    variantValue := STANDARD_VARIANTKEY
-    m.SetVariant(&variantValue)
-    return m
+func NewTournamentPostRequestBody() *TournamentPostRequestBody {
+	m := &TournamentPostRequestBody{}
+	m.SetAdditionalData(make(map[string]any))
+	berserkableValue := true
+	m.SetBerserkable(&berserkableValue)
+	conditionsBotsValue := false
+	m.SetConditionsBots(&conditionsBotsValue)
+	hasChatValue := true
+	m.SetHasChat(&hasChatValue)
+	positionValue := "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+	m.SetPosition(&positionValue)
+	ratedValue := true
+	m.SetRated(&ratedValue)
+	streakableValue := true
+	m.SetStreakable(&streakableValue)
+	variantValue := STANDARD_VARIANTKEY
+	m.SetVariant(&variantValue)
+	waitMinutesValue := int32(5)
+	m.SetWaitMinutes(&waitMinutesValue)
+	return m
 }
+
 // CreateTournamentPostRequestBodyFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateTournamentPostRequestBodyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewTournamentPostRequestBody(), nil
+func CreateTournamentPostRequestBodyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewTournamentPostRequestBody(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *TournamentPostRequestBody) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *TournamentPostRequestBody) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetBerserkable gets the berserkable property value. Whether the players can use berserk. Only allowed if clockIncrement <= clockTime * 2
 // returns a *bool when successful
-func (m *TournamentPostRequestBody) GetBerserkable()(*bool) {
-    return m.berserkable
+func (m *TournamentPostRequestBody) GetBerserkable() *bool {
+	return m.berserkable
 }
+
 // GetClockIncrement gets the clockIncrement property value. Clock increment in seconds
 // returns a *int32 when successful
-func (m *TournamentPostRequestBody) GetClockIncrement()(*int32) {
-    return m.clockIncrement
+func (m *TournamentPostRequestBody) GetClockIncrement() *int32 {
+	return m.clockIncrement
 }
+
 // GetClockTime gets the clockTime property value. Clock initial time in minutes
 // returns a *float64 when successful
-func (m *TournamentPostRequestBody) GetClockTime()(*float64) {
-    return m.clockTime
+func (m *TournamentPostRequestBody) GetClockTime() *float64 {
+	return m.clockTime
 }
+
 // GetConditionsAccountAge gets the conditions.accountAge property value. Minium account age in days required to join.
 // returns a *int32 when successful
-func (m *TournamentPostRequestBody) GetConditionsAccountAge()(*int32) {
-    return m.conditionsAccountAge
+func (m *TournamentPostRequestBody) GetConditionsAccountAge() *int32 {
+	return m.conditionsAccountAge
 }
+
 // GetConditionsAllowList gets the conditions.allowList property value. Predefined list of usernames that are allowed to join, separated by commas.If this list is non-empty, then usernames absent from this list will be forbidden to join.Adding `%titled` to the list additionally allows any titled player to join.Example: `thibault,german11,%titled`
 // returns a *string when successful
-func (m *TournamentPostRequestBody) GetConditionsAllowList()(*string) {
-    return m.conditionsAllowList
+func (m *TournamentPostRequestBody) GetConditionsAllowList() *string {
+	return m.conditionsAllowList
 }
+
 // GetConditionsBots gets the conditions.bots property value. Whether bots are allowed to join the tournament.
 // returns a *bool when successful
-func (m *TournamentPostRequestBody) GetConditionsBots()(*bool) {
-    return m.conditionsBots
+func (m *TournamentPostRequestBody) GetConditionsBots() *bool {
+	return m.conditionsBots
 }
+
 // GetConditionsMaxRatingRating gets the conditions.maxRating.rating property value. Maximum rating to join. Based on best rating reached in the last 7 days. Leave empty to let everyone join the tournament.
 // returns a *int32 when successful
-func (m *TournamentPostRequestBody) GetConditionsMaxRatingRating()(*int32) {
-    return m.conditionsMaxRatingRating
+func (m *TournamentPostRequestBody) GetConditionsMaxRatingRating() *int32 {
+	return m.conditionsMaxRatingRating
 }
+
 // GetConditionsMinRatingRating gets the conditions.minRating.rating property value. Minimum rating to join. Leave empty to let everyone join the tournament.
 // returns a *int32 when successful
-func (m *TournamentPostRequestBody) GetConditionsMinRatingRating()(*int32) {
-    return m.conditionsMinRatingRating
+func (m *TournamentPostRequestBody) GetConditionsMinRatingRating() *int32 {
+	return m.conditionsMinRatingRating
 }
+
 // GetConditionsNbRatedGameNb gets the conditions.nbRatedGame.nb property value. Minimum number of rated games required to join.
 // returns a *int32 when successful
-func (m *TournamentPostRequestBody) GetConditionsNbRatedGameNb()(*int32) {
-    return m.conditionsNbRatedGameNb
+func (m *TournamentPostRequestBody) GetConditionsNbRatedGameNb() *int32 {
+	return m.conditionsNbRatedGameNb
 }
+
 // GetConditionsTeamMemberTeamId gets the conditions.teamMember.teamId property value. Restrict entry to members of a team.The teamId is the last part of a team URL, e.g. `https://lichess.org/team/coders` has teamId = `coders`.Leave empty to let everyone join the tournament.Do not use this to create team battles, use `teamBattleByTeam` instead.
 // returns a *string when successful
-func (m *TournamentPostRequestBody) GetConditionsTeamMemberTeamId()(*string) {
-    return m.conditionsTeamMemberTeamId
+func (m *TournamentPostRequestBody) GetConditionsTeamMemberTeamId() *string {
+	return m.conditionsTeamMemberTeamId
 }
+
 // GetDescription gets the description property value. Anything you want to tell players about the tournament
 // returns a *string when successful
-func (m *TournamentPostRequestBody) GetDescription()(*string) {
-    return m.description
+func (m *TournamentPostRequestBody) GetDescription() *string {
+	return m.description
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *TournamentPostRequestBody) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["berserkable"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetBerserkable(val)
-        }
-        return nil
-    }
-    res["clockIncrement"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetClockIncrement(val)
-        }
-        return nil
-    }
-    res["clockTime"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetClockTime(val)
-        }
-        return nil
-    }
-    res["conditions.accountAge"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetConditionsAccountAge(val)
-        }
-        return nil
-    }
-    res["conditions.allowList"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetConditionsAllowList(val)
-        }
-        return nil
-    }
-    res["conditions.bots"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetConditionsBots(val)
-        }
-        return nil
-    }
-    res["conditions.maxRating.rating"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetConditionsMaxRatingRating(val)
-        }
-        return nil
-    }
-    res["conditions.minRating.rating"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetConditionsMinRatingRating(val)
-        }
-        return nil
-    }
-    res["conditions.nbRatedGame.nb"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetConditionsNbRatedGameNb(val)
-        }
-        return nil
-    }
-    res["conditions.teamMember.teamId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetConditionsTeamMemberTeamId(val)
-        }
-        return nil
-    }
-    res["description"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDescription(val)
-        }
-        return nil
-    }
-    res["hasChat"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetHasChat(val)
-        }
-        return nil
-    }
-    res["minutes"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMinutes(val)
-        }
-        return nil
-    }
-    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetName(val)
-        }
-        return nil
-    }
-    res["password"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPassword(val)
-        }
-        return nil
-    }
-    res["position"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPosition(val)
-        }
-        return nil
-    }
-    res["rated"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRated(val)
-        }
-        return nil
-    }
-    res["startDate"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStartDate(val)
-        }
-        return nil
-    }
-    res["streakable"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStreakable(val)
-        }
-        return nil
-    }
-    res["teamBattleByTeam"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTeamBattleByTeam(val)
-        }
-        return nil
-    }
-    res["variant"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParseVariantKey)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetVariant(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey))
-        }
-        return nil
-    }
-    res["waitMinutes"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetWaitMinutes(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *TournamentPostRequestBody) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["berserkable"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetBerserkable(val)
+		}
+		return nil
+	}
+	res["clockIncrement"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetClockIncrement(val)
+		}
+		return nil
+	}
+	res["clockTime"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetClockTime(val)
+		}
+		return nil
+	}
+	res["conditions.accountAge"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetConditionsAccountAge(val)
+		}
+		return nil
+	}
+	res["conditions.allowList"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetConditionsAllowList(val)
+		}
+		return nil
+	}
+	res["conditions.bots"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetConditionsBots(val)
+		}
+		return nil
+	}
+	res["conditions.maxRating.rating"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetConditionsMaxRatingRating(val)
+		}
+		return nil
+	}
+	res["conditions.minRating.rating"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetConditionsMinRatingRating(val)
+		}
+		return nil
+	}
+	res["conditions.nbRatedGame.nb"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetConditionsNbRatedGameNb(val)
+		}
+		return nil
+	}
+	res["conditions.teamMember.teamId"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetConditionsTeamMemberTeamId(val)
+		}
+		return nil
+	}
+	res["description"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetDescription(val)
+		}
+		return nil
+	}
+	res["hasChat"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetHasChat(val)
+		}
+		return nil
+	}
+	res["minutes"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMinutes(val)
+		}
+		return nil
+	}
+	res["name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetName(val)
+		}
+		return nil
+	}
+	res["password"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPassword(val)
+		}
+		return nil
+	}
+	res["position"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPosition(val)
+		}
+		return nil
+	}
+	res["rated"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRated(val)
+		}
+		return nil
+	}
+	res["startDate"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStartDate(val)
+		}
+		return nil
+	}
+	res["streakable"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStreakable(val)
+		}
+		return nil
+	}
+	res["teamBattleByTeam"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTeamBattleByTeam(val)
+		}
+		return nil
+	}
+	res["variant"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParseVariantKey)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetVariant(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey))
+		}
+		return nil
+	}
+	res["waitMinutes"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetWaitMinutes(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetHasChat gets the hasChat property value. Whether the players can discuss in a chat
 // returns a *bool when successful
-func (m *TournamentPostRequestBody) GetHasChat()(*bool) {
-    return m.hasChat
+func (m *TournamentPostRequestBody) GetHasChat() *bool {
+	return m.hasChat
 }
+
 // GetMinutes gets the minutes property value. How long the tournament lasts, in minutes
 // returns a *int32 when successful
-func (m *TournamentPostRequestBody) GetMinutes()(*int32) {
-    return m.minutes
+func (m *TournamentPostRequestBody) GetMinutes() *int32 {
+	return m.minutes
 }
+
 // GetName gets the name property value. The tournament name. Leave empty to get a random Grandmaster name
 // returns a *string when successful
-func (m *TournamentPostRequestBody) GetName()(*string) {
-    return m.name
+func (m *TournamentPostRequestBody) GetName() *string {
+	return m.name
 }
+
 // GetPassword gets the password property value. Make the tournament private, and restrict access with a password.You can also [generate user-specific entry codes](https://github.com/lichess-org/api/tree/master/example/tournament-entry-code)based on this password.
 // returns a *string when successful
-func (m *TournamentPostRequestBody) GetPassword()(*string) {
-    return m.password
+func (m *TournamentPostRequestBody) GetPassword() *string {
+	return m.password
 }
+
 // GetPosition gets the position property value. Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated.
 // returns a *string when successful
-func (m *TournamentPostRequestBody) GetPosition()(*string) {
-    return m.position
+func (m *TournamentPostRequestBody) GetPosition() *string {
+	return m.position
 }
+
 // GetRated gets the rated property value. Games are rated and impact players ratings
 // returns a *bool when successful
-func (m *TournamentPostRequestBody) GetRated()(*bool) {
-    return m.rated
+func (m *TournamentPostRequestBody) GetRated() *bool {
+	return m.rated
 }
+
 // GetStartDate gets the startDate property value. Timestamp (in milliseconds) to start the tournament at a given date and time. Overrides the `waitMinutes` setting
 // returns a *int64 when successful
-func (m *TournamentPostRequestBody) GetStartDate()(*int64) {
-    return m.startDate
+func (m *TournamentPostRequestBody) GetStartDate() *int64 {
+	return m.startDate
 }
+
 // GetStreakable gets the streakable property value. After 2 wins, consecutive wins grant 4 points instead of 2.
 // returns a *bool when successful
-func (m *TournamentPostRequestBody) GetStreakable()(*bool) {
-    return m.streakable
+func (m *TournamentPostRequestBody) GetStreakable() *bool {
+	return m.streakable
 }
+
 // GetTeamBattleByTeam gets the teamBattleByTeam property value. Set the ID of a team you lead to create a team battle.The other teams can be added using the [team battle edit endpoint](#tag/arena-tournaments/POST/api/tournament/team-battle/{id}).
 // returns a *string when successful
-func (m *TournamentPostRequestBody) GetTeamBattleByTeam()(*string) {
-    return m.teamBattleByTeam
+func (m *TournamentPostRequestBody) GetTeamBattleByTeam() *string {
+	return m.teamBattleByTeam
 }
+
 // GetVariant gets the variant property value. The variant property
 // returns a *VariantKey when successful
-func (m *TournamentPostRequestBody) GetVariant()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey) {
-    return m.variant
+func (m *TournamentPostRequestBody) GetVariant() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey {
+	return m.variant
 }
+
 // GetWaitMinutes gets the waitMinutes property value. How long to wait before starting the tournament, from now, in minutes
 // returns a *int32 when successful
-func (m *TournamentPostRequestBody) GetWaitMinutes()(*int32) {
-    return m.waitMinutes
+func (m *TournamentPostRequestBody) GetWaitMinutes() *int32 {
+	return m.waitMinutes
 }
+
 // Serialize serializes information the current object
-func (m *TournamentPostRequestBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteBoolValue("berserkable", m.GetBerserkable())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("clockIncrement", m.GetClockIncrement())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteFloat64Value("clockTime", m.GetClockTime())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("conditions.accountAge", m.GetConditionsAccountAge())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("conditions.allowList", m.GetConditionsAllowList())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("conditions.bots", m.GetConditionsBots())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("conditions.maxRating.rating", m.GetConditionsMaxRatingRating())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("conditions.minRating.rating", m.GetConditionsMinRatingRating())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("conditions.nbRatedGame.nb", m.GetConditionsNbRatedGameNb())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("conditions.teamMember.teamId", m.GetConditionsTeamMemberTeamId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("description", m.GetDescription())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("hasChat", m.GetHasChat())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("minutes", m.GetMinutes())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("name", m.GetName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("password", m.GetPassword())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("position", m.GetPosition())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("rated", m.GetRated())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt64Value("startDate", m.GetStartDate())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("streakable", m.GetStreakable())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("teamBattleByTeam", m.GetTeamBattleByTeam())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetVariant() != nil {
-        cast := (*m.GetVariant()).String()
-        err := writer.WriteStringValue("variant", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("waitMinutes", m.GetWaitMinutes())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *TournamentPostRequestBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteBoolValue("berserkable", m.GetBerserkable())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("clockIncrement", m.GetClockIncrement())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteFloat64Value("clockTime", m.GetClockTime())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("conditions.accountAge", m.GetConditionsAccountAge())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("conditions.allowList", m.GetConditionsAllowList())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("conditions.bots", m.GetConditionsBots())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("conditions.maxRating.rating", m.GetConditionsMaxRatingRating())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("conditions.minRating.rating", m.GetConditionsMinRatingRating())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("conditions.nbRatedGame.nb", m.GetConditionsNbRatedGameNb())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("conditions.teamMember.teamId", m.GetConditionsTeamMemberTeamId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("description", m.GetDescription())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("hasChat", m.GetHasChat())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("minutes", m.GetMinutes())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("name", m.GetName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("password", m.GetPassword())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("position", m.GetPosition())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("rated", m.GetRated())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt64Value("startDate", m.GetStartDate())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("streakable", m.GetStreakable())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("teamBattleByTeam", m.GetTeamBattleByTeam())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetVariant() != nil {
+		cast := (*m.GetVariant()).String()
+		err := writer.WriteStringValue("variant", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("waitMinutes", m.GetWaitMinutes())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *TournamentPostRequestBody) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *TournamentPostRequestBody) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetBerserkable sets the berserkable property value. Whether the players can use berserk. Only allowed if clockIncrement <= clockTime * 2
-func (m *TournamentPostRequestBody) SetBerserkable(value *bool)() {
-    m.berserkable = value
+func (m *TournamentPostRequestBody) SetBerserkable(value *bool) {
+	m.berserkable = value
 }
+
 // SetClockIncrement sets the clockIncrement property value. Clock increment in seconds
-func (m *TournamentPostRequestBody) SetClockIncrement(value *int32)() {
-    m.clockIncrement = value
+func (m *TournamentPostRequestBody) SetClockIncrement(value *int32) {
+	m.clockIncrement = value
 }
+
 // SetClockTime sets the clockTime property value. Clock initial time in minutes
-func (m *TournamentPostRequestBody) SetClockTime(value *float64)() {
-    m.clockTime = value
+func (m *TournamentPostRequestBody) SetClockTime(value *float64) {
+	m.clockTime = value
 }
+
 // SetConditionsAccountAge sets the conditions.accountAge property value. Minium account age in days required to join.
-func (m *TournamentPostRequestBody) SetConditionsAccountAge(value *int32)() {
-    m.conditionsAccountAge = value
+func (m *TournamentPostRequestBody) SetConditionsAccountAge(value *int32) {
+	m.conditionsAccountAge = value
 }
+
 // SetConditionsAllowList sets the conditions.allowList property value. Predefined list of usernames that are allowed to join, separated by commas.If this list is non-empty, then usernames absent from this list will be forbidden to join.Adding `%titled` to the list additionally allows any titled player to join.Example: `thibault,german11,%titled`
-func (m *TournamentPostRequestBody) SetConditionsAllowList(value *string)() {
-    m.conditionsAllowList = value
+func (m *TournamentPostRequestBody) SetConditionsAllowList(value *string) {
+	m.conditionsAllowList = value
 }
+
 // SetConditionsBots sets the conditions.bots property value. Whether bots are allowed to join the tournament.
-func (m *TournamentPostRequestBody) SetConditionsBots(value *bool)() {
-    m.conditionsBots = value
+func (m *TournamentPostRequestBody) SetConditionsBots(value *bool) {
+	m.conditionsBots = value
 }
+
 // SetConditionsMaxRatingRating sets the conditions.maxRating.rating property value. Maximum rating to join. Based on best rating reached in the last 7 days. Leave empty to let everyone join the tournament.
-func (m *TournamentPostRequestBody) SetConditionsMaxRatingRating(value *int32)() {
-    m.conditionsMaxRatingRating = value
+func (m *TournamentPostRequestBody) SetConditionsMaxRatingRating(value *int32) {
+	m.conditionsMaxRatingRating = value
 }
+
 // SetConditionsMinRatingRating sets the conditions.minRating.rating property value. Minimum rating to join. Leave empty to let everyone join the tournament.
-func (m *TournamentPostRequestBody) SetConditionsMinRatingRating(value *int32)() {
-    m.conditionsMinRatingRating = value
+func (m *TournamentPostRequestBody) SetConditionsMinRatingRating(value *int32) {
+	m.conditionsMinRatingRating = value
 }
+
 // SetConditionsNbRatedGameNb sets the conditions.nbRatedGame.nb property value. Minimum number of rated games required to join.
-func (m *TournamentPostRequestBody) SetConditionsNbRatedGameNb(value *int32)() {
-    m.conditionsNbRatedGameNb = value
+func (m *TournamentPostRequestBody) SetConditionsNbRatedGameNb(value *int32) {
+	m.conditionsNbRatedGameNb = value
 }
+
 // SetConditionsTeamMemberTeamId sets the conditions.teamMember.teamId property value. Restrict entry to members of a team.The teamId is the last part of a team URL, e.g. `https://lichess.org/team/coders` has teamId = `coders`.Leave empty to let everyone join the tournament.Do not use this to create team battles, use `teamBattleByTeam` instead.
-func (m *TournamentPostRequestBody) SetConditionsTeamMemberTeamId(value *string)() {
-    m.conditionsTeamMemberTeamId = value
+func (m *TournamentPostRequestBody) SetConditionsTeamMemberTeamId(value *string) {
+	m.conditionsTeamMemberTeamId = value
 }
+
 // SetDescription sets the description property value. Anything you want to tell players about the tournament
-func (m *TournamentPostRequestBody) SetDescription(value *string)() {
-    m.description = value
+func (m *TournamentPostRequestBody) SetDescription(value *string) {
+	m.description = value
 }
+
 // SetHasChat sets the hasChat property value. Whether the players can discuss in a chat
-func (m *TournamentPostRequestBody) SetHasChat(value *bool)() {
-    m.hasChat = value
+func (m *TournamentPostRequestBody) SetHasChat(value *bool) {
+	m.hasChat = value
 }
+
 // SetMinutes sets the minutes property value. How long the tournament lasts, in minutes
-func (m *TournamentPostRequestBody) SetMinutes(value *int32)() {
-    m.minutes = value
+func (m *TournamentPostRequestBody) SetMinutes(value *int32) {
+	m.minutes = value
 }
+
 // SetName sets the name property value. The tournament name. Leave empty to get a random Grandmaster name
-func (m *TournamentPostRequestBody) SetName(value *string)() {
-    m.name = value
+func (m *TournamentPostRequestBody) SetName(value *string) {
+	m.name = value
 }
+
 // SetPassword sets the password property value. Make the tournament private, and restrict access with a password.You can also [generate user-specific entry codes](https://github.com/lichess-org/api/tree/master/example/tournament-entry-code)based on this password.
-func (m *TournamentPostRequestBody) SetPassword(value *string)() {
-    m.password = value
+func (m *TournamentPostRequestBody) SetPassword(value *string) {
+	m.password = value
 }
+
 // SetPosition sets the position property value. Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated.
-func (m *TournamentPostRequestBody) SetPosition(value *string)() {
-    m.position = value
+func (m *TournamentPostRequestBody) SetPosition(value *string) {
+	m.position = value
 }
+
 // SetRated sets the rated property value. Games are rated and impact players ratings
-func (m *TournamentPostRequestBody) SetRated(value *bool)() {
-    m.rated = value
+func (m *TournamentPostRequestBody) SetRated(value *bool) {
+	m.rated = value
 }
+
 // SetStartDate sets the startDate property value. Timestamp (in milliseconds) to start the tournament at a given date and time. Overrides the `waitMinutes` setting
-func (m *TournamentPostRequestBody) SetStartDate(value *int64)() {
-    m.startDate = value
+func (m *TournamentPostRequestBody) SetStartDate(value *int64) {
+	m.startDate = value
 }
+
 // SetStreakable sets the streakable property value. After 2 wins, consecutive wins grant 4 points instead of 2.
-func (m *TournamentPostRequestBody) SetStreakable(value *bool)() {
-    m.streakable = value
+func (m *TournamentPostRequestBody) SetStreakable(value *bool) {
+	m.streakable = value
 }
+
 // SetTeamBattleByTeam sets the teamBattleByTeam property value. Set the ID of a team you lead to create a team battle.The other teams can be added using the [team battle edit endpoint](#tag/arena-tournaments/POST/api/tournament/team-battle/{id}).
-func (m *TournamentPostRequestBody) SetTeamBattleByTeam(value *string)() {
-    m.teamBattleByTeam = value
+func (m *TournamentPostRequestBody) SetTeamBattleByTeam(value *string) {
+	m.teamBattleByTeam = value
 }
+
 // SetVariant sets the variant property value. The variant property
-func (m *TournamentPostRequestBody) SetVariant(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey)() {
-    m.variant = value
+func (m *TournamentPostRequestBody) SetVariant(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey) {
+	m.variant = value
 }
+
 // SetWaitMinutes sets the waitMinutes property value. How long to wait before starting the tournament, from now, in minutes
-func (m *TournamentPostRequestBody) SetWaitMinutes(value *int32)() {
-    m.waitMinutes = value
+func (m *TournamentPostRequestBody) SetWaitMinutes(value *int32) {
+	m.waitMinutes = value
 }
+
 type TournamentPostRequestBodyable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetBerserkable()(*bool)
-    GetClockIncrement()(*int32)
-    GetClockTime()(*float64)
-    GetConditionsAccountAge()(*int32)
-    GetConditionsAllowList()(*string)
-    GetConditionsBots()(*bool)
-    GetConditionsMaxRatingRating()(*int32)
-    GetConditionsMinRatingRating()(*int32)
-    GetConditionsNbRatedGameNb()(*int32)
-    GetConditionsTeamMemberTeamId()(*string)
-    GetDescription()(*string)
-    GetHasChat()(*bool)
-    GetMinutes()(*int32)
-    GetName()(*string)
-    GetPassword()(*string)
-    GetPosition()(*string)
-    GetRated()(*bool)
-    GetStartDate()(*int64)
-    GetStreakable()(*bool)
-    GetTeamBattleByTeam()(*string)
-    GetVariant()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey)
-    GetWaitMinutes()(*int32)
-    SetBerserkable(value *bool)()
-    SetClockIncrement(value *int32)()
-    SetClockTime(value *float64)()
-    SetConditionsAccountAge(value *int32)()
-    SetConditionsAllowList(value *string)()
-    SetConditionsBots(value *bool)()
-    SetConditionsMaxRatingRating(value *int32)()
-    SetConditionsMinRatingRating(value *int32)()
-    SetConditionsNbRatedGameNb(value *int32)()
-    SetConditionsTeamMemberTeamId(value *string)()
-    SetDescription(value *string)()
-    SetHasChat(value *bool)()
-    SetMinutes(value *int32)()
-    SetName(value *string)()
-    SetPassword(value *string)()
-    SetPosition(value *string)()
-    SetRated(value *bool)()
-    SetStartDate(value *int64)()
-    SetStreakable(value *bool)()
-    SetTeamBattleByTeam(value *string)()
-    SetVariant(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey)()
-    SetWaitMinutes(value *int32)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetBerserkable() *bool
+	GetClockIncrement() *int32
+	GetClockTime() *float64
+	GetConditionsAccountAge() *int32
+	GetConditionsAllowList() *string
+	GetConditionsBots() *bool
+	GetConditionsMaxRatingRating() *int32
+	GetConditionsMinRatingRating() *int32
+	GetConditionsNbRatedGameNb() *int32
+	GetConditionsTeamMemberTeamId() *string
+	GetDescription() *string
+	GetHasChat() *bool
+	GetMinutes() *int32
+	GetName() *string
+	GetPassword() *string
+	GetPosition() *string
+	GetRated() *bool
+	GetStartDate() *int64
+	GetStreakable() *bool
+	GetTeamBattleByTeam() *string
+	GetVariant() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey
+	GetWaitMinutes() *int32
+	SetBerserkable(value *bool)
+	SetClockIncrement(value *int32)
+	SetClockTime(value *float64)
+	SetConditionsAccountAge(value *int32)
+	SetConditionsAllowList(value *string)
+	SetConditionsBots(value *bool)
+	SetConditionsMaxRatingRating(value *int32)
+	SetConditionsMinRatingRating(value *int32)
+	SetConditionsNbRatedGameNb(value *int32)
+	SetConditionsTeamMemberTeamId(value *string)
+	SetDescription(value *string)
+	SetHasChat(value *bool)
+	SetMinutes(value *int32)
+	SetName(value *string)
+	SetPassword(value *string)
+	SetPosition(value *string)
+	SetRated(value *bool)
+	SetStartDate(value *int64)
+	SetStreakable(value *bool)
+	SetTeamBattleByTeam(value *string)
+	SetVariant(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey)
+	SetWaitMinutes(value *int32)
 }

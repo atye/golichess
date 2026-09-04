@@ -2,39 +2,43 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 // The current state of the swiss tournament
 type SwissStatus int
 
 const (
-    CREATED_SWISSSTATUS SwissStatus = iota
-    STARTED_SWISSSTATUS
-    FINISHED_SWISSSTATUS
+	CREATED_SWISSSTATUS SwissStatus = iota
+	STARTED_SWISSSTATUS
+	FINISHED_SWISSSTATUS
 )
 
 func (i SwissStatus) String() string {
-    return []string{"created", "started", "finished"}[i]
+	return []string{"created", "started", "finished"}[i]
 }
+
 func ParseSwissStatus(v string) (any, error) {
-    result := CREATED_SWISSSTATUS
-    switch v {
-        case "created":
-            result = CREATED_SWISSSTATUS
-        case "started":
-            result = STARTED_SWISSSTATUS
-        case "finished":
-            result = FINISHED_SWISSSTATUS
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := CREATED_SWISSSTATUS
+	switch v {
+	case "created":
+		result = CREATED_SWISSSTATUS
+	case "started":
+		result = STARTED_SWISSSTATUS
+	case "finished":
+		result = FINISHED_SWISSSTATUS
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeSwissStatus(values []SwissStatus) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i SwissStatus) isMultiValue() bool {
-    return false
+	return false
 }

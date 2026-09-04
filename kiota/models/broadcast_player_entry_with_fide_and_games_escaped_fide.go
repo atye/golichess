@@ -4,109 +4,119 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type BroadcastPlayerEntryWithFideAndGames_fide struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // Player's current ratings from the latest FIDE rating list.
-    ratings StatByFideTCable
-    // Year of birth
-    year *int32
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// Player's current ratings from the latest FIDE rating list.
+	ratings StatByFideTCable
+	// Year of birth
+	year *int32
 }
+
 // NewBroadcastPlayerEntryWithFideAndGames_fide instantiates a new BroadcastPlayerEntryWithFideAndGames_fide and sets the default values.
-func NewBroadcastPlayerEntryWithFideAndGames_fide()(*BroadcastPlayerEntryWithFideAndGames_fide) {
-    m := &BroadcastPlayerEntryWithFideAndGames_fide{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewBroadcastPlayerEntryWithFideAndGames_fide() *BroadcastPlayerEntryWithFideAndGames_fide {
+	m := &BroadcastPlayerEntryWithFideAndGames_fide{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateBroadcastPlayerEntryWithFideAndGames_fideFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateBroadcastPlayerEntryWithFideAndGames_fideFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewBroadcastPlayerEntryWithFideAndGames_fide(), nil
+func CreateBroadcastPlayerEntryWithFideAndGames_fideFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewBroadcastPlayerEntryWithFideAndGames_fide(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *BroadcastPlayerEntryWithFideAndGames_fide) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *BroadcastPlayerEntryWithFideAndGames_fide) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *BroadcastPlayerEntryWithFideAndGames_fide) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["ratings"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateStatByFideTCFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRatings(val.(StatByFideTCable))
-        }
-        return nil
-    }
-    res["year"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetYear(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *BroadcastPlayerEntryWithFideAndGames_fide) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["ratings"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateStatByFideTCFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRatings(val.(StatByFideTCable))
+		}
+		return nil
+	}
+	res["year"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetYear(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetRatings gets the ratings property value. Player's current ratings from the latest FIDE rating list.
 // returns a StatByFideTCable when successful
-func (m *BroadcastPlayerEntryWithFideAndGames_fide) GetRatings()(StatByFideTCable) {
-    return m.ratings
+func (m *BroadcastPlayerEntryWithFideAndGames_fide) GetRatings() StatByFideTCable {
+	return m.ratings
 }
+
 // GetYear gets the year property value. Year of birth
 // returns a *int32 when successful
-func (m *BroadcastPlayerEntryWithFideAndGames_fide) GetYear()(*int32) {
-    return m.year
+func (m *BroadcastPlayerEntryWithFideAndGames_fide) GetYear() *int32 {
+	return m.year
 }
+
 // Serialize serializes information the current object
-func (m *BroadcastPlayerEntryWithFideAndGames_fide) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("ratings", m.GetRatings())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("year", m.GetYear())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *BroadcastPlayerEntryWithFideAndGames_fide) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteObjectValue("ratings", m.GetRatings())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("year", m.GetYear())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *BroadcastPlayerEntryWithFideAndGames_fide) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *BroadcastPlayerEntryWithFideAndGames_fide) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetRatings sets the ratings property value. Player's current ratings from the latest FIDE rating list.
-func (m *BroadcastPlayerEntryWithFideAndGames_fide) SetRatings(value StatByFideTCable)() {
-    m.ratings = value
+func (m *BroadcastPlayerEntryWithFideAndGames_fide) SetRatings(value StatByFideTCable) {
+	m.ratings = value
 }
+
 // SetYear sets the year property value. Year of birth
-func (m *BroadcastPlayerEntryWithFideAndGames_fide) SetYear(value *int32)() {
-    m.year = value
+func (m *BroadcastPlayerEntryWithFideAndGames_fide) SetYear(value *int32) {
+	m.year = value
 }
+
 type BroadcastPlayerEntryWithFideAndGames_fideable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetRatings()(StatByFideTCable)
-    GetYear()(*int32)
-    SetRatings(value StatByFideTCable)()
-    SetYear(value *int32)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetRatings() StatByFideTCable
+	GetYear() *int32
+	SetRatings(value StatByFideTCable)
+	SetYear(value *int32)
 }

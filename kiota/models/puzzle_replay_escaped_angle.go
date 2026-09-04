@@ -4,138 +4,150 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type PuzzleReplay_angle struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The desc property
-    desc *string
-    // The key property
-    key *string
-    // The name property
-    name *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The desc property
+	desc *string
+	// The key property
+	key *string
+	// The name property
+	name *string
 }
+
 // NewPuzzleReplay_angle instantiates a new PuzzleReplay_angle and sets the default values.
-func NewPuzzleReplay_angle()(*PuzzleReplay_angle) {
-    m := &PuzzleReplay_angle{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewPuzzleReplay_angle() *PuzzleReplay_angle {
+	m := &PuzzleReplay_angle{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreatePuzzleReplay_angleFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreatePuzzleReplay_angleFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewPuzzleReplay_angle(), nil
+func CreatePuzzleReplay_angleFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewPuzzleReplay_angle(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *PuzzleReplay_angle) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *PuzzleReplay_angle) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetDesc gets the desc property value. The desc property
 // returns a *string when successful
-func (m *PuzzleReplay_angle) GetDesc()(*string) {
-    return m.desc
+func (m *PuzzleReplay_angle) GetDesc() *string {
+	return m.desc
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *PuzzleReplay_angle) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["desc"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDesc(val)
-        }
-        return nil
-    }
-    res["key"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetKey(val)
-        }
-        return nil
-    }
-    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetName(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *PuzzleReplay_angle) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["desc"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetDesc(val)
+		}
+		return nil
+	}
+	res["key"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetKey(val)
+		}
+		return nil
+	}
+	res["name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetName(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetKey gets the key property value. The key property
 // returns a *string when successful
-func (m *PuzzleReplay_angle) GetKey()(*string) {
-    return m.key
+func (m *PuzzleReplay_angle) GetKey() *string {
+	return m.key
 }
+
 // GetName gets the name property value. The name property
 // returns a *string when successful
-func (m *PuzzleReplay_angle) GetName()(*string) {
-    return m.name
+func (m *PuzzleReplay_angle) GetName() *string {
+	return m.name
 }
+
 // Serialize serializes information the current object
-func (m *PuzzleReplay_angle) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("desc", m.GetDesc())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("key", m.GetKey())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("name", m.GetName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *PuzzleReplay_angle) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("desc", m.GetDesc())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("key", m.GetKey())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("name", m.GetName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PuzzleReplay_angle) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *PuzzleReplay_angle) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetDesc sets the desc property value. The desc property
-func (m *PuzzleReplay_angle) SetDesc(value *string)() {
-    m.desc = value
+func (m *PuzzleReplay_angle) SetDesc(value *string) {
+	m.desc = value
 }
+
 // SetKey sets the key property value. The key property
-func (m *PuzzleReplay_angle) SetKey(value *string)() {
-    m.key = value
+func (m *PuzzleReplay_angle) SetKey(value *string) {
+	m.key = value
 }
+
 // SetName sets the name property value. The name property
-func (m *PuzzleReplay_angle) SetName(value *string)() {
-    m.name = value
+func (m *PuzzleReplay_angle) SetName(value *string) {
+	m.name = value
 }
+
 type PuzzleReplay_angleable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetDesc()(*string)
-    GetKey()(*string)
-    GetName()(*string)
-    SetDesc(value *string)()
-    SetKey(value *string)()
-    SetName(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetDesc() *string
+	GetKey() *string
+	GetName() *string
+	SetDesc(value *string)
+	SetKey(value *string)
+	SetName(value *string)
 }

@@ -4,402 +4,432 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type BroadcastRoundInfo struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The createdAt property
-    createdAt *int64
-    // Scoring overrides for wins or draws.
-    customScoring BroadcastCustomScoringable
-    // Use finishedAt instead
-    // Deprecated: 
-    finished *bool
-    // The finishedAt property
-    finishedAt *int64
-    // The id property
-    id *string
-    // The name property
-    name *string
-    // The ongoing property
-    ongoing *bool
-    // Whether the round is used for rating calculations
-    rated *bool
-    // The slug property
-    slug *string
-    // The start date/time is unknown and the round will start automatically when the previous round completes
-    startsAfterPrevious *bool
-    // The startsAt property
-    startsAt *int64
-    // The url property
-    url *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The createdAt property
+	createdAt *int64
+	// Scoring overrides for wins or draws.
+	customScoring BroadcastCustomScoringable
+	// Use finishedAt instead
+	// Deprecated:
+	finished *bool
+	// The finishedAt property
+	finishedAt *int64
+	// The id property
+	id *string
+	// The name property
+	name *string
+	// The ongoing property
+	ongoing *bool
+	// Whether the round is used for rating calculations
+	rated *bool
+	// The slug property
+	slug *string
+	// The start date/time is unknown and the round will start automatically when the previous round completes
+	startsAfterPrevious *bool
+	// The startsAt property
+	startsAt *int64
+	// The url property
+	url *string
 }
+
 // NewBroadcastRoundInfo instantiates a new BroadcastRoundInfo and sets the default values.
-func NewBroadcastRoundInfo()(*BroadcastRoundInfo) {
-    m := &BroadcastRoundInfo{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewBroadcastRoundInfo() *BroadcastRoundInfo {
+	m := &BroadcastRoundInfo{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateBroadcastRoundInfoFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateBroadcastRoundInfoFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewBroadcastRoundInfo(), nil
+func CreateBroadcastRoundInfoFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewBroadcastRoundInfo(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *BroadcastRoundInfo) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *BroadcastRoundInfo) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetCreatedAt gets the createdAt property value. The createdAt property
 // returns a *int64 when successful
-func (m *BroadcastRoundInfo) GetCreatedAt()(*int64) {
-    return m.createdAt
+func (m *BroadcastRoundInfo) GetCreatedAt() *int64 {
+	return m.createdAt
 }
+
 // GetCustomScoring gets the customScoring property value. Scoring overrides for wins or draws.
 // returns a BroadcastCustomScoringable when successful
-func (m *BroadcastRoundInfo) GetCustomScoring()(BroadcastCustomScoringable) {
-    return m.customScoring
+func (m *BroadcastRoundInfo) GetCustomScoring() BroadcastCustomScoringable {
+	return m.customScoring
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *BroadcastRoundInfo) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["createdAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCreatedAt(val)
-        }
-        return nil
-    }
-    res["customScoring"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateBroadcastCustomScoringFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCustomScoring(val.(BroadcastCustomScoringable))
-        }
-        return nil
-    }
-    res["finished"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFinished(val)
-        }
-        return nil
-    }
-    res["finishedAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFinishedAt(val)
-        }
-        return nil
-    }
-    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetId(val)
-        }
-        return nil
-    }
-    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetName(val)
-        }
-        return nil
-    }
-    res["ongoing"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetOngoing(val)
-        }
-        return nil
-    }
-    res["rated"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRated(val)
-        }
-        return nil
-    }
-    res["slug"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSlug(val)
-        }
-        return nil
-    }
-    res["startsAfterPrevious"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStartsAfterPrevious(val)
-        }
-        return nil
-    }
-    res["startsAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStartsAt(val)
-        }
-        return nil
-    }
-    res["url"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetUrl(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *BroadcastRoundInfo) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["createdAt"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCreatedAt(val)
+		}
+		return nil
+	}
+	res["customScoring"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateBroadcastCustomScoringFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCustomScoring(val.(BroadcastCustomScoringable))
+		}
+		return nil
+	}
+	res["finished"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFinished(val)
+		}
+		return nil
+	}
+	res["finishedAt"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFinishedAt(val)
+		}
+		return nil
+	}
+	res["id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetId(val)
+		}
+		return nil
+	}
+	res["name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetName(val)
+		}
+		return nil
+	}
+	res["ongoing"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetOngoing(val)
+		}
+		return nil
+	}
+	res["rated"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRated(val)
+		}
+		return nil
+	}
+	res["slug"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetSlug(val)
+		}
+		return nil
+	}
+	res["startsAfterPrevious"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStartsAfterPrevious(val)
+		}
+		return nil
+	}
+	res["startsAt"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStartsAt(val)
+		}
+		return nil
+	}
+	res["url"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetUrl(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetFinished gets the finished property value. Use finishedAt instead
-// Deprecated: 
+// Deprecated:
 // returns a *bool when successful
-func (m *BroadcastRoundInfo) GetFinished()(*bool) {
-    return m.finished
+func (m *BroadcastRoundInfo) GetFinished() *bool {
+	return m.finished
 }
+
 // GetFinishedAt gets the finishedAt property value. The finishedAt property
 // returns a *int64 when successful
-func (m *BroadcastRoundInfo) GetFinishedAt()(*int64) {
-    return m.finishedAt
+func (m *BroadcastRoundInfo) GetFinishedAt() *int64 {
+	return m.finishedAt
 }
+
 // GetId gets the id property value. The id property
 // returns a *string when successful
-func (m *BroadcastRoundInfo) GetId()(*string) {
-    return m.id
+func (m *BroadcastRoundInfo) GetId() *string {
+	return m.id
 }
+
 // GetName gets the name property value. The name property
 // returns a *string when successful
-func (m *BroadcastRoundInfo) GetName()(*string) {
-    return m.name
+func (m *BroadcastRoundInfo) GetName() *string {
+	return m.name
 }
+
 // GetOngoing gets the ongoing property value. The ongoing property
 // returns a *bool when successful
-func (m *BroadcastRoundInfo) GetOngoing()(*bool) {
-    return m.ongoing
+func (m *BroadcastRoundInfo) GetOngoing() *bool {
+	return m.ongoing
 }
+
 // GetRated gets the rated property value. Whether the round is used for rating calculations
 // returns a *bool when successful
-func (m *BroadcastRoundInfo) GetRated()(*bool) {
-    return m.rated
+func (m *BroadcastRoundInfo) GetRated() *bool {
+	return m.rated
 }
+
 // GetSlug gets the slug property value. The slug property
 // returns a *string when successful
-func (m *BroadcastRoundInfo) GetSlug()(*string) {
-    return m.slug
+func (m *BroadcastRoundInfo) GetSlug() *string {
+	return m.slug
 }
+
 // GetStartsAfterPrevious gets the startsAfterPrevious property value. The start date/time is unknown and the round will start automatically when the previous round completes
 // returns a *bool when successful
-func (m *BroadcastRoundInfo) GetStartsAfterPrevious()(*bool) {
-    return m.startsAfterPrevious
+func (m *BroadcastRoundInfo) GetStartsAfterPrevious() *bool {
+	return m.startsAfterPrevious
 }
+
 // GetStartsAt gets the startsAt property value. The startsAt property
 // returns a *int64 when successful
-func (m *BroadcastRoundInfo) GetStartsAt()(*int64) {
-    return m.startsAt
+func (m *BroadcastRoundInfo) GetStartsAt() *int64 {
+	return m.startsAt
 }
+
 // GetUrl gets the url property value. The url property
 // returns a *string when successful
-func (m *BroadcastRoundInfo) GetUrl()(*string) {
-    return m.url
+func (m *BroadcastRoundInfo) GetUrl() *string {
+	return m.url
 }
+
 // Serialize serializes information the current object
-func (m *BroadcastRoundInfo) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteInt64Value("createdAt", m.GetCreatedAt())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("customScoring", m.GetCustomScoring())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("finished", m.GetFinished())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt64Value("finishedAt", m.GetFinishedAt())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("id", m.GetId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("name", m.GetName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("ongoing", m.GetOngoing())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("rated", m.GetRated())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("slug", m.GetSlug())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("startsAfterPrevious", m.GetStartsAfterPrevious())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt64Value("startsAt", m.GetStartsAt())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("url", m.GetUrl())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *BroadcastRoundInfo) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteInt64Value("createdAt", m.GetCreatedAt())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("customScoring", m.GetCustomScoring())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("finished", m.GetFinished())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt64Value("finishedAt", m.GetFinishedAt())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("id", m.GetId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("name", m.GetName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("ongoing", m.GetOngoing())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("rated", m.GetRated())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("slug", m.GetSlug())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("startsAfterPrevious", m.GetStartsAfterPrevious())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt64Value("startsAt", m.GetStartsAt())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("url", m.GetUrl())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *BroadcastRoundInfo) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *BroadcastRoundInfo) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetCreatedAt sets the createdAt property value. The createdAt property
-func (m *BroadcastRoundInfo) SetCreatedAt(value *int64)() {
-    m.createdAt = value
+func (m *BroadcastRoundInfo) SetCreatedAt(value *int64) {
+	m.createdAt = value
 }
+
 // SetCustomScoring sets the customScoring property value. Scoring overrides for wins or draws.
-func (m *BroadcastRoundInfo) SetCustomScoring(value BroadcastCustomScoringable)() {
-    m.customScoring = value
+func (m *BroadcastRoundInfo) SetCustomScoring(value BroadcastCustomScoringable) {
+	m.customScoring = value
 }
+
 // SetFinished sets the finished property value. Use finishedAt instead
-// Deprecated: 
-func (m *BroadcastRoundInfo) SetFinished(value *bool)() {
-    m.finished = value
+// Deprecated:
+func (m *BroadcastRoundInfo) SetFinished(value *bool) {
+	m.finished = value
 }
+
 // SetFinishedAt sets the finishedAt property value. The finishedAt property
-func (m *BroadcastRoundInfo) SetFinishedAt(value *int64)() {
-    m.finishedAt = value
+func (m *BroadcastRoundInfo) SetFinishedAt(value *int64) {
+	m.finishedAt = value
 }
+
 // SetId sets the id property value. The id property
-func (m *BroadcastRoundInfo) SetId(value *string)() {
-    m.id = value
+func (m *BroadcastRoundInfo) SetId(value *string) {
+	m.id = value
 }
+
 // SetName sets the name property value. The name property
-func (m *BroadcastRoundInfo) SetName(value *string)() {
-    m.name = value
+func (m *BroadcastRoundInfo) SetName(value *string) {
+	m.name = value
 }
+
 // SetOngoing sets the ongoing property value. The ongoing property
-func (m *BroadcastRoundInfo) SetOngoing(value *bool)() {
-    m.ongoing = value
+func (m *BroadcastRoundInfo) SetOngoing(value *bool) {
+	m.ongoing = value
 }
+
 // SetRated sets the rated property value. Whether the round is used for rating calculations
-func (m *BroadcastRoundInfo) SetRated(value *bool)() {
-    m.rated = value
+func (m *BroadcastRoundInfo) SetRated(value *bool) {
+	m.rated = value
 }
+
 // SetSlug sets the slug property value. The slug property
-func (m *BroadcastRoundInfo) SetSlug(value *string)() {
-    m.slug = value
+func (m *BroadcastRoundInfo) SetSlug(value *string) {
+	m.slug = value
 }
+
 // SetStartsAfterPrevious sets the startsAfterPrevious property value. The start date/time is unknown and the round will start automatically when the previous round completes
-func (m *BroadcastRoundInfo) SetStartsAfterPrevious(value *bool)() {
-    m.startsAfterPrevious = value
+func (m *BroadcastRoundInfo) SetStartsAfterPrevious(value *bool) {
+	m.startsAfterPrevious = value
 }
+
 // SetStartsAt sets the startsAt property value. The startsAt property
-func (m *BroadcastRoundInfo) SetStartsAt(value *int64)() {
-    m.startsAt = value
+func (m *BroadcastRoundInfo) SetStartsAt(value *int64) {
+	m.startsAt = value
 }
+
 // SetUrl sets the url property value. The url property
-func (m *BroadcastRoundInfo) SetUrl(value *string)() {
-    m.url = value
+func (m *BroadcastRoundInfo) SetUrl(value *string) {
+	m.url = value
 }
+
 type BroadcastRoundInfoable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetCreatedAt()(*int64)
-    GetCustomScoring()(BroadcastCustomScoringable)
-    GetFinished()(*bool)
-    GetFinishedAt()(*int64)
-    GetId()(*string)
-    GetName()(*string)
-    GetOngoing()(*bool)
-    GetRated()(*bool)
-    GetSlug()(*string)
-    GetStartsAfterPrevious()(*bool)
-    GetStartsAt()(*int64)
-    GetUrl()(*string)
-    SetCreatedAt(value *int64)()
-    SetCustomScoring(value BroadcastCustomScoringable)()
-    SetFinished(value *bool)()
-    SetFinishedAt(value *int64)()
-    SetId(value *string)()
-    SetName(value *string)()
-    SetOngoing(value *bool)()
-    SetRated(value *bool)()
-    SetSlug(value *string)()
-    SetStartsAfterPrevious(value *bool)()
-    SetStartsAt(value *int64)()
-    SetUrl(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetCreatedAt() *int64
+	GetCustomScoring() BroadcastCustomScoringable
+	GetFinished() *bool
+	GetFinishedAt() *int64
+	GetId() *string
+	GetName() *string
+	GetOngoing() *bool
+	GetRated() *bool
+	GetSlug() *string
+	GetStartsAfterPrevious() *bool
+	GetStartsAt() *int64
+	GetUrl() *string
+	SetCreatedAt(value *int64)
+	SetCustomScoring(value BroadcastCustomScoringable)
+	SetFinished(value *bool)
+	SetFinishedAt(value *int64)
+	SetId(value *string)
+	SetName(value *string)
+	SetOngoing(value *bool)
+	SetRated(value *bool)
+	SetSlug(value *string)
+	SetStartsAfterPrevious(value *bool)
+	SetStartsAt(value *int64)
+	SetUrl(value *string)
 }

@@ -4,35 +4,38 @@
 package api
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // RelBlockRequestBuilder builds and executes requests for operations under \api\rel\block
 type RelBlockRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // ByUsername gets an item from the github.com/atye/golichess/kiota.api.rel.block.item collection
 // returns a *RelBlockWithUsernameItemRequestBuilder when successful
-func (m *RelBlockRequestBuilder) ByUsername(username string)(*RelBlockWithUsernameItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    if username != "" {
-        urlTplParams["username"] = username
-    }
-    return NewRelBlockWithUsernameItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+func (m *RelBlockRequestBuilder) ByUsername(username string) *RelBlockWithUsernameItemRequestBuilder {
+	urlTplParams := make(map[string]string)
+	for idx, item := range m.BaseRequestBuilder.PathParameters {
+		urlTplParams[idx] = item
+	}
+	if username != "" {
+		urlTplParams["username"] = username
+	}
+	return NewRelBlockWithUsernameItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewRelBlockRequestBuilderInternal instantiates a new RelBlockRequestBuilder and sets the default values.
-func NewRelBlockRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*RelBlockRequestBuilder) {
-    m := &RelBlockRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/rel/block", pathParameters),
-    }
-    return m
+func NewRelBlockRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *RelBlockRequestBuilder {
+	m := &RelBlockRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/rel/block", pathParameters),
+	}
+	return m
 }
+
 // NewRelBlockRequestBuilder instantiates a new RelBlockRequestBuilder and sets the default values.
-func NewRelBlockRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*RelBlockRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewRelBlockRequestBuilderInternal(urlParams, requestAdapter)
+func NewRelBlockRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *RelBlockRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewRelBlockRequestBuilderInternal(urlParams, requestAdapter)
 }

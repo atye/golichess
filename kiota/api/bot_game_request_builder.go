@@ -4,40 +4,44 @@
 package api
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // BotGameRequestBuilder builds and executes requests for operations under \api\bot\game
 type BotGameRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // ByGameId gets an item from the github.com/atye/golichess/kiota.api.bot.game.item collection
 // returns a *BotGameWithGameItemRequestBuilder when successful
-func (m *BotGameRequestBuilder) ByGameId(gameId string)(*BotGameWithGameItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    if gameId != "" {
-        urlTplParams["gameId"] = gameId
-    }
-    return NewBotGameWithGameItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+func (m *BotGameRequestBuilder) ByGameId(gameId string) *BotGameWithGameItemRequestBuilder {
+	urlTplParams := make(map[string]string)
+	for idx, item := range m.BaseRequestBuilder.PathParameters {
+		urlTplParams[idx] = item
+	}
+	if gameId != "" {
+		urlTplParams["gameId"] = gameId
+	}
+	return NewBotGameWithGameItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewBotGameRequestBuilderInternal instantiates a new BotGameRequestBuilder and sets the default values.
-func NewBotGameRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BotGameRequestBuilder) {
-    m := &BotGameRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/bot/game", pathParameters),
-    }
-    return m
+func NewBotGameRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BotGameRequestBuilder {
+	m := &BotGameRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/bot/game", pathParameters),
+	}
+	return m
 }
+
 // NewBotGameRequestBuilder instantiates a new BotGameRequestBuilder and sets the default values.
-func NewBotGameRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BotGameRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewBotGameRequestBuilderInternal(urlParams, requestAdapter)
+func NewBotGameRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BotGameRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewBotGameRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Stream the stream property
 // returns a *BotGameStreamRequestBuilder when successful
-func (m *BotGameRequestBuilder) Stream()(*BotGameStreamRequestBuilder) {
-    return NewBotGameStreamRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *BotGameRequestBuilder) Stream() *BotGameStreamRequestBuilder {
+	return NewBotGameStreamRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

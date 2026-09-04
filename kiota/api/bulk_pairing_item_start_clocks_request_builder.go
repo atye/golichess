@@ -4,68 +4,74 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	"context"
+	i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // BulkPairingItemStartClocksRequestBuilder builds and executes requests for operations under \api\bulk-pairing\{id}\start-clocks
 type BulkPairingItemStartClocksRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // BulkPairingItemStartClocksRequestBuilderPostRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type BulkPairingItemStartClocksRequestBuilderPostRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+
 // NewBulkPairingItemStartClocksRequestBuilderInternal instantiates a new BulkPairingItemStartClocksRequestBuilder and sets the default values.
-func NewBulkPairingItemStartClocksRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BulkPairingItemStartClocksRequestBuilder) {
-    m := &BulkPairingItemStartClocksRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/bulk-pairing/{id}/start-clocks", pathParameters),
-    }
-    return m
+func NewBulkPairingItemStartClocksRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BulkPairingItemStartClocksRequestBuilder {
+	m := &BulkPairingItemStartClocksRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/bulk-pairing/{id}/start-clocks", pathParameters),
+	}
+	return m
 }
+
 // NewBulkPairingItemStartClocksRequestBuilder instantiates a new BulkPairingItemStartClocksRequestBuilder and sets the default values.
-func NewBulkPairingItemStartClocksRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BulkPairingItemStartClocksRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewBulkPairingItemStartClocksRequestBuilderInternal(urlParams, requestAdapter)
+func NewBulkPairingItemStartClocksRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BulkPairingItemStartClocksRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewBulkPairingItemStartClocksRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Post immediately start all clocks of the games of a bulk pairing.This overrides the `startClocksAt` value of an existing bulk pairing.If the games have not yet been created (`bulk.pairAt` is in the future), then this does nothing.If the clocks have already started (`bulk.startClocksAt` is in the past), then this does nothing.
 // returns a Okable when successful
 // returns a NotFound error when the service returns a 404 status code
-func (m *BulkPairingItemStartClocksRequestBuilder) Post(ctx context.Context, requestConfiguration *BulkPairingItemStartClocksRequestBuilderPostRequestConfiguration)(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Okable, error) {
-    requestInfo, err := m.ToPostRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "404": i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateNotFoundFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateOkFromDiscriminatorValue, errorMapping)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Okable), nil
+func (m *BulkPairingItemStartClocksRequestBuilder) Post(ctx context.Context, requestConfiguration *BulkPairingItemStartClocksRequestBuilderPostRequestConfiguration) (i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Okable, error) {
+	requestInfo, err := m.ToPostRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
+		"404": i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateNotFoundFromDiscriminatorValue,
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateOkFromDiscriminatorValue, errorMapping)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Okable), nil
 }
+
 // ToPostRequestInformation immediately start all clocks of the games of a bulk pairing.This overrides the `startClocksAt` value of an existing bulk pairing.If the games have not yet been created (`bulk.pairAt` is in the future), then this does nothing.If the clocks have already started (`bulk.startClocksAt` is in the past), then this does nothing.
 // returns a *RequestInformation when successful
-func (m *BulkPairingItemStartClocksRequestBuilder) ToPostRequestInformation(ctx context.Context, requestConfiguration *BulkPairingItemStartClocksRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    return requestInfo, nil
+func (m *BulkPairingItemStartClocksRequestBuilder) ToPostRequestInformation(ctx context.Context, requestConfiguration *BulkPairingItemStartClocksRequestBuilderPostRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *BulkPairingItemStartClocksRequestBuilder when successful
-func (m *BulkPairingItemStartClocksRequestBuilder) WithUrl(rawUrl string)(*BulkPairingItemStartClocksRequestBuilder) {
-    return NewBulkPairingItemStartClocksRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *BulkPairingItemStartClocksRequestBuilder) WithUrl(rawUrl string) *BulkPairingItemStartClocksRequestBuilder {
+	return NewBulkPairingItemStartClocksRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

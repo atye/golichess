@@ -4,399 +4,429 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type UserActivity_games struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The atomic property
-    atomic UserActivityScoreable
-    // The blitz property
-    blitz UserActivityScoreable
-    // The bullet property
-    bullet UserActivityScoreable
-    // The chess960 property
-    chess960 UserActivityScoreable
-    // The classical property
-    classical UserActivityScoreable
-    // The correspondence property
-    correspondence UserActivityScoreable
-    // The horde property
-    horde UserActivityScoreable
-    // The kingOfTheHill property
-    kingOfTheHill UserActivityScoreable
-    // The puzzle property
-    puzzle UserActivityScoreable
-    // The racingKings property
-    racingKings UserActivityScoreable
-    // The rapid property
-    rapid UserActivityScoreable
-    // The ultraBullet property
-    ultraBullet UserActivityScoreable
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The atomic property
+	atomic UserActivityScoreable
+	// The blitz property
+	blitz UserActivityScoreable
+	// The bullet property
+	bullet UserActivityScoreable
+	// The chess960 property
+	chess960 UserActivityScoreable
+	// The classical property
+	classical UserActivityScoreable
+	// The correspondence property
+	correspondence UserActivityScoreable
+	// The horde property
+	horde UserActivityScoreable
+	// The kingOfTheHill property
+	kingOfTheHill UserActivityScoreable
+	// The puzzle property
+	puzzle UserActivityScoreable
+	// The racingKings property
+	racingKings UserActivityScoreable
+	// The rapid property
+	rapid UserActivityScoreable
+	// The ultraBullet property
+	ultraBullet UserActivityScoreable
 }
+
 // NewUserActivity_games instantiates a new UserActivity_games and sets the default values.
-func NewUserActivity_games()(*UserActivity_games) {
-    m := &UserActivity_games{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewUserActivity_games() *UserActivity_games {
+	m := &UserActivity_games{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateUserActivity_gamesFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateUserActivity_gamesFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewUserActivity_games(), nil
+func CreateUserActivity_gamesFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewUserActivity_games(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *UserActivity_games) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *UserActivity_games) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetAtomic gets the atomic property value. The atomic property
 // returns a UserActivityScoreable when successful
-func (m *UserActivity_games) GetAtomic()(UserActivityScoreable) {
-    return m.atomic
+func (m *UserActivity_games) GetAtomic() UserActivityScoreable {
+	return m.atomic
 }
+
 // GetBlitz gets the blitz property value. The blitz property
 // returns a UserActivityScoreable when successful
-func (m *UserActivity_games) GetBlitz()(UserActivityScoreable) {
-    return m.blitz
+func (m *UserActivity_games) GetBlitz() UserActivityScoreable {
+	return m.blitz
 }
+
 // GetBullet gets the bullet property value. The bullet property
 // returns a UserActivityScoreable when successful
-func (m *UserActivity_games) GetBullet()(UserActivityScoreable) {
-    return m.bullet
+func (m *UserActivity_games) GetBullet() UserActivityScoreable {
+	return m.bullet
 }
+
 // GetChess960 gets the chess960 property value. The chess960 property
 // returns a UserActivityScoreable when successful
-func (m *UserActivity_games) GetChess960()(UserActivityScoreable) {
-    return m.chess960
+func (m *UserActivity_games) GetChess960() UserActivityScoreable {
+	return m.chess960
 }
+
 // GetClassical gets the classical property value. The classical property
 // returns a UserActivityScoreable when successful
-func (m *UserActivity_games) GetClassical()(UserActivityScoreable) {
-    return m.classical
+func (m *UserActivity_games) GetClassical() UserActivityScoreable {
+	return m.classical
 }
+
 // GetCorrespondence gets the correspondence property value. The correspondence property
 // returns a UserActivityScoreable when successful
-func (m *UserActivity_games) GetCorrespondence()(UserActivityScoreable) {
-    return m.correspondence
+func (m *UserActivity_games) GetCorrespondence() UserActivityScoreable {
+	return m.correspondence
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *UserActivity_games) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["atomic"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateUserActivityScoreFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetAtomic(val.(UserActivityScoreable))
-        }
-        return nil
-    }
-    res["blitz"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateUserActivityScoreFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetBlitz(val.(UserActivityScoreable))
-        }
-        return nil
-    }
-    res["bullet"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateUserActivityScoreFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetBullet(val.(UserActivityScoreable))
-        }
-        return nil
-    }
-    res["chess960"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateUserActivityScoreFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetChess960(val.(UserActivityScoreable))
-        }
-        return nil
-    }
-    res["classical"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateUserActivityScoreFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetClassical(val.(UserActivityScoreable))
-        }
-        return nil
-    }
-    res["correspondence"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateUserActivityScoreFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCorrespondence(val.(UserActivityScoreable))
-        }
-        return nil
-    }
-    res["horde"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateUserActivityScoreFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetHorde(val.(UserActivityScoreable))
-        }
-        return nil
-    }
-    res["kingOfTheHill"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateUserActivityScoreFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetKingOfTheHill(val.(UserActivityScoreable))
-        }
-        return nil
-    }
-    res["puzzle"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateUserActivityScoreFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPuzzle(val.(UserActivityScoreable))
-        }
-        return nil
-    }
-    res["racingKings"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateUserActivityScoreFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRacingKings(val.(UserActivityScoreable))
-        }
-        return nil
-    }
-    res["rapid"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateUserActivityScoreFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRapid(val.(UserActivityScoreable))
-        }
-        return nil
-    }
-    res["ultraBullet"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateUserActivityScoreFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetUltraBullet(val.(UserActivityScoreable))
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *UserActivity_games) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["atomic"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateUserActivityScoreFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetAtomic(val.(UserActivityScoreable))
+		}
+		return nil
+	}
+	res["blitz"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateUserActivityScoreFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetBlitz(val.(UserActivityScoreable))
+		}
+		return nil
+	}
+	res["bullet"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateUserActivityScoreFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetBullet(val.(UserActivityScoreable))
+		}
+		return nil
+	}
+	res["chess960"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateUserActivityScoreFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetChess960(val.(UserActivityScoreable))
+		}
+		return nil
+	}
+	res["classical"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateUserActivityScoreFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetClassical(val.(UserActivityScoreable))
+		}
+		return nil
+	}
+	res["correspondence"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateUserActivityScoreFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCorrespondence(val.(UserActivityScoreable))
+		}
+		return nil
+	}
+	res["horde"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateUserActivityScoreFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetHorde(val.(UserActivityScoreable))
+		}
+		return nil
+	}
+	res["kingOfTheHill"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateUserActivityScoreFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetKingOfTheHill(val.(UserActivityScoreable))
+		}
+		return nil
+	}
+	res["puzzle"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateUserActivityScoreFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPuzzle(val.(UserActivityScoreable))
+		}
+		return nil
+	}
+	res["racingKings"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateUserActivityScoreFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRacingKings(val.(UserActivityScoreable))
+		}
+		return nil
+	}
+	res["rapid"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateUserActivityScoreFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRapid(val.(UserActivityScoreable))
+		}
+		return nil
+	}
+	res["ultraBullet"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateUserActivityScoreFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetUltraBullet(val.(UserActivityScoreable))
+		}
+		return nil
+	}
+	return res
 }
+
 // GetHorde gets the horde property value. The horde property
 // returns a UserActivityScoreable when successful
-func (m *UserActivity_games) GetHorde()(UserActivityScoreable) {
-    return m.horde
+func (m *UserActivity_games) GetHorde() UserActivityScoreable {
+	return m.horde
 }
+
 // GetKingOfTheHill gets the kingOfTheHill property value. The kingOfTheHill property
 // returns a UserActivityScoreable when successful
-func (m *UserActivity_games) GetKingOfTheHill()(UserActivityScoreable) {
-    return m.kingOfTheHill
+func (m *UserActivity_games) GetKingOfTheHill() UserActivityScoreable {
+	return m.kingOfTheHill
 }
+
 // GetPuzzle gets the puzzle property value. The puzzle property
 // returns a UserActivityScoreable when successful
-func (m *UserActivity_games) GetPuzzle()(UserActivityScoreable) {
-    return m.puzzle
+func (m *UserActivity_games) GetPuzzle() UserActivityScoreable {
+	return m.puzzle
 }
+
 // GetRacingKings gets the racingKings property value. The racingKings property
 // returns a UserActivityScoreable when successful
-func (m *UserActivity_games) GetRacingKings()(UserActivityScoreable) {
-    return m.racingKings
+func (m *UserActivity_games) GetRacingKings() UserActivityScoreable {
+	return m.racingKings
 }
+
 // GetRapid gets the rapid property value. The rapid property
 // returns a UserActivityScoreable when successful
-func (m *UserActivity_games) GetRapid()(UserActivityScoreable) {
-    return m.rapid
+func (m *UserActivity_games) GetRapid() UserActivityScoreable {
+	return m.rapid
 }
+
 // GetUltraBullet gets the ultraBullet property value. The ultraBullet property
 // returns a UserActivityScoreable when successful
-func (m *UserActivity_games) GetUltraBullet()(UserActivityScoreable) {
-    return m.ultraBullet
+func (m *UserActivity_games) GetUltraBullet() UserActivityScoreable {
+	return m.ultraBullet
 }
+
 // Serialize serializes information the current object
-func (m *UserActivity_games) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("atomic", m.GetAtomic())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("blitz", m.GetBlitz())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("bullet", m.GetBullet())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("chess960", m.GetChess960())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("classical", m.GetClassical())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("correspondence", m.GetCorrespondence())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("horde", m.GetHorde())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("kingOfTheHill", m.GetKingOfTheHill())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("puzzle", m.GetPuzzle())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("racingKings", m.GetRacingKings())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("rapid", m.GetRapid())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("ultraBullet", m.GetUltraBullet())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *UserActivity_games) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteObjectValue("atomic", m.GetAtomic())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("blitz", m.GetBlitz())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("bullet", m.GetBullet())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("chess960", m.GetChess960())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("classical", m.GetClassical())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("correspondence", m.GetCorrespondence())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("horde", m.GetHorde())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("kingOfTheHill", m.GetKingOfTheHill())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("puzzle", m.GetPuzzle())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("racingKings", m.GetRacingKings())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("rapid", m.GetRapid())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("ultraBullet", m.GetUltraBullet())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *UserActivity_games) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *UserActivity_games) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetAtomic sets the atomic property value. The atomic property
-func (m *UserActivity_games) SetAtomic(value UserActivityScoreable)() {
-    m.atomic = value
+func (m *UserActivity_games) SetAtomic(value UserActivityScoreable) {
+	m.atomic = value
 }
+
 // SetBlitz sets the blitz property value. The blitz property
-func (m *UserActivity_games) SetBlitz(value UserActivityScoreable)() {
-    m.blitz = value
+func (m *UserActivity_games) SetBlitz(value UserActivityScoreable) {
+	m.blitz = value
 }
+
 // SetBullet sets the bullet property value. The bullet property
-func (m *UserActivity_games) SetBullet(value UserActivityScoreable)() {
-    m.bullet = value
+func (m *UserActivity_games) SetBullet(value UserActivityScoreable) {
+	m.bullet = value
 }
+
 // SetChess960 sets the chess960 property value. The chess960 property
-func (m *UserActivity_games) SetChess960(value UserActivityScoreable)() {
-    m.chess960 = value
+func (m *UserActivity_games) SetChess960(value UserActivityScoreable) {
+	m.chess960 = value
 }
+
 // SetClassical sets the classical property value. The classical property
-func (m *UserActivity_games) SetClassical(value UserActivityScoreable)() {
-    m.classical = value
+func (m *UserActivity_games) SetClassical(value UserActivityScoreable) {
+	m.classical = value
 }
+
 // SetCorrespondence sets the correspondence property value. The correspondence property
-func (m *UserActivity_games) SetCorrespondence(value UserActivityScoreable)() {
-    m.correspondence = value
+func (m *UserActivity_games) SetCorrespondence(value UserActivityScoreable) {
+	m.correspondence = value
 }
+
 // SetHorde sets the horde property value. The horde property
-func (m *UserActivity_games) SetHorde(value UserActivityScoreable)() {
-    m.horde = value
+func (m *UserActivity_games) SetHorde(value UserActivityScoreable) {
+	m.horde = value
 }
+
 // SetKingOfTheHill sets the kingOfTheHill property value. The kingOfTheHill property
-func (m *UserActivity_games) SetKingOfTheHill(value UserActivityScoreable)() {
-    m.kingOfTheHill = value
+func (m *UserActivity_games) SetKingOfTheHill(value UserActivityScoreable) {
+	m.kingOfTheHill = value
 }
+
 // SetPuzzle sets the puzzle property value. The puzzle property
-func (m *UserActivity_games) SetPuzzle(value UserActivityScoreable)() {
-    m.puzzle = value
+func (m *UserActivity_games) SetPuzzle(value UserActivityScoreable) {
+	m.puzzle = value
 }
+
 // SetRacingKings sets the racingKings property value. The racingKings property
-func (m *UserActivity_games) SetRacingKings(value UserActivityScoreable)() {
-    m.racingKings = value
+func (m *UserActivity_games) SetRacingKings(value UserActivityScoreable) {
+	m.racingKings = value
 }
+
 // SetRapid sets the rapid property value. The rapid property
-func (m *UserActivity_games) SetRapid(value UserActivityScoreable)() {
-    m.rapid = value
+func (m *UserActivity_games) SetRapid(value UserActivityScoreable) {
+	m.rapid = value
 }
+
 // SetUltraBullet sets the ultraBullet property value. The ultraBullet property
-func (m *UserActivity_games) SetUltraBullet(value UserActivityScoreable)() {
-    m.ultraBullet = value
+func (m *UserActivity_games) SetUltraBullet(value UserActivityScoreable) {
+	m.ultraBullet = value
 }
+
 type UserActivity_gamesable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetAtomic()(UserActivityScoreable)
-    GetBlitz()(UserActivityScoreable)
-    GetBullet()(UserActivityScoreable)
-    GetChess960()(UserActivityScoreable)
-    GetClassical()(UserActivityScoreable)
-    GetCorrespondence()(UserActivityScoreable)
-    GetHorde()(UserActivityScoreable)
-    GetKingOfTheHill()(UserActivityScoreable)
-    GetPuzzle()(UserActivityScoreable)
-    GetRacingKings()(UserActivityScoreable)
-    GetRapid()(UserActivityScoreable)
-    GetUltraBullet()(UserActivityScoreable)
-    SetAtomic(value UserActivityScoreable)()
-    SetBlitz(value UserActivityScoreable)()
-    SetBullet(value UserActivityScoreable)()
-    SetChess960(value UserActivityScoreable)()
-    SetClassical(value UserActivityScoreable)()
-    SetCorrespondence(value UserActivityScoreable)()
-    SetHorde(value UserActivityScoreable)()
-    SetKingOfTheHill(value UserActivityScoreable)()
-    SetPuzzle(value UserActivityScoreable)()
-    SetRacingKings(value UserActivityScoreable)()
-    SetRapid(value UserActivityScoreable)()
-    SetUltraBullet(value UserActivityScoreable)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetAtomic() UserActivityScoreable
+	GetBlitz() UserActivityScoreable
+	GetBullet() UserActivityScoreable
+	GetChess960() UserActivityScoreable
+	GetClassical() UserActivityScoreable
+	GetCorrespondence() UserActivityScoreable
+	GetHorde() UserActivityScoreable
+	GetKingOfTheHill() UserActivityScoreable
+	GetPuzzle() UserActivityScoreable
+	GetRacingKings() UserActivityScoreable
+	GetRapid() UserActivityScoreable
+	GetUltraBullet() UserActivityScoreable
+	SetAtomic(value UserActivityScoreable)
+	SetBlitz(value UserActivityScoreable)
+	SetBullet(value UserActivityScoreable)
+	SetChess960(value UserActivityScoreable)
+	SetClassical(value UserActivityScoreable)
+	SetCorrespondence(value UserActivityScoreable)
+	SetHorde(value UserActivityScoreable)
+	SetKingOfTheHill(value UserActivityScoreable)
+	SetPuzzle(value UserActivityScoreable)
+	SetRacingKings(value UserActivityScoreable)
+	SetRapid(value UserActivityScoreable)
+	SetUltraBullet(value UserActivityScoreable)
 }

@@ -4,353 +4,379 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type Team struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The description property
-    description *string
-    // See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
-    flair *string
-    // The id property
-    id *string
-    // The joined property
-    joined *bool
-    // The leader property
-    leader LightUserable
-    // The leaders property
-    leaders []LightUserable
-    // The name property
-    name *string
-    // The nbMembers property
-    nbMembers *int32
-    // The open property
-    open *bool
-    // The requested property
-    requested *bool
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The description property
+	description *string
+	// See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
+	flair *string
+	// The id property
+	id *string
+	// The joined property
+	joined *bool
+	// The leader property
+	leader LightUserable
+	// The leaders property
+	leaders []LightUserable
+	// The name property
+	name *string
+	// The nbMembers property
+	nbMembers *int32
+	// The open property
+	open *bool
+	// The requested property
+	requested *bool
 }
+
 // NewTeam instantiates a new Team and sets the default values.
-func NewTeam()(*Team) {
-    m := &Team{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewTeam() *Team {
+	m := &Team{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateTeamFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateTeamFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewTeam(), nil
+func CreateTeamFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewTeam(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *Team) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *Team) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetDescription gets the description property value. The description property
 // returns a *string when successful
-func (m *Team) GetDescription()(*string) {
-    return m.description
+func (m *Team) GetDescription() *string {
+	return m.description
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *Team) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["description"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDescription(val)
-        }
-        return nil
-    }
-    res["flair"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFlair(val)
-        }
-        return nil
-    }
-    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetId(val)
-        }
-        return nil
-    }
-    res["joined"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetJoined(val)
-        }
-        return nil
-    }
-    res["leader"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateLightUserFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetLeader(val.(LightUserable))
-        }
-        return nil
-    }
-    res["leaders"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateLightUserFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]LightUserable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(LightUserable)
-                }
-            }
-            m.SetLeaders(res)
-        }
-        return nil
-    }
-    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetName(val)
-        }
-        return nil
-    }
-    res["nbMembers"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetNbMembers(val)
-        }
-        return nil
-    }
-    res["open"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetOpen(val)
-        }
-        return nil
-    }
-    res["requested"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRequested(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *Team) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["description"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetDescription(val)
+		}
+		return nil
+	}
+	res["flair"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFlair(val)
+		}
+		return nil
+	}
+	res["id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetId(val)
+		}
+		return nil
+	}
+	res["joined"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetJoined(val)
+		}
+		return nil
+	}
+	res["leader"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateLightUserFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetLeader(val.(LightUserable))
+		}
+		return nil
+	}
+	res["leaders"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateLightUserFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]LightUserable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(LightUserable)
+				}
+			}
+			m.SetLeaders(res)
+		}
+		return nil
+	}
+	res["name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetName(val)
+		}
+		return nil
+	}
+	res["nbMembers"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetNbMembers(val)
+		}
+		return nil
+	}
+	res["open"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetOpen(val)
+		}
+		return nil
+	}
+	res["requested"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRequested(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetFlair gets the flair property value. See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
 // returns a *string when successful
-func (m *Team) GetFlair()(*string) {
-    return m.flair
+func (m *Team) GetFlair() *string {
+	return m.flair
 }
+
 // GetId gets the id property value. The id property
 // returns a *string when successful
-func (m *Team) GetId()(*string) {
-    return m.id
+func (m *Team) GetId() *string {
+	return m.id
 }
+
 // GetJoined gets the joined property value. The joined property
 // returns a *bool when successful
-func (m *Team) GetJoined()(*bool) {
-    return m.joined
+func (m *Team) GetJoined() *bool {
+	return m.joined
 }
+
 // GetLeader gets the leader property value. The leader property
 // returns a LightUserable when successful
-func (m *Team) GetLeader()(LightUserable) {
-    return m.leader
+func (m *Team) GetLeader() LightUserable {
+	return m.leader
 }
+
 // GetLeaders gets the leaders property value. The leaders property
 // returns a []LightUserable when successful
-func (m *Team) GetLeaders()([]LightUserable) {
-    return m.leaders
+func (m *Team) GetLeaders() []LightUserable {
+	return m.leaders
 }
+
 // GetName gets the name property value. The name property
 // returns a *string when successful
-func (m *Team) GetName()(*string) {
-    return m.name
+func (m *Team) GetName() *string {
+	return m.name
 }
+
 // GetNbMembers gets the nbMembers property value. The nbMembers property
 // returns a *int32 when successful
-func (m *Team) GetNbMembers()(*int32) {
-    return m.nbMembers
+func (m *Team) GetNbMembers() *int32 {
+	return m.nbMembers
 }
+
 // GetOpen gets the open property value. The open property
 // returns a *bool when successful
-func (m *Team) GetOpen()(*bool) {
-    return m.open
+func (m *Team) GetOpen() *bool {
+	return m.open
 }
+
 // GetRequested gets the requested property value. The requested property
 // returns a *bool when successful
-func (m *Team) GetRequested()(*bool) {
-    return m.requested
+func (m *Team) GetRequested() *bool {
+	return m.requested
 }
+
 // Serialize serializes information the current object
-func (m *Team) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("description", m.GetDescription())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("flair", m.GetFlair())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("id", m.GetId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("joined", m.GetJoined())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("leader", m.GetLeader())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetLeaders() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetLeaders()))
-        for i, v := range m.GetLeaders() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("leaders", cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("name", m.GetName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("nbMembers", m.GetNbMembers())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("open", m.GetOpen())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("requested", m.GetRequested())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *Team) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("description", m.GetDescription())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("flair", m.GetFlair())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("id", m.GetId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("joined", m.GetJoined())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("leader", m.GetLeader())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetLeaders() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetLeaders()))
+		for i, v := range m.GetLeaders() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("leaders", cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("name", m.GetName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("nbMembers", m.GetNbMembers())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("open", m.GetOpen())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("requested", m.GetRequested())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *Team) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *Team) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetDescription sets the description property value. The description property
-func (m *Team) SetDescription(value *string)() {
-    m.description = value
+func (m *Team) SetDescription(value *string) {
+	m.description = value
 }
+
 // SetFlair sets the flair property value. See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
-func (m *Team) SetFlair(value *string)() {
-    m.flair = value
+func (m *Team) SetFlair(value *string) {
+	m.flair = value
 }
+
 // SetId sets the id property value. The id property
-func (m *Team) SetId(value *string)() {
-    m.id = value
+func (m *Team) SetId(value *string) {
+	m.id = value
 }
+
 // SetJoined sets the joined property value. The joined property
-func (m *Team) SetJoined(value *bool)() {
-    m.joined = value
+func (m *Team) SetJoined(value *bool) {
+	m.joined = value
 }
+
 // SetLeader sets the leader property value. The leader property
-func (m *Team) SetLeader(value LightUserable)() {
-    m.leader = value
+func (m *Team) SetLeader(value LightUserable) {
+	m.leader = value
 }
+
 // SetLeaders sets the leaders property value. The leaders property
-func (m *Team) SetLeaders(value []LightUserable)() {
-    m.leaders = value
+func (m *Team) SetLeaders(value []LightUserable) {
+	m.leaders = value
 }
+
 // SetName sets the name property value. The name property
-func (m *Team) SetName(value *string)() {
-    m.name = value
+func (m *Team) SetName(value *string) {
+	m.name = value
 }
+
 // SetNbMembers sets the nbMembers property value. The nbMembers property
-func (m *Team) SetNbMembers(value *int32)() {
-    m.nbMembers = value
+func (m *Team) SetNbMembers(value *int32) {
+	m.nbMembers = value
 }
+
 // SetOpen sets the open property value. The open property
-func (m *Team) SetOpen(value *bool)() {
-    m.open = value
+func (m *Team) SetOpen(value *bool) {
+	m.open = value
 }
+
 // SetRequested sets the requested property value. The requested property
-func (m *Team) SetRequested(value *bool)() {
-    m.requested = value
+func (m *Team) SetRequested(value *bool) {
+	m.requested = value
 }
+
 type Teamable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetDescription()(*string)
-    GetFlair()(*string)
-    GetId()(*string)
-    GetJoined()(*bool)
-    GetLeader()(LightUserable)
-    GetLeaders()([]LightUserable)
-    GetName()(*string)
-    GetNbMembers()(*int32)
-    GetOpen()(*bool)
-    GetRequested()(*bool)
-    SetDescription(value *string)()
-    SetFlair(value *string)()
-    SetId(value *string)()
-    SetJoined(value *bool)()
-    SetLeader(value LightUserable)()
-    SetLeaders(value []LightUserable)()
-    SetName(value *string)()
-    SetNbMembers(value *int32)()
-    SetOpen(value *bool)()
-    SetRequested(value *bool)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetDescription() *string
+	GetFlair() *string
+	GetId() *string
+	GetJoined() *bool
+	GetLeader() LightUserable
+	GetLeaders() []LightUserable
+	GetName() *string
+	GetNbMembers() *int32
+	GetOpen() *bool
+	GetRequested() *bool
+	SetDescription(value *string)
+	SetFlair(value *string)
+	SetId(value *string)
+	SetJoined(value *bool)
+	SetLeader(value LightUserable)
+	SetLeaders(value []LightUserable)
+	SetName(value *string)
+	SetNbMembers(value *int32)
+	SetOpen(value *bool)
+	SetRequested(value *bool)
 }

@@ -4,78 +4,85 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	"context"
+	i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // BoardGameItemMoveWithMoveItemRequestBuilder builds and executes requests for operations under \api\board\game\{gameId}\move\{move}
 type BoardGameItemMoveWithMoveItemRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // BoardGameItemMoveWithMoveItemRequestBuilderPostQueryParameters make a move in a game being played with the Board API.The move can also contain a draw offer/agreement.
 type BoardGameItemMoveWithMoveItemRequestBuilderPostQueryParameters struct {
-    // Whether to offer (or agree to) a draw
-    OfferingDraw *bool "uriparametername:\"offeringDraw\""
+	// Whether to offer (or agree to) a draw
+	OfferingDraw *bool "uriparametername:\"offeringDraw\""
 }
+
 // BoardGameItemMoveWithMoveItemRequestBuilderPostRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type BoardGameItemMoveWithMoveItemRequestBuilderPostRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
-    // Request query parameters
-    QueryParameters *BoardGameItemMoveWithMoveItemRequestBuilderPostQueryParameters
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *BoardGameItemMoveWithMoveItemRequestBuilderPostQueryParameters
 }
+
 // NewBoardGameItemMoveWithMoveItemRequestBuilderInternal instantiates a new BoardGameItemMoveWithMoveItemRequestBuilder and sets the default values.
-func NewBoardGameItemMoveWithMoveItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BoardGameItemMoveWithMoveItemRequestBuilder) {
-    m := &BoardGameItemMoveWithMoveItemRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/board/game/{gameId}/move/{move}{?offeringDraw*}", pathParameters),
-    }
-    return m
+func NewBoardGameItemMoveWithMoveItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BoardGameItemMoveWithMoveItemRequestBuilder {
+	m := &BoardGameItemMoveWithMoveItemRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/board/game/{gameId}/move/{move}{?offeringDraw*}", pathParameters),
+	}
+	return m
 }
+
 // NewBoardGameItemMoveWithMoveItemRequestBuilder instantiates a new BoardGameItemMoveWithMoveItemRequestBuilder and sets the default values.
-func NewBoardGameItemMoveWithMoveItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BoardGameItemMoveWithMoveItemRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewBoardGameItemMoveWithMoveItemRequestBuilderInternal(urlParams, requestAdapter)
+func NewBoardGameItemMoveWithMoveItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BoardGameItemMoveWithMoveItemRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewBoardGameItemMoveWithMoveItemRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Post make a move in a game being played with the Board API.The move can also contain a draw offer/agreement.
 // returns a Okable when successful
 // returns a ErrorEscaped error when the service returns a 400 status code
-func (m *BoardGameItemMoveWithMoveItemRequestBuilder) Post(ctx context.Context, requestConfiguration *BoardGameItemMoveWithMoveItemRequestBuilderPostRequestConfiguration)(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Okable, error) {
-    requestInfo, err := m.ToPostRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "400": i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateErrorEscapedFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateOkFromDiscriminatorValue, errorMapping)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Okable), nil
+func (m *BoardGameItemMoveWithMoveItemRequestBuilder) Post(ctx context.Context, requestConfiguration *BoardGameItemMoveWithMoveItemRequestBuilderPostRequestConfiguration) (i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Okable, error) {
+	requestInfo, err := m.ToPostRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
+		"400": i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateErrorEscapedFromDiscriminatorValue,
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateOkFromDiscriminatorValue, errorMapping)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Okable), nil
 }
+
 // ToPostRequestInformation make a move in a game being played with the Board API.The move can also contain a draw offer/agreement.
 // returns a *RequestInformation when successful
-func (m *BoardGameItemMoveWithMoveItemRequestBuilder) ToPostRequestInformation(ctx context.Context, requestConfiguration *BoardGameItemMoveWithMoveItemRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        if requestConfiguration.QueryParameters != nil {
-            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
-        }
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    return requestInfo, nil
+func (m *BoardGameItemMoveWithMoveItemRequestBuilder) ToPostRequestInformation(ctx context.Context, requestConfiguration *BoardGameItemMoveWithMoveItemRequestBuilderPostRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *BoardGameItemMoveWithMoveItemRequestBuilder when successful
-func (m *BoardGameItemMoveWithMoveItemRequestBuilder) WithUrl(rawUrl string)(*BoardGameItemMoveWithMoveItemRequestBuilder) {
-    return NewBoardGameItemMoveWithMoveItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *BoardGameItemMoveWithMoveItemRequestBuilder) WithUrl(rawUrl string) *BoardGameItemMoveWithMoveItemRequestBuilder {
+	return NewBoardGameItemMoveWithMoveItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

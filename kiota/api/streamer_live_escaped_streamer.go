@@ -4,225 +4,243 @@
 package api
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type StreamerLive_streamer struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The description property
-    description *string
-    // The headline property
-    headline *string
-    // The image property
-    image *string
-    // The name property
-    name *string
-    // The twitch property
-    twitch *string
-    // The youtube property
-    youtube *string
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The description property
+	description *string
+	// The headline property
+	headline *string
+	// The image property
+	image *string
+	// The name property
+	name *string
+	// The twitch property
+	twitch *string
+	// The youtube property
+	youtube *string
 }
+
 // NewStreamerLive_streamer instantiates a new StreamerLive_streamer and sets the default values.
-func NewStreamerLive_streamer()(*StreamerLive_streamer) {
-    m := &StreamerLive_streamer{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewStreamerLive_streamer() *StreamerLive_streamer {
+	m := &StreamerLive_streamer{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateStreamerLive_streamerFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateStreamerLive_streamerFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewStreamerLive_streamer(), nil
+func CreateStreamerLive_streamerFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewStreamerLive_streamer(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *StreamerLive_streamer) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *StreamerLive_streamer) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetDescription gets the description property value. The description property
 // returns a *string when successful
-func (m *StreamerLive_streamer) GetDescription()(*string) {
-    return m.description
+func (m *StreamerLive_streamer) GetDescription() *string {
+	return m.description
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *StreamerLive_streamer) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["description"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDescription(val)
-        }
-        return nil
-    }
-    res["headline"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetHeadline(val)
-        }
-        return nil
-    }
-    res["image"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetImage(val)
-        }
-        return nil
-    }
-    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetName(val)
-        }
-        return nil
-    }
-    res["twitch"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTwitch(val)
-        }
-        return nil
-    }
-    res["youtube"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetYoutube(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *StreamerLive_streamer) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["description"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetDescription(val)
+		}
+		return nil
+	}
+	res["headline"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetHeadline(val)
+		}
+		return nil
+	}
+	res["image"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetImage(val)
+		}
+		return nil
+	}
+	res["name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetName(val)
+		}
+		return nil
+	}
+	res["twitch"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTwitch(val)
+		}
+		return nil
+	}
+	res["youtube"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetYoutube(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetHeadline gets the headline property value. The headline property
 // returns a *string when successful
-func (m *StreamerLive_streamer) GetHeadline()(*string) {
-    return m.headline
+func (m *StreamerLive_streamer) GetHeadline() *string {
+	return m.headline
 }
+
 // GetImage gets the image property value. The image property
 // returns a *string when successful
-func (m *StreamerLive_streamer) GetImage()(*string) {
-    return m.image
+func (m *StreamerLive_streamer) GetImage() *string {
+	return m.image
 }
+
 // GetName gets the name property value. The name property
 // returns a *string when successful
-func (m *StreamerLive_streamer) GetName()(*string) {
-    return m.name
+func (m *StreamerLive_streamer) GetName() *string {
+	return m.name
 }
+
 // GetTwitch gets the twitch property value. The twitch property
 // returns a *string when successful
-func (m *StreamerLive_streamer) GetTwitch()(*string) {
-    return m.twitch
+func (m *StreamerLive_streamer) GetTwitch() *string {
+	return m.twitch
 }
+
 // GetYoutube gets the youtube property value. The youtube property
 // returns a *string when successful
-func (m *StreamerLive_streamer) GetYoutube()(*string) {
-    return m.youtube
+func (m *StreamerLive_streamer) GetYoutube() *string {
+	return m.youtube
 }
+
 // Serialize serializes information the current object
-func (m *StreamerLive_streamer) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("description", m.GetDescription())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("headline", m.GetHeadline())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("image", m.GetImage())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("name", m.GetName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("twitch", m.GetTwitch())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("youtube", m.GetYoutube())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *StreamerLive_streamer) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("description", m.GetDescription())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("headline", m.GetHeadline())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("image", m.GetImage())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("name", m.GetName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("twitch", m.GetTwitch())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("youtube", m.GetYoutube())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *StreamerLive_streamer) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *StreamerLive_streamer) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetDescription sets the description property value. The description property
-func (m *StreamerLive_streamer) SetDescription(value *string)() {
-    m.description = value
+func (m *StreamerLive_streamer) SetDescription(value *string) {
+	m.description = value
 }
+
 // SetHeadline sets the headline property value. The headline property
-func (m *StreamerLive_streamer) SetHeadline(value *string)() {
-    m.headline = value
+func (m *StreamerLive_streamer) SetHeadline(value *string) {
+	m.headline = value
 }
+
 // SetImage sets the image property value. The image property
-func (m *StreamerLive_streamer) SetImage(value *string)() {
-    m.image = value
+func (m *StreamerLive_streamer) SetImage(value *string) {
+	m.image = value
 }
+
 // SetName sets the name property value. The name property
-func (m *StreamerLive_streamer) SetName(value *string)() {
-    m.name = value
+func (m *StreamerLive_streamer) SetName(value *string) {
+	m.name = value
 }
+
 // SetTwitch sets the twitch property value. The twitch property
-func (m *StreamerLive_streamer) SetTwitch(value *string)() {
-    m.twitch = value
+func (m *StreamerLive_streamer) SetTwitch(value *string) {
+	m.twitch = value
 }
+
 // SetYoutube sets the youtube property value. The youtube property
-func (m *StreamerLive_streamer) SetYoutube(value *string)() {
-    m.youtube = value
+func (m *StreamerLive_streamer) SetYoutube(value *string) {
+	m.youtube = value
 }
+
 type StreamerLive_streamerable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetDescription()(*string)
-    GetHeadline()(*string)
-    GetImage()(*string)
-    GetName()(*string)
-    GetTwitch()(*string)
-    GetYoutube()(*string)
-    SetDescription(value *string)()
-    SetHeadline(value *string)()
-    SetImage(value *string)()
-    SetName(value *string)()
-    SetTwitch(value *string)()
-    SetYoutube(value *string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetDescription() *string
+	GetHeadline() *string
+	GetImage() *string
+	GetName() *string
+	GetTwitch() *string
+	GetYoutube() *string
+	SetDescription(value *string)
+	SetHeadline(value *string)
+	SetImage(value *string)
+	SetName(value *string)
+	SetTwitch(value *string)
+	SetYoutube(value *string)
 }

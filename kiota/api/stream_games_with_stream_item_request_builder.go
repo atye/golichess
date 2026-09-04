@@ -4,69 +4,76 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	"context"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // StreamGamesWithStreamItemRequestBuilder builds and executes requests for operations under \api\stream\games\{streamId}
 type StreamGamesWithStreamItemRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // StreamGamesWithStreamItemRequestBuilderPostRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type StreamGamesWithStreamItemRequestBuilderPostRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+
 // Add the add property
 // returns a *StreamGamesItemAddRequestBuilder when successful
-func (m *StreamGamesWithStreamItemRequestBuilder) Add()(*StreamGamesItemAddRequestBuilder) {
-    return NewStreamGamesItemAddRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *StreamGamesWithStreamItemRequestBuilder) Add() *StreamGamesItemAddRequestBuilder {
+	return NewStreamGamesItemAddRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewStreamGamesWithStreamItemRequestBuilderInternal instantiates a new StreamGamesWithStreamItemRequestBuilder and sets the default values.
-func NewStreamGamesWithStreamItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*StreamGamesWithStreamItemRequestBuilder) {
-    m := &StreamGamesWithStreamItemRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/stream/games/{streamId}", pathParameters),
-    }
-    return m
+func NewStreamGamesWithStreamItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *StreamGamesWithStreamItemRequestBuilder {
+	m := &StreamGamesWithStreamItemRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/stream/games/{streamId}", pathParameters),
+	}
+	return m
 }
+
 // NewStreamGamesWithStreamItemRequestBuilder instantiates a new StreamGamesWithStreamItemRequestBuilder and sets the default values.
-func NewStreamGamesWithStreamItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*StreamGamesWithStreamItemRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewStreamGamesWithStreamItemRequestBuilderInternal(urlParams, requestAdapter)
+func NewStreamGamesWithStreamItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *StreamGamesWithStreamItemRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewStreamGamesWithStreamItemRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Post creates a stream of games from an arbitrary streamId, and a list of game IDs.The stream first outputs the games that already exists, then emits an event each time a game is started or finished.Games are streamed as [ndjson](#description/streaming-with-nd-json).Maximum number of games: 500 for anonymous requests, or 1000 for [OAuth2 authenticated](#description/authentication) requests.While the stream is open, it is possible to [add new game IDs to watch](#tag/games/POST/api/stream/games/{streamId}/add).
 // returns a []byte when successful
-func (m *StreamGamesWithStreamItemRequestBuilder) Post(ctx context.Context, body *string, requestConfiguration *StreamGamesWithStreamItemRequestBuilderPostRequestConfiguration)([]byte, error) {
-    requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.([]byte), nil
+func (m *StreamGamesWithStreamItemRequestBuilder) Post(ctx context.Context, body *string, requestConfiguration *StreamGamesWithStreamItemRequestBuilderPostRequestConfiguration) ([]byte, error) {
+	requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.([]byte), nil
 }
+
 // ToPostRequestInformation creates a stream of games from an arbitrary streamId, and a list of game IDs.The stream first outputs the games that already exists, then emits an event each time a game is started or finished.Games are streamed as [ndjson](#description/streaming-with-nd-json).Maximum number of games: 500 for anonymous requests, or 1000 for [OAuth2 authenticated](#description/authentication) requests.While the stream is open, it is possible to [add new game IDs to watch](#tag/games/POST/api/stream/games/{streamId}/add).
 // returns a *RequestInformation when successful
-func (m *StreamGamesWithStreamItemRequestBuilder) ToPostRequestInformation(ctx context.Context, body *string, requestConfiguration *StreamGamesWithStreamItemRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/x-ndjson")
-    requestInfo.SetContentFromScalar(ctx, m.BaseRequestBuilder.RequestAdapter, "text/plain", body)
-    return requestInfo, nil
+func (m *StreamGamesWithStreamItemRequestBuilder) ToPostRequestInformation(ctx context.Context, body *string, requestConfiguration *StreamGamesWithStreamItemRequestBuilderPostRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/x-ndjson")
+	requestInfo.SetContentFromScalar(ctx, m.BaseRequestBuilder.RequestAdapter, "text/plain", body)
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *StreamGamesWithStreamItemRequestBuilder when successful
-func (m *StreamGamesWithStreamItemRequestBuilder) WithUrl(rawUrl string)(*StreamGamesWithStreamItemRequestBuilder) {
-    return NewStreamGamesWithStreamItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *StreamGamesWithStreamItemRequestBuilder) WithUrl(rawUrl string) *StreamGamesWithStreamItemRequestBuilder {
+	return NewStreamGamesWithStreamItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

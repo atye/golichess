@@ -4,40 +4,44 @@
 package api
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // SwissRequestBuilder builds and executes requests for operations under \api\swiss
 type SwissRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // ById gets an item from the github.com/atye/golichess/kiota.api.swiss.item collection
 // returns a *SwissSwissItemRequestBuilder when successful
-func (m *SwissRequestBuilder) ById(id string)(*SwissSwissItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    if id != "" {
-        urlTplParams["id"] = id
-    }
-    return NewSwissSwissItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+func (m *SwissRequestBuilder) ById(id string) *SwissSwissItemRequestBuilder {
+	urlTplParams := make(map[string]string)
+	for idx, item := range m.BaseRequestBuilder.PathParameters {
+		urlTplParams[idx] = item
+	}
+	if id != "" {
+		urlTplParams["id"] = id
+	}
+	return NewSwissSwissItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewSwissRequestBuilderInternal instantiates a new SwissRequestBuilder and sets the default values.
-func NewSwissRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*SwissRequestBuilder) {
-    m := &SwissRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/swiss", pathParameters),
-    }
-    return m
+func NewSwissRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *SwissRequestBuilder {
+	m := &SwissRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/swiss", pathParameters),
+	}
+	return m
 }
+
 // NewSwissRequestBuilder instantiates a new SwissRequestBuilder and sets the default values.
-func NewSwissRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*SwissRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewSwissRequestBuilderInternal(urlParams, requestAdapter)
+func NewSwissRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *SwissRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewSwissRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // New the new property
 // returns a *SwissNewRequestBuilder when successful
-func (m *SwissRequestBuilder) New()(*SwissNewRequestBuilder) {
-    return NewSwissNewRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *SwissRequestBuilder) New() *SwissNewRequestBuilder {
+	return NewSwissNewRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

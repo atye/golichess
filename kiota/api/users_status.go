@@ -4,317 +4,341 @@
 package api
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
-    i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type UsersStatus struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
-    flair *string
-    // The id property
-    id *string
-    // The name property
-    name *string
-    // The online property
-    online *bool
-    // Use patronColor value instead to determine if player is a patron.
-    // Deprecated: 
-    patron *bool
-    // Players can choose a color for their Patron wings.See [here for the color mappings](https://github.com/lichess-org/lila/blob/master/ui/lib/css/abstract/_patron-colors.scss).The presence of this field indicates the player is an active Patron.
-    patronColor *int32
-    // The playing property
-    playing *bool
-    // The streaming property
-    streaming *bool
-    // only appears if the user is a titled player or a bot user
-    title *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Title
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
+	flair *string
+	// The id property
+	id *string
+	// The name property
+	name *string
+	// The online property
+	online *bool
+	// Use patronColor value instead to determine if player is a patron.
+	// Deprecated:
+	patron *bool
+	// Players can choose a color for their Patron wings.See [here for the color mappings](https://github.com/lichess-org/lila/blob/master/ui/lib/css/abstract/_patron-colors.scss).The presence of this field indicates the player is an active Patron.
+	patronColor *int32
+	// The playing property
+	playing *bool
+	// The streaming property
+	streaming *bool
+	// only appears if the user is a titled player or a bot user
+	title *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Title
 }
+
 // NewUsersStatus instantiates a new UsersStatus and sets the default values.
-func NewUsersStatus()(*UsersStatus) {
-    m := &UsersStatus{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewUsersStatus() *UsersStatus {
+	m := &UsersStatus{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateUsersStatusFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateUsersStatusFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewUsersStatus(), nil
+func CreateUsersStatusFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewUsersStatus(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *UsersStatus) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *UsersStatus) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *UsersStatus) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["flair"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFlair(val)
-        }
-        return nil
-    }
-    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetId(val)
-        }
-        return nil
-    }
-    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetName(val)
-        }
-        return nil
-    }
-    res["online"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetOnline(val)
-        }
-        return nil
-    }
-    res["patron"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPatron(val)
-        }
-        return nil
-    }
-    res["patronColor"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPatronColor(val)
-        }
-        return nil
-    }
-    res["playing"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPlaying(val)
-        }
-        return nil
-    }
-    res["streaming"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStreaming(val)
-        }
-        return nil
-    }
-    res["title"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParseTitle)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTitle(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Title))
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *UsersStatus) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["flair"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFlair(val)
+		}
+		return nil
+	}
+	res["id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetId(val)
+		}
+		return nil
+	}
+	res["name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetName(val)
+		}
+		return nil
+	}
+	res["online"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetOnline(val)
+		}
+		return nil
+	}
+	res["patron"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPatron(val)
+		}
+		return nil
+	}
+	res["patronColor"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPatronColor(val)
+		}
+		return nil
+	}
+	res["playing"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPlaying(val)
+		}
+		return nil
+	}
+	res["streaming"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStreaming(val)
+		}
+		return nil
+	}
+	res["title"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParseTitle)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTitle(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Title))
+		}
+		return nil
+	}
+	return res
 }
+
 // GetFlair gets the flair property value. See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
 // returns a *string when successful
-func (m *UsersStatus) GetFlair()(*string) {
-    return m.flair
+func (m *UsersStatus) GetFlair() *string {
+	return m.flair
 }
+
 // GetId gets the id property value. The id property
 // returns a *string when successful
-func (m *UsersStatus) GetId()(*string) {
-    return m.id
+func (m *UsersStatus) GetId() *string {
+	return m.id
 }
+
 // GetName gets the name property value. The name property
 // returns a *string when successful
-func (m *UsersStatus) GetName()(*string) {
-    return m.name
+func (m *UsersStatus) GetName() *string {
+	return m.name
 }
+
 // GetOnline gets the online property value. The online property
 // returns a *bool when successful
-func (m *UsersStatus) GetOnline()(*bool) {
-    return m.online
+func (m *UsersStatus) GetOnline() *bool {
+	return m.online
 }
+
 // GetPatron gets the patron property value. Use patronColor value instead to determine if player is a patron.
-// Deprecated: 
+// Deprecated:
 // returns a *bool when successful
-func (m *UsersStatus) GetPatron()(*bool) {
-    return m.patron
+func (m *UsersStatus) GetPatron() *bool {
+	return m.patron
 }
+
 // GetPatronColor gets the patronColor property value. Players can choose a color for their Patron wings.See [here for the color mappings](https://github.com/lichess-org/lila/blob/master/ui/lib/css/abstract/_patron-colors.scss).The presence of this field indicates the player is an active Patron.
 // returns a *int32 when successful
-func (m *UsersStatus) GetPatronColor()(*int32) {
-    return m.patronColor
+func (m *UsersStatus) GetPatronColor() *int32 {
+	return m.patronColor
 }
+
 // GetPlaying gets the playing property value. The playing property
 // returns a *bool when successful
-func (m *UsersStatus) GetPlaying()(*bool) {
-    return m.playing
+func (m *UsersStatus) GetPlaying() *bool {
+	return m.playing
 }
+
 // GetStreaming gets the streaming property value. The streaming property
 // returns a *bool when successful
-func (m *UsersStatus) GetStreaming()(*bool) {
-    return m.streaming
+func (m *UsersStatus) GetStreaming() *bool {
+	return m.streaming
 }
+
 // GetTitle gets the title property value. only appears if the user is a titled player or a bot user
 // returns a *Title when successful
-func (m *UsersStatus) GetTitle()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Title) {
-    return m.title
+func (m *UsersStatus) GetTitle() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Title {
+	return m.title
 }
+
 // Serialize serializes information the current object
-func (m *UsersStatus) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("flair", m.GetFlair())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("id", m.GetId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("name", m.GetName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("online", m.GetOnline())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("patron", m.GetPatron())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("patronColor", m.GetPatronColor())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("playing", m.GetPlaying())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("streaming", m.GetStreaming())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetTitle() != nil {
-        cast := (*m.GetTitle()).String()
-        err := writer.WriteStringValue("title", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *UsersStatus) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("flair", m.GetFlair())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("id", m.GetId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("name", m.GetName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("online", m.GetOnline())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("patron", m.GetPatron())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("patronColor", m.GetPatronColor())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("playing", m.GetPlaying())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("streaming", m.GetStreaming())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetTitle() != nil {
+		cast := (*m.GetTitle()).String()
+		err := writer.WriteStringValue("title", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *UsersStatus) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *UsersStatus) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetFlair sets the flair property value. See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
-func (m *UsersStatus) SetFlair(value *string)() {
-    m.flair = value
+func (m *UsersStatus) SetFlair(value *string) {
+	m.flair = value
 }
+
 // SetId sets the id property value. The id property
-func (m *UsersStatus) SetId(value *string)() {
-    m.id = value
+func (m *UsersStatus) SetId(value *string) {
+	m.id = value
 }
+
 // SetName sets the name property value. The name property
-func (m *UsersStatus) SetName(value *string)() {
-    m.name = value
+func (m *UsersStatus) SetName(value *string) {
+	m.name = value
 }
+
 // SetOnline sets the online property value. The online property
-func (m *UsersStatus) SetOnline(value *bool)() {
-    m.online = value
+func (m *UsersStatus) SetOnline(value *bool) {
+	m.online = value
 }
+
 // SetPatron sets the patron property value. Use patronColor value instead to determine if player is a patron.
-// Deprecated: 
-func (m *UsersStatus) SetPatron(value *bool)() {
-    m.patron = value
+// Deprecated:
+func (m *UsersStatus) SetPatron(value *bool) {
+	m.patron = value
 }
+
 // SetPatronColor sets the patronColor property value. Players can choose a color for their Patron wings.See [here for the color mappings](https://github.com/lichess-org/lila/blob/master/ui/lib/css/abstract/_patron-colors.scss).The presence of this field indicates the player is an active Patron.
-func (m *UsersStatus) SetPatronColor(value *int32)() {
-    m.patronColor = value
+func (m *UsersStatus) SetPatronColor(value *int32) {
+	m.patronColor = value
 }
+
 // SetPlaying sets the playing property value. The playing property
-func (m *UsersStatus) SetPlaying(value *bool)() {
-    m.playing = value
+func (m *UsersStatus) SetPlaying(value *bool) {
+	m.playing = value
 }
+
 // SetStreaming sets the streaming property value. The streaming property
-func (m *UsersStatus) SetStreaming(value *bool)() {
-    m.streaming = value
+func (m *UsersStatus) SetStreaming(value *bool) {
+	m.streaming = value
 }
+
 // SetTitle sets the title property value. only appears if the user is a titled player or a bot user
-func (m *UsersStatus) SetTitle(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Title)() {
-    m.title = value
+func (m *UsersStatus) SetTitle(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Title) {
+	m.title = value
 }
+
 type UsersStatusable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetFlair()(*string)
-    GetId()(*string)
-    GetName()(*string)
-    GetOnline()(*bool)
-    GetPatron()(*bool)
-    GetPatronColor()(*int32)
-    GetPlaying()(*bool)
-    GetStreaming()(*bool)
-    GetTitle()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Title)
-    SetFlair(value *string)()
-    SetId(value *string)()
-    SetName(value *string)()
-    SetOnline(value *bool)()
-    SetPatron(value *bool)()
-    SetPatronColor(value *int32)()
-    SetPlaying(value *bool)()
-    SetStreaming(value *bool)()
-    SetTitle(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Title)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetFlair() *string
+	GetId() *string
+	GetName() *string
+	GetOnline() *bool
+	GetPatron() *bool
+	GetPatronColor() *int32
+	GetPlaying() *bool
+	GetStreaming() *bool
+	GetTitle() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Title
+	SetFlair(value *string)
+	SetId(value *string)
+	SetName(value *string)
+	SetOnline(value *bool)
+	SetPatron(value *bool)
+	SetPatronColor(value *int32)
+	SetPlaying(value *bool)
+	SetStreaming(value *bool)
+	SetTitle(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Title)
 }

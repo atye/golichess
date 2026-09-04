@@ -4,93 +4,100 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	"context"
+	i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // BoardSeekRequestBuilder builds and executes requests for operations under \api\board\seek
 type BoardSeekRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // BoardSeekRequestBuilderPostRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type BoardSeekRequestBuilderPostRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+
 // NewBoardSeekRequestBuilderInternal instantiates a new BoardSeekRequestBuilder and sets the default values.
-func NewBoardSeekRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BoardSeekRequestBuilder) {
-    m := &BoardSeekRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/board/seek", pathParameters),
-    }
-    return m
+func NewBoardSeekRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BoardSeekRequestBuilder {
+	m := &BoardSeekRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/board/seek", pathParameters),
+	}
+	return m
 }
+
 // NewBoardSeekRequestBuilder instantiates a new BoardSeekRequestBuilder and sets the default values.
-func NewBoardSeekRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BoardSeekRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewBoardSeekRequestBuilderInternal(urlParams, requestAdapter)
+func NewBoardSeekRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BoardSeekRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewBoardSeekRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Post create a public seek, to start a game with a random player.### Real-time seekSpecify the `time` and `increment` clock values.The response is streamed but doesn't contain any information.**Keep the connection open to keep the seek active**.If the client closes the connection, the seek is canceled. This way, if the client terminates, the user won't be paired in a game they wouldn't play.When the seek is accepted, or expires, the server closes the connection.**Make sure to also have an [Event stream](#tag/board/GET/api/board/game/stream/{gameId}) open**, to be notified when a game starts.We recommend opening the [Event stream](#tag/board/GET/api/board/game/stream/{gameId}) first, then the seek stream. This way,you won't miss the game event if the seek is accepted immediately.### Correspondence seekSpecify the `days` per turn value.The response is not streamed, it immediately completes with the seek ID. The seek remains active on the server until it is joined by someone.
 // Deprecated: This method is obsolete. Use PostAsSeekPostResponse instead.
 // returns a BoardSeekResponseable when successful
 // returns a ErrorEscaped error when the service returns a 400 status code
-func (m *BoardSeekRequestBuilder) Post(ctx context.Context, body BoardSeekPostRequestBodyable, requestConfiguration *BoardSeekRequestBuilderPostRequestConfiguration)(BoardSeekResponseable, error) {
-    requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "400": i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateErrorEscapedFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateBoardSeekResponseFromDiscriminatorValue, errorMapping)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(BoardSeekResponseable), nil
+func (m *BoardSeekRequestBuilder) Post(ctx context.Context, body BoardSeekPostRequestBodyable, requestConfiguration *BoardSeekRequestBuilderPostRequestConfiguration) (BoardSeekResponseable, error) {
+	requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
+		"400": i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateErrorEscapedFromDiscriminatorValue,
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateBoardSeekResponseFromDiscriminatorValue, errorMapping)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(BoardSeekResponseable), nil
 }
+
 // PostAsSeekPostResponse create a public seek, to start a game with a random player.### Real-time seekSpecify the `time` and `increment` clock values.The response is streamed but doesn't contain any information.**Keep the connection open to keep the seek active**.If the client closes the connection, the seek is canceled. This way, if the client terminates, the user won't be paired in a game they wouldn't play.When the seek is accepted, or expires, the server closes the connection.**Make sure to also have an [Event stream](#tag/board/GET/api/board/game/stream/{gameId}) open**, to be notified when a game starts.We recommend opening the [Event stream](#tag/board/GET/api/board/game/stream/{gameId}) first, then the seek stream. This way,you won't miss the game event if the seek is accepted immediately.### Correspondence seekSpecify the `days` per turn value.The response is not streamed, it immediately completes with the seek ID. The seek remains active on the server until it is joined by someone.
 // returns a BoardSeekPostResponseable when successful
 // returns a ErrorEscaped error when the service returns a 400 status code
-func (m *BoardSeekRequestBuilder) PostAsSeekPostResponse(ctx context.Context, body BoardSeekPostRequestBodyable, requestConfiguration *BoardSeekRequestBuilderPostRequestConfiguration)(BoardSeekPostResponseable, error) {
-    requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "400": i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateErrorEscapedFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateBoardSeekPostResponseFromDiscriminatorValue, errorMapping)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(BoardSeekPostResponseable), nil
+func (m *BoardSeekRequestBuilder) PostAsSeekPostResponse(ctx context.Context, body BoardSeekPostRequestBodyable, requestConfiguration *BoardSeekRequestBuilderPostRequestConfiguration) (BoardSeekPostResponseable, error) {
+	requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
+		"400": i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateErrorEscapedFromDiscriminatorValue,
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateBoardSeekPostResponseFromDiscriminatorValue, errorMapping)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(BoardSeekPostResponseable), nil
 }
+
 // ToPostRequestInformation create a public seek, to start a game with a random player.### Real-time seekSpecify the `time` and `increment` clock values.The response is streamed but doesn't contain any information.**Keep the connection open to keep the seek active**.If the client closes the connection, the seek is canceled. This way, if the client terminates, the user won't be paired in a game they wouldn't play.When the seek is accepted, or expires, the server closes the connection.**Make sure to also have an [Event stream](#tag/board/GET/api/board/game/stream/{gameId}) open**, to be notified when a game starts.We recommend opening the [Event stream](#tag/board/GET/api/board/game/stream/{gameId}) first, then the seek stream. This way,you won't miss the game event if the seek is accepted immediately.### Correspondence seekSpecify the `days` per turn value.The response is not streamed, it immediately completes with the seek ID. The seek remains active on the server until it is joined by someone.
 // returns a *RequestInformation when successful
-func (m *BoardSeekRequestBuilder) ToPostRequestInformation(ctx context.Context, body BoardSeekPostRequestBodyable, requestConfiguration *BoardSeekRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    err := requestInfo.SetContentFromParsable(ctx, m.BaseRequestBuilder.RequestAdapter, "application/x-www-form-urlencoded", body)
-    if err != nil {
-        return nil, err
-    }
-    return requestInfo, nil
+func (m *BoardSeekRequestBuilder) ToPostRequestInformation(ctx context.Context, body BoardSeekPostRequestBodyable, requestConfiguration *BoardSeekRequestBuilderPostRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	err := requestInfo.SetContentFromParsable(ctx, m.BaseRequestBuilder.RequestAdapter, "application/x-www-form-urlencoded", body)
+	if err != nil {
+		return nil, err
+	}
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *BoardSeekRequestBuilder when successful
-func (m *BoardSeekRequestBuilder) WithUrl(rawUrl string)(*BoardSeekRequestBuilder) {
-    return NewBoardSeekRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *BoardSeekRequestBuilder) WithUrl(rawUrl string) *BoardSeekRequestBuilder {
+	return NewBoardSeekRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

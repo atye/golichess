@@ -4,38 +4,43 @@
 package api
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // GamesExportRequestBuilder builds and executes requests for operations under \api\games\export
 type GamesExportRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
-// _ids the _ids property
-// returns a *GamesExport_idsRequestBuilder when successful
-func (m *GamesExportRequestBuilder) _ids()(*GamesExport_idsRequestBuilder) {
-    return NewGamesExport_idsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
-}
+
 // Bookmarks the bookmarks property
 // returns a *GamesExportBookmarksRequestBuilder when successful
-func (m *GamesExportRequestBuilder) Bookmarks()(*GamesExportBookmarksRequestBuilder) {
-    return NewGamesExportBookmarksRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *GamesExportRequestBuilder) Bookmarks() *GamesExportBookmarksRequestBuilder {
+	return NewGamesExportBookmarksRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewGamesExportRequestBuilderInternal instantiates a new GamesExportRequestBuilder and sets the default values.
-func NewGamesExportRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*GamesExportRequestBuilder) {
-    m := &GamesExportRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/games/export", pathParameters),
-    }
-    return m
+func NewGamesExportRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *GamesExportRequestBuilder {
+	m := &GamesExportRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/games/export", pathParameters),
+	}
+	return m
 }
+
 // NewGamesExportRequestBuilder instantiates a new GamesExportRequestBuilder and sets the default values.
-func NewGamesExportRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*GamesExportRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewGamesExportRequestBuilderInternal(urlParams, requestAdapter)
+func NewGamesExportRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *GamesExportRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewGamesExportRequestBuilderInternal(urlParams, requestAdapter)
 }
+
+// Ids the ids property
+// returns a *GamesExportIdsRequestBuilder when successful
+func (m *GamesExportRequestBuilder) Ids() *GamesExportIdsRequestBuilder {
+	return NewGamesExportIdsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+
 // Imports the imports property
 // returns a *GamesExportImportsRequestBuilder when successful
-func (m *GamesExportRequestBuilder) Imports()(*GamesExportImportsRequestBuilder) {
-    return NewGamesExportImportsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *GamesExportRequestBuilder) Imports() *GamesExportImportsRequestBuilder {
+	return NewGamesExportImportsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

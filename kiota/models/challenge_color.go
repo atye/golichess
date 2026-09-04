@@ -2,38 +2,42 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 type ChallengeColor int
 
 const (
-    WHITE_CHALLENGECOLOR ChallengeColor = iota
-    BLACK_CHALLENGECOLOR
-    RANDOM_CHALLENGECOLOR
+	WHITE_CHALLENGECOLOR ChallengeColor = iota
+	BLACK_CHALLENGECOLOR
+	RANDOM_CHALLENGECOLOR
 )
 
 func (i ChallengeColor) String() string {
-    return []string{"white", "black", "random"}[i]
+	return []string{"white", "black", "random"}[i]
 }
+
 func ParseChallengeColor(v string) (any, error) {
-    result := WHITE_CHALLENGECOLOR
-    switch v {
-        case "white":
-            result = WHITE_CHALLENGECOLOR
-        case "black":
-            result = BLACK_CHALLENGECOLOR
-        case "random":
-            result = RANDOM_CHALLENGECOLOR
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := WHITE_CHALLENGECOLOR
+	switch v {
+	case "white":
+		result = WHITE_CHALLENGECOLOR
+	case "black":
+		result = BLACK_CHALLENGECOLOR
+	case "random":
+		result = RANDOM_CHALLENGECOLOR
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeChallengeColor(values []ChallengeColor) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i ChallengeColor) isMultiValue() bool {
-    return false
+	return false
 }

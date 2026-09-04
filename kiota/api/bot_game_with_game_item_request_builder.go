@@ -4,63 +4,73 @@
 package api
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // BotGameWithGameItemRequestBuilder builds and executes requests for operations under \api\bot\game\{gameId}
 type BotGameWithGameItemRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // Abort the abort property
 // returns a *BotGameItemAbortRequestBuilder when successful
-func (m *BotGameWithGameItemRequestBuilder) Abort()(*BotGameItemAbortRequestBuilder) {
-    return NewBotGameItemAbortRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *BotGameWithGameItemRequestBuilder) Abort() *BotGameItemAbortRequestBuilder {
+	return NewBotGameItemAbortRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Chat the chat property
 // returns a *BotGameItemChatRequestBuilder when successful
-func (m *BotGameWithGameItemRequestBuilder) Chat()(*BotGameItemChatRequestBuilder) {
-    return NewBotGameItemChatRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *BotGameWithGameItemRequestBuilder) Chat() *BotGameItemChatRequestBuilder {
+	return NewBotGameItemChatRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // ClaimDraw the claimDraw property
 // returns a *BotGameItemClaimDrawRequestBuilder when successful
-func (m *BotGameWithGameItemRequestBuilder) ClaimDraw()(*BotGameItemClaimDrawRequestBuilder) {
-    return NewBotGameItemClaimDrawRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *BotGameWithGameItemRequestBuilder) ClaimDraw() *BotGameItemClaimDrawRequestBuilder {
+	return NewBotGameItemClaimDrawRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // ClaimVictory the claimVictory property
 // returns a *BotGameItemClaimVictoryRequestBuilder when successful
-func (m *BotGameWithGameItemRequestBuilder) ClaimVictory()(*BotGameItemClaimVictoryRequestBuilder) {
-    return NewBotGameItemClaimVictoryRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *BotGameWithGameItemRequestBuilder) ClaimVictory() *BotGameItemClaimVictoryRequestBuilder {
+	return NewBotGameItemClaimVictoryRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewBotGameWithGameItemRequestBuilderInternal instantiates a new BotGameWithGameItemRequestBuilder and sets the default values.
-func NewBotGameWithGameItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BotGameWithGameItemRequestBuilder) {
-    m := &BotGameWithGameItemRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/bot/game/{gameId}", pathParameters),
-    }
-    return m
+func NewBotGameWithGameItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BotGameWithGameItemRequestBuilder {
+	m := &BotGameWithGameItemRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/bot/game/{gameId}", pathParameters),
+	}
+	return m
 }
+
 // NewBotGameWithGameItemRequestBuilder instantiates a new BotGameWithGameItemRequestBuilder and sets the default values.
-func NewBotGameWithGameItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BotGameWithGameItemRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewBotGameWithGameItemRequestBuilderInternal(urlParams, requestAdapter)
+func NewBotGameWithGameItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BotGameWithGameItemRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewBotGameWithGameItemRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Draw the draw property
 // returns a *BotGameItemDrawRequestBuilder when successful
-func (m *BotGameWithGameItemRequestBuilder) Draw()(*BotGameItemDrawRequestBuilder) {
-    return NewBotGameItemDrawRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *BotGameWithGameItemRequestBuilder) Draw() *BotGameItemDrawRequestBuilder {
+	return NewBotGameItemDrawRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Move the move property
 // returns a *BotGameItemMoveRequestBuilder when successful
-func (m *BotGameWithGameItemRequestBuilder) Move()(*BotGameItemMoveRequestBuilder) {
-    return NewBotGameItemMoveRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *BotGameWithGameItemRequestBuilder) Move() *BotGameItemMoveRequestBuilder {
+	return NewBotGameItemMoveRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Resign the resign property
 // returns a *BotGameItemResignRequestBuilder when successful
-func (m *BotGameWithGameItemRequestBuilder) Resign()(*BotGameItemResignRequestBuilder) {
-    return NewBotGameItemResignRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *BotGameWithGameItemRequestBuilder) Resign() *BotGameItemResignRequestBuilder {
+	return NewBotGameItemResignRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Takeback the takeback property
 // returns a *BotGameItemTakebackRequestBuilder when successful
-func (m *BotGameWithGameItemRequestBuilder) Takeback()(*BotGameItemTakebackRequestBuilder) {
-    return NewBotGameItemTakebackRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *BotGameWithGameItemRequestBuilder) Takeback() *BotGameItemTakebackRequestBuilder {
+	return NewBotGameItemTakebackRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

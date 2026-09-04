@@ -4,47 +4,51 @@
 package api
 
 import (
-    i53ac87e8cb3cc9276228f74d38694a208cacb99bb8ceb705eeae99fb88d4d274 "strconv"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i53ac87e8cb3cc9276228f74d38694a208cacb99bb8ceb705eeae99fb88d4d274 "strconv"
 )
 
 // RoundItemAddTimeRequestBuilder builds and executes requests for operations under \api\round\{gameId}\add-time
 type RoundItemAddTimeRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // BySeconds gets an item from the github.com/atye/golichess/kiota.api.round.item.addTime.item collection
 // Deprecated: This indexer is deprecated and will be removed in the next major version. Use the one with the typed parameter instead.
 // returns a *RoundItemAddTimeWithSecondsItemRequestBuilder when successful
-func (m *RoundItemAddTimeRequestBuilder) BySeconds(seconds string)(*RoundItemAddTimeWithSecondsItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    if seconds != "" {
-        urlTplParams["seconds"] = seconds
-    }
-    return NewRoundItemAddTimeWithSecondsItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+func (m *RoundItemAddTimeRequestBuilder) BySeconds(seconds string) *RoundItemAddTimeWithSecondsItemRequestBuilder {
+	urlTplParams := make(map[string]string)
+	for idx, item := range m.BaseRequestBuilder.PathParameters {
+		urlTplParams[idx] = item
+	}
+	if seconds != "" {
+		urlTplParams["seconds"] = seconds
+	}
+	return NewRoundItemAddTimeWithSecondsItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // BySecondsInteger gets an item from the github.com/atye/golichess/kiota.api.round.item.addTime.item collection
 // returns a *RoundItemAddTimeWithSecondsItemRequestBuilder when successful
-func (m *RoundItemAddTimeRequestBuilder) BySecondsInteger(seconds int32)(*RoundItemAddTimeWithSecondsItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    urlTplParams["seconds"] = i53ac87e8cb3cc9276228f74d38694a208cacb99bb8ceb705eeae99fb88d4d274.FormatInt(int64(seconds), 10)
-    return NewRoundItemAddTimeWithSecondsItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+func (m *RoundItemAddTimeRequestBuilder) BySecondsInteger(seconds int32) *RoundItemAddTimeWithSecondsItemRequestBuilder {
+	urlTplParams := make(map[string]string)
+	for idx, item := range m.BaseRequestBuilder.PathParameters {
+		urlTplParams[idx] = item
+	}
+	urlTplParams["seconds"] = i53ac87e8cb3cc9276228f74d38694a208cacb99bb8ceb705eeae99fb88d4d274.FormatInt(int64(seconds), 10)
+	return NewRoundItemAddTimeWithSecondsItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewRoundItemAddTimeRequestBuilderInternal instantiates a new RoundItemAddTimeRequestBuilder and sets the default values.
-func NewRoundItemAddTimeRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*RoundItemAddTimeRequestBuilder) {
-    m := &RoundItemAddTimeRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/round/{gameId}/add-time", pathParameters),
-    }
-    return m
+func NewRoundItemAddTimeRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *RoundItemAddTimeRequestBuilder {
+	m := &RoundItemAddTimeRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/round/{gameId}/add-time", pathParameters),
+	}
+	return m
 }
+
 // NewRoundItemAddTimeRequestBuilder instantiates a new RoundItemAddTimeRequestBuilder and sets the default values.
-func NewRoundItemAddTimeRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*RoundItemAddTimeRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewRoundItemAddTimeRequestBuilderInternal(urlParams, requestAdapter)
+func NewRoundItemAddTimeRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *RoundItemAddTimeRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewRoundItemAddTimeRequestBuilderInternal(urlParams, requestAdapter)
 }

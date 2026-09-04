@@ -4,64 +4,70 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	"context"
+	i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // PuzzleDashboardWithDaysItemRequestBuilder builds and executes requests for operations under \api\puzzle\dashboard\{days}
 type PuzzleDashboardWithDaysItemRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // PuzzleDashboardWithDaysItemRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type PuzzleDashboardWithDaysItemRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+
 // NewPuzzleDashboardWithDaysItemRequestBuilderInternal instantiates a new PuzzleDashboardWithDaysItemRequestBuilder and sets the default values.
-func NewPuzzleDashboardWithDaysItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*PuzzleDashboardWithDaysItemRequestBuilder) {
-    m := &PuzzleDashboardWithDaysItemRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/puzzle/dashboard/{days}", pathParameters),
-    }
-    return m
+func NewPuzzleDashboardWithDaysItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *PuzzleDashboardWithDaysItemRequestBuilder {
+	m := &PuzzleDashboardWithDaysItemRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/puzzle/dashboard/{days}", pathParameters),
+	}
+	return m
 }
+
 // NewPuzzleDashboardWithDaysItemRequestBuilder instantiates a new PuzzleDashboardWithDaysItemRequestBuilder and sets the default values.
-func NewPuzzleDashboardWithDaysItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*PuzzleDashboardWithDaysItemRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewPuzzleDashboardWithDaysItemRequestBuilderInternal(urlParams, requestAdapter)
+func NewPuzzleDashboardWithDaysItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *PuzzleDashboardWithDaysItemRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewPuzzleDashboardWithDaysItemRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get download your [puzzle dashboard](https://lichess.org/training/dashboard/30/dashboard) as JSON.Also includes all puzzle themes played, with aggregated results.Allows re-creating the [improvement/strengths](https://lichess.org/training/dashboard/30/improvementAreas) interfaces.
 // returns a PuzzleDashboardable when successful
-func (m *PuzzleDashboardWithDaysItemRequestBuilder) Get(ctx context.Context, requestConfiguration *PuzzleDashboardWithDaysItemRequestBuilderGetRequestConfiguration)(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.PuzzleDashboardable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreatePuzzleDashboardFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.PuzzleDashboardable), nil
+func (m *PuzzleDashboardWithDaysItemRequestBuilder) Get(ctx context.Context, requestConfiguration *PuzzleDashboardWithDaysItemRequestBuilderGetRequestConfiguration) (i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.PuzzleDashboardable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreatePuzzleDashboardFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.PuzzleDashboardable), nil
 }
+
 // ToGetRequestInformation download your [puzzle dashboard](https://lichess.org/training/dashboard/30/dashboard) as JSON.Also includes all puzzle themes played, with aggregated results.Allows re-creating the [improvement/strengths](https://lichess.org/training/dashboard/30/improvementAreas) interfaces.
 // returns a *RequestInformation when successful
-func (m *PuzzleDashboardWithDaysItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *PuzzleDashboardWithDaysItemRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    return requestInfo, nil
+func (m *PuzzleDashboardWithDaysItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *PuzzleDashboardWithDaysItemRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *PuzzleDashboardWithDaysItemRequestBuilder when successful
-func (m *PuzzleDashboardWithDaysItemRequestBuilder) WithUrl(rawUrl string)(*PuzzleDashboardWithDaysItemRequestBuilder) {
-    return NewPuzzleDashboardWithDaysItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *PuzzleDashboardWithDaysItemRequestBuilder) WithUrl(rawUrl string) *PuzzleDashboardWithDaysItemRequestBuilder {
+	return NewPuzzleDashboardWithDaysItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

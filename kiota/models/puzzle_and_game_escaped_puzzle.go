@@ -4,276 +4,296 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type PuzzleAndGame_puzzle struct {
-    // The fen property
-    fen *string
-    // The id property
-    id *string
-    // The initialPly property
-    initialPly *int32
-    // In UCI format, e.g. "e2e4"
-    lastMove *string
-    // The plays property
-    plays *int32
-    // The rating property
-    rating *int32
-    // The solution property
-    solution []string
-    // The themes property
-    themes []string
+	// The fen property
+	fen *string
+	// The id property
+	id *string
+	// The initialPly property
+	initialPly *int32
+	// In UCI format, e.g. "e2e4"
+	lastMove *string
+	// The plays property
+	plays *int32
+	// The rating property
+	rating *int32
+	// The solution property
+	solution []string
+	// The themes property
+	themes []string
 }
+
 // NewPuzzleAndGame_puzzle instantiates a new PuzzleAndGame_puzzle and sets the default values.
-func NewPuzzleAndGame_puzzle()(*PuzzleAndGame_puzzle) {
-    m := &PuzzleAndGame_puzzle{
-    }
-    return m
+func NewPuzzleAndGame_puzzle() *PuzzleAndGame_puzzle {
+	m := &PuzzleAndGame_puzzle{}
+	return m
 }
+
 // CreatePuzzleAndGame_puzzleFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreatePuzzleAndGame_puzzleFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewPuzzleAndGame_puzzle(), nil
+func CreatePuzzleAndGame_puzzleFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewPuzzleAndGame_puzzle(), nil
 }
+
 // GetFen gets the fen property value. The fen property
 // returns a *string when successful
-func (m *PuzzleAndGame_puzzle) GetFen()(*string) {
-    return m.fen
+func (m *PuzzleAndGame_puzzle) GetFen() *string {
+	return m.fen
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *PuzzleAndGame_puzzle) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["fen"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFen(val)
-        }
-        return nil
-    }
-    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetId(val)
-        }
-        return nil
-    }
-    res["initialPly"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetInitialPly(val)
-        }
-        return nil
-    }
-    res["lastMove"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetLastMove(val)
-        }
-        return nil
-    }
-    res["plays"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPlays(val)
-        }
-        return nil
-    }
-    res["rating"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRating(val)
-        }
-        return nil
-    }
-    res["solution"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfPrimitiveValues("string")
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]string, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = *(v.(*string))
-                }
-            }
-            m.SetSolution(res)
-        }
-        return nil
-    }
-    res["themes"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfPrimitiveValues("string")
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]string, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = *(v.(*string))
-                }
-            }
-            m.SetThemes(res)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *PuzzleAndGame_puzzle) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["fen"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFen(val)
+		}
+		return nil
+	}
+	res["id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetId(val)
+		}
+		return nil
+	}
+	res["initialPly"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetInitialPly(val)
+		}
+		return nil
+	}
+	res["lastMove"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetLastMove(val)
+		}
+		return nil
+	}
+	res["plays"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPlays(val)
+		}
+		return nil
+	}
+	res["rating"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRating(val)
+		}
+		return nil
+	}
+	res["solution"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfPrimitiveValues("string")
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]string, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = *(v.(*string))
+				}
+			}
+			m.SetSolution(res)
+		}
+		return nil
+	}
+	res["themes"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfPrimitiveValues("string")
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]string, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = *(v.(*string))
+				}
+			}
+			m.SetThemes(res)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetId gets the id property value. The id property
 // returns a *string when successful
-func (m *PuzzleAndGame_puzzle) GetId()(*string) {
-    return m.id
+func (m *PuzzleAndGame_puzzle) GetId() *string {
+	return m.id
 }
+
 // GetInitialPly gets the initialPly property value. The initialPly property
 // returns a *int32 when successful
-func (m *PuzzleAndGame_puzzle) GetInitialPly()(*int32) {
-    return m.initialPly
+func (m *PuzzleAndGame_puzzle) GetInitialPly() *int32 {
+	return m.initialPly
 }
+
 // GetLastMove gets the lastMove property value. In UCI format, e.g. "e2e4"
 // returns a *string when successful
-func (m *PuzzleAndGame_puzzle) GetLastMove()(*string) {
-    return m.lastMove
+func (m *PuzzleAndGame_puzzle) GetLastMove() *string {
+	return m.lastMove
 }
+
 // GetPlays gets the plays property value. The plays property
 // returns a *int32 when successful
-func (m *PuzzleAndGame_puzzle) GetPlays()(*int32) {
-    return m.plays
+func (m *PuzzleAndGame_puzzle) GetPlays() *int32 {
+	return m.plays
 }
+
 // GetRating gets the rating property value. The rating property
 // returns a *int32 when successful
-func (m *PuzzleAndGame_puzzle) GetRating()(*int32) {
-    return m.rating
+func (m *PuzzleAndGame_puzzle) GetRating() *int32 {
+	return m.rating
 }
+
 // GetSolution gets the solution property value. The solution property
 // returns a []string when successful
-func (m *PuzzleAndGame_puzzle) GetSolution()([]string) {
-    return m.solution
+func (m *PuzzleAndGame_puzzle) GetSolution() []string {
+	return m.solution
 }
+
 // GetThemes gets the themes property value. The themes property
 // returns a []string when successful
-func (m *PuzzleAndGame_puzzle) GetThemes()([]string) {
-    return m.themes
+func (m *PuzzleAndGame_puzzle) GetThemes() []string {
+	return m.themes
 }
+
 // Serialize serializes information the current object
-func (m *PuzzleAndGame_puzzle) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("fen", m.GetFen())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("id", m.GetId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("initialPly", m.GetInitialPly())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("lastMove", m.GetLastMove())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("plays", m.GetPlays())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("rating", m.GetRating())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetSolution() != nil {
-        err := writer.WriteCollectionOfStringValues("solution", m.GetSolution())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetThemes() != nil {
-        err := writer.WriteCollectionOfStringValues("themes", m.GetThemes())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *PuzzleAndGame_puzzle) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("fen", m.GetFen())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("id", m.GetId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("initialPly", m.GetInitialPly())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("lastMove", m.GetLastMove())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("plays", m.GetPlays())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("rating", m.GetRating())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetSolution() != nil {
+		err := writer.WriteCollectionOfStringValues("solution", m.GetSolution())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetThemes() != nil {
+		err := writer.WriteCollectionOfStringValues("themes", m.GetThemes())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetFen sets the fen property value. The fen property
-func (m *PuzzleAndGame_puzzle) SetFen(value *string)() {
-    m.fen = value
+func (m *PuzzleAndGame_puzzle) SetFen(value *string) {
+	m.fen = value
 }
+
 // SetId sets the id property value. The id property
-func (m *PuzzleAndGame_puzzle) SetId(value *string)() {
-    m.id = value
+func (m *PuzzleAndGame_puzzle) SetId(value *string) {
+	m.id = value
 }
+
 // SetInitialPly sets the initialPly property value. The initialPly property
-func (m *PuzzleAndGame_puzzle) SetInitialPly(value *int32)() {
-    m.initialPly = value
+func (m *PuzzleAndGame_puzzle) SetInitialPly(value *int32) {
+	m.initialPly = value
 }
+
 // SetLastMove sets the lastMove property value. In UCI format, e.g. "e2e4"
-func (m *PuzzleAndGame_puzzle) SetLastMove(value *string)() {
-    m.lastMove = value
+func (m *PuzzleAndGame_puzzle) SetLastMove(value *string) {
+	m.lastMove = value
 }
+
 // SetPlays sets the plays property value. The plays property
-func (m *PuzzleAndGame_puzzle) SetPlays(value *int32)() {
-    m.plays = value
+func (m *PuzzleAndGame_puzzle) SetPlays(value *int32) {
+	m.plays = value
 }
+
 // SetRating sets the rating property value. The rating property
-func (m *PuzzleAndGame_puzzle) SetRating(value *int32)() {
-    m.rating = value
+func (m *PuzzleAndGame_puzzle) SetRating(value *int32) {
+	m.rating = value
 }
+
 // SetSolution sets the solution property value. The solution property
-func (m *PuzzleAndGame_puzzle) SetSolution(value []string)() {
-    m.solution = value
+func (m *PuzzleAndGame_puzzle) SetSolution(value []string) {
+	m.solution = value
 }
+
 // SetThemes sets the themes property value. The themes property
-func (m *PuzzleAndGame_puzzle) SetThemes(value []string)() {
-    m.themes = value
+func (m *PuzzleAndGame_puzzle) SetThemes(value []string) {
+	m.themes = value
 }
+
 type PuzzleAndGame_puzzleable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetFen()(*string)
-    GetId()(*string)
-    GetInitialPly()(*int32)
-    GetLastMove()(*string)
-    GetPlays()(*int32)
-    GetRating()(*int32)
-    GetSolution()([]string)
-    GetThemes()([]string)
-    SetFen(value *string)()
-    SetId(value *string)()
-    SetInitialPly(value *int32)()
-    SetLastMove(value *string)()
-    SetPlays(value *int32)()
-    SetRating(value *int32)()
-    SetSolution(value []string)()
-    SetThemes(value []string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetFen() *string
+	GetId() *string
+	GetInitialPly() *int32
+	GetLastMove() *string
+	GetPlays() *int32
+	GetRating() *int32
+	GetSolution() []string
+	GetThemes() []string
+	SetFen(value *string)
+	SetId(value *string)
+	SetInitialPly(value *int32)
+	SetLastMove(value *string)
+	SetPlays(value *int32)
+	SetRating(value *int32)
+	SetSolution(value []string)
+	SetThemes(value []string)
 }

@@ -2,35 +2,39 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package player
+
 type GetModesQueryParameterType int
 
 const (
-    CASUAL_GETMODESQUERYPARAMETERTYPE GetModesQueryParameterType = iota
-    RATED_GETMODESQUERYPARAMETERTYPE
+	CASUAL_GETMODESQUERYPARAMETERTYPE GetModesQueryParameterType = iota
+	RATED_GETMODESQUERYPARAMETERTYPE
 )
 
 func (i GetModesQueryParameterType) String() string {
-    return []string{"casual", "rated"}[i]
+	return []string{"casual", "rated"}[i]
 }
+
 func ParseGetModesQueryParameterType(v string) (any, error) {
-    result := CASUAL_GETMODESQUERYPARAMETERTYPE
-    switch v {
-        case "casual":
-            result = CASUAL_GETMODESQUERYPARAMETERTYPE
-        case "rated":
-            result = RATED_GETMODESQUERYPARAMETERTYPE
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := CASUAL_GETMODESQUERYPARAMETERTYPE
+	switch v {
+	case "casual":
+		result = CASUAL_GETMODESQUERYPARAMETERTYPE
+	case "rated":
+		result = RATED_GETMODESQUERYPARAMETERTYPE
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeGetModesQueryParameterType(values []GetModesQueryParameterType) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i GetModesQueryParameterType) isMultiValue() bool {
-    return false
+	return false
 }

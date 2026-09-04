@@ -4,138 +4,150 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type PuzzleBatchSolveRequest_solutions struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The id property
-    id *string
-    // The rated property
-    rated *bool
-    // The win property
-    win *bool
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The id property
+	id *string
+	// The rated property
+	rated *bool
+	// The win property
+	win *bool
 }
+
 // NewPuzzleBatchSolveRequest_solutions instantiates a new PuzzleBatchSolveRequest_solutions and sets the default values.
-func NewPuzzleBatchSolveRequest_solutions()(*PuzzleBatchSolveRequest_solutions) {
-    m := &PuzzleBatchSolveRequest_solutions{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewPuzzleBatchSolveRequest_solutions() *PuzzleBatchSolveRequest_solutions {
+	m := &PuzzleBatchSolveRequest_solutions{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreatePuzzleBatchSolveRequest_solutionsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreatePuzzleBatchSolveRequest_solutionsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewPuzzleBatchSolveRequest_solutions(), nil
+func CreatePuzzleBatchSolveRequest_solutionsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewPuzzleBatchSolveRequest_solutions(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *PuzzleBatchSolveRequest_solutions) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *PuzzleBatchSolveRequest_solutions) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *PuzzleBatchSolveRequest_solutions) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetId(val)
-        }
-        return nil
-    }
-    res["rated"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRated(val)
-        }
-        return nil
-    }
-    res["win"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetWin(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *PuzzleBatchSolveRequest_solutions) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetId(val)
+		}
+		return nil
+	}
+	res["rated"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRated(val)
+		}
+		return nil
+	}
+	res["win"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetWin(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetId gets the id property value. The id property
 // returns a *string when successful
-func (m *PuzzleBatchSolveRequest_solutions) GetId()(*string) {
-    return m.id
+func (m *PuzzleBatchSolveRequest_solutions) GetId() *string {
+	return m.id
 }
+
 // GetRated gets the rated property value. The rated property
 // returns a *bool when successful
-func (m *PuzzleBatchSolveRequest_solutions) GetRated()(*bool) {
-    return m.rated
+func (m *PuzzleBatchSolveRequest_solutions) GetRated() *bool {
+	return m.rated
 }
+
 // GetWin gets the win property value. The win property
 // returns a *bool when successful
-func (m *PuzzleBatchSolveRequest_solutions) GetWin()(*bool) {
-    return m.win
+func (m *PuzzleBatchSolveRequest_solutions) GetWin() *bool {
+	return m.win
 }
+
 // Serialize serializes information the current object
-func (m *PuzzleBatchSolveRequest_solutions) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("id", m.GetId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("rated", m.GetRated())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("win", m.GetWin())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *PuzzleBatchSolveRequest_solutions) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("id", m.GetId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("rated", m.GetRated())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("win", m.GetWin())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PuzzleBatchSolveRequest_solutions) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *PuzzleBatchSolveRequest_solutions) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetId sets the id property value. The id property
-func (m *PuzzleBatchSolveRequest_solutions) SetId(value *string)() {
-    m.id = value
+func (m *PuzzleBatchSolveRequest_solutions) SetId(value *string) {
+	m.id = value
 }
+
 // SetRated sets the rated property value. The rated property
-func (m *PuzzleBatchSolveRequest_solutions) SetRated(value *bool)() {
-    m.rated = value
+func (m *PuzzleBatchSolveRequest_solutions) SetRated(value *bool) {
+	m.rated = value
 }
+
 // SetWin sets the win property value. The win property
-func (m *PuzzleBatchSolveRequest_solutions) SetWin(value *bool)() {
-    m.win = value
+func (m *PuzzleBatchSolveRequest_solutions) SetWin(value *bool) {
+	m.win = value
 }
+
 type PuzzleBatchSolveRequest_solutionsable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetId()(*string)
-    GetRated()(*bool)
-    GetWin()(*bool)
-    SetId(value *string)()
-    SetRated(value *bool)()
-    SetWin(value *bool)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetId() *string
+	GetRated() *bool
+	GetWin() *bool
+	SetId(value *string)
+	SetRated(value *bool)
+	SetWin(value *bool)
 }

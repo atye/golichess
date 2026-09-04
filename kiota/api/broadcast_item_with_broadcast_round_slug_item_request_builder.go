@@ -4,35 +4,38 @@
 package api
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // BroadcastItemWithBroadcastRoundSlugItemRequestBuilder builds and executes requests for operations under \api\broadcast\{broadcastTournament-id}\{broadcastRoundSlug}
 type BroadcastItemWithBroadcastRoundSlugItemRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // ByBroadcastRoundId gets an item from the github.com/atye/golichess/kiota.api.broadcast.item.item.item collection
 // returns a *BroadcastItemItemWithBroadcastRoundItemRequestBuilder when successful
-func (m *BroadcastItemWithBroadcastRoundSlugItemRequestBuilder) ByBroadcastRoundId(broadcastRoundId string)(*BroadcastItemItemWithBroadcastRoundItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    if broadcastRoundId != "" {
-        urlTplParams["broadcastRoundId"] = broadcastRoundId
-    }
-    return NewBroadcastItemItemWithBroadcastRoundItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+func (m *BroadcastItemWithBroadcastRoundSlugItemRequestBuilder) ByBroadcastRoundId(broadcastRoundId string) *BroadcastItemItemWithBroadcastRoundItemRequestBuilder {
+	urlTplParams := make(map[string]string)
+	for idx, item := range m.BaseRequestBuilder.PathParameters {
+		urlTplParams[idx] = item
+	}
+	if broadcastRoundId != "" {
+		urlTplParams["broadcastRoundId"] = broadcastRoundId
+	}
+	return NewBroadcastItemItemWithBroadcastRoundItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewBroadcastItemWithBroadcastRoundSlugItemRequestBuilderInternal instantiates a new BroadcastItemWithBroadcastRoundSlugItemRequestBuilder and sets the default values.
-func NewBroadcastItemWithBroadcastRoundSlugItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BroadcastItemWithBroadcastRoundSlugItemRequestBuilder) {
-    m := &BroadcastItemWithBroadcastRoundSlugItemRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/broadcast/{broadcastTournament%2Did}/{broadcastRoundSlug}", pathParameters),
-    }
-    return m
+func NewBroadcastItemWithBroadcastRoundSlugItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BroadcastItemWithBroadcastRoundSlugItemRequestBuilder {
+	m := &BroadcastItemWithBroadcastRoundSlugItemRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/broadcast/{broadcastTournament%2Did}/{broadcastRoundSlug}", pathParameters),
+	}
+	return m
 }
+
 // NewBroadcastItemWithBroadcastRoundSlugItemRequestBuilder instantiates a new BroadcastItemWithBroadcastRoundSlugItemRequestBuilder and sets the default values.
-func NewBroadcastItemWithBroadcastRoundSlugItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BroadcastItemWithBroadcastRoundSlugItemRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewBroadcastItemWithBroadcastRoundSlugItemRequestBuilderInternal(urlParams, requestAdapter)
+func NewBroadcastItemWithBroadcastRoundSlugItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BroadcastItemWithBroadcastRoundSlugItemRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewBroadcastItemWithBroadcastRoundSlugItemRequestBuilderInternal(urlParams, requestAdapter)
 }

@@ -4,229 +4,247 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type LightUser struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
-    flair *string
-    // The id property
-    id *string
-    // The name property
-    name *string
-    // Use patronColor value instead to determine if player is a patron.
-    // Deprecated: 
-    patron *bool
-    // Players can choose a color for their Patron wings.See [here for the color mappings](https://github.com/lichess-org/lila/blob/master/ui/lib/css/abstract/_patron-colors.scss).The presence of this field indicates the player is an active Patron.
-    patronColor *int32
-    // only appears if the user is a titled player or a bot user
-    title *Title
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
+	flair *string
+	// The id property
+	id *string
+	// The name property
+	name *string
+	// Use patronColor value instead to determine if player is a patron.
+	// Deprecated:
+	patron *bool
+	// Players can choose a color for their Patron wings.See [here for the color mappings](https://github.com/lichess-org/lila/blob/master/ui/lib/css/abstract/_patron-colors.scss).The presence of this field indicates the player is an active Patron.
+	patronColor *int32
+	// only appears if the user is a titled player or a bot user
+	title *Title
 }
+
 // NewLightUser instantiates a new LightUser and sets the default values.
-func NewLightUser()(*LightUser) {
-    m := &LightUser{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewLightUser() *LightUser {
+	m := &LightUser{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateLightUserFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateLightUserFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewLightUser(), nil
+func CreateLightUserFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewLightUser(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *LightUser) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *LightUser) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *LightUser) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["flair"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFlair(val)
-        }
-        return nil
-    }
-    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetId(val)
-        }
-        return nil
-    }
-    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetName(val)
-        }
-        return nil
-    }
-    res["patron"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPatron(val)
-        }
-        return nil
-    }
-    res["patronColor"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPatronColor(val)
-        }
-        return nil
-    }
-    res["title"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseTitle)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTitle(val.(*Title))
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *LightUser) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["flair"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFlair(val)
+		}
+		return nil
+	}
+	res["id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetId(val)
+		}
+		return nil
+	}
+	res["name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetName(val)
+		}
+		return nil
+	}
+	res["patron"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPatron(val)
+		}
+		return nil
+	}
+	res["patronColor"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPatronColor(val)
+		}
+		return nil
+	}
+	res["title"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(ParseTitle)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTitle(val.(*Title))
+		}
+		return nil
+	}
+	return res
 }
+
 // GetFlair gets the flair property value. See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
 // returns a *string when successful
-func (m *LightUser) GetFlair()(*string) {
-    return m.flair
+func (m *LightUser) GetFlair() *string {
+	return m.flair
 }
+
 // GetId gets the id property value. The id property
 // returns a *string when successful
-func (m *LightUser) GetId()(*string) {
-    return m.id
+func (m *LightUser) GetId() *string {
+	return m.id
 }
+
 // GetName gets the name property value. The name property
 // returns a *string when successful
-func (m *LightUser) GetName()(*string) {
-    return m.name
+func (m *LightUser) GetName() *string {
+	return m.name
 }
+
 // GetPatron gets the patron property value. Use patronColor value instead to determine if player is a patron.
-// Deprecated: 
+// Deprecated:
 // returns a *bool when successful
-func (m *LightUser) GetPatron()(*bool) {
-    return m.patron
+func (m *LightUser) GetPatron() *bool {
+	return m.patron
 }
+
 // GetPatronColor gets the patronColor property value. Players can choose a color for their Patron wings.See [here for the color mappings](https://github.com/lichess-org/lila/blob/master/ui/lib/css/abstract/_patron-colors.scss).The presence of this field indicates the player is an active Patron.
 // returns a *int32 when successful
-func (m *LightUser) GetPatronColor()(*int32) {
-    return m.patronColor
+func (m *LightUser) GetPatronColor() *int32 {
+	return m.patronColor
 }
+
 // GetTitle gets the title property value. only appears if the user is a titled player or a bot user
 // returns a *Title when successful
-func (m *LightUser) GetTitle()(*Title) {
-    return m.title
+func (m *LightUser) GetTitle() *Title {
+	return m.title
 }
+
 // Serialize serializes information the current object
-func (m *LightUser) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("flair", m.GetFlair())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("id", m.GetId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("name", m.GetName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("patron", m.GetPatron())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("patronColor", m.GetPatronColor())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetTitle() != nil {
-        cast := (*m.GetTitle()).String()
-        err := writer.WriteStringValue("title", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *LightUser) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("flair", m.GetFlair())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("id", m.GetId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("name", m.GetName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("patron", m.GetPatron())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("patronColor", m.GetPatronColor())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetTitle() != nil {
+		cast := (*m.GetTitle()).String()
+		err := writer.WriteStringValue("title", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *LightUser) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *LightUser) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetFlair sets the flair property value. See [available flair list and images](https://github.com/lichess-org/lila/tree/master/public/flair)
-func (m *LightUser) SetFlair(value *string)() {
-    m.flair = value
+func (m *LightUser) SetFlair(value *string) {
+	m.flair = value
 }
+
 // SetId sets the id property value. The id property
-func (m *LightUser) SetId(value *string)() {
-    m.id = value
+func (m *LightUser) SetId(value *string) {
+	m.id = value
 }
+
 // SetName sets the name property value. The name property
-func (m *LightUser) SetName(value *string)() {
-    m.name = value
+func (m *LightUser) SetName(value *string) {
+	m.name = value
 }
+
 // SetPatron sets the patron property value. Use patronColor value instead to determine if player is a patron.
-// Deprecated: 
-func (m *LightUser) SetPatron(value *bool)() {
-    m.patron = value
+// Deprecated:
+func (m *LightUser) SetPatron(value *bool) {
+	m.patron = value
 }
+
 // SetPatronColor sets the patronColor property value. Players can choose a color for their Patron wings.See [here for the color mappings](https://github.com/lichess-org/lila/blob/master/ui/lib/css/abstract/_patron-colors.scss).The presence of this field indicates the player is an active Patron.
-func (m *LightUser) SetPatronColor(value *int32)() {
-    m.patronColor = value
+func (m *LightUser) SetPatronColor(value *int32) {
+	m.patronColor = value
 }
+
 // SetTitle sets the title property value. only appears if the user is a titled player or a bot user
-func (m *LightUser) SetTitle(value *Title)() {
-    m.title = value
+func (m *LightUser) SetTitle(value *Title) {
+	m.title = value
 }
+
 type LightUserable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetFlair()(*string)
-    GetId()(*string)
-    GetName()(*string)
-    GetPatron()(*bool)
-    GetPatronColor()(*int32)
-    GetTitle()(*Title)
-    SetFlair(value *string)()
-    SetId(value *string)()
-    SetName(value *string)()
-    SetPatron(value *bool)()
-    SetPatronColor(value *int32)()
-    SetTitle(value *Title)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetFlair() *string
+	GetId() *string
+	GetName() *string
+	GetPatron() *bool
+	GetPatronColor() *int32
+	GetTitle() *Title
+	SetFlair(value *string)
+	SetId(value *string)
+	SetName(value *string)
+	SetPatron(value *bool)
+	SetPatronColor(value *int32)
+	SetTitle(value *Title)
 }

@@ -4,303 +4,331 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	"context"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // PlayerAutocompleteRequestBuilder builds and executes requests for operations under \api\player\autocomplete
 type PlayerAutocompleteRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // AutocompleteGetResponse composed type wrapper for classes PlayerAutocompleteGetResponseMember1able, []string
 type AutocompleteGetResponse struct {
-    // Composed type representation for type PlayerAutocompleteGetResponseMember1able
-    playerAutocompleteGetResponseMember1 PlayerAutocompleteGetResponseMember1able
-    // Composed type representation for type []string
-    string []string
+	// Composed type representation for type PlayerAutocompleteGetResponseMember1able
+	playerAutocompleteGetResponseMember1 PlayerAutocompleteGetResponseMember1able
+	// Composed type representation for type []string
+	string []string
 }
+
 // NewAutocompleteGetResponse instantiates a new AutocompleteGetResponse and sets the default values.
-func NewAutocompleteGetResponse()(*AutocompleteGetResponse) {
-    m := &AutocompleteGetResponse{
-    }
-    return m
+func NewAutocompleteGetResponse() *AutocompleteGetResponse {
+	m := &AutocompleteGetResponse{}
+	return m
 }
+
 // CreateAutocompleteGetResponseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateAutocompleteGetResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewAutocompleteGetResponse()
-    if parseNode != nil {
-        mappingValueNode, err := parseNode.GetChildNode("")
-        if err != nil {
-            return nil, err
-        }
-        if mappingValueNode != nil {
-            mappingValue, err := mappingValueNode.GetStringValue()
-            if err != nil {
-                return nil, err
-            }
-            if mappingValue != nil {
-            }
-        }
-    }
-    if val, err := parseNode.GetCollectionOfPrimitiveValues("string"); val != nil {
-        if err != nil {
-            return nil, err
-        }
-        cast := make([]string, len(val))
-        for i, v := range val {
-            if v != nil {
-                cast[i] = *(v.(*string))
-            }
-        }
-        result.SetString(cast)
-    }
-    return result, nil
+func CreateAutocompleteGetResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	result := NewAutocompleteGetResponse()
+	if parseNode != nil {
+		mappingValueNode, err := parseNode.GetChildNode("")
+		if err != nil {
+			return nil, err
+		}
+		if mappingValueNode != nil {
+			mappingValue, err := mappingValueNode.GetStringValue()
+			if err != nil {
+				return nil, err
+			}
+			if mappingValue != nil {
+			}
+		}
+	}
+	if val, err := parseNode.GetCollectionOfPrimitiveValues("string"); val != nil {
+		if err != nil {
+			return nil, err
+		}
+		cast := make([]string, len(val))
+		for i, v := range val {
+			if v != nil {
+				cast[i] = *(v.(*string))
+			}
+		}
+		result.SetString(cast)
+	}
+	return result, nil
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *AutocompleteGetResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    if m.GetPlayerAutocompleteGetResponseMember1() != nil {
-        return m.GetPlayerAutocompleteGetResponseMember1().GetFieldDeserializers()
-    }
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *AutocompleteGetResponse) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	if m.GetPlayerAutocompleteGetResponseMember1() != nil {
+		return m.GetPlayerAutocompleteGetResponseMember1().GetFieldDeserializers()
+	}
+	return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
 }
+
 // GetIsComposedType determines if the current object is a wrapper around a composed type
 // returns a bool when successful
-func (m *AutocompleteGetResponse) GetIsComposedType()(bool) {
-    return true
+func (m *AutocompleteGetResponse) GetIsComposedType() bool {
+	return true
 }
+
 // GetPlayerAutocompleteGetResponseMember1 gets the PlayerAutocompleteGetResponseMember1 property value. Composed type representation for type PlayerAutocompleteGetResponseMember1able
 // returns a PlayerAutocompleteGetResponseMember1able when successful
-func (m *AutocompleteGetResponse) GetPlayerAutocompleteGetResponseMember1()(PlayerAutocompleteGetResponseMember1able) {
-    return m.playerAutocompleteGetResponseMember1
+func (m *AutocompleteGetResponse) GetPlayerAutocompleteGetResponseMember1() PlayerAutocompleteGetResponseMember1able {
+	return m.playerAutocompleteGetResponseMember1
 }
+
 // GetString gets the string property value. Composed type representation for type []string
 // returns a []string when successful
-func (m *AutocompleteGetResponse) GetString()([]string) {
-    return m.string
+func (m *AutocompleteGetResponse) GetString() []string {
+	return m.string
 }
+
 // Serialize serializes information the current object
-func (m *AutocompleteGetResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetPlayerAutocompleteGetResponseMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetPlayerAutocompleteGetResponseMember1())
-        if err != nil {
-            return err
-        }
-    } else if m.GetString() != nil {
-        err := writer.WriteCollectionOfStringValues("", m.GetString())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *AutocompleteGetResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	if m.GetPlayerAutocompleteGetResponseMember1() != nil {
+		err := writer.WriteObjectValue("", m.GetPlayerAutocompleteGetResponseMember1())
+		if err != nil {
+			return err
+		}
+	} else if m.GetString() != nil {
+		err := writer.WriteCollectionOfStringValues("", m.GetString())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetPlayerAutocompleteGetResponseMember1 sets the PlayerAutocompleteGetResponseMember1 property value. Composed type representation for type PlayerAutocompleteGetResponseMember1able
-func (m *AutocompleteGetResponse) SetPlayerAutocompleteGetResponseMember1(value PlayerAutocompleteGetResponseMember1able)() {
-    m.playerAutocompleteGetResponseMember1 = value
+func (m *AutocompleteGetResponse) SetPlayerAutocompleteGetResponseMember1(value PlayerAutocompleteGetResponseMember1able) {
+	m.playerAutocompleteGetResponseMember1 = value
 }
+
 // SetString sets the string property value. Composed type representation for type []string
-func (m *AutocompleteGetResponse) SetString(value []string)() {
-    m.string = value
+func (m *AutocompleteGetResponse) SetString(value []string) {
+	m.string = value
 }
+
 // AutocompleteResponse composed type wrapper for classes PlayerAutocompleteGetResponseMember1able, []string
 type AutocompleteResponse struct {
-    // Composed type representation for type PlayerAutocompleteGetResponseMember1able
-    playerAutocompleteGetResponseMember1 PlayerAutocompleteGetResponseMember1able
-    // Composed type representation for type []string
-    string []string
+	// Composed type representation for type PlayerAutocompleteGetResponseMember1able
+	playerAutocompleteGetResponseMember1 PlayerAutocompleteGetResponseMember1able
+	// Composed type representation for type []string
+	string []string
 }
+
 // NewAutocompleteResponse instantiates a new AutocompleteResponse and sets the default values.
-func NewAutocompleteResponse()(*AutocompleteResponse) {
-    m := &AutocompleteResponse{
-    }
-    return m
+func NewAutocompleteResponse() *AutocompleteResponse {
+	m := &AutocompleteResponse{}
+	return m
 }
+
 // CreateAutocompleteResponseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateAutocompleteResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    result := NewAutocompleteResponse()
-    if parseNode != nil {
-        mappingValueNode, err := parseNode.GetChildNode("")
-        if err != nil {
-            return nil, err
-        }
-        if mappingValueNode != nil {
-            mappingValue, err := mappingValueNode.GetStringValue()
-            if err != nil {
-                return nil, err
-            }
-            if mappingValue != nil {
-            }
-        }
-    }
-    if val, err := parseNode.GetCollectionOfPrimitiveValues("string"); val != nil {
-        if err != nil {
-            return nil, err
-        }
-        cast := make([]string, len(val))
-        for i, v := range val {
-            if v != nil {
-                cast[i] = *(v.(*string))
-            }
-        }
-        result.SetString(cast)
-    }
-    return result, nil
+func CreateAutocompleteResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	result := NewAutocompleteResponse()
+	if parseNode != nil {
+		mappingValueNode, err := parseNode.GetChildNode("")
+		if err != nil {
+			return nil, err
+		}
+		if mappingValueNode != nil {
+			mappingValue, err := mappingValueNode.GetStringValue()
+			if err != nil {
+				return nil, err
+			}
+			if mappingValue != nil {
+			}
+		}
+	}
+	if val, err := parseNode.GetCollectionOfPrimitiveValues("string"); val != nil {
+		if err != nil {
+			return nil, err
+		}
+		cast := make([]string, len(val))
+		for i, v := range val {
+			if v != nil {
+				cast[i] = *(v.(*string))
+			}
+		}
+		result.SetString(cast)
+	}
+	return result, nil
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *AutocompleteResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    if m.GetPlayerAutocompleteGetResponseMember1() != nil {
-        return m.GetPlayerAutocompleteGetResponseMember1().GetFieldDeserializers()
-    }
-    return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *AutocompleteResponse) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	if m.GetPlayerAutocompleteGetResponseMember1() != nil {
+		return m.GetPlayerAutocompleteGetResponseMember1().GetFieldDeserializers()
+	}
+	return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
 }
+
 // GetIsComposedType determines if the current object is a wrapper around a composed type
 // returns a bool when successful
-func (m *AutocompleteResponse) GetIsComposedType()(bool) {
-    return true
+func (m *AutocompleteResponse) GetIsComposedType() bool {
+	return true
 }
+
 // GetPlayerAutocompleteGetResponseMember1 gets the PlayerAutocompleteGetResponseMember1 property value. Composed type representation for type PlayerAutocompleteGetResponseMember1able
 // returns a PlayerAutocompleteGetResponseMember1able when successful
-func (m *AutocompleteResponse) GetPlayerAutocompleteGetResponseMember1()(PlayerAutocompleteGetResponseMember1able) {
-    return m.playerAutocompleteGetResponseMember1
+func (m *AutocompleteResponse) GetPlayerAutocompleteGetResponseMember1() PlayerAutocompleteGetResponseMember1able {
+	return m.playerAutocompleteGetResponseMember1
 }
+
 // GetString gets the string property value. Composed type representation for type []string
 // returns a []string when successful
-func (m *AutocompleteResponse) GetString()([]string) {
-    return m.string
+func (m *AutocompleteResponse) GetString() []string {
+	return m.string
 }
+
 // Serialize serializes information the current object
-func (m *AutocompleteResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetPlayerAutocompleteGetResponseMember1() != nil {
-        err := writer.WriteObjectValue("", m.GetPlayerAutocompleteGetResponseMember1())
-        if err != nil {
-            return err
-        }
-    } else if m.GetString() != nil {
-        err := writer.WriteCollectionOfStringValues("", m.GetString())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *AutocompleteResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	if m.GetPlayerAutocompleteGetResponseMember1() != nil {
+		err := writer.WriteObjectValue("", m.GetPlayerAutocompleteGetResponseMember1())
+		if err != nil {
+			return err
+		}
+	} else if m.GetString() != nil {
+		err := writer.WriteCollectionOfStringValues("", m.GetString())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetPlayerAutocompleteGetResponseMember1 sets the PlayerAutocompleteGetResponseMember1 property value. Composed type representation for type PlayerAutocompleteGetResponseMember1able
-func (m *AutocompleteResponse) SetPlayerAutocompleteGetResponseMember1(value PlayerAutocompleteGetResponseMember1able)() {
-    m.playerAutocompleteGetResponseMember1 = value
+func (m *AutocompleteResponse) SetPlayerAutocompleteGetResponseMember1(value PlayerAutocompleteGetResponseMember1able) {
+	m.playerAutocompleteGetResponseMember1 = value
 }
+
 // SetString sets the string property value. Composed type representation for type []string
-func (m *AutocompleteResponse) SetString(value []string)() {
-    m.string = value
+func (m *AutocompleteResponse) SetString(value []string) {
+	m.string = value
 }
+
 // PlayerAutocompleteRequestBuilderGetQueryParameters provides autocompletion options for an incomplete username.
 type PlayerAutocompleteRequestBuilderGetQueryParameters struct {
-    // If `true`, only checks if the user exists.
-    Exists *bool "uriparametername:\"exists\""
-    // Returns followed players matching `term` if any, else returns other players.Requires [OAuth](#tag/OAuth).
-    Friend *bool "uriparametername:\"friend\""
-    // - `false` returns an array of usernames- `true` returns an array of usernames with preferred casing
-    Names *bool "uriparametername:\"names\""
-    // - `false` returns an array of usernames- `true` returns an object with matching users
-    Object *bool "uriparametername:\"object\""
-    // Search within a Swiss tournament.
-    Swiss *string "uriparametername:\"swiss\""
-    // Only search for players who also have a teacher role.
-    Teacher *bool "uriparametername:\"teacher\""
-    // Search within a team.Use team ID/slug.
-    Team *string "uriparametername:\"team\""
-    // The beginning of a username
-    Term *string "uriparametername:\"term\""
-    // Search within a arena tournament.Use tournament ID.
-    Tour *string "uriparametername:\"tour\""
+	// If `true`, only checks if the user exists.
+	Exists *bool "uriparametername:\"exists\""
+	// Returns followed players matching `term` if any, else returns other players.Requires [OAuth](#tag/OAuth).
+	Friend *bool "uriparametername:\"friend\""
+	// - `false` returns an array of usernames- `true` returns an array of usernames with preferred casing
+	Names *bool "uriparametername:\"names\""
+	// - `false` returns an array of usernames- `true` returns an object with matching users
+	Object *bool "uriparametername:\"object\""
+	// Search within a Swiss tournament.
+	Swiss *string "uriparametername:\"swiss\""
+	// Only search for players who also have a teacher role.
+	Teacher *bool "uriparametername:\"teacher\""
+	// Search within a team.Use team ID/slug.
+	Team *string "uriparametername:\"team\""
+	// The beginning of a username
+	Term *string "uriparametername:\"term\""
+	// Search within a arena tournament.Use tournament ID.
+	Tour *string "uriparametername:\"tour\""
 }
+
 // PlayerAutocompleteRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type PlayerAutocompleteRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
-    // Request query parameters
-    QueryParameters *PlayerAutocompleteRequestBuilderGetQueryParameters
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *PlayerAutocompleteRequestBuilderGetQueryParameters
 }
+
 type AutocompleteGetResponseable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetPlayerAutocompleteGetResponseMember1()(PlayerAutocompleteGetResponseMember1able)
-    GetString()([]string)
-    SetPlayerAutocompleteGetResponseMember1(value PlayerAutocompleteGetResponseMember1able)()
-    SetString(value []string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetPlayerAutocompleteGetResponseMember1() PlayerAutocompleteGetResponseMember1able
+	GetString() []string
+	SetPlayerAutocompleteGetResponseMember1(value PlayerAutocompleteGetResponseMember1able)
+	SetString(value []string)
 }
+
 type AutocompleteResponseable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetPlayerAutocompleteGetResponseMember1()(PlayerAutocompleteGetResponseMember1able)
-    GetString()([]string)
-    SetPlayerAutocompleteGetResponseMember1(value PlayerAutocompleteGetResponseMember1able)()
-    SetString(value []string)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetPlayerAutocompleteGetResponseMember1() PlayerAutocompleteGetResponseMember1able
+	GetString() []string
+	SetPlayerAutocompleteGetResponseMember1(value PlayerAutocompleteGetResponseMember1able)
+	SetString(value []string)
 }
+
 // NewPlayerAutocompleteRequestBuilderInternal instantiates a new PlayerAutocompleteRequestBuilder and sets the default values.
-func NewPlayerAutocompleteRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*PlayerAutocompleteRequestBuilder) {
-    m := &PlayerAutocompleteRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/player/autocomplete?term={term}{&exists*,friend*,names*,object*,swiss*,teacher*,team*,tour*}", pathParameters),
-    }
-    return m
+func NewPlayerAutocompleteRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *PlayerAutocompleteRequestBuilder {
+	m := &PlayerAutocompleteRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/player/autocomplete?term={term}{&exists*,friend*,names*,object*,swiss*,teacher*,team*,tour*}", pathParameters),
+	}
+	return m
 }
+
 // NewPlayerAutocompleteRequestBuilder instantiates a new PlayerAutocompleteRequestBuilder and sets the default values.
-func NewPlayerAutocompleteRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*PlayerAutocompleteRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewPlayerAutocompleteRequestBuilderInternal(urlParams, requestAdapter)
+func NewPlayerAutocompleteRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *PlayerAutocompleteRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewPlayerAutocompleteRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get provides autocompletion options for an incomplete username.
 // Deprecated: This method is obsolete. Use GetAsAutocompleteGetResponse instead.
 // returns a AutocompleteResponseable when successful
-func (m *PlayerAutocompleteRequestBuilder) Get(ctx context.Context, requestConfiguration *PlayerAutocompleteRequestBuilderGetRequestConfiguration)(AutocompleteResponseable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateAutocompleteResponseFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(AutocompleteResponseable), nil
+func (m *PlayerAutocompleteRequestBuilder) Get(ctx context.Context, requestConfiguration *PlayerAutocompleteRequestBuilderGetRequestConfiguration) (AutocompleteResponseable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateAutocompleteResponseFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(AutocompleteResponseable), nil
 }
+
 // GetAsAutocompleteGetResponse provides autocompletion options for an incomplete username.
 // returns a AutocompleteGetResponseable when successful
-func (m *PlayerAutocompleteRequestBuilder) GetAsAutocompleteGetResponse(ctx context.Context, requestConfiguration *PlayerAutocompleteRequestBuilderGetRequestConfiguration)(AutocompleteGetResponseable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateAutocompleteGetResponseFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(AutocompleteGetResponseable), nil
+func (m *PlayerAutocompleteRequestBuilder) GetAsAutocompleteGetResponse(ctx context.Context, requestConfiguration *PlayerAutocompleteRequestBuilderGetRequestConfiguration) (AutocompleteGetResponseable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateAutocompleteGetResponseFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(AutocompleteGetResponseable), nil
 }
+
 // ToGetRequestInformation provides autocompletion options for an incomplete username.
 // returns a *RequestInformation when successful
-func (m *PlayerAutocompleteRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *PlayerAutocompleteRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        if requestConfiguration.QueryParameters != nil {
-            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
-        }
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    return requestInfo, nil
+func (m *PlayerAutocompleteRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *PlayerAutocompleteRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *PlayerAutocompleteRequestBuilder when successful
-func (m *PlayerAutocompleteRequestBuilder) WithUrl(rawUrl string)(*PlayerAutocompleteRequestBuilder) {
-    return NewPlayerAutocompleteRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *PlayerAutocompleteRequestBuilder) WithUrl(rawUrl string) *PlayerAutocompleteRequestBuilder {
+	return NewPlayerAutocompleteRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

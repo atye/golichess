@@ -4,35 +4,38 @@
 package api
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // RelUnblockRequestBuilder builds and executes requests for operations under \api\rel\unblock
 type RelUnblockRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // ByUsername gets an item from the github.com/atye/golichess/kiota.api.rel.unblock.item collection
 // returns a *RelUnblockWithUsernameItemRequestBuilder when successful
-func (m *RelUnblockRequestBuilder) ByUsername(username string)(*RelUnblockWithUsernameItemRequestBuilder) {
-    urlTplParams := make(map[string]string)
-    for idx, item := range m.BaseRequestBuilder.PathParameters {
-        urlTplParams[idx] = item
-    }
-    if username != "" {
-        urlTplParams["username"] = username
-    }
-    return NewRelUnblockWithUsernameItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+func (m *RelUnblockRequestBuilder) ByUsername(username string) *RelUnblockWithUsernameItemRequestBuilder {
+	urlTplParams := make(map[string]string)
+	for idx, item := range m.BaseRequestBuilder.PathParameters {
+		urlTplParams[idx] = item
+	}
+	if username != "" {
+		urlTplParams["username"] = username
+	}
+	return NewRelUnblockWithUsernameItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewRelUnblockRequestBuilderInternal instantiates a new RelUnblockRequestBuilder and sets the default values.
-func NewRelUnblockRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*RelUnblockRequestBuilder) {
-    m := &RelUnblockRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/rel/unblock", pathParameters),
-    }
-    return m
+func NewRelUnblockRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *RelUnblockRequestBuilder {
+	m := &RelUnblockRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/rel/unblock", pathParameters),
+	}
+	return m
 }
+
 // NewRelUnblockRequestBuilder instantiates a new RelUnblockRequestBuilder and sets the default values.
-func NewRelUnblockRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*RelUnblockRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewRelUnblockRequestBuilderInternal(urlParams, requestAdapter)
+func NewRelUnblockRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *RelUnblockRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewRelUnblockRequestBuilderInternal(urlParams, requestAdapter)
 }

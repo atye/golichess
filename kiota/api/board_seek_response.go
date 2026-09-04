@@ -4,28 +4,31 @@
 package api
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // BoardSeekResponse only happens when doing a correspondence seek.
 // Deprecated: This class is obsolete. Use BoardSeekPostResponseable instead.
 type BoardSeekResponse struct {
-    BoardSeekPostResponse
+	BoardSeekPostResponse
 }
+
 // NewBoardSeekResponse instantiates a new BoardSeekResponse and sets the default values.
-func NewBoardSeekResponse()(*BoardSeekResponse) {
-    m := &BoardSeekResponse{
-        BoardSeekPostResponse: *NewBoardSeekPostResponse(),
-    }
-    return m
+func NewBoardSeekResponse() *BoardSeekResponse {
+	m := &BoardSeekResponse{
+		BoardSeekPostResponse: *NewBoardSeekPostResponse(),
+	}
+	return m
 }
+
 // CreateBoardSeekResponseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateBoardSeekResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewBoardSeekResponse(), nil
+func CreateBoardSeekResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewBoardSeekResponse(), nil
 }
+
 // Deprecated: This class is obsolete. Use BoardSeekPostResponseable instead.
 type BoardSeekResponseable interface {
-    BoardSeekPostResponseable
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	BoardSeekPostResponseable
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
 }

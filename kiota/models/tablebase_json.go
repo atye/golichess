@@ -4,412 +4,442 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type TablebaseJson struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // `cursed-win` and `blessed-loss` means the 50-move rule preventsthe decisive result.`syzygy-win` and `syzygy-loss` means exact result is unknown due to[DTZ rounding](https://syzygy-tables.info/metrics#dtz), i.e., thewin or loss could also be prevented by the 50-move rule ifthe user has deviated from the tablebase recommendation since thelast pawn move or capture.`maybe-win` and `maybe-loss` means the result with regard to the50-move rule is unknown, because DTZ is unknown and the DTC tablebasedoes not guarantee to reach a zeroing move as soon as possible.
-    category *TablebaseJson_category
-    // The checkmate property
-    checkmate *bool
-    // Depth to Conversion: Moves to next capture, promotion,or checkmate. Available for:* Standard chess positions with 8 pieces, more than one pawn of material  value for each side, and at least one pair of opposing pawns,  short *op1*, if query parameter `dtc` is `auxiliary` or `always`.* Some standard chess positions with up to 7 pieces, if query parameter  `dtc` is `always`. Work in progress.
-    dtc *int32
-    // Depth To Mate: Plies to mate (available only for Standard positionswith not more than 6 pieces)
-    dtm *int32
-    // Depth To Win: Plies to win (available only for Antichess positionswith not more than 4 pieces)
-    dtw *int32
-    // [DTZ50'' with rounding](https://syzygy-tables.info/metrics#dtz) in plies(for Standard chess positions with not more than 7 pieces and variantpositions not more than 6 pieces)
-    dtz *int32
-    // The insufficient_material property
-    insufficient_material *bool
-    // Information about legal moves, best first
-    moves []TablebaseMoveable
-    // DTZ50'' in plies, only if guaranteed to not be rounded, or absent if unknown
-    precise_dtz *int32
-    // The stalemate property
-    stalemate *bool
-    // Only in chess variants
-    variant_loss *bool
-    // Only in chess variants
-    variant_win *bool
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// `cursed-win` and `blessed-loss` means the 50-move rule preventsthe decisive result.`syzygy-win` and `syzygy-loss` means exact result is unknown due to[DTZ rounding](https://syzygy-tables.info/metrics#dtz), i.e., thewin or loss could also be prevented by the 50-move rule ifthe user has deviated from the tablebase recommendation since thelast pawn move or capture.`maybe-win` and `maybe-loss` means the result with regard to the50-move rule is unknown, because DTZ is unknown and the DTC tablebasedoes not guarantee to reach a zeroing move as soon as possible.
+	category *TablebaseJson_category
+	// The checkmate property
+	checkmate *bool
+	// Depth to Conversion: Moves to next capture, promotion,or checkmate. Available for:* Standard chess positions with 8 pieces, more than one pawn of material  value for each side, and at least one pair of opposing pawns,  short *op1*, if query parameter `dtc` is `auxiliary` or `always`.* Some standard chess positions with up to 7 pieces, if query parameter  `dtc` is `always`. Work in progress.
+	dtc *int32
+	// Depth To Mate: Plies to mate (available only for Standard positionswith not more than 6 pieces)
+	dtm *int32
+	// Depth To Win: Plies to win (available only for Antichess positionswith not more than 4 pieces)
+	dtw *int32
+	// [DTZ50'' with rounding](https://syzygy-tables.info/metrics#dtz) in plies(for Standard chess positions with not more than 7 pieces and variantpositions not more than 6 pieces)
+	dtz *int32
+	// The insufficient_material property
+	insufficient_material *bool
+	// Information about legal moves, best first
+	moves []TablebaseMoveable
+	// DTZ50'' in plies, only if guaranteed to not be rounded, or absent if unknown
+	precise_dtz *int32
+	// The stalemate property
+	stalemate *bool
+	// Only in chess variants
+	variant_loss *bool
+	// Only in chess variants
+	variant_win *bool
 }
+
 // NewTablebaseJson instantiates a new TablebaseJson and sets the default values.
-func NewTablebaseJson()(*TablebaseJson) {
-    m := &TablebaseJson{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewTablebaseJson() *TablebaseJson {
+	m := &TablebaseJson{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateTablebaseJsonFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateTablebaseJsonFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewTablebaseJson(), nil
+func CreateTablebaseJsonFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewTablebaseJson(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *TablebaseJson) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *TablebaseJson) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetCategory gets the category property value. `cursed-win` and `blessed-loss` means the 50-move rule preventsthe decisive result.`syzygy-win` and `syzygy-loss` means exact result is unknown due to[DTZ rounding](https://syzygy-tables.info/metrics#dtz), i.e., thewin or loss could also be prevented by the 50-move rule ifthe user has deviated from the tablebase recommendation since thelast pawn move or capture.`maybe-win` and `maybe-loss` means the result with regard to the50-move rule is unknown, because DTZ is unknown and the DTC tablebasedoes not guarantee to reach a zeroing move as soon as possible.
 // returns a *TablebaseJson_category when successful
-func (m *TablebaseJson) GetCategory()(*TablebaseJson_category) {
-    return m.category
+func (m *TablebaseJson) GetCategory() *TablebaseJson_category {
+	return m.category
 }
+
 // GetCheckmate gets the checkmate property value. The checkmate property
 // returns a *bool when successful
-func (m *TablebaseJson) GetCheckmate()(*bool) {
-    return m.checkmate
+func (m *TablebaseJson) GetCheckmate() *bool {
+	return m.checkmate
 }
+
 // GetDtc gets the dtc property value. Depth to Conversion: Moves to next capture, promotion,or checkmate. Available for:* Standard chess positions with 8 pieces, more than one pawn of material  value for each side, and at least one pair of opposing pawns,  short *op1*, if query parameter `dtc` is `auxiliary` or `always`.* Some standard chess positions with up to 7 pieces, if query parameter  `dtc` is `always`. Work in progress.
 // returns a *int32 when successful
-func (m *TablebaseJson) GetDtc()(*int32) {
-    return m.dtc
+func (m *TablebaseJson) GetDtc() *int32 {
+	return m.dtc
 }
+
 // GetDtm gets the dtm property value. Depth To Mate: Plies to mate (available only for Standard positionswith not more than 6 pieces)
 // returns a *int32 when successful
-func (m *TablebaseJson) GetDtm()(*int32) {
-    return m.dtm
+func (m *TablebaseJson) GetDtm() *int32 {
+	return m.dtm
 }
+
 // GetDtw gets the dtw property value. Depth To Win: Plies to win (available only for Antichess positionswith not more than 4 pieces)
 // returns a *int32 when successful
-func (m *TablebaseJson) GetDtw()(*int32) {
-    return m.dtw
+func (m *TablebaseJson) GetDtw() *int32 {
+	return m.dtw
 }
+
 // GetDtz gets the dtz property value. [DTZ50'' with rounding](https://syzygy-tables.info/metrics#dtz) in plies(for Standard chess positions with not more than 7 pieces and variantpositions not more than 6 pieces)
 // returns a *int32 when successful
-func (m *TablebaseJson) GetDtz()(*int32) {
-    return m.dtz
+func (m *TablebaseJson) GetDtz() *int32 {
+	return m.dtz
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *TablebaseJson) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["category"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseTablebaseJson_category)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCategory(val.(*TablebaseJson_category))
-        }
-        return nil
-    }
-    res["checkmate"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCheckmate(val)
-        }
-        return nil
-    }
-    res["dtc"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDtc(val)
-        }
-        return nil
-    }
-    res["dtm"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDtm(val)
-        }
-        return nil
-    }
-    res["dtw"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDtw(val)
-        }
-        return nil
-    }
-    res["dtz"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDtz(val)
-        }
-        return nil
-    }
-    res["insufficient_material"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetInsufficientMaterial(val)
-        }
-        return nil
-    }
-    res["moves"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateTablebaseMoveFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]TablebaseMoveable, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = v.(TablebaseMoveable)
-                }
-            }
-            m.SetMoves(res)
-        }
-        return nil
-    }
-    res["precise_dtz"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPreciseDtz(val)
-        }
-        return nil
-    }
-    res["stalemate"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStalemate(val)
-        }
-        return nil
-    }
-    res["variant_loss"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetVariantLoss(val)
-        }
-        return nil
-    }
-    res["variant_win"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetVariantWin(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *TablebaseJson) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["category"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(ParseTablebaseJson_category)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCategory(val.(*TablebaseJson_category))
+		}
+		return nil
+	}
+	res["checkmate"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCheckmate(val)
+		}
+		return nil
+	}
+	res["dtc"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetDtc(val)
+		}
+		return nil
+	}
+	res["dtm"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetDtm(val)
+		}
+		return nil
+	}
+	res["dtw"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetDtw(val)
+		}
+		return nil
+	}
+	res["dtz"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetDtz(val)
+		}
+		return nil
+	}
+	res["insufficient_material"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetInsufficientMaterial(val)
+		}
+		return nil
+	}
+	res["moves"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateTablebaseMoveFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]TablebaseMoveable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(TablebaseMoveable)
+				}
+			}
+			m.SetMoves(res)
+		}
+		return nil
+	}
+	res["precise_dtz"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPreciseDtz(val)
+		}
+		return nil
+	}
+	res["stalemate"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStalemate(val)
+		}
+		return nil
+	}
+	res["variant_loss"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetVariantLoss(val)
+		}
+		return nil
+	}
+	res["variant_win"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetVariantWin(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetInsufficientMaterial gets the insufficient_material property value. The insufficient_material property
 // returns a *bool when successful
-func (m *TablebaseJson) GetInsufficientMaterial()(*bool) {
-    return m.insufficient_material
+func (m *TablebaseJson) GetInsufficientMaterial() *bool {
+	return m.insufficient_material
 }
+
 // GetMoves gets the moves property value. Information about legal moves, best first
 // returns a []TablebaseMoveable when successful
-func (m *TablebaseJson) GetMoves()([]TablebaseMoveable) {
-    return m.moves
+func (m *TablebaseJson) GetMoves() []TablebaseMoveable {
+	return m.moves
 }
+
 // GetPreciseDtz gets the precise_dtz property value. DTZ50'' in plies, only if guaranteed to not be rounded, or absent if unknown
 // returns a *int32 when successful
-func (m *TablebaseJson) GetPreciseDtz()(*int32) {
-    return m.precise_dtz
+func (m *TablebaseJson) GetPreciseDtz() *int32 {
+	return m.precise_dtz
 }
+
 // GetStalemate gets the stalemate property value. The stalemate property
 // returns a *bool when successful
-func (m *TablebaseJson) GetStalemate()(*bool) {
-    return m.stalemate
+func (m *TablebaseJson) GetStalemate() *bool {
+	return m.stalemate
 }
+
 // GetVariantLoss gets the variant_loss property value. Only in chess variants
 // returns a *bool when successful
-func (m *TablebaseJson) GetVariantLoss()(*bool) {
-    return m.variant_loss
+func (m *TablebaseJson) GetVariantLoss() *bool {
+	return m.variant_loss
 }
+
 // GetVariantWin gets the variant_win property value. Only in chess variants
 // returns a *bool when successful
-func (m *TablebaseJson) GetVariantWin()(*bool) {
-    return m.variant_win
+func (m *TablebaseJson) GetVariantWin() *bool {
+	return m.variant_win
 }
+
 // Serialize serializes information the current object
-func (m *TablebaseJson) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetCategory() != nil {
-        cast := (*m.GetCategory()).String()
-        err := writer.WriteStringValue("category", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("checkmate", m.GetCheckmate())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("dtc", m.GetDtc())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("dtm", m.GetDtm())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("dtw", m.GetDtw())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("dtz", m.GetDtz())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("insufficient_material", m.GetInsufficientMaterial())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetMoves() != nil {
-        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetMoves()))
-        for i, v := range m.GetMoves() {
-            if v != nil {
-                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-            }
-        }
-        err := writer.WriteCollectionOfObjectValues("moves", cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("precise_dtz", m.GetPreciseDtz())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("stalemate", m.GetStalemate())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("variant_loss", m.GetVariantLoss())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("variant_win", m.GetVariantWin())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *TablebaseJson) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	if m.GetCategory() != nil {
+		cast := (*m.GetCategory()).String()
+		err := writer.WriteStringValue("category", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("checkmate", m.GetCheckmate())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("dtc", m.GetDtc())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("dtm", m.GetDtm())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("dtw", m.GetDtw())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("dtz", m.GetDtz())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("insufficient_material", m.GetInsufficientMaterial())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetMoves() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetMoves()))
+		for i, v := range m.GetMoves() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("moves", cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("precise_dtz", m.GetPreciseDtz())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("stalemate", m.GetStalemate())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("variant_loss", m.GetVariantLoss())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("variant_win", m.GetVariantWin())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *TablebaseJson) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *TablebaseJson) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetCategory sets the category property value. `cursed-win` and `blessed-loss` means the 50-move rule preventsthe decisive result.`syzygy-win` and `syzygy-loss` means exact result is unknown due to[DTZ rounding](https://syzygy-tables.info/metrics#dtz), i.e., thewin or loss could also be prevented by the 50-move rule ifthe user has deviated from the tablebase recommendation since thelast pawn move or capture.`maybe-win` and `maybe-loss` means the result with regard to the50-move rule is unknown, because DTZ is unknown and the DTC tablebasedoes not guarantee to reach a zeroing move as soon as possible.
-func (m *TablebaseJson) SetCategory(value *TablebaseJson_category)() {
-    m.category = value
+func (m *TablebaseJson) SetCategory(value *TablebaseJson_category) {
+	m.category = value
 }
+
 // SetCheckmate sets the checkmate property value. The checkmate property
-func (m *TablebaseJson) SetCheckmate(value *bool)() {
-    m.checkmate = value
+func (m *TablebaseJson) SetCheckmate(value *bool) {
+	m.checkmate = value
 }
+
 // SetDtc sets the dtc property value. Depth to Conversion: Moves to next capture, promotion,or checkmate. Available for:* Standard chess positions with 8 pieces, more than one pawn of material  value for each side, and at least one pair of opposing pawns,  short *op1*, if query parameter `dtc` is `auxiliary` or `always`.* Some standard chess positions with up to 7 pieces, if query parameter  `dtc` is `always`. Work in progress.
-func (m *TablebaseJson) SetDtc(value *int32)() {
-    m.dtc = value
+func (m *TablebaseJson) SetDtc(value *int32) {
+	m.dtc = value
 }
+
 // SetDtm sets the dtm property value. Depth To Mate: Plies to mate (available only for Standard positionswith not more than 6 pieces)
-func (m *TablebaseJson) SetDtm(value *int32)() {
-    m.dtm = value
+func (m *TablebaseJson) SetDtm(value *int32) {
+	m.dtm = value
 }
+
 // SetDtw sets the dtw property value. Depth To Win: Plies to win (available only for Antichess positionswith not more than 4 pieces)
-func (m *TablebaseJson) SetDtw(value *int32)() {
-    m.dtw = value
+func (m *TablebaseJson) SetDtw(value *int32) {
+	m.dtw = value
 }
+
 // SetDtz sets the dtz property value. [DTZ50'' with rounding](https://syzygy-tables.info/metrics#dtz) in plies(for Standard chess positions with not more than 7 pieces and variantpositions not more than 6 pieces)
-func (m *TablebaseJson) SetDtz(value *int32)() {
-    m.dtz = value
+func (m *TablebaseJson) SetDtz(value *int32) {
+	m.dtz = value
 }
+
 // SetInsufficientMaterial sets the insufficient_material property value. The insufficient_material property
-func (m *TablebaseJson) SetInsufficientMaterial(value *bool)() {
-    m.insufficient_material = value
+func (m *TablebaseJson) SetInsufficientMaterial(value *bool) {
+	m.insufficient_material = value
 }
+
 // SetMoves sets the moves property value. Information about legal moves, best first
-func (m *TablebaseJson) SetMoves(value []TablebaseMoveable)() {
-    m.moves = value
+func (m *TablebaseJson) SetMoves(value []TablebaseMoveable) {
+	m.moves = value
 }
+
 // SetPreciseDtz sets the precise_dtz property value. DTZ50'' in plies, only if guaranteed to not be rounded, or absent if unknown
-func (m *TablebaseJson) SetPreciseDtz(value *int32)() {
-    m.precise_dtz = value
+func (m *TablebaseJson) SetPreciseDtz(value *int32) {
+	m.precise_dtz = value
 }
+
 // SetStalemate sets the stalemate property value. The stalemate property
-func (m *TablebaseJson) SetStalemate(value *bool)() {
-    m.stalemate = value
+func (m *TablebaseJson) SetStalemate(value *bool) {
+	m.stalemate = value
 }
+
 // SetVariantLoss sets the variant_loss property value. Only in chess variants
-func (m *TablebaseJson) SetVariantLoss(value *bool)() {
-    m.variant_loss = value
+func (m *TablebaseJson) SetVariantLoss(value *bool) {
+	m.variant_loss = value
 }
+
 // SetVariantWin sets the variant_win property value. Only in chess variants
-func (m *TablebaseJson) SetVariantWin(value *bool)() {
-    m.variant_win = value
+func (m *TablebaseJson) SetVariantWin(value *bool) {
+	m.variant_win = value
 }
+
 type TablebaseJsonable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetCategory()(*TablebaseJson_category)
-    GetCheckmate()(*bool)
-    GetDtc()(*int32)
-    GetDtm()(*int32)
-    GetDtw()(*int32)
-    GetDtz()(*int32)
-    GetInsufficientMaterial()(*bool)
-    GetMoves()([]TablebaseMoveable)
-    GetPreciseDtz()(*int32)
-    GetStalemate()(*bool)
-    GetVariantLoss()(*bool)
-    GetVariantWin()(*bool)
-    SetCategory(value *TablebaseJson_category)()
-    SetCheckmate(value *bool)()
-    SetDtc(value *int32)()
-    SetDtm(value *int32)()
-    SetDtw(value *int32)()
-    SetDtz(value *int32)()
-    SetInsufficientMaterial(value *bool)()
-    SetMoves(value []TablebaseMoveable)()
-    SetPreciseDtz(value *int32)()
-    SetStalemate(value *bool)()
-    SetVariantLoss(value *bool)()
-    SetVariantWin(value *bool)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetCategory() *TablebaseJson_category
+	GetCheckmate() *bool
+	GetDtc() *int32
+	GetDtm() *int32
+	GetDtw() *int32
+	GetDtz() *int32
+	GetInsufficientMaterial() *bool
+	GetMoves() []TablebaseMoveable
+	GetPreciseDtz() *int32
+	GetStalemate() *bool
+	GetVariantLoss() *bool
+	GetVariantWin() *bool
+	SetCategory(value *TablebaseJson_category)
+	SetCheckmate(value *bool)
+	SetDtc(value *int32)
+	SetDtm(value *int32)
+	SetDtw(value *int32)
+	SetDtz(value *int32)
+	SetInsufficientMaterial(value *bool)
+	SetMoves(value []TablebaseMoveable)
+	SetPreciseDtz(value *int32)
+	SetStalemate(value *bool)
+	SetVariantLoss(value *bool)
+	SetVariantWin(value *bool)
 }

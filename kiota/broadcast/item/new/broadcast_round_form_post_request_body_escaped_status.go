@@ -2,39 +2,43 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package new
+
 // Lichess can usually detect the round status, but you can also set it manually if needed.
 type BroadcastRoundFormPostRequestBody_status int
 
 const (
-    NEW_BROADCASTROUNDFORMPOSTREQUESTBODY_STATUS BroadcastRoundFormPostRequestBody_status = iota
-    STARTED_BROADCASTROUNDFORMPOSTREQUESTBODY_STATUS
-    FINISHED_BROADCASTROUNDFORMPOSTREQUESTBODY_STATUS
+	NEW_BROADCASTROUNDFORMPOSTREQUESTBODY_STATUS BroadcastRoundFormPostRequestBody_status = iota
+	STARTED_BROADCASTROUNDFORMPOSTREQUESTBODY_STATUS
+	FINISHED_BROADCASTROUNDFORMPOSTREQUESTBODY_STATUS
 )
 
 func (i BroadcastRoundFormPostRequestBody_status) String() string {
-    return []string{"new", "started", "finished"}[i]
+	return []string{"new", "started", "finished"}[i]
 }
+
 func ParseBroadcastRoundFormPostRequestBody_status(v string) (any, error) {
-    result := NEW_BROADCASTROUNDFORMPOSTREQUESTBODY_STATUS
-    switch v {
-        case "new":
-            result = NEW_BROADCASTROUNDFORMPOSTREQUESTBODY_STATUS
-        case "started":
-            result = STARTED_BROADCASTROUNDFORMPOSTREQUESTBODY_STATUS
-        case "finished":
-            result = FINISHED_BROADCASTROUNDFORMPOSTREQUESTBODY_STATUS
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := NEW_BROADCASTROUNDFORMPOSTREQUESTBODY_STATUS
+	switch v {
+	case "new":
+		result = NEW_BROADCASTROUNDFORMPOSTREQUESTBODY_STATUS
+	case "started":
+		result = STARTED_BROADCASTROUNDFORMPOSTREQUESTBODY_STATUS
+	case "finished":
+		result = FINISHED_BROADCASTROUNDFORMPOSTREQUESTBODY_STATUS
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeBroadcastRoundFormPostRequestBody_status(values []BroadcastRoundFormPostRequestBody_status) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i BroadcastRoundFormPostRequestBody_status) isMultiValue() bool {
-    return false
+	return false
 }

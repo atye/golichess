@@ -4,138 +4,150 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type PuzzleGlicko struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The deviation property
-    deviation *float64
-    // The provisional property
-    provisional *bool
-    // The rating property
-    rating *float64
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The deviation property
+	deviation *float64
+	// The provisional property
+	provisional *bool
+	// The rating property
+	rating *float64
 }
+
 // NewPuzzleGlicko instantiates a new PuzzleGlicko and sets the default values.
-func NewPuzzleGlicko()(*PuzzleGlicko) {
-    m := &PuzzleGlicko{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewPuzzleGlicko() *PuzzleGlicko {
+	m := &PuzzleGlicko{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreatePuzzleGlickoFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreatePuzzleGlickoFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewPuzzleGlicko(), nil
+func CreatePuzzleGlickoFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewPuzzleGlicko(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *PuzzleGlicko) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *PuzzleGlicko) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetDeviation gets the deviation property value. The deviation property
 // returns a *float64 when successful
-func (m *PuzzleGlicko) GetDeviation()(*float64) {
-    return m.deviation
+func (m *PuzzleGlicko) GetDeviation() *float64 {
+	return m.deviation
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *PuzzleGlicko) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["deviation"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDeviation(val)
-        }
-        return nil
-    }
-    res["provisional"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetProvisional(val)
-        }
-        return nil
-    }
-    res["rating"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetFloat64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRating(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *PuzzleGlicko) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["deviation"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetDeviation(val)
+		}
+		return nil
+	}
+	res["provisional"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetProvisional(val)
+		}
+		return nil
+	}
+	res["rating"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRating(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetProvisional gets the provisional property value. The provisional property
 // returns a *bool when successful
-func (m *PuzzleGlicko) GetProvisional()(*bool) {
-    return m.provisional
+func (m *PuzzleGlicko) GetProvisional() *bool {
+	return m.provisional
 }
+
 // GetRating gets the rating property value. The rating property
 // returns a *float64 when successful
-func (m *PuzzleGlicko) GetRating()(*float64) {
-    return m.rating
+func (m *PuzzleGlicko) GetRating() *float64 {
+	return m.rating
 }
+
 // Serialize serializes information the current object
-func (m *PuzzleGlicko) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteFloat64Value("deviation", m.GetDeviation())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("provisional", m.GetProvisional())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteFloat64Value("rating", m.GetRating())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *PuzzleGlicko) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteFloat64Value("deviation", m.GetDeviation())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("provisional", m.GetProvisional())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteFloat64Value("rating", m.GetRating())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PuzzleGlicko) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *PuzzleGlicko) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetDeviation sets the deviation property value. The deviation property
-func (m *PuzzleGlicko) SetDeviation(value *float64)() {
-    m.deviation = value
+func (m *PuzzleGlicko) SetDeviation(value *float64) {
+	m.deviation = value
 }
+
 // SetProvisional sets the provisional property value. The provisional property
-func (m *PuzzleGlicko) SetProvisional(value *bool)() {
-    m.provisional = value
+func (m *PuzzleGlicko) SetProvisional(value *bool) {
+	m.provisional = value
 }
+
 // SetRating sets the rating property value. The rating property
-func (m *PuzzleGlicko) SetRating(value *float64)() {
-    m.rating = value
+func (m *PuzzleGlicko) SetRating(value *float64) {
+	m.rating = value
 }
+
 type PuzzleGlickoable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetDeviation()(*float64)
-    GetProvisional()(*bool)
-    GetRating()(*float64)
-    SetDeviation(value *float64)()
-    SetProvisional(value *bool)()
-    SetRating(value *float64)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetDeviation() *float64
+	GetProvisional() *bool
+	GetRating() *float64
+	SetDeviation(value *float64)
+	SetProvisional(value *bool)
+	SetRating(value *float64)
 }

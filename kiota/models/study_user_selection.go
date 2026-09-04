@@ -2,44 +2,48 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 type StudyUserSelection int
 
 const (
-    NOBODY_STUDYUSERSELECTION StudyUserSelection = iota
-    OWNER_STUDYUSERSELECTION
-    CONTRIBUTOR_STUDYUSERSELECTION
-    MEMBER_STUDYUSERSELECTION
-    EVERYONE_STUDYUSERSELECTION
+	NOBODY_STUDYUSERSELECTION StudyUserSelection = iota
+	OWNER_STUDYUSERSELECTION
+	CONTRIBUTOR_STUDYUSERSELECTION
+	MEMBER_STUDYUSERSELECTION
+	EVERYONE_STUDYUSERSELECTION
 )
 
 func (i StudyUserSelection) String() string {
-    return []string{"nobody", "owner", "contributor", "member", "everyone"}[i]
+	return []string{"nobody", "owner", "contributor", "member", "everyone"}[i]
 }
+
 func ParseStudyUserSelection(v string) (any, error) {
-    result := NOBODY_STUDYUSERSELECTION
-    switch v {
-        case "nobody":
-            result = NOBODY_STUDYUSERSELECTION
-        case "owner":
-            result = OWNER_STUDYUSERSELECTION
-        case "contributor":
-            result = CONTRIBUTOR_STUDYUSERSELECTION
-        case "member":
-            result = MEMBER_STUDYUSERSELECTION
-        case "everyone":
-            result = EVERYONE_STUDYUSERSELECTION
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := NOBODY_STUDYUSERSELECTION
+	switch v {
+	case "nobody":
+		result = NOBODY_STUDYUSERSELECTION
+	case "owner":
+		result = OWNER_STUDYUSERSELECTION
+	case "contributor":
+		result = CONTRIBUTOR_STUDYUSERSELECTION
+	case "member":
+		result = MEMBER_STUDYUSERSELECTION
+	case "everyone":
+		result = EVERYONE_STUDYUSERSELECTION
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeStudyUserSelection(values []StudyUserSelection) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i StudyUserSelection) isMultiValue() bool {
-    return false
+	return false
 }

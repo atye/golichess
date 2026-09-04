@@ -4,139 +4,151 @@
 package models
 
 import (
-    i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
 )
 
 type PerfStat_stat_playStreak struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The lastDate property
-    lastDate *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The nb property
-    nb PerfStat_stat_playStreak_nbable
-    // The time property
-    time PerfStat_stat_playStreak_timeable
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The lastDate property
+	lastDate *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+	// The nb property
+	nb PerfStat_stat_playStreak_nbable
+	// The time property
+	time PerfStat_stat_playStreak_timeable
 }
+
 // NewPerfStat_stat_playStreak instantiates a new PerfStat_stat_playStreak and sets the default values.
-func NewPerfStat_stat_playStreak()(*PerfStat_stat_playStreak) {
-    m := &PerfStat_stat_playStreak{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewPerfStat_stat_playStreak() *PerfStat_stat_playStreak {
+	m := &PerfStat_stat_playStreak{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreatePerfStat_stat_playStreakFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreatePerfStat_stat_playStreakFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewPerfStat_stat_playStreak(), nil
+func CreatePerfStat_stat_playStreakFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewPerfStat_stat_playStreak(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *PerfStat_stat_playStreak) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *PerfStat_stat_playStreak) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *PerfStat_stat_playStreak) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["lastDate"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetTimeValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetLastDate(val)
-        }
-        return nil
-    }
-    res["nb"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreatePerfStat_stat_playStreak_nbFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetNb(val.(PerfStat_stat_playStreak_nbable))
-        }
-        return nil
-    }
-    res["time"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreatePerfStat_stat_playStreak_timeFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetTime(val.(PerfStat_stat_playStreak_timeable))
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *PerfStat_stat_playStreak) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["lastDate"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetTimeValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetLastDate(val)
+		}
+		return nil
+	}
+	res["nb"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreatePerfStat_stat_playStreak_nbFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetNb(val.(PerfStat_stat_playStreak_nbable))
+		}
+		return nil
+	}
+	res["time"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreatePerfStat_stat_playStreak_timeFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTime(val.(PerfStat_stat_playStreak_timeable))
+		}
+		return nil
+	}
+	return res
 }
+
 // GetLastDate gets the lastDate property value. The lastDate property
 // returns a *Time when successful
-func (m *PerfStat_stat_playStreak) GetLastDate()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.lastDate
+func (m *PerfStat_stat_playStreak) GetLastDate() *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time {
+	return m.lastDate
 }
+
 // GetNb gets the nb property value. The nb property
 // returns a PerfStat_stat_playStreak_nbable when successful
-func (m *PerfStat_stat_playStreak) GetNb()(PerfStat_stat_playStreak_nbable) {
-    return m.nb
+func (m *PerfStat_stat_playStreak) GetNb() PerfStat_stat_playStreak_nbable {
+	return m.nb
 }
+
 // GetTime gets the time property value. The time property
 // returns a PerfStat_stat_playStreak_timeable when successful
-func (m *PerfStat_stat_playStreak) GetTime()(PerfStat_stat_playStreak_timeable) {
-    return m.time
+func (m *PerfStat_stat_playStreak) GetTime() PerfStat_stat_playStreak_timeable {
+	return m.time
 }
+
 // Serialize serializes information the current object
-func (m *PerfStat_stat_playStreak) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteTimeValue("lastDate", m.GetLastDate())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("nb", m.GetNb())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("time", m.GetTime())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *PerfStat_stat_playStreak) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteTimeValue("lastDate", m.GetLastDate())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("nb", m.GetNb())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("time", m.GetTime())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PerfStat_stat_playStreak) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *PerfStat_stat_playStreak) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetLastDate sets the lastDate property value. The lastDate property
-func (m *PerfStat_stat_playStreak) SetLastDate(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.lastDate = value
+func (m *PerfStat_stat_playStreak) SetLastDate(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
+	m.lastDate = value
 }
+
 // SetNb sets the nb property value. The nb property
-func (m *PerfStat_stat_playStreak) SetNb(value PerfStat_stat_playStreak_nbable)() {
-    m.nb = value
+func (m *PerfStat_stat_playStreak) SetNb(value PerfStat_stat_playStreak_nbable) {
+	m.nb = value
 }
+
 // SetTime sets the time property value. The time property
-func (m *PerfStat_stat_playStreak) SetTime(value PerfStat_stat_playStreak_timeable)() {
-    m.time = value
+func (m *PerfStat_stat_playStreak) SetTime(value PerfStat_stat_playStreak_timeable) {
+	m.time = value
 }
+
 type PerfStat_stat_playStreakable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetLastDate()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
-    GetNb()(PerfStat_stat_playStreak_nbable)
-    GetTime()(PerfStat_stat_playStreak_timeable)
-    SetLastDate(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
-    SetNb(value PerfStat_stat_playStreak_nbable)()
-    SetTime(value PerfStat_stat_playStreak_timeable)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetLastDate() *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+	GetNb() PerfStat_stat_playStreak_nbable
+	GetTime() PerfStat_stat_playStreak_timeable
+	SetLastDate(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+	SetNb(value PerfStat_stat_playStreak_nbable)
+	SetTime(value PerfStat_stat_playStreak_timeable)
 }

@@ -4,67 +4,73 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	"context"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // StreamGameGameItemRequestBuilder builds and executes requests for operations under \api\stream\game\{id}
 type StreamGameGameItemRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // StreamGameGameItemRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type StreamGameGameItemRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+
 // NewStreamGameGameItemRequestBuilderInternal instantiates a new StreamGameGameItemRequestBuilder and sets the default values.
-func NewStreamGameGameItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*StreamGameGameItemRequestBuilder) {
-    m := &StreamGameGameItemRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/stream/game/{id}", pathParameters),
-    }
-    return m
+func NewStreamGameGameItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *StreamGameGameItemRequestBuilder {
+	m := &StreamGameGameItemRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/stream/game/{id}", pathParameters),
+	}
+	return m
 }
+
 // NewStreamGameGameItemRequestBuilder instantiates a new StreamGameGameItemRequestBuilder and sets the default values.
-func NewStreamGameGameItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*StreamGameGameItemRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewStreamGameGameItemRequestBuilderInternal(urlParams, requestAdapter)
+func NewStreamGameGameItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *StreamGameGameItemRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewStreamGameGameItemRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get stream positions and moves of any ongoing game, in [ndjson](#description/streaming-with-nd-json).A description of the game is sent as a first message.Then a message is sent each time a move is played.Finally, a description of the game is sent when it finishes, and the stream is closed.Ongoing games are delayed by 3 moves, as to prevent cheat bots from using this API.No more than 8 game streams can be opened at the same time from the same IP address.
 // returns a []byte when successful
 // returns a StreamGameItemGame429Error error when the service returns a 429 status code
-func (m *StreamGameGameItemRequestBuilder) Get(ctx context.Context, requestConfiguration *StreamGameGameItemRequestBuilderGetRequestConfiguration)([]byte, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "429": CreateStreamGameItemGame429ErrorFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", errorMapping)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.([]byte), nil
+func (m *StreamGameGameItemRequestBuilder) Get(ctx context.Context, requestConfiguration *StreamGameGameItemRequestBuilderGetRequestConfiguration) ([]byte, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
+		"429": CreateStreamGameItemGame429ErrorFromDiscriminatorValue,
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", errorMapping)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.([]byte), nil
 }
+
 // ToGetRequestInformation stream positions and moves of any ongoing game, in [ndjson](#description/streaming-with-nd-json).A description of the game is sent as a first message.Then a message is sent each time a move is played.Finally, a description of the game is sent when it finishes, and the stream is closed.Ongoing games are delayed by 3 moves, as to prevent cheat bots from using this API.No more than 8 game streams can be opened at the same time from the same IP address.
 // returns a *RequestInformation when successful
-func (m *StreamGameGameItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *StreamGameGameItemRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/x-ndjson, application/json")
-    return requestInfo, nil
+func (m *StreamGameGameItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *StreamGameGameItemRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/x-ndjson, application/json")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *StreamGameGameItemRequestBuilder when successful
-func (m *StreamGameGameItemRequestBuilder) WithUrl(rawUrl string)(*StreamGameGameItemRequestBuilder) {
-    return NewStreamGameGameItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *StreamGameGameItemRequestBuilder) WithUrl(rawUrl string) *StreamGameGameItemRequestBuilder {
+	return NewStreamGameGameItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

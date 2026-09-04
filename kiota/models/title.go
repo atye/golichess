@@ -2,66 +2,70 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 // only appears if the user is a titled player or a bot user
 type Title int
 
 const (
-    GM_TITLE Title = iota
-    WGM_TITLE
-    IM_TITLE
-    WIM_TITLE
-    FM_TITLE
-    WFM_TITLE
-    NM_TITLE
-    CM_TITLE
-    WCM_TITLE
-    WNM_TITLE
-    LM_TITLE
-    BOT_TITLE
+	GM_TITLE Title = iota
+	WGM_TITLE
+	IM_TITLE
+	WIM_TITLE
+	FM_TITLE
+	WFM_TITLE
+	NM_TITLE
+	CM_TITLE
+	WCM_TITLE
+	WNM_TITLE
+	LM_TITLE
+	BOT_TITLE
 )
 
 func (i Title) String() string {
-    return []string{"GM", "WGM", "IM", "WIM", "FM", "WFM", "NM", "CM", "WCM", "WNM", "LM", "BOT"}[i]
+	return []string{"GM", "WGM", "IM", "WIM", "FM", "WFM", "NM", "CM", "WCM", "WNM", "LM", "BOT"}[i]
 }
+
 func ParseTitle(v string) (any, error) {
-    result := GM_TITLE
-    switch v {
-        case "GM":
-            result = GM_TITLE
-        case "WGM":
-            result = WGM_TITLE
-        case "IM":
-            result = IM_TITLE
-        case "WIM":
-            result = WIM_TITLE
-        case "FM":
-            result = FM_TITLE
-        case "WFM":
-            result = WFM_TITLE
-        case "NM":
-            result = NM_TITLE
-        case "CM":
-            result = CM_TITLE
-        case "WCM":
-            result = WCM_TITLE
-        case "WNM":
-            result = WNM_TITLE
-        case "LM":
-            result = LM_TITLE
-        case "BOT":
-            result = BOT_TITLE
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := GM_TITLE
+	switch v {
+	case "GM":
+		result = GM_TITLE
+	case "WGM":
+		result = WGM_TITLE
+	case "IM":
+		result = IM_TITLE
+	case "WIM":
+		result = WIM_TITLE
+	case "FM":
+		result = FM_TITLE
+	case "WFM":
+		result = WFM_TITLE
+	case "NM":
+		result = NM_TITLE
+	case "CM":
+		result = CM_TITLE
+	case "WCM":
+		result = WCM_TITLE
+	case "WNM":
+		result = WNM_TITLE
+	case "LM":
+		result = LM_TITLE
+	case "BOT":
+		result = BOT_TITLE
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeTitle(values []Title) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i Title) isMultiValue() bool {
-    return false
+	return false
 }

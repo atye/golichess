@@ -4,205 +4,223 @@
 package api
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
-    i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type ChallengeItemChallengePostRequestBody struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // Which color you get to play
-    color *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ChallengeColor
-    // Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated.
-    fen *string
-    // If set, the response is streamed as [ndjson](#description/streaming-with-nd-json).The challenge is kept alive until the connection is closed by the client.When the challenge is accepted, declined or canceled, a message of the form `{"done":"accepted"}` is sent,then the connection is closed by the server.If not set, the response is not streamed, and the challenge expires after 20s if not accepted.
-    keepAliveStream *bool
-    // Game is rated and impacts players ratings
-    rated *bool
-    // The variant property
-    variant *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// Which color you get to play
+	color *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ChallengeColor
+	// Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated.
+	fen *string
+	// If set, the response is streamed as [ndjson](#description/streaming-with-nd-json).The challenge is kept alive until the connection is closed by the client.When the challenge is accepted, declined or canceled, a message of the form `{"done":"accepted"}` is sent,then the connection is closed by the server.If not set, the response is not streamed, and the challenge expires after 20s if not accepted.
+	keepAliveStream *bool
+	// Game is rated and impacts players ratings
+	rated *bool
+	// The variant property
+	variant *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey
 }
+
 // NewChallengeItemChallengePostRequestBody instantiates a new ChallengeItemChallengePostRequestBody and sets the default values.
-func NewChallengeItemChallengePostRequestBody()(*ChallengeItemChallengePostRequestBody) {
-    m := &ChallengeItemChallengePostRequestBody{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    colorValue := RANDOM_CHALLENGECOLOR
-    m.SetColor(&colorValue)
-    fenValue := "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
-    m.SetFen(&fenValue)
-    variantValue := STANDARD_VARIANTKEY
-    m.SetVariant(&variantValue)
-    return m
+func NewChallengeItemChallengePostRequestBody() *ChallengeItemChallengePostRequestBody {
+	m := &ChallengeItemChallengePostRequestBody{}
+	m.SetAdditionalData(make(map[string]any))
+	colorValue := RANDOM_CHALLENGECOLOR
+	m.SetColor(&colorValue)
+	fenValue := "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+	m.SetFen(&fenValue)
+	ratedValue := false
+	m.SetRated(&ratedValue)
+	variantValue := STANDARD_VARIANTKEY
+	m.SetVariant(&variantValue)
+	return m
 }
+
 // CreateChallengeItemChallengePostRequestBodyFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateChallengeItemChallengePostRequestBodyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewChallengeItemChallengePostRequestBody(), nil
+func CreateChallengeItemChallengePostRequestBodyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewChallengeItemChallengePostRequestBody(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *ChallengeItemChallengePostRequestBody) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *ChallengeItemChallengePostRequestBody) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetColor gets the color property value. Which color you get to play
 // returns a *ChallengeColor when successful
-func (m *ChallengeItemChallengePostRequestBody) GetColor()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ChallengeColor) {
-    return m.color
+func (m *ChallengeItemChallengePostRequestBody) GetColor() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ChallengeColor {
+	return m.color
 }
+
 // GetFen gets the fen property value. Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated.
 // returns a *string when successful
-func (m *ChallengeItemChallengePostRequestBody) GetFen()(*string) {
-    return m.fen
+func (m *ChallengeItemChallengePostRequestBody) GetFen() *string {
+	return m.fen
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ChallengeItemChallengePostRequestBody) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["color"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParseChallengeColor)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetColor(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ChallengeColor))
-        }
-        return nil
-    }
-    res["fen"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFen(val)
-        }
-        return nil
-    }
-    res["keepAliveStream"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetKeepAliveStream(val)
-        }
-        return nil
-    }
-    res["rated"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRated(val)
-        }
-        return nil
-    }
-    res["variant"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParseVariantKey)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetVariant(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey))
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *ChallengeItemChallengePostRequestBody) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["color"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParseChallengeColor)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetColor(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ChallengeColor))
+		}
+		return nil
+	}
+	res["fen"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFen(val)
+		}
+		return nil
+	}
+	res["keepAliveStream"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetKeepAliveStream(val)
+		}
+		return nil
+	}
+	res["rated"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRated(val)
+		}
+		return nil
+	}
+	res["variant"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParseVariantKey)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetVariant(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey))
+		}
+		return nil
+	}
+	return res
 }
+
 // GetKeepAliveStream gets the keepAliveStream property value. If set, the response is streamed as [ndjson](#description/streaming-with-nd-json).The challenge is kept alive until the connection is closed by the client.When the challenge is accepted, declined or canceled, a message of the form `{"done":"accepted"}` is sent,then the connection is closed by the server.If not set, the response is not streamed, and the challenge expires after 20s if not accepted.
 // returns a *bool when successful
-func (m *ChallengeItemChallengePostRequestBody) GetKeepAliveStream()(*bool) {
-    return m.keepAliveStream
+func (m *ChallengeItemChallengePostRequestBody) GetKeepAliveStream() *bool {
+	return m.keepAliveStream
 }
+
 // GetRated gets the rated property value. Game is rated and impacts players ratings
 // returns a *bool when successful
-func (m *ChallengeItemChallengePostRequestBody) GetRated()(*bool) {
-    return m.rated
+func (m *ChallengeItemChallengePostRequestBody) GetRated() *bool {
+	return m.rated
 }
+
 // GetVariant gets the variant property value. The variant property
 // returns a *VariantKey when successful
-func (m *ChallengeItemChallengePostRequestBody) GetVariant()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey) {
-    return m.variant
+func (m *ChallengeItemChallengePostRequestBody) GetVariant() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey {
+	return m.variant
 }
+
 // Serialize serializes information the current object
-func (m *ChallengeItemChallengePostRequestBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetColor() != nil {
-        cast := (*m.GetColor()).String()
-        err := writer.WriteStringValue("color", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("fen", m.GetFen())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("keepAliveStream", m.GetKeepAliveStream())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("rated", m.GetRated())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetVariant() != nil {
-        cast := (*m.GetVariant()).String()
-        err := writer.WriteStringValue("variant", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *ChallengeItemChallengePostRequestBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	if m.GetColor() != nil {
+		cast := (*m.GetColor()).String()
+		err := writer.WriteStringValue("color", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("fen", m.GetFen())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("keepAliveStream", m.GetKeepAliveStream())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("rated", m.GetRated())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetVariant() != nil {
+		cast := (*m.GetVariant()).String()
+		err := writer.WriteStringValue("variant", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ChallengeItemChallengePostRequestBody) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *ChallengeItemChallengePostRequestBody) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetColor sets the color property value. Which color you get to play
-func (m *ChallengeItemChallengePostRequestBody) SetColor(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ChallengeColor)() {
-    m.color = value
+func (m *ChallengeItemChallengePostRequestBody) SetColor(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ChallengeColor) {
+	m.color = value
 }
+
 // SetFen sets the fen property value. Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated.
-func (m *ChallengeItemChallengePostRequestBody) SetFen(value *string)() {
-    m.fen = value
+func (m *ChallengeItemChallengePostRequestBody) SetFen(value *string) {
+	m.fen = value
 }
+
 // SetKeepAliveStream sets the keepAliveStream property value. If set, the response is streamed as [ndjson](#description/streaming-with-nd-json).The challenge is kept alive until the connection is closed by the client.When the challenge is accepted, declined or canceled, a message of the form `{"done":"accepted"}` is sent,then the connection is closed by the server.If not set, the response is not streamed, and the challenge expires after 20s if not accepted.
-func (m *ChallengeItemChallengePostRequestBody) SetKeepAliveStream(value *bool)() {
-    m.keepAliveStream = value
+func (m *ChallengeItemChallengePostRequestBody) SetKeepAliveStream(value *bool) {
+	m.keepAliveStream = value
 }
+
 // SetRated sets the rated property value. Game is rated and impacts players ratings
-func (m *ChallengeItemChallengePostRequestBody) SetRated(value *bool)() {
-    m.rated = value
+func (m *ChallengeItemChallengePostRequestBody) SetRated(value *bool) {
+	m.rated = value
 }
+
 // SetVariant sets the variant property value. The variant property
-func (m *ChallengeItemChallengePostRequestBody) SetVariant(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey)() {
-    m.variant = value
+func (m *ChallengeItemChallengePostRequestBody) SetVariant(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey) {
+	m.variant = value
 }
+
 type ChallengeItemChallengePostRequestBodyable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetColor()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ChallengeColor)
-    GetFen()(*string)
-    GetKeepAliveStream()(*bool)
-    GetRated()(*bool)
-    GetVariant()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey)
-    SetColor(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ChallengeColor)()
-    SetFen(value *string)()
-    SetKeepAliveStream(value *bool)()
-    SetRated(value *bool)()
-    SetVariant(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetColor() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ChallengeColor
+	GetFen() *string
+	GetKeepAliveStream() *bool
+	GetRated() *bool
+	GetVariant() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey
+	SetColor(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ChallengeColor)
+	SetFen(value *string)
+	SetKeepAliveStream(value *bool)
+	SetRated(value *bool)
+	SetVariant(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey)
 }

@@ -4,138 +4,150 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type ArenaTournamentFull_podium_nb struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The berserk property
-    berserk *int32
-    // The game property
-    game *int32
-    // The win property
-    win *int32
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The berserk property
+	berserk *int32
+	// The game property
+	game *int32
+	// The win property
+	win *int32
 }
+
 // NewArenaTournamentFull_podium_nb instantiates a new ArenaTournamentFull_podium_nb and sets the default values.
-func NewArenaTournamentFull_podium_nb()(*ArenaTournamentFull_podium_nb) {
-    m := &ArenaTournamentFull_podium_nb{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewArenaTournamentFull_podium_nb() *ArenaTournamentFull_podium_nb {
+	m := &ArenaTournamentFull_podium_nb{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateArenaTournamentFull_podium_nbFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateArenaTournamentFull_podium_nbFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewArenaTournamentFull_podium_nb(), nil
+func CreateArenaTournamentFull_podium_nbFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewArenaTournamentFull_podium_nb(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *ArenaTournamentFull_podium_nb) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *ArenaTournamentFull_podium_nb) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetBerserk gets the berserk property value. The berserk property
 // returns a *int32 when successful
-func (m *ArenaTournamentFull_podium_nb) GetBerserk()(*int32) {
-    return m.berserk
+func (m *ArenaTournamentFull_podium_nb) GetBerserk() *int32 {
+	return m.berserk
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ArenaTournamentFull_podium_nb) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["berserk"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetBerserk(val)
-        }
-        return nil
-    }
-    res["game"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetGame(val)
-        }
-        return nil
-    }
-    res["win"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetWin(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *ArenaTournamentFull_podium_nb) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["berserk"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetBerserk(val)
+		}
+		return nil
+	}
+	res["game"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetGame(val)
+		}
+		return nil
+	}
+	res["win"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetWin(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetGame gets the game property value. The game property
 // returns a *int32 when successful
-func (m *ArenaTournamentFull_podium_nb) GetGame()(*int32) {
-    return m.game
+func (m *ArenaTournamentFull_podium_nb) GetGame() *int32 {
+	return m.game
 }
+
 // GetWin gets the win property value. The win property
 // returns a *int32 when successful
-func (m *ArenaTournamentFull_podium_nb) GetWin()(*int32) {
-    return m.win
+func (m *ArenaTournamentFull_podium_nb) GetWin() *int32 {
+	return m.win
 }
+
 // Serialize serializes information the current object
-func (m *ArenaTournamentFull_podium_nb) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteInt32Value("berserk", m.GetBerserk())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("game", m.GetGame())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("win", m.GetWin())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *ArenaTournamentFull_podium_nb) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteInt32Value("berserk", m.GetBerserk())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("game", m.GetGame())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("win", m.GetWin())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ArenaTournamentFull_podium_nb) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *ArenaTournamentFull_podium_nb) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetBerserk sets the berserk property value. The berserk property
-func (m *ArenaTournamentFull_podium_nb) SetBerserk(value *int32)() {
-    m.berserk = value
+func (m *ArenaTournamentFull_podium_nb) SetBerserk(value *int32) {
+	m.berserk = value
 }
+
 // SetGame sets the game property value. The game property
-func (m *ArenaTournamentFull_podium_nb) SetGame(value *int32)() {
-    m.game = value
+func (m *ArenaTournamentFull_podium_nb) SetGame(value *int32) {
+	m.game = value
 }
+
 // SetWin sets the win property value. The win property
-func (m *ArenaTournamentFull_podium_nb) SetWin(value *int32)() {
-    m.win = value
+func (m *ArenaTournamentFull_podium_nb) SetWin(value *int32) {
+	m.win = value
 }
+
 type ArenaTournamentFull_podium_nbable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetBerserk()(*int32)
-    GetGame()(*int32)
-    GetWin()(*int32)
-    SetBerserk(value *int32)()
-    SetGame(value *int32)()
-    SetWin(value *int32)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetBerserk() *int32
+	GetGame() *int32
+	GetWin() *int32
+	SetBerserk(value *int32)
+	SetGame(value *int32)
+	SetWin(value *int32)
 }

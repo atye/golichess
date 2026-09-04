@@ -4,349 +4,377 @@
 package api
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
-    i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type BulkPairingPostRequestBody struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // Clock increment in seconds. Example: `2`
-    clockIncrement *int32
-    // Clock initial time in seconds. Example: `600`
-    clockLimit *int32
-    // Days per turn. For correspondence games only.
-    days *int32
-    // Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated.
-    fen *string
-    // Message that will be sent to each player, when the game is created.  It is sent from your user account.`{opponent}` and `{game}` are placeholders that will be replaced with the opponent and the game URLs.You can omit this field to send the default message,but if you set your own message, it must at least contain the `{game}` placeholder.
-    message *string
-    // Date at which the games will be created as a Unix timestamp in milliseconds.Up to 7 days in the future.Omit, or set to current date and time, to start the games immediately.Example: `1612289869919`
-    pairAt *int64
-    // OAuth tokens of all the players to pair, with the syntax `tokenOfWhitePlayerInGame1:tokenOfBlackPlayerInGame1,tokenOfWhitePlayerInGame2:tokenOfBlackPlayerInGame2,...`.The 2 tokens of the players of a game are separated with `:`. The first token gets the white pieces. Games are separated with `,`.Up to 1000 tokens can be sent, for a max of 500 games.Each token must be included at most once.Example: `token1:token2,token3:token4,token5:token6`
-    players *string
-    // Game is rated and impacts players ratings
-    rated *bool
-    // Date at which the clocks will be automatically started as a Unix timestamp in milliseconds.Up to 7 days in the future.Note that the clocks can start earlier than specified, if players start making moves in the game.If omitted, the clocks will not start automatically.Example: `1612289869919`
-    startClocksAt *int64
-    // The variant property
-    variant *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// Clock increment in seconds. Example: `2`
+	clockIncrement *int32
+	// Clock initial time in seconds. Example: `600`
+	clockLimit *int32
+	// Days per turn. For correspondence games only.
+	days *int32
+	// Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated.
+	fen *string
+	// Message that will be sent to each player, when the game is created.  It is sent from your user account.`{opponent}` and `{game}` are placeholders that will be replaced with the opponent and the game URLs.You can omit this field to send the default message,but if you set your own message, it must at least contain the `{game}` placeholder.
+	message *string
+	// Date at which the games will be created as a Unix timestamp in milliseconds.Up to 7 days in the future.Omit, or set to current date and time, to start the games immediately.Example: `1612289869919`
+	pairAt *int64
+	// OAuth tokens of all the players to pair, with the syntax `tokenOfWhitePlayerInGame1:tokenOfBlackPlayerInGame1,tokenOfWhitePlayerInGame2:tokenOfBlackPlayerInGame2,...`.The 2 tokens of the players of a game are separated with `:`. The first token gets the white pieces. Games are separated with `,`.Up to 1000 tokens can be sent, for a max of 500 games.Each token must be included at most once.Example: `token1:token2,token3:token4,token5:token6`
+	players *string
+	// Game is rated and impacts players ratings
+	rated *bool
+	// Date at which the clocks will be automatically started as a Unix timestamp in milliseconds.Up to 7 days in the future.Note that the clocks can start earlier than specified, if players start making moves in the game.If omitted, the clocks will not start automatically.Example: `1612289869919`
+	startClocksAt *int64
+	// The variant property
+	variant *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey
 }
+
 // NewBulkPairingPostRequestBody instantiates a new BulkPairingPostRequestBody and sets the default values.
-func NewBulkPairingPostRequestBody()(*BulkPairingPostRequestBody) {
-    m := &BulkPairingPostRequestBody{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    fenValue := "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
-    m.SetFen(&fenValue)
-    messageValue := "Your game with {opponent} is ready: {game}."
-    m.SetMessage(&messageValue)
-    variantValue := STANDARD_VARIANTKEY
-    m.SetVariant(&variantValue)
-    return m
+func NewBulkPairingPostRequestBody() *BulkPairingPostRequestBody {
+	m := &BulkPairingPostRequestBody{}
+	m.SetAdditionalData(make(map[string]any))
+	fenValue := "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+	m.SetFen(&fenValue)
+	messageValue := "Your game with {opponent} is ready: {game}."
+	m.SetMessage(&messageValue)
+	ratedValue := false
+	m.SetRated(&ratedValue)
+	variantValue := STANDARD_VARIANTKEY
+	m.SetVariant(&variantValue)
+	return m
 }
+
 // CreateBulkPairingPostRequestBodyFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateBulkPairingPostRequestBodyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewBulkPairingPostRequestBody(), nil
+func CreateBulkPairingPostRequestBodyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewBulkPairingPostRequestBody(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *BulkPairingPostRequestBody) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *BulkPairingPostRequestBody) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetClockIncrement gets the clock.increment property value. Clock increment in seconds. Example: `2`
 // returns a *int32 when successful
-func (m *BulkPairingPostRequestBody) GetClockIncrement()(*int32) {
-    return m.clockIncrement
+func (m *BulkPairingPostRequestBody) GetClockIncrement() *int32 {
+	return m.clockIncrement
 }
+
 // GetClockLimit gets the clock.limit property value. Clock initial time in seconds. Example: `600`
 // returns a *int32 when successful
-func (m *BulkPairingPostRequestBody) GetClockLimit()(*int32) {
-    return m.clockLimit
+func (m *BulkPairingPostRequestBody) GetClockLimit() *int32 {
+	return m.clockLimit
 }
+
 // GetDays gets the days property value. Days per turn. For correspondence games only.
 // returns a *int32 when successful
-func (m *BulkPairingPostRequestBody) GetDays()(*int32) {
-    return m.days
+func (m *BulkPairingPostRequestBody) GetDays() *int32 {
+	return m.days
 }
+
 // GetFen gets the fen property value. Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated.
 // returns a *string when successful
-func (m *BulkPairingPostRequestBody) GetFen()(*string) {
-    return m.fen
+func (m *BulkPairingPostRequestBody) GetFen() *string {
+	return m.fen
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *BulkPairingPostRequestBody) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["clock.increment"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetClockIncrement(val)
-        }
-        return nil
-    }
-    res["clock.limit"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetClockLimit(val)
-        }
-        return nil
-    }
-    res["days"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDays(val)
-        }
-        return nil
-    }
-    res["fen"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetFen(val)
-        }
-        return nil
-    }
-    res["message"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMessage(val)
-        }
-        return nil
-    }
-    res["pairAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPairAt(val)
-        }
-        return nil
-    }
-    res["players"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPlayers(val)
-        }
-        return nil
-    }
-    res["rated"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRated(val)
-        }
-        return nil
-    }
-    res["startClocksAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt64Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStartClocksAt(val)
-        }
-        return nil
-    }
-    res["variant"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParseVariantKey)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetVariant(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey))
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *BulkPairingPostRequestBody) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["clock.increment"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetClockIncrement(val)
+		}
+		return nil
+	}
+	res["clock.limit"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetClockLimit(val)
+		}
+		return nil
+	}
+	res["days"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetDays(val)
+		}
+		return nil
+	}
+	res["fen"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFen(val)
+		}
+		return nil
+	}
+	res["message"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMessage(val)
+		}
+		return nil
+	}
+	res["pairAt"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPairAt(val)
+		}
+		return nil
+	}
+	res["players"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPlayers(val)
+		}
+		return nil
+	}
+	res["rated"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRated(val)
+		}
+		return nil
+	}
+	res["startClocksAt"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetStartClocksAt(val)
+		}
+		return nil
+	}
+	res["variant"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParseVariantKey)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetVariant(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey))
+		}
+		return nil
+	}
+	return res
 }
+
 // GetMessage gets the message property value. Message that will be sent to each player, when the game is created.  It is sent from your user account.`{opponent}` and `{game}` are placeholders that will be replaced with the opponent and the game URLs.You can omit this field to send the default message,but if you set your own message, it must at least contain the `{game}` placeholder.
 // returns a *string when successful
-func (m *BulkPairingPostRequestBody) GetMessage()(*string) {
-    return m.message
+func (m *BulkPairingPostRequestBody) GetMessage() *string {
+	return m.message
 }
+
 // GetPairAt gets the pairAt property value. Date at which the games will be created as a Unix timestamp in milliseconds.Up to 7 days in the future.Omit, or set to current date and time, to start the games immediately.Example: `1612289869919`
 // returns a *int64 when successful
-func (m *BulkPairingPostRequestBody) GetPairAt()(*int64) {
-    return m.pairAt
+func (m *BulkPairingPostRequestBody) GetPairAt() *int64 {
+	return m.pairAt
 }
+
 // GetPlayers gets the players property value. OAuth tokens of all the players to pair, with the syntax `tokenOfWhitePlayerInGame1:tokenOfBlackPlayerInGame1,tokenOfWhitePlayerInGame2:tokenOfBlackPlayerInGame2,...`.The 2 tokens of the players of a game are separated with `:`. The first token gets the white pieces. Games are separated with `,`.Up to 1000 tokens can be sent, for a max of 500 games.Each token must be included at most once.Example: `token1:token2,token3:token4,token5:token6`
 // returns a *string when successful
-func (m *BulkPairingPostRequestBody) GetPlayers()(*string) {
-    return m.players
+func (m *BulkPairingPostRequestBody) GetPlayers() *string {
+	return m.players
 }
+
 // GetRated gets the rated property value. Game is rated and impacts players ratings
 // returns a *bool when successful
-func (m *BulkPairingPostRequestBody) GetRated()(*bool) {
-    return m.rated
+func (m *BulkPairingPostRequestBody) GetRated() *bool {
+	return m.rated
 }
+
 // GetStartClocksAt gets the startClocksAt property value. Date at which the clocks will be automatically started as a Unix timestamp in milliseconds.Up to 7 days in the future.Note that the clocks can start earlier than specified, if players start making moves in the game.If omitted, the clocks will not start automatically.Example: `1612289869919`
 // returns a *int64 when successful
-func (m *BulkPairingPostRequestBody) GetStartClocksAt()(*int64) {
-    return m.startClocksAt
+func (m *BulkPairingPostRequestBody) GetStartClocksAt() *int64 {
+	return m.startClocksAt
 }
+
 // GetVariant gets the variant property value. The variant property
 // returns a *VariantKey when successful
-func (m *BulkPairingPostRequestBody) GetVariant()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey) {
-    return m.variant
+func (m *BulkPairingPostRequestBody) GetVariant() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey {
+	return m.variant
 }
+
 // Serialize serializes information the current object
-func (m *BulkPairingPostRequestBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteInt32Value("clock.increment", m.GetClockIncrement())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("clock.limit", m.GetClockLimit())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("days", m.GetDays())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("fen", m.GetFen())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("message", m.GetMessage())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt64Value("pairAt", m.GetPairAt())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("players", m.GetPlayers())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("rated", m.GetRated())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt64Value("startClocksAt", m.GetStartClocksAt())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetVariant() != nil {
-        cast := (*m.GetVariant()).String()
-        err := writer.WriteStringValue("variant", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *BulkPairingPostRequestBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteInt32Value("clock.increment", m.GetClockIncrement())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("clock.limit", m.GetClockLimit())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("days", m.GetDays())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("fen", m.GetFen())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("message", m.GetMessage())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt64Value("pairAt", m.GetPairAt())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("players", m.GetPlayers())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("rated", m.GetRated())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt64Value("startClocksAt", m.GetStartClocksAt())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetVariant() != nil {
+		cast := (*m.GetVariant()).String()
+		err := writer.WriteStringValue("variant", &cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *BulkPairingPostRequestBody) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *BulkPairingPostRequestBody) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetClockIncrement sets the clock.increment property value. Clock increment in seconds. Example: `2`
-func (m *BulkPairingPostRequestBody) SetClockIncrement(value *int32)() {
-    m.clockIncrement = value
+func (m *BulkPairingPostRequestBody) SetClockIncrement(value *int32) {
+	m.clockIncrement = value
 }
+
 // SetClockLimit sets the clock.limit property value. Clock initial time in seconds. Example: `600`
-func (m *BulkPairingPostRequestBody) SetClockLimit(value *int32)() {
-    m.clockLimit = value
+func (m *BulkPairingPostRequestBody) SetClockLimit(value *int32) {
+	m.clockLimit = value
 }
+
 // SetDays sets the days property value. Days per turn. For correspondence games only.
-func (m *BulkPairingPostRequestBody) SetDays(value *int32)() {
-    m.days = value
+func (m *BulkPairingPostRequestBody) SetDays(value *int32) {
+	m.days = value
 }
+
 // SetFen sets the fen property value. Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated.
-func (m *BulkPairingPostRequestBody) SetFen(value *string)() {
-    m.fen = value
+func (m *BulkPairingPostRequestBody) SetFen(value *string) {
+	m.fen = value
 }
+
 // SetMessage sets the message property value. Message that will be sent to each player, when the game is created.  It is sent from your user account.`{opponent}` and `{game}` are placeholders that will be replaced with the opponent and the game URLs.You can omit this field to send the default message,but if you set your own message, it must at least contain the `{game}` placeholder.
-func (m *BulkPairingPostRequestBody) SetMessage(value *string)() {
-    m.message = value
+func (m *BulkPairingPostRequestBody) SetMessage(value *string) {
+	m.message = value
 }
+
 // SetPairAt sets the pairAt property value. Date at which the games will be created as a Unix timestamp in milliseconds.Up to 7 days in the future.Omit, or set to current date and time, to start the games immediately.Example: `1612289869919`
-func (m *BulkPairingPostRequestBody) SetPairAt(value *int64)() {
-    m.pairAt = value
+func (m *BulkPairingPostRequestBody) SetPairAt(value *int64) {
+	m.pairAt = value
 }
+
 // SetPlayers sets the players property value. OAuth tokens of all the players to pair, with the syntax `tokenOfWhitePlayerInGame1:tokenOfBlackPlayerInGame1,tokenOfWhitePlayerInGame2:tokenOfBlackPlayerInGame2,...`.The 2 tokens of the players of a game are separated with `:`. The first token gets the white pieces. Games are separated with `,`.Up to 1000 tokens can be sent, for a max of 500 games.Each token must be included at most once.Example: `token1:token2,token3:token4,token5:token6`
-func (m *BulkPairingPostRequestBody) SetPlayers(value *string)() {
-    m.players = value
+func (m *BulkPairingPostRequestBody) SetPlayers(value *string) {
+	m.players = value
 }
+
 // SetRated sets the rated property value. Game is rated and impacts players ratings
-func (m *BulkPairingPostRequestBody) SetRated(value *bool)() {
-    m.rated = value
+func (m *BulkPairingPostRequestBody) SetRated(value *bool) {
+	m.rated = value
 }
+
 // SetStartClocksAt sets the startClocksAt property value. Date at which the clocks will be automatically started as a Unix timestamp in milliseconds.Up to 7 days in the future.Note that the clocks can start earlier than specified, if players start making moves in the game.If omitted, the clocks will not start automatically.Example: `1612289869919`
-func (m *BulkPairingPostRequestBody) SetStartClocksAt(value *int64)() {
-    m.startClocksAt = value
+func (m *BulkPairingPostRequestBody) SetStartClocksAt(value *int64) {
+	m.startClocksAt = value
 }
+
 // SetVariant sets the variant property value. The variant property
-func (m *BulkPairingPostRequestBody) SetVariant(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey)() {
-    m.variant = value
+func (m *BulkPairingPostRequestBody) SetVariant(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey) {
+	m.variant = value
 }
+
 type BulkPairingPostRequestBodyable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetClockIncrement()(*int32)
-    GetClockLimit()(*int32)
-    GetDays()(*int32)
-    GetFen()(*string)
-    GetMessage()(*string)
-    GetPairAt()(*int64)
-    GetPlayers()(*string)
-    GetRated()(*bool)
-    GetStartClocksAt()(*int64)
-    GetVariant()(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey)
-    SetClockIncrement(value *int32)()
-    SetClockLimit(value *int32)()
-    SetDays(value *int32)()
-    SetFen(value *string)()
-    SetMessage(value *string)()
-    SetPairAt(value *int64)()
-    SetPlayers(value *string)()
-    SetRated(value *bool)()
-    SetStartClocksAt(value *int64)()
-    SetVariant(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetClockIncrement() *int32
+	GetClockLimit() *int32
+	GetDays() *int32
+	GetFen() *string
+	GetMessage() *string
+	GetPairAt() *int64
+	GetPlayers() *string
+	GetRated() *bool
+	GetStartClocksAt() *int64
+	GetVariant() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey
+	SetClockIncrement(value *int32)
+	SetClockLimit(value *int32)
+	SetDays(value *int32)
+	SetFen(value *string)
+	SetMessage(value *string)
+	SetPairAt(value *int64)
+	SetPlayers(value *string)
+	SetRated(value *bool)
+	SetStartClocksAt(value *int64)
+	SetVariant(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey)
 }

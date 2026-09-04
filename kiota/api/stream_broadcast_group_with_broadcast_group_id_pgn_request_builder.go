@@ -4,78 +4,85 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	"context"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // StreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilder builds and executes requests for operations under \api\stream\broadcast\group\{broadcastGroupId}.pgn
 type StreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // StreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilderGetQueryParameters for a given broadcast group ([example](https://lichess.org/broadcast/fide-world-cadets-cup-2026/albQx5zq)),selects all the ongoing and recently finished rounds, and sends all games of these rounds in PGN format.Then, it waits for new moves to be played. As soon as it happens, the entire PGN of the game is sent to the stream.The stream will also send PGNs when games are added to the rounds.This is the best way to get updates about an ongoing broadcast with multiple concurrent rounds.To stream a single round, use [this endpoint instead](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn).
 type StreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilderGetQueryParameters struct {
-    // Include clock comments in the PGN moves, when available.Example: `2. exd5 { [%clk 1:01:27] } e5 { [%clk 1:01:28] }`
-    Clocks *bool "uriparametername:\"clocks\""
-    // Include analysis comments in the PGN moves, when available.Example: `12. Bxf6 { [%eval 0.23] }`
-    Comments *bool "uriparametername:\"comments\""
+	// Include clock comments in the PGN moves, when available.Example: `2. exd5 { [%clk 1:01:27] } e5 { [%clk 1:01:28] }`
+	Clocks *bool "uriparametername:\"clocks\""
+	// Include analysis comments in the PGN moves, when available.Example: `12. Bxf6 { [%eval 0.23] }`
+	Comments *bool "uriparametername:\"comments\""
 }
+
 // StreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type StreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
-    // Request query parameters
-    QueryParameters *StreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilderGetQueryParameters
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *StreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilderGetQueryParameters
 }
+
 // NewStreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilderInternal instantiates a new StreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilder and sets the default values.
-func NewStreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter, broadcastGroupId *string)(*StreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilder) {
-    m := &StreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/stream/broadcast/group/{broadcastGroupId}.pgn{?clocks*,comments*}", pathParameters),
-    }
-    if broadcastGroupId != nil {
-        m.BaseRequestBuilder.PathParameters["broadcastGroupId"] = *broadcastGroupId
-    }
-    return m
+func NewStreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter, broadcastGroupId *string) *StreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilder {
+	m := &StreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/stream/broadcast/group/{broadcastGroupId}.pgn{?clocks*,comments*}", pathParameters),
+	}
+	if broadcastGroupId != nil {
+		m.BaseRequestBuilder.PathParameters["broadcastGroupId"] = *broadcastGroupId
+	}
+	return m
 }
+
 // NewStreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilder instantiates a new StreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilder and sets the default values.
-func NewStreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*StreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewStreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilderInternal(urlParams, requestAdapter, nil)
+func NewStreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *StreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewStreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilderInternal(urlParams, requestAdapter, nil)
 }
+
 // Get for a given broadcast group ([example](https://lichess.org/broadcast/fide-world-cadets-cup-2026/albQx5zq)),selects all the ongoing and recently finished rounds, and sends all games of these rounds in PGN format.Then, it waits for new moves to be played. As soon as it happens, the entire PGN of the game is sent to the stream.The stream will also send PGNs when games are added to the rounds.This is the best way to get updates about an ongoing broadcast with multiple concurrent rounds.To stream a single round, use [this endpoint instead](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn).
 // returns a []byte when successful
-func (m *StreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilder) Get(ctx context.Context, requestConfiguration *StreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilderGetRequestConfiguration)([]byte, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.([]byte), nil
+func (m *StreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilder) Get(ctx context.Context, requestConfiguration *StreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilderGetRequestConfiguration) ([]byte, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.([]byte), nil
 }
+
 // ToGetRequestInformation for a given broadcast group ([example](https://lichess.org/broadcast/fide-world-cadets-cup-2026/albQx5zq)),selects all the ongoing and recently finished rounds, and sends all games of these rounds in PGN format.Then, it waits for new moves to be played. As soon as it happens, the entire PGN of the game is sent to the stream.The stream will also send PGNs when games are added to the rounds.This is the best way to get updates about an ongoing broadcast with multiple concurrent rounds.To stream a single round, use [this endpoint instead](#tag/broadcasts/GET/api/stream/broadcast/round/{broadcastRoundId}.pgn).
 // returns a *RequestInformation when successful
-func (m *StreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *StreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        if requestConfiguration.QueryParameters != nil {
-            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
-        }
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/x-chess-pgn")
-    return requestInfo, nil
+func (m *StreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *StreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/x-chess-pgn")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *StreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilder when successful
-func (m *StreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilder) WithUrl(rawUrl string)(*StreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilder) {
-    return NewStreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *StreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilder) WithUrl(rawUrl string) *StreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilder {
+	return NewStreamBroadcastGroupWithBroadcastGroupIdPgnRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

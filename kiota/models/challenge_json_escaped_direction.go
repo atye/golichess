@@ -2,35 +2,39 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 type ChallengeJson_direction int
 
 const (
-    IN_CHALLENGEJSON_DIRECTION ChallengeJson_direction = iota
-    OUT_CHALLENGEJSON_DIRECTION
+	IN_CHALLENGEJSON_DIRECTION ChallengeJson_direction = iota
+	OUT_CHALLENGEJSON_DIRECTION
 )
 
 func (i ChallengeJson_direction) String() string {
-    return []string{"in", "out"}[i]
+	return []string{"in", "out"}[i]
 }
+
 func ParseChallengeJson_direction(v string) (any, error) {
-    result := IN_CHALLENGEJSON_DIRECTION
-    switch v {
-        case "in":
-            result = IN_CHALLENGEJSON_DIRECTION
-        case "out":
-            result = OUT_CHALLENGEJSON_DIRECTION
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := IN_CHALLENGEJSON_DIRECTION
+	switch v {
+	case "in":
+		result = IN_CHALLENGEJSON_DIRECTION
+	case "out":
+		result = OUT_CHALLENGEJSON_DIRECTION
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeChallengeJson_direction(values []ChallengeJson_direction) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i ChallengeJson_direction) isMultiValue() bool {
-    return false
+	return false
 }

@@ -4,89 +4,96 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	"context"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // BulkPairingItemGamesRequestBuilder builds and executes requests for operations under \api\bulk-pairing\{id}\games
 type BulkPairingItemGamesRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // BulkPairingItemGamesRequestBuilderGetQueryParameters download games of a bulk in PGN or [ndjson](#description/streaming-with-nd-json) format, depending on the request `Accept` header.
 type BulkPairingItemGamesRequestBuilderGetQueryParameters struct {
-    // Include [accuracy percent](https://lichess.org/page/accuracy) of each player, when available. Only available in JSON.
-    Accuracy *bool "uriparametername:\"accuracy\""
-    // Include clock status when available.Either as PGN comments: `2. exd5 { [%clk 1:01:27] } e5 { [%clk 1:01:28] }`Or in a `clocks` JSON field, as centisecond integers, depending on the response type.
-    Clocks *bool "uriparametername:\"clocks\""
-    // Plies which mark the beginning of the middlegame and endgame.Only available in JSON
-    Division *bool "uriparametername:\"division\""
-    // Include analysis evaluations and comments, when available.Either as PGN comments: `12. Bxf6 { [%eval 0.23] } a3 { [%eval -1.09] }`Or in an `analysis` JSON field, depending on the response type.
-    Evals *bool "uriparametername:\"evals\""
-    // Insert textual annotations in the PGN about the opening, analysis variations, mistakes, and game termination.Example: `5... g4? { (-0.98 → 0.60) Mistake. Best move was h6. } (5... h6 6. d4 Ne7 7. g3 d5 8. exd5 fxg3 9. hxg3 c6 10. dxc6)`
-    Literate *bool "uriparametername:\"literate\""
-    // Include the PGN moves.
-    Moves *bool "uriparametername:\"moves\""
-    // Include the opening name.Example: `[Opening "King's Gambit Accepted, King's Knight Gambit"]`
-    Opening *bool "uriparametername:\"opening\""
-    // Include the full PGN within the JSON response, in a `pgn` field.
-    PgnInJson *bool "uriparametername:\"pgnInJson\""
-    // Include the PGN tags.
-    Tags *bool "uriparametername:\"tags\""
+	// Include [accuracy percent](https://lichess.org/page/accuracy) of each player, when available. Only available in JSON.
+	Accuracy *bool "uriparametername:\"accuracy\""
+	// Include clock status when available.Either as PGN comments: `2. exd5 { [%clk 1:01:27] } e5 { [%clk 1:01:28] }`Or in a `clocks` JSON field, as centisecond integers, depending on the response type.
+	Clocks *bool "uriparametername:\"clocks\""
+	// Plies which mark the beginning of the middlegame and endgame.Only available in JSON
+	Division *bool "uriparametername:\"division\""
+	// Include analysis evaluations and comments, when available.Either as PGN comments: `12. Bxf6 { [%eval 0.23] } a3 { [%eval -1.09] }`Or in an `analysis` JSON field, depending on the response type.
+	Evals *bool "uriparametername:\"evals\""
+	// Insert textual annotations in the PGN about the opening, analysis variations, mistakes, and game termination.Example: `5... g4? { (-0.98 → 0.60) Mistake. Best move was h6. } (5... h6 6. d4 Ne7 7. g3 d5 8. exd5 fxg3 9. hxg3 c6 10. dxc6)`
+	Literate *bool "uriparametername:\"literate\""
+	// Include the PGN moves.
+	Moves *bool "uriparametername:\"moves\""
+	// Include the opening name.Example: `[Opening "King's Gambit Accepted, King's Knight Gambit"]`
+	Opening *bool "uriparametername:\"opening\""
+	// Include the full PGN within the JSON response, in a `pgn` field.
+	PgnInJson *bool "uriparametername:\"pgnInJson\""
+	// Include the PGN tags.
+	Tags *bool "uriparametername:\"tags\""
 }
+
 // BulkPairingItemGamesRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type BulkPairingItemGamesRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
-    // Request query parameters
-    QueryParameters *BulkPairingItemGamesRequestBuilderGetQueryParameters
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *BulkPairingItemGamesRequestBuilderGetQueryParameters
 }
+
 // NewBulkPairingItemGamesRequestBuilderInternal instantiates a new BulkPairingItemGamesRequestBuilder and sets the default values.
-func NewBulkPairingItemGamesRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BulkPairingItemGamesRequestBuilder) {
-    m := &BulkPairingItemGamesRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/bulk-pairing/{id}/games{?accuracy*,clocks*,division*,evals*,literate*,moves*,opening*,pgnInJson*,tags*}", pathParameters),
-    }
-    return m
+func NewBulkPairingItemGamesRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BulkPairingItemGamesRequestBuilder {
+	m := &BulkPairingItemGamesRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/bulk-pairing/{id}/games{?accuracy*,clocks*,division*,evals*,literate*,moves*,opening*,pgnInJson*,tags*}", pathParameters),
+	}
+	return m
 }
+
 // NewBulkPairingItemGamesRequestBuilder instantiates a new BulkPairingItemGamesRequestBuilder and sets the default values.
-func NewBulkPairingItemGamesRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*BulkPairingItemGamesRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewBulkPairingItemGamesRequestBuilderInternal(urlParams, requestAdapter)
+func NewBulkPairingItemGamesRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *BulkPairingItemGamesRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewBulkPairingItemGamesRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get download games of a bulk in PGN or [ndjson](#description/streaming-with-nd-json) format, depending on the request `Accept` header.
 // returns a []byte when successful
-func (m *BulkPairingItemGamesRequestBuilder) Get(ctx context.Context, requestConfiguration *BulkPairingItemGamesRequestBuilderGetRequestConfiguration)([]byte, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.([]byte), nil
+func (m *BulkPairingItemGamesRequestBuilder) Get(ctx context.Context, requestConfiguration *BulkPairingItemGamesRequestBuilderGetRequestConfiguration) ([]byte, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.([]byte), nil
 }
+
 // ToGetRequestInformation download games of a bulk in PGN or [ndjson](#description/streaming-with-nd-json) format, depending on the request `Accept` header.
 // returns a *RequestInformation when successful
-func (m *BulkPairingItemGamesRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *BulkPairingItemGamesRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        if requestConfiguration.QueryParameters != nil {
-            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
-        }
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/x-chess-pgn, application/x-ndjson")
-    return requestInfo, nil
+func (m *BulkPairingItemGamesRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *BulkPairingItemGamesRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/x-chess-pgn, application/x-ndjson")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *BulkPairingItemGamesRequestBuilder when successful
-func (m *BulkPairingItemGamesRequestBuilder) WithUrl(rawUrl string)(*BulkPairingItemGamesRequestBuilder) {
-    return NewBulkPairingItemGamesRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *BulkPairingItemGamesRequestBuilder) WithUrl(rawUrl string) *BulkPairingItemGamesRequestBuilder {
+	return NewBulkPairingItemGamesRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

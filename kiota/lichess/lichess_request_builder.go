@@ -4,100 +4,107 @@
 package lichess
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	"context"
+	i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // LichessRequestBuilder builds and executes requests for operations under \lichess
 type LichessRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // LichessRequestBuilderGetQueryParameters **Endpoint: <https://explorer.lichess.org/lichess>**Aggregated rated games from all Lichess players.Example: `curl https://explorer.lichess.org/lichess?variant=standard&speeds=blitz,rapid,classical&ratings=2200,2500&fen=rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR%20w%20KQkq%20-%200%201`
 type LichessRequestBuilderGetQueryParameters struct {
-    // X-FEN or EPD of the root position
-    Fen *string "uriparametername:\"fen\""
-    // Optionally retrieve history
-    History *bool "uriparametername:\"history\""
-    // Number of most common moves to display
-    Moves *int32 "uriparametername:\"moves\""
-    // Comma separated sequence of legal moves in UCI notation.Play additional moves starting from `fen`.Required to find an opening name, if `fen` is not an exact matchfor a named position.
-    Play *string "uriparametername:\"play\""
-    // Comma separated list of ratings groups to filter by.Each group ranges from its value to the next highergroup in the enum (`0` from 0 to 999, `1000` from 1000 to 1199,..., `2500` from 2500 to any rating above).
-    Ratings []int32 "uriparametername:\"ratings\""
-    // Maximum number of recent games to display.Due to the way banned users are handled internally, the response maycontain fewer games than expected.
-    RecentGames *int32 "uriparametername:\"recentGames\""
-    // Include only games from this month or later
-    Since *string "uriparametername:\"since\""
-    // Comma separated list of game speeds to filter by
-    // Deprecated: This property is deprecated, use SpeedsAsSpeed instead
-    Speeds []string "uriparametername:\"speeds\""
-    // Comma separated list of game speeds to filter by
-    SpeedsAsSpeed []i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Speed "uriparametername:\"speeds\""
-    // Maximum number of top games to display.Due to the way banned users are handled internally, the response maycontain fewer games than expected.
-    TopGames *int32 "uriparametername:\"topGames\""
-    // Include only games from this month or earlier
-    Until *string "uriparametername:\"until\""
-    // Variant
-    // Deprecated: This property is deprecated, use VariantAsVariantKey instead
-    Variant *string "uriparametername:\"variant\""
-    // Variant
-    VariantAsVariantKey *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey "uriparametername:\"variant\""
+	// X-FEN or EPD of the root position
+	Fen *string "uriparametername:\"fen\""
+	// Optionally retrieve history
+	History *bool "uriparametername:\"history\""
+	// Number of most common moves to display
+	Moves *int32 "uriparametername:\"moves\""
+	// Comma separated sequence of legal moves in UCI notation.Play additional moves starting from `fen`.Required to find an opening name, if `fen` is not an exact matchfor a named position.
+	Play *string "uriparametername:\"play\""
+	// Comma separated list of ratings groups to filter by.Each group ranges from its value to the next highergroup in the enum (`0` from 0 to 999, `1000` from 1000 to 1199,..., `2500` from 2500 to any rating above).
+	Ratings []int32 "uriparametername:\"ratings\""
+	// Maximum number of recent games to display.Due to the way banned users are handled internally, the response maycontain fewer games than expected.
+	RecentGames *int32 "uriparametername:\"recentGames\""
+	// Include only games from this month or later
+	Since *string "uriparametername:\"since\""
+	// Comma separated list of game speeds to filter by
+	// Deprecated: This property is deprecated, use SpeedsAsSpeed instead
+	Speeds []string "uriparametername:\"speeds\""
+	// Comma separated list of game speeds to filter by
+	SpeedsAsSpeed []i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Speed "uriparametername:\"speeds\""
+	// Maximum number of top games to display.Due to the way banned users are handled internally, the response maycontain fewer games than expected.
+	TopGames *int32 "uriparametername:\"topGames\""
+	// Include only games from this month or earlier
+	Until *string "uriparametername:\"until\""
+	// Variant
+	// Deprecated: This property is deprecated, use VariantAsVariantKey instead
+	Variant *string "uriparametername:\"variant\""
+	// Variant
+	VariantAsVariantKey *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.VariantKey "uriparametername:\"variant\""
 }
+
 // LichessRequestBuilderGetRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type LichessRequestBuilderGetRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
-    // Request query parameters
-    QueryParameters *LichessRequestBuilderGetQueryParameters
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *LichessRequestBuilderGetQueryParameters
 }
+
 // NewLichessRequestBuilderInternal instantiates a new LichessRequestBuilder and sets the default values.
-func NewLichessRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*LichessRequestBuilder) {
-    m := &LichessRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/lichess{?fen*,history*,moves*,play*,ratings*,recentGames*,since*,speeds*,topGames*,until*,variant*}", pathParameters),
-    }
-    return m
+func NewLichessRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *LichessRequestBuilder {
+	m := &LichessRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/lichess{?fen*,history*,moves*,play*,ratings*,recentGames*,since*,speeds*,topGames*,until*,variant*}", pathParameters),
+	}
+	return m
 }
+
 // NewLichessRequestBuilder instantiates a new LichessRequestBuilder and sets the default values.
-func NewLichessRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*LichessRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewLichessRequestBuilderInternal(urlParams, requestAdapter)
+func NewLichessRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *LichessRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewLichessRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get **Endpoint: <https://explorer.lichess.org/lichess>**Aggregated rated games from all Lichess players.Example: `curl https://explorer.lichess.org/lichess?variant=standard&speeds=blitz,rapid,classical&ratings=2200,2500&fen=rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR%20w%20KQkq%20-%200%201`
 // returns a OpeningExplorerLichessable when successful
-func (m *LichessRequestBuilder) Get(ctx context.Context, requestConfiguration *LichessRequestBuilderGetRequestConfiguration)(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.OpeningExplorerLichessable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateOpeningExplorerLichessFromDiscriminatorValue, nil)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.OpeningExplorerLichessable), nil
+func (m *LichessRequestBuilder) Get(ctx context.Context, requestConfiguration *LichessRequestBuilderGetRequestConfiguration) (i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.OpeningExplorerLichessable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateOpeningExplorerLichessFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.OpeningExplorerLichessable), nil
 }
+
 // ToGetRequestInformation **Endpoint: <https://explorer.lichess.org/lichess>**Aggregated rated games from all Lichess players.Example: `curl https://explorer.lichess.org/lichess?variant=standard&speeds=blitz,rapid,classical&ratings=2200,2500&fen=rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR%20w%20KQkq%20-%200%201`
 // returns a *RequestInformation when successful
-func (m *LichessRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *LichessRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        if requestConfiguration.QueryParameters != nil {
-            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
-        }
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    return requestInfo, nil
+func (m *LichessRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *LichessRequestBuilderGetRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *LichessRequestBuilder when successful
-func (m *LichessRequestBuilder) WithUrl(rawUrl string)(*LichessRequestBuilder) {
-    return NewLichessRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *LichessRequestBuilder) WithUrl(rawUrl string) *LichessRequestBuilder {
+	return NewLichessRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

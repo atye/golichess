@@ -4,289 +4,311 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type ExternalEngine struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // A secret token that can be used to[*request* analysis](#tag/external-engine/POST/api/external-engine/{id}/analyse)from this external engine.
-    clientSecret *string
-    // Unique engine registration ID.
-    id *string
-    // Maximum available hash table size, in MiB.
-    maxHash *int32
-    // Maximum number of available threads.
-    maxThreads *int32
-    // Display name of the engine.
-    name *string
-    // Arbitrary data that the engine provider can use for identificationor bookkeeping.Users can read this information, but updating it requires knowingor changing the `providerSecret`.
-    providerData *string
-    // The user this engine has been registered for.
-    userId *string
-    // List of supported chess variants.
-    variants []UciVariant
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// A secret token that can be used to[*request* analysis](#tag/external-engine/POST/api/external-engine/{id}/analyse)from this external engine.
+	clientSecret *string
+	// Unique engine registration ID.
+	id *string
+	// Maximum available hash table size, in MiB.
+	maxHash *int32
+	// Maximum number of available threads.
+	maxThreads *int32
+	// Display name of the engine.
+	name *string
+	// Arbitrary data that the engine provider can use for identificationor bookkeeping.Users can read this information, but updating it requires knowingor changing the `providerSecret`.
+	providerData *string
+	// The user this engine has been registered for.
+	userId *string
+	// List of supported chess variants.
+	variants []UciVariant
 }
+
 // NewExternalEngine instantiates a new ExternalEngine and sets the default values.
-func NewExternalEngine()(*ExternalEngine) {
-    m := &ExternalEngine{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewExternalEngine() *ExternalEngine {
+	m := &ExternalEngine{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateExternalEngineFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateExternalEngineFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewExternalEngine(), nil
+func CreateExternalEngineFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewExternalEngine(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *ExternalEngine) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *ExternalEngine) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetClientSecret gets the clientSecret property value. A secret token that can be used to[*request* analysis](#tag/external-engine/POST/api/external-engine/{id}/analyse)from this external engine.
 // returns a *string when successful
-func (m *ExternalEngine) GetClientSecret()(*string) {
-    return m.clientSecret
+func (m *ExternalEngine) GetClientSecret() *string {
+	return m.clientSecret
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *ExternalEngine) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["clientSecret"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetClientSecret(val)
-        }
-        return nil
-    }
-    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetId(val)
-        }
-        return nil
-    }
-    res["maxHash"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMaxHash(val)
-        }
-        return nil
-    }
-    res["maxThreads"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetInt32Value()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMaxThreads(val)
-        }
-        return nil
-    }
-    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetName(val)
-        }
-        return nil
-    }
-    res["providerData"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetProviderData(val)
-        }
-        return nil
-    }
-    res["userId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetUserId(val)
-        }
-        return nil
-    }
-    res["variants"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfEnumValues(ParseUciVariant)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            res := make([]UciVariant, len(val))
-            for i, v := range val {
-                if v != nil {
-                    res[i] = *(v.(*UciVariant))
-                }
-            }
-            m.SetVariants(res)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *ExternalEngine) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["clientSecret"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetClientSecret(val)
+		}
+		return nil
+	}
+	res["id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetId(val)
+		}
+		return nil
+	}
+	res["maxHash"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMaxHash(val)
+		}
+		return nil
+	}
+	res["maxThreads"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetMaxThreads(val)
+		}
+		return nil
+	}
+	res["name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetName(val)
+		}
+		return nil
+	}
+	res["providerData"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetProviderData(val)
+		}
+		return nil
+	}
+	res["userId"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetUserId(val)
+		}
+		return nil
+	}
+	res["variants"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfEnumValues(ParseUciVariant)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]UciVariant, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = *(v.(*UciVariant))
+				}
+			}
+			m.SetVariants(res)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetId gets the id property value. Unique engine registration ID.
 // returns a *string when successful
-func (m *ExternalEngine) GetId()(*string) {
-    return m.id
+func (m *ExternalEngine) GetId() *string {
+	return m.id
 }
+
 // GetMaxHash gets the maxHash property value. Maximum available hash table size, in MiB.
 // returns a *int32 when successful
-func (m *ExternalEngine) GetMaxHash()(*int32) {
-    return m.maxHash
+func (m *ExternalEngine) GetMaxHash() *int32 {
+	return m.maxHash
 }
+
 // GetMaxThreads gets the maxThreads property value. Maximum number of available threads.
 // returns a *int32 when successful
-func (m *ExternalEngine) GetMaxThreads()(*int32) {
-    return m.maxThreads
+func (m *ExternalEngine) GetMaxThreads() *int32 {
+	return m.maxThreads
 }
+
 // GetName gets the name property value. Display name of the engine.
 // returns a *string when successful
-func (m *ExternalEngine) GetName()(*string) {
-    return m.name
+func (m *ExternalEngine) GetName() *string {
+	return m.name
 }
+
 // GetProviderData gets the providerData property value. Arbitrary data that the engine provider can use for identificationor bookkeeping.Users can read this information, but updating it requires knowingor changing the `providerSecret`.
 // returns a *string when successful
-func (m *ExternalEngine) GetProviderData()(*string) {
-    return m.providerData
+func (m *ExternalEngine) GetProviderData() *string {
+	return m.providerData
 }
+
 // GetUserId gets the userId property value. The user this engine has been registered for.
 // returns a *string when successful
-func (m *ExternalEngine) GetUserId()(*string) {
-    return m.userId
+func (m *ExternalEngine) GetUserId() *string {
+	return m.userId
 }
+
 // GetVariants gets the variants property value. List of supported chess variants.
 // returns a []UciVariant when successful
-func (m *ExternalEngine) GetVariants()([]UciVariant) {
-    return m.variants
+func (m *ExternalEngine) GetVariants() []UciVariant {
+	return m.variants
 }
+
 // Serialize serializes information the current object
-func (m *ExternalEngine) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("clientSecret", m.GetClientSecret())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("id", m.GetId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("maxHash", m.GetMaxHash())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteInt32Value("maxThreads", m.GetMaxThreads())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("name", m.GetName())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("providerData", m.GetProviderData())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("userId", m.GetUserId())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetVariants() != nil {
-        err := writer.WriteCollectionOfStringValues("variants", SerializeUciVariant(m.GetVariants()))
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *ExternalEngine) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("clientSecret", m.GetClientSecret())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("id", m.GetId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("maxHash", m.GetMaxHash())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("maxThreads", m.GetMaxThreads())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("name", m.GetName())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("providerData", m.GetProviderData())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("userId", m.GetUserId())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetVariants() != nil {
+		err := writer.WriteCollectionOfStringValues("variants", SerializeUciVariant(m.GetVariants()))
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ExternalEngine) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *ExternalEngine) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetClientSecret sets the clientSecret property value. A secret token that can be used to[*request* analysis](#tag/external-engine/POST/api/external-engine/{id}/analyse)from this external engine.
-func (m *ExternalEngine) SetClientSecret(value *string)() {
-    m.clientSecret = value
+func (m *ExternalEngine) SetClientSecret(value *string) {
+	m.clientSecret = value
 }
+
 // SetId sets the id property value. Unique engine registration ID.
-func (m *ExternalEngine) SetId(value *string)() {
-    m.id = value
+func (m *ExternalEngine) SetId(value *string) {
+	m.id = value
 }
+
 // SetMaxHash sets the maxHash property value. Maximum available hash table size, in MiB.
-func (m *ExternalEngine) SetMaxHash(value *int32)() {
-    m.maxHash = value
+func (m *ExternalEngine) SetMaxHash(value *int32) {
+	m.maxHash = value
 }
+
 // SetMaxThreads sets the maxThreads property value. Maximum number of available threads.
-func (m *ExternalEngine) SetMaxThreads(value *int32)() {
-    m.maxThreads = value
+func (m *ExternalEngine) SetMaxThreads(value *int32) {
+	m.maxThreads = value
 }
+
 // SetName sets the name property value. Display name of the engine.
-func (m *ExternalEngine) SetName(value *string)() {
-    m.name = value
+func (m *ExternalEngine) SetName(value *string) {
+	m.name = value
 }
+
 // SetProviderData sets the providerData property value. Arbitrary data that the engine provider can use for identificationor bookkeeping.Users can read this information, but updating it requires knowingor changing the `providerSecret`.
-func (m *ExternalEngine) SetProviderData(value *string)() {
-    m.providerData = value
+func (m *ExternalEngine) SetProviderData(value *string) {
+	m.providerData = value
 }
+
 // SetUserId sets the userId property value. The user this engine has been registered for.
-func (m *ExternalEngine) SetUserId(value *string)() {
-    m.userId = value
+func (m *ExternalEngine) SetUserId(value *string) {
+	m.userId = value
 }
+
 // SetVariants sets the variants property value. List of supported chess variants.
-func (m *ExternalEngine) SetVariants(value []UciVariant)() {
-    m.variants = value
+func (m *ExternalEngine) SetVariants(value []UciVariant) {
+	m.variants = value
 }
+
 type ExternalEngineable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetClientSecret()(*string)
-    GetId()(*string)
-    GetMaxHash()(*int32)
-    GetMaxThreads()(*int32)
-    GetName()(*string)
-    GetProviderData()(*string)
-    GetUserId()(*string)
-    GetVariants()([]UciVariant)
-    SetClientSecret(value *string)()
-    SetId(value *string)()
-    SetMaxHash(value *int32)()
-    SetMaxThreads(value *int32)()
-    SetName(value *string)()
-    SetProviderData(value *string)()
-    SetUserId(value *string)()
-    SetVariants(value []UciVariant)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetClientSecret() *string
+	GetId() *string
+	GetMaxHash() *int32
+	GetMaxThreads() *int32
+	GetName() *string
+	GetProviderData() *string
+	GetUserId() *string
+	GetVariants() []UciVariant
+	SetClientSecret(value *string)
+	SetId(value *string)
+	SetMaxHash(value *int32)
+	SetMaxThreads(value *int32)
+	SetName(value *string)
+	SetProviderData(value *string)
+	SetUserId(value *string)
+	SetVariants(value []UciVariant)
 }

@@ -4,82 +4,89 @@
 package broadcast
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	"context"
+	i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // RoundItemEditRequestBuilder builds and executes requests for operations under \broadcast\round\{broadcastRoundId}\edit
 type RoundItemEditRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // RoundItemEditRequestBuilderPostQueryParameters update information about a broadcast round.This endpoint accepts the same form data as the web form.All fields must be populated with data. Missing fields will override the broadcast with empty data.For instance, if you omit `startDate`, then any pre-existing start date will be removed.
 type RoundItemEditRequestBuilderPostQueryParameters struct {
-    // Only update the provided fields, leaving others unchanged
-    Patch *bool "uriparametername:\"patch\""
+	// Only update the provided fields, leaving others unchanged
+	Patch *bool "uriparametername:\"patch\""
 }
+
 // RoundItemEditRequestBuilderPostRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type RoundItemEditRequestBuilderPostRequestConfiguration struct {
-    // Request headers
-    Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
-    // Request options
-    Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
-    // Request query parameters
-    QueryParameters *RoundItemEditRequestBuilderPostQueryParameters
+	// Request headers
+	Headers *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestHeaders
+	// Request options
+	Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
+	// Request query parameters
+	QueryParameters *RoundItemEditRequestBuilderPostQueryParameters
 }
+
 // NewRoundItemEditRequestBuilderInternal instantiates a new RoundItemEditRequestBuilder and sets the default values.
-func NewRoundItemEditRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*RoundItemEditRequestBuilder) {
-    m := &RoundItemEditRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/broadcast/round/{broadcastRoundId}/edit{?patch*}", pathParameters),
-    }
-    return m
+func NewRoundItemEditRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *RoundItemEditRequestBuilder {
+	m := &RoundItemEditRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/broadcast/round/{broadcastRoundId}/edit{?patch*}", pathParameters),
+	}
+	return m
 }
+
 // NewRoundItemEditRequestBuilder instantiates a new RoundItemEditRequestBuilder and sets the default values.
-func NewRoundItemEditRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*RoundItemEditRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewRoundItemEditRequestBuilderInternal(urlParams, requestAdapter)
+func NewRoundItemEditRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *RoundItemEditRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewRoundItemEditRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Post update information about a broadcast round.This endpoint accepts the same form data as the web form.All fields must be populated with data. Missing fields will override the broadcast with empty data.For instance, if you omit `startDate`, then any pre-existing start date will be removed.
 // returns a BroadcastRoundable when successful
 // returns a ErrorEscaped error when the service returns a 400 status code
-func (m *RoundItemEditRequestBuilder) Post(ctx context.Context, body RoundItemEditBroadcastRoundFormPostRequestBodyable, requestConfiguration *RoundItemEditRequestBuilderPostRequestConfiguration)(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastRoundable, error) {
-    requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "400": i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateErrorEscapedFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateBroadcastRoundFromDiscriminatorValue, errorMapping)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastRoundable), nil
+func (m *RoundItemEditRequestBuilder) Post(ctx context.Context, body RoundItemEditBroadcastRoundFormPostRequestBodyable, requestConfiguration *RoundItemEditRequestBuilderPostRequestConfiguration) (i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastRoundable, error) {
+	requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
+		"400": i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateErrorEscapedFromDiscriminatorValue,
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateBroadcastRoundFromDiscriminatorValue, errorMapping)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BroadcastRoundable), nil
 }
+
 // ToPostRequestInformation update information about a broadcast round.This endpoint accepts the same form data as the web form.All fields must be populated with data. Missing fields will override the broadcast with empty data.For instance, if you omit `startDate`, then any pre-existing start date will be removed.
 // returns a *RequestInformation when successful
-func (m *RoundItemEditRequestBuilder) ToPostRequestInformation(ctx context.Context, body RoundItemEditBroadcastRoundFormPostRequestBodyable, requestConfiguration *RoundItemEditRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    if requestConfiguration != nil {
-        if requestConfiguration.QueryParameters != nil {
-            requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
-        }
-        requestInfo.Headers.AddAll(requestConfiguration.Headers)
-        requestInfo.AddRequestOptions(requestConfiguration.Options)
-    }
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    err := requestInfo.SetContentFromParsable(ctx, m.BaseRequestBuilder.RequestAdapter, "application/x-www-form-urlencoded", body)
-    if err != nil {
-        return nil, err
-    }
-    return requestInfo, nil
+func (m *RoundItemEditRequestBuilder) ToPostRequestInformation(ctx context.Context, body RoundItemEditBroadcastRoundFormPostRequestBodyable, requestConfiguration *RoundItemEditRequestBuilderPostRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	if requestConfiguration != nil {
+		if requestConfiguration.QueryParameters != nil {
+			requestInfo.AddQueryParameters(*(requestConfiguration.QueryParameters))
+		}
+		requestInfo.Headers.AddAll(requestConfiguration.Headers)
+		requestInfo.AddRequestOptions(requestConfiguration.Options)
+	}
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	err := requestInfo.SetContentFromParsable(ctx, m.BaseRequestBuilder.RequestAdapter, "application/x-www-form-urlencoded", body)
+	if err != nil {
+		return nil, err
+	}
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *RoundItemEditRequestBuilder when successful
-func (m *RoundItemEditRequestBuilder) WithUrl(rawUrl string)(*RoundItemEditRequestBuilder) {
-    return NewRoundItemEditRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *RoundItemEditRequestBuilder) WithUrl(rawUrl string) *RoundItemEditRequestBuilder {
+	return NewRoundItemEditRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }
