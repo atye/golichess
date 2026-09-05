@@ -379,20 +379,6 @@ func (m *ResponseMeta) AccountKidPostHeaders() AccountKidPostHeaders {
 	}
 }
 
-// TimelineHeaders holds the headers Timeline declares. A header the spec
-// types as something other than a string is nil when the response omits it.
-type TimelineHeaders struct {
-	AccessControlAllowOrigin string
-}
-
-// TimelineHeaders reads the headers Timeline declares out of the captured
-// response.
-func (m *ResponseMeta) TimelineHeaders() TimelineHeaders {
-	return TimelineHeaders{
-		AccessControlAllowOrigin: m.Header.Get("Access-Control-Allow-Origin"),
-	}
-}
-
 // GamePgnHeaders holds the headers GamePgn declares. A header the spec
 // types as something other than a string is nil when the response omits it.
 type GamePgnHeaders struct {

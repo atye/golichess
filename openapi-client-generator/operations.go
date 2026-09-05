@@ -609,41 +609,6 @@ func (c *Client) AccountKidPost(ctx context.Context, params AccountKidPostParams
 	return &result, nil
 }
 
-// TimelineParams contains the parameters for the Timeline operation.
-// Required parameters are value fields; optional parameters are pointers.
-type TimelineParams struct {
-	// Show events since this timestamp.
-	Since *int64 `json:"since,omitempty"`
-	// Max number of events to fetch.
-	Nb *int64 `json:"nb,omitempty"`
-}
-
-// Timeline - Get my timeline
-//
-// Get the timeline events of the logged in user.
-func (c *Client) Timeline(ctx context.Context, opts ...TimelineParams) (*Timeline, error) {
-
-	path := "/api/timeline"
-	var params TimelineParams
-	if len(opts) > 0 {
-		params = opts[0]
-	}
-	queryValues := url.Values{}
-	addQueryParam(queryValues, "since", "form", true, params.Since)
-
-	addQueryParam(queryValues, "nb", "form", true, params.Nb)
-
-	if len(queryValues) > 0 {
-		path += "?" + encodeQuery(queryValues)
-	}
-
-	var result Timeline
-	if err := c.do(ctx, "GET", path, nil, "", &result, "application/json", true); err != nil {
-		return nil, err
-	}
-	return &result, nil
-}
-
 // GamePgnParams contains the parameters for the GamePgn operation.
 // Required parameters are value fields; optional parameters are pointers.
 type GamePgnParams struct {
