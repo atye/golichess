@@ -36,7 +36,7 @@ func NewExternalEngineWorkWorkItemRequestBuilder(rawUrl string, requestAdapter i
 	return NewExternalEngineWorkWorkItemRequestBuilderInternal(urlParams, requestAdapter)
 }
 
-// Post **Endpoint: `https://engine.lichess.ovh/api/external-engine/work/{id}`**Submit a stream of analysis as [UCI output](https://backscattering.de/chess/uci/#engine-info).* The engine should always be in `UCI_Chess960` mode.* `UCI_AnalyseMode` enabled if available.* It produces `info` with at least:  - `depth`  - `multipv` (between 1 and 5)  - `score`  - `nodes`  - `time`  - `pv`The server may close the connection at any time, indicating thatthe requester has gone away and analysis should be stopped.
+// Post **Endpoint: `https://engine.lichess.ovh/api/external-engine/work/{id}`**Submit a stream of analysis as [UCI output](https://backscattering.de/chess/uci/#engine-info).* The engine should always be in `UCI_Chess960` mode.* `UCI_AnalyseMode` enabled if available.* Engine produces `info` with at least:  - `depth`  - `multipv` (between 1 and 5)  - `score`  - `nodes`  - `time`  - `pv`* Engine finally sends `bestmove`:  - with a move or `(none)`  - optionally, with `ponder` moveThe endpoint may close the connection at any time, indicating thatthe requester has gone away and analysis should be stopped.
 // returns a []byte when successful
 func (m *ExternalEngineWorkWorkItemRequestBuilder) Post(ctx context.Context, body *string, requestConfiguration *ExternalEngineWorkWorkItemRequestBuilderPostRequestConfiguration) ([]byte, error) {
 	requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration)
@@ -53,7 +53,7 @@ func (m *ExternalEngineWorkWorkItemRequestBuilder) Post(ctx context.Context, bod
 	return res.([]byte), nil
 }
 
-// ToPostRequestInformation **Endpoint: `https://engine.lichess.ovh/api/external-engine/work/{id}`**Submit a stream of analysis as [UCI output](https://backscattering.de/chess/uci/#engine-info).* The engine should always be in `UCI_Chess960` mode.* `UCI_AnalyseMode` enabled if available.* It produces `info` with at least:  - `depth`  - `multipv` (between 1 and 5)  - `score`  - `nodes`  - `time`  - `pv`The server may close the connection at any time, indicating thatthe requester has gone away and analysis should be stopped.
+// ToPostRequestInformation **Endpoint: `https://engine.lichess.ovh/api/external-engine/work/{id}`**Submit a stream of analysis as [UCI output](https://backscattering.de/chess/uci/#engine-info).* The engine should always be in `UCI_Chess960` mode.* `UCI_AnalyseMode` enabled if available.* Engine produces `info` with at least:  - `depth`  - `multipv` (between 1 and 5)  - `score`  - `nodes`  - `time`  - `pv`* Engine finally sends `bestmove`:  - with a move or `(none)`  - optionally, with `ponder` moveThe endpoint may close the connection at any time, indicating thatthe requester has gone away and analysis should be stopped.
 // returns a *RequestInformation when successful
 func (m *ExternalEngineWorkWorkItemRequestBuilder) ToPostRequestInformation(ctx context.Context, body *string, requestConfiguration *ExternalEngineWorkWorkItemRequestBuilderPostRequestConfiguration) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
 	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
