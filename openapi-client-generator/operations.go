@@ -4687,7 +4687,7 @@ func (c *Client) APIExternalEngineAcquire(ctx context.Context, body APIExternalE
 // Submit a stream of analysis as [UCI output](https://backscattering.de/chess/uci/#engine-info).
 // * The engine should always be in `UCI_Chess960` mode.
 // * `UCI_AnalyseMode` enabled if available.
-// * It produces `info` with at least:
+// * Engine produces `info` with at least:
 //   - `depth`
 //   - `multipv` (between 1 and 5)
 //   - `score`
@@ -4695,7 +4695,11 @@ func (c *Client) APIExternalEngineAcquire(ctx context.Context, body APIExternalE
 //   - `time`
 //   - `pv`
 //
-// The server may close the connection at any time, indicating that
+// * Engine finally sends `bestmove`:
+//   - with a move or `(none)`
+//   - optionally, with `ponder` move
+//
+// The endpoint may close the connection at any time, indicating that
 // the requester has gone away and analysis should be stopped.
 func (c *Client) APIExternalEngineSubmit(ctx context.Context, id string, body string) error {
 
