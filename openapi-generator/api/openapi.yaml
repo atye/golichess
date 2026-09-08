@@ -94,7 +94,7 @@ info:
     name: AGPL-3.0-or-later
     url: https://www.gnu.org/licenses/agpl-3.0.txt
   title: Lichess.org API reference
-  version: 2.0.169
+  version: 2.0.170
   x-logo:
     url: https://lichess1.org/assets/logo/lichess-pad12.svg
 servers:
