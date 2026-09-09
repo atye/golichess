@@ -3,7 +3,7 @@
 
 package decline
 
-// Reason challenge was declined. It will be translated to the player's language. See [the full list in the translation file](https://github.com/ornicar/lila/blob/master/translation/source/challenge.xml#L14).
+// Reason the challenge was declined. Only the values listed below are accepted; any other value falls back to `generic`. The reason will be translated to the player's language.
 type DeclinePostRequestBody_reason int
 
 const (
