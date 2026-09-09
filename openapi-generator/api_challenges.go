@@ -1009,7 +1009,7 @@ type ChallengesAPIChallengeDeclineRequest struct {
 	reason *string
 }
 
-// Reason challenge was declined. It will be translated to the player&#39;s language. See [the full list in the translation file](https://github.com/ornicar/lila/blob/master/translation/source/challenge.xml#L14).
+// Reason the challenge was declined. Only the values listed below are accepted; any other value falls back to &#x60;generic&#x60;. The reason will be translated to the player&#39;s language.
 func (r ChallengesAPIChallengeDeclineRequest) Reason(reason string) ChallengesAPIChallengeDeclineRequest {
 	r.reason = &reason
 	return r

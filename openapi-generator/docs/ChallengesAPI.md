@@ -418,7 +418,7 @@ import (
 
 func main() {
 	challengeId := "5IrD6Gzz" // string | 
-	reason := "reason_example" // string | Reason challenge was declined. It will be translated to the player's language. See [the full list in the translation file](https://github.com/ornicar/lila/blob/master/translation/source/challenge.xml#L14). (optional)
+	reason := "reason_example" // string | Reason the challenge was declined. Only the values listed below are accepted; any other value falls back to `generic`. The reason will be translated to the player's language. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -448,7 +448,7 @@ Other parameters are passed through a pointer to a apiChallengeDeclineRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **reason** | **string** | Reason challenge was declined. It will be translated to the player&#39;s language. See [the full list in the translation file](https://github.com/ornicar/lila/blob/master/translation/source/challenge.xml#L14). | 
+ **reason** | **string** | Reason the challenge was declined. Only the values listed below are accepted; any other value falls back to &#x60;generic&#x60;. The reason will be translated to the player&#39;s language. | 
 
 ### Return type
 
