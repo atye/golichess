@@ -77,6 +77,6 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add oapi-codegen
+          git add version.txt oapi-codegen
           git diff --staged --quiet || git commit -m "Update oapi-codegen client to Lichess API version ${{ steps.bundle.outputs.version }}"
           git push

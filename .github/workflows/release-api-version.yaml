@@ -1,0 +1,81 @@
+name: Release Lichess API version
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - version.txt
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'API version to release (for example: 2.0.154)'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Determine version
+        id: version
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            VERSION="${{ github.event.inputs.version }}"
+          else
+            VERSION=$(cat version.txt)
+          fi
+
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=lichess-api-v$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Build release assets
+        shell: bash
+        run: |
+          mkdir -p release-assets
+
+          for dir in \
+            openapi-generator \
+            ogen \
+            oapi-codegen \
+            openapi-client-generator \
+            swagger-codegen \
+            kiota
+          do
+            if [ -d "$dir" ]; then
+              (cd "$dir" && zip -r "../release-assets/${dir}.zip" .)
+            fi
+          done
+
+          ls -la release-assets
+
+      - name: Create tag if needed
+        shell: bash
+        run: |
+          TAG="${{ steps.version.outputs.tag }}"
+
+          if git rev-parse "$TAG" >/dev/null 2>&1; then
+            echo "Tag $TAG already exists"
+          else
+            git tag "$TAG"
+            git push origin "$TAG"
+          fi
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.tag }}
+          name: Lichess API ${{ steps.version.outputs.version }}
+          generate_release_notes: true
+          files: |
+            release-assets/*.zip

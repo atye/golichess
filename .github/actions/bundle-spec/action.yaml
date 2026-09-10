@@ -57,18 +57,30 @@ runs:
       id: check_version
       shell: bash
       run: |
+        version_is_newer() {
+          local old_version="$1"
+          local new_version="$2"
+
+          if [ "$old_version" = "$new_version" ]; then
+            return 1
+          fi
+
+          [ "$(printf '%s\n%s\n' "$old_version" "$new_version" | sort -V | tail -n1)" = "$new_version" ]
+        }
+
         if [ -f version.txt ]; then
           OLD_VERSION=$(cat version.txt)
           echo "Old version: $OLD_VERSION"
           echo "New version: ${{ steps.version.outputs.version }}"
-          if [ "$OLD_VERSION" = "${{ steps.version.outputs.version }}" ]; then
-            echo "Version unchanged"
-            echo "changed=false" >> $GITHUB_OUTPUT
-            echo "unchanged=true" >> $GITHUB_OUTPUT
-          else
-            echo "Version changed"
+
+          if version_is_newer "$OLD_VERSION" "${{ steps.version.outputs.version }}"; then
+            echo "Bundled spec version is newer than version.txt; proceeding with updates"
             echo "changed=true" >> $GITHUB_OUTPUT
             echo "unchanged=false" >> $GITHUB_OUTPUT
+          else
+            echo "Bundled spec version is not newer than version.txt; skipping updates"
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "unchanged=true" >> $GITHUB_OUTPUT
           fi
         else
           echo "No version.txt found, treating as changed"
