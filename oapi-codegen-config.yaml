@@ -3,5 +3,7 @@ output: oapi-codegen/client.gen.go
 generate:
   client: true
   models: true
+compatibility:
+  always-export-class-schema: true 
 output-options:
   skip-prune: true
