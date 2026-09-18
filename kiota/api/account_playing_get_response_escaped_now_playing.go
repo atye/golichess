@@ -26,11 +26,13 @@ type AccountPlayingGetResponse_nowPlaying struct {
 	// The lastMove property
 	lastMove *string
 	// The opponent property
-	opponent AccountPlayingGetResponse_nowPlaying_opponentable
+	opponent AccountPlayingGetResponse_nowPlaying_PlayingGetResponse_nowPlaying_opponentable
 	// The perf property
 	perf *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.PerfType
 	// The rated property
 	rated *bool
+	// The rating property
+	rating *int32
 	// The ratingDiff property
 	ratingDiff *int32
 	// The secondsLeft property
@@ -40,7 +42,7 @@ type AccountPlayingGetResponse_nowPlaying struct {
 	// The speed property
 	speed *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Speed
 	// The status property
-	status *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameStatusName
+	status i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameStatusable
 	// The swissId property
 	swissId *string
 	// The tournamentId property
@@ -49,6 +51,126 @@ type AccountPlayingGetResponse_nowPlaying struct {
 	variant i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Variantable
 	// The winner property
 	winner *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameColor
+}
+
+// AccountPlayingGetResponse_nowPlaying_PlayingGetResponse_nowPlaying_opponent composed type wrapper for classes AccountPlayingGetResponse_nowPlaying_opponentMember1able, AccountPlayingGetResponse_nowPlaying_opponentMember2able, AccountPlayingGetResponse_nowPlaying_opponentMember3able
+type AccountPlayingGetResponse_nowPlaying_PlayingGetResponse_nowPlaying_opponent struct {
+	// Composed type representation for type AccountPlayingGetResponse_nowPlaying_opponentMember1able
+	accountPlayingGetResponse_nowPlaying_opponentMember1 AccountPlayingGetResponse_nowPlaying_opponentMember1able
+	// Composed type representation for type AccountPlayingGetResponse_nowPlaying_opponentMember2able
+	accountPlayingGetResponse_nowPlaying_opponentMember2 AccountPlayingGetResponse_nowPlaying_opponentMember2able
+	// Composed type representation for type AccountPlayingGetResponse_nowPlaying_opponentMember3able
+	accountPlayingGetResponse_nowPlaying_opponentMember3 AccountPlayingGetResponse_nowPlaying_opponentMember3able
+}
+
+// NewAccountPlayingGetResponse_nowPlaying_PlayingGetResponse_nowPlaying_opponent instantiates a new AccountPlayingGetResponse_nowPlaying_PlayingGetResponse_nowPlaying_opponent and sets the default values.
+func NewAccountPlayingGetResponse_nowPlaying_PlayingGetResponse_nowPlaying_opponent() *AccountPlayingGetResponse_nowPlaying_PlayingGetResponse_nowPlaying_opponent {
+	m := &AccountPlayingGetResponse_nowPlaying_PlayingGetResponse_nowPlaying_opponent{}
+	return m
+}
+
+// CreateAccountPlayingGetResponse_nowPlaying_PlayingGetResponse_nowPlaying_opponentFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
+// returns a Parsable when successful
+func CreateAccountPlayingGetResponse_nowPlaying_PlayingGetResponse_nowPlaying_opponentFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	result := NewAccountPlayingGetResponse_nowPlaying_PlayingGetResponse_nowPlaying_opponent()
+	if parseNode != nil {
+		mappingValueNode, err := parseNode.GetChildNode("")
+		if err != nil {
+			return nil, err
+		}
+		if mappingValueNode != nil {
+			mappingValue, err := mappingValueNode.GetStringValue()
+			if err != nil {
+				return nil, err
+			}
+			if mappingValue != nil {
+			}
+		}
+	}
+	return result, nil
+}
+
+// GetAccountPlayingGetResponseNowPlayingOpponentMember1 gets the AccountPlayingGetResponse_nowPlaying_opponentMember1 property value. Composed type representation for type AccountPlayingGetResponse_nowPlaying_opponentMember1able
+// returns a AccountPlayingGetResponse_nowPlaying_opponentMember1able when successful
+func (m *AccountPlayingGetResponse_nowPlaying_PlayingGetResponse_nowPlaying_opponent) GetAccountPlayingGetResponseNowPlayingOpponentMember1() AccountPlayingGetResponse_nowPlaying_opponentMember1able {
+	return m.accountPlayingGetResponse_nowPlaying_opponentMember1
+}
+
+// GetAccountPlayingGetResponseNowPlayingOpponentMember2 gets the AccountPlayingGetResponse_nowPlaying_opponentMember2 property value. Composed type representation for type AccountPlayingGetResponse_nowPlaying_opponentMember2able
+// returns a AccountPlayingGetResponse_nowPlaying_opponentMember2able when successful
+func (m *AccountPlayingGetResponse_nowPlaying_PlayingGetResponse_nowPlaying_opponent) GetAccountPlayingGetResponseNowPlayingOpponentMember2() AccountPlayingGetResponse_nowPlaying_opponentMember2able {
+	return m.accountPlayingGetResponse_nowPlaying_opponentMember2
+}
+
+// GetAccountPlayingGetResponseNowPlayingOpponentMember3 gets the AccountPlayingGetResponse_nowPlaying_opponentMember3 property value. Composed type representation for type AccountPlayingGetResponse_nowPlaying_opponentMember3able
+// returns a AccountPlayingGetResponse_nowPlaying_opponentMember3able when successful
+func (m *AccountPlayingGetResponse_nowPlaying_PlayingGetResponse_nowPlaying_opponent) GetAccountPlayingGetResponseNowPlayingOpponentMember3() AccountPlayingGetResponse_nowPlaying_opponentMember3able {
+	return m.accountPlayingGetResponse_nowPlaying_opponentMember3
+}
+
+// GetFieldDeserializers the deserialization information for the current model
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *AccountPlayingGetResponse_nowPlaying_PlayingGetResponse_nowPlaying_opponent) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	if m.GetAccountPlayingGetResponseNowPlayingOpponentMember1() != nil {
+		return m.GetAccountPlayingGetResponseNowPlayingOpponentMember1().GetFieldDeserializers()
+	} else if m.GetAccountPlayingGetResponseNowPlayingOpponentMember2() != nil {
+		return m.GetAccountPlayingGetResponseNowPlayingOpponentMember2().GetFieldDeserializers()
+	} else if m.GetAccountPlayingGetResponseNowPlayingOpponentMember3() != nil {
+		return m.GetAccountPlayingGetResponseNowPlayingOpponentMember3().GetFieldDeserializers()
+	}
+	return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+}
+
+// GetIsComposedType determines if the current object is a wrapper around a composed type
+// returns a bool when successful
+func (m *AccountPlayingGetResponse_nowPlaying_PlayingGetResponse_nowPlaying_opponent) GetIsComposedType() bool {
+	return true
+}
+
+// Serialize serializes information the current object
+func (m *AccountPlayingGetResponse_nowPlaying_PlayingGetResponse_nowPlaying_opponent) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	if m.GetAccountPlayingGetResponseNowPlayingOpponentMember1() != nil {
+		err := writer.WriteObjectValue("", m.GetAccountPlayingGetResponseNowPlayingOpponentMember1())
+		if err != nil {
+			return err
+		}
+	} else if m.GetAccountPlayingGetResponseNowPlayingOpponentMember2() != nil {
+		err := writer.WriteObjectValue("", m.GetAccountPlayingGetResponseNowPlayingOpponentMember2())
+		if err != nil {
+			return err
+		}
+	} else if m.GetAccountPlayingGetResponseNowPlayingOpponentMember3() != nil {
+		err := writer.WriteObjectValue("", m.GetAccountPlayingGetResponseNowPlayingOpponentMember3())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// SetAccountPlayingGetResponseNowPlayingOpponentMember1 sets the AccountPlayingGetResponse_nowPlaying_opponentMember1 property value. Composed type representation for type AccountPlayingGetResponse_nowPlaying_opponentMember1able
+func (m *AccountPlayingGetResponse_nowPlaying_PlayingGetResponse_nowPlaying_opponent) SetAccountPlayingGetResponseNowPlayingOpponentMember1(value AccountPlayingGetResponse_nowPlaying_opponentMember1able) {
+	m.accountPlayingGetResponse_nowPlaying_opponentMember1 = value
+}
+
+// SetAccountPlayingGetResponseNowPlayingOpponentMember2 sets the AccountPlayingGetResponse_nowPlaying_opponentMember2 property value. Composed type representation for type AccountPlayingGetResponse_nowPlaying_opponentMember2able
+func (m *AccountPlayingGetResponse_nowPlaying_PlayingGetResponse_nowPlaying_opponent) SetAccountPlayingGetResponseNowPlayingOpponentMember2(value AccountPlayingGetResponse_nowPlaying_opponentMember2able) {
+	m.accountPlayingGetResponse_nowPlaying_opponentMember2 = value
+}
+
+// SetAccountPlayingGetResponseNowPlayingOpponentMember3 sets the AccountPlayingGetResponse_nowPlaying_opponentMember3 property value. Composed type representation for type AccountPlayingGetResponse_nowPlaying_opponentMember3able
+func (m *AccountPlayingGetResponse_nowPlaying_PlayingGetResponse_nowPlaying_opponent) SetAccountPlayingGetResponseNowPlayingOpponentMember3(value AccountPlayingGetResponse_nowPlaying_opponentMember3able) {
+	m.accountPlayingGetResponse_nowPlaying_opponentMember3 = value
+}
+
+type AccountPlayingGetResponse_nowPlaying_PlayingGetResponse_nowPlaying_opponentable interface {
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetAccountPlayingGetResponseNowPlayingOpponentMember1() AccountPlayingGetResponse_nowPlaying_opponentMember1able
+	GetAccountPlayingGetResponseNowPlayingOpponentMember2() AccountPlayingGetResponse_nowPlaying_opponentMember2able
+	GetAccountPlayingGetResponseNowPlayingOpponentMember3() AccountPlayingGetResponse_nowPlaying_opponentMember3able
+	SetAccountPlayingGetResponseNowPlayingOpponentMember1(value AccountPlayingGetResponse_nowPlaying_opponentMember1able)
+	SetAccountPlayingGetResponseNowPlayingOpponentMember2(value AccountPlayingGetResponse_nowPlaying_opponentMember2able)
+	SetAccountPlayingGetResponseNowPlayingOpponentMember3(value AccountPlayingGetResponse_nowPlaying_opponentMember3able)
 }
 
 // NewAccountPlayingGetResponse_nowPlaying instantiates a new AccountPlayingGetResponse_nowPlaying and sets the default values.
@@ -157,12 +279,12 @@ func (m *AccountPlayingGetResponse_nowPlaying) GetFieldDeserializers() map[strin
 		return nil
 	}
 	res["opponent"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-		val, err := n.GetObjectValue(CreateAccountPlayingGetResponse_nowPlaying_opponentFromDiscriminatorValue)
+		val, err := n.GetObjectValue(CreateAccountPlayingGetResponse_nowPlaying_PlayingGetResponse_nowPlaying_opponentFromDiscriminatorValue)
 		if err != nil {
 			return err
 		}
 		if val != nil {
-			m.SetOpponent(val.(AccountPlayingGetResponse_nowPlaying_opponentable))
+			m.SetOpponent(val.(AccountPlayingGetResponse_nowPlaying_PlayingGetResponse_nowPlaying_opponentable))
 		}
 		return nil
 	}
@@ -183,6 +305,16 @@ func (m *AccountPlayingGetResponse_nowPlaying) GetFieldDeserializers() map[strin
 		}
 		if val != nil {
 			m.SetRated(val)
+		}
+		return nil
+	}
+	res["rating"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRating(val)
 		}
 		return nil
 	}
@@ -227,12 +359,12 @@ func (m *AccountPlayingGetResponse_nowPlaying) GetFieldDeserializers() map[strin
 		return nil
 	}
 	res["status"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-		val, err := n.GetEnumValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.ParseGameStatusName)
+		val, err := n.GetObjectValue(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateGameStatusFromDiscriminatorValue)
 		if err != nil {
 			return err
 		}
 		if val != nil {
-			m.SetStatus(val.(*i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameStatusName))
+			m.SetStatus(val.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameStatusable))
 		}
 		return nil
 	}
@@ -310,8 +442,8 @@ func (m *AccountPlayingGetResponse_nowPlaying) GetLastMove() *string {
 }
 
 // GetOpponent gets the opponent property value. The opponent property
-// returns a AccountPlayingGetResponse_nowPlaying_opponentable when successful
-func (m *AccountPlayingGetResponse_nowPlaying) GetOpponent() AccountPlayingGetResponse_nowPlaying_opponentable {
+// returns a AccountPlayingGetResponse_nowPlaying_PlayingGetResponse_nowPlaying_opponentable when successful
+func (m *AccountPlayingGetResponse_nowPlaying) GetOpponent() AccountPlayingGetResponse_nowPlaying_PlayingGetResponse_nowPlaying_opponentable {
 	return m.opponent
 }
 
@@ -325,6 +457,12 @@ func (m *AccountPlayingGetResponse_nowPlaying) GetPerf() *i9c7bd2a4616e157afccf6
 // returns a *bool when successful
 func (m *AccountPlayingGetResponse_nowPlaying) GetRated() *bool {
 	return m.rated
+}
+
+// GetRating gets the rating property value. The rating property
+// returns a *int32 when successful
+func (m *AccountPlayingGetResponse_nowPlaying) GetRating() *int32 {
+	return m.rating
 }
 
 // GetRatingDiff gets the ratingDiff property value. The ratingDiff property
@@ -352,8 +490,8 @@ func (m *AccountPlayingGetResponse_nowPlaying) GetSpeed() *i9c7bd2a4616e157afccf
 }
 
 // GetStatus gets the status property value. The status property
-// returns a *GameStatusName when successful
-func (m *AccountPlayingGetResponse_nowPlaying) GetStatus() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameStatusName {
+// returns a GameStatusable when successful
+func (m *AccountPlayingGetResponse_nowPlaying) GetStatus() i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameStatusable {
 	return m.status
 }
 
@@ -446,6 +584,12 @@ func (m *AccountPlayingGetResponse_nowPlaying) Serialize(writer i878a80d2330e89d
 		}
 	}
 	{
+		err := writer.WriteInt32Value("rating", m.GetRating())
+		if err != nil {
+			return err
+		}
+	}
+	{
 		err := writer.WriteInt32Value("ratingDiff", m.GetRatingDiff())
 		if err != nil {
 			return err
@@ -471,9 +615,8 @@ func (m *AccountPlayingGetResponse_nowPlaying) Serialize(writer i878a80d2330e89d
 			return err
 		}
 	}
-	if m.GetStatus() != nil {
-		cast := (*m.GetStatus()).String()
-		err := writer.WriteStringValue("status", &cast)
+	{
+		err := writer.WriteObjectValue("status", m.GetStatus())
 		if err != nil {
 			return err
 		}
@@ -553,7 +696,7 @@ func (m *AccountPlayingGetResponse_nowPlaying) SetLastMove(value *string) {
 }
 
 // SetOpponent sets the opponent property value. The opponent property
-func (m *AccountPlayingGetResponse_nowPlaying) SetOpponent(value AccountPlayingGetResponse_nowPlaying_opponentable) {
+func (m *AccountPlayingGetResponse_nowPlaying) SetOpponent(value AccountPlayingGetResponse_nowPlaying_PlayingGetResponse_nowPlaying_opponentable) {
 	m.opponent = value
 }
 
@@ -565,6 +708,11 @@ func (m *AccountPlayingGetResponse_nowPlaying) SetPerf(value *i9c7bd2a4616e157af
 // SetRated sets the rated property value. The rated property
 func (m *AccountPlayingGetResponse_nowPlaying) SetRated(value *bool) {
 	m.rated = value
+}
+
+// SetRating sets the rating property value. The rating property
+func (m *AccountPlayingGetResponse_nowPlaying) SetRating(value *int32) {
+	m.rating = value
 }
 
 // SetRatingDiff sets the ratingDiff property value. The ratingDiff property
@@ -588,7 +736,7 @@ func (m *AccountPlayingGetResponse_nowPlaying) SetSpeed(value *i9c7bd2a4616e157a
 }
 
 // SetStatus sets the status property value. The status property
-func (m *AccountPlayingGetResponse_nowPlaying) SetStatus(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameStatusName) {
+func (m *AccountPlayingGetResponse_nowPlaying) SetStatus(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameStatusable) {
 	m.status = value
 }
 
@@ -622,14 +770,15 @@ type AccountPlayingGetResponse_nowPlayingable interface {
 	GetHasMoved() *bool
 	GetIsMyTurn() *bool
 	GetLastMove() *string
-	GetOpponent() AccountPlayingGetResponse_nowPlaying_opponentable
+	GetOpponent() AccountPlayingGetResponse_nowPlaying_PlayingGetResponse_nowPlaying_opponentable
 	GetPerf() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.PerfType
 	GetRated() *bool
+	GetRating() *int32
 	GetRatingDiff() *int32
 	GetSecondsLeft() *int32
 	GetSource() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameSource
 	GetSpeed() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Speed
-	GetStatus() *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameStatusName
+	GetStatus() i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameStatusable
 	GetSwissId() *string
 	GetTournamentId() *string
 	GetVariant() i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Variantable
@@ -641,14 +790,15 @@ type AccountPlayingGetResponse_nowPlayingable interface {
 	SetHasMoved(value *bool)
 	SetIsMyTurn(value *bool)
 	SetLastMove(value *string)
-	SetOpponent(value AccountPlayingGetResponse_nowPlaying_opponentable)
+	SetOpponent(value AccountPlayingGetResponse_nowPlaying_PlayingGetResponse_nowPlaying_opponentable)
 	SetPerf(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.PerfType)
 	SetRated(value *bool)
+	SetRating(value *int32)
 	SetRatingDiff(value *int32)
 	SetSecondsLeft(value *int32)
 	SetSource(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameSource)
 	SetSpeed(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Speed)
-	SetStatus(value *i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameStatusName)
+	SetStatus(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.GameStatusable)
 	SetSwissId(value *string)
 	SetTournamentId(value *string)
 	SetVariant(value i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.Variantable)
