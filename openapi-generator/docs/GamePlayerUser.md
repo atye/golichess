@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Provisional** | Pointer to **bool** |  | [optional] 
 **Analysis** | Pointer to [**GamePlayerUserAnalysis**](GamePlayerUserAnalysis.md) |  | [optional] 
 **Team** | Pointer to **string** |  | [optional] 
+**Berserk** | Pointer to **bool** | Whether the player berserked. Only present in Arena tournament games. | [optional] 
 
 ## Methods
 
@@ -195,6 +196,31 @@ SetTeam sets Team field to given value.
 `func (o *GamePlayerUser) HasTeam() bool`
 
 HasTeam returns a boolean if a field has been set.
+
+### GetBerserk
+
+`func (o *GamePlayerUser) GetBerserk() bool`
+
+GetBerserk returns the Berserk field if non-nil, zero value otherwise.
+
+### GetBerserkOk
+
+`func (o *GamePlayerUser) GetBerserkOk() (*bool, bool)`
+
+GetBerserkOk returns a tuple with the Berserk field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBerserk
+
+`func (o *GamePlayerUser) SetBerserk(v bool)`
+
+SetBerserk sets Berserk field to given value.
+
+### HasBerserk
+
+`func (o *GamePlayerUser) HasBerserk() bool`
+
+HasBerserk returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

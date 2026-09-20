@@ -331,7 +331,7 @@ Name | Type | Description  | Notes
 
 ## BulkPairingList
 
-> []BulkPairing BulkPairingList(ctx).Execute()
+> BulkPairingList200Response BulkPairingList(ctx).Execute()
 
 View your bulk pairings
 
@@ -358,7 +358,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BulkPairingsAPI.BulkPairingList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BulkPairingList`: []BulkPairing
+	// response from `BulkPairingList`: BulkPairingList200Response
 	fmt.Fprintf(os.Stdout, "Response from `BulkPairingsAPI.BulkPairingList`: %v\n", resp)
 }
 ```
@@ -374,7 +374,7 @@ Other parameters are passed through a pointer to a apiBulkPairingListRequest str
 
 ### Return type
 
-[**[]BulkPairing**](BulkPairing.md)
+[**BulkPairingList200Response**](BulkPairingList200Response.md)
 
 ### Authorization
 

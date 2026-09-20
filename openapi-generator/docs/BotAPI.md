@@ -354,7 +354,7 @@ Name | Type | Description  | Notes
 
 ## BotGameChatGet
 
-> []SpectatorGameChatInner BotGameChatGet(ctx, gameId).Execute()
+> []SpectatorGameChatLinesInner BotGameChatGet(ctx, gameId).Execute()
 
 Fetch the game chat
 
@@ -382,7 +382,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BotAPI.BotGameChatGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `BotGameChatGet`: []SpectatorGameChatInner
+	// response from `BotGameChatGet`: []SpectatorGameChatLinesInner
 	fmt.Fprintf(os.Stdout, "Response from `BotAPI.BotGameChatGet`: %v\n", resp)
 }
 ```
@@ -406,7 +406,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]SpectatorGameChatInner**](SpectatorGameChatInner.md)
+[**[]SpectatorGameChatLinesInner**](SpectatorGameChatLinesInner.md)
 
 ### Authorization
 
@@ -415,7 +415,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/x-ndjson
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

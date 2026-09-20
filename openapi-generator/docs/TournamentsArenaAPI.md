@@ -182,7 +182,7 @@ import (
 
 func main() {
 	id := "hL7vMrFQ" // string | The tournament ID.
-	password := "password_example" // string | The tournament password, if one is required. Can also be a [user-specific entry code](https://github.com/lichess-org/api/tree/master/example/tournament-entry-code) generated and shared by the organizer.  (optional)
+	password := "password_example" // string | The tournament password, if one is required. Can also be a [user-specific entry code](https://github.com/lichess-org/api-demo/tree/master/example/tournament-entry-code) generated and shared by the organizer.  (optional)
 	team := "team_example" // string | The team to join the tournament with, for team battle tournaments (optional)
 	pairMeAsap := true // bool | If the tournament is started, attempt to pair the user, even if they are not connected to the tournament page. This expires after one minute, to avoid pairing a user who is long gone. You may call \\\"join\\\" again to extend the waiting.  (optional) (default to false)
 
@@ -214,7 +214,7 @@ Other parameters are passed through a pointer to a apiApiTournamentJoinRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **password** | **string** | The tournament password, if one is required. Can also be a [user-specific entry code](https://github.com/lichess-org/api/tree/master/example/tournament-entry-code) generated and shared by the organizer.  | 
+ **password** | **string** | The tournament password, if one is required. Can also be a [user-specific entry code](https://github.com/lichess-org/api-demo/tree/master/example/tournament-entry-code) generated and shared by the organizer.  | 
  **team** | **string** | The team to join the tournament with, for team battle tournaments | 
  **pairMeAsap** | **bool** | If the tournament is started, attempt to pair the user, even if they are not connected to the tournament page. This expires after one minute, to avoid pairing a user who is long gone. You may call \\\&quot;join\\\&quot; again to extend the waiting.  | [default to false]
 
@@ -270,7 +270,7 @@ func main() {
 	streakable := true // bool | After 2 wins, consecutive wins grant 4 points instead of 2. (optional) (default to true)
 	hasChat := true // bool | Whether the players can discuss in a chat (optional) (default to true)
 	description := "description_example" // string | Anything you want to tell players about the tournament (optional)
-	password := "password_example" // string | Make the tournament private, and restrict access with a password. You can also [generate user-specific entry codes](https://github.com/lichess-org/api/tree/master/example/tournament-entry-code) based on this password.  (optional)
+	password := "password_example" // string | Make the tournament private, and restrict access with a password. You can also [generate user-specific entry codes](https://github.com/lichess-org/api-demo/tree/master/example/tournament-entry-code) based on this password.  (optional)
 	teamBattleByTeam := "teamBattleByTeam_example" // string | Set the ID of a team you lead to create a team battle. The other teams can be added using the [team battle edit endpoint](#tag/arena-tournaments/POST/api/tournament/team-battle/{id}).  (optional)
 	conditionsTeamMemberTeamId := "conditionsTeamMemberTeamId_example" // string | Restrict entry to members of a team. The teamId is the last part of a team URL, e.g. `https://lichess.org/team/coders` has teamId = `coders`. Leave empty to let everyone join the tournament. Do not use this to create team battles, use `teamBattleByTeam` instead.  (optional)
 	conditionsMinRatingRating := int32(56) // int32 | Minimum rating to join. Leave empty to let everyone join the tournament. (optional)
@@ -316,7 +316,7 @@ Name | Type | Description  | Notes
  **streakable** | **bool** | After 2 wins, consecutive wins grant 4 points instead of 2. | [default to true]
  **hasChat** | **bool** | Whether the players can discuss in a chat | [default to true]
  **description** | **string** | Anything you want to tell players about the tournament | 
- **password** | **string** | Make the tournament private, and restrict access with a password. You can also [generate user-specific entry codes](https://github.com/lichess-org/api/tree/master/example/tournament-entry-code) based on this password.  | 
+ **password** | **string** | Make the tournament private, and restrict access with a password. You can also [generate user-specific entry codes](https://github.com/lichess-org/api-demo/tree/master/example/tournament-entry-code) based on this password.  | 
  **teamBattleByTeam** | **string** | Set the ID of a team you lead to create a team battle. The other teams can be added using the [team battle edit endpoint](#tag/arena-tournaments/POST/api/tournament/team-battle/{id}).  | 
  **conditionsTeamMemberTeamId** | **string** | Restrict entry to members of a team. The teamId is the last part of a team URL, e.g. &#x60;https://lichess.org/team/coders&#x60; has teamId &#x3D; &#x60;coders&#x60;. Leave empty to let everyone join the tournament. Do not use this to create team battles, use &#x60;teamBattleByTeam&#x60; instead.  | 
  **conditionsMinRatingRating** | **int32** | Minimum rating to join. Leave empty to let everyone join the tournament. | 

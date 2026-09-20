@@ -6,14 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** |  | 
 **Username** | **string** |  | 
-**Rating** | **int32** |  | 
+**Rating** | Pointer to **int32** |  | [optional] 
 **RatingDiff** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
 ### NewPlayer
 
-`func NewPlayer(id string, username string, rating int32, ) *Player`
+`func NewPlayer(id string, username string, ) *Player`
 
 NewPlayer instantiates a new Player object
 This constructor will assign default values to properties that have it defined,
@@ -87,6 +87,11 @@ and a boolean to check if the value has been set.
 
 SetRating sets Rating field to given value.
 
+### HasRating
+
+`func (o *Player) HasRating() bool`
+
+HasRating returns a boolean if a field has been set.
 
 ### GetRatingDiff
 

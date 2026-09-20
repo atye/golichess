@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  | 
+**Id** | [**nil**](nil.md) |  | 
 **Username** | **string** |  | 
 **Rating** | Pointer to **int32** |  | [optional] 
 **RatingDiff** | Pointer to **int32** |  | [optional] 
-**Ai** | Pointer to **int32** |  | [optional] 
+**Ai** | **int32** | AI level, from 1 to 8. | 
 
 ## Methods
 
 ### NewApiAccountPlaying200ResponseNowPlayingInnerOpponent
 
-`func NewApiAccountPlaying200ResponseNowPlayingInnerOpponent(id string, username string, ) *ApiAccountPlaying200ResponseNowPlayingInnerOpponent`
+`func NewApiAccountPlaying200ResponseNowPlayingInnerOpponent(id nil, username string, ai int32, ) *ApiAccountPlaying200ResponseNowPlayingInnerOpponent`
 
 NewApiAccountPlaying200ResponseNowPlayingInnerOpponent instantiates a new ApiAccountPlaying200ResponseNowPlayingInnerOpponent object
 This constructor will assign default values to properties that have it defined,
@@ -31,20 +31,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *ApiAccountPlaying200ResponseNowPlayingInnerOpponent) GetId() string`
+`func (o *ApiAccountPlaying200ResponseNowPlayingInnerOpponent) GetId() nil`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *ApiAccountPlaying200ResponseNowPlayingInnerOpponent) GetIdOk() (*string, bool)`
+`func (o *ApiAccountPlaying200ResponseNowPlayingInnerOpponent) GetIdOk() (*nil, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *ApiAccountPlaying200ResponseNowPlayingInnerOpponent) SetId(v string)`
+`func (o *ApiAccountPlaying200ResponseNowPlayingInnerOpponent) SetId(v nil)`
 
 SetId sets Id field to given value.
 
@@ -138,11 +138,6 @@ and a boolean to check if the value has been set.
 
 SetAi sets Ai field to given value.
 
-### HasAi
-
-`func (o *ApiAccountPlaying200ResponseNowPlayingInnerOpponent) HasAi() bool`
-
-HasAi returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

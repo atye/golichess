@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Provisional** | Pointer to **bool** |  | [optional] 
 **Analysis** | Pointer to [**GamePlayerAiAnalysis**](GamePlayerAiAnalysis.md) |  | [optional] 
 **Team** | Pointer to **string** |  | [optional] 
+**Berserk** | Pointer to **bool** | Whether the player berserked. Only present in Arena tournament games. | [optional] 
 **AiLevel** | **int32** |  | 
 
 ## Methods
@@ -196,6 +197,31 @@ SetTeam sets Team field to given value.
 `func (o *GamePlayersWhite) HasTeam() bool`
 
 HasTeam returns a boolean if a field has been set.
+
+### GetBerserk
+
+`func (o *GamePlayersWhite) GetBerserk() bool`
+
+GetBerserk returns the Berserk field if non-nil, zero value otherwise.
+
+### GetBerserkOk
+
+`func (o *GamePlayersWhite) GetBerserkOk() (*bool, bool)`
+
+GetBerserkOk returns a tuple with the Berserk field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBerserk
+
+`func (o *GamePlayersWhite) SetBerserk(v bool)`
+
+SetBerserk sets Berserk field to given value.
+
+### HasBerserk
+
+`func (o *GamePlayersWhite) HasBerserk() bool`
+
+HasBerserk returns a boolean if a field has been set.
 
 ### GetAiLevel
 

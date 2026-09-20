@@ -1,4 +1,4 @@
-# SpectatorGameChatInner
+# SpectatorGameChatLinesInner
 
 ## Properties
 
@@ -9,59 +9,59 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewSpectatorGameChatInner
+### NewSpectatorGameChatLinesInner
 
-`func NewSpectatorGameChatInner(text string, user string, ) *SpectatorGameChatInner`
+`func NewSpectatorGameChatLinesInner(text string, user string, ) *SpectatorGameChatLinesInner`
 
-NewSpectatorGameChatInner instantiates a new SpectatorGameChatInner object
+NewSpectatorGameChatLinesInner instantiates a new SpectatorGameChatLinesInner object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewSpectatorGameChatInnerWithDefaults
+### NewSpectatorGameChatLinesInnerWithDefaults
 
-`func NewSpectatorGameChatInnerWithDefaults() *SpectatorGameChatInner`
+`func NewSpectatorGameChatLinesInnerWithDefaults() *SpectatorGameChatLinesInner`
 
-NewSpectatorGameChatInnerWithDefaults instantiates a new SpectatorGameChatInner object
+NewSpectatorGameChatLinesInnerWithDefaults instantiates a new SpectatorGameChatLinesInner object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetText
 
-`func (o *SpectatorGameChatInner) GetText() string`
+`func (o *SpectatorGameChatLinesInner) GetText() string`
 
 GetText returns the Text field if non-nil, zero value otherwise.
 
 ### GetTextOk
 
-`func (o *SpectatorGameChatInner) GetTextOk() (*string, bool)`
+`func (o *SpectatorGameChatLinesInner) GetTextOk() (*string, bool)`
 
 GetTextOk returns a tuple with the Text field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetText
 
-`func (o *SpectatorGameChatInner) SetText(v string)`
+`func (o *SpectatorGameChatLinesInner) SetText(v string)`
 
 SetText sets Text field to given value.
 
 
 ### GetUser
 
-`func (o *SpectatorGameChatInner) GetUser() string`
+`func (o *SpectatorGameChatLinesInner) GetUser() string`
 
 GetUser returns the User field if non-nil, zero value otherwise.
 
 ### GetUserOk
 
-`func (o *SpectatorGameChatInner) GetUserOk() (*string, bool)`
+`func (o *SpectatorGameChatLinesInner) GetUserOk() (*string, bool)`
 
 GetUserOk returns a tuple with the User field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUser
 
-`func (o *SpectatorGameChatInner) SetUser(v string)`
+`func (o *SpectatorGameChatLinesInner) SetUser(v string)`
 
 SetUser sets User field to given value.
 

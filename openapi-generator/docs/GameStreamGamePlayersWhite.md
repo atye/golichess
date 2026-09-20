@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **UserId** | Pointer to **string** |  | [optional] 
 **Rating** | Pointer to **int32** |  | [optional] 
+**Provisional** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -75,6 +76,31 @@ SetRating sets Rating field to given value.
 `func (o *GameStreamGamePlayersWhite) HasRating() bool`
 
 HasRating returns a boolean if a field has been set.
+
+### GetProvisional
+
+`func (o *GameStreamGamePlayersWhite) GetProvisional() bool`
+
+GetProvisional returns the Provisional field if non-nil, zero value otherwise.
+
+### GetProvisionalOk
+
+`func (o *GameStreamGamePlayersWhite) GetProvisionalOk() (*bool, bool)`
+
+GetProvisionalOk returns a tuple with the Provisional field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProvisional
+
+`func (o *GameStreamGamePlayersWhite) SetProvisional(v bool)`
+
+SetProvisional sets Provisional field to given value.
+
+### HasProvisional
+
+`func (o *GameStreamGamePlayersWhite) HasProvisional() bool`
+
+HasProvisional returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

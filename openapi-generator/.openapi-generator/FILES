@@ -31,11 +31,11 @@ docs/AccountAPI.md
 docs/AccountEmail200Response.md
 docs/AccountKid200Response.md
 docs/AnalysisAPI.md
+docs/AnonymousOpponent.md
 docs/ApiAccountPlaying200Response.md
 docs/ApiAccountPlaying200ResponseNowPlayingInner.md
 docs/ApiAccountPlaying200ResponseNowPlayingInnerOpponent.md
 docs/ApiBoardSeek200Response.md
-docs/ApiCloudEval404Response.md
 docs/ApiExternalEngineAcquire200Response.md
 docs/ApiExternalEngineAcquireRequest.md
 docs/ApiExternalEngineAnalyse200Response.md
@@ -100,7 +100,6 @@ docs/BroadcastPlayerEntryWithFideAndGamesAllOfFide.md
 docs/BroadcastPlayerTiebreak.md
 docs/BroadcastPlayerWithFed.md
 docs/BroadcastPointStr.md
-docs/BroadcastPush400Response.md
 docs/BroadcastRound.md
 docs/BroadcastRoundGame.md
 docs/BroadcastRoundGamePlayersInner.md
@@ -123,6 +122,7 @@ docs/BroadcastsByUser200Response.md
 docs/BroadcastsSearch200Response.md
 docs/BulkPairing.md
 docs/BulkPairingGamesInner.md
+docs/BulkPairingList200Response.md
 docs/BulkPairingsAPI.md
 docs/ChallengeAi201Response.md
 docs/ChallengeCanceledEvent.md
@@ -243,8 +243,6 @@ docs/PerfStatStatBestWinsResultsInner.md
 docs/PerfStatStatCount.md
 docs/PerfStatStatHighest.md
 docs/PerfStatStatPlayStreak.md
-docs/PerfStatStatPlayStreakNb.md
-docs/PerfStatStatPlayStreakNbCur.md
 docs/PerfStatStatResultStreak.md
 docs/PerfStatStatResultStreakLoss.md
 docs/PerfStatStatResultStreakLossMax.md
@@ -257,6 +255,7 @@ docs/PerfType.md
 docs/Perfs.md
 docs/PlayTime.md
 docs/Player.md
+docs/Player1.md
 docs/Profile.md
 docs/PuzzleActivity.md
 docs/PuzzleActivityPuzzle.md
@@ -295,10 +294,10 @@ docs/Simul.md
 docs/SimulHost.md
 docs/SimulVariantsInner.md
 docs/SimulsAPI.md
-docs/SpectatorGameChatInner.md
+docs/SpectatorGameChat.md
+docs/SpectatorGameChatLinesInner.md
 docs/Speed.md
 docs/StatByFideTC.md
-docs/StreamGame429Response.md
 docs/StreamerLive200ResponseInner.md
 docs/StreamerLive200ResponseInnerAllOfStream.md
 docs/StreamerLive200ResponseInnerAllOfStreamer.md
@@ -378,7 +377,6 @@ docs/UserNote.md
 docs/UserPreferences.md
 docs/UserStreamer.md
 docs/UserStreamerTwitch.md
-docs/UserStreamerYoutube.md
 docs/UsersAPI.md
 docs/Variant.md
 docs/VariantKey.md
@@ -390,11 +388,11 @@ model_account_200_response.go
 model_account_email_200_response.go
 model_account_kid_200_response.go
 model_ai_opponent.go
+model_anonymous_opponent.go
 model_api_account_playing_200_response.go
 model_api_account_playing_200_response_now_playing_inner.go
 model_api_account_playing_200_response_now_playing_inner_opponent.go
 model_api_board_seek_200_response.go
-model_api_cloud_eval_404_response.go
 model_api_external_engine_acquire_200_response.go
 model_api_external_engine_acquire_request.go
 model_api_external_engine_analyse_200_response.go
@@ -457,7 +455,6 @@ model_broadcast_player_entry_with_fide_and_games_all_of_fide.go
 model_broadcast_player_tiebreak.go
 model_broadcast_player_with_fed.go
 model_broadcast_point_str.go
-model_broadcast_push_400_response.go
 model_broadcast_round.go
 model_broadcast_round_game.go
 model_broadcast_round_game_players_inner.go
@@ -479,6 +476,7 @@ model_broadcasts_by_user_200_response.go
 model_broadcasts_search_200_response.go
 model_bulk_pairing.go
 model_bulk_pairing_games_inner.go
+model_bulk_pairing_list_200_response.go
 model_challenge_ai_201_response.go
 model_challenge_canceled_event.go
 model_challenge_color.go
@@ -591,8 +589,6 @@ model_perf_stat_stat_best_wins_results_inner.go
 model_perf_stat_stat_count.go
 model_perf_stat_stat_highest.go
 model_perf_stat_stat_play_streak.go
-model_perf_stat_stat_play_streak_nb.go
-model_perf_stat_stat_play_streak_nb_cur.go
 model_perf_stat_stat_result_streak.go
 model_perf_stat_stat_result_streak_loss.go
 model_perf_stat_stat_result_streak_loss_max.go
@@ -605,6 +601,7 @@ model_perf_type.go
 model_perfs.go
 model_play_time.go
 model_player.go
+model_player_1.go
 model_profile.go
 model_puzzle_activity.go
 model_puzzle_activity_puzzle.go
@@ -640,10 +637,10 @@ model_results_by_tournament_200_response.go
 model_simul.go
 model_simul_host.go
 model_simul_variants_inner.go
-model_spectator_game_chat_inner.go
+model_spectator_game_chat.go
+model_spectator_game_chat_lines_inner.go
 model_speed.go
 model_stat_by_fide_tc.go
-model_stream_game_429_response.go
 model_streamer_live_200_response_inner.go
 model_streamer_live_200_response_inner_all_of_stream.go
 model_streamer_live_200_response_inner_all_of_streamer.go
@@ -717,7 +714,6 @@ model_user_note.go
 model_user_preferences.go
 model_user_streamer.go
 model_user_streamer_twitch.go
-model_user_streamer_youtube.go
 model_variant.go
 model_variant_key.go
 model_verdict.go

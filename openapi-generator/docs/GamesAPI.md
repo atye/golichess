@@ -520,7 +520,7 @@ Name | Type | Description  | Notes
 
 ## GameChatGet
 
-> []SpectatorGameChatInner GameChatGet(ctx, gameId).Execute()
+> SpectatorGameChat GameChatGet(ctx, gameId).Execute()
 
 Fetch the spectator game chat
 
@@ -548,7 +548,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `GamesAPI.GameChatGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GameChatGet`: []SpectatorGameChatInner
+	// response from `GameChatGet`: SpectatorGameChat
 	fmt.Fprintf(os.Stdout, "Response from `GamesAPI.GameChatGet`: %v\n", resp)
 }
 ```
@@ -572,7 +572,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]SpectatorGameChatInner**](SpectatorGameChatInner.md)
+[**SpectatorGameChat**](SpectatorGameChat.md)
 
 ### Authorization
 
@@ -581,7 +581,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/x-ndjson
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

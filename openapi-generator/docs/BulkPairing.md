@@ -11,14 +11,14 @@ Name | Type | Description | Notes
 **PairAt** | **int32** |  | 
 **PairedAt** | **NullableInt32** |  | 
 **Rated** | **bool** |  | 
-**StartClocksAt** | **int32** |  | 
+**StartClocksAt** | **NullableInt32** |  | 
 **ScheduledAt** | **int32** |  | 
 
 ## Methods
 
 ### NewBulkPairing
 
-`func NewBulkPairing(id string, games []BulkPairingGamesInner, variant VariantKey, clock Clock, pairAt int32, pairedAt NullableInt32, rated bool, startClocksAt int32, scheduledAt int32, ) *BulkPairing`
+`func NewBulkPairing(id string, games []BulkPairingGamesInner, variant VariantKey, clock Clock, pairAt int32, pairedAt NullableInt32, rated bool, startClocksAt NullableInt32, scheduledAt int32, ) *BulkPairing`
 
 NewBulkPairing instantiates a new BulkPairing object
 This constructor will assign default values to properties that have it defined,
@@ -203,6 +203,16 @@ and a boolean to check if the value has been set.
 SetStartClocksAt sets StartClocksAt field to given value.
 
 
+### SetStartClocksAtNil
+
+`func (o *BulkPairing) SetStartClocksAtNil(b bool)`
+
+ SetStartClocksAtNil sets the value for StartClocksAt to be an explicit nil
+
+### UnsetStartClocksAt
+`func (o *BulkPairing) UnsetStartClocksAt()`
+
+UnsetStartClocksAt ensures that no value is present for StartClocksAt, not even an explicit nil
 ### GetScheduledAt
 
 `func (o *BulkPairing) GetScheduledAt() int32`

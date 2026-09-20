@@ -10,11 +10,12 @@ Name | Type | Description | Notes
 **Color** | [**GameColor**](GameColor.md) |  | 
 **LastMove** | **string** |  | 
 **Source** | [**GameSource**](GameSource.md) |  | 
-**Status** | Pointer to [**GameStatusName**](GameStatusName.md) |  | [optional] 
+**Status** | Pointer to [**GameStatus**](GameStatus.md) |  | [optional] 
 **Variant** | [**Variant**](Variant.md) |  | 
 **Speed** | [**Speed**](Speed.md) |  | 
 **Perf** | [**PerfType**](PerfType.md) |  | 
 **Rated** | **bool** |  | 
+**Rating** | **int32** |  | 
 **HasMoved** | **bool** |  | 
 **Opponent** | [**ApiAccountPlaying200ResponseNowPlayingInnerOpponent**](ApiAccountPlaying200ResponseNowPlayingInnerOpponent.md) |  | 
 **IsMyTurn** | **bool** |  | 
@@ -28,7 +29,7 @@ Name | Type | Description | Notes
 
 ### NewApiAccountPlaying200ResponseNowPlayingInner
 
-`func NewApiAccountPlaying200ResponseNowPlayingInner(fullId string, gameId string, fen string, color GameColor, lastMove string, source GameSource, variant Variant, speed Speed, perf PerfType, rated bool, hasMoved bool, opponent ApiAccountPlaying200ResponseNowPlayingInnerOpponent, isMyTurn bool, secondsLeft int32, ) *ApiAccountPlaying200ResponseNowPlayingInner`
+`func NewApiAccountPlaying200ResponseNowPlayingInner(fullId string, gameId string, fen string, color GameColor, lastMove string, source GameSource, variant Variant, speed Speed, perf PerfType, rated bool, rating int32, hasMoved bool, opponent ApiAccountPlaying200ResponseNowPlayingInnerOpponent, isMyTurn bool, secondsLeft int32, ) *ApiAccountPlaying200ResponseNowPlayingInner`
 
 NewApiAccountPlaying200ResponseNowPlayingInner instantiates a new ApiAccountPlaying200ResponseNowPlayingInner object
 This constructor will assign default values to properties that have it defined,
@@ -165,20 +166,20 @@ SetSource sets Source field to given value.
 
 ### GetStatus
 
-`func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetStatus() GameStatusName`
+`func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetStatus() GameStatus`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetStatusOk() (*GameStatusName, bool)`
+`func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetStatusOk() (*GameStatus, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetStatus(v GameStatusName)`
+`func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetStatus(v GameStatus)`
 
 SetStatus sets Status field to given value.
 
@@ -266,6 +267,26 @@ and a boolean to check if the value has been set.
 `func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetRated(v bool)`
 
 SetRated sets Rated field to given value.
+
+
+### GetRating
+
+`func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetRating() int32`
+
+GetRating returns the Rating field if non-nil, zero value otherwise.
+
+### GetRatingOk
+
+`func (o *ApiAccountPlaying200ResponseNowPlayingInner) GetRatingOk() (*int32, bool)`
+
+GetRatingOk returns a tuple with the Rating field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRating
+
+`func (o *ApiAccountPlaying200ResponseNowPlayingInner) SetRating(v int32)`
+
+SetRating sets Rating field to given value.
 
 
 ### GetHasMoved

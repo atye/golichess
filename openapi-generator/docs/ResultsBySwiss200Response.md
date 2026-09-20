@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Absent** | Pointer to **bool** |  | [optional] 
 **Rank** | **int32** |  | 
 **Points** | **float32** |  | 
-**TieBreak** | **int32** |  | 
+**TieBreak** | **float32** |  | 
 **Rating** | **int32** |  | 
 **Username** | **string** |  | 
 **Title** | Pointer to [**Title**](Title.md) |  | [optional] 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewResultsBySwiss200Response
 
-`func NewResultsBySwiss200Response(rank int32, points float32, tieBreak int32, rating int32, username string, performance int32, ) *ResultsBySwiss200Response`
+`func NewResultsBySwiss200Response(rank int32, points float32, tieBreak float32, rating int32, username string, performance int32, ) *ResultsBySwiss200Response`
 
 NewResultsBySwiss200Response instantiates a new ResultsBySwiss200Response object
 This constructor will assign default values to properties that have it defined,
@@ -99,20 +99,20 @@ SetPoints sets Points field to given value.
 
 ### GetTieBreak
 
-`func (o *ResultsBySwiss200Response) GetTieBreak() int32`
+`func (o *ResultsBySwiss200Response) GetTieBreak() float32`
 
 GetTieBreak returns the TieBreak field if non-nil, zero value otherwise.
 
 ### GetTieBreakOk
 
-`func (o *ResultsBySwiss200Response) GetTieBreakOk() (*int32, bool)`
+`func (o *ResultsBySwiss200Response) GetTieBreakOk() (*float32, bool)`
 
 GetTieBreakOk returns a tuple with the TieBreak field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTieBreak
 
-`func (o *ResultsBySwiss200Response) SetTieBreak(v int32)`
+`func (o *ResultsBySwiss200Response) SetTieBreak(v float32)`
 
 SetTieBreak sets TieBreak field to given value.
 
