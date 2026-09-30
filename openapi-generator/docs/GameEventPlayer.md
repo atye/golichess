@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Name** | **string** |  | 
 **Title** | Pointer to [**NullableTitle**](Title.md) |  | [optional] 
 **Rating** | Pointer to **int32** |  | [optional] 
+**RatingDiff** | Pointer to **int32** |  | [optional] 
 **Provisional** | Pointer to **bool** |  | [optional] 
 
 ## Methods
@@ -154,6 +155,31 @@ SetRating sets Rating field to given value.
 `func (o *GameEventPlayer) HasRating() bool`
 
 HasRating returns a boolean if a field has been set.
+
+### GetRatingDiff
+
+`func (o *GameEventPlayer) GetRatingDiff() int32`
+
+GetRatingDiff returns the RatingDiff field if non-nil, zero value otherwise.
+
+### GetRatingDiffOk
+
+`func (o *GameEventPlayer) GetRatingDiffOk() (*int32, bool)`
+
+GetRatingDiffOk returns a tuple with the RatingDiff field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRatingDiff
+
+`func (o *GameEventPlayer) SetRatingDiff(v int32)`
+
+SetRatingDiff sets RatingDiff field to given value.
+
+### HasRatingDiff
+
+`func (o *GameEventPlayer) HasRatingDiff() bool`
+
+HasRatingDiff returns a boolean if a field has been set.
 
 ### GetProvisional
 

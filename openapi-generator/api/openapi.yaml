@@ -94,7 +94,7 @@ info:
     name: AGPL-3.0-or-later
     url: https://www.gnu.org/licenses/agpl-3.0.txt
   title: Lichess.org API reference
-  version: 2.0.174
+  version: 2.0.175
   x-logo:
     url: https://lichess1.org/assets/logo/lichess-pad12.svg
 servers:
@@ -39400,6 +39400,8 @@ components:
           - $ref: "#/components/schemas/Title"
           nullable: true
         rating:
+          type: integer
+        ratingDiff:
           type: integer
         provisional:
           type: boolean
