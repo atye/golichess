@@ -94,7 +94,7 @@ info:
     name: AGPL-3.0-or-later
     url: https://www.gnu.org/licenses/agpl-3.0.txt
   title: Lichess.org API reference
-  version: 2.0.175
+  version: 2.0.176
   x-logo:
     url: https://lichess1.org/assets/logo/lichess-pad12.svg
 servers:
@@ -11546,9 +11546,9 @@ components:
         blocking: false
     users-getRatingHistoryOfAUser.json:
       value:
-      - name: UltraBullet
+      - name: ultraBullet
         points: []
-      - name: Bullet
+      - name: bullet
         points:
         - - 2026
           - 5
@@ -11590,7 +11590,7 @@ components:
           - 8
           - 14
           - 977
-      - name: Blitz
+      - name: blitz
         points:
         - - 2026
           - 5
@@ -11708,7 +11708,7 @@ components:
           - 8
           - 17
           - 1020
-      - name: Rapid
+      - name: rapid
         points:
         - - 2026
           - 5
@@ -11798,7 +11798,7 @@ components:
           - 8
           - 17
           - 1162
-      - name: Classical
+      - name: classical
         points:
         - - 2026
           - 5
@@ -11868,7 +11868,7 @@ components:
           - 8
           - 13
           - 1134
-      - name: Correspondence
+      - name: correspondence
         points:
         - - 2026
           - 5
@@ -11910,7 +11910,7 @@ components:
           - 8
           - 14
           - 1135
-      - name: Crazyhouse
+      - name: crazyhouse
         points:
         - - 2026
           - 5
@@ -11980,7 +11980,7 @@ components:
           - 8
           - 13
           - 1217
-      - name: Chess960
+      - name: chess960
         points:
         - - 2026
           - 5
@@ -12070,7 +12070,7 @@ components:
           - 8
           - 17
           - 948
-      - name: King of the Hill
+      - name: kingOfTheHill
         points:
         - - 2026
           - 5
@@ -12124,7 +12124,7 @@ components:
           - 8
           - 17
           - 1015
-      - name: Three-Check
+      - name: threeCheck
         points:
         - - 2026
           - 5
@@ -12186,7 +12186,7 @@ components:
           - 8
           - 17
           - 1082
-      - name: Antichess
+      - name: antichess
         points:
         - - 2026
           - 5
@@ -12248,7 +12248,7 @@ components:
           - 8
           - 17
           - 961
-      - name: Atomic
+      - name: atomic
         points:
         - - 2026
           - 5
@@ -12422,7 +12422,7 @@ components:
           - 8
           - 17
           - 985
-      - name: Horde
+      - name: horde
         points:
         - - 2026
           - 5
@@ -12464,9 +12464,9 @@ components:
           - 8
           - 14
           - 1021
-      - name: Racing Kings
+      - name: racingKings
         points: []
-      - name: Puzzles
+      - name: puzzle
         points:
         - - 2026
           - 5
@@ -33631,37 +33631,6 @@ components:
         following: true
         blocking: true
         fideId: 5.944895607614016
-    RatingHistoryEntry:
-      example:
-        name: name
-        points:
-        - - 0
-          - 0
-          - 0
-          - 0
-        - - 0
-          - 0
-          - 0
-          - 0
-      properties:
-        name:
-          type: string
-        points:
-          items:
-            description: "[year, month, day, rating]"
-            items:
-              type: integer
-            maxItems: 4
-            minItems: 4
-            type: array
-            default: null
-          type: array
-          default: null
-    RatingHistory:
-      items:
-        $ref: "#/components/schemas/RatingHistoryEntry"
-      type: array
-      default: null
     PerfType:
       enum:
       - ultraBullet
@@ -33679,6 +33648,53 @@ components:
       - racingKings
       - threeCheck
       type: string
+    RatingHistoryEntry:
+      example:
+        name: puzzle
+        points:
+        - - 0
+          - 0
+          - 0
+          - 0
+        - - 0
+          - 0
+          - 0
+          - 0
+      properties:
+        name:
+          enum:
+          - puzzle
+          - ultraBullet
+          - bullet
+          - blitz
+          - rapid
+          - classical
+          - correspondence
+          - chess960
+          - crazyhouse
+          - antichess
+          - atomic
+          - horde
+          - kingOfTheHill
+          - racingKings
+          - threeCheck
+          type: string
+        points:
+          items:
+            description: "[year, month, day, rating]"
+            items:
+              type: integer
+            maxItems: 4
+            minItems: 4
+            type: array
+            default: null
+          type: array
+          default: null
+    RatingHistory:
+      items:
+        $ref: "#/components/schemas/RatingHistoryEntry"
+      type: array
+      default: null
     LightUser:
       example:
         id: id
