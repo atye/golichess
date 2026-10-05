@@ -968,6 +968,21 @@ func (e PerfType) Valid() bool {
 	}
 }
 
+// Defines values for RatingHistoryEntryName0.
+const (
+	Puzzle RatingHistoryEntryName0 = "puzzle"
+)
+
+// Valid indicates whether the value is a known member of the RatingHistoryEntryName0 enum.
+func (e RatingHistoryEntryName0) Valid() bool {
+	switch e {
+	case Puzzle:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for Speed.
 const (
 	SpeedBlitz          Speed = "blitz"
@@ -6904,8 +6919,16 @@ type RatingHistory = []RatingHistoryEntry
 
 // RatingHistoryEntry defines model for RatingHistoryEntry.
 type RatingHistoryEntry struct {
-	Name   *string  `json:"name,omitempty"`
-	Points *[][]int `json:"points,omitempty"`
+	Name   *RatingHistoryEntry_Name `json:"name,omitempty"`
+	Points *[][]int                 `json:"points,omitempty"`
+}
+
+// RatingHistoryEntryName0 defines model for RatingHistoryEntry.Name.0.
+type RatingHistoryEntryName0 string
+
+// RatingHistoryEntry_Name defines model for RatingHistoryEntry.Name.
+type RatingHistoryEntry_Name struct {
+	union json.RawMessage
 }
 
 // Simul defines model for Simul.
@@ -10743,6 +10766,85 @@ func (t MoveStreamEntry) MarshalJSON() ([]byte, error) {
 }
 
 func (t *MoveStreamEntry) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsRatingHistoryEntryName0 returns the union data inside the RatingHistoryEntry_Name as a RatingHistoryEntryName0
+func (t RatingHistoryEntry_Name) AsRatingHistoryEntryName0() (RatingHistoryEntryName0, error) {
+	var body RatingHistoryEntryName0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRatingHistoryEntryName0 overwrites any union data inside the RatingHistoryEntry_Name as the provided RatingHistoryEntryName0
+func (t *RatingHistoryEntry_Name) FromRatingHistoryEntryName0(v RatingHistoryEntryName0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRatingHistoryEntryName0 performs a merge with any union data inside the RatingHistoryEntry_Name, using the provided RatingHistoryEntryName0
+func (t *RatingHistoryEntry_Name) MergeRatingHistoryEntryName0(v RatingHistoryEntryName0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPerfType returns the union data inside the RatingHistoryEntry_Name as a PerfType
+func (t RatingHistoryEntry_Name) AsPerfType() (PerfType, error) {
+	var body PerfType
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPerfType overwrites any union data inside the RatingHistoryEntry_Name as the provided PerfType
+func (t *RatingHistoryEntry_Name) FromPerfType(v PerfType) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePerfType performs a merge with any union data inside the RatingHistoryEntry_Name, using the provided PerfType
+func (t *RatingHistoryEntry_Name) MergePerfType(v PerfType) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// UnmarshalText sets the union from the text of a path, query, header or cookie
+// parameter, which carries no JSON type.
+// The text is taken as a string.
+func (t *RatingHistoryEntry_Name) UnmarshalText(text []byte) error {
+	b, err := json.Marshal(string(text))
+	if err != nil {
+		return err
+	}
+	t.union = b
+	return nil
+}
+
+// Bind implements runtime.Binder, which binds exploded query parameters; see UnmarshalText.
+func (t *RatingHistoryEntry_Name) Bind(src string) error {
+	return t.UnmarshalText([]byte(src))
+}
+
+func (t RatingHistoryEntry_Name) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *RatingHistoryEntry_Name) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
