@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Url** | **string** |  | 
 **Status** | [**ChallengeStatus**](ChallengeStatus.md) |  | 
 **Challenger** | [**ChallengeUser**](ChallengeUser.md) |  | 
-**DestUser** | [**ChallengeUser**](ChallengeUser.md) |  | 
+**DestUser** | [**NullableChallengeUser**](ChallengeUser.md) |  | 
 **Variant** | [**Variant**](Variant.md) |  | 
 **Rated** | **bool** |  | 
 **Speed** | [**Speed**](Speed.md) |  | 
@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 
 ### NewChallengeDeclinedJson
 
-`func NewChallengeDeclinedJson(id string, url string, status ChallengeStatus, challenger ChallengeUser, destUser ChallengeUser, variant Variant, rated bool, speed Speed, timeControl TimeControl, color ChallengeColor, perf ChallengeJsonPerf, declineReason string, declineReasonKey string, ) *ChallengeDeclinedJson`
+`func NewChallengeDeclinedJson(id string, url string, status ChallengeStatus, challenger ChallengeUser, destUser NullableChallengeUser, variant Variant, rated bool, speed Speed, timeControl TimeControl, color ChallengeColor, perf ChallengeJsonPerf, declineReason string, declineReasonKey string, ) *ChallengeDeclinedJson`
 
 NewChallengeDeclinedJson instantiates a new ChallengeDeclinedJson object
 This constructor will assign default values to properties that have it defined,
@@ -141,6 +141,16 @@ and a boolean to check if the value has been set.
 SetDestUser sets DestUser field to given value.
 
 
+### SetDestUserNil
+
+`func (o *ChallengeDeclinedJson) SetDestUserNil(b bool)`
+
+ SetDestUserNil sets the value for DestUser to be an explicit nil
+
+### UnsetDestUser
+`func (o *ChallengeDeclinedJson) UnsetDestUser()`
+
+UnsetDestUser ensures that no value is present for DestUser, not even an explicit nil
 ### GetVariant
 
 `func (o *ChallengeDeclinedJson) GetVariant() Variant`

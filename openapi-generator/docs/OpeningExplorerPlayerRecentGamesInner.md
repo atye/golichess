@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** |  | 
-**Winner** | [**GameColor**](GameColor.md) |  | 
+**Winner** | [**NullableGameColor**](GameColor.md) |  | 
 **Speed** | [**Speed**](Speed.md) |  | 
 **Mode** | **string** |  | 
 **White** | [**OpeningExplorerGamePlayer**](OpeningExplorerGamePlayer.md) |  | 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewOpeningExplorerPlayerRecentGamesInner
 
-`func NewOpeningExplorerPlayerRecentGamesInner(id string, winner GameColor, speed Speed, mode string, white OpeningExplorerGamePlayer, black OpeningExplorerGamePlayer, year int32, month string, uci string, ) *OpeningExplorerPlayerRecentGamesInner`
+`func NewOpeningExplorerPlayerRecentGamesInner(id string, winner NullableGameColor, speed Speed, mode string, white OpeningExplorerGamePlayer, black OpeningExplorerGamePlayer, year int32, month string, uci string, ) *OpeningExplorerPlayerRecentGamesInner`
 
 NewOpeningExplorerPlayerRecentGamesInner instantiates a new OpeningExplorerPlayerRecentGamesInner object
 This constructor will assign default values to properties that have it defined,
@@ -73,6 +73,16 @@ and a boolean to check if the value has been set.
 SetWinner sets Winner field to given value.
 
 
+### SetWinnerNil
+
+`func (o *OpeningExplorerPlayerRecentGamesInner) SetWinnerNil(b bool)`
+
+ SetWinnerNil sets the value for Winner to be an explicit nil
+
+### UnsetWinner
+`func (o *OpeningExplorerPlayerRecentGamesInner) UnsetWinner()`
+
+UnsetWinner ensures that no value is present for Winner, not even an explicit nil
 ### GetSpeed
 
 `func (o *OpeningExplorerPlayerRecentGamesInner) GetSpeed() Speed`

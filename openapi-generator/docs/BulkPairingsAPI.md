@@ -43,7 +43,7 @@ func main() {
 	rated := true // bool | Game is rated and impacts players ratings (optional) (default to false)
 	variant := openapiclient.VariantKey("standard") // VariantKey |  (optional) (default to "standard")
 	fen := "fen_example" // string | Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated. (optional) (default to "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
-	message := "message_example" // string | Message that will be sent to each player, when the game is created.  It is sent from your user account. `{opponent}` and `{game}` are placeholders that will be replaced with the opponent and the game URLs. You can omit this field to send the default message, but if you set your own message, it must at least contain the `{game}` placeholder.  (optional) (default to "Your game with {opponent} is ready: {game}.")
+	message := "message_example" // string | Message that will be sent to each player, when the game is created.  It is sent from your user account. `{opponent}` and `{game}` are placeholders that will be replaced with the opponent and the game URLs. You can omit this field to send the default message, but if you set your own message, it must at least contain the `{game}` placeholder. You can also disable messages entirely, by setting the template to `{noMessage}`. You will then need to notify the players yourself about their games.  (optional) (default to "Your game with {opponent} is ready: {game}.")
 	rules := "rules_example" // string | Extra game rules separated by commas. Example: `noAbort,noRematch`  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
  **rated** | **bool** | Game is rated and impacts players ratings | [default to false]
  **variant** | [**VariantKey**](VariantKey.md) |  | [default to &quot;standard&quot;]
  **fen** | **string** | Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated. | [default to &quot;rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1&quot;]
- **message** | **string** | Message that will be sent to each player, when the game is created.  It is sent from your user account. &#x60;{opponent}&#x60; and &#x60;{game}&#x60; are placeholders that will be replaced with the opponent and the game URLs. You can omit this field to send the default message, but if you set your own message, it must at least contain the &#x60;{game}&#x60; placeholder.  | [default to &quot;Your game with {opponent} is ready: {game}.&quot;]
+ **message** | **string** | Message that will be sent to each player, when the game is created.  It is sent from your user account. &#x60;{opponent}&#x60; and &#x60;{game}&#x60; are placeholders that will be replaced with the opponent and the game URLs. You can omit this field to send the default message, but if you set your own message, it must at least contain the &#x60;{game}&#x60; placeholder. You can also disable messages entirely, by setting the template to &#x60;{noMessage}&#x60;. You will then need to notify the players yourself about their games.  | [default to &quot;Your game with {opponent} is ready: {game}.&quot;]
  **rules** | **string** | Extra game rules separated by commas. Example: &#x60;noAbort,noRematch&#x60;  | 
 
 ### Return type

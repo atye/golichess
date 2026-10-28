@@ -5,19 +5,19 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** |  | 
-**Winner** | [**GameColor**](GameColor.md) |  | 
+**Winner** | [**NullableGameColor**](GameColor.md) |  | 
 **Speed** | Pointer to [**Speed**](Speed.md) |  | [optional] 
 **White** | [**OpeningExplorerGamePlayer**](OpeningExplorerGamePlayer.md) |  | 
 **Black** | [**OpeningExplorerGamePlayer**](OpeningExplorerGamePlayer.md) |  | 
 **Year** | **float32** |  | 
-**Month** | **string** |  | 
+**Month** | **NullableString** |  | 
 **Uci** | **string** |  | 
 
 ## Methods
 
 ### NewOpeningExplorerLichessTopGamesInner
 
-`func NewOpeningExplorerLichessTopGamesInner(id string, winner GameColor, white OpeningExplorerGamePlayer, black OpeningExplorerGamePlayer, year float32, month string, uci string, ) *OpeningExplorerLichessTopGamesInner`
+`func NewOpeningExplorerLichessTopGamesInner(id string, winner NullableGameColor, white OpeningExplorerGamePlayer, black OpeningExplorerGamePlayer, year float32, month NullableString, uci string, ) *OpeningExplorerLichessTopGamesInner`
 
 NewOpeningExplorerLichessTopGamesInner instantiates a new OpeningExplorerLichessTopGamesInner object
 This constructor will assign default values to properties that have it defined,
@@ -72,6 +72,16 @@ and a boolean to check if the value has been set.
 SetWinner sets Winner field to given value.
 
 
+### SetWinnerNil
+
+`func (o *OpeningExplorerLichessTopGamesInner) SetWinnerNil(b bool)`
+
+ SetWinnerNil sets the value for Winner to be an explicit nil
+
+### UnsetWinner
+`func (o *OpeningExplorerLichessTopGamesInner) UnsetWinner()`
+
+UnsetWinner ensures that no value is present for Winner, not even an explicit nil
 ### GetSpeed
 
 `func (o *OpeningExplorerLichessTopGamesInner) GetSpeed() Speed`
@@ -177,6 +187,16 @@ and a boolean to check if the value has been set.
 SetMonth sets Month field to given value.
 
 
+### SetMonthNil
+
+`func (o *OpeningExplorerLichessTopGamesInner) SetMonthNil(b bool)`
+
+ SetMonthNil sets the value for Month to be an explicit nil
+
+### UnsetMonth
+`func (o *OpeningExplorerLichessTopGamesInner) UnsetMonth()`
+
+UnsetMonth ensures that no value is present for Month, not even an explicit nil
 ### GetUci
 
 `func (o *OpeningExplorerLichessTopGamesInner) GetUci() string`
