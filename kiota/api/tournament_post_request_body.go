@@ -39,7 +39,7 @@ type TournamentPostRequestBody struct {
 	minutes *int32
 	// The tournament name. Leave empty to get a random Grandmaster name
 	name *string
-	// Make the tournament private, and restrict access with a password.You can also [generate user-specific entry codes](https://github.com/lichess-org/api/tree/master/example/tournament-entry-code)based on this password.
+	// Make the tournament private, and restrict access with a password.You can also [generate user-specific entry codes](https://github.com/lichess-org/api-demo/tree/master/example/tournament-entry-code)based on this password.
 	password *string
 	// Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated.
 	position *string
@@ -403,7 +403,7 @@ func (m *TournamentPostRequestBody) GetName() *string {
 	return m.name
 }
 
-// GetPassword gets the password property value. Make the tournament private, and restrict access with a password.You can also [generate user-specific entry codes](https://github.com/lichess-org/api/tree/master/example/tournament-entry-code)based on this password.
+// GetPassword gets the password property value. Make the tournament private, and restrict access with a password.You can also [generate user-specific entry codes](https://github.com/lichess-org/api-demo/tree/master/example/tournament-entry-code)based on this password.
 // returns a *string when successful
 func (m *TournamentPostRequestBody) GetPassword() *string {
 	return m.password
@@ -670,7 +670,7 @@ func (m *TournamentPostRequestBody) SetName(value *string) {
 	m.name = value
 }
 
-// SetPassword sets the password property value. Make the tournament private, and restrict access with a password.You can also [generate user-specific entry codes](https://github.com/lichess-org/api/tree/master/example/tournament-entry-code)based on this password.
+// SetPassword sets the password property value. Make the tournament private, and restrict access with a password.You can also [generate user-specific entry codes](https://github.com/lichess-org/api-demo/tree/master/example/tournament-entry-code)based on this password.
 func (m *TournamentPostRequestBody) SetPassword(value *string) {
 	m.password = value
 }

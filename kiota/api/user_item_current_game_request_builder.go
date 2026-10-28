@@ -34,18 +34,6 @@ func NewCurrentGameGetResponse() *CurrentGameGetResponse {
 func CreateCurrentGameGetResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
 	result := NewCurrentGameGetResponse()
 	if parseNode != nil {
-		mappingValueNode, err := parseNode.GetChildNode("")
-		if err != nil {
-			return nil, err
-		}
-		if mappingValueNode != nil {
-			mappingValue, err := mappingValueNode.GetStringValue()
-			if err != nil {
-				return nil, err
-			}
-			if mappingValue != nil {
-			}
-		}
 	}
 	return result, nil
 }
@@ -124,18 +112,6 @@ func NewCurrentGameResponse() *CurrentGameResponse {
 func CreateCurrentGameResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
 	result := NewCurrentGameResponse()
 	if parseNode != nil {
-		mappingValueNode, err := parseNode.GetChildNode("")
-		if err != nil {
-			return nil, err
-		}
-		if mappingValueNode != nil {
-			mappingValue, err := mappingValueNode.GetStringValue()
-			if err != nil {
-				return nil, err
-			}
-			if mappingValue != nil {
-			}
-		}
 	}
 	return result, nil
 }

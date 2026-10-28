@@ -46,20 +46,23 @@ func NewBotGameItemChatRequestBuilder(rawUrl string, requestAdapter i2ae4187f7da
 }
 
 // Get get the messages posted in the game chat
-// returns a []byte when successful
-func (m *BotGameItemChatRequestBuilder) Get(ctx context.Context, requestConfiguration *BotGameItemChatRequestBuilderGetRequestConfiguration) ([]byte, error) {
+// returns a []PlayerGameChatable when successful
+func (m *BotGameItemChatRequestBuilder) Get(ctx context.Context, requestConfiguration *BotGameItemChatRequestBuilderGetRequestConfiguration) ([]i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.PlayerGameChatable, error) {
 	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
 	if err != nil {
 		return nil, err
 	}
-	res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", nil)
+	res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreatePlayerGameChatFromDiscriminatorValue, nil)
 	if err != nil {
 		return nil, err
 	}
-	if res == nil {
-		return nil, nil
+	val := make([]i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.PlayerGameChatable, len(res))
+	for i, v := range res {
+		if v != nil {
+			val[i] = v.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.PlayerGameChatable)
+		}
 	}
-	return res.([]byte), nil
+	return val, nil
 }
 
 // Post post a message to the player or spectator chat, in a game being played with the Bot API.
@@ -91,7 +94,7 @@ func (m *BotGameItemChatRequestBuilder) ToGetRequestInformation(ctx context.Cont
 		requestInfo.Headers.AddAll(requestConfiguration.Headers)
 		requestInfo.AddRequestOptions(requestConfiguration.Options)
 	}
-	requestInfo.Headers.TryAdd("Accept", "application/x-ndjson")
+	requestInfo.Headers.TryAdd("Accept", "application/json")
 	return requestInfo, nil
 }
 

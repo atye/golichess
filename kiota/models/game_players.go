@@ -35,18 +35,6 @@ func NewGamePlayers_GamePlayers_black() *GamePlayers_GamePlayers_black {
 func CreateGamePlayers_GamePlayers_blackFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
 	result := NewGamePlayers_GamePlayers_black()
 	if parseNode != nil {
-		mappingValueNode, err := parseNode.GetChildNode("")
-		if err != nil {
-			return nil, err
-		}
-		if mappingValueNode != nil {
-			mappingValue, err := mappingValueNode.GetStringValue()
-			if err != nil {
-				return nil, err
-			}
-			if mappingValue != nil {
-			}
-		}
 	}
 	return result, nil
 }
@@ -125,18 +113,6 @@ func NewGamePlayers_GamePlayers_white() *GamePlayers_GamePlayers_white {
 func CreateGamePlayers_GamePlayers_whiteFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
 	result := NewGamePlayers_GamePlayers_white()
 	if parseNode != nil {
-		mappingValueNode, err := parseNode.GetChildNode("")
-		if err != nil {
-			return nil, err
-		}
-		if mappingValueNode != nil {
-			mappingValue, err := mappingValueNode.GetStringValue()
-			if err != nil {
-				return nil, err
-			}
-			if mappingValue != nil {
-			}
-		}
 	}
 	return result, nil
 }

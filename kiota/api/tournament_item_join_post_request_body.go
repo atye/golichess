@@ -12,7 +12,7 @@ type TournamentItemJoinPostRequestBody struct {
 	additionalData map[string]any
 	// If the tournament is started, attempt to pair the user,even if they are not connected to the tournament page.This expires after one minute, to avoid pairing a user who is long gone.You may call "join" again to extend the waiting.
 	pairMeAsap *bool
-	// The tournament password, if one is required.Can also be a [user-specific entry code](https://github.com/lichess-org/api/tree/master/example/tournament-entry-code)generated and shared by the organizer.
+	// The tournament password, if one is required.Can also be a [user-specific entry code](https://github.com/lichess-org/api-demo/tree/master/example/tournament-entry-code)generated and shared by the organizer.
 	password *string
 	// The team to join the tournament with, for team battle tournaments
 	team *string
@@ -82,7 +82,7 @@ func (m *TournamentItemJoinPostRequestBody) GetPairMeAsap() *bool {
 	return m.pairMeAsap
 }
 
-// GetPassword gets the password property value. The tournament password, if one is required.Can also be a [user-specific entry code](https://github.com/lichess-org/api/tree/master/example/tournament-entry-code)generated and shared by the organizer.
+// GetPassword gets the password property value. The tournament password, if one is required.Can also be a [user-specific entry code](https://github.com/lichess-org/api-demo/tree/master/example/tournament-entry-code)generated and shared by the organizer.
 // returns a *string when successful
 func (m *TournamentItemJoinPostRequestBody) GetPassword() *string {
 	return m.password
@@ -133,7 +133,7 @@ func (m *TournamentItemJoinPostRequestBody) SetPairMeAsap(value *bool) {
 	m.pairMeAsap = value
 }
 
-// SetPassword sets the password property value. The tournament password, if one is required.Can also be a [user-specific entry code](https://github.com/lichess-org/api/tree/master/example/tournament-entry-code)generated and shared by the organizer.
+// SetPassword sets the password property value. The tournament password, if one is required.Can also be a [user-specific entry code](https://github.com/lichess-org/api-demo/tree/master/example/tournament-entry-code)generated and shared by the organizer.
 func (m *TournamentItemJoinPostRequestBody) SetPassword(value *string) {
 	m.password = value
 }

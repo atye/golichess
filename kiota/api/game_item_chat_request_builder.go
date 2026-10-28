@@ -5,6 +5,7 @@ package api
 
 import (
 	"context"
+	i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7 "github.com/atye/golichess/kiota/models"
 	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
@@ -37,20 +38,20 @@ func NewGameItemChatRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee2
 }
 
 // Get get the messages posted in the public spectator chat of a game.Games also have a private players chat, which only the 2 players can see.
-// returns a []byte when successful
-func (m *GameItemChatRequestBuilder) Get(ctx context.Context, requestConfiguration *GameItemChatRequestBuilderGetRequestConfiguration) ([]byte, error) {
+// returns a SpectatorGameChatable when successful
+func (m *GameItemChatRequestBuilder) Get(ctx context.Context, requestConfiguration *GameItemChatRequestBuilderGetRequestConfiguration) (i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.SpectatorGameChatable, error) {
 	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
 	if err != nil {
 		return nil, err
 	}
-	res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", nil)
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateSpectatorGameChatFromDiscriminatorValue, nil)
 	if err != nil {
 		return nil, err
 	}
 	if res == nil {
 		return nil, nil
 	}
-	return res.([]byte), nil
+	return res.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.SpectatorGameChatable), nil
 }
 
 // ToGetRequestInformation get the messages posted in the public spectator chat of a game.Games also have a private players chat, which only the 2 players can see.
@@ -61,7 +62,7 @@ func (m *GameItemChatRequestBuilder) ToGetRequestInformation(ctx context.Context
 		requestInfo.Headers.AddAll(requestConfiguration.Headers)
 		requestInfo.AddRequestOptions(requestConfiguration.Options)
 	}
-	requestInfo.Headers.TryAdd("Accept", "application/x-ndjson")
+	requestInfo.Headers.TryAdd("Accept", "application/json")
 	return requestInfo, nil
 }
 

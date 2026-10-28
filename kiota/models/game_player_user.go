@@ -12,6 +12,8 @@ type GamePlayerUser struct {
 	additionalData map[string]any
 	// The analysis property
 	analysis GamePlayerUser_analysisable
+	// Whether the player berserked. Only present in Arena tournament games.
+	berserk *bool
 	// The name property
 	name *string
 	// The provisional property
@@ -51,6 +53,12 @@ func (m *GamePlayerUser) GetAnalysis() GamePlayerUser_analysisable {
 	return m.analysis
 }
 
+// GetBerserk gets the berserk property value. Whether the player berserked. Only present in Arena tournament games.
+// returns a *bool when successful
+func (m *GamePlayerUser) GetBerserk() *bool {
+	return m.berserk
+}
+
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
 func (m *GamePlayerUser) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
@@ -62,6 +70,16 @@ func (m *GamePlayerUser) GetFieldDeserializers() map[string]func(i878a80d2330e89
 		}
 		if val != nil {
 			m.SetAnalysis(val.(GamePlayerUser_analysisable))
+		}
+		return nil
+	}
+	res["berserk"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetBerserk(val)
 		}
 		return nil
 	}
@@ -173,6 +191,12 @@ func (m *GamePlayerUser) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
 		}
 	}
 	{
+		err := writer.WriteBoolValue("berserk", m.GetBerserk())
+		if err != nil {
+			return err
+		}
+	}
+	{
 		err := writer.WriteStringValue("name", m.GetName())
 		if err != nil {
 			return err
@@ -227,6 +251,11 @@ func (m *GamePlayerUser) SetAnalysis(value GamePlayerUser_analysisable) {
 	m.analysis = value
 }
 
+// SetBerserk sets the berserk property value. Whether the player berserked. Only present in Arena tournament games.
+func (m *GamePlayerUser) SetBerserk(value *bool) {
+	m.berserk = value
+}
+
 // SetName sets the name property value. The name property
 func (m *GamePlayerUser) SetName(value *string) {
 	m.name = value
@@ -261,6 +290,7 @@ type GamePlayerUserable interface {
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
 	GetAnalysis() GamePlayerUser_analysisable
+	GetBerserk() *bool
 	GetName() *string
 	GetProvisional() *bool
 	GetRating() *int32
@@ -268,6 +298,7 @@ type GamePlayerUserable interface {
 	GetTeam() *string
 	GetUser() LightUserable
 	SetAnalysis(value GamePlayerUser_analysisable)
+	SetBerserk(value *bool)
 	SetName(value *string)
 	SetProvisional(value *bool)
 	SetRating(value *int32)

@@ -20,13 +20,13 @@ type TablebaseJson struct {
 	dtm *int32
 	// Depth To Win: Plies to win (available only for Antichess positionswith not more than 4 pieces)
 	dtw *int32
-	// [DTZ50'' with rounding](https://syzygy-tables.info/metrics#dtz) in plies(for Standard chess positions with not more than 7 pieces and variantpositions not more than 6 pieces)
+	// [DTZ50” with rounding](https://syzygy-tables.info/metrics#dtz) in plies(for Standard chess positions with not more than 7 pieces and variantpositions not more than 6 pieces)
 	dtz *int32
 	// The insufficient_material property
 	insufficient_material *bool
 	// Information about legal moves, best first
 	moves []TablebaseMoveable
-	// DTZ50'' in plies, only if guaranteed to not be rounded, or absent if unknown
+	// DTZ50” in plies, only if guaranteed to not be rounded, or absent if unknown
 	precise_dtz *int32
 	// The stalemate property
 	stalemate *bool
@@ -85,7 +85,7 @@ func (m *TablebaseJson) GetDtw() *int32 {
 	return m.dtw
 }
 
-// GetDtz gets the dtz property value. [DTZ50'' with rounding](https://syzygy-tables.info/metrics#dtz) in plies(for Standard chess positions with not more than 7 pieces and variantpositions not more than 6 pieces)
+// GetDtz gets the dtz property value. [DTZ50” with rounding](https://syzygy-tables.info/metrics#dtz) in plies(for Standard chess positions with not more than 7 pieces and variantpositions not more than 6 pieces)
 // returns a *int32 when successful
 func (m *TablebaseJson) GetDtz() *int32 {
 	return m.dtz
@@ -236,7 +236,7 @@ func (m *TablebaseJson) GetMoves() []TablebaseMoveable {
 	return m.moves
 }
 
-// GetPreciseDtz gets the precise_dtz property value. DTZ50'' in plies, only if guaranteed to not be rounded, or absent if unknown
+// GetPreciseDtz gets the precise_dtz property value. DTZ50” in plies, only if guaranteed to not be rounded, or absent if unknown
 // returns a *int32 when successful
 func (m *TablebaseJson) GetPreciseDtz() *int32 {
 	return m.precise_dtz
@@ -380,7 +380,7 @@ func (m *TablebaseJson) SetDtw(value *int32) {
 	m.dtw = value
 }
 
-// SetDtz sets the dtz property value. [DTZ50'' with rounding](https://syzygy-tables.info/metrics#dtz) in plies(for Standard chess positions with not more than 7 pieces and variantpositions not more than 6 pieces)
+// SetDtz sets the dtz property value. [DTZ50” with rounding](https://syzygy-tables.info/metrics#dtz) in plies(for Standard chess positions with not more than 7 pieces and variantpositions not more than 6 pieces)
 func (m *TablebaseJson) SetDtz(value *int32) {
 	m.dtz = value
 }
@@ -395,7 +395,7 @@ func (m *TablebaseJson) SetMoves(value []TablebaseMoveable) {
 	m.moves = value
 }
 
-// SetPreciseDtz sets the precise_dtz property value. DTZ50'' in plies, only if guaranteed to not be rounded, or absent if unknown
+// SetPreciseDtz sets the precise_dtz property value. DTZ50” in plies, only if guaranteed to not be rounded, or absent if unknown
 func (m *TablebaseJson) SetPreciseDtz(value *int32) {
 	m.precise_dtz = value
 }

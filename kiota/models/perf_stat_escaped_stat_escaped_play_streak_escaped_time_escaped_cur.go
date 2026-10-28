@@ -10,6 +10,10 @@ import (
 type PerfStat_stat_playStreak_time_cur struct {
 	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 	additionalData map[string]any
+	// The from property
+	from PerfStat_stat_playStreak_time_cur_fromable
+	// The to property
+	to PerfStat_stat_playStreak_time_cur_toable
 	// The v property
 	v *int32
 }
@@ -37,6 +41,26 @@ func (m *PerfStat_stat_playStreak_time_cur) GetAdditionalData() map[string]any {
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
 func (m *PerfStat_stat_playStreak_time_cur) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
 	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["from"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreatePerfStat_stat_playStreak_time_cur_fromFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFrom(val.(PerfStat_stat_playStreak_time_cur_fromable))
+		}
+		return nil
+	}
+	res["to"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreatePerfStat_stat_playStreak_time_cur_toFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTo(val.(PerfStat_stat_playStreak_time_cur_toable))
+		}
+		return nil
+	}
 	res["v"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
 		val, err := n.GetInt32Value()
 		if err != nil {
@@ -50,6 +74,18 @@ func (m *PerfStat_stat_playStreak_time_cur) GetFieldDeserializers() map[string]f
 	return res
 }
 
+// GetFrom gets the from property value. The from property
+// returns a PerfStat_stat_playStreak_time_cur_fromable when successful
+func (m *PerfStat_stat_playStreak_time_cur) GetFrom() PerfStat_stat_playStreak_time_cur_fromable {
+	return m.from
+}
+
+// GetTo gets the to property value. The to property
+// returns a PerfStat_stat_playStreak_time_cur_toable when successful
+func (m *PerfStat_stat_playStreak_time_cur) GetTo() PerfStat_stat_playStreak_time_cur_toable {
+	return m.to
+}
+
 // GetV gets the v property value. The v property
 // returns a *int32 when successful
 func (m *PerfStat_stat_playStreak_time_cur) GetV() *int32 {
@@ -58,6 +94,18 @@ func (m *PerfStat_stat_playStreak_time_cur) GetV() *int32 {
 
 // Serialize serializes information the current object
 func (m *PerfStat_stat_playStreak_time_cur) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteObjectValue("from", m.GetFrom())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("to", m.GetTo())
+		if err != nil {
+			return err
+		}
+	}
 	{
 		err := writer.WriteInt32Value("v", m.GetV())
 		if err != nil {
@@ -78,6 +126,16 @@ func (m *PerfStat_stat_playStreak_time_cur) SetAdditionalData(value map[string]a
 	m.additionalData = value
 }
 
+// SetFrom sets the from property value. The from property
+func (m *PerfStat_stat_playStreak_time_cur) SetFrom(value PerfStat_stat_playStreak_time_cur_fromable) {
+	m.from = value
+}
+
+// SetTo sets the to property value. The to property
+func (m *PerfStat_stat_playStreak_time_cur) SetTo(value PerfStat_stat_playStreak_time_cur_toable) {
+	m.to = value
+}
+
 // SetV sets the v property value. The v property
 func (m *PerfStat_stat_playStreak_time_cur) SetV(value *int32) {
 	m.v = value
@@ -86,6 +144,10 @@ func (m *PerfStat_stat_playStreak_time_cur) SetV(value *int32) {
 type PerfStat_stat_playStreak_time_curable interface {
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetFrom() PerfStat_stat_playStreak_time_cur_fromable
+	GetTo() PerfStat_stat_playStreak_time_cur_toable
 	GetV() *int32
+	SetFrom(value PerfStat_stat_playStreak_time_cur_fromable)
+	SetTo(value PerfStat_stat_playStreak_time_cur_toable)
 	SetV(value *int32)
 }

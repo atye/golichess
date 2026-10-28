@@ -59,23 +59,38 @@ func NewBulkPairingRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee26
 }
 
 // Get get a list of bulk pairings you created.
-// returns a []BulkPairingable when successful
-func (m *BulkPairingRequestBuilder) Get(ctx context.Context, requestConfiguration *BulkPairingRequestBuilderGetRequestConfiguration) ([]i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BulkPairingable, error) {
+// Deprecated: This method is obsolete. Use GetAsBulkPairingGetResponse instead.
+// returns a BulkPairingResponseable when successful
+func (m *BulkPairingRequestBuilder) Get(ctx context.Context, requestConfiguration *BulkPairingRequestBuilderGetRequestConfiguration) (BulkPairingResponseable, error) {
 	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
 	if err != nil {
 		return nil, err
 	}
-	res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.CreateBulkPairingFromDiscriminatorValue, nil)
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateBulkPairingResponseFromDiscriminatorValue, nil)
 	if err != nil {
 		return nil, err
 	}
-	val := make([]i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BulkPairingable, len(res))
-	for i, v := range res {
-		if v != nil {
-			val[i] = v.(i9c7bd2a4616e157afccf66fb4f0e43fe37d5e83f0fbb4153877fc42d06fad6f7.BulkPairingable)
-		}
+	if res == nil {
+		return nil, nil
 	}
-	return val, nil
+	return res.(BulkPairingResponseable), nil
+}
+
+// GetAsBulkPairingGetResponse get a list of bulk pairings you created.
+// returns a BulkPairingGetResponseable when successful
+func (m *BulkPairingRequestBuilder) GetAsBulkPairingGetResponse(ctx context.Context, requestConfiguration *BulkPairingRequestBuilderGetRequestConfiguration) (BulkPairingGetResponseable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateBulkPairingGetResponseFromDiscriminatorValue, nil)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(BulkPairingGetResponseable), nil
 }
 
 // Post schedule many games at once, up to 24h in advance.OAuth tokens are required for all paired players, with the `challenge:write` scope.You can schedule up to 500 games every 10 minutes. [Contact us](mailto:contact@lichess.org) if you need higher limits.If games have a real-time clock, each player must have only one pairing.For correspondence games, players can have multiple pairings within the same bulk.**The entire bulk is rejected if:**  - a token is missing  - a token is present more than once (except in correspondence)  - a token lacks the `challenge:write` scope  - a player account is closed  - a player is paired more than once (except in correspondence)  - a bulk is already scheduled to start at the same time with the same player  - you have 20 scheduled bulks  - you have 1000 scheduled gamesPartial bulks are never created. Either it all fails, or it all succeeds.When it fails, it does so with an error message explaining the issue.Failed bulks are not counted in the rate limiting, they are free.Fix the issues, manually or programmatically, then retry to schedule the bulk.A successful bulk creation returns a JSON bulk document. Its ID can be used for further operations.

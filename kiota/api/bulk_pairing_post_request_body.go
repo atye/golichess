@@ -19,7 +19,7 @@ type BulkPairingPostRequestBody struct {
 	days *int32
 	// Custom initial position (in X-FEN). Variant must be standard, fromPosition, or chess960 (if a valid 960 starting position), and the game cannot be rated.
 	fen *string
-	// Message that will be sent to each player, when the game is created.  It is sent from your user account.`{opponent}` and `{game}` are placeholders that will be replaced with the opponent and the game URLs.You can omit this field to send the default message,but if you set your own message, it must at least contain the `{game}` placeholder.
+	// Message that will be sent to each player, when the game is created.  It is sent from your user account.`{opponent}` and `{game}` are placeholders that will be replaced with the opponent and the game URLs.You can omit this field to send the default message,but if you set your own message, it must at least contain the `{game}` placeholder.You can also disable messages entirely, by setting the template to `{noMessage}`. You will then need to notify the players yourself about their games.
 	message *string
 	// Date at which the games will be created as a Unix timestamp in milliseconds.Up to 7 days in the future.Omit, or set to current date and time, to start the games immediately.Example: `1612289869919`
 	pairAt *int64
@@ -191,7 +191,7 @@ func (m *BulkPairingPostRequestBody) GetFieldDeserializers() map[string]func(i87
 	return res
 }
 
-// GetMessage gets the message property value. Message that will be sent to each player, when the game is created.  It is sent from your user account.`{opponent}` and `{game}` are placeholders that will be replaced with the opponent and the game URLs.You can omit this field to send the default message,but if you set your own message, it must at least contain the `{game}` placeholder.
+// GetMessage gets the message property value. Message that will be sent to each player, when the game is created.  It is sent from your user account.`{opponent}` and `{game}` are placeholders that will be replaced with the opponent and the game URLs.You can omit this field to send the default message,but if you set your own message, it must at least contain the `{game}` placeholder.You can also disable messages entirely, by setting the template to `{noMessage}`. You will then need to notify the players yourself about their games.
 // returns a *string when successful
 func (m *BulkPairingPostRequestBody) GetMessage() *string {
 	return m.message
@@ -324,7 +324,7 @@ func (m *BulkPairingPostRequestBody) SetFen(value *string) {
 	m.fen = value
 }
 
-// SetMessage sets the message property value. Message that will be sent to each player, when the game is created.  It is sent from your user account.`{opponent}` and `{game}` are placeholders that will be replaced with the opponent and the game URLs.You can omit this field to send the default message,but if you set your own message, it must at least contain the `{game}` placeholder.
+// SetMessage sets the message property value. Message that will be sent to each player, when the game is created.  It is sent from your user account.`{opponent}` and `{game}` are placeholders that will be replaced with the opponent and the game URLs.You can omit this field to send the default message,but if you set your own message, it must at least contain the `{game}` placeholder.You can also disable messages entirely, by setting the template to `{noMessage}`. You will then need to notify the players yourself about their games.
 func (m *BulkPairingPostRequestBody) SetMessage(value *string) {
 	m.message = value
 }

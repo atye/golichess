@@ -12,6 +12,8 @@ type StudyImportPgnChapters struct {
 	additionalData map[string]any
 	// The chapters property
 	chapters []StudyImportPgnChapters_chaptersable
+	// An error message, if some of the games could not be imported.
+	error *string
 }
 
 // NewStudyImportPgnChapters instantiates a new StudyImportPgnChapters and sets the default values.
@@ -39,6 +41,12 @@ func (m *StudyImportPgnChapters) GetChapters() []StudyImportPgnChapters_chapters
 	return m.chapters
 }
 
+// GetError gets the error property value. An error message, if some of the games could not be imported.
+// returns a *string when successful
+func (m *StudyImportPgnChapters) GetError() *string {
+	return m.error
+}
+
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
 func (m *StudyImportPgnChapters) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
@@ -59,6 +67,16 @@ func (m *StudyImportPgnChapters) GetFieldDeserializers() map[string]func(i878a80
 		}
 		return nil
 	}
+	res["error"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetError(val)
+		}
+		return nil
+	}
 	return res
 }
 
@@ -72,6 +90,12 @@ func (m *StudyImportPgnChapters) Serialize(writer i878a80d2330e89d26896388a3f487
 			}
 		}
 		err := writer.WriteCollectionOfObjectValues("chapters", cast)
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("error", m.GetError())
 		if err != nil {
 			return err
 		}
@@ -95,9 +119,16 @@ func (m *StudyImportPgnChapters) SetChapters(value []StudyImportPgnChapters_chap
 	m.chapters = value
 }
 
+// SetError sets the error property value. An error message, if some of the games could not be imported.
+func (m *StudyImportPgnChapters) SetError(value *string) {
+	m.error = value
+}
+
 type StudyImportPgnChaptersable interface {
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
 	GetChapters() []StudyImportPgnChapters_chaptersable
+	GetError() *string
 	SetChapters(value []StudyImportPgnChapters_chaptersable)
+	SetError(value *string)
 }

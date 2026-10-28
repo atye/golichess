@@ -39,18 +39,6 @@ func NewCloudEval_CloudEval_pvs() *CloudEval_CloudEval_pvs {
 func CreateCloudEval_CloudEval_pvsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
 	result := NewCloudEval_CloudEval_pvs()
 	if parseNode != nil {
-		mappingValueNode, err := parseNode.GetChildNode("")
-		if err != nil {
-			return nil, err
-		}
-		if mappingValueNode != nil {
-			mappingValue, err := mappingValueNode.GetStringValue()
-			if err != nil {
-				return nil, err
-			}
-			if mappingValue != nil {
-			}
-		}
 	}
 	return result, nil
 }

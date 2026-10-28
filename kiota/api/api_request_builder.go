@@ -206,3 +206,9 @@ func (m *ApiRequestBuilder) User() *UserRequestBuilder {
 func (m *ApiRequestBuilder) Users() *UsersRequestBuilder {
 	return NewUsersRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
+// Version the version property
+// returns a *VersionRequestBuilder when successful
+func (m *ApiRequestBuilder) Version() *VersionRequestBuilder {
+	return NewVersionRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}

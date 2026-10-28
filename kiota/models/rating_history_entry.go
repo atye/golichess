@@ -11,9 +11,104 @@ type RatingHistoryEntry struct {
 	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 	additionalData map[string]any
 	// The name property
-	name *string
+	name RatingHistoryEntry_RatingHistoryEntry_nameable
 	// The points property
 	points i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
+}
+
+// RatingHistoryEntry_RatingHistoryEntry_name composed type wrapper for classes PerfType, string
+type RatingHistoryEntry_RatingHistoryEntry_name struct {
+	// Composed type representation for type PerfType
+	perfType *PerfType
+	// Composed type representation for type string
+	string *string
+}
+
+// NewRatingHistoryEntry_RatingHistoryEntry_name instantiates a new RatingHistoryEntry_RatingHistoryEntry_name and sets the default values.
+func NewRatingHistoryEntry_RatingHistoryEntry_name() *RatingHistoryEntry_RatingHistoryEntry_name {
+	m := &RatingHistoryEntry_RatingHistoryEntry_name{}
+	return m
+}
+
+// CreateRatingHistoryEntry_RatingHistoryEntry_nameFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
+// returns a Parsable when successful
+func CreateRatingHistoryEntry_RatingHistoryEntry_nameFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	result := NewRatingHistoryEntry_RatingHistoryEntry_name()
+	if parseNode != nil {
+	}
+	if val, err := parseNode.GetEnumValue(ParsePerfType); val != nil {
+		if err != nil {
+			return nil, err
+		}
+		if cast, ok := val.(*PerfType); ok {
+			result.SetPerfType(cast)
+		}
+	} else if val, err := parseNode.GetStringValue(); val != nil {
+		if err != nil {
+			return nil, err
+		}
+		result.SetString(val)
+	}
+	return result, nil
+}
+
+// GetFieldDeserializers the deserialization information for the current model
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *RatingHistoryEntry_RatingHistoryEntry_name) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	return make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+}
+
+// GetIsComposedType determines if the current object is a wrapper around a composed type
+// returns a bool when successful
+func (m *RatingHistoryEntry_RatingHistoryEntry_name) GetIsComposedType() bool {
+	return true
+}
+
+// GetPerfType gets the PerfType property value. Composed type representation for type PerfType
+// returns a *PerfType when successful
+func (m *RatingHistoryEntry_RatingHistoryEntry_name) GetPerfType() *PerfType {
+	return m.perfType
+}
+
+// GetString gets the string property value. Composed type representation for type string
+// returns a *string when successful
+func (m *RatingHistoryEntry_RatingHistoryEntry_name) GetString() *string {
+	return m.string
+}
+
+// Serialize serializes information the current object
+func (m *RatingHistoryEntry_RatingHistoryEntry_name) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	if m.GetPerfType() != nil {
+		cast := (*m.GetPerfType()).String()
+		err := writer.WriteStringValue("", &cast)
+		if err != nil {
+			return err
+		}
+	} else if m.GetString() != nil {
+		err := writer.WriteStringValue("", m.GetString())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// SetPerfType sets the PerfType property value. Composed type representation for type PerfType
+func (m *RatingHistoryEntry_RatingHistoryEntry_name) SetPerfType(value *PerfType) {
+	m.perfType = value
+}
+
+// SetString sets the string property value. Composed type representation for type string
+func (m *RatingHistoryEntry_RatingHistoryEntry_name) SetString(value *string) {
+	m.string = value
+}
+
+type RatingHistoryEntry_RatingHistoryEntry_nameable interface {
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetPerfType() *PerfType
+	GetString() *string
+	SetPerfType(value *PerfType)
+	SetString(value *string)
 }
 
 // NewRatingHistoryEntry instantiates a new RatingHistoryEntry and sets the default values.
@@ -40,12 +135,12 @@ func (m *RatingHistoryEntry) GetAdditionalData() map[string]any {
 func (m *RatingHistoryEntry) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
 	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
 	res["name"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-		val, err := n.GetStringValue()
+		val, err := n.GetObjectValue(CreateRatingHistoryEntry_RatingHistoryEntry_nameFromDiscriminatorValue)
 		if err != nil {
 			return err
 		}
 		if val != nil {
-			m.SetName(val)
+			m.SetName(val.(RatingHistoryEntry_RatingHistoryEntry_nameable))
 		}
 		return nil
 	}
@@ -63,8 +158,8 @@ func (m *RatingHistoryEntry) GetFieldDeserializers() map[string]func(i878a80d233
 }
 
 // GetName gets the name property value. The name property
-// returns a *string when successful
-func (m *RatingHistoryEntry) GetName() *string {
+// returns a RatingHistoryEntry_RatingHistoryEntry_nameable when successful
+func (m *RatingHistoryEntry) GetName() RatingHistoryEntry_RatingHistoryEntry_nameable {
 	return m.name
 }
 
@@ -77,7 +172,7 @@ func (m *RatingHistoryEntry) GetPoints() i878a80d2330e89d26896388a3f487eef27b0a0
 // Serialize serializes information the current object
 func (m *RatingHistoryEntry) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
 	{
-		err := writer.WriteStringValue("name", m.GetName())
+		err := writer.WriteObjectValue("name", m.GetName())
 		if err != nil {
 			return err
 		}
@@ -103,7 +198,7 @@ func (m *RatingHistoryEntry) SetAdditionalData(value map[string]any) {
 }
 
 // SetName sets the name property value. The name property
-func (m *RatingHistoryEntry) SetName(value *string) {
+func (m *RatingHistoryEntry) SetName(value RatingHistoryEntry_RatingHistoryEntry_nameable) {
 	m.name = value
 }
 
@@ -115,8 +210,8 @@ func (m *RatingHistoryEntry) SetPoints(value i878a80d2330e89d26896388a3f487eef27
 type RatingHistoryEntryable interface {
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-	GetName() *string
+	GetName() RatingHistoryEntry_RatingHistoryEntry_nameable
 	GetPoints() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
-	SetName(value *string)
+	SetName(value RatingHistoryEntry_RatingHistoryEntry_nameable)
 	SetPoints(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
 }
