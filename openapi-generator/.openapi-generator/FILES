@@ -15,6 +15,7 @@ api_o_auth.go
 api_opening_explorer.go
 api_puzzles.go
 api_relations.go
+api_server.go
 api_simuls.go
 api_studies.go
 api_tablebase.go
@@ -49,6 +50,8 @@ docs/ApiStreamEvent200Response.md
 docs/ApiStudyPost200Response.md
 docs/ApiToken200Response.md
 docs/ApiUsersStatus200ResponseInner.md
+docs/ApiVersion200Response.md
+docs/ApiVersion200ResponseServer.md
 docs/ArenaPerf.md
 docs/ArenaPosition.md
 docs/ArenaRatingObj.md
@@ -290,6 +293,7 @@ docs/RealTime.md
 docs/RelationsAPI.md
 docs/ResultsBySwiss200Response.md
 docs/ResultsByTournament200Response.md
+docs/ServerAPI.md
 docs/Simul.md
 docs/SimulHost.md
 docs/SimulVariantsInner.md
@@ -406,6 +410,8 @@ model_api_stream_event_200_response.go
 model_api_study_post_200_response.go
 model_api_token_200_response.go
 model_api_users_status_200_response_inner.go
+model_api_version_200_response.go
+model_api_version_200_response_server.go
 model_arena_perf.go
 model_arena_position.go
 model_arena_rating_obj.go

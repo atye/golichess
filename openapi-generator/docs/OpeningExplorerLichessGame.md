@@ -7,16 +7,17 @@ Name | Type | Description | Notes
 **Id** | **string** |  | 
 **Winner** | [**NullableGameColor**](GameColor.md) |  | 
 **Speed** | Pointer to [**Speed**](Speed.md) |  | [optional] 
+**Mode** | **string** |  | 
 **White** | [**OpeningExplorerGamePlayer**](OpeningExplorerGamePlayer.md) |  | 
 **Black** | [**OpeningExplorerGamePlayer**](OpeningExplorerGamePlayer.md) |  | 
-**Year** | **float32** |  | 
-**Month** | **NullableString** |  | 
+**Year** | **int32** |  | 
+**Month** | **string** |  | 
 
 ## Methods
 
 ### NewOpeningExplorerLichessGame
 
-`func NewOpeningExplorerLichessGame(id string, winner NullableGameColor, white OpeningExplorerGamePlayer, black OpeningExplorerGamePlayer, year float32, month NullableString, ) *OpeningExplorerLichessGame`
+`func NewOpeningExplorerLichessGame(id string, winner NullableGameColor, mode string, white OpeningExplorerGamePlayer, black OpeningExplorerGamePlayer, year int32, month string, ) *OpeningExplorerLichessGame`
 
 NewOpeningExplorerLichessGame instantiates a new OpeningExplorerLichessGame object
 This constructor will assign default values to properties that have it defined,
@@ -106,6 +107,26 @@ SetSpeed sets Speed field to given value.
 
 HasSpeed returns a boolean if a field has been set.
 
+### GetMode
+
+`func (o *OpeningExplorerLichessGame) GetMode() string`
+
+GetMode returns the Mode field if non-nil, zero value otherwise.
+
+### GetModeOk
+
+`func (o *OpeningExplorerLichessGame) GetModeOk() (*string, bool)`
+
+GetModeOk returns a tuple with the Mode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMode
+
+`func (o *OpeningExplorerLichessGame) SetMode(v string)`
+
+SetMode sets Mode field to given value.
+
+
 ### GetWhite
 
 `func (o *OpeningExplorerLichessGame) GetWhite() OpeningExplorerGamePlayer`
@@ -148,20 +169,20 @@ SetBlack sets Black field to given value.
 
 ### GetYear
 
-`func (o *OpeningExplorerLichessGame) GetYear() float32`
+`func (o *OpeningExplorerLichessGame) GetYear() int32`
 
 GetYear returns the Year field if non-nil, zero value otherwise.
 
 ### GetYearOk
 
-`func (o *OpeningExplorerLichessGame) GetYearOk() (*float32, bool)`
+`func (o *OpeningExplorerLichessGame) GetYearOk() (*int32, bool)`
 
 GetYearOk returns a tuple with the Year field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetYear
 
-`func (o *OpeningExplorerLichessGame) SetYear(v float32)`
+`func (o *OpeningExplorerLichessGame) SetYear(v int32)`
 
 SetYear sets Year field to given value.
 
@@ -186,16 +207,6 @@ and a boolean to check if the value has been set.
 SetMonth sets Month field to given value.
 
 
-### SetMonthNil
-
-`func (o *OpeningExplorerLichessGame) SetMonthNil(b bool)`
-
- SetMonthNil sets the value for Month to be an explicit nil
-
-### UnsetMonth
-`func (o *OpeningExplorerLichessGame) UnsetMonth()`
-
-UnsetMonth ensures that no value is present for Month, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

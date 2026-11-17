@@ -10,14 +10,14 @@ Name | Type | Description | Notes
 **Black** | **int32** |  | 
 **Moves** | [**[]OpeningExplorerLichessMovesInner**](OpeningExplorerLichessMovesInner.md) |  | 
 **TopGames** | [**[]OpeningExplorerLichessTopGamesInner**](OpeningExplorerLichessTopGamesInner.md) |  | 
-**RecentGames** | Pointer to [**[]OpeningExplorerLichessTopGamesInner**](OpeningExplorerLichessTopGamesInner.md) |  | [optional] 
-**History** | Pointer to [**[]OpeningExplorerLichessHistoryInner**](OpeningExplorerLichessHistoryInner.md) |  | [optional] 
+**RecentGames** | [**[]OpeningExplorerLichessTopGamesInner**](OpeningExplorerLichessTopGamesInner.md) |  | 
+**History** | Pointer to [**[]OpeningExplorerLichessHistoryInner**](OpeningExplorerLichessHistoryInner.md) | Only with &#x60;history&#x3D;true&#x60; | [optional] 
 
 ## Methods
 
 ### NewOpeningExplorerLichess
 
-`func NewOpeningExplorerLichess(opening NullableOpeningExplorerOpening, white int32, draws int32, black int32, moves []OpeningExplorerLichessMovesInner, topGames []OpeningExplorerLichessTopGamesInner, ) *OpeningExplorerLichess`
+`func NewOpeningExplorerLichess(opening NullableOpeningExplorerOpening, white int32, draws int32, black int32, moves []OpeningExplorerLichessMovesInner, topGames []OpeningExplorerLichessTopGamesInner, recentGames []OpeningExplorerLichessTopGamesInner, ) *OpeningExplorerLichess`
 
 NewOpeningExplorerLichess instantiates a new OpeningExplorerLichess object
 This constructor will assign default values to properties that have it defined,
@@ -181,11 +181,6 @@ and a boolean to check if the value has been set.
 
 SetRecentGames sets RecentGames field to given value.
 
-### HasRecentGames
-
-`func (o *OpeningExplorerLichess) HasRecentGames() bool`
-
-HasRecentGames returns a boolean if a field has been set.
 
 ### GetHistory
 

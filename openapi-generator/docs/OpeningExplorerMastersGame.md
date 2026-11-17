@@ -9,13 +9,13 @@ Name | Type | Description | Notes
 **White** | [**OpeningExplorerGamePlayer**](OpeningExplorerGamePlayer.md) |  | 
 **Black** | [**OpeningExplorerGamePlayer**](OpeningExplorerGamePlayer.md) |  | 
 **Year** | **int32** |  | 
-**Month** | Pointer to **string** |  | [optional] 
+**Month** | **NullableString** | Month of the game, if known | 
 
 ## Methods
 
 ### NewOpeningExplorerMastersGame
 
-`func NewOpeningExplorerMastersGame(id string, winner NullableGameColor, white OpeningExplorerGamePlayer, black OpeningExplorerGamePlayer, year int32, ) *OpeningExplorerMastersGame`
+`func NewOpeningExplorerMastersGame(id string, winner NullableGameColor, white OpeningExplorerGamePlayer, black OpeningExplorerGamePlayer, year int32, month NullableString, ) *OpeningExplorerMastersGame`
 
 NewOpeningExplorerMastersGame instantiates a new OpeningExplorerMastersGame object
 This constructor will assign default values to properties that have it defined,
@@ -159,12 +159,17 @@ and a boolean to check if the value has been set.
 
 SetMonth sets Month field to given value.
 
-### HasMonth
 
-`func (o *OpeningExplorerMastersGame) HasMonth() bool`
+### SetMonthNil
 
-HasMonth returns a boolean if a field has been set.
+`func (o *OpeningExplorerMastersGame) SetMonthNil(b bool)`
 
+ SetMonthNil sets the value for Month to be an explicit nil
+
+### UnsetMonth
+`func (o *OpeningExplorerMastersGame) UnsetMonth()`
+
+UnsetMonth ensures that no value is present for Month, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

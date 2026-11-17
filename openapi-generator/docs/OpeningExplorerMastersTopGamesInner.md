@@ -9,14 +9,14 @@ Name | Type | Description | Notes
 **White** | [**OpeningExplorerGamePlayer**](OpeningExplorerGamePlayer.md) |  | 
 **Black** | [**OpeningExplorerGamePlayer**](OpeningExplorerGamePlayer.md) |  | 
 **Year** | **int32** |  | 
-**Month** | Pointer to **string** |  | [optional] 
+**Month** | **NullableString** | Month of the game, if known | 
 **Uci** | **string** |  | 
 
 ## Methods
 
 ### NewOpeningExplorerMastersTopGamesInner
 
-`func NewOpeningExplorerMastersTopGamesInner(id string, winner NullableGameColor, white OpeningExplorerGamePlayer, black OpeningExplorerGamePlayer, year int32, uci string, ) *OpeningExplorerMastersTopGamesInner`
+`func NewOpeningExplorerMastersTopGamesInner(id string, winner NullableGameColor, white OpeningExplorerGamePlayer, black OpeningExplorerGamePlayer, year int32, month NullableString, uci string, ) *OpeningExplorerMastersTopGamesInner`
 
 NewOpeningExplorerMastersTopGamesInner instantiates a new OpeningExplorerMastersTopGamesInner object
 This constructor will assign default values to properties that have it defined,
@@ -160,12 +160,17 @@ and a boolean to check if the value has been set.
 
 SetMonth sets Month field to given value.
 
-### HasMonth
 
-`func (o *OpeningExplorerMastersTopGamesInner) HasMonth() bool`
+### SetMonthNil
 
-HasMonth returns a boolean if a field has been set.
+`func (o *OpeningExplorerMastersTopGamesInner) SetMonthNil(b bool)`
 
+ SetMonthNil sets the value for Month to be an explicit nil
+
+### UnsetMonth
+`func (o *OpeningExplorerMastersTopGamesInner) UnsetMonth()`
+
+UnsetMonth ensures that no value is present for Month, not even an explicit nil
 ### GetUci
 
 `func (o *OpeningExplorerMastersTopGamesInner) GetUci() string`

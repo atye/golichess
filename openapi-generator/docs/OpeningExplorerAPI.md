@@ -37,8 +37,8 @@ func main() {
 	play := "d2d4,d7d5,c2c4,c7c6,c4d5" // string | Comma separated sequence of legal moves in UCI notation. Play additional moves starting from `fen`. Required to find an opening name, if `fen` is not an exact match for a named position.  (optional) (default to "")
 	speeds := []openapiclient.Speed{openapiclient.Speed("ultraBullet")} // []Speed | Comma separated list of game speeds to filter by (optional)
 	ratings := []int32{int32(123)} // []int32 | Comma separated list of ratings groups to filter by. Each group ranges from its value to the next higher group in the enum (`0` from 0 to 999, `1000` from 1000 to 1199, ..., `2500` from 2500 to any rating above).  (optional)
-	since := "since_example" // string | Include only games from this month or later (optional) (default to "1952-01")
-	until := "until_example" // string | Include only games from this month or earlier (optional) (default to "3000-12")
+	since := "since_example" // string | Include only games from this month or later: `YYYY-MM`, or `YYYY` for January of that year  (optional) (default to "1952-01")
+	until := "until_example" // string | Include only games from this month or earlier: `YYYY-MM`, or `YYYY` for December of that year  (optional) (default to "3000-12")
 	moves := int32(56) // int32 | Number of most common moves to display (optional) (default to 12)
 	topGames := int32(56) // int32 | Maximum number of top games to display.  Due to the way banned users are handled internally, the response may contain fewer games than expected.  (optional) (default to 4)
 	recentGames := int32(56) // int32 | Maximum number of recent games to display.  Due to the way banned users are handled internally, the response may contain fewer games than expected.  (optional) (default to 4)
@@ -72,8 +72,8 @@ Name | Type | Description  | Notes
  **play** | **string** | Comma separated sequence of legal moves in UCI notation. Play additional moves starting from &#x60;fen&#x60;. Required to find an opening name, if &#x60;fen&#x60; is not an exact match for a named position.  | [default to &quot;&quot;]
  **speeds** | [**[]Speed**](Speed.md) | Comma separated list of game speeds to filter by | 
  **ratings** | **[]int32** | Comma separated list of ratings groups to filter by. Each group ranges from its value to the next higher group in the enum (&#x60;0&#x60; from 0 to 999, &#x60;1000&#x60; from 1000 to 1199, ..., &#x60;2500&#x60; from 2500 to any rating above).  | 
- **since** | **string** | Include only games from this month or later | [default to &quot;1952-01&quot;]
- **until** | **string** | Include only games from this month or earlier | [default to &quot;3000-12&quot;]
+ **since** | **string** | Include only games from this month or later: &#x60;YYYY-MM&#x60;, or &#x60;YYYY&#x60; for January of that year  | [default to &quot;1952-01&quot;]
+ **until** | **string** | Include only games from this month or earlier: &#x60;YYYY-MM&#x60;, or &#x60;YYYY&#x60; for December of that year  | [default to &quot;3000-12&quot;]
  **moves** | **int32** | Number of most common moves to display | [default to 12]
  **topGames** | **int32** | Maximum number of top games to display.  Due to the way banned users are handled internally, the response may contain fewer games than expected.  | [default to 4]
  **recentGames** | **int32** | Maximum number of recent games to display.  Due to the way banned users are handled internally, the response may contain fewer games than expected.  | [default to 4]
@@ -90,7 +90,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -120,8 +120,8 @@ import (
 func main() {
 	fen := "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1" // string | X-FEN of the root position (optional)
 	play := "d2d4,d7d5,c2c4,c7c6,c4d5" // string | Comma separated sequence of legal moves in UCI notation. Play additional moves starting from `fen`. Required to find an opening name, if `fen` is not an exact match for a named position.  (optional) (default to "")
-	since := int32(56) // int32 | Include only games from this year or later (optional) (default to 1952)
-	until := int32(56) // int32 | Include only games from this year or earlier (optional)
+	since := "since_example" // string | Include only games from this month or later: `YYYY-MM`, or `YYYY` for January of that year  (optional) (default to "1952-01")
+	until := "until_example" // string | Include only games from this month or earlier: `YYYY-MM`, or `YYYY` for December of that year  (optional) (default to "3000-12")
 	moves := int32(56) // int32 | Number of most common moves to display (optional) (default to 12)
 	topGames := int32(56) // int32 | Number of top games to display (optional) (default to 15)
 
@@ -150,8 +150,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fen** | **string** | X-FEN of the root position | 
  **play** | **string** | Comma separated sequence of legal moves in UCI notation. Play additional moves starting from &#x60;fen&#x60;. Required to find an opening name, if &#x60;fen&#x60; is not an exact match for a named position.  | [default to &quot;&quot;]
- **since** | **int32** | Include only games from this year or later | [default to 1952]
- **until** | **int32** | Include only games from this year or earlier | 
+ **since** | **string** | Include only games from this month or later: &#x60;YYYY-MM&#x60;, or &#x60;YYYY&#x60; for January of that year  | [default to &quot;1952-01&quot;]
+ **until** | **string** | Include only games from this month or earlier: &#x60;YYYY-MM&#x60;, or &#x60;YYYY&#x60; for December of that year  | [default to &quot;3000-12&quot;]
  **moves** | **int32** | Number of most common moves to display | [default to 12]
  **topGames** | **int32** | Number of top games to display | [default to 15]
 
@@ -166,7 +166,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -236,7 +236,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/x-chess-pgn
+- **Accept**: application/x-chess-pgn, text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -271,8 +271,8 @@ func main() {
 	play := "d2d4,d7d5" // string | Comma separated sequence of legal moves in UCI notation. Play additional moves starting from `fen`. Required to find an opening name, if `fen` is not an exact match for a named position.  (optional) (default to "")
 	speeds := []openapiclient.Speed{openapiclient.Speed("ultraBullet")} // []Speed | Comma separated list of game speeds to look for (optional)
 	modes := []string{"Modes_example"} // []string | Comma separated list of modes (optional)
-	since := "since_example" // string | Include only games from this month or later (optional) (default to "1952-01")
-	until := "until_example" // string | Include only games from this month or earlier (optional) (default to "3000-12")
+	since := "since_example" // string | Include only games from this month or later: `YYYY-MM`, or `YYYY` for January of that year  (optional) (default to "1952-01")
+	until := "until_example" // string | Include only games from this month or earlier: `YYYY-MM`, or `YYYY` for December of that year  (optional) (default to "3000-12")
 	moves := int32(56) // int32 | Number of most common moves to display (optional)
 	recentGames := int32(56) // int32 | Number of recent games to display (optional) (default to 8)
 
@@ -306,8 +306,8 @@ Name | Type | Description  | Notes
  **play** | **string** | Comma separated sequence of legal moves in UCI notation. Play additional moves starting from &#x60;fen&#x60;. Required to find an opening name, if &#x60;fen&#x60; is not an exact match for a named position.  | [default to &quot;&quot;]
  **speeds** | [**[]Speed**](Speed.md) | Comma separated list of game speeds to look for | 
  **modes** | **[]string** | Comma separated list of modes | 
- **since** | **string** | Include only games from this month or later | [default to &quot;1952-01&quot;]
- **until** | **string** | Include only games from this month or earlier | [default to &quot;3000-12&quot;]
+ **since** | **string** | Include only games from this month or later: &#x60;YYYY-MM&#x60;, or &#x60;YYYY&#x60; for January of that year  | [default to &quot;1952-01&quot;]
+ **until** | **string** | Include only games from this month or earlier: &#x60;YYYY-MM&#x60;, or &#x60;YYYY&#x60; for December of that year  | [default to &quot;3000-12&quot;]
  **moves** | **int32** | Number of most common moves to display | 
  **recentGames** | **int32** | Number of recent games to display | [default to 8]
 
@@ -322,7 +322,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/x-ndjson
+- **Accept**: application/x-ndjson, text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
+**Title** | Pointer to **string** | Title of the player, if any | [optional] 
 **Rating** | **int32** |  | 
 
 ## Methods
@@ -45,6 +46,31 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+
+### GetTitle
+
+`func (o *OpeningExplorerGamePlayer) GetTitle() string`
+
+GetTitle returns the Title field if non-nil, zero value otherwise.
+
+### GetTitleOk
+
+`func (o *OpeningExplorerGamePlayer) GetTitleOk() (*string, bool)`
+
+GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTitle
+
+`func (o *OpeningExplorerGamePlayer) SetTitle(v string)`
+
+SetTitle sets Title field to given value.
+
+### HasTitle
+
+`func (o *OpeningExplorerGamePlayer) HasTitle() bool`
+
+HasTitle returns a boolean if a field has been set.
 
 ### GetRating
 

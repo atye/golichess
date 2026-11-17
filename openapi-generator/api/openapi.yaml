@@ -32,6 +32,12 @@ info:
     - [LichessNET - C# API Wrapper](https://github.com/Rabergsel/LichessNET)
     - [.NET general API](https://github.com/Dblike/LichessSharp)
 
+    ## User-Agent header
+    All requests going to lichess.org MUST include a `User-Agent` header with your website URL, or the name of your application, or a contact email.
+    For example: `User-Agent: https://mychessapp.example.com/`.
+    We'll use it to contact you in case of a problem, and to let you know about breaking changes to the API.
+    Requests missing an appropriate `User-Agent` header may be rejected or rate limited.
+
     ## Rate limiting
     All requests are rate limited using various strategies,
     to ensure the API remains responsive for everyone.
@@ -94,9 +100,9 @@ info:
     name: AGPL-3.0-or-later
     url: https://www.gnu.org/licenses/agpl-3.0.txt
   title: Lichess.org API reference
-  version: 2.0.177
+  version: 2.0.180
   x-logo:
-    url: https://lichess1.org/assets/logo/lichess-pad12.svg
+    url: https://lichess.org/assets/logo/lichess-pad12.svg
 servers:
 - url: https://lichess.org
 - url: https://lichess.dev
@@ -274,6 +280,9 @@ tags:
     - User blogs mashup feed: https://lichess.org/blog/community.atom
     - User blogs mashup feed for a language: https://lichess.org/blog/community/fr.atom
   name: Users
+- description: |
+    Information about Lichess
+  name: Server
 - description: |
     Obtaining and revoking OAuth tokens.
 
@@ -1203,7 +1212,8 @@ paths:
         The method is `POST` to allow a longer list of IDs to be sent in the request body.
         Please do not try to download all the Lichess users with this endpoint, or any other endpoint.
         An API is not a way to fully export a website. We do not provide a full download of the Lichess users.
-        This endpoint is limited to 8,000 users every 10 minutes, and 120,000 every day.
+        This endpoint is limited to 10,000 users every 10 minutes, and 150,000 every day, when the request is authenticated.
+        Fewer when the request is anonymous.
       operationId: apiUsers
       parameters:
       - description: Include user profile data
@@ -1252,7 +1262,8 @@ paths:
                 default: '''*'''
                 type: string
               style: simple
-      security: []
+      security:
+      - OAuth2: []
       summary: Get users by ID
       tags:
       - Users
@@ -2662,6 +2673,33 @@ paths:
       summary: Bookmark a game
       tags:
       - Games
+  /api/version:
+    get:
+      description: |
+        Get the date and git commit of the server code currently deployed.
+        Source code: [github.com/lichess-org/lila](https://github.com/lichess-org/lila).
+      operationId: apiVersion
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                default:
+                  $ref: "#/components/examples/server-getServerVersion.json"
+              schema:
+                $ref: "#/components/schemas/apiVersion_200_response"
+          description: The server version.
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                default: '''*'''
+                type: string
+              style: simple
+      security: []
+      summary: Get server version
+      tags:
+      - Server
   /api/tv/channels:
     get:
       description: |
@@ -6744,7 +6782,7 @@ paths:
         name: term
         required: true
         schema:
-          minLength: 3
+          minLength: 4
           type: string
         style: form
       - description: |
@@ -9910,22 +9948,27 @@ paths:
           default: ""
           type: string
         style: form
-      - description: Include only games from this year or later
+      - description: |
+          Include only games from this month or later: `YYYY-MM`, or `YYYY`
+          for January of that year
         explode: true
         in: query
         name: since
         required: false
         schema:
-          default: 1952
-          type: integer
+          default: 1952-01
+          type: string
         style: form
-      - description: Include only games from this year or earlier
+      - description: |
+          Include only games from this month or earlier: `YYYY-MM`, or `YYYY`
+          for December of that year
         explode: true
         in: query
         name: until
         required: false
         schema:
-          type: integer
+          default: 3000-12
+          type: string
         style: form
       - description: Number of most common moves to display
         explode: true
@@ -9963,6 +10006,13 @@ paths:
                 default: '''*'''
                 type: string
               style: simple
+        "400":
+          content:
+            text/plain:
+              example: "bad request: illegal move e2e5: illegal uci move"
+              schema:
+                type: string
+          description: "Invalid parameters, position or moves."
       security:
       - OAuth2: []
       servers:
@@ -10053,7 +10103,9 @@ paths:
           type: array
           default: null
         style: form
-      - description: Include only games from this month or later
+      - description: |
+          Include only games from this month or later: `YYYY-MM`, or `YYYY`
+          for January of that year
         explode: true
         in: query
         name: since
@@ -10062,7 +10114,9 @@ paths:
           default: 1952-01
           type: string
         style: form
-      - description: Include only games from this month or earlier
+      - description: |
+          Include only games from this month or earlier: `YYYY-MM`, or `YYYY`
+          for December of that year
         explode: true
         in: query
         name: until
@@ -10134,6 +10188,13 @@ paths:
                 default: '''*'''
                 type: string
               style: simple
+        "400":
+          content:
+            text/plain:
+              example: "bad request: illegal move e2e5: illegal uci move"
+              schema:
+                type: string
+          description: "Invalid parameters, position or moves."
       security:
       - OAuth2: []
       servers:
@@ -10242,7 +10303,9 @@ paths:
           type: array
           default: null
         style: form
-      - description: Include only games from this month or later
+      - description: |
+          Include only games from this month or later: `YYYY-MM`, or `YYYY`
+          for January of that year
         explode: true
         in: query
         name: since
@@ -10251,7 +10314,9 @@ paths:
           default: 1952-01
           type: string
         style: form
-      - description: Include only games from this month or earlier
+      - description: |
+          Include only games from this month or earlier: `YYYY-MM`, or `YYYY`
+          for December of that year
         explode: true
         in: query
         name: until
@@ -10295,6 +10360,19 @@ paths:
                 default: '''*'''
                 type: string
               style: simple
+        "400":
+          content:
+            text/plain:
+              example: "bad request: illegal move e2e5: illegal uci move"
+              schema:
+                type: string
+          description: "Invalid parameters, position or moves."
+        "503":
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: The indexing queue is full. Try again later.
       security:
       - OAuth2: []
       servers:
@@ -10339,6 +10417,12 @@ paths:
                 default: '''*'''
                 type: string
               style: simple
+        "404":
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: There is no game with this id.
       security:
       - OAuth2: []
       servers:
@@ -12336,6 +12420,8 @@ components:
           - discoveredAttack
           - deflection
           - veryLong
+          fen: r1bqr1k1/pp3ppp/2p2n2/3p2B1/8/2P1P3/PP1N1PPb/1BRQ1RK1 w - - 0 1
+          lastMove: e5h2
           initialPly: 74
     puzzles-getMultiplePuzzlesAtOnce.json:
       value:
@@ -13337,7 +13423,7 @@ components:
     account-getMyPreferences.json:
       value:
         prefs:
-          bgImg: https://lichess1.org/assets/lifat/background/gallery/bg27.webp
+          bgImg: https://lichess.org/assets/lifat/background/gallery/bg27.webp
           is3d: false
           theme: brown
           pieceSet: cburnett
@@ -14422,6 +14508,11 @@ components:
           initial: 300
           increment: 0
           totalTime: 300
+    server-getServerVersion.json:
+      value:
+        server:
+          date: 2026-10-28T07:25:58Z
+          commit: b551752d2a0e7a63459d9812825d95a633a98737
     tv-getCurrentTvGames.json:
       value:
         chess960:
@@ -26407,7 +26498,7 @@ components:
           dates:
           - 1748271600000
           - 1749229200000
-          image: https://image.lichess1.org/display?fmt=webp&h=400&op=thumbnail&path=relay:PcsMbQ9J:QeUfDaHh.webp&w=800&sig=4d7317641091543a721d77baafff804fb15bf107
+          image: https://image.lichess.org/display?fmt=webp&h=400&op=thumbnail&path=relay:PcsMbQ9J:QeUfDaHh.webp&w=800&sig=4d7317641091543a721d77baafff804fb15bf107
           description: "**Points**\r\n\r\n- Win in the classical game: 3 points\r\n\
             - Loss in the classical game: 0 points\r\n- Draw in the classical game\
             \ & win Armageddon: 1½ points\r\n- Draw in the classical game & loss Armageddon:\
@@ -26441,30 +26532,30 @@ components:
           status: 1-0
         photos:
           "1503014":
-            small: https://image.lichess1.org/display?fmt=webp&h=100&op=thumbnail&path=v6JPXmWyYhTI.webp&w=100&sig=78e9187109f632629c22b5e5b6997976e06a1cf9
-            medium: https://image.lichess1.org/display?fmt=webp&h=500&op=thumbnail&path=v6JPXmWyYhTI.webp&w=500&sig=4b2b5199cfc1d9ff87810d7c10af8a74fe85256e
+            small: https://image.lichess.org/display?fmt=webp&h=100&op=thumbnail&path=v6JPXmWyYhTI.webp&w=100&sig=78e9187109f632629c22b5e5b6997976e06a1cf9
+            medium: https://image.lichess.org/display?fmt=webp&h=500&op=thumbnail&path=v6JPXmWyYhTI.webp&w=500&sig=4b2b5199cfc1d9ff87810d7c10af8a74fe85256e
             credit: Brigham Aldrich
           "2016192":
-            small: https://image.lichess1.org/display?fmt=webp&h=100&op=thumbnail&path=DKk7D4U9ivZb.webp&w=100&sig=44d30eb428b70d1058ceec0333fa227c1da60581
-            medium: https://image.lichess1.org/display?fmt=webp&h=500&op=thumbnail&path=DKk7D4U9ivZb.webp&w=500&sig=5e2c2edb1347cfa053951ea481886c21e0c4f676
+            small: https://image.lichess.org/display?fmt=webp&h=100&op=thumbnail&path=DKk7D4U9ivZb.webp&w=100&sig=44d30eb428b70d1058ceec0333fa227c1da60581
+            medium: https://image.lichess.org/display?fmt=webp&h=500&op=thumbnail&path=DKk7D4U9ivZb.webp&w=500&sig=5e2c2edb1347cfa053951ea481886c21e0c4f676
             credit: "Andreas Kontokanis, CC BY-SA 2.0 <https://creativecommons.org/licenses/by-sa/2.0>,\
               \ via Wikimedia Commons"
           "2020009":
-            small: https://image.lichess1.org/display?fmt=webp&h=100&op=thumbnail&path=Hif5ohoGiHPZ.webp&w=100&sig=13ea5db011e7e45a97ec1a4164a355ef6b1db8f9
-            medium: https://image.lichess1.org/display?fmt=webp&h=500&op=thumbnail&path=Hif5ohoGiHPZ.webp&w=500&sig=fa71f0594833a61290626f11ab67459349a29f3c
+            small: https://image.lichess.org/display?fmt=webp&h=100&op=thumbnail&path=Hif5ohoGiHPZ.webp&w=100&sig=13ea5db011e7e45a97ec1a4164a355ef6b1db8f9
+            medium: https://image.lichess.org/display?fmt=webp&h=500&op=thumbnail&path=Hif5ohoGiHPZ.webp&w=500&sig=fa71f0594833a61290626f11ab67459349a29f3c
             credit: Brigham Aldrich
           "8603405":
-            small: https://image.lichess1.org/display?fmt=webp&h=100&op=thumbnail&path=rDGOWW82iYK9.webp&w=100&sig=7c8ece3893b331835185347a890831ee07a1489e
-            medium: https://image.lichess1.org/display?fmt=webp&h=500&op=thumbnail&path=rDGOWW82iYK9.webp&w=500&sig=dbae7080a8bd3ce8b153a2c7a24429f107dabf1c
+            small: https://image.lichess.org/display?fmt=webp&h=100&op=thumbnail&path=rDGOWW82iYK9.webp&w=100&sig=7c8ece3893b331835185347a890831ee07a1489e
+            medium: https://image.lichess.org/display?fmt=webp&h=500&op=thumbnail&path=rDGOWW82iYK9.webp&w=500&sig=dbae7080a8bd3ce8b153a2c7a24429f107dabf1c
             credit: "Frans Peeters, CC BY-SA 2.0 <https://creativecommons.org/licenses/by-sa/2.0>,\
               \ via Wikimedia Commons"
           "35009192":
-            small: https://image.lichess1.org/display?fmt=webp&h=100&op=thumbnail&path=ZtNkAl1_0MHT.webp&w=100&sig=8a2122f91eab6c3f0528bce8ea5854fd561bbcde
-            medium: https://image.lichess1.org/display?fmt=webp&h=500&op=thumbnail&path=ZtNkAl1_0MHT.webp&w=500&sig=f2faf575e19147ee8b1d2b573f1fd2e18fab88e7
+            small: https://image.lichess.org/display?fmt=webp&h=100&op=thumbnail&path=ZtNkAl1_0MHT.webp&w=100&sig=8a2122f91eab6c3f0528bce8ea5854fd561bbcde
+            medium: https://image.lichess.org/display?fmt=webp&h=500&op=thumbnail&path=ZtNkAl1_0MHT.webp&w=500&sig=f2faf575e19147ee8b1d2b573f1fd2e18fab88e7
             credit: Brigham Aldrich
           "46616543":
-            small: https://image.lichess1.org/display?fmt=webp&h=100&op=thumbnail&path=BMgtsjYW0uMf.webp&w=100&sig=6a2bc6e5d516008d09ed443d9deefa6e476a92eb
-            medium: https://image.lichess1.org/display?fmt=webp&h=500&op=thumbnail&path=BMgtsjYW0uMf.webp&w=500&sig=8551ae3db03884f408ba4c4067ffb74dc9825dcd
+            small: https://image.lichess.org/display?fmt=webp&h=100&op=thumbnail&path=BMgtsjYW0uMf.webp&w=100&sig=6a2bc6e5d516008d09ed443d9deefa6e476a92eb
+            medium: https://image.lichess.org/display?fmt=webp&h=500&op=thumbnail&path=BMgtsjYW0uMf.webp&w=500&sig=8551ae3db03884f408ba4c4067ffb74dc9825dcd
             credit: Dominik Töpfer
         group:
           id: I7IIijJO
@@ -26752,8 +26843,8 @@ components:
         blitz: 2766
         gender: M
         photo:
-          small: https://image.lichess1.org/display?fmt=webp&h=100&op=thumbnail&path=ZtNkAl1_0MHT.webp&w=100&sig=8a2122f91eab6c3f0528bce8ea5854fd561bbcde
-          medium: https://image.lichess1.org/display?fmt=webp&h=500&op=thumbnail&path=ZtNkAl1_0MHT.webp&w=500&sig=f2faf575e19147ee8b1d2b573f1fd2e18fab88e7
+          small: https://image.lichess.org/display?fmt=webp&h=100&op=thumbnail&path=ZtNkAl1_0MHT.webp&w=100&sig=8a2122f91eab6c3f0528bce8ea5854fd561bbcde
+          medium: https://image.lichess.org/display?fmt=webp&h=500&op=thumbnail&path=ZtNkAl1_0MHT.webp&w=500&sig=f2faf575e19147ee8b1d2b573f1fd2e18fab88e7
           credit: Brigham Aldrich
     fide-getFidePlayer-nullYear.json:
       value:
@@ -26795,8 +26886,8 @@ components:
         blitz: 2766
         gender: M
         photo:
-          small: https://image.lichess1.org/display?fmt=webp&h=100&op=thumbnail&path=ZtNkAl1_0MHT.webp&w=100&sig=8a2122f91eab6c3f0528bce8ea5854fd561bbcde
-          medium: https://image.lichess1.org/display?fmt=webp&h=500&op=thumbnail&path=ZtNkAl1_0MHT.webp&w=500&sig=f2faf575e19147ee8b1d2b573f1fd2e18fab88e7
+          small: https://image.lichess.org/display?fmt=webp&h=100&op=thumbnail&path=ZtNkAl1_0MHT.webp&w=100&sig=8a2122f91eab6c3f0528bce8ea5854fd561bbcde
+          medium: https://image.lichess.org/display?fmt=webp&h=500&op=thumbnail&path=ZtNkAl1_0MHT.webp&w=500&sig=f2faf575e19147ee8b1d2b573f1fd2e18fab88e7
           credit: Brigham Aldrich
       - id: 35009060
         name: Erigaisi Keerthana
@@ -27809,7 +27900,7 @@ components:
             id: anastasistzoumpas
         - id: satranc-dunyam-youtube
           name: Satranç Dünyam Youtube
-          description: "![white_logo_color_background.jpg](https://image.lichess1.org/display?fmt=webp&h=0&op=resize&path=POtYP_HEYG5a.jpg&w=768&sig=5464e11dcabb5bfae558a535dbba798c7dd89f05)\r\
+          description: "![white_logo_color_background.jpg](https://image.lichess.org/display?fmt=webp&h=0&op=resize&path=POtYP_HEYG5a.jpg&w=768&sig=5464e11dcabb5bfae558a535dbba798c7dd89f05)\r\
             \n## **Türkiye'nin En Büyük Satranç Ailesine Hoş Geldiniz!**\r\n\r\n##\
             \ **[Satranç Dünyam Youtube](https://www.youtube.com/c/satrancdunyam?sub_confirmation=1)**\r\
             \n\r\n## **[satrancdunyam.com](https://satrancdunyam.com/)**"
@@ -29276,7 +29367,7 @@ components:
           name: Lefong Hua
           headline: "FM Lefong Hua. Professional chess coach from Montreal, Canada."
           twitch: https://www.twitch.tv/lefonghua
-          image: https://image.lichess1.org/display?fmt=webp&h=350&op=thumbnail&path=lefonghua:streamer:lefonghua:Vr5ViPnv.jpg&w=350&sig=4dec7bb87631c83eb93b427fc24e4726582e6af0
+          image: https://image.lichess.org/display?fmt=webp&h=350&op=thumbnail&path=lefonghua:streamer:lefonghua:Vr5ViPnv.jpg&w=350&sig=4dec7bb87631c83eb93b427fc24e4726582e6af0
       - name: StellarChesss
         title: NM
         id: stellarchesss
@@ -29298,7 +29389,7 @@ components:
             \ streamer and gamer."
           twitch: https://www.twitch.tv/stellarchess
           youtube: https://www.youtube.com/channel/UChz11iN941Msw-txhbK28cQ/live
-          image: https://image.lichess1.org/display?fmt=webp&h=350&op=thumbnail&path=streamer:stellarchesss:S2yg03mE.webp&w=350&sig=a4f2b5b43151627f1d4b51d6fee34f96e7872716
+          image: https://image.lichess.org/display?fmt=webp&h=350&op=thumbnail&path=streamer:stellarchesss:S2yg03mE.webp&w=350&sig=a4f2b5b43151627f1d4b51d6fee34f96e7872716
       - name: tkbtsxu
         id: tkbtsxu
         stream:
@@ -29311,7 +29402,7 @@ components:
           description: "Ready? Let's go!\r\nJoin me with my journey to improve."
           twitch: https://www.twitch.tv/tkbtsxu
           youtube: https://www.youtube.com/channel/UCE7Epvr89s6NU17U9OeuVPA/live
-          image: https://image.lichess1.org/display?fmt=webp&h=350&op=thumbnail&path=tkbtsxu:streamer:tkbtsxu:BGFreAgy.jpg&w=350&sig=8ec1b36898ce3ee0c978b3a74d6e4dd36268feb1
+          image: https://image.lichess.org/display?fmt=webp&h=350&op=thumbnail&path=tkbtsxu:streamer:tkbtsxu:BGFreAgy.jpg&w=350&sig=8ec1b36898ce3ee0c978b3a74d6e4dd36268feb1
       - name: avocado_violet
         id: avocado_violet
         stream:
@@ -29322,7 +29413,7 @@ components:
           name: avocado_violet
           headline: watch me ragebait you
           twitch: https://www.twitch.tv/avocado_violet
-          image: https://image.lichess1.org/display?fmt=webp&h=350&op=thumbnail&path=fLtwU4bs-_cV.webp&w=350&sig=bf98fdf0cacd0fc5da93e05c253e6224210a2018
+          image: https://image.lichess.org/display?fmt=webp&h=350&op=thumbnail&path=fLtwU4bs-_cV.webp&w=350&sig=bf98fdf0cacd0fc5da93e05c253e6224210a2018
     users-getCrosstable.json:
       value:
         users:
@@ -31595,7 +31686,107 @@ components:
           patron: true
           patronColor: 2
           online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
         blitz:
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
         - id: id
           username: username
           perfs:
@@ -31697,7 +31888,107 @@ components:
           patron: true
           patronColor: 2
           online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
         classical:
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
         - id: id
           username: username
           perfs:
@@ -31799,7 +32090,107 @@ components:
           patron: true
           patronColor: 2
           online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
         crazyhouse:
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
         - id: id
           username: username
           perfs:
@@ -31901,7 +32292,107 @@ components:
           patron: true
           patronColor: 2
           online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
         kingOfTheHill:
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
         - id: id
           username: username
           perfs:
@@ -32003,7 +32494,107 @@ components:
           patron: true
           patronColor: 2
           online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
         antichess:
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
         - id: id
           username: username
           perfs:
@@ -32105,6 +32696,56 @@ components:
           patron: true
           patronColor: 2
           online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
         horde:
         - id: id
           username: username
@@ -32156,7 +32797,107 @@ components:
           patron: true
           patronColor: 2
           online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
         racingKings:
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
+        - id: id
+          username: username
+          perfs:
+            key:
+              rating: 0
+              progress: 6
+          title: GM
+          patron: true
+          patronColor: 2
+          online: true
         - id: id
           username: username
           perfs:
@@ -39324,9 +40065,13 @@ components:
     OpeningExplorerGamePlayer:
       example:
         name: name
+        title: title
         rating: 9
       properties:
         name:
+          type: string
+        title:
+          description: "Title of the player, if any"
           type: string
         rating:
           type: integer
@@ -39348,10 +40093,13 @@ components:
         year:
           type: integer
         month:
+          description: "Month of the game, if known"
+          nullable: true
           type: string
       required:
       - black
       - id
+      - month
       - white
       - winner
       - year
@@ -39384,9 +40132,11 @@ components:
           winner: ""
           white:
             name: name
+            title: title
             rating: 9
           black:
             name: name
+            title: title
             rating: 9
           year: 3
           month: month
@@ -39395,9 +40145,11 @@ components:
           winner: ""
           white:
             name: name
+            title: title
             rating: 9
           black:
             name: name
+            title: title
             rating: 9
           year: 3
           month: month
@@ -39439,18 +40191,23 @@ components:
           nullable: true
         speed:
           $ref: "#/components/schemas/Speed"
+        mode:
+          enum:
+          - rated
+          - casual
+          type: string
         white:
           $ref: "#/components/schemas/OpeningExplorerGamePlayer"
         black:
           $ref: "#/components/schemas/OpeningExplorerGamePlayer"
         year:
-          type: number
+          type: integer
         month:
-          nullable: true
           type: string
       required:
       - black
       - id
+      - mode
       - month
       - white
       - winner
@@ -39483,50 +40240,62 @@ components:
           id: id
           winner: ""
           speed: ultraBullet
+          mode: rated
           white:
             name: name
+            title: title
             rating: 9
           black:
             name: name
+            title: title
             rating: 9
-          year: 9.301444243932576
+          year: 9
           month: month
         - uci: uci
           id: id
           winner: ""
           speed: ultraBullet
+          mode: rated
           white:
             name: name
+            title: title
             rating: 9
           black:
             name: name
+            title: title
             rating: 9
-          year: 9.301444243932576
+          year: 9
           month: month
         recentGames:
         - uci: uci
           id: id
           winner: ""
           speed: ultraBullet
+          mode: rated
           white:
             name: name
+            title: title
             rating: 9
           black:
             name: name
+            title: title
             rating: 9
-          year: 9.301444243932576
+          year: 9
           month: month
         - uci: uci
           id: id
           winner: ""
           speed: ultraBullet
+          mode: rated
           white:
             name: name
+            title: title
             rating: 9
           black:
             name: name
+            title: title
             rating: 9
-          year: 9.301444243932576
+          year: 9
           month: month
         history:
         - month: month
@@ -39564,6 +40333,7 @@ components:
           type: array
           default: null
         history:
+          description: Only with `history=true`
           items:
             $ref: "#/components/schemas/OpeningExplorerLichess_history_inner"
           type: array
@@ -39573,6 +40343,7 @@ components:
       - draws
       - moves
       - opening
+      - recentGames
       - topGames
       - white
     OpeningExplorerPlayerGame:
@@ -40177,6 +40948,31 @@ components:
           description: The game URL
           format: uri
           type: string
+    apiVersion_200_response_server:
+      example:
+        date: 2000-01-23T04:56:07.000+00:00
+        commit: commit
+      properties:
+        date:
+          description: When the deployed server was built
+          format: date-time
+          type: string
+        commit:
+          description: Git commit hash of the deployed lila version
+          type: string
+      required:
+      - commit
+      - date
+    apiVersion_200_response:
+      example:
+        server:
+          date: 2000-01-23T04:56:07.000+00:00
+          commit: commit
+      properties:
+        server:
+          $ref: "#/components/schemas/apiVersion_200_response_server"
+      required:
+      - server
     tvChannels_200_response:
       example:
         bot:
@@ -45689,9 +46485,11 @@ components:
         winner: ""
         white:
           name: name
+          title: title
           rating: 9
         black:
           name: name
+          title: title
           rating: 9
         year: 3
         month: month
@@ -45748,13 +46546,16 @@ components:
         id: id
         winner: ""
         speed: ultraBullet
+        mode: rated
         white:
           name: name
+          title: title
           rating: 9
         black:
           name: name
+          title: title
           rating: 9
-        year: 9.301444243932576
+        year: 9
         month: month
     OpeningExplorerLichess_history_inner:
       example:
