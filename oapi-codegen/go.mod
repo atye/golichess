@@ -1,6 +1,6 @@
 module github.com/atye/golichess/oapi-codegen
 
-go 1.26.0
+go 1.26.11
 
 require github.com/oapi-codegen/runtime v1.9.0
 

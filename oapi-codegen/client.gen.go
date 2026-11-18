@@ -14338,7 +14338,8 @@ type ClientInterface interface {
 	// The method is `POST` to allow a longer list of IDs to be sent in the request body.
 	// Please do not try to download all the Lichess users with this endpoint, or any other endpoint.
 	// An API is not a way to fully export a website. We do not provide a full download of the Lichess users.
-	// This endpoint is limited to 8,000 users every 10 minutes, and 120,000 every day.
+	// This endpoint is limited to 10,000 users every 10 minutes, and 150,000 every day, when the request is authenticated.
+	// Fewer when the request is anonymous.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -14351,7 +14352,8 @@ type ClientInterface interface {
 	// The method is `POST` to allow a longer list of IDs to be sent in the request body.
 	// Please do not try to download all the Lichess users with this endpoint, or any other endpoint.
 	// An API is not a way to fully export a website. We do not provide a full download of the Lichess users.
-	// This endpoint is limited to 8,000 users every 10 minutes, and 120,000 every day.
+	// This endpoint is limited to 10,000 users every 10 minutes, and 150,000 every day, when the request is authenticated.
+	// Fewer when the request is anonymous.
 	//
 	// Takes a body of the `text/plain` content type.
 	//
@@ -18764,7 +18766,8 @@ func (c *Client) ApiUserNameTournamentPlayed(ctx context.Context, username strin
 // The method is `POST` to allow a longer list of IDs to be sent in the request body.
 // Please do not try to download all the Lichess users with this endpoint, or any other endpoint.
 // An API is not a way to fully export a website. We do not provide a full download of the Lichess users.
-// This endpoint is limited to 8,000 users every 10 minutes, and 120,000 every day.
+// This endpoint is limited to 10,000 users every 10 minutes, and 150,000 every day, when the request is authenticated.
+// Fewer when the request is anonymous.
 //
 // Takes any type of body and a specified content type.
 //
@@ -18787,7 +18790,8 @@ func (c *Client) ApiUsersWithBody(ctx context.Context, params *ApiUsersParams, c
 // The method is `POST` to allow a longer list of IDs to be sent in the request body.
 // Please do not try to download all the Lichess users with this endpoint, or any other endpoint.
 // An API is not a way to fully export a website. We do not provide a full download of the Lichess users.
-// This endpoint is limited to 8,000 users every 10 minutes, and 120,000 every day.
+// This endpoint is limited to 10,000 users every 10 minutes, and 150,000 every day, when the request is authenticated.
+// Fewer when the request is anonymous.
 //
 // Takes a body of the `text/plain` content type.
 //
@@ -32493,7 +32497,8 @@ type ClientWithResponsesInterface interface {
 	// The method is `POST` to allow a longer list of IDs to be sent in the request body.
 	// Please do not try to download all the Lichess users with this endpoint, or any other endpoint.
 	// An API is not a way to fully export a website. We do not provide a full download of the Lichess users.
-	// This endpoint is limited to 8,000 users every 10 minutes, and 120,000 every day.
+	// This endpoint is limited to 10,000 users every 10 minutes, and 150,000 every day, when the request is authenticated.
+	// Fewer when the request is anonymous.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -32506,7 +32511,8 @@ type ClientWithResponsesInterface interface {
 	// The method is `POST` to allow a longer list of IDs to be sent in the request body.
 	// Please do not try to download all the Lichess users with this endpoint, or any other endpoint.
 	// An API is not a way to fully export a website. We do not provide a full download of the Lichess users.
-	// This endpoint is limited to 8,000 users every 10 minutes, and 120,000 every day.
+	// This endpoint is limited to 10,000 users every 10 minutes, and 150,000 every day, when the request is authenticated.
+	// Fewer when the request is anonymous.
 	//
 	// Takes a body of the `text/plain` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -45843,7 +45849,8 @@ func (c *ClientWithResponses) ApiUserNameTournamentPlayedWithResponse(ctx contex
 // The method is `POST` to allow a longer list of IDs to be sent in the request body.
 // Please do not try to download all the Lichess users with this endpoint, or any other endpoint.
 // An API is not a way to fully export a website. We do not provide a full download of the Lichess users.
-// This endpoint is limited to 8,000 users every 10 minutes, and 120,000 every day.
+// This endpoint is limited to 10,000 users every 10 minutes, and 150,000 every day, when the request is authenticated.
+// Fewer when the request is anonymous.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -45862,7 +45869,8 @@ func (c *ClientWithResponses) ApiUsersWithBodyWithResponse(ctx context.Context, 
 // The method is `POST` to allow a longer list of IDs to be sent in the request body.
 // Please do not try to download all the Lichess users with this endpoint, or any other endpoint.
 // An API is not a way to fully export a website. We do not provide a full download of the Lichess users.
-// This endpoint is limited to 8,000 users every 10 minutes, and 120,000 every day.
+// This endpoint is limited to 10,000 users every 10 minutes, and 150,000 every day, when the request is authenticated.
+// Fewer when the request is anonymous.
 //
 // Takes a body of the `text/plain` content type, and returns a wrapper object for the known response body format(s).
 //
